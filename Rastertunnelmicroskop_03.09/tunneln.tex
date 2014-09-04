@@ -1,0 +1,37 @@
+\section{Theorie des Quantentunnelns}
+\textit{Quantentunneln}, oder kurz \textit{Tunneln} 
+bezeichnet das quantenmechanische Phänomen, wenn 
+die Durchtrittswahrscheinlichkeit eines Teilchens
+durch eine Potenzialbarriere nicht null ist, selbst wenn die Energie
+des Teilchens geringer ist als das Potenzial selbst ($E < V$), was
+in der klassischen Mechanik nicht möglich wäre. Dies
+spielt eine wichtige Rolle bei
+vielen Phänomenen in Natur und Technik,
+beispielsweise bei der Kernfusion der Sonne, bei der Diode und
+daher auch beim Transistor und somit bei der Funktionionsweise
+eines Computers an sich, aber auch beim Quantencomputer oder
+eben in unserem Fall beim RTM. Das Phänomen des Quantentunnelns
+wurde Anfang des 20ten Jahrhunderts mit der Entdeckung der 
+Quantenmechanik postuliert und Mitte des Jahrhunderts bestätigt.
+\subsection{Mathematische Herleitung von Quantentunneln}
+In den folgenden Ausführungen werden Kenntnisse der Quantenmechanik
+vorrausgesetzt. Betrachten wir zunächst die Zeitunabhängige
+Schrödingergleichung für ein Teilchen in einer Dimension:
+\begin{align}
+\left [ \frac{-\hbar^2}{2m}\partial_x^2 + V(x) \right ]\psi(x) = E\psi(x) \\ 
+\Leftrightarrow \left [ \frac{-\hbar^2}{2m}\partial_x^2 \right ]\psi(x) = \left [E-V(x) \right ]\psi(x) 
+\end{align}
+Im Spezialfall wenn $V(x)$ konstant ist, können wir die Gleichung
+sofort mit planaren Wellen lösen:
+\begin{align}
+    k^2 = \frac{2m}{\hbar^2}(V-E)\\
+    \psi(x) \sim \exp(kx) 
+\end{align}
+Wenn $V(x)$ nicht konstant ist, können wir mithilfe der WKB-Methode 
+\cite{froman1970transmission}
+immerhin noch den Transmissionskoeffizienten berechnen, sofern
+das Potenzial zwischen zwei Rändern $x_1$ und $x_2$ eingespannt ist 
+und ausserhalb davon null wird. Dazu setzen wir für die 
+Wellenfunktion $\psi(x)=\exp(\phi(x))$ an, 
+mit einer komplexen Funktion $\phi(x)$. 
+
