@@ -56,16 +56,6 @@
 \renewcommand{\footrulewidth}{0pt} % Remove footer underlines
 \setlength{\headheight}{13.6pt} % Customize the height of the header
 \usepackage{eso-pic}
-\newcommand\BackgroundPic{%
-\put(0,0){%
-\parbox[b][\paperheight]{\paperwidth}{%
-\vfill
-\centering
-\includegraphics[width=\paperwidth,height=\paperheight,%
-keepaspectratio]{background.png}%
-\vfill
-}}}
-
 \numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
 \numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
 \numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
@@ -78,7 +68,7 @@ keepaspectratio]{background.png}%
 
 \newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
 
-\title{	
+\title{ 
 \normalfont \normalsize 
 \textsc{Albert-Ludwigs-Universität Freiburg} \\ [25pt] % Your university, school and/or department name(s)
 \horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
@@ -91,9 +81,14 @@ keepaspectratio]{background.png}%
 \date{\normalsize\today} % Today's date or a custom date
 
 \begin{document}
-\AddToShipoutPicture*{\BackgroundPic}
 \maketitle
+
 \tableofcontents
+\begin{figure}[h!]
+\includegraphics[width=0.75\textwidth]{stm1}
+
+\caption{Easy Scan 2 STM: Rastertunnelmikrosko}
+\end{figure}
 
 \newpage
 \setcounter{page}{1}
