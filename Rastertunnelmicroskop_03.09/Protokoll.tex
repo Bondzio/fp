@@ -23,6 +23,7 @@
 \usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
 \usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
 \usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{natbib}
 
 \usepackage[utf8]{inputenc} 
 \usepackage[ngerman]{babel}
@@ -47,7 +48,7 @@
 \allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
 
 \usepackage{fancyhdr} % Custom headers and footers
-\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\pagestyle{headings} % Makes all pages in the document conform to the custom headers and footers
 \fancyhead{} % No page header - if you want one, create it in the same way as the footers below
 \fancyfoot[L]{} % Empty left footer
 \fancyfoot[C]{} % Empty center footer
@@ -87,9 +88,10 @@
 \begin{figure}[h!]
 \includegraphics[width=0.75\textwidth]{stm1}
 
-\caption{Easy Scan 2 STM: Rastertunnelmikrosko}
+\caption{Easy Scan 2 STM: Rastertunnelmikroskop}
 \end{figure}
 
+\thispagestyle{empty}
 \newpage
 \setcounter{page}{1}
 
@@ -98,7 +100,88 @@
 %	PROBLEM 1
 %----------------------------------------------------------------------------------------
 
+<<<<<<< HEAD
 \section{Problem title}
 \input{theorie}
+=======
+\part{Versuchsprotokoll}
+\input{Rastertunnel}
+\cite{binnig1982surface}
+\cite{kittel2013einfuhrung}
+\cite{chen1993introduction}
 
+\lipsum[2] % Dummy text
+
+\begin{align} 
+\begin{split}
+(x+y)^3 	&= (x+y)^2(x+y)\\
+&=(x^2+2xy+y^2)(x+y)\\
+&=(x^3+2x^2y+xy^2) + (x^2y+2xy^2+y^3)\\
+&=x^3+3x^2y+3xy^2+y^3
+\end{split}					
+\end{align}
+
+Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies
+
+%------------------------------------------------
+
+\subsection{Heading on level 2 (subsection)}
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
+\begin{align}
+A = 
+\begin{bmatrix}
+A_{11} & A_{21} \\
+A_{21} & A_{22}
+\end{bmatrix}
+\end{align}
+Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+
+%------------------------------------------------
+
+\subsubsection{Heading on level 3 (subsubsection)}
+
+\lipsum[3] % Dummy text
+
+\paragraph{Heading on level 4 (paragraph)}
+
+\lipsum[6] % Dummy text
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 2
+%----------------------------------------------------------------------------------------
+
+\section{Lists}
+
+%------------------------------------------------
+
+\subsection{Example of list (3*itemize)}
+\begin{itemize}
+	\item First item in a list 
+		\begin{itemize}
+		\item First item in a list 
+			\begin{itemize}
+			\item First item in a list 
+			\item Second item in a list 
+			\end{itemize}
+		\item Second item in a list 
+		\end{itemize}
+	\item Second item in a list 
+\end{itemize}
+
+%------------------------------------------------
+
+\subsection{Example of list (enumerate)}
+\begin{enumerate}
+\item First item in a list 
+\item Second item in a list 
+\item Third item in a list
+\end{enumerate}
+
+%----------------------------------------------------------------------------------------
+>>>>>>> 909bb3ecd5c621041bbb8ef6a9341e692090d310
+
+
+\bibliographystyle{plain}
+\bibliography{Protokoll}
 \end{document}
