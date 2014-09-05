@@ -4,7 +4,7 @@ folgenden Versuchsdurchführung verwendet wurde. Es handelt sich
 um das Modell \textit{easyScan 2 STM, Version 1.6} welches von 
 der Firma \textit{Nanoscience Instruments, Ink.} vertrieben wird.
 Laut der Beschreibung des Herstellers 
-bilden hunderte {easyScan 2 STMs} einen
+bilden hunderte \textit{easyScan 2 STMs} einen
 \textit{unersetzlichen} Bestandteil in der Lehre von Physik,
 Chemie und Materialwissenschaften, werden aber auch in der
 Forschung und Entwicklung eingesetzt. Anwendung findet das RTM
@@ -19,8 +19,7 @@ noch von Supraleitenden Magneten und einer Vakuumkammer hergestellt
 werden musste, zum diesem Modell und diese Fortschritt kommt uns
 in unserem FP zu Gute. Die Spezifikationen des Modells 
 (Ausschnitt, entnommen aus dem beiliegendem Handbuch):\\
-\noindent
-
+\begin{table}[h]
 \begin{tabular}{| l | p{7cm} |}
 \hline
   Größe des Controllers, Gewicht: & 470x120x80 mm / 2.4 Kg\\ \hline
@@ -35,6 +34,9 @@ Maximaler Rasterumfang in Z/ XY & 200nm/ 500nm  \\ \hline
 Maximale Probengröße & 10mm Durchmesser \\ \hline
 Spitzenspannung & max. $\pm 10V$ in 5mV Schritten \\ \hline
 \end{tabular}
+\caption{Spezifikationen des Modells \textit{easyScan 2 STM}}
+\label{tab:STM}
+\end{table}
 
 \begin{figure}
 \includegraphics[width=14cm]{pics/stm1}
@@ -107,9 +109,11 @@ kann der Annäherungsprozess der Spitze zu der Probe beginnen.
 Zunächst kann manuell mit einer groben Steuerung die Spitze
 (visuell) so nah wie möglich an die Probe herangebracht werden.
 Dabei ist es von Vorteil, wenn diese schon zu Beginn recht nahe
-aneinander liegen. Danach wird der automatische Annäherungsprozess
-gestartet, der die Spitze solange mit einer jeweils eingestellten
+aneinander liegen. Danach startet man den automatischen
+Annäherungsprozess,
+der die Spitze solange mit einer jeweils eingestellten
 Geschwindigkeit der Probe annähert, bis ein erster Tunnelstrom
+(in der Regel 1 nA)
 zwischen der Probe und der Spitze fließen kann.  
 Dieser Annäherungsversuch verfügt über verschiedene Modi:
 \begin{itemize}
@@ -126,3 +130,32 @@ Dieser Annäherungsversuch verfügt über verschiedene Modi:
             abgeschlossen und ist vermutlich geglückt;
             der Tunnelstrom fließt wie vorgegeben.
 \end{itemize}
+Der erste Annäherung genügt in der Regel nicht, die Probe
+mit der gewünschten Auflösung betrachten zu können. Deswegen muss
+sukzessiv die Distanz 
+durch weitere Annäherungen verkleinert werden,
+unter jeweils niedrigerer
+Tunnelspannung und veringerter Annäherungsgeschwindigkeit, 
+ohne dass dabei die Spitze mit der Probe kollidiert.
+Wenn nun die Annäherung erfolgt ist, kann die Abrasterung
+der Probe beginnen. Die Qualität des Kontakts zwischen Probe
+und Spitze kann nun anhand verschiedener Kriterien beurteilt werden,
+darunter die der Spitze umgebende Höhenlinie (siehe
+Abbildung~\ref{fig:topography}).
+\begin{figure}
+\includegraphics[width=14cm]{pics/Topography}
+\caption{Screenshot aus dem Programm. Links zeigt eine 
+Topographische Linie für einen guten Kontakt, während die
+rechte ``nervöse'' Linie aufgrund ihrer Nichtlinearität
+einen schlechten Tunneling Kontakt
+andeutet, was auf eine zu stumpfe oder instabile Spitze
+zurückgeführt werden kann.}
+ \label{fig:topography}
+\end{figure}
+Wenn nun eine erfolgreiche Abrasterung mit zufriedenstellender
+Auflösung vorliegt, kann ein Ausschnitt der Abrasterung
+vergrößert werden, dieser Auschnitt wird dann erneut abgerastert
+(sofern die technisch mögliche Auflösung nicht überschritten wird,
+siehe Tabelle~\ref{tab:STM} auf Seite~\pageref{tab:STM}).
+
+
