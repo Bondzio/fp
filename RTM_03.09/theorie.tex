@@ -29,12 +29,38 @@ gebunden, da sich die Orbitale der jeweiligen Atome überlagern – diese Elektr
 können daher leicht Energie eines elektrischen Feldes aufnehmen und sich in dem 
 Gitter bewegen. \\
 
+\subsection{Charakterisierung von Kristallgittern}
+Vor der Beschreibung der Oberflächen von Kristallen wenden wir uns dem darunter liegenden 
+Gitter zu, das die Basis für die Oberfläche darstellt. Die charakteristischen Größen 
+sind auch für die Oberflächen wichtig. Die Untersuchung der Kristallgitter findet vor 
+Allem durch Beugungsexperimente statt, da diese die periodische Struktur am besten 
+Ausnutzen und so zu höherer Genauigkeit kommen, als direkte Abbildung der Oberflächen. 
+Für die gemessene Intensität $I(\mathbf{K})$ gilt für große Abstände $\mathbf{R}$ 
+zwischen Strahlungsquelle und streuendem Medium sowie $\mathbf{R'}$ zwischen Streuer 
+und Schirm am Ort B:
+\begin{equation}
+    I(\mathbf{K}) \propto |A_B|^2 \propto |\int \rho(\mathbf{r}) \mathrm{e}^{-i 
+    \mathbf{K} \cdot \mathbf{r}} \mathrm{d}\mathbf{r}|^2
+\end{equation}
+Dabei ist $|A_B|$ die Amplitude der gemessenen Wellen am Schirm, $\rho (\mathbf{r})$ die 
+komplexe Streudichte an Position $\mathbf{r}$ (siehe Abb.~\ref{fig:scatter_geometry}) 
+und  $\mathbf{K} = \mathbf{k} - \mathbf{k_0}$ der Streuvektor, $\mathbf{k_0}$ der 
+k-Vektor der auf das Streumedium auftreffenden Wellen und $\mathbf{k}$ der k-Vektor 
+der am Schirm auftreffenden Welle. 
+  
+\begin{figure}
+    \includegraphics[width=1.0\textwidth]{pics/scatter_geometry}
+    \caption{Zur Herleitung der Streukinematik,
+aus \cite{ibach2009festkorperphysik} }
+    \label{fig:scatter_geometry}
+\end{figure}
+
 
 \subsection{Grundlagen der Festkörperoberflächen}
 Bei der Beobachtung der Oberflächen von Festkörpern sind die Modelle unendlich 
 ausgedehnter Kristallgitter nur teilweise zu verwerten, da an den Oberflächen 
 oft zusätzliche Effekte auftreten. Eine Kategorisierung wird von Henzler und 
-Göpel \cite{henzler1991oberflachenphysik} gegeben (Abb.: \ref{fig:oberflaeche}).
+Göpel \cite{henzler1991oberflachenphysik} gegeben (Abb.:~\ref{fig:oberflaeche}).
 Grundsätzlich kann es Abweichungen der regelmäßigen, dreidimensionalen 
 Oberflächenstruktur in null, ein, zwei oder drei Dimensionen geben. Letztere 
 sind Abweichungen der unterliegenden Baustruktur, die zum Teil eine Mosaikstruktur 
@@ -92,10 +118,16 @@ aus. Die Kohlenstoffatome sind in den aus kovalent gebundenen Sechsecken bestehe
 Basalebenen oder Graphenschichten deutlich fester aneinander gebunden (4.3 eV), als 
 an solche aus benachbarten Schichten (0.07 eV). Daher ist Graphit entlang dieser Linien 
 sowohl mechnisch deutlich stabiler als auch sehr viel leitfähiger (für Wärme und 
-elektrischen Strom). Graphit tritt nicht nur in zueinander korrlierten Schichten auf, 
+elektrischen Strom). Die Unterschiede in der Bindungsenergie spiegeln sich auch in den 
+Abständen wider: So sind nächsten Nachbarn innerhalb einer Schicht nur $0.142\mathrm{nm}$ 
+entfernt, während die Schichten $0.335\mathrm{nm}$ auseinander liegen.  
+Graphit tritt nicht nur in zueinander korrlierten Schichten auf, 
 sondern auch unkorrliert (sog. turbostratischer Kohlenstoff). Die hier untersuchte Form 
-ist jedoch regelmäßig - die Winkelabweichung für das verwendete HOPG (highlz orientated 
-pzrolztic graphite) beträgt weniger als $1 \deg$ \cite{mcnaught2000iupac}. Es liegen in 
+ist jedoch regelmäßig - die Winkelabweichung für das verwendete HOPG (highly orientated 
+pyrolytic graphite) beträgt weniger als $1 \deg$ \cite{mcnaught2000iupac}. Diese 
+synthetische Form des Graphit wird auf Grund von ihrer Regelmäßigkeit und Reinheit 
+heute zur Kalibrierung von Rastertunnelmirkoskopen verwendet \cite{lapshin1998automatic}. 
+Es liegen in 
 der Schichtung jedoch nicht alle Atome übereinander, sondern lediglich jedes zweite aus 
 jedem Sechseck (siehe Abb.~\ref{fig:graphite}). 
 Dadurch kommt es an der Oberfläche zu einem oft beobachteten 
@@ -111,3 +143,6 @@ der Atome mit bzw. ohne direkten Nachbarn in der Schicht darunter mit $0.15 \AA$
     \label{fig:graphite}
 \end{figure} 
 
+Gold
+ein einziges stabiles Isotop -> Reinmetall
+sehr duktil (kalt, ohne Brüche verformbar) -> dünne Goldschichten möglich
