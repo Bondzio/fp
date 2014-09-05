@@ -36,6 +36,7 @@ Maximale Probengröße & 10mm Durchmesser \\ \hline
 Spitzenspannung & max. $\pm 10V$ in 5mV Schritten \\ \hline
 \end{tabular}
 
+\vspace{0.5cm}
 \begin{figure}
 \includegraphics[width=14cm]{pics/stm1}
 \caption{Photographie des verwendeten RTMs \textit{easyScan 2
@@ -107,9 +108,11 @@ kann der Annäherungsprozess der Spitze zu der Probe beginnen.
 Zunächst kann manuell mit einer groben Steuerung die Spitze
 (visuell) so nah wie möglich an die Probe herangebracht werden.
 Dabei ist es von Vorteil, wenn diese schon zu Beginn recht nahe
-aneinander liegen. Danach wird der automatische Annäherungsprozess
-gestartet, der die Spitze solange mit einer jeweils eingestellten
+aneinander liegen. Danach startet man den automatischen
+Annäherungsprozess,
+der die Spitze solange mit einer jeweils eingestellten
 Geschwindigkeit der Probe annähert, bis ein erster Tunnelstrom
+(in der Regel 1 nA)
 zwischen der Probe und der Spitze fließen kann.  
 Dieser Annäherungsversuch verfügt über verschiedene Modi:
 \begin{itemize}
@@ -126,3 +129,27 @@ Dieser Annäherungsversuch verfügt über verschiedene Modi:
             abgeschlossen und ist vermutlich geglückt;
             der Tunnelstrom fließt wie vorgegeben.
 \end{itemize}
+Der erste Annäherung genügt in der Regel nicht, die Probe
+mit der gewünschten Auflösung betrachten zu können. Deswegen muss
+sukzessiv die Distanz 
+durch weitere Annäherungen verkleinert werden,
+unter jeweils niedrigerer
+Tunnelspannung und veringerter Annäherungsgeschwindigkeit, 
+ohne dass dabei die Spitze mit der Probe kollidiert.
+Wenn nun die Annäherung erfolgt ist, kann die Abrasterung
+der Probe beginnen. Die Qualität des Kontakts zwischen Probe
+und Spitze kann nun anhand verschiedener Kriterien beurteilt werden,
+darunter die der Spitze umgebende Höhenlinie, siehe
+Abbildung~\ref{fig:topography}.
+\begin{figure}
+\includegraphics[width=14cm]{pics/Topography}
+\caption{Screenshot aus dem Programm. Links zeigt eine 
+Topographische Linie für einen guten Kontakt, während die
+rechte ``nervöse'' Linie aufgrund ihrer Nichtlinearität
+einen schlechten Tunneling Kontakt
+andeutet, was auf eine zu stumpfe oder instabile Spitze
+zurückgeführt werden kann.}
+ \label{fig:topography}
+
+\end{figure}
+
