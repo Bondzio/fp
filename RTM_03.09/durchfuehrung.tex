@@ -1,9 +1,10 @@
-\section{Durchführung des Versuchs}
+\subsection{Durchführung des Versuchs}
 In Abbildung~\ref{fig:stm1} sehen wir das RTM, welches in der
 folgenden Versuchsdurchführung verwendet wurde. Es handelt sich
-um das Modell \textit{easyScan 2 STM, Version 1.6} welches von 
+um das Modell \textit{easyScan 2 STM, Version 1.6} welches 
+mittlerweile von 
 der Firma \textit{Nanoscience Instruments, Ink.} vertrieben wird.
-Laut der Beschreibung des Herstellers 
+Laut der Beschreibung des Herstellers  
 bilden hunderte \textit{easyScan 2 STMs} einen
 \textit{unersetzlichen} Bestandteil in der Lehre von Physik,
 Chemie und Materialwissenschaften, werden aber auch in der
@@ -18,7 +19,7 @@ konfiguriert werden. Der Wandel vom ersten RTM, in dem die Dämpfung
 noch von Supraleitenden Magneten und einer Vakuumkammer hergestellt
 werden musste, zum diesem Modell und diese Fortschritt kommt uns
 in unserem FP zu Gute. Die Spezifikationen des Modells 
-(Ausschnitt, entnommen aus dem beiliegendem Handbuch):\\
+(Ausschnitt aus \cite{easyscan2_STM}):\\
 \begin{table}[h]
 \begin{tabular}{| l | p{7cm} |}
 \hline
@@ -34,14 +35,14 @@ Maximaler Rasterumfang in Z/ XY & 200nm/ 500nm  \\ \hline
 Maximale Probengröße & 10mm Durchmesser \\ \hline
 Spitzenspannung & max. $\pm 10V$ in 5mV Schritten \\ \hline
 \end{tabular}
-\caption{Spezifikationen des Modells \textit{easyScan 2 STM}}
+\caption{Spezifikationen des Modells \textit{easyScan 2 STM} \cite{easyscan2_STM}}
 \label{tab:STM}
 \end{table}
 
 \begin{figure}
 \includegraphics[width=14cm]{pics/stm1}
 \caption{Photographie des verwendeten RTMs \textit{easyScan 2
-STM Version 1.6} (entnommen aus Webseite des Herstellers)} 
+STM} \cite{easyscan2_STM}} 
  \label{fig:stm1}
 \end{figure}
 
@@ -50,7 +51,7 @@ war und nicht modifiziert werden sollte, werden wir hier nicht
 auf die einzelnen Komponenten des \textit{easy Scan 2 STM} Systems
 eingehen, sondern nur die für unseren Versuch relevanten 
 Bauteile beschreiben.
-\subsection{Versuchsaufbau}
+\subsubsection{Versuchsaufbau}
 In Abbildung~\ref{fig:Rasterkopf} ist der Rasterkopf ds RTMs zu
 sehen. Über den Probenhalter mit dazugehörigem Fixierungsmagneten
 wird die Probe selbst angebracht; an den Spitzenhalter mit
@@ -68,8 +69,8 @@ der Klammer fixiert wird.
 \begin{figure}
 \includegraphics[width=14cm]{pics/rasterkopf}
 \caption{Rasterkopf des RTMs \textit{easyScan 2
-STM Version 1.6} (entnommen aus Webseite des Herstellers)
-Zu sehen ist der Probenhalter (\textit{Sample holder}) mit dazu
+STM Version 1.6} \cite{easyscan2_STM}.
+Zu Sehen ist der Probenhalter (\textit{Sample holder}) mit dazu
 gehörendem Annäherungsmotor (\textit{Approach motor} sowie
 dem Fixierungsmagneten ({Fixing Magnet}), sowie dem Spitzenhalter
 mit Klammer (\textit{Tip holder with clamp}). Die Funktionsweise
@@ -103,8 +104,11 @@ mit der Probe einzugehen.}
  \label{fig:SEM_tip_picture}
 
 \end{figure}
-\subsection{Durchführung der Messungen}
+\subsubsection{Durchführung der Messungen}
 Sobald die Spitze angebracht und die Probe eingeführt wurde, 
+wird ein Plexiglasdeckel über die Apperatur aufgesetzt, welcher
+über eine Luke mit einer Linse verfügt. Über jene Linse kann die
+Distanz zwischen Probe und Spitze überprüft werden. Anschließend
 kann der Annäherungsprozess der Spitze zu der Probe beginnen. 
 Zunächst kann manuell mit einer groben Steuerung die Spitze
 (visuell) so nah wie möglich an die Probe herangebracht werden.
@@ -144,7 +148,8 @@ darunter die der Spitze umgebende Höhenlinie (siehe
 Abbildung~\ref{fig:topography}).
 \begin{figure}
 \includegraphics[width=14cm]{pics/Topography}
-\caption{Screenshot aus dem Programm. Links zeigt eine 
+\caption{Screenshot aus dem Programm \cite{easyscan2_STM}. 
+Links zeigt eine 
 Topographische Linie für einen guten Kontakt, während die
 rechte ``nervöse'' Linie aufgrund ihrer Nichtlinearität
 einen schlechten Tunneling Kontakt
@@ -154,8 +159,23 @@ zurückgeführt werden kann.}
 \end{figure}
 Wenn nun eine erfolgreiche Abrasterung mit zufriedenstellender
 Auflösung vorliegt, kann ein Ausschnitt der Abrasterung
-vergrößert werden, dieser Auschnitt wird dann erneut abgerastert
+vergrößert werden; dieser Auschnitt wird dann erneut abgerastert
 (sofern die technisch mögliche Auflösung nicht überschritten wird,
 siehe Tabelle~\ref{tab:STM} auf Seite~\pageref{tab:STM}).
-
+Wie gut die Auflösung effektiv ist, hängt von der Qualität der 
+Spitze, den Parametern (Messzeit pro Linie, Regeparameter des
+PID-Controllers, Spannung am Tunnelstrom) und dem Einfluss durch
+äußere Gegebenheiten (Rauschen durch Geräusche, usw.) ab. 
+Durch Überprüfung, ob vorwärz- und rückwärts-Rasterung,
+Änderung der Messzeit pro Linie, Veränderung des Tunnelstroms,
+oder Abrasterung derselben Stelle mehrere Male  
+dasselbe Ergebnis liefern, oder ob Rotation der Rasterichtung
+um $90^{\circ}$ korrekt abgebildet wird, kann überprüft werden,
+ob die Auflösung gut ist \cite{versuchsanleitung}.
+Bei periodischen Strukturen kann überprüft werden, ob eine
+Veränderung der Messzeit pro Linie die Periodizität beeinflusst
+\cite{versuchsanleitung}. Wenn abschließend die gewünschten
+Messungen vorgenommen wurden, kann mit der Auswertung 
+durch Bildanalyseverfahren begonnen werden. 
+\subsubsection{Analysesoftware Gwyddion}
 
