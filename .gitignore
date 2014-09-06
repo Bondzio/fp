@@ -75,3 +75,5 @@ docs/_build/
 *.mtc1
 *.out
 *.synctex.gz
+# Pratikum
+Protokoll.pdf
