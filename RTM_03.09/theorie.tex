@@ -1,20 +1,6 @@
-\subsection{Theoretische Grundlagen}
+section{Theoretische Grundlagen}
 
-\subsubsection{Überblick}
-In der Rastertunnelmikroskopie wird die Oberfläche von Festkörpern untersucht. 
-Dabei wird der quantenmechanische Tunneleffekt ausgenutzt, der einen minimalen 
-Stromfluss dort erlaubt, wo klassisch die Potentialbarriere zu hoch wäre. 
-Die Wahrscheinlichkeit, dass ein Elektron durch die Barriere ”tunnelt”, 
-hängt stark von der Breite derselben ab – daher kann der Tunnelstrom als 
-Messgröße für die Entfernung zwischen Spitze und Oberfläche benutzt werden. 
-Mit Hilfe des entsprechenden theoretischen Zusammenhanges und Modellen aus 
-der Festkörperphysik können so Bilder von der Oberfläche gemacht werden und 
-Parameter wie die Gitterkonstante berechnet werden. Untersucht werden in 
-diesem Versuch die Oberflächen von Graphit, einer mit Gold beschichteten 
-Struktur und des Halbleiters $\mathrm{MoS_2}$. 
-
-
-\subsubsection{Grundlagen der Festkörperphysik}
+\subsection{Grundlagen der Festkörperphysik}
 Wir gehen in unserer Beschreibung der untersuchten Metalle und Halbleiter 
 vom Bändermodell aus. Durch die gegenseitige Beeinflussung der Atome im Gitter
 werden die im Einzelatom noch stark voneinander abgetrennten Energie-Eigenzustände
@@ -113,19 +99,43 @@ aus \cite{ibach2009festkorperphysik} }
 
 
 \subsection{Grundlagen der Festkörperoberflächen}
-Bei der Beobachtung der Oberflächen von Festkörpern sind die Modelle unendlich 
-ausgedehnter Kristallgitter nur teilweise zu verwerten, da an den Oberflächen 
-oft zusätzliche Effekte auftreten. Eine Kategorisierung wird von Henzler und 
-Göpel \cite{henzler1991oberflachenphysik} gegeben (Abb.:~\ref{fig:oberflaeche}).
-Grundsätzlich kann es Abweichungen der regelmäßigen, dreidimensionalen 
-Oberflächenstruktur in null, ein, zwei oder drei Dimensionen geben. Letztere 
-sind Abweichungen der unterliegenden Baustruktur, die zum Teil eine Mosaikstruktur 
-bilden, die sich auch auf größere Skalen erstrecken. Zweidimensionale Strukturen 
-tauchen als großflächige Überstrukturen oder kleinere Facetten auf. 
+Das zuvor angenommen, unendlich ausgedehnte, periodische Kristallgitter spielt 
+bei der Untersuchung der Oberflächen nur noch eine untergeordnete Rolle – 
+schließlich ist eine Oberfläche zunächst einmal eine Abweichung dieser 
+Eigenschaft. Im Allgemeinen kann es Abweichungen in null, ein, zwei oder drei 
+Dimensionen geben. Letztere sind Abweichungen der unterliegenden Baustruktur, 
+die zum Teil eine Mosaikstruktur bilden, die sich auch auf größere Skalen 
+erstrecken. Zweidimensionale Strukturen tauchen als großflächige 
+Überstrukturen oder kleinere Facetten auf. Eine Kategorisierung verschiedener 
+Oberflächen wird von Henzler und Göpel \cite{henzler1991oberflachenphysik} 
+gegeben (Abb.:~\ref{fig:oberflaeche}).
+In jedem Fall erfahren die Atome der Oberfläche erfahren nicht mehr das 
+regelmäßige Potential von allen Seiten. Die resultierenden Veränderung werden je 
+nach Art als Oberflächenrelaxation oder -rekonstruktion. 
+Ersteres bezeichnet lediglich eine globale Verschiebung der oberen Schicht 
+gegen die Basis, beispielsweise normal oder lateral, wobei die Symmetrien 
+der Oberfläche nicht verändert werden und sich die freie Energie verringert. 
+Dieser Effekt wird bei den meisten Metallen beobachtet \cite{oura2003surface}.
+Bei der Oberflächenrekonstruktion bilden sich meist größere Einheitszellen, als die 
+des darunter liegenden Kristalls. Bei Halbleitern hängt das oft damit zusammen, 
+dass die Anzahl nicht abgesättigter Bindungen minimiert wird, so beispielsweise 
+bei Silizium entlang der (100)-Fläche, bei der nach gedanklichem Aufspalten zwei 
+Bindungen frei wären. Je zwei Atome verbinden sich zu sog. Dimeren, wobei die 
+Oberfläche räumlich verzogen wird und sich volle bzw. leere Reihen mit einer 
+Höhe von bis zu fünf Schichten und über große Entfernungen bilden 
+\cite{chadi1979atomic}. Die bereits in der historischen Einleitung gezeigte 
+Si-Oberfläche entlang der 
+(111)-Ebene zeigt ebensfalls eine Oberflächenrekonstruktion, allerdings mit 
+deutlich anderen Mustern. Die kubisch-flächenzentrierten Edelmetalle der 
+6.~Periode, Ir, Pt und Au bilden als Ausnahme unter den Metallen ebenfalls 
+Oberflächenrekonstruktionen, die sog. \emph{missing row}-Konstruktion, 
+wie weiter unten bei der Beschreibung von Gold verdeutlicht wird 
+\cite{kittel2013einfuhrung}. 
 
-Zur mathematischen Beschreibung werden die Gittervektoren aus dem Ortsraum benutzt, 
-die in der Oberfläche liegen. Ausreichend sind meistens jene aus der obersten 
-Atomschicht. Die Atome befinden sich dann an den Positionen 
+
+Zur mathematischen Beschreibung regelmäßiger Überflächen werden die Gittervektoren 
+aus dem Ortsraum benutzt, die in der Oberfläche liegen. Ausreichend sind meistens 
+jene aus der obersten Atomschicht. Die Atome befinden sich dann an den Positionen 
 \begin{equation}
     \mathbf{r} = m_1 \mathbf{a_1} + m_2 \mathbf{a_2},
 \end{equation}
@@ -198,10 +208,13 @@ der Atome mit bzw. ohne direkten Nachbarn in der Schicht darunter mit $0.15 \AA$
     \label{fig:graphite}
 \end{figure} 
 
-Gold
 Gold ist als kubisch-flächenzentriertes Kristallgitter aufgebaut. Die Gitterkonstante 
-beträgt $407.82\mathrm{pm}$\cite{ohring1995engineering}, allerdings ist auf Grund der 
+beträgt $407.82\mathrm{pm}$\cite{ohring1995engineering}. Im Gegensatz zum Graphit 
+treten jedoch beim Gold enorme Veränderungen der Oberflächenstruktur gegenüber der 
+darunter liegenden Basis auf. Bei dieser Oberflächenrekonstruktion
+
+ allerdings ist auf Grund der 
 metallischen Struktur die Darstellung mit dem Rastertunnelmikroskop deutlich 
 schwieriger als bei Halbleitern, da die Elektronen weniger stark räumlich lokalisiert 
-sind. Oft wird Gold 
+sind. 
 
