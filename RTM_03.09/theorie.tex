@@ -1,6 +1,29 @@
 section{Theoretische Grundlagen}
 
 \subsection{Grundlagen der Festkörperphysik}
+Für die Rastertunnelmikroskopie ist die räumliche Verteilung der Elektronen an 
+der Oberfläche von zentraler Bedeutung. Die Blochtheorie macht Aussagen über 
+die Aufenthaltswahrscheinlichkeiten von Elektronen in periodischen 
+Gittern und liefert ein Modell zur Erklärung des Bändermodells. 
+Für ein Elektron mit Wellenfunktion $\psi$ gilt bei Vernachlässigung der 
+Elektron-Elektron-Wechselwirkung in der nichtrelativistischen Näherung die 
+Schrödingergleichung 
+\begin{equation}
+    \Big[ - \frac{\hbar^2}{2m} \Delta + E_{\mathrm{pot}}(\mathbf{r}) \Big] \psi = E \psi
+\end{equation}
+mit periodischer potentieller Energie 
+\begin{equation}
+    E_{\mathrm{pot}}(\mathbf{r}) = E_{\mathrm{pot}}(\mathbf{r + R})
+\end{equation}
+in Richtung $\mathbf{R} = m \,\mathbf{a_1} + n \,\mathbf{a_2} + o \,\mathbf{a_3}, 
+\quad m, n, o \in \mathbb{N}$, also den Vektoren zwischen den Gitterpunkten. 
+Für die Lösung machen wir den Ansatz die sog. Blochwellenfunktionen
+\begin{eqnarray}
+    \psi(\mathbf{r}) = u(\mathbf{r}) \cdot \mathrm{e}^{-i \mathbf{k \cdot R}} \\
+    \mathrm{mit} \quad u(\mathbf{r}) = u(\mathbf{r + R}) \nonumber
+\end{eqnarray}
+Für die Aufenthaltswahrscheinlichkeit folgt $|\psi(\mathbf{r})|^2 = |u|^2$. 
+
 Wir gehen in unserer Beschreibung der untersuchten Metalle und Halbleiter 
 vom Bändermodell aus. Durch die gegenseitige Beeinflussung der Atome im Gitter
 werden die im Einzelatom noch stark voneinander abgetrennten Energie-Eigenzustände
@@ -85,14 +108,15 @@ Glanz- oder Braggwinkel ist
 
 \begin{figure}
     \includegraphics[width=1.0\textwidth]{pics/scatter_geometry}
-    \caption{Zur Herleitung der Streukinematik,
+    \caption{Zur Herleitung der Streukinematik
 aus \cite{ibach2009festkorperphysik} }
     \label{fig:scatter_geometry}
 \end{figure}
 
 \begin{figure}
     \includegraphics[width=1.0\textwidth]{pics/Bragg_Winkel}
-    \caption{Definition des Braggwinkels,
+    \caption{Zur Definition des Braggwinkels $\Theta$. Die Netzebenen haben einem Abstand 
+von $d_{hlk}$.  
 aus \cite{ibach2009festkorperphysik} }
     \label{fig:Bragg_Winkel}
 \end{figure}
@@ -115,7 +139,9 @@ nach Art als Oberflächenrelaxation oder -rekonstruktion.
 Ersteres bezeichnet lediglich eine globale Verschiebung der oberen Schicht 
 gegen die Basis, beispielsweise normal oder lateral, wobei die Symmetrien 
 der Oberfläche nicht verändert werden und sich die freie Energie verringert. 
-Dieser Effekt wird bei den meisten Metallen beobachtet \cite{oura2003surface}.
+Dieser Effekt wird bei den meisten Metallen beobachtet \cite{oura2003surface}. 
+Abb. \ref{fig:Ag(110)} zeigt beispielsweise die relaxierte Oberfläche von Silber 
+auf der (110)-Fläche.
 Bei der Oberflächenrekonstruktion bilden sich meist größere Einheitszellen, als die 
 des darunter liegenden Kristalls. Bei Halbleitern hängt das oft damit zusammen, 
 dass die Anzahl nicht abgesättigter Bindungen minimiert wird, so beispielsweise 
@@ -132,6 +158,14 @@ Oberflächenrekonstruktionen, die sog. \emph{missing row}-Konstruktion,
 wie weiter unten bei der Beschreibung von Gold verdeutlicht wird 
 \cite{kittel2013einfuhrung}. 
 
+\begin{figure}
+    \includegraphics[width=1.0\textwidth]{pics/Ag(110)_clean}
+    \caption{Rastertunnelkikroskop-Aufnahme mit atomare Auflösung einer reinen 
+Silberoberfläche entlang der (110)-Fläche. Zu erkennen ist, dass die Oberfläche 
+lediglich relaxiert ist, und Rekonstruktion stattfindet. 
+Aus \cite{kahn:stm_images}.}
+    \label{fig:Ag(100)}
+\end{figure} 
 
 Zur mathematischen Beschreibung regelmäßiger Überflächen werden die Gittervektoren 
 aus dem Ortsraum benutzt, die in der Oberfläche liegen. Ausreichend sind meistens 
@@ -165,8 +199,12 @@ als inkommensurabel bezeichnet. \cite{henzler1991oberflachenphysik}
 
 \begin{figure}
     \includegraphics[width=1.0\textwidth]{pics/oberflaechenstruktur}
-    \caption{Die ideale Oberfläche und einige mögliche Oberflächenstrukturen, 
-aus \cite{henzler1991oberflachenphysik} }
+    \caption{Die ideale Oberfläche und einige mögliche Oberflächenstrukturen. 
+Die ideale Oberfläche entspricht einer Gitterebene im Kristall, die defomierte 
+Oberfläche entsteht durch Relaxation (hier in normaler Richtung) und wird bei den 
+meisten Metallen beobachtet, während die Überstruktur ein Resultat der Rekonstruktion 
+ist und z. B. bei Halbleitern oder Gold zu beobachten ist. 
+Aus \cite{henzler1991oberflachenphysik} }
     \label{fig:oberflaeche}
 \end{figure} 
 \begin{figure}
@@ -204,17 +242,53 @@ der Atome mit bzw. ohne direkten Nachbarn in der Schicht darunter mit $0.15 \AA$
 
 \begin{figure}
     \includegraphics[width=1.0\textwidth]{pics/graphite}
-    \caption{Hexagonale Oberflächenstruktur von Graphit, aus \cite{park1986tunneling}}
+    \caption{Hexagonale Oberflächenstruktur von Graphit. An den umkreisten Orten (A) 
+liegen jeweils Atome aus der ersten und der zweiten Schicht übereinander, bei den 
+übrigen (B) nicht. Bei STM-Aufnahmen sind fast ausschließlich die Atome mit Nachbarn 
+zu erkennen, da hier Elektronen nahe der Fermienergie räumlich weiter oben liegen. 
+Aus \cite{park1986tunneling}}
     \label{fig:graphite}
 \end{figure} 
 
 Gold ist als kubisch-flächenzentriertes Kristallgitter aufgebaut. Die Gitterkonstante 
 beträgt $407.82\mathrm{pm}$\cite{ohring1995engineering}. Im Gegensatz zum Graphit 
 treten jedoch beim Gold enorme Veränderungen der Oberflächenstruktur gegenüber der 
-darunter liegenden Basis auf. Bei dieser Oberflächenrekonstruktion
+darunter liegenden Basis auf. Auf einer (110)-Fläche wurde die Bildung von 
+(111)-Facetten beobachtetet, die Kanälevon meistens zwei bis vier Schichten Tiefe 
+formen. Gleichzeitig ist die Oberfläche von Stufen gekennzeichnet, die sowohl parallel 
+als auch normal zu den Kanälen verlaufen, siehe Abb. \ref{fig:Au(110)}. Die Darstellung 
+der Oberfläche mit dem Rastertunnelmikroskop ist auf Grund der metallischen Struktur 
+deutlich schwieriger als bei Halbleitern, da die Elektronen aus dem Leitungsband kaum 
+räumlich lokalisiert sind. 
 
- allerdings ist auf Grund der 
-metallischen Struktur die Darstellung mit dem Rastertunnelmikroskop deutlich 
-schwieriger als bei Halbleitern, da die Elektronen weniger stark räumlich lokalisiert 
-sind. 
+\begin{figure}
+    \includegraphics[width=1.0\textwidth]{pics/Au(110)_channels}
+    \caption{Rastertunnelmikroskop-Aufnahmen von Gold(110)-Oberfläche mit 
+Rekonstruktion. Die Geraden verdeutlichen die abschüssige Terassenstruktur, die 
+Nummern die Tiefe der Kanäle (in Vielfachen der Ebenenabstände). Bei $\mathrm{S}$
+und $\mathrm{S_1}$ befinden sich Stufen mit Höhe einer Atomlage. An den Kristallaxen 
+ist der Maßstab gekennzeichnet: ein Schritt entsprechen 5 \AA. Über der Aufnahme 
+deutet ein schematischer Querschnitt die Struktur der Kanäle an. 
+Aus \cite{binnig1983111}.}
+    \label{fig:Ag(100)}
+\end{figure} 
 
+Molybdänit ($\mathrm{MoS_2}$, auch Molybdän(IV)-sulfid) ist ein Halbleiter mit 
+hexagonalem Kristallgitter der Raumgruppe $\mathrm{P \, 6_3/mmc}$. Ähnlich 
+dem Graphit gibt es eine schichtartige Struktur, auch hier können die Schichten 
+relativ leicht gegeneinander verschoben werden. Die Gitterparameter sind mit 
+$a = 3.161 \AA$ sowie $c = 12.295 \AA$ angegeben, siehe
+Abb.~\ref{fig:MoS2_structure} \cite{schrocke1981mineralogie}. 
+Auf Gund der Schichtstruktur findet $\mathrm{MoS_2}$ als 
+Schmiermittel Verwendung und kann wie Graphen als einatomige Schicht isoliert 
+werden, sodass es mögliches Transitormaterial gehandelt wird 
+\cite{mak2010atomically}. 
+
+\begin{figure}
+    \includegraphics[width=1.0\textwidth]{pics/MoS2_structure}
+    \caption{Gitterstruktur von $\mathrm{MoS_2}$, Ausschnitte aus drei übereinander 
+liegenden Schichten mitsamt Koordinationspolyedern. Für die Abstände gilt 
+$a_1 = a_2 = a_3 = 3.161\AA =: a$ und $c_0 = 12.295\AA$. 
+Aus \cite{schrocke1981mineralogie}.}
+    \label{fig:MoS2_structure}
+\end{figure} 
