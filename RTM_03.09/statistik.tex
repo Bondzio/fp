@@ -61,7 +61,14 @@ In der letzten Eigenschaft
 bedeutet $\bar{f}$ die komplexe Konjugation von $f$.
 Die Definitionen sind nun für die x-Richtung ausgeführt worden,
 sie funktionieren jedoch analog im $2D$ Fall, also mit dem Tuple
-$(x,y)$. In der numerischen Analyse wird nun die ``Schnelle''
+$(x,y)$. 
+Um nun eine qualitative Aussage über die Verteilung der Moden
+treffen zu können, berechnen wir das Leistungsspektrum:
+\begin{align}
+    W(K_x,K_y)=\frac{1}{4\pi}
+\end{align}
+
+In der numerischen Analyse wird nun die ``Schnelle''
 Fouriertransform (engl. \textit{Fast Fourier Transform, FFT})
 berechnet. \\Da wir die Integraltransformationen
 bei einem begrenzten und
@@ -72,14 +79,18 @@ approximieren müssen, implizieren wir zyklische Randbedingungen:
  &f(n) = \frac{1}{N}\sum_{n=0}^{N-1}{\exp(2\pi i \frac{kn}{N})f(k) }\\
  &F(k) = \sum_{n=0}^{N-1}{\exp(-2\pi i \frac{kn}{N})f(n) }
 \end{align}
-Da die realen Datensätze diese Bedingungen nicht aufweisen, müssen
+Da die realen Datensätze diese zyklischen
+Randbedingungen nicht aufweisen, müssen
 die Ränder des Datensatzes ``unterdrückt'' bzw. transformiert
 werden. Generell wird dazu eine Fensterfunktion (\textit{Window
 function}) verwendet, welche mit dem Signal gefaltet wird und
 somit die bei der FFT auftretenden Randeffekte zu unterdrücken 
-sucht. Dabei sind verschiedene Windowfunctions denkbar, welche
-über verschiedene Güten verfügen und an die Eigenschaften
-des Signals angepasst werden müssen (siehe Abbildung~\ref{fig:stm2}).
+sucht (siehe Abbildung~\ref{fig:stm2}). 
+Dabei sind verschiedene Windowfunctions
+denkbar (siehe Abbildung~\ref{fig:windowing-fft},
+welche über verschiedene
+Güten verfügen und an die Eigenschaften
+des Signals angepasst werden müssen.
 \begin{figure}
 \includegraphics[width=17cm]{pics/stm2}
 \caption{Hier berechnen wir numerisch die diskrete
@@ -99,4 +110,13 @@ Datenpunkte aus dem RTM, welche auch nur in diskret vorliegen.
  \label{fig:stm2}
 \end{figure}
 
+\begin{figure}
+\includegraphics[width=17cm]{pics/windowing-fft}
+\caption{Verschieden mögliche Windowfunktionen\cite{gwyddion}.
+Die verschiedenen Funktionen unterscheidenen sich in ihrer
+sogenannten \textit{Bandbreite}, das bedeutet, dass es keine
+ideale Windowfunktion gibt, sondern dass jene an das Signal
+angepasst werden muss. } 
+\label{fig:windowing-fft}
+\end{figure}
 
