@@ -178,4 +178,32 @@ Veränderung der Messzeit pro Linie die Periodizität beeinflusst
 Messungen vorgenommen wurden, kann mit der Auswertung 
 durch Bildanalyseverfahren begonnen werden. 
 \subsubsection{Analysesoftware Gwyddion}
+Bei der Analysesoftware Gwyddion handelt es sich um ein modulares
+Programm für Rastersondenmikroskopie (\textit{scanning probe
+microskopy}, \textbf{STM}) 
+im Allgemeinen \cite{gwyddion}, unter anderem auch für RTMs.
+Es unterstützt viele verschiedene STM-Formate (50 verschiedene)
+und verfügt über zahlreiche Analysemethoden, 
+um Höhenfelder, wie sie das RTM erzeugt,
+auszuwerten. Gwyddion ist kostenlos und Open Source software,
+programmiert unter der \textit{GNU General Public License (GPL)}.
+Es ist verfügbar für GNU/Linux, Microsoft Windows, Mac OS X und
+FreeBSD Betriebssysteme\cite{gwyddion}.
+Die Funktionalität erstreckt sich unter anderem über:
+\begin{itemize}
+    \item OpenGl 3D Ansicht in Falschfarben
+    \item Kanten- und Gradientenerkennung (u.a. Laplacefilter und andere diskrete Faltungen)
+    \item Integraltransformationen (2D FFT, Wavelet transform, usw.)
+    \item Datenanalyse unter der Benutzung von neuronalen Netzen
+\end{itemize}
+Die genaue Funktionsweise soll hier nicht beschrieben werden
+und kann der Webseite\cite{gwyddion} entnommen werden.
 
+
+\begin{figure}
+\includegraphics[width=18cm]{pics/gwyddion_screenshot}
+\caption{Screenshot des Analyseprogramms Gwyddion, welches
+auf der Webseite frei verfügbar ist\cite{gwyddion}.}
+ \label{fig:gwyddion_screenshot}
+
+\end{figure}
