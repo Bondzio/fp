@@ -46,21 +46,32 @@ def pplot():
     plt.plot(x2,np.absolute(psi_II(x2)))
     plt.plot(x3,np.absolute(psi_III(x3)))
     plt.show()
-m= 1
-h = 1
-a = 1
-E   = np.linspace(0,1,100)
-E2   = np.linspace(1,2,100)
+def plot_T(a,c):
+    m= 1
+    h = 1
+    V_0 = 1
+    E   = np.arange(0,1,0.001)
+    E2   = np.arange(1,2,0.001)
 
-V_0 = 0.999
-k_0 = np.sqrt(2*m*E/h**2)
-k_0b = np.sqrt(2*m*E2/h**2)
-k_1 = np.sqrt(2*m*(V_0-E)/h**2)
-#k_1b = np.sqrt(2*m*(E2-V_0)/h**2)
+    k = np.sqrt(2*m*E/h**2)
+    kappa =   np.sqrt(2*m*(V_0-E)/h**2)
+    T = 1/ (1 + ((k**2+kappa**2)/(2*k*kappa))**2 * np.sinh(kappa*a)**2)
 
-T = (1 - E/V_0)/((1-E/V_0) + (V_0 / (4*E)*np.sinh(k_1*a)**2))
-#T2 = (1 - E2/V_0)/((1-E2/V_0) - (V_0 / (4*E2)*np.sinh(k_1b*a)**2))
+    k2 = np.sqrt(2*m*E2/h**2)
+    kappa2 =   np.sqrt(2*m*(E2-V_0)/h**2)
+    T2 = 1/ (1 + ((k2**2-kappa2**2)/(2*k2*kappa2))**2 * np.sin(kappa2*a)**2)
+
+    #T2 = (1 - E2/V_0)/((1-E2/V_0) - (V_0 / (4*E2)*np.sinh(k_1b*a)**2))
+    plt.plot(E,T, c=c,label="a="+str(a))
+    plt.plot(E2,T2,c=c)
 plt.figure()
-plt.plot(E,T)
+plot_T(3,"r")
+plot_T(4,"b")
+plot_T(5,"g")
+plt.ylabel("Durchgangswahrscheinlichkeit $T$")
+plt.xlabel("$E/V_0$")
+plt.legend(loc=7)
+plt.grid(True)
+plt.savefig("tunnel1.pdf")
 plt.show()
 

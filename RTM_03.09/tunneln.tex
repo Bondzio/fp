@@ -25,18 +25,18 @@ Im Spezialfall wenn $V(x)$ konstant ist, können wir die Gleichung
 sofort mit planaren Wellen lösen:
 \begin{align}
     k^2 = \frac{2m}{\hbar^2}(V-E)\\
-    \psi(x) \sim \exp(kx) 
+    \psi(x) \sim \exp(ikx) 
 \end{align}
-\subsubsection{Rechteckspotenzial \cite{wolfgang2010experimentalphysik},
-\cite{landau1991quantenmechanik} }
+\subsubsection{Rechteckspotenzial}
 Nehmen wir nun an, das Potenzial ist gegeben durch:
 \begin{equation}
     V(x) = V_0 \left [ \Theta(x) - \Theta(x-a) \right ] 
 \end{equation}
-Wobei $\Theta(x)$ die Heavisidefunktion ist und $V_0$ eine Konstante größer null.
+Wobei $\Theta(x)$ die Heavisidefunktion ist und $V_0 > E$.
 Die Barriere teilt den Raum nun in drei Teile, $x<0$, $0\leqslant x\leqslant a$ und $a<x$.
 In jedem dieser Teile ist das Potenzial konstant, somit können wir für jeden Teil eine
-obere Lösung ansetzen:
+obere Lösung ansetzen \cite{wolfgang2010experimentalphysik},
+\cite{landau1991quantenmechanik}:
 \begin{align}
     \psi_I(x)    &= A_r \exp(ik_0x) + A_l  \exp(-ik_0x) \mbox{ for } x<0\\
     \psi_{II}(x) &= B_r \exp(ik_1x) + B_l  \exp(-ik_1x) \mbox{ for } 0 \leqslant x \leqslant a\\
@@ -75,17 +75,63 @@ lassen sich die Gleichungen nach diesen Koeffizienten auflösen:
 Nun lässt sich mit diesen Ausdrücken die Übergangswahrscheinlichkeit durch die 
 Barriere berechnen:
 \begin{align}
-    T = \left | t \right |^2 = \frac{1}{1 \pm \frac{V_0^2 \sinh^2(k_1a)}{4E(V_0-E)}}\\
+    T = \left | t \right |^2 = \frac{1}{1 + \frac{V_0^2 \sinh^2(k_1a)}{4E(V_0-E)}}
+    \label{eq:T1}
 \end{align}
-Wobei das Plus bei $E<V_0$ und das Minus bei $E>V_0$ zu wählen ist.
+Wenn das Potenzial kleiner ist als die Energie, läuft die Rechung analog
+(wobei $k_1 = \frac{\sqrt{2m(V_0-E)}}{\hbar}$) und wir erhalten:
+\begin{align}
+    T = \left | t \right |^2 = \frac{1}{1 - \frac{V_0^2 \sin^2(k_1a)}{4E(V_0-E)}}
+    \label{eq:T2}
+\end{align}
 
+\begin{figure}
+\includegraphics[width=14cm]{pics/tunnel1}
+\caption{Transmissionswahrscheinlichkeit nach Gleichung~\ref{eq:T1} und Gleichung~\ref{eq:T2}
+bei verschiedenen Breiten des Potenzials $a$ (obdA wurde hier $\hbar=1$ und $m=1$ gewählt).
+Hier wird deutlich ersichtlich, inwiefern sich der Quantenmechanische Fall vom klassischen
+Fall unterscheidet, so ist die Wahrscheinlichkeit für Energien kleiner als das Potenzial ungleich
+null und auch bei höheren Energien nicht konstant eins.} 
+ \label{fig:tunnel1}
+\end{figure}
 
-\subsubsection{WKB-Methode}
-Wenn $V(x)$ nicht konstant ist, können wir mithilfe der WKB-Methode 
-\cite{froman1970transmission}
-immerhin noch den Transmissionskoeffizienten berechnen, sofern
-das Potenzial zwischen zwei Rändern $x_1$ und $x_2$ eingespannt ist 
-und ausserhalb davon null wird. Dazu setzen wir für die 
-Wellenfunktion $\psi(x)=\exp(\phi(x))$ an, 
-mit einer komplexen Funktion $\phi(x)$. 
+\subsubsection{Tunneleffekt beim Rastertunnelmikroskop}
+Im eben besprochenen Fall der eindimensionalen Potenzialwand zeichnet sich schon das
+assymptotische Verhalten für $a\gg1$ ab:
+\begin{equation}
+    T = \left | t \right |^2 \overset{\kappa a \gg 1}{\rightarrow} (\frac{4k_1k_0}{k_1^2+k_0^2})^2 
+    \exp(-2k_1a)
+\end{equation}
+Dies ist unter den vielen Bedingungen nur eine grobe Näherung für die Tunnelmikroskopie, doch
+wir werden später sehen, dass diese Näherung gut mit einem detaillierteren Ansatz übereinstimmt.
+Nehmen wir nun an, dass eine Spitze, bestehend aus einem Atom, sich der zu mikroskopierenden
+Oberfläche nähert. Nehmen wir nun weiter an, dass unter Anliegen einer Spannung ein Tunnelstrom
+zwischen der Spitze und der Oberfläche der Probe fliesst, wie lässt sich nun der Tunnelstrom
+approximieren? Der Tunneleffekt führt dazu, dass die näherungsweise durch das Vakuum 
+dargestellte Potenzialwand der Länge $d$ durch die Elektronen überwunden wird (siehe
+Abbildung~\ref{fig:tersoff_hamann}). Die Elektronendichte an der Spitze kann nun näherungsweise
+mit einer S-Wellenfunktion angegeben werden\cite{staatsexamen}. 
+Nun wird die lokale Oberflächendichte $\rho(r)$ an
+der Fermioberfläche (siehe die theoretische Einführung
+im nächsten Kapitel) durch die Spitze gemessen. Der Radius $R$ des wahrscheinlichsten Aufenthalts
+des Elektrons (siehe Abbildung~\ref{fig:tersoff_hamann}) und die Position $r_0$ der Spitze 
+bestimmten nun, welcher Tunnelstrom fliessen kann.
+Für den Tunnelstrom erhält man:
+\begin{equation}
+    I \sim U \exp(-2k(R+d)) \rho(r_0,E_f)
+\end{equation}
+Für die Auflösung des Tunnelmikroskops erhalten wir umgehend
+\begin{equation}
+    L \sim \sqrt{R+d} 
+\end{equation}
+Im folgenden wollen wir darauf eingehen, auf welche Weise die Festkörpereigenschaften
+durch quantenmechanische Modelle dargestellt werden können. 
+\begin{figure}
+    \includegraphics[width=14cm]{pics/tersoff_hamann}
+    \caption{Das sogennante Tersoff-Hamann Standardmodell, welches in
+        der Modellierung für die Rastertunnelmikroskopie in der Näherung
+        für eine räumlich ausgedehnte Tunnelspitze herangezogen wird.
+        Abbildung aus \cite{staatsexamen}.}
+\label{fig:tersoff_hamann}
+\end{figure}
 
