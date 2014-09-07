@@ -1,0 +1,8 @@
+
+@book{ibach2009festkorperphysik,
+  title={Festk{\"o}rperphysik},
+  author={Ibach, Harald and L{\"u}th, Hans},
+  journal={Festk{\"o}rperphysik: Einf{\"u}hrung in die Grundlagen, Springer-Lehrbuch. ISBN 978-3-540-85794-5. Springer Berlin Heidelberg, 2009},
+  volume={1},
+  year={2009}
+}
