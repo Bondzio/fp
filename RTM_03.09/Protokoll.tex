@@ -26,6 +26,8 @@
 \usepackage{natbib}
 \usepackage{pgfplots}
 
+%\usepackage{minted}
+
 % Bibliographie auf deutsch
 %\usepackage{harvard}
 %\renewcommand{\harvardand}{und} 
@@ -105,6 +107,7 @@
 \input{Historisch}
 \input{tunneln}
 \input{theorie}
+\input{statistik}
 \input{durchfuehrung}
 \input{lab}
 \section{Interpretation der Ergebnisse}
@@ -112,4 +115,8 @@
 
 \bibliographystyle{plain}
 \bibliography{Protokoll}
+
+\section{Anhang}
+%\input{anhang}
+% anhang muss mit pdflatex -shell-escape Protokoll.tex aufgerufen 
 \end{document}
