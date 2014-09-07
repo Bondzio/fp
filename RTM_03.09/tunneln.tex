@@ -104,3 +104,34 @@ assymptotische Verhalten für $a\gg1$ ab:
 \end{equation}
 Dies ist unter den vielen Bedingungen nur eine grobe Näherung für die Tunnelmikroskopie, doch
 wir werden später sehen, dass diese Näherung gut mit einem detaillierteren Ansatz übereinstimmt.
+Nehmen wir nun an, dass eine Spitze, bestehend aus einem Atom, sich der zu mikroskopierenden
+Oberfläche nähert. Nehmen wir nun weiter an, dass unter Anliegen einer Spannung ein Tunnelstrom
+zwischen der Spitze und der Oberfläche der Probe fliesst, wie lässt sich nun der Tunnelstrom
+approximieren? Der Tunneleffekt führt dazu, dass die näherungsweise durch das Vakuum 
+dargestellte Potenzialwand der Länge $d$ durch die Elektronen überwunden wird (siehe
+Abbildung~\ref{fig:tersoff_hamann}). Die Elektronendichte an der Spitze kann nun näherungsweise
+mit einer S-Wellenfunktion angegeben werden\cite{staatsexamen}. 
+Nun wird die lokale Oberflächendichte $\rho(r)$ an
+der Fermioberfläche (siehe die theoretische Einführung
+im nächsten Kapitel) durch die Spitze gemessen. Der Radius $R$ des wahrscheinlichsten Aufenthalts
+des Elektrons (siehe Abbildung~\ref{fig:tersoff_hamann}) und die Position $r_0$ der Spitze 
+bestimmten nun, welcher Tunnelstrom fliessen kann.
+Für den Tunnelstrom erhält man:
+\begin{equation}
+    I \sim U \exp(-2k(R+d)) \rho(r_0,E_f)
+\end{equation}
+Für die Auflösung des Tunnelmikroskops erhalten wir umgehend
+\begin{equation}
+    L \sim \sqrt{R+d} 
+\end{equation}
+Im folgenden wollen wir darauf eingehen, auf welche Weise die Festkörpereigenschaften
+durch quantenmechanische Modelle dargestellt werden können. 
+\begin{figure}
+    \includegraphics[width=14cm]{pics/tersoff_hamann}
+    \caption{Das sogennante Tersoff-Hamann Standardmodell, welches in
+        der Modellierung für die Rastertunnelmikroskopie in der Näherung
+        für eine räumlich ausgedehnte Tunnelspitze herangezogen wird.
+        Abbildung aus \cite{staatsexamen}.}
+\label{fig:tersoff_hamann}
+\end{figure}
+
