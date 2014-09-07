@@ -1,42 +1,12 @@
 \section{Theoretische Grundlagen}
 
-\subsection{Grundlagen der Festkörperphysik}
-Für die Rastertunnelmikroskopie ist die räumliche Verteilung der Elektronen an 
-der Oberfläche von zentraler Bedeutung. Die Blochtheorie macht Aussagen über 
-die Aufenthaltswahrscheinlichkeiten von Elektronen in periodischen 
-Gittern und liefert ein Modell zur Erklärung des Bändermodells. 
-Für ein Elektron mit Wellenfunktion $\psi$ gilt bei Vernachlässigung der 
-Elektron-Elektron-Wechselwirkung in der nichtrelativistischen Näherung die 
-Schrödingergleichung 
-\begin{equation}
-    \Big[ - \frac{\hbar^2}{2m} \Delta + E_{\mathrm{pot}}(\mathbf{r}) \Big] \psi = E \psi
-\end{equation}
-mit periodischer potentieller Energie 
-\begin{equation}
-    E_{\mathrm{pot}}(\mathbf{r}) = E_{\mathrm{pot}}(\mathbf{r + R})
-\end{equation}
-in Richtung $\mathbf{R} = m \,\mathbf{a_1} + n \,\mathbf{a_2} + o \,\mathbf{a_3}, 
-\quad m, n, o \in \mathbb{N}$, also den Vektoren zwischen den Gitterpunkten. 
-Für die Lösung machen wir den Ansatz die sog. Blochwellenfunktionen
-\begin{eqnarray}
-    \psi(\mathbf{r}) = u(\mathbf{r}) \cdot \mathrm{e}^{-i \mathbf{k \cdot R}} \\
-    \mathrm{mit} \quad u(\mathbf{r}) = u(\mathbf{r + R}) \nonumber
-\end{eqnarray}
-Für die Aufenthaltswahrscheinlichkeit folgt $|\psi(\mathbf{r})|^2 = |u|^2$. 
-
-Wir gehen in unserer Beschreibung der untersuchten Metalle und Halbleiter 
-vom Bändermodell aus. Durch die gegenseitige Beeinflussung der Atome im Gitter
-werden die im Einzelatom noch stark voneinander abgetrennten Energie-Eigenzustände
-der Elektronen aufgespalten und folgen so dicht aufeinander, dass Elektronen 
-sehr leicht zwischen den einzelnen Zuständen wechseln können. Die atomaren
-Energieniveaus bleiben jedoch zum Großteil soweit getrennt, dass klar definierte
-"Bänder" entstehen. Das für $T = 0\deg K$ äußere Energieband ist das Valenzband.
-Die zur chemischen Bindung beitragenden Elektronen gehören genau diesem Band an 
-(Valenz = Bindung, Valenzelektronen). Das über dem Valenzband liegende Band wird 
-als Leitungsband bezeichnet. Elektronen im Leitungsband sind räumlich nicht mehr 
-gebunden, da sich die Orbitale der jeweiligen Atome überlagern – diese Elektronen 
-können daher leicht Energie eines elektrischen Feldes aufnehmen und sich in dem 
-Gitter bewegen. \\
+\newcommand{\VG}{V_{\mathbf{G}}}
+\newcommand{\G}{\mathbf{G}}
+\newcommand{\g}{\mathbf{g}}
+\newcommand{\R}{\mathbf{r}}
+\newcommand{\K}{\mathbf{k}}
+\newcommand{\A}{\mathbf{a}}
+\newcommand{\ex}{\mathbf{e}^}
 
 \subsection{Charakterisierung von Kristallgittern}
 Vor der Beschreibung der Oberflächen von Kristallen wenden wir uns dem darunter liegenden 
@@ -44,82 +14,47 @@ Gitter zu, das die Basis für die Oberfläche darstellt. Die charakteristischen 
 sind auch für die Oberflächen wichtig. Die Untersuchung der Kristallgitter findet vor 
 Allem durch Beugungsexperimente statt, da diese die periodische Struktur am besten 
 Ausnutzen und so zu höherer Genauigkeit kommen, als direkte Abbildung der Oberflächen. 
-Für die gemessene Intensität $I(\mathbf{K})$ gilt für große Abstände $\mathbf{R}$ 
-zwischen Strahlungsquelle und streuendem Medium sowie $\mathbf{R'}$ zwischen Streuer 
-und Schirm am Ort B:
-\begin{equation}
-    I(\mathbf{K}) \propto |A_B|^2 \propto |\int \rho(\mathbf{r}) \mathrm{e}^{-i 
-    \mathbf{K} \cdot \mathbf{r}} \mathrm{d}\mathbf{r}|^2
-\end{equation}
-Dabei ist $|A_B|$ die Amplitude der gemessenen Wellen am Schirm, $\rho (\mathbf{r})$ die 
-komplexe Streudichte an Position $\mathbf{r}$ (siehe Abb.~\ref{fig:scatter_geometry}) 
-und  $\mathbf{K} = \mathbf{k} - \mathbf{k_0}$ der Streuvektor, $\mathbf{k_0}$ der 
-k-Vektor der auf das Streumedium auftreffenden Wellen und $\mathbf{k}$ der k-Vektor 
-der am Schirm auftreffenden Welle. Für ein periodisches Gitter ist auch die Streudichte
-periodisch und lässt sich daher in eine Fourierreihe zerlegen:
+
+Fundamental für die Beschreibung der Phänomene der Festkörperphysik ist der reziproke 
+oder $\K$-Raum. Er ist aus den $\K$-Vektoren ebener Wellen, die mit 
+$\ex{i \K \cdot \R}$ beschrieben werden, aufgebaut. Sind nun 
+die Gittervektoren eines Kristalles im Ortsraum mit $\A_1,\ \A_2,\ \A_3$ gekennzeichnet, 
+so gilt für die reziproken Gittervektoren $\g_1,\ \g_2,\ \g_3$:
 \begin{eqnarray}
-    \rho(\mathbf{r}) = \sum_{\mathbf{G}} \rho_{\mathbf{G}} \mathrm{e}^{i \mathbf{G} 
-        \cdot \mathbf{r}} \\
-    \mathbf{r} = n_1 \mathbf{a_1} + n_2 \mathbf{a_2} + n_3 \mathbf{a_3} \\
-    \mathbf{G} \cdot \mathbf{r}= 2 \pi m  \\
-    n_1, \, n_2, \, n_3, \, m \in \mathbb{N}
-\end{eqnarray}
-Daraus folgt, dass der Vektor $\mathbf{G}$ als ganzzahlige Linearkombination 
-reziproker Gittervektoren $\mathbf{g_i}$ mit der folgenden Bedingung darstellbar ist:
-\begin{eqnarray}
-    \mathbf{G} = h \mathbf{g_1} + k \mathbf{g_2} + l \mathbf{g_3} \\
+    \g_1 = 2 \pi \frac{\A_2 \times \A_3 }
+        {\A_1\cdot (\A_2 \times \A_3)} \qquad \mathrm{und \ zyklisch} \\
     \mathbf{g_i} \cdot \mathbf{a_j} = 2 \pi \delta_{ij}
 \end{eqnarray}
-Schließlich lassen sich die Basisvektoren des reziproken Gitters berechnen:
+Die periodische Struktur des Kristalles bleibt also im reziproken Raum erhalten.
+Ein beliebiger Vektor $\G$ des reziproken Gitters lässt sich als ganzzahlige Linearkombination 
+der Basisvektoren darstellen.
 \begin{equation}
-    \mathbf{g_1} = 2 \pi \frac{\mathbf{a_2 \times a_3} }
-        {\mathbf{a_1\cdot (a_2 \times a_3)}}
+    \mathbf{G} = h \mathbf{g_1} + k \mathbf{g_2} + l \mathbf{g_3}
 \end{equation}
-Der Zusammenhang mit den experimentell messbaren Daten für $\mathbf{K}$ ist dann wie 
-folgt gegeben:
-\begin{equation} \label{eqn:G=K}
-    I\,(\mathbf{K}) \propto \frac{|A_0|^2}{R'^2} \Big| \sum_{\mathbf{G}} \rho_{\mathbf{G}} 
-    \int \mathrm{e}^{i \mathbf{(G - K) \cdot r}} \mathrm{d} \mathbf{r} \Big|^2
-\end{equation}
-Im Grenzwert unendlich ausgedehnten Volumens wird das Integral zur Deltafunktion, sodass 
-für die Intensität gilt:
+Für einen Vektor $\R$, der auf dem Gitter im Ortsraum liegt, gilt dann also:
+\begin{eqnarray}
+    \mathbf{r} &=& n_1 \mathbf{a_1} + n_2 \mathbf{a_2} + n_3 \mathbf{a_3} \\
+    \mathbf{G} \cdot \mathbf{r}&=& 2 \pi m  \\
+    n_1, \, n_2, \, n_3, \, m &\in& \mathbb{N}
+\end{eqnarray}
+
+Schließlich lässt sich jede Funktion, die im Ortsraum periodisch ist, als 
+Fourierreihe im reziproken Raum darstellen:
 \begin{equation}
-    I\,(\mathbf{K = G}) \propto \frac{|A_0|^2}{R'^2} \,|\rho_{\mathbf{G}} |^2 \, V
+    f(\R) = \sum_{\G} F_{\G} \ex{i \G \cdot \R}
 \end{equation}
 
-Bei der Bezeichnung von Oberflächen werden die sogenannten Millerschen Indizes benutzt. 
-Spannt man mit drei nicht auf einer Geraden liegenden Gitterpunkten, so ist diese durch 
+Bei der Bezeichnung der Netzebenen werden die sogenannten Millerschen Indizes benutzt. 
+Spannt man mit drei nicht auf einer Geraden liegenden Gitterpunkten eine Ebene, so ist 
+diese durch 
 drei ganze Zahlen $m, n, o$ gekennzeichnet. Aus diesen erhält man ein teilerfremdes 
 Triplet $(h, k, l)$, indem man die reziproken Werte $h' = 1/m, k' = 1/n, l' = 1/o$ mit 
-einer ganzen Zahl $p$ multipliziert. Es lässt sich nun zeigen, dass der reziproke 
-Gittervektor $\mathbf{G}$ senkrecht auf dem mit $(h, k, l)$ beschriebenen Gitter steht, 
-und für die die in \ref{eqn:G=K} gegebene Bedingung $\mathbf{G = K}$ die Braggsche Reflexionsbedingung 
-\begin{equation}
-    \gamma = 2 d_{hlk} \sin \Theta
-\end{equation}
-gilt, wobei 
-\begin{equation}
-    d_{hkl}=2 \pi / |G_{hkl}|
-\end{equation}
-der Netzebenenabstand ist und der $\Theta$ der in Abb.~\ref{fig:Bragg_Winkel} definierte
-Glanz- oder Braggwinkel ist
+einer ganzen Zahl $p$ multipliziert. Der reziproke 
+Gittervektor $\G$ steht nun senkrecht auf dem mit $(h, k, l)$ beschriebenen Gitter.
+\cite{ibach2009festkorperphysik}
 
 
-
-\begin{figure}
-    \includegraphics[width=0.8\textwidth]{pics/scatter_geometry}
-    \caption{Zur Herleitung der Streukinematik
-aus \cite{ibach2009festkorperphysik} }
-    \label{fig:scatter_geometry}
-\end{figure}
-
-\begin{figure}
-    \includegraphics[width=0.8\textwidth]{pics/Bragg_Winkel}
-    \caption{Zur Definition des Braggwinkels $\Theta$. Die Netzebenen haben einem Abstand 
-von $d_{hlk}$.  
-aus \cite{ibach2009festkorperphysik} }
-    \label{fig:Bragg_Winkel}
-\end{figure}
+\include{bloch}
 
 
 \subsection{Grundlagen der Festkörperoberflächen}
@@ -158,15 +93,14 @@ Oberflächenrekonstruktionen, die sog. \emph{missing row}-Konstruktion,
 wie weiter unten bei der Beschreibung von Gold verdeutlicht wird 
 \cite{kittel2013einfuhrung}. 
 
-
 \begin{figure}[!t]
   \begin{captionbeside}[]{Rastertunnelkikroskop-Aufnahme mit atomare Auflösung einer reinen 
 Silberoberfläche entlang der (110)-Fläche. Zu erkennen ist, dass die Oberfläche 
 lediglich relaxiert ist, und Rekonstruktion stattfindet. 
 Aus \cite{kahn:stm_images}.}[r]
     \includegraphics[width=0.5\textwidth]{pics/Ag(110)_clean}
-    \label{fig:Ag(110)}
   \end{captionbeside}
+  \label{fig:Ag(110)}
 \end{figure}
 
 Zur mathematischen Beschreibung regelmäßiger Überflächen werden die Gittervektoren 
@@ -215,8 +149,8 @@ kleinstmöglichen Zellen sind in den unteren drei Gittern mit $\underline{a}_2^p
 beschriftet. 
 Aus \cite{henzler1991oberflachenphysik}.}[r]
     \includegraphics[width=0.5\textwidth]{pics/Bravais}
-    \label{fig:Bravais}
   \end{captionbeside}
+  \label{fig:Bravais}
 \end{figure} 
 
 
@@ -294,6 +228,6 @@ liegenden Schichten mitsamt Koordinationspolyedern. Für die Abstände gilt
 $a_1 = a_2 = a_3 = 3.161\AA =: a$ und $c_0 = 12.295\AA$. 
 Aus \cite{schrocke1981mineralogie}.}[r]
     \includegraphics[width=0.5\textwidth]{pics/MoS2_structure}
-    \label{fig:MoS2_structure}
   \end{captionbeside}
+  \label{fig:MoS2_structure}
 \end{figure} 
