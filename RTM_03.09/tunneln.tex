@@ -27,6 +27,60 @@ sofort mit planaren Wellen lösen:
     k^2 = \frac{2m}{\hbar^2}(V-E)\\
     \psi(x) \sim \exp(kx) 
 \end{align}
+\subsubsection{Rechteckspotenzial \cite{wolfgang2010experimentalphysik},
+\cite{landau1991quantenmechanik} }
+Nehmen wir nun an, das Potenzial ist gegeben durch:
+\begin{equation}
+    V(x) = V_0 \left [ \Theta(x) - \Theta(x-a) \right ] 
+\end{equation}
+Wobei $\Theta(x)$ die Heavisidefunktion ist und $V_0$ eine Konstante größer null.
+Die Barriere teilt den Raum nun in drei Teile, $x<0$, $0\leqslant x\leqslant a$ und $a<x$.
+In jedem dieser Teile ist das Potenzial konstant, somit können wir für jeden Teil eine
+obere Lösung ansetzen:
+\begin{align}
+    \psi_I(x)    &= A_r \exp(ik_0x) + A_l  \exp(-ik_0x) \mbox{ for } x<0\\
+    \psi_{II}(x) &= B_r \exp(ik_1x) + B_l  \exp(-ik_1x) \mbox{ for } 0 \leqslant x \leqslant a\\
+    \psi_{III}(x)&= C_r \exp(ik_0x) + C_l  \exp(-ik_0x) \mbox{ for } x>0
+\end{align}
+Für $E>V_0$ gilt nun:
+\begin{align}
+    k_0 &= \frac{\sqrt{2mE}}{\hbar}\\
+    k_1 &= \frac{\sqrt{2m(E-V_0)}}{\hbar}
+\end{align}
+Die Koeffizienten A,B und C lassen sich nun mit den Randbedingungen
+für die Stetigkeit lösen:
+\begin{align}
+    \psi_I(0)&\overset{!}{=} \psi_{II}(0)\\
+    (\partial_x\psi_I)(0)&\overset{!}{=} (\partial_x\psi_{II})(0)\\
+    \psi_{II}(a)&\overset{!}{=} \psi_{III}(a)\\
+    (\partial_x\psi_{II})(a)&\overset{!}{=} (\partial_x\psi_{III})(a)
+\end{align}
+Dies ergibt nach einsetzen der Lösungen für die Wellenfunktionen:
+\begin{align}
+  A_r + A_l &= B_r + B_l \\
+  ik_0(A_r-A_l) &= ik_1(B_r-B_l)\\
+  B_r\exp(iak_1)+B_l\exp(-iak_1)&=C_r \exp(iak_0)+C_l\exp(-iak_0)\\
+  ik_1(B_r\exp(iak_1) - B_l\exp(-iak_1))&=ik_0(C_r\exp(iak_0)-C_l\exp(-iak_0))
+\end{align}
+Dies sind 6 freie Parameter für 4 Gleichungen, also können wir zwei 
+Paramter festsetzen. Wir setzen $A_r =1$ (Skalierung nach der einlaufenden
+Welle) und $C_l = 0$, das bedeutet, dass keine Welle von rechts dazukommt,
+sondern alles von der einlaufenden Welle $A_r$ abhängt. Des weiteren
+benennen wir $A_l=r$ für Reflexion, und $C_r=t$ für Transmission. Nun
+lassen sich die Gleichungen nach diesen Koeffizienten auflösen:
+\begin{align}
+    t &= \frac{4k_0k_1\exp(-ia(k_0-k_1))}{(k_0+k_1)^2 - \exp(2iak_1)(k_0-k_1)^2}\\
+    r &= \frac{(k_0^2 - k_1^2)\sin(ak_1)}{2ik_0k_1\cos(ak_1)+(k_0^2+k_1^2)\sin(ak_1)}
+\end{align}
+Nun lässt sich mit diesen Ausdrücken die Übergangswahrscheinlichkeit durch die 
+Barriere berechnen:
+\begin{align}
+    T = \left | t \right |^2 = \frac{1}{1 \pm \frac{V_0^2 \sinh^2(k_1a)}{4E(V_0-E)}}\\
+\end{align}
+Wobei das Plus bei $E<V_0$ und das Minus bei $E>V_0$ zu wählen ist.
+
+
+\subsubsection{WKB-Methode}
 Wenn $V(x)$ nicht konstant ist, können wir mithilfe der WKB-Methode 
 \cite{froman1970transmission}
 immerhin noch den Transmissionskoeffizienten berechnen, sofern
