@@ -38,6 +38,14 @@ durch die Extrapolation der einzelnen Datenpunkte mit der Normierung:
 \begin{equation*}
 \int \rho(x,y,z) dx dy dz = 1
 \end{equation*}
+Nun lässt sich mithilfe von $\rho$ die 2-Punkt-Funktion
+(2-point function) definieren:
+\begin{equation}
+w(\tau_x=x_1-x_2, \tau_y=y_1-y_2,z_1,z_2) = \rho(x_1,y_1,z_1)
+\rho(x_2,y_2,z_2)
+\end{equation}
+Wobei wir die Abstände $\tau_x=x_1-x_2$ und $\tau_y=y_1-y_2,z_1,z_2$
+definiert haben.
 \subsubsection{Fourier Transformationen}
 Sei nun ganz allgemein die Fouriertransformation eingeführt:
 \begin{align}
@@ -62,11 +70,32 @@ bedeutet $\bar{f}$ die komplexe Konjugation von $f$.
 Die Definitionen sind nun für die x-Richtung ausgeführt worden,
 sie funktionieren jedoch analog im $2D$ Fall, also mit dem Tuple
 $(x,y)$. 
-Um nun eine qualitative Aussage über die Verteilung der Moden
-treffen zu können, berechnen wir das Leistungsspektrum:
+Um das Leistungsspektrum berechnen zu können, führen wir 
+nun die Autokorrelationsfunktion ein:
 \begin{align}
-    W(K_x,K_y)=\frac{1}{4\pi}
+    G(\tau_x,\tau_y) &=\int\int z_1 z_2 w(\tau_x,\tau_y,z_1,z_2) dz_1 dz_2 \mbox{ (Autokorrelationsfunktion) }\\
+&= \int\int \xi(x_1,y_1)\xi(x_1+\tau_x,y_1+\tau_y)dx_1dy_1
 \end{align}
+Diese Funktion lässt sich nun auch diskret berechnen:
+\begin{equation}
+    G(m,n)=\frac{1}{(N-n)(M-m)}\sum_{l=1}^{N-n}\sum_{k=1}^{M-m}z_{k+m,l+n}z_{k,l}
+\end{equation}
+wobei $m=\tau_x/\Delta_x$ und $n=\tau_y/\Delta_y$.
+Wie wir sehen, fügt sich nun die Vorarbeit nun zusammen und 
+aus den unseren gemessenen diskreten Höhendaten lässt  
+sich nun direkt die Autokorrelationsfunktion
+berechnen. 
+Um nun eine qualitative Aussage über die Verteilung der Moden
+treffen zu können, berechnen wir das Leistungsspektrum (mithilfe
+des Wiener-Khinchin Theorems):
+\begin{align}
+    W(K_x,K_y)=\frac{1}{4\pi}\int\int G(\tau_x,\tau_y)\exp(-i(K_x\tau_x+K_y\tau_y)) d\tau_xd\tau_y
+\end{align}
+Diese lässt sich wieder analog zur Autokorrelationsfunktion
+für diskrete Werte berechnen. Wenn eine isotrope Struktur
+vorläge, würde es sich nun anbieten, über die Fläche zu 
+integrieren. Da dies bei unseren Proben nicht der Fall ist,
+werden wir dies hier nicht weiter ausführen.\\
 
 In der numerischen Analyse wird nun die ``Schnelle''
 Fouriertransform (engl. \textit{Fast Fourier Transform, FFT})
@@ -119,4 +148,27 @@ ideale Windowfunktion gibt, sondern dass jene an das Signal
 angepasst werden muss. } 
 \label{fig:windowing-fft}
 \end{figure}
+
+\subsubsection{Reziprokes Gitter und Fouriertransformationen}
+Den Reziproken Raum (auch k-Raum genannt) erhält man durch die
+Fouriertransformation des Ortsraumes. Somit erhalten wir durch
+die Fouriertransformation des Gitters die erste Brillouin-Zone
+des Reziproken Gitters. Deshalb bietet es sich an, mithilfe
+des Leistungsspektrums der 2D-Fouriertransformation der 
+Mikroskopiedaten die Gittereigenschaften der Probe zu analysieren
+(Siehe Quelle \cite{kelty1991scanning}. In der Quelle wird zwar  
+nicht explizit auf Methode eingegangen, sie wird allerdings
+verwendet, um die Superstruktur von $KHgC_4$ in verschiedenen
+Formen zu analysieren, siehe Abbildung~\ref{fig:powerspec}). 
+\begin{figure}
+    \begin{captionbeside}[]{Abbildungen aus \cite{kelty1991scanning}.
+(a) Es handelt sich um eine 100x100 $\r{A}^2$ Rastertunnelmikroskopiebild
+von $KHgC_4$ mit einem $8.9 \r{A}$ Gitterperiodenabstand.
+(b) das 2DFT Power Spektrum, welches deutlich die Symmetrie des 
+Supergitters und seine Orientierung zeigt.} 
+\includegraphics[width=6cm]{pics/powerspec}
+\end{captionbeside}
+\label{fig:powerspec}
+\end{figure}
+
 
