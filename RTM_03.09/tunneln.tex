@@ -69,11 +69,15 @@ sondern alles von der einlaufenden Welle $A_r$ abhängt. Des weiteren
 benennen wir $A_l=r$ für Reflexion, und $C_r=t$ für Transmission. Nun
 lassen sich die Gleichungen nach diesen Koeffizienten auflösen:
 \begin{align}
-    t &= \frac{4k_0k_1\exp(-ia(k_0-k_1))}{(k_0+k_1)^2 - \exp(2iak_1)(k_0-k_1)^2}
+    t &= \frac{4k_0k_1\exp(-ia(k_0-k_1))}{(k_0+k_1)^2 - \exp(2iak_1)(k_0-k_1)^2}\\
     r &= \frac{(k_0^2 - k_1^2)\sin(ak_1)}{2ik_0k_1\cos(ak_1)+(k_0^2+k_1^2)\sin(ak_1)}
 \end{align}
-Nun lässt sich mit diesen Ausdrücken die 
-
+Nun lässt sich mit diesen Ausdrücken die Übergangswahrscheinlichkeit durch die 
+Barriere berechnen:
+\begin{align}
+    T = \left | t \right |^2 = \frac{1}{1 \pm \frac{V_0^2 \sinh^2(k_1a)}{4E(V_0-E)}}\\
+\end{align}
+Wobei das Plus bei $E<V_0$ und das Minus bei $E>V_0$ zu wählen ist.
 
 
 \subsubsection{WKB-Methode}
