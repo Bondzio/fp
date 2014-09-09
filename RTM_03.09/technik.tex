@@ -1,0 +1,28 @@
+\subsection{Technische Aspekte für unser Experiment}
+In unserem Fall besteht die Spitze des RTMs aus einer möglichst spitzen
+Drahtspitze, durch die der Tunnelstrom geleitet wird. Dazu wird an die Spitze eine 
+Tunnelspannung angelegt und so nahe an die Probe angenähert, bis der Tunnelstrom 
+im nA-Bereich fliessen kann.
+Dies erfordert eine ziemlich präzise Steuerung der Spitze, welche nun weiter erläutert wird.
+Der Tunnelstrom muss einerseits konstant gehalten werden (jedenfalls nach der gängigen Methode),
+andererseits darf die Distanz nicht zu schnell geändert werden, da sonst eine Kollision mit der
+Probe stattfindet. Dafür gibt es einen Regelkreis, der kontinuierlich den angegeben Wert
+(Führungsgröße) mit dem
+tatsächlichen Wert (Regelgröße) vergleicht und
+die Steuerung daraufhin verändert. Hier wird ein PID-Regler
+eingesetzt, welcher auch bei Störeinflüssen seine Funktion, den Strom konstant zu halten,
+noch erfüllt, wenn die Störungen nicht zu hoch sind. Im Allgemeinen existieren viele
+verschiedene Regler, die für verschiedene Verhaltensformen des Signals angepasst sind. 
+Hierfür wollen wir eine kurze Einführung in die Kinematik geben \cite{regelungstechnik}.
+\subsubsection{Einführung in die Kontrolltheorie und Kinematik}
+Die Kontrolltheorie beschäftigt sich mit der Beeinflussung von Systemen, um bestimmten
+Ausgangsgrößen einen gewünschten zeitlichen Verlauf aufzuprägen\cite{regelungstechnik}.
+Der gewünschte zeitliche Verlauf der Ausgangsgrößen wird durch die Sollgrößen oder Sollwerte
+definiert. Eingangsgröße der Steuerung ist also der Sollwert $w$, ihre Ausgangsgröße ist die 
+Stellgröße $u$, welche zusammen mit der Störgröße $d$ wieder eine Eingangsgröße bildet. Die 
+Anforderungen an die Regelung sind klar: Die Regelabweichung soll im stationären Zustand
+ nach Beendigung
+eines Einschwingvorgangs möglichst klein sein, im Falle einer Führungsgrößenänderung oder einer
+Störung soll die entstandene Regelabweichung möglichst schnell wieder eliminiert werden und
+die Stabilität des Gesamtsystems muss durchgehend gewährtleistet werden. 
+

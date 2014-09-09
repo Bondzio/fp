@@ -12,8 +12,12 @@ wir ObdA nehmen nun annehmen, dass die Abstände
 zwischen den Datenpunkten $\Delta$ betrage 
 (siehe Abbildung~\ref{fig:stat1}). 
 
-\begin{figure}
-\begin{tikzpicture}
+\begin{SCfigure}
+\caption{Das Vektorfeld der Mikroskopiedaten besteht aus 
+$N \times M$ Höhendaten aus $\mathbb{R}$, wobei die tatsächliche 
+Fläche $L_x \times L_y$ beträgt.}
+
+\begin{tikzpicture}[thick, scale=0.6]
 \draw[step=1cm,gray,very thin] (-1,-1) grid (5,6);
 \draw  (-1,-1) -- (5,-1) -- (5,6) -- (-1,6) -- (-1,-1);
 \draw [<->] (-1,6.5) node [left]{$M$} -- (-1,-1) 
@@ -25,11 +29,8 @@ zwischen den Datenpunkten $\Delta$ betrage
 (-1,-1) --  node[left=10pt]{$L_y$}(-1,6); 
 
 \end{tikzpicture}
-\caption{Das Vektorfeld der Mikroskopiedaten besteht aus 
-$N \times M$ Höhendaten aus $\mathbb{R}$, wobei die tatsächliche 
-Fläche $L_x \times L_y$ beträgt.}
 \label{fig:stat1}
-\end{figure}
+\end{SCfigure}
 Wir betrachten nun 
 die statistischen Eigenschaften der Zufallsvariablen $\xi(x,y)$. 
 Die Wahrscheinlichkeitsdichte $\rho(x,y,z)$ für eine 
