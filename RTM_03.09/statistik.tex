@@ -46,7 +46,7 @@ w(\tau_x=x_1-x_2, \tau_y=y_1-y_2,z_1,z_2) = \rho(x_1,y_1,z_1)
 \end{equation}
 Wobei wir die Abstände $\tau_x=x_1-x_2$ und $\tau_y=y_1-y_2,z_1,z_2$
 definiert haben.
-\subsubsection{Fourier Transformationen}
+\subsubsection{Fouriertransformationenen und Autokorrelationsfunktion}
 Sei nun ganz allgemein die Fouriertransformation eingeführt:
 \begin{align}
 f(x) &= \int_{-\infty}^{\infty} F(k)\exp(2\pi i kx)dk\\
@@ -80,7 +80,13 @@ Diese Funktion lässt sich nun auch diskret berechnen:
 \begin{equation}
     G(m,n)=\frac{1}{(N-n)(M-m)}\sum_{l=1}^{N-n}\sum_{k=1}^{M-m}z_{k+m,l+n}z_{k,l}
 \end{equation}
-wobei $m=\tau_x/\Delta_x$ und $n=\tau_y/\Delta_y$.
+wobei $m=\tau_x/\Delta_x$ und $n=\tau_y/\Delta_y$. Die 2D-Autokorrelationsfunktion
+(\textit{2D-Autocorrelationfunction}, kurz ACF) lässt sich auch im Vorfeld dazu verwenden,
+statistische Daten nach ihrer Korrelation aufzutragen und somit Störungen herauszufiltern.
+Sie wird häufig in der Spektroskopie (\textit{Correlationspectroscopy}) verwendet, um überlappende
+Peaks in einer Dimension mithilfe einer 2D Darstellung zu trennen. In unserem Fall werden wir
+die 2DAFC verwenden, um die durch die unperfekte Spitze enstehenden Einflüsse von den
+Gittereigenschaften, die sich durch ihre Korrelationen bemerkbar machen, zu trennen.
 Wie wir sehen, fügt sich nun die Vorarbeit nun zusammen und 
 aus den unseren gemessenen diskreten Höhendaten lässt  
 sich nun direkt die Autokorrelationsfunktion
@@ -140,7 +146,7 @@ Datenpunkte aus dem RTM, welche auch nur in diskret vorliegen.
 \end{figure}
 
 \begin{figure}
-\includegraphics[width=17cm]{pics/windowing-fft}
+\includegraphics[width=12cm]{pics/windowing-fft}
 \caption{Verschieden mögliche Windowfunktionen\cite{gwyddion}.
 Die verschiedenen Funktionen unterscheidenen sich in ihrer
 sogenannten \textit{Bandbreite}, das bedeutet, dass es keine
