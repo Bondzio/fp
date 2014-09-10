@@ -95,12 +95,14 @@ Wenn das Potenzial kleiner ist als die Energie, läuft die Rechung analog
 \end{align}
 
 \begin{figure}
+
 \includegraphics[width=14cm]{pics/tunnel1}
 \caption{Transmissionswahrscheinlichkeit nach Gleichung~\ref{eq:T1} und Gleichung~\ref{eq:T2}
 bei verschiedenen Breiten des Potenzials $a$ (obdA wurde hier $\hbar=1$ und $m=1$ gewählt).
 Hier wird deutlich ersichtlich, inwiefern sich der Quantenmechanische Fall vom klassischen
 Fall unterscheidet, so ist die Wahrscheinlichkeit für Energien kleiner als das Potenzial ungleich
 null und auch bei höheren Energien nicht konstant eins.} 
+
  \label{fig:tunnel1}
 \end{figure}
 
@@ -148,12 +150,12 @@ durch quantenmechanische Modelle dargestellt werden können.
 Vor der Beschreibung der Oberflächen von Kristallen wenden wir uns dem darunter liegenden 
 Gitter zu, das die Basis für die Oberfläche darstellt. Die charakteristischen Größen 
 sind auch für die Oberflächen wichtig. Die Untersuchung der Kristallgitter findet vor 
-Allem durch Beugungsexperimente statt, da diese die periodische Struktur am besten 
-Ausnutzen und so zu höherer Genauigkeit kommen, als direkte Abbildung der Oberflächen. 
+allem durch Beugungsexperimente statt, da diese die periodische Struktur am besten 
+ausnutzen und so zu höherer Genauigkeit kommen als direkte Abbildung der Oberflächen. 
 
 Fundamental für die Beschreibung der Phänomene der Festkörperphysik ist der reziproke 
-oder $\K$-Raum. Er ist aus den $\K$-Vektoren ebener Wellen, die mit 
-$\ex{i \K \cdot \R}$ beschrieben werden, aufgebaut. Sind nun 
+oder $\K$-Raum. Er ist aus den $\K$-Vektoren ebener Wellen aufgebaut, die mit 
+$\ex{i \K \cdot \R}$ beschrieben werden. Sind nun 
 die Gittervektoren eines Kristalles im Ortsraum mit $\A_1,\ \A_2,\ \A_3$ gekennzeichnet, 
 so gilt für die reziproken Gittervektoren $\g_1,\ \g_2,\ \g_3$:
 \begin{eqnarray}
@@ -165,13 +167,13 @@ Die periodische Struktur des Kristalles bleibt also im reziproken Raum erhalten.
 Ein beliebiger Vektor $\G$ des reziproken Gitters lässt sich als ganzzahlige Linearkombination 
 der Basisvektoren darstellen.
 \begin{equation}
-    \mathbf{G} = h \mathbf{g_1} + k \mathbf{g_2} + l \mathbf{g_3}
+    \mathbf{G} = h \mathbf{g_1} + k \mathbf{g_2} + l \mathbf{g_3} \mbox{ mit }h,k,l \in \mathbb{Z}
 \end{equation}
 Für einen Vektor $\R$, der auf dem Gitter im Ortsraum liegt, gilt dann also:
 \begin{eqnarray}
     \mathbf{r} &=& n_1 \mathbf{a_1} + n_2 \mathbf{a_2} + n_3 \mathbf{a_3} \\
     \mathbf{G} \cdot \mathbf{r}&=& 2 \pi m  \\
-    n_1, \, n_2, \, n_3, \, m &\in& \mathbb{N}
+    n_1, \, n_2, \, n_3, \, m &\in& \mathbb{Z}
 \end{eqnarray}
 
 Schließlich lässt sich jede Funktion, die im Ortsraum periodisch ist, als 
@@ -204,8 +206,8 @@ erstrecken. Zweidimensionale Strukturen tauchen als großflächige
 Überstrukturen oder kleinere Facetten auf. Eine Kategorisierung verschiedener 
 Oberflächen wird von Henzler und Göpel \cite{henzler1991oberflachenphysik} 
 gegeben (Abb.:~\ref{fig:oberflaeche}).
-In jedem Fall erfahren die Atome der Oberfläche erfahren nicht mehr das 
-regelmäßige Potential von allen Seiten. Die resultierenden Veränderung werden je 
+In jedem Fall erfahren die Atome der Oberfläche nicht mehr das 
+regelmäßige Potential von allen Seiten. Dies resultiert je 
 nach Art als Oberflächenrelaxation oder -rekonstruktion. 
 Ersteres bezeichnet lediglich eine globale Verschiebung der oberen Schicht 
 gegen die Basis, beispielsweise normal oder lateral, wobei die Symmetrien 
@@ -213,7 +215,7 @@ der Oberfläche nicht verändert werden und sich die freie Energie verringert.
 Dieser Effekt wird bei den meisten Metallen beobachtet \cite{oura2003surface}. 
 Abb. \ref{fig:Ag(110)} zeigt beispielsweise die relaxierte Oberfläche von Silber 
 auf der (110)-Fläche.
-Bei der Oberflächenrekonstruktion bilden sich meist größere Einheitszellen, als die 
+Bei der Oberflächenrekonstruktion bilden sich meist größere Einheitszellen als die 
 des darunter liegenden Kristalls. Bei Halbleitern hängt das oft damit zusammen, 
 dass die Anzahl nicht abgesättigter Bindungen minimiert wird, so beispielsweise 
 bei Silizium entlang der (100)-Fläche, bei der nach gedanklichem Aufspalten zwei 
@@ -247,7 +249,7 @@ jene aus der obersten Atomschicht. Die Atome befinden sich dann an den Positione
 \end{equation}
 wobei nach Konvention $|\mathbf{a_1}| \le |\mathbf{a_2}|$ und 
 $\gamma = \angle (\mathbf{a_1}, \mathbf{a_2}) > 90 \deg$ der Winkel zwischen den 
-beiden Vektoren ist. Da die Atom in einer Ebene liegen, ist die Anzahl möglicher 
+beiden Vektoren ist. Da die Atome in einer Ebene liegen, ist die Anzahl möglicher 
 Anordnungen, die sog. Bravais-Netze, deutlich kleiner als für einen 3D-Kristall. 
 Es gibt genau fünf, wie in Abb.~\ref{fig:Bravais} gezeigt 
 \cite{henzler1991oberflachenphysik}.
@@ -256,7 +258,7 @@ der Oberflächenatome relativ zur darunter befindlichen Basis.
 
 Zur Beschreibung der Oberfläche wird zuerst die ideale Oberfläche angenommen, 
 die sich aus dem darunter liegenden Kristallgitter ergäbe, und deren Vektoren mit
-$|\mathbf{a_1}| \le |\mathbf{a_2}|$ bezeichnet werden. Die tatsächle Struktur, 
+$|\mathbf{a_1}| \le |\mathbf{a_2}|$ bezeichnet werden. Die tatsächliche Struktur, 
 soweit periodisch, kann dann als Verhältnisse $\frac{\mathbf{a_1}}{\mathbf{b_1}}$, 
 $\frac{\mathbf{a_1}}{\mathbf{b_1}}$ und Winkel zwischen Basis und Oberfläche angegeben 
 werden. Zusammen mit der Millerschen Schreibweise für die Kristallfläche der Basis 

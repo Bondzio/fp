@@ -26,6 +26,7 @@
 \usepackage{natbib}
 \usepackage{pgfplots}
 \usepackage{wrapfig}
+\usepackage{sidecap}
 
 %\usepackage{minted}
 
@@ -69,7 +70,7 @@
 \numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
 \numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
 
-\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+\setlength\parindent{1pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
 \setcapindent{1cm} 
 
 %----------------------------------------------------------------------------------------
@@ -108,18 +109,26 @@
 \input{Historisch}
 \input{theorie}
 \input{statistik}
+\clearpage
+\input{technik}
 \input{durchfuehrung}
+\clearpage
 \input{lab}
+\clearpage
 \input{gwyddion}
+\clearpage
 \section{Interpretation der Ergebnisse}
 \subsection{test}
 
+\cleardoublepage
+
+\phantomsection
+
+\addcontentsline{toc}{section}{Bibliographie und Abbildungsverzeichnis}
 \bibliographystyle{plain}
 \bibliography{Protokoll}
-
 \listoffigures
 
-\section{Anhang}
 %\input{anhang}
 % anhang muss mit pdflatex -shell-escape Protokoll.tex aufgerufen 
 \end{document}
