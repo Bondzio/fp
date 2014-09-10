@@ -1,0 +1,35 @@
+\subsection{Fehleranalyse}
+Im Folgenden wollen wir auf mögliche Fehlerquellen eingehen und die Einflüsse derer
+auf unsere Messungen erläutern:
+\paragraph{Die Diskontinuität der Tunnelstromstärke} in einigen unserer Aufnahmen hat den
+offensichtlichen Effekt auf die gemessene Topographie der Probe, dass die Strukturen nicht
+abbildungstreu wiedergegeben werden, siehe Abbildung~\ref{fig:fehler1}. 
+
+\begin{figure}[h]
+    \begin{subfigure}[b]{\picwidth}
+    \includegraphics[width=\textwidth]{pics/fehler1a}
+    \end{subfigure}\qquad
+    \begin{subfigure}[b]{\picwidth}
+        \includegraphics[width=\textwidth]{pics/fehler1b}
+    \end{subfigure}
+    \caption{Links: Aufnahme der Topographie, rechts: Aufnahme des Tunnelstroms.
+    Offensichtlich war die Regelung nicht imstande, den Tunnelstrom konstant zu halten. 
+    Somit konnte die Periodizität der Probe nicht auf in der Topographie visualisiert werden,
+    da sie durch die Vorwegnahme des nicht konstanten Tunnelstroms marginalisiert wurde.}
+    \label{fig:fehler1}
+\end{figure}
+
+Eine Lösung für diese Problematik bietet die Modifizierung der Parameter der Regelung. 
+Einerseits ist es möglich, die Parameter des PID-Reglers zu modifizieren, dafür
+ist eine fundierte Auseinandersetzung mit der Regelungstechnik des PID-Reglers nötig.
+Andererseits ist es möglich, die Rastergeschwindigkeit des RTMs so zu verringern, dass der
+Regler genug Zeit für die Rückregelung des Tunnelstroms aufbringt; diese Maßnahme haben wir 
+getroffen und konnten so die Qualität unserer Aufnahmen deutlich verbessern.
+\paragraph{Ein Gradient in der Topographie} führte in vielen Aufnahmen
+dazu, dass die periodischen Strukturen dadurch unterdrückt wurden (siehe Abbildung~\ref{fig:fehler1}).
+Warum dieser Gradient in vielen Aufnahmen auftauchte, ist in unserer abschließenden Analyse
+nicht geklärt worden. Mögliche Gründe dafür haben wir allerdings schon in der statistischen Auswertung
+angeben: Eine nicht in allen Richtung gleichmäßige Ausrichtung der Spitze kann einen solchen
+Effekt erzeugen. Wenn die Spitze beispielsweise 
+bei der vertikalen Richtung nach oben oder unten preferiert ausgerichtet
+war und somit den Tunnelstrom verfälscht hat.
