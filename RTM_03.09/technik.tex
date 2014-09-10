@@ -24,5 +24,50 @@ Anforderungen an die Regelung sind klar: Die Regelabweichung soll im stationäre
  nach Beendigung
 eines Einschwingvorgangs möglichst klein sein, im Falle einer Führungsgrößenänderung oder einer
 Störung soll die entstandene Regelabweichung möglichst schnell wieder eliminiert werden und
-die Stabilität des Gesamtsystems muss durchgehend gewährtleistet werden. 
+Die Stabilität des Gesamtsystems muss durchgehend gewährtleistet werden. 
+Die \textit{Laplace-Transformation} \cite{regelungstechnik2} dient als wichtigstes Hilfsmittel
+bei regelungstechnischen Aufgaben, die mit Differenzialgleichungen beschrieben werden können; dies
+ist insbesondere beim PID-Regler der Fall. Die Laplace-Transformation wird folgendermaßen definiert:
+\begin{align}
+F(s) &= \mathcal{L}\left [f(x)\right ] = \int_{0}^{\infty}f(x)e^{-sx}dx \\
+f(x) &= \mathcal{L}^{-1}\left [F(s)\right ] = 
+\frac{1}{2\pi i} \int_{c - i\infty}^{c+ i\infty} F(s)e^{sx}ds
+\end{align} 
+
+Wobei als Argument die komplexe Variable $s=\sigma + i\omega$ auftritt (somit handelt es sich
+bei der schon erwähnten Fourier-Transformation um einen Spezialfall mit $F(s = ik)$) und
+das vorkommende $c\in \mathbb{R}$ so gewählt werden muss, dass der Integrationsweg in der 
+Konvergenzhalbebene längs einer Parallelen zur imaginärenAchse im Abstand $c$ verläuft, wobei
+$c$ größer als die Realteile sämtlicher singulärer Punkte von $F(s)$ sein muss.
+Hier die wichtigsten Eigenschaften der Laplace-Transformation:
+\begin{align}
+&\mathcal{L}\left [a f(x) + b g(x)\right ]
+    = a F(s) + b G(s) 
+    &\mbox{ (Linearität) }\\
+
+&\mathcal{L}\left [f(ax)\right ]
+    = \frac{1}{a}F(\frac{s}{a}) 
+    &\mbox{ (Ähnlichkeit) }\\
+
+&\mathcal{L}\left [f(x-a)\right ]
+    = \frac{1}{a}F(\frac{s}{a}) 
+    &\mbox{ (Translation) }\\
+
+&\mathcal{L}\left [\frac{d^nf(x)}{dx^n}\right ]
+    = s^nF(s) - \sum_{i=1}^{n}s^{n-i}\frac{d^{i-1}f(x)}{dt^{i-1}} 
+    &\mbox{ (Differentiation) }\\
+
+&\mathcal{L}\left [\int_{0}^{t}f(x)dx\right ]
+    = \frac{1}{s}F(s) &\mbox{ (Integration) }\\
+
+&\mathcal{L}\left [f(x) * g(x)\right ](k)
+    = \mathcal{F}\left [f(x)\right ]\mathcal{F}\left [g(x)\right ]
+    \! &\mbox{ (Faltungseigenschaft) }\\
+&\mathcal{F}_k\left [\left | F(k) \right |^2\right ](x)
+   =  \int_{-\infty}^{\infty}\bar{f}(\tau)f(\tau + x) d\tau 
+   &\mbox{ (Wiener-Khinchin Theorem) }
+\end{align}
+
+
+
 
