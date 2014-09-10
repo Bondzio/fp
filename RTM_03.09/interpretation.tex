@@ -1,6 +1,12 @@
 \subsection{Fehleranalyse}
 Im Folgenden wollen wir auf mögliche Fehlerquellen eingehen und die Einflüsse derer
 auf unsere Messungen erläutern:
+\paragraph{Die Schwingungseinflüsse} auf die Aufnahmen sind unter anderem in dünnen Linien
+und Streifen erkennbar. Die Apperatur ist nicht perfekt Schwingungsgedämpft, nur dadurch
+ist zu erklären, dass in manchen Aufnahmen nach einer gewissen Abrasterungszeit auf einmal
+die Qualität deutlich schlechter wird (so wurden keine anderen Paramter des Systems geändert).
+Allerdings ist es fraglich, ob die zur Verfügung stehende Dämpfungsbox einen Einfluss
+auf diesen Störfaktor ausüben kann. 
 \paragraph{Die Diskontinuität der Tunnelstromstärke} in einigen unserer Aufnahmen hat den
 offensichtlichen Effekt auf die gemessene Topographie der Probe, dass die Strukturen nicht
 abbildungstreu wiedergegeben werden, siehe Abbildung~\ref{fig:fehler1}. 
@@ -22,6 +28,13 @@ abbildungstreu wiedergegeben werden, siehe Abbildung~\ref{fig:fehler1}.
 Eine Lösung für diese Problematik bietet die Modifizierung der Parameter der Regelung. 
 Einerseits ist es möglich, die Parameter des PID-Reglers zu modifizieren, dafür
 ist eine fundierte Auseinandersetzung mit der Regelungstechnik des PID-Reglers nötig.
+Ein unmittelbarer Paramter ist der "Integral Gain", welcher zur Kompensation eben dieses
+Effekts dient, da er den Paramter des I-Gliedes darstellt,
+und der "Proportional Gain" des P-Gliedes. Beide beeinflussen die Änderungsgeschwindigkeit
+der Anpassung. Ein jeweils kleiner Wert führt somit eher zu einer trägeren Anpassung
+der Spitze, während ein höherer Wert gegenteilig wirkt. Wird der Wert also zu klein gewählt,
+ist keine Topographie mehr erkennbar. Wir waren mit der Einstellung dieses Werts vorsichtig,
+da bei falscher Einstellung des Wertes auch eine Kollision der Spitze mit der Probe möglich wird.
 Andererseits ist es möglich, die Rastergeschwindigkeit des RTMs so zu verringern, dass der
 Regler genug Zeit für die Rückregelung des Tunnelstroms aufbringt; diese Maßnahme haben wir 
 getroffen und konnten so die Qualität unserer Aufnahmen deutlich verbessern.
