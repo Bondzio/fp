@@ -1,4 +1,30 @@
+\subsection{Overview}
+In the following experiment, we will analyse the spectral band of absorbtion of the iodine 2 molecule 
+with spectroscopal methods. For the given conditions, the expected observation stems almost 
+entirely from one electronic transition, the 
+\begin{equation}
+    B ^3\Pi_{\sigma \, \mathrm{u}}^{+} \quad <- \quad X ^1\Sigma_{\sigma \, \mathrm{u}}^{+}
+\end{equation}
+transition. Since iodine is a relativly heavy di-atomic molecule, it has vibrational modes that 
+split up the total energy of the molecule considerably and are visible in the spectrum with the 
+resolution of the given spectrometer. The energy is further changed by rotational modes of the 
+atoms, which however don't show up as separate lines but rather widen the observed bands, as the 
+resolution is not high enough. 
+The observed data is then used to calculated characteristical constants for the molecule, such as 
+the dissipation energy $D_e$ and the mean radius $r_c$. 
+
 \subsection{Historic review}
 The structure of molecular iodine ($I_2$) has been studied various times in physical chemistry 
 during the last century. One of the first thorough measurements of the spectral bands was done in 
-1923 by the German physicist Reinhard Meck. The vibrational states were correctly numbered
+1923 by the German physicist Reinhard Meck \cite{mecke1923bandenspektrum}. The vibrational states 
+were correctly numbered for the first time by Loomis \cite{loomis1927correlation}, who analysed 
+the fluorecence spectrum earlier measured by Wood \cite{wood1911} for $v = 26$.
+
+\subsection{Theoretical foundations}
+\subsubsection{Constructing the molecule}
+When describing molecules in the framework of quantum mechanics, we are faced with the problem of 
+finding solutions to the non-relativistic and time-independent Schrödinger-equation
+\begin{equation}
+    \hat{H} \Psi = \Big[- \frac{\hbar^2}{2m} \nabla^2 + V(\mathbf{r}) \Big] \Psi = E \Psi
+\end{equation}
+where $\Psi$ are eigenfunctions of the hamilton operator $\hat{H}$.
