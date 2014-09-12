@@ -19,13 +19,15 @@ import matplotlib.pyplot as plt
 fig = plt.figure()
 def make_plot(title,name):
     l,I = sa(name)
+    np.save("data_npy/"+name+"_l",l)
+    np.save("data_npy/"+name+"_I",I)
     plt.plot(l,I)
     plt.grid(True)
     plt.xlim(l.min()*0.99,l.max()*1.01)
     plt.title(title)
     plt.xlabel("Wavelength $\lambda$")
     plt.ylabel("Relative Intensity $I(\lambda)$")
-    plt.savefig(name)
+    plt.savefig("figures/"+name)
     fig.clear()
 
 make_plot("Spectrum of Halogenlamp (a)","halogen_01")
