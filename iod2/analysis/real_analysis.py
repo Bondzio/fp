@@ -46,7 +46,7 @@ lm = [[], [], []]
 cmm = [[], [], []]
 dl = [[], [], []]
 prog = [[], [], []]
-i_prog = 0 # choose progression to display
+i_prog = 1# choose progression to display
 
 
 
@@ -60,15 +60,15 @@ dl[0] = lm[0][1:] - lm[0][:-1]
 
 # progression v'' = 1 -> v'
 prog[1] = np.array([23, 25, 27, 29, 31, 33, 35, 36, 37, 38, 39, 40])      # selectred point in intersect
-lm[0] = lm_all[prog[0]] 
-cmm[0] = cmm_all[prog[0]]
-dl[0] = lm[0][1:] - lm[0][:-1]
+lm[1] = lm_all[prog[1]] 
+cmm[1] = cmm_all[prog[1]]
+dl[1] = lm[1][1:] - lm[1][:-1]
 
 # progression v'' = 2 -> v'
 prog[2] = np.arange(41, 49)      # until the last minima found.
-lm[0] = lm_all[prog[0]] 
-cmm[0] = cmm_all[prog[0]]
-dl[0] = lm[0][1:] - lm[0][:-1]
+lm[2] = lm_all[prog[2]] 
+cmm[2] = cmm_all[prog[2]]
+dl[2] = lm[2][1:] - lm[2][:-1]
 
 # Print array
 print(cmm[i_prog][::-1])
