@@ -40,7 +40,7 @@ mins = np.r_[True, iod_i[1:] < iod_i[:-1]] & np.r_[iod_i[:-1] < iod_i[1:], [True
 for b in range(2, b_max + 1):
         mins *= np.r_[[False]*b, iod_i[b:] < iod_i[:-b]] * \
                 np.r_[iod_i[:-b] < iod_i[b:], b * [False]]
-mins[119] = True
+mins[119] = True        # manually adding band heads
 mins[479] = True
 mins[702] = True
 mins[754] = True
@@ -57,8 +57,6 @@ cmm = [[], [], []]
 dcm = [[], [], []]
 prog = [[], [], []]
 nums = [[], [], []]
-i_prog = 2# choose progression to display
-
 
 
 # progression v'' = 0 -> v'
@@ -82,15 +80,43 @@ for i in range(3):
     dcm[i] = cmm[i][:-1] - cmm[i][1:]
     print(un.nominal_values(cmm[i][::-1]))
 
+# Plotting the absorbtion spectrum
+plt.close('all')
+fig = plt.figure(figsize = [15.0, 7.0])
+ax = plt.subplot(121)
+title_spectrum = "Absorption spectrum"
+ax.set_title(title_spectrum)
+ax.plot(un.nominal_values(iod_cm),iod_i, '-')
+for i in range(3):
+    ax.plot(un.nominal_values(cmm[i]),iod_i[mins][prog[i]], 'o')
+#ax.plot(iod_cm[mins],iod_i[mins], 'o')
+#ax.plot(halog_l,halog_i, '-')
+ax.set_xlabel("Wavenumber $\sigma$ / $\mathrm{cm^{-1}}$")
+ax.set_ylabel("Relative Intensity $I(\sigma)$")
 
 # calculating energy differences
-# dG[0] := G''(1) - G''(0) = (G'(n) - G''(0)) - (G'(n) - G''(1)) = w_e'' - 2 w_e x_e''
-# dG[1] := G''(2) - G''(1) = (G'(n) - G''(1)) - (G'(n) - G''(2)) = w_e'' - 4 w_e x_e''
 # For associating the correct 'n' , we need to numerate the progressions (find the corrisponding v') first
 # This is done manually comparing with Tab 2 & 3, p. 47a, b in Staatsex-Jod2-Molekül.pdf
 nums[0] = np.arange(17, 48)
 nums[1] = np.arange(15, 28)
 nums[2] = np.arange(9, 21)
+
+# Calculating constants w_e', w_e x_e' and w_e y_e' with the Birge sponer diagram
+# Birge Sponer plots
+ax = plt.subplot(122)
+title_dl ="Differences in wavelenght between maxima"
+ax.set_title(title_dl)
+for i in range(3):
+    ax.plot(un.nominal_values(nums[i][:-1]), un.nominal_values(dcm[i]), '.' )
+#    ax.plot(un.nominal_values(cmm[i][:-1]), un.nominal_values(dcm[i]), '.' )
+#    ax.errorbar(un.nominal_values(cmm[i][:-1]), un.nominal_values(dcm[i]), yerr=un.std_devs(cmm[i][:-1]), xerr=un.std_devs(dcm[i]), fmt=None )
+ax.set_xlabel("Wavenumber $\sigma$ / $\mathrm{cm^{-1}}$")
+ax.set_ylabel("$\Delta \sigma$/ $\mathrm{cm^{-1}}$")
+
+
+# Calculating constants for ground level
+# dG[0] := G''(1) - G''(0) = (G'(n) - G''(0)) - (G'(n) - G''(1)) = w_e'' - 2 w_e x_e''
+# dG[1] := G''(2) - G''(1) = (G'(n) - G''(1)) - (G'(n) - G''(2)) = w_e'' - 4 w_e x_e''
 min_n = [[],[]]         # min and max number for coorisponding v'
 max_n = [[],[]]
 dG = [[],[]]
@@ -103,53 +129,7 @@ for i in range(2):      # comparing v'' = (0, 1) and v'' = (1, 2), respectively
     #dG_mean[i] = np.mean(dG[i])                     # take mean from all corrisponding values
     #dG_std[i] = np.std(dG[i])                       # standart deviation
 
-# Now switch to a more OO interface to exercise more features.
-fig = plt.figure(figsize = [15.0, 7.0])
-ax = plt.subplot(121)
-title_spectrum = "Absorption spectrum"
-ax.set_title = (title_spectrum)
-ax.plot(un.nominal_values(iod_cm),iod_i, '-')
-for i in range(3):
-    ax.plot(un.nominal_values(cmm[i]),iod_i[mins][prog[i]], 'o')
-#ax.plot(iod_cm[mins],iod_i[mins], 'o')
-#ax.plot(halog_l,halog_i, '-')
-ax.set_xlabel("Wavenumber $\sigma$ / $\mathrm{cm^{-1}}$")
-ax.set_ylabel("Relative Intensity $I(\sigma)$")
-
-ax = plt.subplot(122)
-title_dl ="differences in wavelenght between maxima"
-ax.set_title(title_dl)
-for i in range(3):
-    ax.errorbar(un.nominal_values(cmm[i][:-1]), un.nominal_values(dcm[i]), yerr=un.std_devs(cmm[i][:-1]), xerr=un.std_devs(dcm[i]), fmt=None )
-ax.set_xlabel("Wavenumber $\sigma$ / $\mathrm{cm^{-1}}$")
-ax.set_ylabel("$\Delta \sigma$/ $\mathrm{cm^{-1}}$")
 
 fig.suptitle('Iodine 2 molecule')
-
 plt.show()
 
-
-'''
-plt.close('all')
-title ="$J_2$-Molecule"
-fig = plt.figure()
-plt.plot(iod_cm,iod_i, '-')
-for i in range(3):
-    plt.plot(cmm[i],iod_i[mins][prog[i]], 'o')
-#plt.plot(iod_cm[mins],iod_i[mins], 'o')
-#plt.plot(halog_l,halog_i, '-')
-plt.grid(True)
-plt.title(title)
-plt.xlabel("Wavenumber $\sigma$ / $\mathrm{cm^{-1}}$")
-plt.ylabel("Relative Intensity $I(\sigma)$")
-fig.show()
-
-fig2 = plt.figure()
-for i in range(3):
-    plt.plot(cmm[i][:-1],dcm[i], '.')
-plt.grid(True)
-plt.title(title)
-plt.xlabel("Wavenumber $\sigma$ / $\mathrm{cm^{-1}}$")
-plt.ylabel("$\Delta \sigma$/ $\mathrm{cm^{-1}}$")
-fig2.show()
-'''
