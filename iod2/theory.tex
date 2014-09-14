@@ -1,0 +1,264 @@
+\subsection{Timeindependent Perturbationtheory}
+We are following~\cite{fliessbach2008quantenmechanik}.
+Lets assume we know the Eigenvalues and -functions of a specific
+Hamiltonoperator $\hat{H_0}$ of the
+unperturbed system (we further assume the eigenspaces to be
+seperable, so we have no degeneracy. The case of degeneracy
+can be done analogously) 
+, numbered with $n\in \mathbb{N}$:
+
+\begin{equation}
+\hat{H_0} |n\rangle = \epsilon_n |n\rangle 
+\end{equation}
+and now we search for the solution of the perturbated Hamiltonian:
+\begin{equation}
+    \hat{H}|\psi \rangle = E|\psi \rangle 
+\end{equation}
+with the Hamiltonian:
+\begin{equation}
+    \hat{H} = \hat{H_0} + \lambda \hat{V}
+\end{equation}
+where we perturbate the original Hamiltonian with the Potential
+$\hat{V}$ and give an approximate Soluation as long as Perturbation
+is not of the same order of magnitude as $H_0$. 
+The next step will be to apply this to the anharmonic 
+Oscillator in order to get an estimation about the energyeigenvalues.
+At first we have introduced a new parameter $\lambda$, which is the 
+strength of the perturbation; for $\lambda = 1$ we have the problem
+we want to solve, for $\lambda = 0 $ we arrive at the unperturbed
+problem. Now we can expand in this parameter:
+\begin{align}
+    E_n(\lambda) &= \epsilon_n + \sum_{\nu =1}^{\infty} \lambda^\nu
+    E_{n,\nu} \\ 
+    |\psi_n(\lambda)\rangle &=
+    |n\rangle + \sum_{\nu =1}^{\infty} \lambda^\nu
+    |\psi_{n,\nu}(\lambda)\rangle
+\end{align}
+As result the solutions we are looking for will become:
+\begin{align}
+    E_n &= \epsilon_n + E_{n,1} + E_{n,2} + \cdots\\ 
+    |\psi_n \rangle &= |n\rangle + |\psi_{n,1} \rangle + \cdots 
+\end{align}
+We assume for now that this series is converging and plug it into
+the Schrödingerequation:
+\begin{equation}
+    (\hat{H_0} + \lambda \hat{V})
+   \left( |n\rangle + \sum_{\nu =1}^{\infty} \lambda^\nu
+        |\psi_{n,\nu}(\lambda)\rangle \right) =
+\epsilon_n + \sum_{\nu =1}^{\infty} \lambda^\nu
+    E_{n,\nu}  
+    \left( |n\rangle + \sum_{\nu' =1}^{\infty} \lambda^{\nu'}
+        |\psi_{n,\nu'}(\lambda)\rangle \right) 
+\end{equation}
+Now we can impose that the different powers of $\lambda$ have to
+match on both sides and receive a set of equations:
+\begin{align}
+    \hat{H_0} |n\rangle &= \epsilon_n |n\rangle\\
+    \hat{H_0} |\psi_{n,1}\rangle + \hat{V}|n\rangle &=
+    \epsilon_n |\psi_{n,1}\rangle + E_{n,1}|n\rangle \label{eq:dev1}\\
+    \hat{H_0} |\psi_{n,2}\rangle + \hat{V}|\psi_{n,1}\rangle &=
+    \epsilon_n |\psi_{n,2}\rangle + E_{n,1}|\psi{n,1}\rangle 
+    + E_{n,2}|n\rangle \label{eq:dev2}\
+\end{align}
+This set of equations yield recursive the Solutions of $E_{n,1}$,
+$E_{n,2}$ and so on. Now we expand these single Wavefunctions 
+into the new basis of energyeigenfunctions $|m \rangle$ with $m\in 
+\mathbb{N}$:
+\begin{equation}
+    |\psi_{n,1}\rangle = \sum_{m=1}^{\infty} a_{nm} |m \rangle
+    \label{eq:psi_expansion}
+\end{equation}
+We can plug this expansion now into into equation~\eqref{eq:dev1}:
+\begin{equation}
+    \sum_{m=1}^{\infty} (\epsilon_n - \epsilon_m) a_{nm} |m\rangle
+    + E_{n,1} |n\rangle = \hat{V}|n \rangle
+\end{equation}
+With the Projection onto the dual eigenstate $\langle k|$ we can
+use the orthonormality $\langle k | m \rangle = \delta_{m,k}$ 
+of the energyeigenfunctions:
+\begin{equation}
+     (\epsilon_n - \epsilon_k) a_{nk} 
+     + E_{n,1}\delta_{n,k}  = \langle k |\hat{V}|n \rangle
+\end{equation}
+For the case $k = n$ we get:
+\begin{equation}
+    E_{n,1} = \langle k |\hat{V}|n \rangle
+\end{equation}
+and for $k\neq m$:
+\begin{equation}
+    a_{n,k} = \frac{\langle k |\hat{V}|n \rangle}
+    {\epsilon_n - \epsilon_k} \label{eq:a_nk}
+\end{equation}
+Equation~\eqref{eq:a_nk} together with~\eqref{eq:psi_expansion} 
+gives us now:
+\begin{equation}
+    |\psi_{n}\rangle = |n\rangle + \lambda \sum_{m\neq n}^{\infty}
+    \frac{\langle m |\hat{V}|n \rangle}{\epsilon_n - \epsilon_m}  
+    |m \rangle + \lambda a_{n,n} + \mathcal{O}(\lambda^2)
+\end{equation}
+Now we can set $a_{n,n}=0$ (see footnote~\footnote{
+Again we can use orthonormality:
+\begin{equation*}
+    1\overset{!}{=} \langle \psi_n|\psi_{n}\rangle 
+    = \left | 1 + \lambda a_{nn} \right |^2 + \lambda^2
+    \sum_{m\neq n}^{\infty}
+    \left | \frac{\langle m |\hat{V}|n \rangle}
+        {\epsilon_n - \epsilon_m} \right |^2 = 
+    1 + \lambda (a_{n,n} + a^*_{n,n}) + \mathcal{O}(\lambda^2)
+\end{equation*}
+When $\lambda > 0 $ this results into:
+\begin{equation*}
+    a_{n,n} + a^*_{n,n} = 0 \Rightarrow \Re  [a_{n,n}] = 0
+\end{equation*}
+Since the Wavefunctions 
+are invariant with respect to a phase $\phi$,
+we can set without limitations $a_{nn}$ to zero.} for
+further details) and we arrive
+at:
+\begin{equation}
+    |\psi_{n}\rangle = |n\rangle + \lambda \sum_{m\neq n}^{\infty}
+    \frac{\langle m |\hat{V}|n \rangle}{\epsilon_n - \epsilon_m}  
+    |m \rangle  + \mathcal{O}(\lambda^2)
+\end{equation}
+For the Energy we can make use of the third equation and go to
+the second order:
+\begin{equation}
+|\psi_{n,2}\rangle  = \sum_{m=1}^{X} b_{n,m} |m \rangle 
+\end{equation}
+We can plug this analogously into equation~\eqref{eq:dev2} and
+arrive at:
+\begin{equation}
+ \sum_{m}^{\infty} (\epsilon_n - \epsilon_m) b_{nm} |m\rangle +
+ \sum_{m}^{\infty} E_{n,1} a_{n,m} |m \rangle + E_{n,2} |n \rangle =
+ \sum_{m}^{\infty} a_{n,m} \hat{V} |m \rangle
+\end{equation}
+Where again we use the orthonormality. For $k=n$ we get:
+\begin{equation}
+    E_{n,2} = \sum_{m}^{\infty} a_{n,m} \langle n |\hat{V}|m\rangle
+= \sum_{m\neq n}^{\infty}\frac{|\langle n | \hat{V} | m \rangle |^2}
+    {\epsilon_n - \epsilon_m}
+\end{equation}
+For $k\neq n$ we would arrive at the explicit formula for $b_{n,m}$
+but this is not necessary for the further computations.
+As final result we therefore get:
+\begin{align}
+    E_n &\approx \epsilon_n + \langle n|\hat{V} | n \rangle +
+\sum_{m\neq n}^{\infty}\frac{|\langle n | \hat{V} | m \rangle |^2}
+    {\epsilon_n - \epsilon_m} \\
+    |\psi_n \rangle &\approx 
+    |n\rangle + \sum_{m\neq n}^{\infty}
+    \frac{\langle m |\hat{V}|n \rangle}{\epsilon_n - \epsilon_m}  
+    |m \rangle 
+\end{align}
+\subsection{The anharmonic oscillator}
+Lets assume we have solved the harmonic oscillator with 
+\begin{align}
+    \hat{H_0} &= \frac{\hat{p}^2}{2m} 
+    + \frac{1}{2} m \omega_0^2\hat{x}^2 \\
+    \hat{H_0}|n \rangle &= \epsilon_n |n \rangle \\
+    \epsilon_n &= \hbar \omega_0 \left (n+ \frac{1}{2} \right)
+\end{align}
+Now perturbe this system with a kubic potential potential:
+\begin{equation}
+\hat{V} =\lambda \hat{x}^3
+\end{equation}
+Hence we can use the perturbation theory in linear order.
+Since the parity of $\hat{V}$ is odd, the expectation value has 
+to be zero:
+\begin{equation}
+    E_{n,1} = \lambda \langle n | \hat{x}^3 | n \rangle = 0 
+\end{equation}
+The wavefunctions have to be corrected as follows:
+\begin{equation}
+    |\psi_{n,1} \rangle = \sum_{m\neq n}^{\infty}
+    \frac{\langle m |\hat{V}|n \rangle}{\epsilon_n - \epsilon_m}  
+    |m \rangle 
+    = \frac{\lambda}{\hbar \omega}
+    |\psi_{n,1} \rangle = \sum_{m\neq n}^{\infty}
+    \frac{\langle m |\hat{x}^3|n \rangle}{\epsilon_n - \epsilon_m}  
+    |m \rangle 
+\end{equation}
+Now we have to calculate the matrix elements. Therefore we
+introduce the creation- and annihilationoperator 
+which are defined by $\hat{x}$:
+\begin{equation}
+    \hat{x} = \sqrt{\frac{\hbar}{2m\omega}}(\hat{a}^\dagger +
+        \hat{a})
+\end{equation} 
+Now we can calculate iteratively the matrixelements
+\footnote{
+    Here we make use how $\hat{a}$ and $\hat{a}^\dagger$ act 
+    on the eigenfunctions $|n\rangle$:
+\begin{align*}
+    \hat{x}|n'\rangle = \sqrt{\frac{\hbar}{2m\omega}}
+    \left ( \sqrt{n' + 1}|n'+1\rangle 
+        + \sqrt{n'}|n' - 1 \rangle \right ) 
+\end{align*}
+Applying once more:
+\begin{align*}
+\hat{x}^2|n'\rangle = \frac{\hbar}{2m\omega}
+\left ( \sqrt{(n' + 1)(n' + 2)}|n'+2\rangle 
+            + (2n' + 1) |n' \rangle
+            + \sqrt{(n'(n'-1)}|n' - 2 \rangle \right ) 
+\end{align*}
+And applying for the third time:
+\begin{align*}
+    \hat{x}^3|n'\rangle &= \sqrt[3]{\left (\frac{\hbar}{2m\omega}\right )^2}
+( \sqrt{(n' + 1)(n' + 2)(n'+3)}|n'+3\rangle 
+    + 3 \sqrt{(n'+1)^3}|n' +1 \rangle  \\
+ &+ 3 \sqrt{(n')^3}|n' -1 \rangle   
+            + \sqrt{(n'(n'-1)(n'-2)}|n' - 3 \rangle  ) 
+\end{align*}
+Now this yields the matrixelements which we need:
+\begin{align}
+    \langle n | \hat{x}^3 | n' \rangle &=  
+    \sqrt{\left (\frac{\hbar}{2m\omega}\right)^3}
+( \sqrt{(n' + 1)(n' + 2)(n'+3)}\delta_{n,n'+3} 
+    + 3 \sqrt{(n'+1)^3}\delta_{n,n'-1}  \\
+    &+ 3 \sqrt{(n')^3}\delta_{n,n'-1}   
+    + \sqrt{(n'(n'-1)(n'-2)}\delta_{n,n'-3}  ) 
+\end{align}
+
+}. After applying the justified indices, since only $n'=n\pm 1$ and
+$m = n \pm 3 $ are not zero, we arrive at:
+\begin{equation}
+\begin{aligned}
+    |\psi_{n,1} \rangle &= \frac{\lambda}{\hbar \omega}
+    \sqrt{\left(\frac{\hbar}{2m\omega}\right)^3}
+    ( -\frac{1}{3}\sqrt{(n + 1)(n + 2)(n+3)}|n+3\rangle 
+    - 3 \sqrt{(n+1)^3}|n +1 \rangle  \\
+ &+ 3 \sqrt{(n)^3}|n -1 \rangle  
+    +\frac{1}{3} \sqrt{(n(n-1)(n-2)}|n - 3 \rangle  ) 
+\end{aligned}
+\end{equation}
+We can also calculate the energy corrections:
+\begin{equation}
+    E_{n,2} = \langle n | \hat{V} | \psi_{n,1} \rangle 
+    = \lambda \langle n | \hat{x}^3 | \psi_{n,1} \rangle 
+\end{equation}
+Which yields:
+\begin{equation}
+\begin{aligned}
+    E_{n,2} &= \frac{\hbar^2 \lambda^2}{2 m^3 \omega ^4}
+    \left[-\frac{1}{3}(n+1)(n+2)(n+3)
+        -9(n+1)^3 + 9n^3 + \frac{1}{3}n(n-1)(n-2)
+        \right ] \\
+    &= -\frac{\hbar^2 \lambda^2}{2 m^3 \omega ^4}
+    \left[ 30n^2+ 30n + 11 \right ]\\
+    &= -\frac{30 \hbar^2 \lambda^2}{2 m^3 \omega ^4}
+    \left[\left(n + \frac{1}{2} \right)^2 + \frac{11}{30} \right ]\\
+\end{aligned}
+\end{equation}
+If we had a look at the closed form for all orders, we would
+notice the possibility to expand the Energy Difference in terms
+of powers of the original Energy $(n+\frac{1}{2})$ which we will
+state here without proof:
+\begin{equation}
+    E_n = \hbar \omega_{0,0} \left(n + \frac{1}{2} \right) 
+    - \hbar \omega_{0,1} \left(n + \frac{1}{2} \right)^2  
+    + \hbar \omega_{0,2} \left(n + \frac{1}{2} \right)^3  
+    + \cdots
+\end{equation}
+We did not include the small derivation independent of $n$,
+since we will look only at energydifferences. Notice that
+the final result is only valid for a small, odd Perturbation. 
