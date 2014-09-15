@@ -1,4 +1,16 @@
-\subsection{Timeindependent Perturbationtheory}
+\subsection{Theoretical Foundations}
+When describing molecules in the framework of quantum mechanics, we are faced with the problem of 
+finding solutions to the non-relativistic and time-independent Schrödinger-equation
+\begin{equation}
+    \hat{H} \psi = \Big[- \frac{\hbar^2}{2m} \nabla^2 + V(\mathbf{r}) \Big] \psi = E \psi
+\end{equation}
+where $\psi$ are eigenfunctions of the hamilton operator $\hat{H}$.
+To a few problems we can find the analytical solution to this equation, but to most
+of the problems we need to approximate the solution with regards to an analyical
+solution which is given. In the following sections we will introduce
+the time-independent Perturbationtheory and give an example with the 
+anharmonic oscillator how such an approximation can take place.
+\subsubsection{Timeindependent Perturbationtheory}
 We are following~\cite{fliessbach2008quantenmechanik}.
 Lets assume we know the Eigenvalues and -functions of a specific
 Hamiltonoperator $\hat{H_0}$ of the
@@ -14,7 +26,7 @@ and now we search for the solution of the perturbated Hamiltonian:
 \begin{equation}
     \hat{H}|\psi \rangle = E|\psi \rangle 
 \end{equation}
-with the Hamiltonian:
+by means of the initial Hamiltonian:
 \begin{equation}
     \hat{H} = \hat{H_0} + \lambda \hat{V}
 \end{equation}
@@ -262,3 +274,55 @@ state here without proof:
 We did not include the small derivation independent of $n$,
 since we will look only at energydifferences. Notice that
 the final result is only valid for a small, odd Perturbation. 
+\subsubsection{Energylevels and Wavefunctions
+    of two-atomic molecules}
+First we will write down the full Equations of the two-atomic
+molecule and investigate after which parts we can further
+simplify:
+\begin{equation}
+        \hat{H}\psi = E\psi 
+\end{equation}
+Where we can expand the Hamiltonian in the position-space,
+where we already split into the electrons ($i$) and the 
+two nucleons $A$ and $B$:
+\begin{equation}
+    \hat{H} = \frac{-\hbar^2}{2} 
+        \underbrace{\left(
+        \sum_{i}{\frac{\nabla_i^2}{m_e}}
+        +\frac{\nabla_A^2}{M_A} +\frac{\nabla_B^2}{M_B}
+\right)}_{
+\substack{\text{kinetic energy}\\\text{of electrons and nucleons}}}
++ \underbrace{\sum_{i>j}{\frac{e^2}{|r_i - r_j|}}
+    }_{\substack{\text{potential energy}\\\text{electron-electron}}}
+ - \underbrace{\sum_{i}{\frac{Z_A e^2}{|r_i - r_A|}}
+ }_{\substack{\text{potential energy}\\\text{electron-nucleon $A$}}}
+ - \underbrace{\sum_{i}{\frac{Z_B e^2}{|r_i - r_B|}}
+ }_{\substack{\text{potential energy}\\\text{electron-nucleon $B$}}}
+ +  \underbrace{\frac{Z_A Z_B e^2}{|r_A - r_B|}
+ }_{\substack{\text{potential energy}\\\text{nucleon $A$ - nucleon $B$}}}
+\end{equation}
+Now we split the electronsolutions and the nucleonsolutions such
+that the solutions of the electrons change only little when the
+distance of the nucleons change, which is known as the
+\textsc{BORN-OPPENHEIMER}-Approximation \cite{staatsexamen}:
+\begin{align}
+    \psi &= \psi_E ( \cdots r_i \cdots) \psi_N(r_A, r_B) \\
+    \hat{ H}_E\psi_E &= \left(- \sum_{i}{\frac{\hbar^2\nabla_i^2}{2m_e}}
+    + \sum_{i>j}{\frac{e^2}{|r_i - r_j|}}
+    - \sum_{i}\frac{Z_A e^2}{|r_i - r_A|}
+    - \sum_{i}\frac{Z_B e^2}{|r_i - r_B|}
+    + 
+    \right ) \psi_E = 
+ E_E \psi_E \\
+ \hat{H}_N\psi_N &= \left (
+ -\frac{\hbar^2\nabla_A^2}{2M_A} -\frac{\hbar^2\nabla_B^2}{2M_B}
+    - \sum_{i}\frac{Z_A e^2}{|r_i - r_A|}
+    - \sum_{i}\frac{Z_B e^2}{|r_i - r_B|}
+ + \frac{Z_A Z_B e^2}{|r_A - r_B|}
+ \right ) \psi_N
+=  E_N \psi_N 
+\end{align}
+Where we fixed the positions for the Hamiltonian
+of the electrons such that they are not included in the
+wavefunction.
+\clearpage
