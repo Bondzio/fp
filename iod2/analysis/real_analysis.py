@@ -66,8 +66,8 @@ def str_label_fit(i, j):
 
 # general parameters
 prog_n = (0, 3)     # variable needed for 'range'
-deg = [2, 1, 1]                                # degree of polynomial fit
-lambda_error = 0.2                        # uncertainty of spectrometer in lambda (nonimal = 0.6)
+deg = [1, 1, 1]                                # degree of polynomial fit
+lambda_error = 0.05                        # uncertainty of spectrometer in lambda (nonimal = 0.6)
 plt.close('all')
 colors = ['b', 'g', 'r', 'pink']
 labels = ['$v\'\' = %i \\rightarrow v\'$' %i for i in range(3)]
@@ -257,7 +257,6 @@ for i in range(3):
     if deg[i] == 1:
         ax = plt.subplot(1, 3, i + 1)
         n = 11
-        levels = [0,1]
         L = 2 * beta_sd[i]
         x = np.linspace(-L[0], L[0], n)
         y = np.linspace(-L[1], L[1], n)
@@ -271,7 +270,13 @@ for i in range(3):
                 Z2[j,k] = chi2_theta(nums[i], unv(dcm[i]), usd(dcm[i]), coeff[i], X[j,k], Y[j,k], deg=1)
         Z -= chi2_min[i]
         Z2 -= chi2_min[i]
-        CS = ax.contour(X, Y, Z)
+        levs = [1]
+        CS = ax.contour(X, Y, Z, levels=levs)
+        ax.plot([-beta_sd[i][0], -beta_sd[i][0]],[-L[1], L[1]], 'k--')
+        ax.plot([beta_sd[i][0], beta_sd[i][0]],[-L[1], L[1]], 'k--')
+        ax.plot([-L[1], L[1]], [-beta_sd[i][1], -beta_sd[i][1]], 'k--')
+        ax.plot([-L[1], L[1]], [beta_sd[i][1], beta_sd[i][1]], 'k--')
+        ax.plot([0],[0], 'k.')
         ax.clabel(CS, inline=1, fontsize=10)
         title_dl = '$v\'\' = %i \\rightarrow v\'$' %i
         ax.set_title(title_dl)
