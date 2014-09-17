@@ -454,3 +454,96 @@ The Operator then becomes:
     \frac{d^2 S}{dr^2} + \frac{2\mu}{\hbar^2}
     \left ( E - V(r) ) = 0 \right )
 \end{equation}
+The Eigenfunctions and -values are now very dependent on the 
+potential energy $V(r)$ which is until now not a known 
+potential, because it includes the repulsion due to the
+pauliprinciple of the electronorbits as well as the attraction
+of the charges. Furthermore the physical nature of dissociation
+of the two nucleons also has to be encoded into it.
+It is not possible to solve the potential analytically, but 
+we will start to write down the properties already known:
+\begin{itemize}
+        \item Pauliprinciple:
+            $\lim\limits_{r \rightarrow 0}{V(r)} = \infty $
+        \item Dissociated nucleons:
+$\lim\limits_{r \rightarrow \infty}{V(r)} = const. $
+\item Before the Dissociation: Attraction of the nucleons with
+    the maximal attraction at $r_e$ and the Dissociationenergy
+    $D_e$ defined by 
+    $ \lim\limits_{r \rightarrow \infty}{V(r)} - V(r_e)=: D_e$ 
+\end{itemize}
+The idea is now to capture this properties into the coefficients
+of the taylored Potential and by doing so resolving the principle
+physical behavior:
+\begin{equation}
+    V(r) = V(r_e) 
+   + \frac{\partial V(r)}{\partial r}|_{r=r_e}(r - r_e)
+   + \frac{\partial^2 V(r)}{2!\partial r^2}|_{r=r_e}(r - r_e)^2
+   + \frac{\partial^3 V(r)}{3!\partial r^3}|_{r=r_e}(r - r_e)^3
+   + \cdots
+\end{equation}
+As first approximation for energies near the minimum $r=r_e$ we
+can finally use the harmonic potential. The constant term
+$V(r_e)$ can be dropped since we are only interested in 
+potential differences.
+\begin{equation}
+    V_{harm}(r) =
+    \frac{\partial^2 V(r)}{2\partial r^2}|_{r=r_e}(r - r_e)^2
+    =: \frac{k_e}{2}(r-r_e)^2
+\end{equation}
+Following this approach we can use the energyeigenvalues of the
+harmonic oscillator in order to approximate
+the vibrational states $\nu$:
+\begin{equation}
+    E_\nu =\sqrt{\frac{k_e}{\mu}}\hbar \left (\nu
+        + \frac{1}{2}\right )
+\end{equation}
+In order to chose a more convenient unit we transform this
+equation into $cm^{-1}$:
+\begin{equation}
+    G_{harm}(\nu) = \frac{E}{hc} = \omega_0 (\nu + \frac{1}{2})
+    \quad \text{with the frequency} \quad
+    \omega_0 = \frac{1}{2\pi c} \sqrt{\frac{k_e}{\mu}}
+\end{equation}
+The wider we leave the regime around $r_e$, speaking about 
+higher vibrational states, the worse approximation with a harmonic
+oscillator becomes. Qualitatively this is the case when energies
+come nearer to the dissociation energy. An adhoc solution is 
+to treat this with the already mentioned perturbationtheory in such
+a way that we use the condition
+\begin{equation}
+    \frac{\partial V(r)}{\partial r}|_{r=r_e}        \gg
+    \frac{\partial^2 V(r)}{2!\partial r^2}|_{r=r_e}  \gg
+    \frac{\partial^3 V(r)}{3!\partial r^3}|_{r=r_e}  
+    \cdots
+\end{equation}
+and can therefore justify the Ansatz:
+\begin{equation}
+    G(\nu) = \omega_e (\nu + \frac{1}{2} ) 
+    - \omega_e x_e (\nu + \frac{1}{2} ) ^2 
+    + \omega_e y_e (\nu + \frac{1}{2} ) ^3 
+    - \omega_e z_e (\nu + \frac{1}{2} ) ^4 
+    + \cdots 
+\end{equation}
+Since in the experiment it is clearly impossible to seperate
+the incoming higher frequencies, we will treat $\omega_e x_e$ as 
+one variable, similarily to the others, where they also connected
+on lengthscales by
+\begin{equation}
+    \omega_e \gg \omega_ex_e \gg \omega_e y_e \cdots 
+\end{equation}
+As before we can shift the equations to make them more convenient,
+in this case to scale them to the zeroenergy
+\begin{equation}
+    G \mapsto G_0 := \left [G-G(0) \right ] 
+        \quad \text{which is given by}
+    \quad G(0)=\frac{1}{2}\omega_e - \frac{1}{4}\omega_e x_e 
+    + \frac{1}{8} \omega_e y_e + \cdots 
+\end{equation}
+So we get for the shifted term:
+\begin{equation}
+    G_0(\nu) = 
+\end{equation}
+\clearpage
+
+
