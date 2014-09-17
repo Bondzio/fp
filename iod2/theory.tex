@@ -2,10 +2,61 @@
 When describing molecules in the framework of quantum mechanics, we are faced with the problem of 
 finding solutions to the non-relativistic and time-independent Schrödinger-equation
 \begin{equation}
-    \hat{H} \psi = \Big[- \frac{\hbar^2}{2m} \nabla^2 + V(\mathbf{r}) \Big] \psi = E \psi
+    \hat{H} \psi = \Big[- \frac{\hbar^2}{2m} 
+        \nabla^2 + \hat{V}(\mathbf{r}) \Big] \psi = E \psi
 \end{equation}
 where $\psi$ are eigenfunctions of the hamilton operator $\hat{H}$.
-To a few problems we can find the analytical solution to this equation, but to most
+It is out of the scope of this introduction to give a complete
+and comprehensive introduction into quantum mechanics, therefore
+we will not only leave out the most important results, but
+furthermore mention those kind of results without proof which
+we need for further calculations. For the beginning it is
+important to at least write down the characterisic properties
+of the harmonic oscillator, in order to perturbate this
+kind of potential onto a unharmonic oscillator, which will be
+treated with secondorder perturbationtheory. After this we 
+immedeatly come to the molecule orbitals, which we need
+to resolve the energy levels being measured in this experiment.
+\subsubsection{Harmonic Oscillator}
+The potential for the harmonic oscillator is given as follwing:
+\begin{equation}
+    \hat{V}= \frac{m}{2} \omega^2 \hat{x}^2
+\end{equation}
+To solve this equation, the most convenient method is to
+introduce different basis of operators in which it is very
+convenient to write down the energy
+~\cite{fliessbach2008quantenmechanik}, which we will not do here
+but state the eigenvalues (with quantumnumber $\nu$)
+of the energy without proof
+(see also figure~\ref{fig:harmonic1}):
+\begin{equation}
+    H(\nu) = \left ( \nu + \frac{1}{2} \right )\hbar \omega 
+    \quad \text{with $\nu\in \mathbb{N_0}$}
+\end{equation}
+where the wavefunctions
+   are given by
+   \begin{equation}
+    \psi_n(x)= \left(\frac{m\omega}{\pi\hbar}
+    \right)^\frac{1}{4}
+\frac{1}{\sqrt{2^nn!}} H_n
+\left(\sqrt{\frac{m\omega}{\hbar}} x \right)
+e^{-\frac{1}{2}\frac{m\omega}{\hbar}x^2}
+\end{equation}
+and $H_n$ are the hermite polynomials: 
+\begin{equation}
+H_n(x)=(-1)^n e^{x^2}\frac{d^n}{dx^n}\left(e^{-x^2}\right) 
+\end{equation}
+\begin{figure}
+\includegraphics[width=15cm]{pics/harmonic1}
+\caption{Energy levels of the harmonic oscillator with its 
+    related wavefunctions\cite{Demtroeder1}.}
+\label{fig:harmonic1}
+\end{figure}
+This potential is of outstanding importance for our experiment,
+since the real potential will be aproximated in a region near
+the minimum with a harmonic potential. 
+To a few problems we can find the analytical solution
+to the schrödingerequation, but to most
 of the problems we need to approximate the solution with regards to an analyical
 solution which is given. In the following sections we will introduce
 the time-independent Perturbationtheory and give an example with the 
@@ -276,9 +327,10 @@ since we will look only at energydifferences. Notice that
 the final result is only valid for a small, odd Perturbation. 
 \subsubsection{Energylevels and Wavefunctions
     of two-atomic molecules}
+
 First we will write down the full Equations of the two-atomic
 molecule and investigate after which parts we can further
-simplify:
+simplify (This whole derivation will follow \cite{staatsexamen}):
 \begin{equation}
         \hat{H}\psi = E\psi 
 \end{equation}
@@ -337,7 +389,68 @@ and will be abbreviated
 with \textit{MO} (\textit{Molecule orbital}) and the trialsolutions
 will be built up upon linear combinations of those
 (\textit{Linear combinations of atomic orbitals} method,
-\textit{LCAO}). This method was fist introduced 1929 by 
-Sir John Lennard-Jones.
+\textit{LCAO}). This method was first introduced 1929 by 
+Sir John Lennard-Jones and has to be used with caution, since
+it is only in certain limits applicable. The parameters which
+appear in these combinations can be constrained by 
+expectationvalues measured in experiments.
+Now we will turn our attention to the movement of nucleons.
+Since in our case we only have two of them, we can perform 
+a coordinatetransform to the normal coordinates with a fictional
+nucleon with mass
+\begin{equation}
+    \mu = \frac{M_A M_B}{M_A + M_B}
+\end{equation}
+so that our new Schrödingerequation with the wavefunction of the
+fictional nucleon will look like:
+\begin{equation}
+    \nabla^2 \psi_N + \frac{2\mu}{\hbar^2} 
+    \left[ E - V(r) \right] = 0 
+\end{equation}
+The Laplaceoperator written in spherical coordinates will yield
+the spherical harmonics as eigenfunctions, so we can use a 
+seperational ansatz for our wavefunction:
+\begin{equation}
+    \psi_N(r,\theta,\rho) = \frac{1}{r} S(r)Y(\theta,\rho)
+\end{equation}
+with the corresponding
+differentialoperator, where $J\in \mathbb{N}_0$
+corresponds to the Quantumnumber of the total angular momentum:
+\begin{equation}
+    \frac{\partial}{\sin\theta \partial \theta}\left (\sin\theta
+    \frac{\partial Y}{\partial \theta}\right ) +
+\frac{1}{\sin^2\theta} \frac{\partial^2 Y}{ \partial\rho^2}
+ + J(J+1)Y = 0
+\end{equation}
+Thus we can split the rest of the wavefunction into the 
+radial component of the Operator:
 
-\clearpage
+\begin{equation}
+    \frac{d^2 S}{dr^2} + \frac{2\mu}{\hbar^2}
+\left ( E - V(r) - \frac{J(J+1)\hbar^2}{2\mu r^2} \right ) S =0 
+\end{equation}
+
+If there is no further degeneracy (for instance due to not
+considered interactions like spin) we can in theory write
+down the Energyeigenvalues in terms of the two Quantumnumbers
+$nu$ and $J$:
+\begin{equation}
+    E = E_{\nu,J}
+\end{equation}
+Practically this is not possible, so we look at two extrem cases.
+\paragraph{The rigid Rotator} is based on the approximation to
+fix the range of the two nuclei ($r =$const.) and so we only
+look at $V(r)=0$ and $\frac{S(r)}{r} = 1$. We immedeatly get
+the solution (since the sphericalharmonics already resolved
+the eigenvalues):
+\begin{equation}
+    E = \frac{J(J+1)\hbar^2}{2\mu r^2}
+\end{equation}
+\paragraph{The rotationless Oscillator} just neglects the terms
+arising from rotation, which is, looking at the lengthscale of
+the former calculated eigenvalues, not inopportune.
+The Operator then becomes:
+\begin{equation}
+    \frac{d^2 S}{dr^2} + \frac{2\mu}{\hbar^2}
+    \left ( E - V(r) ) = 0 \right )
+\end{equation}
