@@ -76,8 +76,8 @@ labels = ['$v\'\' = %i \\rightarrow v\'$' %i for i in range(3)]
 # intensity and waves for iodine
 # the lab data is saved for increasing wavelength lambda. As we are working in cm^-1, we need to keep in mind this reversed order
 input_dir = 'data_npy/'
-f_iod_i = input_dir + 'jod_3_I.npy'
-f_iod_l = input_dir + 'jod_3_l.npy'
+f_iod_i = input_dir + 'iodine_03_I.npy'
+f_iod_l = input_dir + 'iodine_03_l.npy'
 iod_i = np.load(f_iod_i)                  # intensity
 iod_l = un.uarray(np.load(f_iod_l), lambda_error)    # wavelenght
 l_min = 500     # minimum wavelenght at which to search for minima

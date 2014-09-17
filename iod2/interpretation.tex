@@ -1,6 +1,7 @@
 \newcommand{\cm}{\mathrm{cm^{-1}}}
 \newcommand{\nm}{\mathrm{nm}}
 \newcommand{\pltw}{0.8\textwidth}
+\newcommand{\unc}{0.3}  % uncertainty in nm
 \section{Evaluation}
 
 \subsection{Measuring bias of spectrometer}
@@ -11,19 +12,20 @@ To locate the maxima, we magnify the recordings in a region around the corrispod
 For sodium, this is done in figure \ref{fig:na_max}. One can see the two characteristic peaks 
 at 
 \begin{eqnarray*}
-    \lambda_\mathrm{max, 1} = 589.1 \pm 0.6 \nm \\
-    \lambda_\mathrm{max, 2} = 589.6 \pm 0.6 \nm.
+    \lambda_\mathrm{max, 1} = 589.1 \pm \unc \nm \\
+    \lambda_\mathrm{max, 2} = 589.6 \pm \unc \nm.
 \end{eqnarray*}
-The uncertainty of 0.6nm ist taken from the value given in \cite{}, being higher than the 
-one stemming from limited sharpness of the maxima (fwhm about 0.4nm as seen in the figures). 
+The uncertainty of \unc is taken from the value given in \cite{}, being half the value of 
+resolution (6nm). It corrisponds with the sharpness of the maxima 
+(fwhm about 0.4nm as seen in the figures). 
 These corrispond with the values given in literature \cite{}, namely 
 \begin{eqnarray*}
     \lambda_\mathrm{max, 1} = 589.0 \nm \\
     \lambda_\mathrm{max, 2} = 589.6 \nm.
 \end{eqnarray*}
-In the recorded spectrum, we also se another, smaller peak at 
+In the recorded spectrum, we also see another, smaller peak at 
 \begin{equation}
-    \lambda = 588.4 \pm 0.6 \nm.
+    \lambda = 588.4 \pm \unc \nm.
 \end{equation} 
 This peak is not found in literature and seems to be an artefact of the measurement. 
 In fact, as the light from the Na lamp was not colliminated and focused very well, one could 
@@ -33,16 +35,17 @@ doesn't measure wavelength directly but rather the intensity corrisponding to a 
 For the Hg lamp, we observe similar results. As seen in \ref{fig:spectrum_all}, intensities 
 of the minima varied quiet drastically. For that reason, we took various measurements of which 
 we can use one for the first maximum (fig. \ref{fig:hg1_max}) and another at much lower 
-intensity for the three other ones (fig. \ref{fig:hg1_max}). We identify the following maxima:
+intensity for the three other ones (figs. \ref{fig:hg2_max}, \ref{fig:hg3_max}). 
+We identify the following maxima:
 \begin{eqnarray*}
-    \lambda_\mathrm{max, 1} &=& 435.5 \pm 0.6 \ (435.83)\nm \\
-    \lambda_\mathrm{max, 2} &=& 545.9 \pm 0.6 \ (545.9)\nm \\
-    \lambda_\mathrm{max, 3} &=& 576.8 \pm 0.6 \ (576.8)\nm \\
-    \lambda_\mathrm{max, 4} &=& 576.9 \pm 0.6 \ (576.9)\nm.
+    \lambda_\mathrm{max, 1} &=& 435.5 \pm \unc \ (435.83)\nm \\
+    \lambda_\mathrm{max, 2} &=& 545.9 \pm \unc \ (545.9)\nm \\
+    \lambda_\mathrm{max, 3} &=& 576.8 \pm \unc \ (576.8)\nm \\
+    \lambda_\mathrm{max, 4} &=& 576.9 \pm \unc \ (576.9)\nm.
 \end{eqnarray*}
 The values in parenthesis cite literature values \cite{}. \\
-As the spectrometer yields results lying within the literature values for the states error 
-of 0.6nm, we conclude that there is no bias in the measured wavelength. 
+As the spectrometer yields results lying within the literature values for the 
+stated uncertainty, we conclude that there is no bias in the measured wavelength.
 
 \begin{figure}
 \centering
@@ -94,7 +97,7 @@ diffraction in light}
 \end{figure}
 To be able to compare this to the absorbtion spectrum, we firth need to make the same 
 corrections for diffraction in light as we do for the latter. We do so by linearly 
-interpolating given literature values of the diffaction indice, given in table 
+interpolating given literature values of the diffraction index, given in table 
 \ref{tab:diff_air}.
 
 \begin{table}[h]
@@ -104,16 +107,18 @@ interpolating given literature values of the diffaction indice, given in table
 $\lambda [\nm]$              & 680  & 600  & 540  & 500 \\ \hline
 $(n_\mathrm{air} - 1) \cdot 10^{-4}$ & 2.76 & 2.77 & 2.78 & 279 \\ \hline
 \end{tabular}
-\caption{Diffraction indices for air at room temperatur and normal pressure for chosen wavelength $\lambda$, taken from \cite{}.}
+\caption{Diffraction indices for air at room temperatur and normal pressure for 
+chosen wavelength $\lambda$, taken from \cite{}.}
 \label{tab:diff_air}
 \end{table}
+
 The linear interpolation is done by the following equation:
 
 \begin{eqnarray*}
-    n_\lambda &=& \frac{(2.79 - 0.01  j)}{10 ^{4}} - \
+    n_\lambda &=& \frac{(2.79 - 0.01 j)}{10 ^{4}} - \
     \frac{(\lambda - \lambda_\mathrm{lower})} {10^{6} \cdot \
 (\lambda_\mathrm{upper} - \lambda_\mathrm{lower})} + 1 \\
-    \lambda &=& n_\lambda \, \lambda
+    \lambda &=& n_\lambda \, \lambda,
 \end{eqnarray*}
 where j is the index of the collum of table \ref{tab:diff_air} within which $\lambda$ lies, 
 $\lambda_\mathrm{upper}$ and $\lambda_\mathrm{lower}$ are the upper and lower bounds of the 
