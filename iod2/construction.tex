@@ -39,21 +39,28 @@ about the iodine molecule, see table~\ref{tab:iodine}.
     \includegraphics[width=0.48\textwidth]{pics/const1}
   \end{center}
 \caption{Photography of the experimental setup when we measure
-    the spectra of given lamps.} 
+    the spectra of the given lightsources. The little white box is
+    the spectroscope.} 
  \label{fig:const1}
 
 \end{wrapfigure}
 \subsubsection{CCD-Spectroscope}
-The given spectroscope is a Charge Couple Device (CCD), it uses
+The Device itself was invented 1969 at the 
+\textit{AT\&T Bell Labs}. It is a Charge Couple Device (CCD) and it uses
 the photoeffect for translating the information of the wavelength
 of the photon into a potential difference, which can be saved
 in terms of condensators. So effectively the number of electrons
-resample the number of incoming photons. It is very widely used
+resample the number of incoming photons.
+It consists of a high-sensitivity 2048-element CCD array of sony 
+(see table~\ref{tab:ccd} for more details) and 
+
+
+It is very widely used
 both in scientific and industrial usage.
 We use the \textit{USB2000+} of the company \textit{ocean optics}
 \cite{versuchsanleitung}. The spectroscope uses a lattice in order
 to split the light beam in its wavelengths. 
-The opening is 20 $\mu m$ and the wavelengths which can be
+The opening is 20 $\mu m$ and the wavelengths which will be
 detected are 421 to 617 nm with a spectral resolution of 0.6 nm.
 After detecting 
 the photons they will be visualized at the computer, where we
@@ -68,6 +75,28 @@ can save the given spectrum to a file within the given software
   \vspace{+10pt}
 \end{wrapfigure}
 
+\begin{wraptable}{h}{7cm}
+    \caption{Specifications of the  CCD Camera \textit{usb2000+} \cite{usb2000_site}.}
+\begin{tabular}{| l | l |}
+    \hline
+    Dimensions & 89.1 mm x 63.3 mm x 34.4 mm \\ 
+    \hline
+    Detector & Sony ILX511B (2048-element \\
+             & linear silicon CCD array) \\  
+    \hline
+    Range & 200-1100 nm \\ 
+    \hline
+    Pixels: & 2048 pixels \\ 
+    \hline
+    Pixelsize & 14 µm x 200 µm \\ 
+    \hline
+    Optical resolution: & 0.3-10.0 nm \\ 
+    \hline
+\end{tabular}
+\label{tab:ccd}
+\end{wraptable}
+
+
 sample textsample textsample textsample textsample textsample text
 sample textsample textsample textsample textsample textsample text
 sample textsample textsample textsample textsample textsample text
@@ -79,8 +108,6 @@ In this experiment we will use the nearly continuos spectrum of
 the halogenlamp, but before we will calibrate the spectroscope
 with the spectra of the other lamps as following:
 \par
-Natrium 
-
 \begin{wrapfigure}{r}{0.50\textwidth}
   \begin{center}
     \includegraphics[width=0.47\textwidth]{pics/const4}
