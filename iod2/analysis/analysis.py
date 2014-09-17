@@ -3,6 +3,7 @@ import pylab as plt
 import os
 import uncertainties as uc
 from uncertainties import unumpy as un
+from pylatex import Document, Section, Subsection, Table
 
 def unv(uarray):        # returning nominal values of a uarray
     return un.nominal_values(uarray)
@@ -66,7 +67,7 @@ def str_label_fit(i, j):
 # general parameters
 prog_n = (0, 3)     # variable needed for 'range'
 deg = [1, 1, 1]                                # degree of polynomial fit
-lambda_error = 0.05                        # uncertainty of spectrometer in lambda (nonimal = 0.6)
+lambda_error = 0.3                        # uncertainty of spectrometer in lambda (nonimal = 0.3)
 plt.close('all')
 colors = ['b', 'g', 'r', 'pink']
 labels = ['$v\'\' = %i \\rightarrow v\'$' %i for i in range(3)]
@@ -128,13 +129,9 @@ prog[1] = np.array([23, 25, 27, 29, 31, 33, 35, 37, 39, 40, 42, 44, 46])      # 
 prog21 = np.array([41, 43, 45])      # until the last minima found.
 prog22 = np.arange(47, 56)      # until the last minima found.
 prog[2] = np.r_[prog21,  prog22]      # indices of progression 0, reffering to minima
-
-# calcutlating differences 
-for i in range(3):
+for i in range(3):      # assigning values of wavenumbers and wavelength at minima
     lm[i] = lm_all[prog[i]] 
-    dl[i] = lm[i][1:] - lm[i][:-1]
     cmm[i] = cmm_all[prog[i]]
-    dcm[i] = cmm[i][:-1] - cmm[i][1:]
 
 # Plotting the absorbtion spectrum
 fig = plt.figure(figsize = [7.0, 7.0])
@@ -149,12 +146,12 @@ ax.set_xlabel("Wavenumber $\sigma$ / $\mathrm{cm^{-1}}$")
 ax.set_ylabel("Intensity $I(\sigma)$ / counts" )
 ax.grid(True)
 ax.legend(loc='upper right')
-plt.savefig(fig_dir + "absorp_03.pdf")
+#plt.savefig(fig_dir + "absorp_03.pdf")
 
 # produce plots of critical regions, where points are chose by hand
-fig0 = plt.figure(figsize = [22.0, 7.0])
+fig0 = plt.figure(figsize = [7.0, 7.0])
 #fig0.suptitle('Iodine 2 molecule - absorbtion spectrum at overlaps')
-ax = plt.subplot(131)
+ax = plt.subplot(111)
 title = "Overlap of progressions $v'=1 and v'=2$"
 #ax.set_title(title)
 ax.plot(un.nominal_values(iod_cm),iod_i, '-', color='chocolate')
@@ -165,8 +162,10 @@ ax.set_ylabel("Intensity $I(\sigma)$ / counts" )
 ax.set_xlim(17050, 17650)
 ax.set_ylim(41500, 46000)
 ax.legend(loc='upper left')
+#plt.savefig(fig_dir + "absorp_03_detail_01.pdf")
 
-ax = plt.subplot(132)
+fig0 = plt.figure(figsize = [7.0, 7.0])
+ax = plt.subplot(111)
 title = "Overlap of progressions $v'=0 and v'=1$"
 #ax.set_title(title)
 ax.plot(un.nominal_values(iod_cm),iod_i, '-', color='chocolate')
@@ -177,9 +176,10 @@ ax.set_ylabel("Intensity $I(\sigma)$ / counts" )
 ax.set_xlim(17900, 18450)
 ax.set_ylim(36700, 43700)
 ax.legend(loc='lower left')
-plt.savefig(fig_dir + "absorp_03_detail_01.pdf")
+#plt.savefig(fig_dir + "absorp_03_detail_02.pdf")
 
-ax = plt.subplot(133)
+fig0 = plt.figure(figsize = [7.0, 7.0])
+ax = plt.subplot(111)
 title = "Overlap of progressions $v'=0 and v'=1$"
 #ax.set_title(title)
 ax.plot(un.nominal_values(iod_cm),iod_i, '-', color='chocolate')
@@ -190,16 +190,81 @@ ax.set_ylabel("Intensity $I(\sigma)$ / counts" )
 ax.set_xlim(19400, 19700)
 ax.set_ylim(20000, 26500)
 ax.legend(loc='lower left')
-plt.savefig(fig_dir + "absorp_03_detail_01.pdf")
-
+#plt.savefig(fig_dir + "absorp_03_detail_03.pdf")
 
 # calculating energy differences
 # For associating the correct 'n' , we need to numerate the progressions (find the corrisponding v') first
 # This is done manually comparing with Tab 2 & 3, p. 47a, b in Staatsex-Jod2-Molekül.pdf
 # As data is saved in the reversed order (increasing lambda, not energy), we need to invert the numbering
+n = {}
+for i in range(3):
+    dcm[i] = cmm[i][:-1] - cmm[i][1:]
+n[0] = np.arange(47, 16, -1) 
+n[1] = np.arange(27, 14, -1) 
+n[2] = np.arange(20,  8, -1) 
 nums[0] = np.arange(46, 16, -1) + 0.5
 nums[1] = np.arange(26, 14, -1) + 0.5
 nums[2] = np.arange(19,  8, -1) + 0.5
+# give out latex tables:
+print_tab = 0
+if print_tab:
+    print(r"\begin{tabular}{" + "| l| l |l ||c|"*2 + "l| l ||c| l| l |}")
+    print("\hline")
+    for j in [0, 0, 1, 2]:
+        string = ("$v'$ & $\\frac{\sigma_{%i,v'}}{\cm}$ & " + \
+                "$\\frac{\Delta \sigma_{%i,v'}}{\cm}$")%(j, j) + \
+                (["&&"]*2 +  [r"\\ \hline"])[j]
+        print(string)
+for i in range(11):
+    tab = ("%i & %i & %i & &"*3 + "%i & %i & %i \\\\ \\hline")\
+            %(n[0][i], unv(cmm[0])[i], usd(cmm[0])[i], \
+            n[0][i+15], unv(cmm[0])[i+15], usd(cmm[0])[i+15], \
+            n[1][i], unv(cmm[1])[i], usd(cmm[1])[i], \
+            n[2][i], unv(cmm[2])[i], usd(cmm[2])[i])
+    if print_tab: print(tab)
+for i in [11]:
+    tab = ("%i & %i & %i & &"*2 + "%i & %i & %i \\\\ \\cline{1-11}")\
+            %(n[0][i], unv(cmm[0])[i], usd(cmm[0])[i], \
+            n[0][i+15], unv(cmm[0])[i+15], usd(cmm[0])[i+15], \
+            n[1][i], unv(cmm[1])[i], usd(cmm[1])[i])
+    if print_tab: print(tab)
+for i in range(12, 15):
+    tab = ("%i & %i & %i & &" + "%i & %i & %i \\\\ \\cline{1-7}")\
+            %(n[0][i], unv(cmm[0])[i], usd(cmm[0])[i], \
+            n[0][i+15], unv(cmm[0])[i+15], usd(cmm[0])[i+15])
+    if print_tab: print(tab)
+# give out latex tables:
+print_tab = 1
+if print_tab:
+    print(r"\begin{tabular}{" + "| l| l |l ||c|"*2 + "l| l ||c| l| l |}")
+    print("\hline")
+    for j in [0, 0, 1, 2]:
+        string =("$v' + \\frac{1}{2}$ & " + \
+                "$\\frac{\Delta G_{%i} }{ \\cm} $ & " + \
+                "$\\frac{\Delta (\Delta G) }{ \\cm} $")%(j) + (["&&"]*2 +  [r"\\ \hline"])[j]
+        print(string)
+for i in range(11):
+    tab = ("%i & %i & %i & & "*3 + "%i & %i & %i \\\\ \\hline")\
+            %(nums[0][i], unv(dcm[0])[i], usd(dcm[0])[i], \
+            nums[0][i+15], unv(dcm[0])[i+15], usd(dcm[0])[i+15], \
+            nums[1][i], unv(dcm[1])[i], usd(dcm[1])[i], \
+            nums[2][i], unv(dcm[2])[i], usd(dcm[2])[i])
+    if print_tab: print(tab)
+for i in [11]:
+    tab = ("%i & %i & %i & & "*2 + "%i & %i & %i \\\\ \\cline{1-11}")\
+            %(n[0][i], unv(dcm[0])[i], usd(dcm[0])[i], \
+            nums[0][i+15], unv(dcm[0])[i+15], usd(dcm[0])[i+15], \
+            nums[1][i], unv(dcm[1])[i], usd(dcm[1])[i])
+    if print_tab: print(tab)
+for i in range(12, 14):
+    tab = ("%i & %i & %i & & " + "%i & %i & %i \\\\ \\cline{1-7}")\
+            %(nums[0][i], unv(dcm[0])[i], usd(dcm[0])[i], \
+            nums[0][i+15], unv(dcm[0])[i+15], usd(dcm[0])[i+15])
+    if print_tab: print(tab)
+for i in [14]:
+    tab = ("%i & %i & %i \\\\ \\cline{1-3}")\
+            %(nums[0][i], unv(dcm[0])[i], usd(dcm[0])[i])
+    if print_tab: print(tab)
 
 
 # Calculating w_e' = w1 and w_e x_e' = wx1 for first electronic level with Birge-Sponer plots
@@ -224,8 +289,8 @@ for i in range(prog_n[0], prog_n[1]):   # Polynomial fit for dG(v' + 1/2)
     beta_sd[i] = np.sqrt(np.diag(A))            # standard deviation for beta
     # minimized chi square
     chi2_min[i] = np.sum(((np.polyval(coeff[i], nums[i]) - unv(dcm[i])) / usd(dcm[i])) ** 2 )
-    n_d[i] = len(dcm[i]) - (deg[i] + 1)
-    gof[i] = chi2_min[i] / n_d[i]
+    n_d[i] = len(dcm[i]) - (deg[i] + 1)     # number of degress of freedom
+    gof[i] = chi2_min[i] / n_d[i]   # godness-of-fit
     if deg[i] == 1:
         wx1[i] = -0.5 * c[0]
         w1[i] = c[1] - c[0]
@@ -258,7 +323,7 @@ for i in range(prog_n[0], prog_n[1]):
     title_dl = '$v\'\' = %i \\rightarrow v\'$' %i
     label_fit = str_label_fit(i, j)
     ax.set_title(title_dl)
-    ax.errorbar(nums[i], unv(dcm[i]), yerr=usd(cmm[i][:-1]), color=colors[i], ls='dots', marker='.' )
+    ax.errorbar(nums[i], unv(dcm[i]), yerr=usd(dcm[i]), color=colors[i], ls='dots', marker='.' )
     ax.plot(v_grid, np.polyval(coeff[i], v_grid), '-', color=colors[i], label=label_fit)
     ax.plot([0], [0], ',', alpha=0, label=label_c[i])      # add calculated parameters to plot
     # plot errors of poly-fit as shaded areas
@@ -283,15 +348,15 @@ fig3.suptitle('Iodine 2 molecule - $\chi^2$ plots, uncorr. poly-fit parameters')
 for i in range(3):
     if deg[i] == 1:
         ax = plt.subplot(1, 3, i + 1)
-        n = 11
+        n_grid = 11
         L = 2 * beta_sd[i]
-        x = np.linspace(-L[0], L[0], n)
-        y = np.linspace(-L[1], L[1], n)
+        x = np.linspace(-L[0], L[0], n_grid)
+        y = np.linspace(-L[1], L[1], n_grid)
         X, Y = np.meshgrid(x, y)
-        Z = np.zeros([n, n])
-        Z2 = np.zeros([n, n])
-        for j in range(n):
-            for k in range(n):
+        Z = np.zeros([n_grid, n_grid])
+        Z2 = np.zeros([n_grid, n_grid])
+        for j in range(n_grid):
+            for k in range(n_grid):
                 beta_jk = beta[i] + np.array([X[j,k], Y[j,k]])
                 Z[j,k] = chi2_beta(nums[i], unv(dcm[i]), usd(dcm[i]), eigvec[i], beta_jk, deg=1)
                 Z2[j,k] = chi2_theta(nums[i], unv(dcm[i]), usd(dcm[i]), coeff[i], X[j,k], Y[j,k], deg=1)
@@ -311,8 +376,6 @@ for i in range(3):
         ax.set_xlabel("$\\beta_1$")
         ax.set_ylim(-L[1], L[1])
         ax.set_ylabel("$\\beta_2$")
-
-
 
 # Calculating w_e and w_e x_e for ground level = w0, wx0
 # dG[0] := G''(1) - G''(0) = (G'(n) - G''(0)) - (G'(n) - G''(1)) = w_e'' - 2 w_e x_e''
@@ -334,8 +397,8 @@ D_e = w1 ** 2 / (4 * wx1)
 # D_0 = \sum_{v = 0}^{v_diss} \Delta G(v + \\frac{1}{2})
 # find v_diss = intersect of p(v) with y = 0
 
-
 # printing results in Latex format
+"""
 print("\omega_e'' = {:L}".format(w0) )
 print("\omega_e x_e'' = {:L}".format(wx0) )
 print()
@@ -349,6 +412,5 @@ for i in range(3):
     if wy1[i]:
         print("\omega_e y_e''  = {:L}".format(wy1[i]) )
     print("D_e = \\frac{ \omega_e'^2}{ 4  \omega_e x_e'} =" +  "{:L}".format(D_e[i]))
-
-
+"""
 plt.show()
