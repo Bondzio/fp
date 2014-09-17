@@ -63,7 +63,6 @@ def str_label_fit(i, j):
     return( '$p_%i(v\') = '%deg[i] + str_p)
 
 #############################################################################################
-
 # general parameters
 prog_n = (0, 3)     # variable needed for 'range'
 deg = [1, 1, 1]                                # degree of polynomial fit
@@ -71,7 +70,18 @@ lambda_error = 0.05                        # uncertainty of spectrometer in lamb
 plt.close('all')
 colors = ['b', 'g', 'r', 'pink']
 labels = ['$v\'\' = %i \\rightarrow v\'$' %i for i in range(3)]
+fig_dir = 'figures/'
 
+# since there are three progressions, we define all used quantities as dictionaries 
+# which are then index with the number of progression ( = v'')
+prog    = {}        # indices of elements of progression (with respect to array of all minima, "mins")
+lm, cmm = {}, {}    # wavelength in nm / wavenumber in cm^-1  of points of a progression
+dl, dcm = {}, {}    # differences of wavelength in nm / wavenumber in cm^-1 between to successive points of a progression 
+nums    = {}        # numbering of progression (i = v')
+coeff, covA = {}, {}    # coefficients and covariance matrix from polinomial fit
+chi2_min, n_d, gof = {}, {}, {}    # chi square for poly fit, number of ind. data points, goodness-of-fit
+beta, beta_sd = {}, {}      # uncorrelated parameters and their std devs
+eigvec = {}
 
 # intensity and waves for iodine
 # the lab data is saved for increasing wavelength lambda. As we are working in cm^-1, we need to keep in mind this reversed order
@@ -104,30 +114,16 @@ for b in range(2, b_max + 1):
         mins *= np.r_[[False]*b, iod_i[b:] < iod_i[:-b]] * \
                 np.r_[iod_i[:-b] < iod_i[b:], b * [False]]
 mins[[119, 479, 702, 754, 789, 825, 863]] = True        # manually adding band heads
-
 lm_all = iod_l[mins]
 cmm_all = iod_cm[mins]
 dl_all = lm_all[1:] - lm_all[:-1]
-# since there are three progressions, we define all used quantities as dictionaries 
-# which are then index with the number of progression ( = v'')
-prog    = {}        # indices of elements of progression (with respect to array of all minima, "mins")
-lm, cmm = {}, {}    # wavelength in nm / wavenumber in cm^-1  of points of a progression
-dl, dcm = {}, {}    # differences of wavelength in nm / wavenumber in cm^-1 between to successive points of a progression 
-nums    = {}        # numbering of progression (i = v')
-coeff, covA = {}, {}    # coefficients and covariance matrix from polinomial fit
-chi2_min, n_d, gof = {}, {}, {}    # chi square for poly fit, number of ind. data points, goodness-of-fit
-beta, beta_sd = {}, {}      # uncorrelated parameters and their std devs
-eigvec = {}
-
 
 # progression v'' = 0 -> v'
 prog01 = np.where((cmm_all > 18300) * (cmm_all < 197000))[0]           # selectred point before intersect
 prog02 = np.array([24, 26, 28, 30, 32, 34, 36, 38])      # selectred point in intersect
 prog[0] = np.r_[prog01,  prog02]      # indices of progression 0, reffering to minima
-
 # progression v'' = 1 -> v'
 prog[1] = np.array([23, 25, 27, 29, 31, 33, 35, 37, 39, 40, 42, 44, 46])      # selectred point in intersect
-
 # progression v'' = 2 -> v'
 prog21 = np.array([41, 43, 45])      # until the last minima found.
 prog22 = np.arange(47, 56)      # until the last minima found.
@@ -142,15 +138,60 @@ for i in range(3):
 
 # Plotting the absorbtion spectrum
 fig = plt.figure(figsize = [7.0, 7.0])
+#fig.suptitle('Iodine 2 molecule - absorbtion spectrum')
 ax = plt.subplot(111)
 title_spectrum = "Absorption spectrum"
-ax.set_title(title_spectrum)
+#ax.set_title(title_spectrum)
 ax.plot(un.nominal_values(iod_cm),iod_i, '-', color='chocolate')
 for i in range(prog_n[0], prog_n[1]):
     ax.plot(unv(cmm[i]),iod_i[mins][prog[i]], '.', label=labels[i])
 ax.set_xlabel("Wavenumber $\sigma$ / $\mathrm{cm^{-1}}$")
 ax.set_ylabel("Intensity $I(\sigma)$ / counts" )
+ax.grid(True)
+ax.legend(loc='upper right')
+plt.savefig(fig_dir + "absorp_03.pdf")
+
+# produce plots of critical regions, where points are chose by hand
+fig0 = plt.figure(figsize = [22.0, 7.0])
+#fig0.suptitle('Iodine 2 molecule - absorbtion spectrum at overlaps')
+ax = plt.subplot(131)
+title = "Overlap of progressions $v'=1 and v'=2$"
+#ax.set_title(title)
+ax.plot(un.nominal_values(iod_cm),iod_i, '-', color='chocolate')
+for i in range(prog_n[0], prog_n[1]):
+    ax.plot(unv(cmm[i]),iod_i[mins][prog[i]], '.', label=labels[i])
+ax.set_xlabel("Wavenumber $\sigma$ / $\mathrm{cm^{-1}}$")
+ax.set_ylabel("Intensity $I(\sigma)$ / counts" )
+ax.set_xlim(17050, 17650)
+ax.set_ylim(41500, 46000)
+ax.legend(loc='upper left')
+
+ax = plt.subplot(132)
+title = "Overlap of progressions $v'=0 and v'=1$"
+#ax.set_title(title)
+ax.plot(un.nominal_values(iod_cm),iod_i, '-', color='chocolate')
+for i in range(prog_n[0], prog_n[1]):
+    ax.plot(unv(cmm[i]),iod_i[mins][prog[i]], '.', label=labels[i])
+ax.set_xlabel("Wavenumber $\sigma$ / $\mathrm{cm^{-1}}$")
+ax.set_ylabel("Intensity $I(\sigma)$ / counts" )
+ax.set_xlim(17900, 18450)
+ax.set_ylim(36700, 43700)
 ax.legend(loc='lower left')
+plt.savefig(fig_dir + "absorp_03_detail_01.pdf")
+
+ax = plt.subplot(133)
+title = "Overlap of progressions $v'=0 and v'=1$"
+#ax.set_title(title)
+ax.plot(un.nominal_values(iod_cm),iod_i, '-', color='chocolate')
+for i in range(prog_n[0], prog_n[1]):
+    ax.plot(unv(cmm[i]),iod_i[mins][prog[i]], '.', label=labels[i])
+ax.set_xlabel("Wavenumber $\sigma$ / $\mathrm{cm^{-1}}$")
+ax.set_ylabel("Intensity $I(\sigma)$ / counts" )
+ax.set_xlim(19400, 19700)
+ax.set_ylim(20000, 26500)
+ax.legend(loc='lower left')
+plt.savefig(fig_dir + "absorp_03_detail_01.pdf")
+
 
 # calculating energy differences
 # For associating the correct 'n' , we need to numerate the progressions (find the corrisponding v') first
@@ -208,6 +249,7 @@ for i in range(prog_n[0], prog_n[1]):   # Polynomial fit for dG(v' + 1/2)
 
 # Birge Sponer plots
 fig2 = plt.figure(figsize = [21.0, 7.0])
+fig2.suptitle('Iodine 2 molecule - Birge-Sponer plots')
 for i in range(prog_n[0], prog_n[1]):
     ax = plt.subplot(1, 3, i + 1)
     v_min = 0
@@ -237,6 +279,7 @@ for i in range(prog_n[0], prog_n[1]):
 
 # chi2 plots
 fig3 = plt.figure(figsize = [21.0, 7.0])
+fig3.suptitle('Iodine 2 molecule - $\chi^2$ plots, uncorr. poly-fit parameters')
 for i in range(3):
     if deg[i] == 1:
         ax = plt.subplot(1, 3, i + 1)
@@ -268,12 +311,6 @@ for i in range(3):
         ax.set_xlabel("$\\beta_1$")
         ax.set_ylim(-L[1], L[1])
         ax.set_ylabel("$\\beta_2$")
-
-
-fig.suptitle('Iodine 2 molecule - absorbtion spectrum')
-fig2.suptitle('Iodine 2 molecule - Birge-Sponer plots')
-fig3.suptitle('Iodine 2 molecule - $\chi^2$ plots, uncorr. poly-fit parameters')
-plt.show()
 
 
 
@@ -312,3 +349,6 @@ for i in range(3):
     if wy1[i]:
         print("\omega_e y_e''  = {:L}".format(wy1[i]) )
     print("D_e = \\frac{ \omega_e'^2}{ 4  \omega_e x_e'} =" +  "{:L}".format(D_e[i]))
+
+
+plt.show()
