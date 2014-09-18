@@ -540,10 +540,77 @@ in this case to scale them to the zeroenergy
     \quad G(0)=\frac{1}{2}\omega_e - \frac{1}{4}\omega_e x_e 
     + \frac{1}{8} \omega_e y_e + \cdots 
 \end{equation}
-So we get for the shifted term:
+If we now subtract two directly following terms we get the 
+difference between one level:
 \begin{equation}
-    G_0(\nu) = 
+    \Delta G(\nu +\frac{1}{2}) := G(\nu +1 ) - G(\nu) 
+    = \omega_e - \omega_e x_e \left (2\nu +2\right ) + \omega_e y_e 
+    \left (3\nu^2+ 6\nu + \frac{13}{4} 
+        \right) + \cdots 
+\end{equation} 
+This equation will bring us to the point where we can
+estimate the dissociationenergy. If we know the approximate 
+Quantumnumber of vibration of when we come to the regime of 
+dissociation, we can just sum the energylevels up:
+\begin{equation}
+    D_0 = \sum_{\nu = 0 }^{\nu_max} \Delta G(\nu + \frac{1}{2})
+    \quad \Rightarrow \quad D_e = G(0) + D_0
+\end{equation}
+We have to keep in mind that this methods are merely based on the
+assumption that energies should be near the minimal energy at $r_e$.
+We can understand that the energyeigenvalues obtained by this
+assumption are only valid in this regime, failing in the regime
+near the dissociationenergy. The logical next step to improve this 
+approximation is to look deeper into the form of the potential,
+which we will do in the next chapter by the morse-function.
+\subsubsection{Morse Potential}
+Already 1929 Phillip McCord Morse proposed an empirical potential
+of the form \cite{Demtroeder1}:
+\begin{equation}
+    V(r) = E_B \left[ 1 - e^{-a(r-r_e)}  \right]^2
+\end{equation}
+Where $E_B$ is the minimum binding energy and $a$ a parameter,
+see figure~\ref{fig:morse}. The parameter is related to the
+dissociationenergy by 
+\begin{equation}
+    D_e = \lim\limits_{r \rightarrow \infty}{V(r)}
+= E_B \left[ 1 - \exp(aR_e)  \right]^2
+\end{equation}
+\begin{figure}
+\includegraphics[width=15cm]{pics/morse_potential}
+\caption{Comparison of the Morse and the harmonic Potential
+    with the real (experimental) Potential\cite{Demtroeder1}.}
+\label{fig:morse}
+\end{figure}
+Fortunatelly it is possible to solve the Schrödingerequation
+for the Potential analytically. We will shift the energies 
+so we will have the following form of the potential:
+\begin{equation}
+    V(r) = D_e \left[ 1 - e^{-a(r-r_e)}  \right]^2
+\end{equation}
+\cite{fliessbach2008quantenmechanik}:
+\begin{equation}
+    E_\nu = h \omega_{e} \left( \nu + \frac{1}{2}
+        \right) - \frac{h^2 \omega_{e}^2}{4 D_e} 
+    \left( \nu + \frac{1}{2} \right)^2
+\end{equation}
+where we introduced
+\begin{equation}
+    \omega_{e} = \sqrt{\frac{a^2 \hbar D_e}{\pi c \mu}}
+\end{equation}
+This can be identified directly with the eigenvalues we obtained
+from the taylored unharmonic potential. We hereby notice that these
+eigenvalues are, since they are connected to the morsepotential,
+much more precice with regards to the dissociation energy than
+one would expect at the first glance. We can furthermore
+find directly a connection between the dissociation energy and 
+the paramter $\omega_e$ and by identification the second
+paramter
+\begin{equation}
+    \omega_e x_e = \frac{\hbar a^2}{4\pi c \mu}
+\end{equation}
+so that we find for the dissociation:
+\begin{equation}
+    D_e = \frac{\omega_e^2}{4 \omega_e x_e}
 \end{equation}
 \clearpage
-
-
