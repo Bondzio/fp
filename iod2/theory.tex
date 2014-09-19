@@ -522,7 +522,8 @@ a way that we use the condition
     \frac{\partial^3 V(r)}{3!\partial r^3}|_{r=r_e}  
     \cdots
 \end{equation}
-and can therefore justify the Ansatz:
+and can therefore justify the Ansatz (see the Dunham expansion
+    for more details):
 \begin{equation}
     G(\nu) = \omega_e (\nu + \frac{1}{2} ) 
     - \omega_e x_e (\nu + \frac{1}{2} ) ^2 
@@ -739,4 +740,46 @@ energy differences are given by
     P(J) &=& \sigma_0 + B_{v'}(J - 1)J - B_{v''}J (J - 1) \nonumber \\
          &=& \sigma_0 - (B_{v'} + B_{v''})J + (B_{v'} - B_{v''})J^2.
 \end{eqnarray}
-
+Now we can rename $m:= J+1$ for the R-branch and $m:= - J$ for 
+the p-branch, in order to express both of these formulas:
+\begin{equation}
+    \sigma = \sigma_0 + (B_{v'} + B_{v''})m
+    +  (B_{v'} - B_{v''})m^2
+\end{equation}
+if $B_{v'} \neq B_{v''}$ then we can estimate the deviation of
+the vibrational state now. if we calculate the maximum of
+deviation with
+\begin{equation}
+    \frac{\partial \sigma}{\partial m} = 0 
+\end{equation}
+The solution of this equation is
+\begin{equation}
+    m_s = \frac{B_{v'} + B_{v''}}{2(B_{v'} + B_{v''})}
+\end{equation}
+Obviously there are two possibilities:
+\begin{itemize}
+        \item $\sigma_s > \sigma_0$, so the maximum is bigger than
+            the original vibrational state, which will result
+            in a shift of the frequency towards the bluesided
+            spectrum, given $B_{v'} < B_{v''}$.
+        \item $\sigma_s > \sigma_0$ which is the opposite case.
+            This will yield a frequency shift towards the redsided
+            spectum, given $B_{v'} > B_{v''}$.
+\end{itemize}
+The question is now whether our spectroscope is able to resolve
+the rotational states. We can easiliy estimate the gap between
+two rotaional states with the formula
+\begin{equation}
+    \Delta \sigma := \sigma(m) - \sigma(m-1) = 2 B_{v''} +
+    2m(B_{v'} - B_{v''})
+\end{equation}
+Now we can plugin some literature values for the constants:
+\begin{align}
+    B_{e''} &= 0.037 \quad  cm^{-1} \\ 
+    B_{e'}  &= 0.029 \quad cm^{-1} \\ 
+    \alpha_{e'}  &= 0.0016 \quad cm^{-1}
+\end{align}
+Now we can estimte for $m=30$ the gap
+$\Delta \sigma \leqslant 0.6 \quad cm^{-1}$ which is 
+approximately about $0.01$ nm, far too small for a possible
+resolution with our spectroscope.
