@@ -641,14 +641,53 @@ which can subsequently be written in series expansion
 and a similar expansion for $D$, which in our experiment cannot be resovled 
 and will be neglected.
 
-
-
-
 \subsubsection{Transitions of the I2 molecule}
 In order to identify the correct transitions of iodine molecule in 
 the spectrum of absorbtion, we need to show first theoretically which 
 transitions an be observed. 
-
+The states of the iodine molecule is denoted by a combination of 
+quantum numbers \cite{herzberg1950spectra}:
+\begin{itemize}
+    \item the total orbital angular momentum $\Lambda = |M_L|$, where 
+        \begin{eqnarray*}
+            L_z &=& M_L \hbar \\
+            M_L &=& \sum_i (m_l)_i, \\
+            M_L &=& L, L - 1, \ldots, -L \\
+            |\mathbf{L}| &=& \sqrt{L (L + 1)} \hbar, 
+        \end{eqnarray*}
+        which is written as $\Sigma, \Pi, \Delta, \Phi, \ldots$ for corresponding 
+        $\Lambda = 0, 1, 2, 3, \ldots$;
+    \item the multiplicity $(2S + 1)$ where
+        \begin{eqnarray*}
+            S_z &= \Sigma \hbar \\
+            |\mathbf{S}| &=& \sqrt{S (S + 1)} \hbar, 
+        \end{eqnarray*}
+        with the total electron spin $\mathbf{S}$ precessing around the 
+        molecule axis;
+    \item the total angular momentum $\Omega = |\Lambda + \Sigma|$;
+    \item the parity $u / g$ of the molecule, referring to odd and even, 
+        respectively (parity is defined by the eigenvalue of 
+        the parity operator, being (-1 / +1), where the parity operator 
+        is defined by an inversion of cooridinates);    
+    \item the symmetry for reflection through a plan containing the 
+        molecular axis $z$, denoted by $+$ and $-$ for conserving or 
+        changing the sign applying the corresponding operator.
+\end{itemize}
+The index $z$ denotes the projection of the operator in question onto the 
+molecule axis $z$. In addition, capital letters indicate states with the same 
+spin quantum number. The ground state is then labeled $X$, while ascending 
+members of exited levels are labeled with $A, B, C, \ldots$. This is justified 
+by the selection rules for transition (see below). 
+The entire ground state of the iodine molecule can then be written as
+\begin{equation}
+    X ^1\Sigma_g^+
+\end{equation}
+where $\Omega = 1$ is ommited. The possible configurations of the exited states 
+are given by
+\begin{equation}
+    ^1\Pi_u, ^3\Pi_{2u}, A ^3\Pi_{u}, B ^3\Pi_{0u}^+, ^3\Pi_{0u}^-,
+\end{equation}
+where the $\pm$ have been ommited in cases of two-fold degeneracy. 
 
 This is done by applying quantum mechanical 
 conservation laws regarding spin and angular momentum. In this case, 
@@ -664,15 +703,19 @@ The correspoding selection rules due to the symmetry of $\mathbf{\mu}$
 and in the absence of spin-orbit pertubations 
 are given by (ref. to \cite{lefebvre2004spectra}) 
 \begin{eqnarray}
-    \Sigma^\pm \ \leftrightarrow \ \Sigma^\pm \\
-    g  \ \leftrightarrow \ u \\
-    \Delta \Lambda \ =  \  0, 1 \\
-    \Delta S \ = \ 0
+    g  \ &\leftrightarrow \ u \\
+    \Delta \Lambda \ &=&  \  0, \pm 1 \\
+    \Delta \Omega \ &=& \ 0, \pm 1 \\
+    \Sigma^\pm \ &\leftrightarrow& \ \Sigma^\pm
 \end{eqnarray}
-where $\Sigma$ is the eigenvalue of the total electron spin operator 
-projected onto the axis of rotational symmetry, which is just the 
-molecule axis, g is the 
-
-
+The vibrational changes don't require furthers constraints, but the rotational 
+modes reduce the possible transitions further. They are given by:
+\begin{eqnarray}
+    \Delta J \ &=&  \  0, \pm 1 \\
+    J = 0 &\rightarrow& J = 0 \quad \mathrm{forbidden}\\
+    \Delta J &=& 0 \quad \mathrm{forbidden \ for \ } \Omega = 0 \leftrightarrow \Omega = 0 \\
+    + &\leftrightarrow& - \\
+    s &\leftrightarrow& s, a \leftrightarrow a
+\end{eqnarray}
 
 
