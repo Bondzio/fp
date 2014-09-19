@@ -3,6 +3,8 @@ import pylab as plt
 import uncertainties as uc
 from uncertainties import unumpy as un
 import sympy as sy
+from pylatex import Document, Section, Subsection, Math
+from pylatex.numpy import Matrix
 
 def unv(uarray):        # returning nominal values of a uarray
     return un.nominal_values(uarray)
@@ -64,28 +66,32 @@ def str_label_fit(i):
     """
     for j in range(deg[i] + 1):     # write strings for poly fit label
         c = coeff[i][deg[i] - j]
-        if not j: 
+        if j == 0: 
             if c != 0:
-                str_p =  '%.2f$' %abs(c)
-                if c < 0: str_p = '- ' + str_p
-                else: str_p = '+ ' + str_p
+                str_p =  "%i$" %abs(c)
+                if c < 0: str_p = "- " + str_p
+                else: str_p = "+ " + str_p
         elif j == 1: 
             if c != 0:
-                str_p =  '%.2f x' %abs(c) + str_p
-                if c < 0: str_p = '- ' + str_p
-                else: str_p = '+ ' + str_p
+                str_p =  "%.2f v'" %abs(c) + str_p
+                if c < 0: str_p = "- " + str_p
+                else: str_p = "+ " + str_p
         elif j == deg[i]:
             if c != 0:
-                str_p =  '%.2f x^%i' %(abs(c), j) + str_p
-                if c < 0: str_p = '- ' + str_p
+                str_p =  "%.5f {v'}^%i" %(abs(c), j) + str_p
+                if c < 0: str_p = "- " + str_p
         else:
             if c != 0:
-                str_p =  '%.2f x^%i' %(abs(c), j) + str_p
-                if c < 0: str_p = '- ' + str_p
-                else: str_p = '+ ' + str_p
-    return( '$p_%i(v\') = '%deg[i] + str_p)
+                str_p =  "%.2f v'^%i" %(abs(c), j) + str_p
+                if c < 0: str_p = "- " + str_p
+                else: str_p = "+ " + str_p
+    return( "$P_%i(v') = "%deg[i] + str_p)
 #############################################################################################
 
+# general parameters
+plot_show = 0
+save_fig = 0
+print_latex = 0
 deg = [2, 1, 1]                                # degree of polynomial fit
 plt.close('all')
 colors = ['b', 'g', 'r', 'pink']
@@ -103,6 +109,7 @@ coeff, covA = {}, {}    # coefficients and covariance matrix from polinomial fit
 chi2_min, n_d, gof = {}, {}, {}    # chi square for poly fit, number of ind. data points, goodness-of-fit
 beta, beta_sd = {}, {}      # uncorrelated parameters and their std devs
 eigvec = {}
+ma = {}
 
 
 # Calculating w_e' = w1 and w_e x_e' = wx1 for first electronic level with Birge-Sponer plots
@@ -151,25 +158,26 @@ for i in range(3):   # Polynomial fit for dG(v' + 1/2)
         label_c[i] += '\n$\omega_e y_e\' = ' + '{:L}'.format(wy1[i]) + '$'
 
 # Birge Sponer plots
-fig2 = plt.figure(figsize = [21.0, 7.0])
-fig2.suptitle('Iodine 2 molecule - Birge-Sponer plots')
-for i in range(3):
-    ax = plt.subplot(1, 3, i + 1)
+figsize_fig1 = [10.0 , 7.0]
+for i in range(1):
+    if i == 0:
+        fig1_0 = plt.figure(figsize = figsize_fig1)
+        fig1_0.suptitle('Iodine 2 molecule - Birge-Sponer plots')
+    if i == 1:
+        fig1_1 = plt.figure(figsize = figsize_fig1)
+        fig1_1.suptitle('Iodine 2 molecule - Birge-Sponer plots')
+    if i == 2:
+        fig1_2 = plt.figure(figsize = figsize_fig1)
+        fig1_2.suptitle('Iodine 2 molecule - Birge-Sponer plots')
+    ax = plt.subplot(111)
+    title_dl = '$v\'\' = %i \\rightarrow v\'$' %i
+    ax.set_title(title_dl)
+    ax.errorbar(nums[i], unv(dcm[i]), yerr=usd(dcm[i]), color=colors[i], ls='dots', marker='.' )
     v_min = 0
     v_max = [70, 70, 80][i]
     v_grid = np.linspace(v_min, v_max + 1, 200)
-    title_dl = '$v\'\' = %i \\rightarrow v\'$' %i
     label_fit = str_label_fit(i)
-    ax.set_title(title_dl)
-    ax.errorbar(nums[i], unv(dcm[i]), yerr=usd(dcm[i]), color=colors[i], ls='dots', marker='.' )
     ax.plot(v_grid, np.polyval(coeff[i], v_grid), '-', color=colors[i], label=label_fit)
-    ax.plot([0], [0], ',', alpha=0, label=label_c[i])      # add calculated parameters to plot
-    # plot errors of poly-fit as shaded areas
-    ax.fill_between(v_grid, \
-            np.polyval(coeff[i] - np.sqrt(np.diag(covA[i])), v_grid), \
-            np.polyval(coeff[i] + np.sqrt(np.diag(covA[i])), v_grid), \
-            facecolor=colors[i], color=colors[i], alpha=0.3 )
-    ax.set_xlim(v_min, v_max + 0.5)
     ax.set_xlabel("$v\' + \\frac{1}{2}$")
     xticks = np.arange(v_min, v_max + 1, 10) + 0.5  # assign values, at which xticks appear
     ax.set_xticks(xticks)               # set xticks
@@ -179,10 +187,74 @@ for i in range(3):
     ax.set_ylabel("$\Delta \sigma \, / \, \mathrm{cm^{-1}}$")
     leg = ax.legend(loc='upper right', fancybox=True)
     leg.get_frame().set_visible(False)
+    """
+    ax.plot([0], [0], ',', alpha=0, label=label_c[i])      # add calculated parameters to plot
+    # plot errors of poly-fit as shaded areas
+    ax.set_xlim(v_min, v_max + 0.5)
+    ax.fill_between(v_grid, \
+            np.polyval(coeff[i] - np.sqrt(np.diag(covA[i])), v_grid), \
+            np.polyval(coeff[i] + np.sqrt(np.diag(covA[i])), v_grid), \
+            facecolor=colors[i], color=colors[i], alpha=0.3 )
+    """
+
+# print values and covariance matrix
+def em(str):
+    return str.replace("e", r"\mathrm{e}")
+
+from math import log10, floor
+def dig_err(cov, i):
+    dx = np.sqrt(cov[i,i])
+    digit = -int(floor(log10(dx)))    
+    if (dx * 10**digit) < 3.5:
+        digit += 1
+    return digit
+    
+
+def dig_val(x):
+    digit = -int(floor(log10(abs(x))))    
+    if (x * 10**digit) < 3.5:
+        digit += 1
+    return digit
+
+def la_coeff(f1, coeff, cov, additional_digit=2):
+    f1.write(r"\begin{eqnarray}" + "\n")
+    for j, co in enumerate(coeff):
+        digit = dig_err(cov, j) + additional_digit
+        if digit < 1:
+            str_co  = "    p_%i &=& %i \\\\"%(len(coeff) - j -1, int(round(co))) 
+        elif digit < 4:
+            str_co  = "    p_%i &=& %.3f \\\\"%(len(coeff) - j -1, co) 
+        else:
+            str_co  = "    p_%i &=& %.2e \\\\"%(len(coeff) - j -1, co) 
+        str_co = em(str_co)
+        f1.write(str_co +"\n")
+
+    f1.write(r"    \mathrm{cov}(p_i, p_j) &=& " "\n")
+    f1.write(r"    \begin{pmatrix}" + "\n")
+    for row in cov:
+        str_row = "        "
+        for entry in row:
+            digit = dig_val(entry)
+            if digit < 1:
+                str_row += " %i &"%entry
+            elif digit < 4:
+                str_row += " %.3f &"%entry
+            else:
+                str_row += " %.2e &"%entry
+        str_row = str_row[:-1] + r"\\"
+        str_row = em(str_row)
+        f1.write(str_row + "\n")
+    f1.write(r"    \end{pmatrix}" + "\n")
+    f1.write(r"\end{eqnarray}" + "\n\n")
+    return 0
+f1 = open("coefficients.tex", "w+")
+for i in range(3):
+    la_coeff(f1, coeff[i], covA[i])
+f1.close()
 
 # chi2 plots
-fig3 = plt.figure(figsize = [21.0, 7.0])
-fig3.suptitle('Iodine 2 molecule - $\chi^2$ plots, uncorr. poly-fit parameters')
+fig2 = plt.figure(figsize = [21.0, 7.0])
+fig2.suptitle('Iodine 2 molecule - $\chi^2$ plots, uncorr. poly-fit parameters')
 for i in range(3):
     if deg[i] == 1:
         ax = plt.subplot(1, 3, i + 1)
@@ -236,20 +308,23 @@ D_e = w1 ** 2 / (4 * wx1)
 # find v_diss = intersect of p(v) with y = 0
 
 # printing results in Latex format
-print("\omega_e'' = {:L}".format(w0) )
-print("\omega_e x_e'' = {:L}".format(wx0) )
-print()
-print("results from Birge-Sponer method:")
-for i in range(3):
-    print("progression: v'' = %i -> x'" %i)
-    print("goodness-of-fit: $\chi^2 / n_d = %f$" %gof[i])
-    print("$n_d = %i = #points - (deg + 1)$" % n_d[i])
-    print("\omega_e''  = {:L}".format(w1[i]) )
-    print("\omega_e x_e''  = {:L}".format(wx1[i]) )
-    if wy1[i]:
-        print("\omega_e y_e''  = {:L}".format(wy1[i]) )
-    print("D_e = \\frac{ \omega_e'^2}{ 4  \omega_e x_e'} =" +  "{:L}".format(D_e[i]))
+if print_latex:
+    print("\omega_e'' = {:L}".format(w0) )
+    print("\omega_e x_e'' = {:L}".format(wx0) )
+    print()
+    print("results from Birge-Sponer method:")
+    for i in range(3):
+        print("progression: v'' = %i -> x'" %i)
+        print("goodness-of-fit: $\chi^2 / n_d = %f$" %gof[i])
+        print("$n_d = %i = #points - (deg + 1)$" % n_d[i])
+        print("\omega_e''  = {:L}".format(w1[i]) )
+        print("\omega_e x_e''  = {:L}".format(wx1[i]) )
+        if wy1[i]:
+            print("\omega_e y_e''  = {:L}".format(wy1[i]) )
+        print("D_e = \\frac{ \omega_e'^2}{ 4  \omega_e x_e'} =" +  "{:L}".format(D_e[i]))
 
-
-A = np.matrix(
-G = unc_cov(covA[0])
+if plot_show:
+    fig1_0.show()
+    #fig1_1.show()
+    #fig1_2.show()
+    #fig2.show()

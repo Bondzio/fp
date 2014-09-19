@@ -236,8 +236,9 @@ $ \Delta (\Delta G) $ are the corresponding uncertainties.
 \begin{figure}
     \centering
     \includegraphics[width=\pltw]{analysis/figures/absorp_03.pdf}
-    \caption{Measured spectrum of halogen lamp having passed the iodine pipe. The local minima are 
-    those of the absorption spectrum of iodine. Three progressions of vibrational states $v'' \rightarrow v'$
+    \caption{Measured absorption spectrum of iodine 2 molecules. The plot show the spectrum of 
+    the halogen lamp having passed the iodine pipe. The local minima correspond to maxima of 
+    absorption of the iodine. Three progressions of vibrational states $v'' \rightarrow v'$
     within the electronic transition 
     $B ^3\Pi_{\sigma \, \mathrm{u}}^{+} \quad \leftarrow \quad X ^1\Sigma_{\sigma \, \mathrm{u}}^{+}$ 
     are identified with colored dots. }
@@ -261,10 +262,86 @@ $ \Delta (\Delta G) $ are the corresponding uncertainties.
         \caption{End of $v'=0'$}
         \label{fig:absorp_detail_03}
     \end{subfigure}
-    \caption{Details of \ref{fig:absorp}: members of progressions at points, where identification is not trivial, 
+    \caption{Details of \ref{fig:absorp}: members of progressions at points, where i
+    identification is not trivial, 
     but done by looking at the progression of energy differences.} 
     \label{fig:absorp_detail}
 \end{figure}
 
-The energy differences of the identified progressions are shown in the so-called Birge-Sponer plots, figures 
-\ref{fig:b_s_0}, \ref{fig:b_s_1}, \ref{fig:b_s_2}
+The energy differences $\Delta G_{v''}(v' + 1/2)$ of the identified progressions con 
+be plotted over the corresponding wavenumbers $v' + 1/2$. The resulting so-called 
+Birge-Sponer plots, figures 
+\ref{fig:b_s_0}, \ref{fig:b_s_1}, \ref{fig:b_s_2}, 
+are used to calculate the vibrational constants $\omega_e'$ and $\omega_e' x_e'$. 
+For this calculation, we used the expansion \eqref{eqn:G(v)_taylor} and did a 
+polinomial fit using the linear least square method \cite{cowan1998statistical}. 
+As we have only a limited number of points, we used a second degree polynomial
+for the zeroth progression and a linear fit for the first and second progression. 
+The resulting parameters are the following:
+\begin{itemize}
+    \item For $v'' = 0 \rightarrow v'$: The polynomial fit for 
+        \begin{equation}
+            P_2(v') = p_2 {v'}^2 + p_1 v' + p_0
+        \end{equation}
+        yields the following values and their uncertainties expressed in form of 
+        the covariance matrix:
+        \begin{eqnarray}
+            p_2 &=& 2.04\mathrm{e}-03 \\
+            p_1 &=& -2.188 \\
+            p_0 &=& 133.746 \\
+            \mathrm{cov}(p_i, p_j) &=& 
+            \begin{pmatrix}
+                 4.03\mathrm{e}-05 & -2.51\mathrm{e}-03 & 0.036 \\
+                 -2.51\mathrm{e}-03 & 0.159 & -2.317 \\
+                 0.036 & -2.317 & 34 \\
+            \end{pmatrix}
+        \end{eqnarray}
+    \item For $v'' = 1 \rightarrow v'$, linear fit:
+        \begin{eqnarray}
+            P_1(v') &=& p_1 v' + p_0 \\
+            p_1 &=& -2.23 \\
+            p_0 &=& 135.526 \\
+            \mathrm{cov}(p_i, p_j) &=& 
+            \begin{pmatrix}
+                 0.064 & -1.320 \\
+                 -1.320 & 27 \\
+            \end{pmatrix}
+        \end{eqnarray}
+    \item For $v'' = 1 \rightarrow v'$, linear fit:
+        \begin{eqnarray}
+            P_1(v') &=& p_1 v' + p_0 \\
+            p_1 &=& -1.61\\
+            p_0 &=& 124.444 \\
+            \mathrm{cov}(p_i, p_j) &=& 
+            \begin{pmatrix}
+                 0.049 & -0.685 \\
+                 -0.685 & 10 \\
+            \end{pmatrix}
+        \end{eqnarray}
+\end{itemize}
+All quantities $p_i$ are given in units of $\cm$, while the entries of the covariance 
+matrices are given in $\mathrm{cm^{-2}}$.
+
+Comparing $P_2$ to \eqref{eqn:G(v)_taylor} let's us solve for the vibrational 
+parameters $w_e$, $w_e x_e$, $w_e y_e$. The system of linear equations in 
+${v'}^2, v'$ and $1$ has the solutions:
+\begin{eqnarray}
+    w_e y_e &=& \frac{p_0}{3} \\
+    w_e x_e &=& p_2 - \frac{p_1}{2} \\
+    w_e &=& \frac{11}{12}p_2 - p_1 + p_0.
+\end{eqnarray}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
