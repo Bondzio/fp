@@ -213,7 +213,7 @@ As final result we therefore get:
     \frac{\langle m |\hat{V}|n \rangle}{\epsilon_n - \epsilon_m}  
     |m \rangle 
 \end{align}
-\subsection{The anharmonic oscillator}
+\subsubsection{The anharmonic oscillator}
 Lets assume we have solved the harmonic oscillator with 
 \begin{align}
     \hat{H_0} &= \frac{\hat{p}^2}{2m} 
@@ -446,6 +446,11 @@ the eigenvalues):
 \begin{equation}
     E = \frac{J(J+1)\hbar^2}{2\mu r^2}
 \end{equation}
+Written in units of $\mathrm{cm}$, we get the rotational terms
+\begin{equation}
+    F = \frac{J(J+1)\hbar}{4 \pi \mu c r^2} = B J (J + 1) \mathrm{with} B := \frac{\hbar}{4 \pi \mu c r^2}
+\end{equation}
+
 \paragraph{The rotationless Oscillator} just neglects the terms
 arising from rotation, which is, looking at the lengthscale of
 the former calculated eigenvalues, not inopportune.
@@ -454,8 +459,220 @@ The Operator then becomes:
     \frac{d^2 S}{dr^2} + \frac{2\mu}{\hbar^2}
     \left ( E - V(r) ) = 0 \right )
 \end{equation}
+The Eigenfunctions and -values are now very dependent on the 
+potential energy $V(r)$ which is until now not a known 
+potential, because it includes the repulsion due to the
+pauliprinciple of the electronorbits as well as the attraction
+of the charges. Furthermore the physical nature of dissociation
+of the two nucleons also has to be encoded into it.
+It is not possible to solve the potential analytically, but 
+we will start to write down the properties already known:
+\begin{itemize}
+        \item Pauliprinciple:
+            $\lim\limits_{r \rightarrow 0}{V(r)} = \infty $
+        \item Dissociated nucleons:
+$\lim\limits_{r \rightarrow \infty}{V(r)} = const. $
+\item Before the Dissociation: Attraction of the nucleons with
+    the maximal attraction at $r_e$ and the Dissociationenergy
+    $D_e$ defined by 
+    $ \lim\limits_{r \rightarrow \infty}{V(r)} - V(r_e)=: D_e$ 
+\end{itemize}
+The idea is now to capture this properties into the coefficients
+of the taylored Potential and by doing so resolving the principle
+physical behavior:
+\begin{equation}
+    V(r) = V(r_e) 
+   + \frac{\partial V(r)}{\partial r}|_{r=r_e}(r - r_e)
+   + \frac{\partial^2 V(r)}{2!\partial r^2}|_{r=r_e}(r - r_e)^2
+   + \frac{\partial^3 V(r)}{3!\partial r^3}|_{r=r_e}(r - r_e)^3
+   + \cdots
+\end{equation}
+As first approximation for energies near the minimum $r=r_e$ we
+can finally use the harmonic potential. The constant term
+$V(r_e)$ can be dropped since we are only interested in 
+potential differences.
+\begin{equation}
+    V_{harm}(r) =
+    \frac{\partial^2 V(r)}{2\partial r^2}|_{r=r_e}(r - r_e)^2
+    =: \frac{k_e}{2}(r-r_e)^2
+\end{equation}
+Following this approach we can use the energyeigenvalues of the
+harmonic oscillator in order to approximate
+the vibrational states $\nu$:
+\begin{equation}
+    E_\nu =\sqrt{\frac{k_e}{\mu}}\hbar \left (\nu
+        + \frac{1}{2}\right )
+\end{equation}
+In order to chose a more convenient unit we transform this
+equation into $cm^{-1}$:
+\begin{equation}
+    G_{harm}(\nu) = \frac{E}{hc} = \omega_0 (\nu + \frac{1}{2})
+    \quad \text{with the frequency} \quad
+    \omega_0 = \frac{1}{2\pi c} \sqrt{\frac{k_e}{\mu}}
+\end{equation}
+The wider we leave the regime around $r_e$, speaking about 
+higher vibrational states, the worse approximation with a harmonic
+oscillator becomes. Qualitatively this is the case when energies
+come nearer to the dissociation energy. An adhoc solution is 
+to treat this with the already mentioned perturbationtheory in such
+a way that we use the condition
+\begin{equation}
+    \frac{\partial V(r)}{\partial r}|_{r=r_e}        \gg
+    \frac{\partial^2 V(r)}{2!\partial r^2}|_{r=r_e}  \gg
+    \frac{\partial^3 V(r)}{3!\partial r^3}|_{r=r_e}  
+    \cdots
+\end{equation}
+and can therefore justify the Ansatz:
+\begin{equation}
+    G(\nu) = \omega_e (\nu + \frac{1}{2} ) 
+    - \omega_e x_e (\nu + \frac{1}{2} ) ^2 
+    + \omega_e y_e (\nu + \frac{1}{2} ) ^3 
+    - \omega_e z_e (\nu + \frac{1}{2} ) ^4 
+    + \cdots 
+\end{equation}
+Since in the experiment it is clearly impossible to seperate
+the incoming higher frequencies, we will treat $\omega_e x_e$ as 
+one variable, similarily to the others, where they also connected
+on lengthscales by
+\begin{equation}
+    \omega_e \gg \omega_ex_e \gg \omega_e y_e \cdots 
+\end{equation}
+As before we can shift the equations to make them more convenient,
+in this case to scale them to the zeroenergy
+\begin{equation}
+    G \mapsto G_0 := \left [G-G(0) \right ] 
+        \quad \text{which is given by}
+    \quad G(0)=\frac{1}{2}\omega_e - \frac{1}{4}\omega_e x_e 
+    + \frac{1}{8} \omega_e y_e + \cdots 
+\end{equation}
+If we now subtract two directly following terms we get the 
+difference between one level:
+\begin{equation}
+    \Delta G(\nu +\frac{1}{2}) := G(\nu +1 ) - G(\nu) 
+    = \omega_e - \omega_e x_e \left (2\nu +2\right ) + \omega_e y_e 
+    \left (3\nu^2+ 6\nu + \frac{13}{4} 
+        \right) + \cdots 
+\end{equation} 
+This equation will bring us to the point where we can
+estimate the dissociationenergy. If we know the approximate 
+Quantumnumber of vibration of when we come to the regime of 
+dissociation, we can just sum the energylevels up:
+\begin{equation}
+    D_0 = \sum_{\nu = 0 }^{\nu_max} \Delta G(\nu + \frac{1}{2})
+    \quad \Rightarrow \quad D_e = G(0) + D_0
+\end{equation}
+We have to keep in mind that this methods are merely based on the
+assumption that energies should be near the minimal energy at $r_e$.
+We can understand that the energyeigenvalues obtained by this
+assumption are only valid in this regime, failing in the regime
+near the dissociationenergy. The logical next step to improve this 
+approximation is to look deeper into the form of the potential,
+which we will do in the next chapter by the morse-function.
+\subsubsection{Morse Potential}
+Already 1929 Phillip McCord Morse proposed an empirical potential
+of the form \cite{Demtroeder1}:
+\begin{equation}
+    V(r) = E_B \left[ 1 - e^{-a(r-r_e)}  \right]^2
+\end{equation}
+Where $E_B$ is the minimum binding energy and $a$ a parameter,
+see figure~\ref{fig:morse}. The parameter is related to the
+dissociationenergy by 
+\begin{equation}
+    D_e = \lim\limits_{r \rightarrow \infty}{V(r)}
+= E_B \left[ 1 - \exp(aR_e)  \right]^2
+\end{equation}
+\begin{figure}
+\includegraphics[width=15cm]{pics/morse_potential}
+\caption{Comparison of the Morse and the harmonic Potential
+    with the real (experimental) Potential\cite{Demtroeder1}.}
+\label{fig:morse}
+\end{figure}
+Fortunatelly it is possible to solve the Schrödingerequation
+for the Potential analytically. We will shift the energies 
+so we will have the following form of the potential:
+\begin{equation}
+    V(r) = D_e \left[ 1 - e^{-a(r-r_e)}  \right]^2
+\end{equation}
+\cite{fliessbach2008quantenmechanik}:
+\begin{equation}
+    E_\nu = h \omega_{e} \left( \nu + \frac{1}{2}
+        \right) - \frac{h^2 \omega_{e}^2}{4 D_e} 
+    \left( \nu + \frac{1}{2} \right)^2
+\end{equation}
+where we introduced
+\begin{equation}
+    \omega_{e} = \sqrt{\frac{a^2 \hbar D_e}{\pi c \mu}}
+\end{equation}
+This can be identified directly with the eigenvalues we obtained
+from the taylored unharmonic potential. We hereby notice that these
+eigenvalues are, since they are connected to the morsepotential,
+much more precice with regards to the dissociation energy than
+one would expect at the first glance. We can furthermore
+find directly a connection between the dissociation energy and 
+the paramter $\omega_e$ and by identification the second
+paramter
+\begin{equation}
+    \omega_e x_e = \frac{\hbar a^2}{4\pi c \mu}
+\end{equation}
+so that we find for the dissociation:
+\begin{equation}
+    D_e = \frac{\omega_e^2}{4 \omega_e x_e}
+\end{equation}
+\clearpage
+
+
+\subsubsection{Rotational structure}
+In order to take into account both rotation and vibration, we expand 
+the rotational energy by adding 'elongation terms' $D$:
+\begin{equation}
+    F = B J (J + 1) - D J^2 (J + 1)^2 + \ldots \mathrm{where} D << B
+\end{equation}
+The coefficient $B$ needs to be corrected using the mean distance of 
+the nuclei at a corresponding vibrational level $v$, thus 
+\begin{equation}
+    B_v := \frac{\hbar}{4 \pi \mu c} \overline{\Big( \frac{1}{r^2}\Big)}_v
+\end{equation}
+which can subsequently be written in series expansion 
+(see \cite{herzberg1950spectra}):
+\begin{eqnarray}
+    B_v := B_e - \alpha_e(v + \frac{1}{2} \\
+    B_e := \frac{\hbar}{4 \pi \mu c} \frac{1}{r_e}, B_e >> \alpha_e
+\end{eqnarray}
+and a similar expansion for $D$, which in our experiment cannot be resovled 
+and will be neglected.
 
 
 
-\subsection{Rotatinal structure}
+
+\subsubsection{Transitions of the I2 molecule}
+In order to identify the correct transitions of iodine molecule in 
+the spectrum of absorbtion, we need to show first theoretically which 
+transitions an be observed. 
+
+
+This is done by applying quantum mechanical 
+conservation laws regarding spin and angular momentum. In this case, 
+we consider a one-photon transition with not spin-orbit pertubations, 
+whose integrated cross section in proportional to
+\begin{equation}
+    \sigma_{fi}^1 \propto \langle f | \mathbf{\epsilon \cdot \mu} | i \rangle^2
+\end{equation}
+ where $f$ and $i$ indicate final and initial state, respectivly, 
+$\mathbf{\epsilon}$ is the polarization vector of the photon and
+$\mathbf{\mu}$ is the electric dipole moment operator. 
+The correspoding selection rules due to the symmetry of $\mathbf{\mu}$ 
+and in the absence of spin-orbit pertubations 
+are given by (ref. to \cite{lefebvre2004spectra}) 
+\begin{eqnarray}
+    \Sigma^\pm \ \leftrightarrow \ \Sigma^\pm \\
+    g  \ \leftrightarrow \ u \\
+    \Delta \Lambda \ =  \  0, 1 \\
+    \Delta S \ = \ 0
+\end{eqnarray}
+where $\Sigma$ is the eigenvalue of the total electron spin operator 
+projected onto the axis of rotational symmetry, which is just the 
+molecule axis, g is the 
+
+
+
 
