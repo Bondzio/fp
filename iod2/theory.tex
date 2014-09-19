@@ -738,4 +738,31 @@ energy differences are given by
     P(J) &=& \sigma_0 + B_{v'}(J - 1)J - B_{v''}J (J - 1) \nonumber \\
          &=& \sigma_0 - (B_{v'} + B_{v''})J + (B_{v'} - B_{v''})J^2.
 \end{eqnarray}
-
+Now we can rename $m:= J+1$ for the R-branch and $m:= - J$ for 
+the p-branch, in order to express both of these formulas:
+\begin{equation}
+    \sigma = \sigma_0 + (B_{v'} + B_{v''})m
+    +  (B_{v'} - B_{v''})m^2
+\end{equation}
+if $B_{v'} \neq B_{v''}$ then we can estimate the deviation of
+the vibrational state now. if we calculate the maximum of
+deviation with
+\begin{equation}
+    \frac{\partial \sigma}{\partial m} = 0 
+\end{equation}
+The solution of this equation is
+\begin{equation}
+    m_s = \frac{B_{v'} + B_{v''}}{2(B_{v'} + B_{v''})}
+\end{equation}
+Obviously there are two possibilities:
+\begin{itemize}
+        \item $\sigma_s > \sigma_0$, so the maximum is bigger than
+            the original vibrational state, which will result
+            in a shift of the frequency towards the bluesided
+            spectrum, given $B_{v'} < B_{v''}$.
+        \item $\sigma_s > \sigma_0$ which is the opposite case.
+            This will yield a frequency shift towards the redsided
+            spectum, given $B_{v'} > B_{v''}$.
+\end{itemize}
+The question is now whether our spectroscope is able to resolve
+the rotational states.
