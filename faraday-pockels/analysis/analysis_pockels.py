@@ -1,0 +1,48 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import re
+
+fig = plt.figure()
+def read_data(name):
+    f = open("../data_pockels/"+name+".tab", "r", encoding = "latin-1")
+    T  = []
+    U1 = []
+    U2 = []
+    for i,line in enumerate(f): 
+        if i > 1:
+            t,u1,u2,dump = line.split("\t")
+            T  += [float(t)] 
+            U1 += [float(u1)]
+            U2 += [float(u2)]
+    T  = np.array(T)
+    U1 = np.array(U1)
+    U2 = np.array(U2)
+    return (T,U1,U2)
+def plot_data(name, title):
+    T,U1,U2 = read_data(name)
+    plt.plot(T*1000,U1, label = "applied voltage")
+    plt.plot(T*1000,U2, label = "Voltage at photodiode" )
+    plt.title(title)
+    plt.xlabel("time $t/ ms$")
+    plt.ylabel("Voltage $U/ V$")
+    plt.grid(True)
+    name2 = re.sub("\.","",name) 
+    plt.legend(loc = 1)
+    plt.savefig("figures/"+name2+".pdf")
+    fig.clear()
+
+def plot_12():
+    # Only with Rectangular voltage
+    for i in range(1,10+1):
+        plot_data("1.2.sawtooth"+str(i), "Oscilloscope  1.2 Sawtooth "+str(i))
+    # already calibrated
+    for i in range(1,5+1):
+        plot_data("2.1.sawtooth"+str(i), "Oscilloscope  2.1 Sawtooth "+str(i))
+
+# Sinus
+f = open("U_DC.csv")
+x = f.read()
+f.close()
+U_DC = np.array([float(k) for k in x.split("\n") if not(k == "")])
+for i in range(1,30):
+    plot_data("2.2.sinus%02d"%i, "Oscilloscope  2.2 Sinus %02d with $U_{DC}=%.3f$"%(i,U_DC[i-1]))
