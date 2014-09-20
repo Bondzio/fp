@@ -17,41 +17,46 @@ kind of potential onto a unharmonic oscillator, which will be
 treated with secondorder perturbationtheory. After this we 
 immedeatly come to the molecule orbitals, which we need
 to resolve the energy levels being measured in this experiment.
+
 \subsubsection{Harmonic Oscillator}
 The potential for the harmonic oscillator is given as follwing:
 \begin{equation}
     \hat{V}= \frac{m}{2} \omega^2 \hat{x}^2
 \end{equation}
 To solve this equation, the most convenient method is to
-introduce different basis of operators in which it is very
-convenient to write down the energy
-~\cite{fliessbach2008quantenmechanik}, which we will not do here
-but state the eigenvalues (with quantumnumber $\nu$)
+introduce different basis of operators resulting in more 
+adapted expressions for the energy
+~\cite{fliessbach2008quantenmechanik}. We won"t derive 
+these results here, but rather state the eigenvalues 
+(with quantumnumber $\nu$)
 of the energy without proof
 (see also figure~\ref{fig:harmonic1}):
 \begin{equation}
     H(\nu) = \left ( \nu + \frac{1}{2} \right )\hbar \omega 
     \quad \text{with $\nu\in \mathbb{N_0}$}
 \end{equation}
-where the wavefunctions
-   are given by
-   \begin{equation}
+where the wavefunctions are given by
+\begin{equation}
     \psi_n(x)= \left(\frac{m\omega}{\pi\hbar}
     \right)^\frac{1}{4}
-\frac{1}{\sqrt{2^nn!}} H_n
-\left(\sqrt{\frac{m\omega}{\hbar}} x \right)
-e^{-\frac{1}{2}\frac{m\omega}{\hbar}x^2}
+    \frac{1}{\sqrt{2^nn!}} H_n
+    \left(\sqrt{\frac{m\omega}{\hbar}} x \right)
+    e^{-\frac{1}{2}\frac{m\omega}{\hbar}x^2}
 \end{equation}
+
 and $H_n$ are the hermite polynomials: 
+
 \begin{equation}
-H_n(x)=(-1)^n e^{x^2}\frac{d^n}{dx^n}\left(e^{-x^2}\right) 
+    H_n(x)=(-1)^n e^{x^2}\frac{d^n}{dx^n}\left(e^{-x^2}\right) 
 \end{equation}
+
 \begin{figure}
-\includegraphics[width=15cm]{pics/harmonic1}
-\caption{Energy levels of the harmonic oscillator with its 
-    related wavefunctions\cite{Demtroeder1}.}
-\label{fig:harmonic1}
+    \includegraphics[width=15cm]{pics/harmonic1}
+    \caption{Energy levels of the harmonic oscillator with its 
+        related wavefunctions\cite{Demtroeder1}.}
+    \label{fig:harmonic1}
 \end{figure}
+
 This potential is of outstanding importance for our experiment,
 since the real potential will be aproximated in a region near
 the minimum with a harmonic potential. 
@@ -504,11 +509,12 @@ the vibrational states $\nu$:
         + \frac{1}{2}\right )
 \end{equation}
 In order to chose a more convenient unit we transform this
-equation into $cm^{-1}$:
+equation into $\mathrm{cm^{-1}}$:
 \begin{equation}
-    G_{harm}(\nu) = \frac{E}{hc} = \omega_0 (\nu + \frac{1}{2})
+    G_\mathrm{harm}(\nu) = \frac{E}{hc} = \omega_0 (\nu + \frac{1}{2})
     \quad \text{with the frequency} \quad
     \omega_0 = \frac{1}{2\pi c} \sqrt{\frac{k_e}{\mu}}
+    \label{eqn:freq}
 \end{equation}
 The wider we leave the regime around $r_e$, speaking about 
 higher vibrational states, the worse approximation with a harmonic
@@ -523,7 +529,7 @@ a way that we use the condition
     \cdots
 \end{equation}
 and can therefore justify the Ansatz (see the Dunham expansion
-    for more details):
+for more details):
 \begin{equation}
     G(\nu) = \omega_e (\nu + \frac{1}{2} ) 
     - \omega_e x_e (\nu + \frac{1}{2} ) ^2 
@@ -550,18 +556,20 @@ in this case to scale them to the zeroenergy
 If we now subtract two directly following terms we get the 
 difference between one level:
 \begin{equation}
-    \Delta G(\nu +\frac{1}{2}) := G(\nu +1 ) - G(\nu) 
+    \Delta G\left (\nu +\frac{1}{2} \right ) := G(\nu +1 ) - G(\nu) 
     = \omega_e - \omega_e x_e \left (2\nu +2\right ) + \omega_e y_e 
     \left (3\nu^2+ 6\nu + \frac{13}{4} 
         \right) + \cdots 
+    \label{eqn:dG1_2}
 \end{equation} 
 This equation will bring us to the point where we can
-estimate the dissociationenergy. If we know the approximate 
-Quantumnumber of vibration of when we come to the regime of 
-dissociation, we can just sum the energylevels up:
+estimate the dissociation energy. If we know the approximate 
+quantum number of vibration $\nu_\mathrm{diss}$ close to 
+dissociation, we can just sum up the energy levels:
 \begin{equation}
-    D_0 = \sum_{\nu = 0 }^{\nu_max} \Delta G(\nu + \frac{1}{2})
+    D_0 = \sum_{\nu = 0 }^{\nu_\mathrm{diss}} \Delta G \left (\nu + \frac{1}{2} \right )
     \quad \Rightarrow \quad D_e = G(0) + D_0
+    \label{eqn:D_0}
 \end{equation}
 We have to keep in mind that this methods are merely based on the
 assumption that energies should be near the minimal energy at $r_e$.
@@ -619,6 +627,7 @@ paramter
 so that we find for the dissociation:
 \begin{equation}
     D_e = \frac{\omega_e^2}{4 \omega_e x_e}
+    \label{eqn:D_e}
 \end{equation}
 \clearpage
 

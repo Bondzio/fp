@@ -6,6 +6,7 @@ import sympy as sy
 from pylatex import Document, Section, Subsection, Math
 from pylatex.numpy import Matrix
 from math import log10, floor
+import scipy.constants as co
 
 def unv(uarray):        # returning nominal values of a uarray
     return un.nominal_values(uarray)
@@ -132,17 +133,16 @@ def str_label_fit(i):
 #############################################################################################
 
 # general parameters
-plot_show = 1
-save_fig = 1
-print_latex = 0
+plot_show = 0
+save_fig = 0
+print_latex = 1
 deg = [2, 1, 1]                                # degree of polynomial fit
 plt.close('all')
 colors = ['b', 'g', 'r', 'pink']
 labels = ['$v\'\' = %i \\rightarrow v\'$' %i for i in range(3)]
 fig_dir = 'figures/'
-golden_ratio = (1 + np.sqrt(5)) / 2
 l1 = 7.0
-figsize = [golden_ratio * l1, l1]
+figsize = [co.golden * l1, l1]
 
 # load arrays
 array_dir = "arrays/"
@@ -156,6 +156,9 @@ chi2_min, n_d, gof = {}, {}, {}    # chi square for poly fit, number of ind. dat
 beta, beta_sd = {}, {}      # uncorrelated parameters and their std devs
 eigvec = {}
 vib_co = {}
+D_e1 = {}
+v_diss, v_diss_upper, v_diss_lower = {}, {}, {}
+D_0_n, D_0_upper, D_0_lower = {}, {}, {}
 
 
 # Calculating w_e' = w1 and w_e x_e' = wx1 for first electronic level with Birge-Sponer plots
@@ -176,15 +179,11 @@ for i in range(3):   # Polynomial fit for dG(v' + 1/2)
         wx1 = -0.5 * c[0]
         w1 = c[1] - c[0]
         vib_co[i] = np.array([wx1, w1])
-        v_diss[i] = -c[1] / c[0]        # solving for  p(v) = 0
     if deg[i] == 2:
         wy1 = c[0] / 3
         wx1 = c[0] - 0.5 * c[1]
         w1 = 11 / 12 * c[0] - c[1] + c[2]
         vib_co[i] = np.array([wy1, wx1, w1])
-        if unv([c[1] ** 2 - 4 * c[0] * c[2]]) > 0:
-            v_diss[i] = (-c[1] - un.sqrt([c[1] ** 2 - 4 * c[0] * c[2]])[0] )/ (2 * c[0]) # solving for p(v) = 0
-        else: v_diss[i] = 0
     label_c[i] = '$\omega_e\' \\ = ' + '{:L}'.format(w1) + '$\n' \
         '$\omega_e x_e\' = ' + '{:L}'.format(wx1) + '$'
     if deg[i] >= 2:
@@ -196,20 +195,24 @@ for i in range(3):   # Polynomial fit for dG(v' + 1/2)
     var_names = [r"\omega_e y_e", r"\omega_e x_e", r"\omega_e"]
     cov = np.array(uc.covariance_matrix(val))
     la_coeff(f2, unv(val), cov, var_names)
+# Calculating dissociation energies D_e' and D_0' of Pi-states
+    D_e1[i] = vib_co[i][-1] ** 2 / (4 * vib_co[i][-2])
 # Calculating D_0 = \sum_{v = 0}^{v_diss} \Delta G(v + \\frac{1}{2})
 # v_diss = intersect of p(v) with y = 0
-    if v_diss[i] != 0:
-        v_grid_n = np.arange(0, 90) + 0.5           # v grid for finding zeros
-        vals = unv(np.polyval(c, v_grid_n))
-        errs = usd(np.polyval(c, v_grid_n))
-        g0 = np.where(vals > 0)     # dissipation energy D_0, nominal value
-        g0_upper = np.where(vals + errs > 0)
-        g0_lower = np.where(vals - errs > 0)
-        if len(g0) == len(vals):
-            print("no zero intersect! -> D_0 cannot be calculated")
-        D_0_n = np.sum(vals[g0])     # dissipation energy D_0, nominal value
-        D_0_upper = np.sum((vals + errs)[g0_upper])     # dissipation energy D_0, nominal value
-        D_0_lower = np.sum((vals - errs)[g0_lower])     # dissipation energy D_0, nominal value
+    v_grid_n = np.arange(0, 90) + 0.5           # v grid for finding zeros
+    vals = unv(np.polyval(c, v_grid_n))
+    errs = usd(np.polyval(c, v_grid_n))
+    g0 = np.where(vals > 0)     # dissipation energy D_0, nominal value
+    g0_upper = np.where(vals + errs > 0)
+    g0_lower = np.where(vals - errs > 0)
+    if len(g0) == len(vals):
+        print("no zero intersect! -> D_0 cannot be calculated")
+    v_diss[i] = v_grid_n[g0[0][-1]]
+    v_diss_upper[i] = v_grid_n[g0_upper[0][ -1]]
+    v_diss_lower[i] = v_grid_n[g0_lower[0][ -1]]
+    D_0_n[i] = np.sum(vals[g0])     # dissipation energy D_0, nominal value
+    D_0_upper[i] = np.sum((vals + errs)[g0_upper])     # dissipation energy D_0, nominal value
+    D_0_lower[i] = np.sum((vals - errs)[g0_lower])     # dissipation energy D_0, nominal value
 # Birge Sponer plots
     fig1 = plt.figure(figsize = figsize)
     #fig1.suptitle('Iodine 2 molecule - Birge-Sponer plots')
@@ -259,9 +262,12 @@ for j in range(2):      # comparing v'' = (0, 1) and v'' = (1, 2), respectively
     dG[j] = uc.ufloat(dG_avg, dG_std)
 wx0 = 0.5 * (dG[0] - dG[1]) 
 w0  = 2 * (dG[0] - 0.5 * dG[1])
+freq0 = w0 * co.c * 10*2
+mu = 127/2 * co.physical_constants["atomic mass constant"][0]
+k0 = (freq0 * 2 * co.pi) ** 2 * mu
 
-# Calculating dissociation energies D_e' and D_0' of Pi-states
-D_e = w1 ** 2 / (4 * wx1)
+# Calculating dissociation energies D_e'' and D_0'' of Pi-states
+D_e0 = w0 ** 2 / (4 * wx0)
 
 
 
@@ -312,18 +318,27 @@ for i in range(1):
 
 # printing results in Latex format
 if print_latex:
-    print("\omega_e'' = {:L}".format(w0) )
-    print("\omega_e x_e'' = {:L}".format(wx0) )
-    print()
-    print("results from Birge-Sponer method:")
+    f3 = open("results.tex", "w+")
+    f3.write("\omega_e'' &=& {:L} \cm\n".format(w0) )
+    f3.write("\omega_e x_e'' &=& {:L} \cm\n".format(wx0) )
+    f3.write("f_e'' &=& {:L}".format(freq0)  + " \mathrm{Hz}\\\\\n")
+    f3.write("k_e'' &=& {:L}".format(k0) + " \mathrm{\\frac{kg}{s^2]}\n")
+    f3.write("\nresults from Birge-Sponer method: \n\n")
     for i in range(3):
-        print("progression: v'' = %i -> x'" %i)
-        print("goodness-of-fit: $\chi^2 / n_d = %f$" %gof[i])
-        print("$n_d = %i = #points - (deg + 1)$" % n_d[i])
-        print("\omega_e''  = {:L}".format(w1[i]) )
-        print("\omega_e x_e''  = {:L}".format(wx1[i]) )
-        if wy1[i]:
-            print("\omega_e y_e''  = {:L}".format(wy1[i]) )
-        print("D_e = \\frac{ \omega_e'^2}{ 4  \omega_e x_e'} =" +  "{:L}".format(D_e[i]))
-
+        f3.write("progression: v'' = %i -> x' \n" %i)
+        f3.write("\omega_e''  = {:L} \n".format(vib_co[i][-1]) )
+        f3.write("\omega_e x_e''  = {:L} \n".format(vib_co[i][-2]) )
+        if len(vib_co[i]) == 3:
+            f3.write("\omega_e y_e''  = {:L} \n".format(vib_co[i][0]) )
+        f3.write("v_\mathrm{diss}' &=& %.1f \\\\\n"%v_diss[i])
+        f3.write("D_0' &=& %i \cm \\\\\n"%round(D_0_n[i]))
+        f3.write("v_\mathrm{diss,\, upper}' &=& %.1f \\\\\n"%v_diss_upper[i])
+        f3.write("D_{0,\, \mathrm{upper}}' &=& %i \cm\\\\\n"%round(D_0_upper[i]))
+        f3.write("v_\mathrm{diss,\, lower}' &=& %.1f \\\\\n"%v_diss_lower[i])
+        f3.write("D_{0,\, \mathrm{lower}}' &=& %i \cm\n"%round(D_0_lower[i]))
+        f3.write("D_e' = \\frac{ \omega_e'^2}{ 4  \omega_e x_e'} =" +  "{:L} \cm\n".format(D_e1[i]))
+        #f3.write("goodness-of-fit: $\chi^2 / n_d = %f$" %gof[i])
+        #f3.write("$n_d = %i = #points - (deg + 1)$" % n_d[i])
+        f3.write("\n")
+    f3.close()
     #fig2.show()
