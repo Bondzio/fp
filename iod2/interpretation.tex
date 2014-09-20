@@ -1,7 +1,8 @@
 \newcommand{\cm}{\mathrm{cm^{-1}}}
 \newcommand{\nm}{\mathrm{nm}}
-\newcommand{\pltw}{0.8\textwidth}
-\newcommand{\picwidth}{0.40\textwidth}
+\newcommand{\pltw}{1.0\textwidth}
+\newcommand{\mpltw}{0.68\textwidth}
+\newcommand{\picwidth}{0.8\textwidth}
 \newcommand{\unc}{0.3}  % uncertainty in nm
 \section{Evaluation}
 
@@ -131,11 +132,11 @@ can be observed in figure \ref{"fig:spectrum_halogen_red"}.
 \begin{figure}
 \centering
 \includegraphics[width=\pltw]{analysis/figures/halogen_red.pdf}
-\caption{Measured spectrum of the halogen lamp over the entire spectrum, no correction for 
-diffraction in light}
+\caption{Measured spectrum of the halogen lamp over reduced range, corrected for diffraction}
 \label{fig:spectrum_halogen_red}
 \end{figure}
 
+\FloatBarrier
 
 \subsection{Identifying progressions}
 The process of identifying progressions turned out to be quiet difficult – reflecting the 
@@ -236,8 +237,9 @@ $ \Delta (\Delta G) $ are the corresponding uncertainties.
 \begin{figure}
     \centering
     \includegraphics[width=\pltw]{analysis/figures/absorp_03.pdf}
-    \caption{Measured spectrum of halogen lamp having passed the iodine pipe. The local minima are 
-    those of the absorption spectrum of iodine. Three progressions of vibrational states $v'' \rightarrow v'$
+    \caption{Measured absorption spectrum of iodine 2 molecules. The plot show the spectrum of 
+    the halogen lamp having passed the iodine pipe. The local minima correspond to maxima of 
+    absorption of the iodine. Three progressions of vibrational states $v'' \rightarrow v'$
     within the electronic transition 
     $B ^3\Pi_{\sigma \, \mathrm{u}}^{+} \quad \leftarrow \quad X ^1\Sigma_{\sigma \, \mathrm{u}}^{+}$ 
     are identified with colored dots. }
@@ -246,25 +248,239 @@ $ \Delta (\Delta G) $ are the corresponding uncertainties.
 
 \begin{figure}
     \centering
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\pltw]{analysis/figures/absorp_03_detail_01.pdf}
+    \begin{subfigure}[b]{\mpltw}
+        \includegraphics[width=\textwidth]{analysis/figures/absorp_03_detail_01.pdf}
         \caption{Overlap of $v'=1$ and $v'=2$}
         \label{fig:absorp_detail_01}
     \end{subfigure}\qquad
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\pltw]{analysis/figures/absorp_03_detail_02.pdf}
+    \begin{subfigure}[b]{\mpltw}
+        \includegraphics[width=\textwidth]{analysis/figures/absorp_03_detail_02.pdf}
         \caption{Overlap of $v'=0$ and $v'=1$"}
         \label{fig:absorp_detail_02}
     \end{subfigure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\pltw]{analysis/figures/absorp_03_detail_03.pdf}
+    \begin{subfigure}[b]{\mpltw}
+        \includegraphics[width=\textwidth]{analysis/figures/absorp_03_detail_03.pdf}
         \caption{End of $v'=0'$}
         \label{fig:absorp_detail_03}
     \end{subfigure}
-    \caption{Details of \ref{fig:absorp}: members of progressions at points, where identification is not trivial, 
-    but done by looking at the progression of energy differences.} 
+    \caption{Details of \ref{fig:absorp}: members of progressions at points, where 
+    identification is done manually, comparing with \cite{staatsexamen}.
+    }
     \label{fig:absorp_detail}
 \end{figure}
 
-The energy differences of the identified progressions are shown in the so-called Birge-Sponer plots, figures 
-\ref{fig:b_s_0}, \ref{fig:b_s_1}, \ref{fig:b_s_2}
+With these number identified, we can calculate the vibrational coefficients for 
+the ground state by applying equation \eqref{eqn:dG1_2} for $v'' \in \{0, 1, 2\}$:
+\begin{eqnarray}
+    \Delta G''\left ( \frac{1}{2} \right ) &=& G''(1) - G''(0) \nonumber\\
+        &=& (G'(n) - G''(0)) - (G'(n) - G''(1)) \nonumber \\
+        &=& \omega_e'' - 2 \omega_e x_e'' \\
+    \Delta G''\left ( \frac{3}{2} \right ) &=& G''(2) - G''(1) \nonumber\\
+        &=& (G'(n) - G''(1)) - (G'(n) - G''(2)) \nonumber \\
+        &=& \omega_e'' - 4 \omega_e x_e'' \\
+  \Rightarrow \qquad  \omega_e x_e'' &=& \frac{1}{2} \left ( \Delta G''\left ( \frac{1}{2} \right ) 
+        \Delta G''\left ( \frac{3}{2} \right ) \right )
+\end{eqnarray}
+As seen in table \ref{tab:dG}, we get corresponding pairs for 
+$\Delta G''\left ( \frac{1}{2} \right )$ at $v' + 1/2 \in \{18.5, 19.5, \ldots, 26.5\}$ 
+and for 
+$\Delta G''\left ( \frac{3}{2} \right )$ at $v' + 1/2 \in \{15.5, 16.5, 17.5, 18.5, 19.5\}$.
+Taking weighted averages $\overline{\Delta G''\left ( \frac{1}{2} \right )}$ and 
+$\overline{\Delta G''\left ( \frac{3}{2} \right )}$, 
+where weights are constituited by the reciprocal variances, and subtracting yields
+\begin{eqnarray}
+    \omega_e'' &=& 213.8 \pm 4.6 \cm \\
+    \omega_e x_e'' &=& 0.5 \pm 1.4 \cm.
+\end{eqnarray}
+For small vibrations, we make the approximation of a harmonic oscillator and 
+can now calculate classical frequency $f$ and the spring constant $k$ with 
+\eqref{eqn:freq}:
+\begin{eqnarray}
+    f_e'' &=& \left(1.282 \pm 0.028\right) \times 10^{12} \mathrm{Hz} \\
+    k_e'' &=& 6.84 \pm 0.30 \mathrm{\frac{kg}{s^2}}
+\end{eqnarray}
+
+
+
+
+
+\FloatBarrier
+
+\subsection{Birge-Sponer plots}
+The energy differences $\Delta G_{v''}(v' + 1/2)$ of the identified progressions can 
+be plotted over the corresponding wavenumbers $v' + 1/2$. The resulting so-called 
+Birge-Sponer plots, figures 
+\ref{fig:b_s_0},  \ref{fig:b_s_1},  \ref{fig:b_s_2}, 
+are used to calculate the vibrational constants $\omega_e'$ and $\omega_e' x_e'$. 
+
+% Birge Sponer plots
+\begin{figure}
+    \centering
+    \includegraphics[width=\pltw]{analysis/figures/b_s_0.pdf}
+    \caption{Birge-Sponer plot for the progression $v'' = 0 \rightarrow v'$.  
+    }
+    \label{fig:b_s_0}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\pltw]{analysis/figures/b_s_1.pdf}
+    \caption{Birge-Sponer plot for the progression $v'' = 1 \rightarrow v'$.  
+    }
+    \label{fig:b_s_1}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\pltw]{analysis/figures/b_s_2.pdf}
+    \caption{Birge-Sponer plot for the progression $v'' = 2 \rightarrow v'$.  
+    }
+    \label{fig:b_s_2}
+\end{figure}
+
+Instead of deducing these variable graphically, we used the expansion 
+\eqref{eqn:G(v)_taylor} and did a 
+polinomial fit using the linear least square method \cite{cowan1998statistical}. 
+As we have only a limited number of points, we used a second degree polynomial
+for the zeroth progression and a linear fit for the first and second progression. 
+The plot shows the best fit as well as estimates for the uncertainties, 
+calculated by adding and subtracting the standard deviation of the 
+polynome evaluated at each point $v'$. 
+The resulting parameters are the following:
+\begin{itemize}
+    \item For $v'' = 0 \rightarrow v'$: The polynomial fit for 
+        \begin{equation}
+            P_2(v') = p_2 {v'}^2 + p_1 v' + p_0
+        \end{equation}
+        yields the following values and their uncertainties expressed in form of 
+        the covariance matrix:
+        \begin{eqnarray}
+            p_2 &=& 2.04\mathrm{e}-03 \\
+            p_1 &=& -2.188 \\
+            p_0 &=& 133.746 \\
+            \mathrm{cov}(p_i, p_j) &=& 
+            \begin{pmatrix}
+                 4.03\mathrm{e}-05 & -2.51\mathrm{e}-03 & 0.036 \\
+                 -2.51\mathrm{e}-03 & 0.159 & -2.317 \\
+                 0.036 & -2.317 & 34 \\
+            \end{pmatrix}
+        \end{eqnarray}
+    \item For $v'' = 1 \rightarrow v'$, linear fit:
+        \begin{eqnarray}
+            P_1(v') &=& p_1 v' + p_0 \\
+            p_1 &=& -2.23 \\
+            p_0 &=& 135.526 \\
+            \mathrm{cov}(p_i, p_j) &=& 
+            \begin{pmatrix}
+                 0.064 & -1.320 \\
+                 -1.320 & 27 \\
+            \end{pmatrix}
+        \end{eqnarray}
+    \item For $v'' = 2 \rightarrow v'$, linear fit:
+        \begin{eqnarray}
+            P_1(v') &=& p_1 v' + p_0 \\
+            p_1 &=& -1.61\\
+            p_0 &=& 124.444 \\
+            \mathrm{cov}(p_i, p_j) &=& 
+            \begin{pmatrix}
+                 0.049 & -0.685 \\
+                 -0.685 & 10 \\
+            \end{pmatrix}
+        \end{eqnarray}
+\end{itemize}
+All quantities $p_i$ are given in units of $\cm$, while the entries of the covariance 
+matrices are given in $\mathrm{cm^{-2}}$.
+
+Comparing $P_2$ to \eqref{eqn:G(v)_taylor} up to the second order let's us solve for 
+the vibrational parameters $w_e$, $w_e x_e$, $w_e y_e$. The system of linear equations in 
+${v'}^2, v'$ and $1$ has the solutions:
+\begin{eqnarray}
+    w_e y_e &=& \frac{p_0}{3} \\
+    w_e x_e &=& p_2 - \frac{p_1}{2} \\
+    w_e &=& \frac{11}{12}p_2 - p_1 + p_0.
+\end{eqnarray}
+Inserting the values from above and doing the error propagation yields 
+\begin{eqnarray}
+    \omega_e y_e &=& 7.0\mathrm{e}-04 \\
+    \omega_e x_e &=&1.10 \\
+    \omega_e &=& 136 \\
+    \mathrm{cov}(p_i, p_j) &=& 
+    \begin{pmatrix}
+        4.0\mathrm{e}-06 &4.0\mathrm{e}-04 &0.013 \\
+        4.0\mathrm{e}-04 &0.04 &1.3 \\
+        0.013 &1.3 & 40 \\
+    \end{pmatrix}
+\end{eqnarray} 
+Using these results, we can calculate the dissociation energies $D_e'$ and $D_0'$. For the 
+prior one we get with equation \eqref{eqn:D_e}:
+\begin{eqnarray}
+    D_e' = \frac{ \omega_e'^2}{ 4  \omega_e x_e'} =\left(4.2 \pm 0.4\right) \times 10^{3} \cm.
+\end{eqnarray}
+The latter ist calculated using \ref{eqn:D_0}. Before applying this formula, we need to find 
+the intersect with the $\Delta \sigma == 0$-axis, which corresponds just to 
+$\nu_\mathrm{diss}$. Since we don't observe all transitions, we solve $P_2(v_\mathrm{diss}') = 0$, and 
+take the sum over all values $0 < v' + 1/2 < v_\mathrm{diss}'$. In order to estimate the 
+uncertainties, we also calculated $v_\mathrm{diss, upper}$ and  $v_\mathrm{diss, lower}$ with 
+the corresponding upper und lower limit shown in \ref{fig:b_s_0} and evaluated the sum over 
+these polynomes. The dissociation quantum numbers and resulting energies are 
+\begin{eqnarray}
+    v_\mathrm{diss}' &=& 64.5 \\
+    D_0' = \sum_{v' = 0 }^{v'_\mathrm{diss}} P_2 \left (v' + \frac{1}{2} \right ) &=& 4257 \cm \\
+    v_\mathrm{diss,\, upper}' &=& 69.5 \\
+    D_{0,\, \mathrm{upper}}' &=& 4419 \cm\\
+    v_\mathrm{diss,\, lower}' &=& 61.5 \\
+    D_{0,\, \mathrm{lower}}' &=& 4122 \cm
+\end{eqnarray}
+
+
+
+
+
+
+For the linear fits, we compare $P_1$ to \eqref{eqn:G(v)_taylor} up to the first order 
+term, we get $w_e$ and $w_e x_e$ as 
+\begin{eqnarray}
+    w_e x_e &=& -\frac{p_1}{2} \\
+    w_e &=& p_0 - p_1.
+\end{eqnarray}
+with the following numerical results for the first and second progression: 
+\begin{itemize}
+    \item For $v'' = 1 \rightarrow v'$:
+        \begin{eqnarray}
+            \omega_e y_e &=&1.11 \\
+            \omega_e x_e &=& 138 \\
+            \mathrm{cov}(p_i, p_j) &=& 
+            \begin{pmatrix}
+                0.016 &0.7 \\
+                0.7 & 31 \\
+            \end{pmatrix}
+        \end{eqnarray}
+    \item For $v'' = 2 \rightarrow v'$:
+        \begin{eqnarray}
+            \omega_e y_e &=&0.81 \\
+            \omega_e x_e &=&126.1 \\
+            \mathrm{cov}(p_i, p_j) &=& 
+            \begin{pmatrix}
+                0.012 &0.4 \\
+                0.4 & 12 \\
+            \end{pmatrix}
+        \end{eqnarray}
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

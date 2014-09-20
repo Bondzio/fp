@@ -12,13 +12,16 @@ def usd(uarray):        # returning the standard deviations of a uarray
 #############################################################################################
 # general parameters
 plot_show = 0
-save_fig = 0
+save_fig = 1
 print_tab =0 
 print_tab_diff = 0
 plt.close('all')
 colors = ['b', 'g', 'r', 'pink']
 labels = ['$v\'\' = %i \\rightarrow v\'$' %i for i in range(3)]
 fig_dir = 'figures/'
+golden_ratio = (1 + np.sqrt(5)) / 2
+l1 = 7.0
+figsize = [golden_ratio * l1, l1]
 
 lambda_error = 0.3                        # uncertainty of spectrometer in lambda (nonimal = 0.3)
 
@@ -77,7 +80,7 @@ for i in range(3):      # assigning values of wavenumbers and wavelength at mini
     cmm[i] = cmm_all[prog[i]]
 
 # Plotting the absorbtion spectrum
-fig0 = plt.figure(figsize = [7.0, 7.0])
+fig0 = plt.figure(figsize=figsize)
 #fig.suptitle('Iodine 2 molecule - absorbtion spectrum')
 ax = plt.subplot(111)
 title_spectrum = "Absorption spectrum"
@@ -91,7 +94,7 @@ ax.grid(True)
 ax.legend(loc='upper right')
 
 # produce plots of critical regions, where points are chose by hand
-fig1 = plt.figure(figsize = [7.0, 7.0])
+fig1 = plt.figure(figsize=figsize)
 #fig0.suptitle('Iodine 2 molecule - absorbtion spectrum at overlaps')
 ax = plt.subplot(111)
 title = "Overlap of progressions $v'=1 and v'=2$"
@@ -105,7 +108,7 @@ ax.set_xlim(17050, 17650)
 ax.set_ylim(41500, 46000)
 ax.legend(loc='upper left')
 
-fig2 = plt.figure(figsize = [7.0, 7.0])
+fig2 = plt.figure(figsize=figsize)
 ax = plt.subplot(111)
 title = "Overlap of progressions $v'=0 and v'=1$"
 #ax.set_title(title)
@@ -118,7 +121,7 @@ ax.set_xlim(17900, 18450)
 ax.set_ylim(36700, 43700)
 ax.legend(loc='lower left')
 
-fig3 = plt.figure(figsize = [7.0, 7.0])
+fig3 = plt.figure(figsize=figsize)
 ax = plt.subplot(111)
 title = "Overlap of progressions $v'=0 and v'=1$"
 #ax.set_title(title)
