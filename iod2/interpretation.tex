@@ -148,7 +148,7 @@ As a first step, we preselected minima by an algorithm checking for each point t
 its four neighbouring points and added further points by hand later on. For identifying corrisponding 
 progression to each of the selected points, we used the starting point of the 'zeroth progression' 
 $v'' = 0  \rightarrow v' = 25$ with a band at $545.8 \nm = 18321 \cm$, as given by \cite{}. In our 
-measurement, we found a mimima at $E_{0, 25} = 18319 \pm 10\nm$. From that line, we could first 
+measurement, we found a mimima at $\sigma_{0, 25} = 18319 \pm 10\nm$. From that line, we could first 
 identify the progression members down to $v' = 47$, where the last three points could be added using 
 the first order approximation of the energy differences, namely their negative linear correlation 
 to the energy (see figure \ref{fig:absorp_detail_03}). We then used the same relationship to identify 
@@ -164,33 +164,7 @@ listed in table \ref{tab:dG}.
 \begin{table}[h]
 \centering
 \small
-\begin{tabular}{
-| l| l |l ||c|
-| l| l |l ||c|
-| l| l |l ||c|
-l| l |l |}
-\cline{1-7}\cline{9-11}\cline{13-15}
-$v'$ & $\frac{\sigma_{0,v'}}{\cm}$ & $\frac{\Delta \sigma_{0,v'}}{\cm}$&&
-$v'$ & $\frac{\sigma_{0,v'}}{\cm}$ & $\frac{\Delta \sigma_{0,v'}}{\cm}$&&
-$v'$ & $\frac{\sigma_{1,v'}}{\cm}$ & $\frac{\Delta \sigma_{1,v'}}{\cm}$&&
-$v'$ & $\frac{\sigma_{2,v'}}{\cm}$ & $\frac{\Delta \sigma_{2,v'}}{\cm}$\\
-&&&&&&&&&&&&&& \\\cline{1-7}\cline{9-11}\cline{13-15}
-47 & 19587 & 11 & &32 & 18830 & 10 & &27 & 18262 & 10 & &20 & 17468 & 9 \\ \cline{1-7}\cline{9-11}\cline{13-15}
-46 & 19549 & 11 & &31 & 18761 & 10 & &26 & 18184 & 9 & &19 & 17375 & 9 \\ \cline{1-7}\cline{9-11}\cline{13-15}
-45 & 19513 & 11 & &30 & 18693 & 10 & &25 & 18105 & 9 & &18 & 17282 & 8 \\ \cline{1-7}\cline{9-11}\cline{13-15}
-44 & 19475 & 11 & &29 & 18623 & 10 & &24 & 18021 & 9 & &17 & 17186 & 8 \\ \cline{1-7}\cline{9-11}\cline{13-15}
-43 & 19433 & 11 & &28 & 18547 & 10 & &23 & 17938 & 9 & &16 & 17090 & 8 \\ \cline{1-7}\cline{9-11}\cline{13-15}
-42 & 19383 & 11 & &27 & 18472 & 10 & &22 & 17856 & 9 & &15 & 16990 & 8 \\ \cline{1-7}\cline{9-11}\cline{13-15}
-41 & 19338 & 11 & &26 & 18398 & 10 & &21 & 17765 & 9 & &14 & 16888 & 8 \\ \cline{1-7}\cline{9-11}\cline{13-15}
-40 & 19289 & 11 & &25 & 18318 & 10 & &20 & 17678 & 9 & &13 & 16782 & 8 \\ \cline{1-7}\cline{9-11}\cline{13-15}
-39 & 19241 & 11 & &24 & 18237 & 9 & &19 & 17589 & 9 & &12 & 16675 & 8 \\ \cline{1-7}\cline{9-11}\cline{13-15}
-38 & 19186 & 11 & &23 & 18153 & 9 & &18 & 17495 & 9 & &11 & 16570 & 8 \\ \cline{1-7}\cline{9-11}\cline{13-15}
-37 & 19135 & 10 & &22 & 18066 & 9 & &17 & 17399 & 9 & &10 & 16463 & 8 \\ \cline{1-7}\cline{9-11}\cline{13-15}
-36 & 19077 & 10 & &21 & 17979 & 9 & &16 & 17300 & 8 \\ \cline{1-7}\cline{9-11}
-35 & 19020 & 10 & &20 & 17891 & 9 \\ \cline{1-7}
-34 & 18956 & 10 & &19 & 17802 & 9 \\ \cline{1-7}
-33 & 18896 & 10 & &18 & 17706 & 9 \\ \cline{1-7}
-\end{tabular}
+\input{"analysis/table1.txt"}
 \caption{Identified members of progressions of vibrational modes $v'' \rightarrow v'$ 
 and corrisponding wavenumbers $\sigma_{v'', v'} = G'(v') - G''(v'')$ with uncertainties
 $\Delta \sigma_{0, v'}$. }
@@ -343,51 +317,31 @@ Instead of deducing these variable graphically, we used the expansion
 polinomial fit using the linear least square method \cite{cowan1998statistical}. 
 As we have only a limited number of points, we used a second degree polynomial
 for the zeroth progression and a linear fit for the first and second progression. 
-The plot shows the best fit as well as estimates for the uncertainties, 
+The plots show the best fit as well as estimates for the uncertainties, 
 calculated by adding and subtracting the standard deviation of the 
 polynome evaluated at each point $v'$. 
-The resulting parameters are the following:
-\begin{itemize}
-    \item For $v'' = 0 \rightarrow v'$: The polynomial fit for 
-        \begin{equation}
-            P_2(v') = p_2 {v'}^2 + p_1 v' + p_0
-        \end{equation}
-        yields the following values and their uncertainties expressed in form of 
-        the covariance matrix:
-        \begin{eqnarray}
-            p_2 &=& 2.04\mathrm{e}-03 \\
-            p_1 &=& -2.188 \\
-            p_0 &=& 133.746 \\
-            \mathrm{cov}(p_i, p_j) &=& 
-            \begin{pmatrix}
-                 4.03\mathrm{e}-05 & -2.51\mathrm{e}-03 & 0.036 \\
-                 -2.51\mathrm{e}-03 & 0.159 & -2.317 \\
-                 0.036 & -2.317 & 34 \\
-            \end{pmatrix}
-        \end{eqnarray}
-    \item For $v'' = 1 \rightarrow v'$, linear fit:
-        \begin{eqnarray}
-            P_1(v') &=& p_1 v' + p_0 \\
-            p_1 &=& -2.23 \\
-            p_0 &=& 135.526 \\
-            \mathrm{cov}(p_i, p_j) &=& 
-            \begin{pmatrix}
-                 0.064 & -1.320 \\
-                 -1.320 & 27 \\
-            \end{pmatrix}
-        \end{eqnarray}
-    \item For $v'' = 2 \rightarrow v'$, linear fit:
-        \begin{eqnarray}
-            P_1(v') &=& p_1 v' + p_0 \\
-            p_1 &=& -1.61\\
-            p_0 &=& 124.444 \\
-            \mathrm{cov}(p_i, p_j) &=& 
-            \begin{pmatrix}
-                 0.049 & -0.685 \\
-                 -0.685 & 10 \\
-            \end{pmatrix}
-        \end{eqnarray}
-\end{itemize}
+In order to maintain readability, we first discuss our results for the zeroth 
+progression, and then add the values calculated for the first and second progression 
+without further explaining each step, if they are done analogously.
+
+\subsubsection{Progression $v'' = 0 \rightarrow v'$}
+The polynomial fit for 
+\begin{equation}
+    P_2(v') = p_2 {v'}^2 + p_1 v' + p_0
+\end{equation}
+yields the following values and their uncertainties expressed in form of 
+the covariance matrix:
+\begin{eqnarray}
+    p_2 &=& 2.037\mathrm{e}-03 \cm\\
+    p_1 &=& -2.188\mathrm{e}+00 \cm\\
+    p_0 &=& 1.337\mathrm{e}+02 \cm\\
+    \mathrm{cov}(p_i, p_j) &=& 
+    \begin{pmatrix}
+        4.027\mathrm{e}-05 &-2.509\mathrm{e}-03 &3.604\mathrm{e}-02 \\
+        -2.509\mathrm{e}-03 &1.588\mathrm{e}-01 &-2.317\mathrm{e}+00 \\
+        3.604\mathrm{e}-02 &-2.317\mathrm{e}+00 &3.457\mathrm{e}+01 \\
+    \end{pmatrix}
+\end{eqnarray}
 All quantities $p_i$ are given in units of $\cm$, while the entries of the covariance 
 matrices are given in $\mathrm{cm^{-2}}$.
 
@@ -395,27 +349,32 @@ Comparing $P_2$ to \eqref{eqn:G(v)_taylor} up to the second order let's us solve
 the vibrational parameters $w_e$, $w_e x_e$, $w_e y_e$. The system of linear equations in 
 ${v'}^2, v'$ and $1$ has the solutions:
 \begin{eqnarray}
-    w_e y_e &=& \frac{p_0}{3} \\
-    w_e x_e &=& p_2 - \frac{p_1}{2} \\
-    w_e &=& \frac{11}{12}p_2 - p_1 + p_0.
+    \omega_e y_e' &=& \frac{p_0}{3} \\
+    \omega_e x_e' &=& p_2 - \frac{p_1}{2} \\
+    \omega_e'     &=& \frac{11}{12}p_2 - p_1 + p_0.
 \end{eqnarray}
 Inserting the values from above and doing the error propagation yields 
 \begin{eqnarray}
-    \omega_e y_e &=& 7.0\mathrm{e}-04 \\
-    \omega_e x_e &=&1.10 \\
-    \omega_e &=& 136 \\
+    \omega_e y_e' &=& 6.789\mathrm{e}-04 \cm \nonumber \\
+    \omega_e x_e' &=& 1.096\mathrm{e}+00 \cm \nonumber \\
+    \omega_e' &=& 1.359\mathrm{e}+02 \cm \nonumber \\
     \mathrm{cov}(p_i, p_j) &=& 
     \begin{pmatrix}
-        4.0\mathrm{e}-06 &4.0\mathrm{e}-04 &0.013 \\
-        4.0\mathrm{e}-04 &0.04 &1.3 \\
-        0.013 &1.3 & 40 \\
+        4.474\mathrm{e}-06 &4.317\mathrm{e}-04 &1.286\mathrm{e}-02 \\
+        4.317\mathrm{e}-04 &4.225\mathrm{e}-02 &1.278\mathrm{e}+00 \\
+        1.286\mathrm{e}-02 &1.278\mathrm{e}+00 &3.943\mathrm{e}+01 \\
     \end{pmatrix}
+\\ \Rightarrow \qquad
+    \omega_e y_e' &=& 0.0007 \pm 0.0021 \cm\\
+    \omega_e x_e' &=& 1.10 \pm 0.21 \cm\\
+    \omega_e' &=& 135.9 \pm 6.3 \cm
 \end{eqnarray} 
+
 Using these results, we can calculate the dissociation energies $D_e'$ and $D_0'$. For the 
 prior one we get with equation \eqref{eqn:D_e}:
-\begin{eqnarray}
+\begin{equation}
     D_e' = \frac{ \omega_e'^2}{ 4  \omega_e x_e'} =\left(4.2 \pm 0.4\right) \times 10^{3} \cm.
-\end{eqnarray}
+\end{equation}
 The latter ist calculated using \ref{eqn:D_0}. Before applying this formula, we need to find 
 the intersect with the $\Delta \sigma == 0$-axis, which corresponds just to 
 $\nu_\mathrm{diss}$. Since we don't observe all transitions, we solve $P_2(v_\mathrm{diss}') = 0$, and 
@@ -431,39 +390,123 @@ these polynomes. The dissociation quantum numbers and resulting energies are
     v_\mathrm{diss,\, lower}' &=& 61.5 \\
     D_{0,\, \mathrm{lower}}' &=& 4122 \cm
 \end{eqnarray}
+We can summariye these results using the maximum of the distances as the uncertainty of $D_0'$
+\begin{equation}
+    D_0' = \left(4.26 \pm 0.16\right) \times 10^{3} \cm
+\end{equation}
 
-
-
-
-
-
-For the linear fits, we compare $P_1$ to \eqref{eqn:G(v)_taylor} up to the first order 
-term, we get $w_e$ and $w_e x_e$ as 
+In order to calculate the excitation energy $\sigma_{00}$, we take an arbitrary point of our 
+progression and extrapolate the difference between this transition 
+$v''= 0 \rightarrow v'$ and the $v'' = 0 \rightarrow v' = 0$ transition. If we take the initial 
+point for identifying our progression, $\sigma_{0, 25} = 18319 \pm 10\nm$, in order 
+to minimize the error, we get.
 \begin{eqnarray}
-    w_e x_e &=& -\frac{p_1}{2} \\
-    w_e &=& p_0 - p_1.
+    \sigma_{00} &:=& G(v' = 0) = G(v' = 25) - (P_2(24.5) - P_2(0.5)) \nonumber \\
+                 &\, =& 18364 \pm 12 \cm
 \end{eqnarray}
-with the following numerical results for the first and second progression: 
+A comparison between the uncertainties of $\sigma_{0, 25}$ and $sigma_{00}$ shows, 
+that the uncertainty of the latter one stems mostly from the given uncertainty 
+of $\sigma_{0, 25}$, while the one of the fit is about a magnitude smaller. This, 
+as well as simply loking at the plot and recognizing the small deviations from 
+the fit indicates, that initial errors might have been assumed to high. 
+
+With the parameters claculated until now, we can deduce the energy $E_\mathrm{diss}$ 
+for which the iodine molecule dissociates in the experiment, 
+namely the dissociation energy of the $B$-state given in units of the 
+energy defined by the ground state. This can be calculated by
+\begin{equation}
+    E_\mathrm{diss} := \sigma_{00} + D_0'
+    \label{eq:E_diss}
+\end{equation}
+The numerical result for the zeroth progression is
+\begin{equation}
+    E_\mathrm{diss} = \left(22.62 \pm 0.16\right) \times 10^{3} \cm
+\end{equation}
+
+\newpage
+
+
+
+\subsubsection{Progression $v'' = 1, 2 \rightarrow v'$}
+The first an second progression are fitten on a linear function of $v'$, since 
+the lack of a higher numerb of points or higher accuray doesn't allow higher order fits.
+The function to be fitted is given by
+\begin{equation}
+    P_1(v') = p_1 v' + p_0.
+\end{equation}
+In oder to get the vibrational parameters $w_e$ and $w_e x_e$, we compare $P_1$ to 
+\eqref{eqn:G(v)_taylor} up to the first order and get the foolowing results: 
+\begin{eqnarray}
+    w_e x_e' &=& -\frac{p_1}{2} \\
+    w_e &=&' p_0 - p_1.
+\end{eqnarray}
+
+With these equations, we con now compute the same parameters as done before for the 
+zeroth progression:
 \begin{itemize}
     \item For $v'' = 1 \rightarrow v'$:
         \begin{eqnarray}
-            \omega_e y_e &=&1.11 \\
-            \omega_e x_e &=& 138 \\
+            p_2 &=& -2.225\mathrm{e}+00 \cm \nonumber \\
+            p_1 &=& 1.355\mathrm{e}+02 \cm \nonumber \\
             \mathrm{cov}(p_i, p_j) &=& 
             \begin{pmatrix}
-                0.016 &0.7 \\
-                0.7 & 31 \\
+                6.430\mathrm{e}-02 &-1.320\mathrm{e}+00 \\
+                -1.320\mathrm{e}+00 &2.785\mathrm{e}+01 \\
             \end{pmatrix}
+            \\ \Rightarrow \qquad
+            \omega_e x_e' &=& 1.113\mathrm{e}+00 \cm \nonumber \\
+            \omega_e' &=& 1.378\mathrm{e}+02 \cm \nonumber \\
+            \mathrm{cov}(p_i, p_j) &=& 
+            \begin{pmatrix}
+                1.607\mathrm{e}-02 &6.920\mathrm{e}-01 \\
+                6.920\mathrm{e}-01 &3.055\mathrm{e}+01 \\
+            \end{pmatrix}
+            \\ \Rightarrow \qquad
+            \omega_e x_e' &=& 1.11 \pm 0.13 \cm\\
+            \omega_e' &=& 137.8 \pm 5.5 \cm \\
+            D_e' &=& \left(4.2 \pm 0.4\right) \times 10^{3} \cm \\
+            v_\mathrm{diss}' &=& 64.5 \\
+            D_0' &=& 4257 \cm \\
+            v_\mathrm{diss,\, upper}' &=& 69.5 \\
+            D_{0,\, \mathrm{upper}}' &=& 4419 \cm\\
+            v_\mathrm{diss,\, lower}' &=& 61.5 \\
+            D_{0,\, \mathrm{lower}}' &=& 4122 \cm \\
+            \Rightarrow \qquad
+            D_0' &=& \left(4.26 \pm 0.16\right) \times 10^{3} \cm
         \end{eqnarray}
+        $v' = $ as reference point for excitation energy
+\end{itemize}
+\begin{itemize}
     \item For $v'' = 2 \rightarrow v'$:
         \begin{eqnarray}
-            \omega_e y_e &=&0.81 \\
-            \omega_e x_e &=&126.1 \\
+            p_2 &=& -1.613\mathrm{e}+00 \cm \nonumber \\
+            p_1 &=& 1.244\mathrm{e}+02 \cm \nonumber \\
             \mathrm{cov}(p_i, p_j) &=& 
             \begin{pmatrix}
-                0.012 &0.4 \\
-                0.4 & 12 \\
+                4.888\mathrm{e}-02 &-6.853\mathrm{e}-01 \\
+                -6.853\mathrm{e}-01 &1.009\mathrm{e}+01 \\
             \end{pmatrix}
+            \\ \Rightarrow \qquad
+            p_2 &=& -1.61 \pm 0.22 \cm\\
+            p_1 &=& 124.4 \pm 3.2 \cm \\
+            \omega_e x_e' &=& 8.067\mathrm{e}-01 \cm \nonumber \\
+            \omega_e' &=& 1.261\mathrm{e}+02 \cm \nonumber \\
+            \mathrm{cov}(p_i, p_j) &=& 
+            \begin{pmatrix}
+                1.222\mathrm{e}-02 &3.671\mathrm{e}-01 \\
+                3.671\mathrm{e}-01 &1.151\mathrm{e}+01 \\
+            \end{pmatrix}
+            \\ \Rightarrow \qquad
+            \omega_e x_e' &=& 0.81 \pm 0.11 \cm\\
+            \omega_e' &=& 126.1 \pm 3.4 \cm \\
+            D_e' &=&\left(4.9 \pm 0.4\right) \times 10^{3} \cm \\
+            v_\mathrm{diss}' &=& 76.5 \\
+            D_0' &=& 4799 \cm \\
+            v_\mathrm{diss,\, upper}' &=& 86.5 \\
+            D_{0,\, \mathrm{upper}}' &=& 5339 \cm\\
+            v_\mathrm{diss,\, lower}' &=& 69.5 \\
+            D_{0,\, \mathrm{lower}}' &=& 4383 \cm \\
+            D_0' &=& \left(4.8 \pm 0.5\right) \times 10^{3} \cm 
         \end{eqnarray}
 \end{itemize}
 
@@ -481,6 +524,18 @@ with the following numerical results for the first and second progression:
 
 
 
+We immediately see, that the parameter $\omega_e y_e'$ is practically zero within its 
+bound of uncertainty - the number of points is not enough to calculate this parameter 
+up to a desirable accuracy. 
 
+
+The literature values are given by:
+\begin{comment}
+\begin{eqnarray}
+    {\omega_e'}_\mathrm{\ lit} &=& 125.69 \cm \cite{nist} \\
+    {\omega_e x_e'}_\mathrm{\ lit} &=& 0.764 \cm \cite{nist} \\
+    {\omega_e y_e'}_\mathrm{\ lit} &=& -0.00567 \cm \cite{steinfeld1965spectroscopic}
+\end{eqnarray} 
+\end{comment}
 
 

@@ -48,13 +48,17 @@ def la_coeff(f1, coeff, cov, var_names, additional_digits=0):
         str_co = "    " + var_names[j]
         digit = dig_err(cov, j) + additional_digits
         var = round(co, digit)
+        """
         if digit < 1:
-            str_co  += " &=& %i \\\\"%int(var) 
-        elif digit < 4:
-            pre_str = " &=&%." + str(digit) + r"f \\"
+            str_co  += " &=& %i "%int(var) 
+        if digit < 4:
+            pre_str = " &=&%." + str(digit) + r"f "
             str_co  += pre_str%(var) 
         else:
-            str_co += " &=& %.1e \\\\"%var
+            str_co += " &=& %.3e "%var
+        """
+        str_co += " &=& %.3e "%co
+        str_co += r"\cm \nonumber \\"
         str_co = em(str_co)
         f1.write(str_co +"\n")
 
@@ -65,6 +69,7 @@ def la_coeff(f1, coeff, cov, var_names, additional_digits=0):
         for entry in row:
             digit = dig_val(entry) + additional_digits
             var = round(entry, digit)
+            """
             if digit < 1:
                 str_row += " %i &"%int(var)
             elif digit < 4:
@@ -72,11 +77,23 @@ def la_coeff(f1, coeff, cov, var_names, additional_digits=0):
                 str_row += pre_str%var
             else:
                 str_row += "%.1e &"%var
+            """
+            str_row += "%.3e &"%entry
         str_row = str_row[:-1] + r"\\"
         str_row = em(str_row)
         f1.write(str_row + "\n")
     f1.write(r"    \end{pmatrix}" + "\n")
+    f1.write(r"\\ \Rightarrow \qquad" + "\n")
+    for j, co in enumerate(coeff):
+        str_co = "    " + var_names[j]
+        var = uc.ufloat(coeff[j], np.sqrt(cov[j,j]))
+        str_co += " &=& {:L} \\cm\\\\".format(var)
+        str_co = em(str_co)
+        if j == len(coeff) -1:
+            str_co = str_co[:-2]
+        f1.write(str_co +"\n")
     f1.write(r"\end{eqnarray}" + "\n\n")
+
     return 0
 
 def chi2_theta(x, y, sigma, coeff, dx, dy, deg=1):
@@ -158,8 +175,10 @@ eigvec = {}
 vib_co = {}
 D_e1 = {}
 v_diss, v_diss_upper, v_diss_lower = {}, {}, {}
-D_0_n, D_0_upper, D_0_lower = {}, {}, {}
-
+D_0_n, D_0_upper, D_0_lower, D_0 = {}, {}, {}, {}
+sigma00, E_diss = {}, {}
+n = np.int_([22, 3, 3])
+n_real = np.int_([47, 27, 20]) - n
 
 # Calculating w_e' = w1 and w_e x_e' = wx1 for first electronic level with Birge-Sponer plots
 # dG(v' + 1/2) = w_e' - w_e x_e' * (2v + 2) = a + b v (latter one is solution of polinomial fit)
@@ -192,7 +211,8 @@ for i in range(3):   # Polynomial fit for dG(v' + 1/2)
     var_names = ["p_2", "p_1", "p_0"]
     la_coeff(f1, coeff[i], covA[i], var_names, additional_digits=2)
     val = vib_co[i]
-    var_names = [r"\omega_e y_e", r"\omega_e x_e", r"\omega_e"]
+    if deg[i] == 2: var_names = [r"\omega_e y_e'", r"\omega_e x_e'", r"\omega_e'"]
+    if deg[i] == 1: var_names = [r"\omega_e x_e'", r"\omega_e'"]
     cov = np.array(uc.covariance_matrix(val))
     la_coeff(f2, unv(val), cov, var_names)
 # Calculating dissociation energies D_e' and D_0' of Pi-states
@@ -202,6 +222,7 @@ for i in range(3):   # Polynomial fit for dG(v' + 1/2)
     v_grid_n = np.arange(0, 90) + 0.5           # v grid for finding zeros
     vals = unv(np.polyval(c, v_grid_n))
     errs = usd(np.polyval(c, v_grid_n))
+    both = np.polyval(c, v_grid_n)
     g0 = np.where(vals > 0)     # dissipation energy D_0, nominal value
     g0_upper = np.where(vals + errs > 0)
     g0_lower = np.where(vals - errs > 0)
@@ -213,6 +234,11 @@ for i in range(3):   # Polynomial fit for dG(v' + 1/2)
     D_0_n[i] = np.sum(vals[g0])     # dissipation energy D_0, nominal value
     D_0_upper[i] = np.sum((vals + errs)[g0_upper])     # dissipation energy D_0, nominal value
     D_0_lower[i] = np.sum((vals - errs)[g0_lower])     # dissipation energy D_0, nominal value
+    D_0[i] = uc.ufloat(D_0_n[i], max(abs(D_0_n[i] - D_0_upper[i]), abs(D_0_n[i] - D_0_lower[i])))
+# Excitation energy
+    sigma00[i] = cmm[i][n[i]] - (both[n[i]-1] - both[0])
+# Dissociation energy in the experiment
+    E_diss[i] = sigma00[i] + D_0[i]
 # Birge Sponer plots
     fig1 = plt.figure(figsize = figsize)
     #fig1.suptitle('Iodine 2 molecule - Birge-Sponer plots')
@@ -326,17 +352,17 @@ if print_latex:
     f3.write("\nresults from Birge-Sponer method: \n\n")
     for i in range(3):
         f3.write("progression: v'' = %i -> x' \n" %i)
-        f3.write("\omega_e''  = {:L} \n".format(vib_co[i][-1]) )
-        f3.write("\omega_e x_e''  = {:L} \n".format(vib_co[i][-2]) )
-        if len(vib_co[i]) == 3:
-            f3.write("\omega_e y_e''  = {:L} \n".format(vib_co[i][0]) )
+        f3.write("D_e' = \\frac{ \omega_e'^2}{ 4  \omega_e x_e'} =" +  "{:L} \cm\n".format(D_e1[i]))
         f3.write("v_\mathrm{diss}' &=& %.1f \\\\\n"%v_diss[i])
         f3.write("D_0' &=& %i \cm \\\\\n"%round(D_0_n[i]))
         f3.write("v_\mathrm{diss,\, upper}' &=& %.1f \\\\\n"%v_diss_upper[i])
         f3.write("D_{0,\, \mathrm{upper}}' &=& %i \cm\\\\\n"%round(D_0_upper[i]))
         f3.write("v_\mathrm{diss,\, lower}' &=& %.1f \\\\\n"%v_diss_lower[i])
         f3.write("D_{0,\, \mathrm{lower}}' &=& %i \cm\n"%round(D_0_lower[i]))
-        f3.write("D_e' = \\frac{ \omega_e'^2}{ 4  \omega_e x_e'} =" +  "{:L} \cm\n".format(D_e1[i]))
+        f3.write("D_0' = {:L} \cm\n".format(D_0[i]))
+        f3.write("G'(v' = %i) &=& "%n_real[i] + "{:L} \cm\n".format(cmm[i][n[i]]))
+        f3.write(r"\sigma_{00} &=& " + "{:L} \cm\n".format(sigma00[i]))
+        f3.write(r"E_\mathrm{diss} &=& " + "{:L} \cm\n".format(E_diss[i]))
         #f3.write("goodness-of-fit: $\chi^2 / n_d = %f$" %gof[i])
         #f3.write("$n_d = %i = #points - (deg + 1)$" % n_d[i])
         f3.write("\n")

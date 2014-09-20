@@ -13,7 +13,7 @@ def usd(uarray):        # returning the standard deviations of a uarray
 # general parameters
 plot_show = 0
 save_fig = 1
-print_tab =0 
+print_tab =1
 print_tab_diff = 0
 plt.close('all')
 colors = ['b', 'g', 'r', 'pink']
@@ -151,37 +151,44 @@ nums[2] = np.arange(19,  8, -1) + 0.5
 
 
 # give out latex tables:
-str_l = r"\cline{1-7}\cline{9-11}\cline{13-15}"
-str_l2 = r"\cline{1-7}\cline{9-11}"
-str_l3 = r"\cline{1-7}"
-str_l4 = r"\cline{1-3}"
+str_l = r"\cline{1-7}\cline{9-11}\cline{13-15}" + "\n"
+str_l2 = r"\cline{1-7}\cline{9-11}" + "\n"
+str_l3 = r"\cline{1-7}" + "\n"
+str_l4 = r"\cline{1-3}" + "\n"
+coll_length = 16
 if print_tab:
-    print("\\begin{tabular}{\n" + "| l| l |l ||c|\n"*3 + "l| l |l |}")
-    print(str_l)
+    f1 = open("table1.txt", "w+")
+    f1.write("\\begin{tabular}{\n" + "| l| l |l ||c|\n"*3 + "l| l |l |}\n")
+    f1.write(str_l)
     for j in [0, 0, 1, 2]:
         string = ("$v'$ & $\\frac{\sigma_{%i,v'}}{\cm}$ & " + \
                 "$\\frac{\Delta \sigma_{%i,v'}}{\cm}$")%(j, j) + \
-                (["&&"]*2 +  [r"\\"])[j]
-        print(string)
-    print("&"*14 + r" \\" + str_l)
-    for i in range(11):
-        tab = ("%i & %i & %i & &"*3 + "%i & %i & %i \\\\")\
+                (["&&"]*2 +  [r"\\"])[j] + "\n"
+        f1.write(string)
+    f1.write("&"*14 + r" \\" + str_l)
+    for i in range(12):
+        tab = ("%i & %i & %i & &"*3 + "%i & %i & %i \\\\ \n")\
                 %(n[0][i], unv(cmm[0])[i], usd(cmm[0])[i], \
-                n[0][i+15], unv(cmm[0])[i+15], usd(cmm[0])[i+15], \
+                n[0][i+coll_length], unv(cmm[0])[i+coll_length], usd(cmm[0])[i+coll_length], \
                 n[1][i], unv(cmm[1])[i], usd(cmm[1])[i], \
                 n[2][i], unv(cmm[2])[i], usd(cmm[2])[i])
-        print(tab, str_l)
-    for i in [11]:
-        tab = ("%i & %i & %i & &"*2 + "%i & %i & %i \\\\")\
+        f1.write(tab + str_l)
+    for i in [12]:
+        tab = ("%i & %i & %i & &"*2 + "%i & %i & %i \\\\\n")\
                 %(n[0][i], unv(cmm[0])[i], usd(cmm[0])[i], \
-                n[0][i+15], unv(cmm[0])[i+15], usd(cmm[0])[i+15], \
+                n[0][i+coll_length], unv(cmm[0])[i+coll_length], usd(cmm[0])[i+coll_length], \
                 n[1][i], unv(cmm[1])[i], usd(cmm[1])[i])
-        print(tab, str_l2)
-    for i in range(12, 15):
-        tab = ("%i & %i & %i & &" + "%i & %i & %i \\\\")\
+        f1.write(tab + str_l2)
+    for i in range(13, coll_length -1):
+        tab = ("%i & %i & %i & &" + "%i & %i & %i \\\\\n")\
                 %(n[0][i], unv(cmm[0])[i], usd(cmm[0])[i], \
-                n[0][i+15], unv(cmm[0])[i+15], usd(cmm[0])[i+15])
-        print(tab, str_l3)
+                n[0][i+coll_length], unv(cmm[0])[i+coll_length], usd(cmm[0])[i+coll_length])
+        f1.write(tab + str_l3)
+    for i in [15]:
+        tab = ("%i & %i & %i\n \\\\\n")\
+                %(n[0][i], unv(cmm[0])[i], usd(cmm[0])[i])
+        f1.write(tab + str_l4)
+    f1.write(r"\end{tabular}" + "\n")
 # give out latex tables of diferrences
 if print_tab_diff:
     print("| l| l |l ||c|\n"*3 + "l| l |l |}")
