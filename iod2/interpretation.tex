@@ -138,7 +138,9 @@ can be observed in figure \ref{"fig:spectrum_halogen_red"}.
 
 \FloatBarrier
 
-\subsection{Identifying progressions}
+\subsection{Iodine absorption spectrum}
+
+\subsubsection{Identifying progressions}
 The process of identifying progressions turned out to be quiet difficult – reflecting the 
 rather unsteady course of history. 
 The absorption spectrum and the found progressions are shown in figure \ref{fig:absorp}.
@@ -218,44 +220,11 @@ $ \Delta (\Delta G) $ are the corresponding uncertainties.
     \label{fig:absorp_detail}
 \end{figure}
 
-With these number identified, we can calculate the vibrational coefficients for 
-the ground state by applying equation \eqref{eqn:dG1_2} for $v'' \in \{0, 1, 2\}$:
-\begin{eqnarray}
-    \Delta G''\left ( \frac{1}{2} \right ) &=& G''(1) - G''(0) \nonumber\\
-        &=& (G'(n) - G''(0)) - (G'(n) - G''(1)) \nonumber \\
-        &=& \omega_e'' - 2 \omega_e x_e'' \\
-    \Delta G''\left ( \frac{3}{2} \right ) &=& G''(2) - G''(1) \nonumber\\
-        &=& (G'(n) - G''(1)) - (G'(n) - G''(2)) \nonumber \\
-        &=& \omega_e'' - 4 \omega_e x_e'' \\
-  \Rightarrow \qquad  \omega_e x_e'' &=& \frac{1}{2} \left ( \Delta G''\left ( \frac{1}{2} \right ) 
-        \Delta G''\left ( \frac{3}{2} \right ) \right )
-\end{eqnarray}
-As seen in table \ref{tab:dG}, we get corresponding pairs for 
-$\Delta G''\left ( \frac{1}{2} \right )$ at $v' + 1/2 \in \{18.5, 19.5, \ldots, 26.5\}$ 
-and for 
-$\Delta G''\left ( \frac{3}{2} \right )$ at $v' + 1/2 \in \{15.5, 16.5, 17.5, 18.5, 19.5\}$.
-Taking weighted averages $\overline{\Delta G''\left ( \frac{1}{2} \right )}$ and 
-$\overline{\Delta G''\left ( \frac{3}{2} \right )}$, 
-where weights are constituited by the reciprocal variances, and subtracting yields
-\begin{eqnarray}
-    \omega_e'' &=& 213.8 \pm 4.6 \cm \\
-    \omega_e x_e'' &=& 0.5 \pm 1.4 \cm.
-\end{eqnarray}
-For small vibrations, we make the approximation of a harmonic oscillator and 
-can now calculate classical frequency $f$ and the spring constant $k$ with 
-\eqref{eqn:freq}:
-\begin{eqnarray}
-    f_e'' &=& \left(1.282 \pm 0.028\right) \times 10^{12} \mathrm{Hz} \\
-    k_e'' &=& 6.84 \pm 0.30 \mathrm{\frac{kg}{s^2}}
-\end{eqnarray}
-
-
-
 
 
 \FloatBarrier
 
-\subsection{Birge-Sponer plots}
+\subsubsection{Birge-Sponer plots}
 The energy differences $\Delta G_{v''}(v' + 1/2)$ of the identified progressions can 
 be plotted over the corresponding wavenumbers $v' + 1/2$. The resulting so-called 
 Birge-Sponer plots, figures 
@@ -398,9 +367,6 @@ The numerical result for the zeroth progression is
     E_\mathrm{diss} = \left(22.62 \pm 0.16\right) \times 10^{3} \cm
 \end{equation}
 
-\newpage
-
-
 
 \subsubsection{Progressions $v'' = (1, 2) \rightarrow v'$}
 The first an second progression are fitted on a linear function of $v'$, since 
@@ -455,7 +421,7 @@ zeroth progression:
         \begin{eqnarray}
             G'(v' = 19) &=& 17589.9 \pm 9.3 \cm \\
             \sigma_{00} &=& 17605.5 \pm 9.5 \cm \\
-            E_\mathrm{diss} &=& \left(2.173 \pm 0.030\right) \times 10^{4} \cm
+            E_\mathrm{diss} &=& \left(21.73 \pm 0.30\right) \times 10^{3} \cm
         \end{eqnarray}
     \end{itemize}
     \begin{itemize}
@@ -494,10 +460,75 @@ zeroth progression:
         \begin{eqnarray}
             G'(v' = 12) &=& 16675.1 \pm 8.3 \cm \\
             \sigma_{00} &=& 16686.4 \pm 8.5 \cm \\
-            E_\mathrm{diss} &=& \left(2.15 \pm 0.05\right) \times 10^{4} \cm
+            E_\mathrm{diss} &=& \left(21.5 \pm 0.5\right) \times 10^{3} \cm
         \end{eqnarray}
 \end{itemize}
 
+\subsubsection{Parameters for the ground state}
+With the values for $\Delta G(v' + 1/2)$ calculated in \ref{tab:dG}, we can calculate the vibrational coefficients for 
+the ground state by applying equation \eqref{eqn:dG1_2} for $v'' \in \{0, 1, 2\}$:
+\begin{eqnarray}
+    \Delta G''\left ( \frac{1}{2} \right ) &=& G''(1) - G''(0) \nonumber\\
+        &=& (G'(n) - G''(0)) - (G'(n) - G''(1)) \nonumber \\
+        &=& \omega_e'' - 2 \omega_e x_e'' \\
+    \Delta G''\left ( \frac{3}{2} \right ) &=& G''(2) - G''(1) \nonumber\\
+        &=& (G'(n) - G''(1)) - (G'(n) - G''(2)) \nonumber \\
+        &=& \omega_e'' - 4 \omega_e x_e'' \\
+  \Rightarrow \qquad  \omega_e x_e'' &=& \frac{1}{2} \left ( \Delta G''\left ( \frac{1}{2} \right ) 
+        \Delta G''\left ( \frac{3}{2} \right ) \right )
+\end{eqnarray}
+As seen in table \ref{tab:dG}, we get corresponding pairs for 
+$\Delta G''\left ( \frac{1}{2} \right )$ at $v' + 1/2 \in \{18.5, 19.5, \ldots, 26.5\}$ 
+and for 
+$\Delta G''\left ( \frac{3}{2} \right )$ at $v' + 1/2 \in \{15.5, 16.5, 17.5, 18.5, 19.5\}$.
+Taking weighted averages $\overline{\Delta G''\left ( \frac{1}{2} \right )}$ and 
+$\overline{\Delta G''\left ( \frac{3}{2} \right )}$, 
+where weights are constituited by the reciprocal variances, and subtracting yields
+\begin{eqnarray}
+    \omega_e'' &=& 213.8 \pm 4.6 \cm \\
+    \omega_e x_e'' &=& 0.5 \pm 1.4 \cm.
+\end{eqnarray}
+For small vibrations, we make the approximation of a harmonic oscillator and 
+can now calculate classical frequency $f$ and the spring constant $k$ with 
+\eqref{eqn:freq}:
+\begin{eqnarray}
+    f_e'' &=& \left(1.282 \pm 0.028\right) \times 10^{12} \mathrm{Hz} \\
+    k_e'' &=& 6.84 \pm 0.30 \mathrm{\frac{kg}{s^2}}
+\end{eqnarray}
+
+Approximating the ground state for low vibrational modes with the morse function, 
+we can calculate the dissociation energy of the ground state with the values for 
+$\omega_e''$ and $\omega_e x_e''$ with \eqref{eqn:D_e}:
+\begin{equation}
+    D_e'' =\left(25 \pm 74\right) \times 10^{3} \cm
+\end{equation}
+We can compare this value with a second one, which we get from approximating the 
+dissociation energy as the difference between $E_\mathrm{diss}$ and the difference in 
+energy of the two resulting dissociated atoms. If dissociation takes place directly 
+from the ground level, the resulting atoms are both in their ground states $^2 P_{3/2}$, 
+while for dissociation from the excited state, one of the atoms is found in the first 
+excited state $2^ P_{1/2}$. The energy difference between the two states is given by 
+$\Delta E = 7603.15 \cm$~\cite{nist}. We thus get the following results for the energy 
+levels calculated with each of the three progressions:
+\begin{eqnarray}
+    D_{e, 0}'' &=&\left(15.02 \pm 0.16\right) \times 10^{3} \cm \\
+    D_{e, 1}'' &=&\left(14.13 \pm 0.30\right) \times 10^{3} \cm \\
+    D_{e, 2}'' &=&\left(13.9 \pm 0.5\right) \times 10^{3} \cm
+\end{eqnarray}
+In the literature, this value is given with $12452.5 \pm 1.5 \cm$ \cite{leroy1970spectroscopic}. 
+The fact, that this value 
+does not coicinde with our measured value can be due to several factors. 
+It is not within the scope of this report to assess the validity or precision of 
+the assumptions made theoretically.
+
+\subsubsection{Morse potential}
+\begin{figure}
+    \centering
+    \includegraphics[width=\pltw]{analysis/figures/morse_plot_0.pdf}
+    \caption{Morse plot for Blablabla.  
+    }
+    \label{fig:morse}
+\end{figure}
 
 
 
@@ -511,6 +542,8 @@ zeroth progression:
 
 
 
+
+\begin{comment}
 
 We immediately see, that the parameter $\omega_e y_e'$ is practically zero within its 
 bound of uncertainty - the number of points is not enough to calculate this parameter 
@@ -518,7 +551,6 @@ up to a desirable accuracy.
 
 
 The literature values are given by:
-\begin{comment}
 \begin{eqnarray}
     {\omega_e'}_\mathrm{\ lit} &=& 125.69 \cm \cite{nist} \\
     {\omega_e x_e'}_\mathrm{\ lit} &=& 0.764 \cm \cite{nist} \\

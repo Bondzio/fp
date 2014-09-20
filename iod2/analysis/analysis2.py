@@ -151,8 +151,8 @@ def str_label_fit(i):
 
 # general parameters
 plot_show = 0
-save_fig = 0
-print_latex = 1
+save_fig = 1
+print_latex = 0
 deg = [2, 1, 1]                                # degree of polynomial fit
 plt.close('all')
 colors = ['b', 'g', 'r', 'pink']
@@ -176,7 +176,8 @@ vib_co = {}
 D_e1 = {}
 v_diss, v_diss_upper, v_diss_lower = {}, {}, {}
 D_0_n, D_0_upper, D_0_lower, D_0 = {}, {}, {}, {}
-sigma00, E_diss = {}, {}
+sigma00, E_diss, D_e01 = {}, {}, {}
+dE = 7603.15
 n_real = np.int_([25, 19, 12])
 n = np.int_([47, 27, 20]) - n_real
 
@@ -239,6 +240,8 @@ for i in range(3):   # Polynomial fit for dG(v' + 1/2)
     sigma00[i] = cmm[i][n[i]] - (both[n[i]-1] - both[0])
 # Dissociation energy in the experiment
     E_diss[i] = sigma00[i] + D_0[i]
+# Dissociation energy of the ground level
+    D_e01[i] = E_diss[i] - dE
 # Birge Sponer plots
     fig1 = plt.figure(figsize = figsize)
     #fig1.suptitle('Iodine 2 molecule - Birge-Sponer plots')
@@ -295,11 +298,41 @@ k0 = (freq0 * 2 * co.pi) ** 2 * mu
 # Calculating dissociation energies D_e'' and D_0'' of Pi-states
 D_e0 = w0 ** 2 / (4 * wx0)
 
-
+# Morse potential
+r_e = {}
+a = {}
+hbar_cgs = co.hbar * 10**7
+c_cgs = co.c * 10**2
+mu_cgs = 126.09447/2  * (co.u * 10**3)
+B_e = 0.02903
+for i in range(3):
+    we = vib_co[i][-1]
+    a[i]  = we * un.sqrt((mu_cgs * c_cgs * co.pi)/(hbar_cgs* D_e1[i])) 
+    r_e[i] = np.sqrt((hbar_cgs)/(4 * co.pi * mu_cgs * c_cgs * B_e)) 
+    V  = lambda r: D_e1[i].n * (1 - np.exp(-a[i].n * (r - r_e[i]))) ** 2 
+    r  = np.linspace(0,10e-8,100)
+    fig2 = plt.figure(figsize = figsize)
+    #fig2.suptitle('Iodine 2 molecule - Morse potential')
+    ax = plt.subplot(111)
+    title_dl = '$v\'\' = %i \\rightarrow v\'$' %i
+    #ax.set_title(title_dl)
+    morse_label = "$V(r) = D_e'(1 - \mathrm{exp}(-a'(r - r_e')))$"
+    ax.plot(r,V(r), "g-", label=morse_label)
+    ax.set_xlabel("radius $r$")
+    ax.set_ylabel("Potential $V(r)$ in $\mathrm{cm^{-1}}$")
+    plt.grid(True)
+    ax.set_ylim(0, 1e4)
+    leg = ax.legend(loc='upper right', fancybox=True)
+    leg.get_frame().set_visible(False)
+    if plot_show:
+        fig2.show()
+    if save_fig: 
+        fig_name = "morse_plot_%i.pdf"%i
+        fig2.savefig(fig_dir + fig_name)
 
 # chi2 plots
-fig2 = plt.figure(figsize = [21.0, 7.0])
-fig2.suptitle('Iodine 2 molecule - $\chi^2$ plots, uncorr. poly-fit parameters')
+fig3 = plt.figure(figsize = [21.0, 7.0])
+fig3.suptitle('Iodine 2 molecule - $\chi^2$ plots, uncorr. poly-fit parameters')
 for i in range(1):
 # diagonalize covariance matrix
     eigval, eigvec[i] = np.linalg.eig(covA[i])
@@ -349,6 +382,7 @@ if print_latex:
     f3.write("\omega_e x_e'' &=& {:L} \cm\n".format(wx0) )
     f3.write("f_e'' &=& {:L}".format(freq0)  + " \mathrm{Hz}\\\\\n")
     f3.write("k_e'' &=& {:L}".format(k0) + " \mathrm{\\frac{kg}{s^2]}\n")
+    f3.write("D_e'' =" +  "{:L} \cm\n".format(D_e0))
     f3.write("\nresults from Birge-Sponer method: \n\n")
     for i in range(3):
         f3.write("progression: v'' = %i -> x' \n" %i)
@@ -363,8 +397,8 @@ if print_latex:
         f3.write("G'(v' = %i) &=& "%n_real[i] + "{:L} \cm\n".format(cmm[i][n[i]]))
         f3.write(r"\sigma_{00} &=& " + "{:L} \cm\n".format(sigma00[i]))
         f3.write(r"E_\mathrm{diss} &=& " + "{:L} \cm\n".format(E_diss[i]))
+        f3.write("D_{e, %i}'' &=&"%i +  "{:L} \cm\n".format(D_e01[i]))
         #f3.write("goodness-of-fit: $\chi^2 / n_d = %f$" %gof[i])
         #f3.write("$n_d = %i = #points - (deg + 1)$" % n_d[i])
         f3.write("\n")
     f3.close()
-    #fig2.show()
