@@ -177,8 +177,8 @@ D_e1 = {}
 v_diss, v_diss_upper, v_diss_lower = {}, {}, {}
 D_0_n, D_0_upper, D_0_lower, D_0 = {}, {}, {}, {}
 sigma00, E_diss = {}, {}
-n = np.int_([22, 3, 3])
-n_real = np.int_([47, 27, 20]) - n
+n_real = np.int_([25, 19, 12])
+n = np.int_([47, 27, 20]) - n_real
 
 # Calculating w_e' = w1 and w_e x_e' = wx1 for first electronic level with Birge-Sponer plots
 # dG(v' + 1/2) = w_e' - w_e x_e' * (2v + 2) = a + b v (latter one is solution of polinomial fit)

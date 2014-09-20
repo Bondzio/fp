@@ -12,9 +12,9 @@ def usd(uarray):        # returning the standard deviations of a uarray
 #############################################################################################
 # general parameters
 plot_show = 0
-save_fig = 1
-print_tab =1
-print_tab_diff = 0
+save_fig = 0
+print_tab =0        # save dcm to table1.txt
+print_tab_diff = 0  # save dcm to table2.txt
 plt.close('all')
 colors = ['b', 'g', 'r', 'pink']
 labels = ['$v\'\' = %i \\rightarrow v\'$' %i for i in range(3)]
@@ -167,60 +167,61 @@ if print_tab:
         f1.write(string)
     f1.write("&"*14 + r" \\" + str_l)
     for i in range(12):
-        tab = ("%i & %i & %i & &"*3 + "%i & %i & %i \\\\ \n")\
+        tab = ("%i & %i & %i & &"*3 + "%i & %i & %i \\\\")\
                 %(n[0][i], unv(cmm[0])[i], usd(cmm[0])[i], \
                 n[0][i+coll_length], unv(cmm[0])[i+coll_length], usd(cmm[0])[i+coll_length], \
                 n[1][i], unv(cmm[1])[i], usd(cmm[1])[i], \
                 n[2][i], unv(cmm[2])[i], usd(cmm[2])[i])
         f1.write(tab + str_l)
     for i in [12]:
-        tab = ("%i & %i & %i & &"*2 + "%i & %i & %i \\\\\n")\
+        tab = ("%i & %i & %i & &"*2 + "%i & %i & %i \\\\")\
                 %(n[0][i], unv(cmm[0])[i], usd(cmm[0])[i], \
                 n[0][i+coll_length], unv(cmm[0])[i+coll_length], usd(cmm[0])[i+coll_length], \
                 n[1][i], unv(cmm[1])[i], usd(cmm[1])[i])
         f1.write(tab + str_l2)
     for i in range(13, coll_length -1):
-        tab = ("%i & %i & %i & &" + "%i & %i & %i \\\\\n")\
+        tab = ("%i & %i & %i & &" + "%i & %i & %i \\\\")\
                 %(n[0][i], unv(cmm[0])[i], usd(cmm[0])[i], \
                 n[0][i+coll_length], unv(cmm[0])[i+coll_length], usd(cmm[0])[i+coll_length])
         f1.write(tab + str_l3)
     for i in [15]:
-        tab = ("%i & %i & %i\n \\\\\n")\
+        tab = ("%i & %i & %i \\\\")\
                 %(n[0][i], unv(cmm[0])[i], usd(cmm[0])[i])
         f1.write(tab + str_l4)
     f1.write(r"\end{tabular}" + "\n")
+    f1.close()
 # give out latex tables of diferrences
 if print_tab_diff:
-    print("| l| l |l ||c|\n"*3 + "l| l |l |}")
-    print(str_l)
+    f2 = open("table2.txt", "w+")
+    f2.write("\\begin{tabular}{\n" + "| l| l |l ||c|\n"*3 + "l| l |l |}\n")
+    f2.write(str_l)
     for j in [0, 0, 1, 2]:
         string =("$v' + \\frac{1}{2}$ & " + \
                 "$\\frac{\Delta G_{%i} }{ \\cm} $ & " + \
-                "$\\frac{\Delta (\Delta G) }{ \\cm} $")%(j) + (["&&"]*2 +  [r"\\"])[j]
-        print(string)
-    print("&"*14 + r" \\" + str_l)
+                "$\\frac{\Delta (\Delta G) }{ \\cm} $")%(j) + \
+                (["&&"]*2 +  [r"\\"])[j] + "\n"
+        f2.write(string)
+    f2.write("&"*14 + r" \\" + "\n" + str_l)
     for i in range(11):
         tab = ("%.1f & %i & %i & & "*3 + "%.1f & %i & %i \\\\")\
                 %(nums[0][i], unv(dcm[0])[i], usd(dcm[0])[i], \
                 nums[0][i+15], unv(dcm[0])[i+15], usd(dcm[0])[i+15], \
                 nums[1][i], unv(dcm[1])[i], usd(dcm[1])[i], \
                 nums[2][i], unv(dcm[2])[i], usd(dcm[2])[i])
-        print(tab, str_l)
+        f2.write(tab + str_l)
     for i in [11]:
         tab = ("%.1f & %i & %i & & "*2 + "%.1f & %i & %i \\\\")\
                 %(n[0][i], unv(dcm[0])[i], usd(dcm[0])[i], \
                 nums[0][i+15], unv(dcm[0])[i+15], usd(dcm[0])[i+15], \
                 nums[1][i], unv(dcm[1])[i], usd(dcm[1])[i])
-        print(tab, str_l2)
-    for i in range(12, 14):
+        f2.write(tab + str_l2)
+    for i in range(12, 15):
         tab = ("%.1f & %i & %i & & " + "%.1f & %i & %i \\\\")\
                 %(nums[0][i], unv(dcm[0])[i], usd(dcm[0])[i], \
                 nums[0][i+15], unv(dcm[0])[i+15], usd(dcm[0])[i+15])
-        print(tab, str_l3)
-    for i in [14]:
-        tab = ("%.1f & %i & %i \\\\")\
-                %(nums[0][i], unv(dcm[0])[i], usd(dcm[0])[i])
-        print(tab, str_l4)
+        f2.write(tab + str_l3)
+    f2.write(r"\end{tabular}" + "\n")
+    f2.close()
 
 # save all arrays
 array_dir = "arrays/"
