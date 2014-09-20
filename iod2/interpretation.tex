@@ -138,7 +138,9 @@ can be observed in figure \ref{"fig:spectrum_halogen_red"}.
 
 \FloatBarrier
 
-\subsection{Identifying progressions}
+\subsection{Iodine absorption spectrum}
+
+\subsubsection{Identifying progressions}
 The process of identifying progressions turned out to be quiet difficult – reflecting the 
 rather unsteady course of history. 
 The absorption spectrum and the found progressions are shown in figure \ref{fig:absorp}.
@@ -174,32 +176,7 @@ $\Delta \sigma_{0, v'}$. }
 \begin{table}[h]
 \centering
 \small
-\begin{tabular}{|l |l |l ||c|
-                 l |l |l ||c|
-                 l |l |l ||c|
-                 l |l |l |}
-\cline{1-7}\cline{9-11}\cline{13-15}
-$v' + \frac{1}{2}$ & $\frac{\Delta G_{0} }{ \cm} $ & $\frac{\Delta (\Delta G) }{ \cm} $&&
-$v' + \frac{1}{2}$ & $\frac{\Delta G_{0} }{ \cm} $ & $\frac{\Delta (\Delta G) }{ \cm} $&&
-$v' + \frac{1}{2}$ & $\frac{\Delta G_{1} }{ \cm} $ & $\frac{\Delta (\Delta G) }{ \cm} $&&
-$v' + \frac{1}{2}$ & $\frac{\Delta G_{2} }{ \cm} $ & $\frac{\Delta (\Delta G) }{ \cm} $\\
-&&&&&&&&&&&&&& \\\cline{1-7}\cline{9-11}\cline{13-15}
-46.5 & 38 & 16 & & 31.5 & 68 & 14 & & 26.5 & 77 & 14 & & 19.5 & 92 & 12 \\ \cline{1-7}\cline{9-11}\cline{13-15}
-45.5 & 35 & 16 & & 30.5 & 68 & 14 & & 25.5 & 79 & 13 & & 18.5 & 93 & 12 \\ \cline{1-7}\cline{9-11}\cline{13-15}
-44.5 & 38 & 16 & & 29.5 & 70 & 14 & & 24.5 & 84 & 13 & & 17.5 & 96 & 12 \\ \cline{1-7}\cline{9-11}\cline{13-15}
-43.5 & 42 & 16 & & 28.5 & 76 & 14 & & 23.5 & 82 & 13 & & 16.5 & 96 & 12 \\ \cline{1-7}\cline{9-11}\cline{13-15}
-42.5 & 49 & 15 & & 27.5 & 75 & 14 & & 22.5 & 81 & 13 & & 15.5 & 99 & 12 \\ \cline{1-7}\cline{9-11}\cline{13-15}
-41.5 & 44 & 15 & & 26.5 & 74 & 14 & & 21.5 & 91 & 13 & & 14.5 & 101 & 12 \\ \cline{1-7}\cline{9-11}\cline{13-15}
-40.5 & 48 & 15 & & 25.5 & 79 & 14 & & 20.5 & 87 & 13 & & 13.5 & 106 & 12 \\ \cline{1-7}\cline{9-11}\cline{13-15}
-39.5 & 48 & 15 & & 24.5 & 81 & 14 & & 19.5 & 88 & 13 & & 12.5 & 107 & 11 \\ \cline{1-7}\cline{9-11}\cline{13-15}
-38.5 & 55 & 15 & & 23.5 & 83 & 14 & & 18.5 & 94 & 13 & & 11.5 & 104 & 11 \\ \cline{1-7}\cline{9-11}\cline{13-15}
-37.5 & 51 & 15 & & 22.5 & 87 & 13 & & 17.5 & 95 & 12 & & 10.5 & 106 & 11 \\ \cline{1-7}\cline{9-11}\cline{13-15}
-36.5 & 57 & 15 & & 21.5 & 86 & 13 & & 16.5 & 98 & 12 & & 9.5 & 107 & 11 \\ \cline{1-7}\cline{9-11}\cline{13-15}
-36.0 & 57 & 15 & & 20.5 & 88 & 13 & & 15.5 & 104 & 12 \\ \cline{1-7}\cline{9-11}
-34.5 & 64 & 15 & & 19.5 & 89 & 13 \\ \cline{1-7}
-33.5 & 59 & 15 & & 18.5 & 96 & 13 \\ \cline{1-7}
-32.5 & 66 & 15 \\ \cline{1-3}
-\end{tabular}
+\input{"analysis/table2.txt"}
 \caption{Differences in energy 
 $\Delta G_{v''} = \Delta G_{v''} (v' + \frac{1}{2}) = G_{v''}(v') - G_{v''}(v' + 1)$ 
 between successive members of the progressions $v'' \rightarrow v'$, $v'' \in \{0, 1, 2\}$. 
@@ -243,44 +220,11 @@ $ \Delta (\Delta G) $ are the corresponding uncertainties.
     \label{fig:absorp_detail}
 \end{figure}
 
-With these number identified, we can calculate the vibrational coefficients for 
-the ground state by applying equation \eqref{eqn:dG1_2} for $v'' \in \{0, 1, 2\}$:
-\begin{eqnarray}
-    \Delta G''\left ( \frac{1}{2} \right ) &=& G''(1) - G''(0) \nonumber\\
-        &=& (G'(n) - G''(0)) - (G'(n) - G''(1)) \nonumber \\
-        &=& \omega_e'' - 2 \omega_e x_e'' \\
-    \Delta G''\left ( \frac{3}{2} \right ) &=& G''(2) - G''(1) \nonumber\\
-        &=& (G'(n) - G''(1)) - (G'(n) - G''(2)) \nonumber \\
-        &=& \omega_e'' - 4 \omega_e x_e'' \\
-  \Rightarrow \qquad  \omega_e x_e'' &=& \frac{1}{2} \left ( \Delta G''\left ( \frac{1}{2} \right ) 
-        \Delta G''\left ( \frac{3}{2} \right ) \right )
-\end{eqnarray}
-As seen in table \ref{tab:dG}, we get corresponding pairs for 
-$\Delta G''\left ( \frac{1}{2} \right )$ at $v' + 1/2 \in \{18.5, 19.5, \ldots, 26.5\}$ 
-and for 
-$\Delta G''\left ( \frac{3}{2} \right )$ at $v' + 1/2 \in \{15.5, 16.5, 17.5, 18.5, 19.5\}$.
-Taking weighted averages $\overline{\Delta G''\left ( \frac{1}{2} \right )}$ and 
-$\overline{\Delta G''\left ( \frac{3}{2} \right )}$, 
-where weights are constituited by the reciprocal variances, and subtracting yields
-\begin{eqnarray}
-    \omega_e'' &=& 213.8 \pm 4.6 \cm \\
-    \omega_e x_e'' &=& 0.5 \pm 1.4 \cm.
-\end{eqnarray}
-For small vibrations, we make the approximation of a harmonic oscillator and 
-can now calculate classical frequency $f$ and the spring constant $k$ with 
-\eqref{eqn:freq}:
-\begin{eqnarray}
-    f_e'' &=& \left(1.282 \pm 0.028\right) \times 10^{12} \mathrm{Hz} \\
-    k_e'' &=& 6.84 \pm 0.30 \mathrm{\frac{kg}{s^2}}
-\end{eqnarray}
-
-
-
 
 
 \FloatBarrier
 
-\subsection{Birge-Sponer plots}
+\subsubsection{Birge-Sponer plots}
 The energy differences $\Delta G_{v''}(v' + 1/2)$ of the identified progressions can 
 be plotted over the corresponding wavenumbers $v' + 1/2$. The resulting so-called 
 Birge-Sponer plots, figures 
@@ -404,10 +348,10 @@ to minimize the error, we get.
     \sigma_{00} &:=& G(v' = 0) = G(v' = 25) - (P_2(24.5) - P_2(0.5)) \nonumber \\
                  &\, =& 18364 \pm 12 \cm
 \end{eqnarray}
-A comparison between the uncertainties of $\sigma_{0, 25}$ and $sigma_{00}$ shows, 
+A comparison between the uncertainties of $\sigma_{0, 25}$ and $\sigma_{00}$ shows, 
 that the uncertainty of the latter one stems mostly from the given uncertainty 
 of $\sigma_{0, 25}$, while the one of the fit is about a magnitude smaller. This, 
-as well as simply loking at the plot and recognizing the small deviations from 
+as well as simply looking at the plot and recognizing the small deviations from 
 the fit indicates, that initial errors might have been assumed to high. 
 
 With the parameters claculated until now, we can deduce the energy $E_\mathrm{diss}$ 
@@ -423,12 +367,9 @@ The numerical result for the zeroth progression is
     E_\mathrm{diss} = \left(22.62 \pm 0.16\right) \times 10^{3} \cm
 \end{equation}
 
-\newpage
 
-
-
-\subsubsection{Progression $v'' = 1, 2 \rightarrow v'$}
-The first an second progression are fitten on a linear function of $v'$, since 
+\subsubsection{Progressions $v'' = (1, 2) \rightarrow v'$}
+The first an second progression are fitted on a linear function of $v'$, since 
 the lack of a higher numerb of points or higher accuray doesn't allow higher order fits.
 The function to be fitted is given by
 \begin{equation}
@@ -474,26 +415,33 @@ zeroth progression:
             \Rightarrow \qquad
             D_0' &=& \left(4.26 \pm 0.16\right) \times 10^{3} \cm
         \end{eqnarray}
-        $v' = $ as reference point for excitation energy
-\end{itemize}
-\begin{itemize}
-    \item For $v'' = 2 \rightarrow v'$:
+        If we pick $v' = 19$ for it being close to $v' = 0$ and the $\Delta G(v' + 1/2)$ 
+        for $v' < 19$ close to the linear fit $P_1(v' + 1/2)$, we get the following results for 
+        $\sigma_{00}$ and $E_\mathrm{diss}$:
         \begin{eqnarray}
-            p_2 &=& -1.613\mathrm{e}+00 \cm \nonumber \\
-            p_1 &=& 1.244\mathrm{e}+02 \cm \nonumber \\
-            \mathrm{cov}(p_i, p_j) &=& 
-            \begin{pmatrix}
-                4.888\mathrm{e}-02 &-6.853\mathrm{e}-01 \\
-                -6.853\mathrm{e}-01 &1.009\mathrm{e}+01 \\
-            \end{pmatrix}
-            \\ \Rightarrow \qquad
-            p_2 &=& -1.61 \pm 0.22 \cm\\
-            p_1 &=& 124.4 \pm 3.2 \cm \\
-            \omega_e x_e' &=& 8.067\mathrm{e}-01 \cm \nonumber \\
-            \omega_e' &=& 1.261\mathrm{e}+02 \cm \nonumber \\
-            \mathrm{cov}(p_i, p_j) &=& 
-            \begin{pmatrix}
-                1.222\mathrm{e}-02 &3.671\mathrm{e}-01 \\
+            G'(v' = 19) &=& 17589.9 \pm 9.3 \cm \\
+            \sigma_{00} &=& 17605.5 \pm 9.5 \cm \\
+            E_\mathrm{diss} &=& \left(21.73 \pm 0.30\right) \times 10^{3} \cm
+        \end{eqnarray}
+    \end{itemize}
+    \begin{itemize}
+        \item For $v'' = 2 \rightarrow v'$:
+            \begin{eqnarray}
+                p_2 &=& -1.613\mathrm{e}+00 \cm \nonumber \\
+                p_1 &=& 1.244\mathrm{e}+02 \cm \nonumber \\
+                \mathrm{cov}(p_i, p_j) &=& 
+                \begin{pmatrix}
+                    4.888\mathrm{e}-02 &-6.853\mathrm{e}-01 \\
+                    -6.853\mathrm{e}-01 &1.009\mathrm{e}+01 \\
+                \end{pmatrix}
+                \\ \Rightarrow \qquad
+                p_2 &=& -1.61 \pm 0.22 \cm\\
+                p_1 &=& 124.4 \pm 3.2 \cm \\
+                \omega_e x_e' &=& 8.067\mathrm{e}-01 \cm \nonumber \\
+                \omega_e' &=& 1.261\mathrm{e}+02 \cm \nonumber \\
+                \mathrm{cov}(p_i, p_j) &=& 
+                \begin{pmatrix}
+                    1.222\mathrm{e}-02 &3.671\mathrm{e}-01 \\
                 3.671\mathrm{e}-01 &1.151\mathrm{e}+01 \\
             \end{pmatrix}
             \\ \Rightarrow \qquad
@@ -508,8 +456,79 @@ zeroth progression:
             D_{0,\, \mathrm{lower}}' &=& 4383 \cm \\
             D_0' &=& \left(4.8 \pm 0.5\right) \times 10^{3} \cm 
         \end{eqnarray}
+        Here we choose $v' = 12$ for the same reasons as before: 
+        \begin{eqnarray}
+            G'(v' = 12) &=& 16675.1 \pm 8.3 \cm \\
+            \sigma_{00} &=& 16686.4 \pm 8.5 \cm \\
+            E_\mathrm{diss} &=& \left(21.5 \pm 0.5\right) \times 10^{3} \cm
+        \end{eqnarray}
 \end{itemize}
 
+\subsubsection{Parameters for the ground state}
+With the values for $\Delta G(v' + 1/2)$ calculated in \ref{tab:dG}, we can calculate the vibrational coefficients for 
+the ground state by applying equation \eqref{eqn:dG1_2} for $v'' \in \{0, 1, 2\}$:
+\begin{eqnarray}
+    \Delta G''\left ( \frac{1}{2} \right ) &=& G''(1) - G''(0) \nonumber\\
+        &=& (G'(n) - G''(0)) - (G'(n) - G''(1)) \nonumber \\
+        &=& \omega_e'' - 2 \omega_e x_e'' \\
+    \Delta G''\left ( \frac{3}{2} \right ) &=& G''(2) - G''(1) \nonumber\\
+        &=& (G'(n) - G''(1)) - (G'(n) - G''(2)) \nonumber \\
+        &=& \omega_e'' - 4 \omega_e x_e'' \\
+  \Rightarrow \qquad  \omega_e x_e'' &=& \frac{1}{2} \left ( \Delta G''\left ( \frac{1}{2} \right ) 
+        \Delta G''\left ( \frac{3}{2} \right ) \right )
+\end{eqnarray}
+As seen in table \ref{tab:dG}, we get corresponding pairs for 
+$\Delta G''\left ( \frac{1}{2} \right )$ at $v' + 1/2 \in \{18.5, 19.5, \ldots, 26.5\}$ 
+and for 
+$\Delta G''\left ( \frac{3}{2} \right )$ at $v' + 1/2 \in \{15.5, 16.5, 17.5, 18.5, 19.5\}$.
+Taking weighted averages $\overline{\Delta G''\left ( \frac{1}{2} \right )}$ and 
+$\overline{\Delta G''\left ( \frac{3}{2} \right )}$, 
+where weights are constituited by the reciprocal variances, and subtracting yields
+\begin{eqnarray}
+    \omega_e'' &=& 213.8 \pm 4.6 \cm \\
+    \omega_e x_e'' &=& 0.5 \pm 1.4 \cm.
+\end{eqnarray}
+For small vibrations, we make the approximation of a harmonic oscillator and 
+can now calculate classical frequency $f$ and the spring constant $k$ with 
+\eqref{eqn:freq}:
+\begin{eqnarray}
+    f_e'' &=& \left(1.282 \pm 0.028\right) \times 10^{12} \mathrm{Hz} \\
+    k_e'' &=& 6.84 \pm 0.30 \mathrm{\frac{kg}{s^2}}
+\end{eqnarray}
+
+Approximating the ground state for low vibrational modes with the morse function, 
+we can calculate the dissociation energy of the ground state with the values for 
+$\omega_e''$ and $\omega_e x_e''$ with \eqref{eqn:D_e}:
+\begin{equation}
+    D_e'' =\left(25 \pm 74\right) \times 10^{3} \cm
+\end{equation}
+We can compare this value with a second one, which we get from approximating the 
+dissociation energy as the difference between $E_\mathrm{diss}$ and the difference in 
+energy of the two resulting dissociated atoms. If dissociation takes place directly 
+from the ground level, the resulting atoms are both in their ground states $^2 P_{3/2}$, 
+while for dissociation from the excited state, one of the atoms is found in the first 
+excited state $2^ P_{1/2}$. The energy difference between the two states is given by 
+$\Delta E = 7603.15 \cm$~\cite{nist}. We thus get the following results for the energy 
+levels calculated with each of the three progressions:
+\begin{eqnarray}
+    D_{e, 0}'' &=&\left(15.02 \pm 0.16\right) \times 10^{3} \cm \\
+    D_{e, 1}'' &=&\left(14.13 \pm 0.30\right) \times 10^{3} \cm \\
+    D_{e, 2}'' &=&\left(13.9 \pm 0.5\right) \times 10^{3} \cm
+\end{eqnarray}
+In the literature, this value is given with $12452.5 \pm 1.5 \cm$ \cite{leroy1970spectroscopic}. 
+The fact, that this value 
+does not coicinde with our measured value can be due to several factors. 
+It is not within the scope of this report to assess the validity or precision of 
+the assumptions made theoretically.
+
+\subsubsection{Morse potential}
+\begin{figure}
+    \centering
+    \includegraphics[width=\pltw]{analysis/figures/morse_plot_0.pdf}
+    \caption{Morse plot for Blablabla.  
+    }
+    \label{fig:morse}
+\end{figure}
 
 
 
@@ -523,6 +542,8 @@ zeroth progression:
 
 
 
+
+\begin{comment}
 
 We immediately see, that the parameter $\omega_e y_e'$ is practically zero within its 
 bound of uncertainty - the number of points is not enough to calculate this parameter 
@@ -530,7 +551,6 @@ up to a desirable accuracy.
 
 
 The literature values are given by:
-\begin{comment}
 \begin{eqnarray}
     {\omega_e'}_\mathrm{\ lit} &=& 125.69 \cm \cite{nist} \\
     {\omega_e x_e'}_\mathrm{\ lit} &=& 0.764 \cm \cite{nist} \\
