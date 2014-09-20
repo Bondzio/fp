@@ -38,11 +38,19 @@ def plot_12():
     # already calibrated
     for i in range(1,5+1):
         plot_data("2.1.sawtooth"+str(i), "Oscilloscope  2.1 Sawtooth "+str(i))
+        
+def plot_22():
+    # Sinus
+    f = open("U_DC.csv")
+    x = f.read()
+    f.close()
+    U_DC = np.array([float(k) for k in x.split("\n") if not(k == "")])
+    for i in range(1,30):
+        plot_data("2.2.sinus%02d"%i, "Oscilloscope  2.2 Sinus %02d with $U_{DC}=%.3f$"%(i,U_DC[i-1]))
 
-# Sinus
-f = open("U_DC.csv")
-x = f.read()
-f.close()
-U_DC = np.array([float(k) for k in x.split("\n") if not(k == "")])
-for i in range(1,30):
-    plot_data("2.2.sinus%02d"%i, "Oscilloscope  2.2 Sinus %02d with $U_{DC}=%.3f$"%(i,U_DC[i-1]))
+def plot_23():
+    # different frequencies
+    plot_data("2.3.sinus01", "Oscilloscope  2.3 Sinus at $f=3.0$ kHz")
+    plot_data("2.3.sinus02", "Oscilloscope  2.3 Sinus at $f=18.0$ kHz")
+    plot_data("2.3.sinus03", "Oscilloscope  2.3 Sinus at $f=2.0$ kHz")
+plot_23()

@@ -115,7 +115,19 @@ level increased the stability to a acceptable level.
 \subsubsection{Sinus-generated Method: Applying Direct Current}
 Now we will look at the inluence of different parameters on
 the received signal, especially the effect of changing the
-voltage.
+voltage. 
+\paragraph{Important note:} After the measurements the
+signalfrequency of the electrical field has gone up to 
+$f=6.129$ khz! We noticed this without us to regulate this 
+behavior. After the measurements we have changed this frequency in
+order to the into account the change of frequency by adjusting.
+We furthermore note that the change of frequency
+does not seem to have a huge influence on the noisy regime except
+that by reducing the frequency to $f=3.0$kHz we see the increase
+of structure, meaning less noise and a clearly recognizable
+sinusshape in the former noisy shape while the noisy regime
+was shifted to other lower frequencies. We will look more refined
+into this behavior in the next chapter.
 \begin{figure}
     \begin{subfigure}[b]{\picwidth}
         \includegraphics[width=\textwidth]{analysis/figures/22sinus01}
@@ -150,5 +162,134 @@ voltage.
     \label{fig:sinus1}
 \end{figure}
 \flushleft
+\begin{figure}
+    \begin{subfigure}[b]{\picwidth}
+        \includegraphics[width=\textwidth]{analysis/figures/22sinus07}
+        \caption{}
+    \end{subfigure}\qquad
+    \begin{subfigure}[b]{\picwidth}
+        \includegraphics[width=\textwidth]{analysis/figures/22sinus08}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{\picwidth}
+        \includegraphics[width=\textwidth]{analysis/figures/22sinus09}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{\picwidth}
+        \includegraphics[width=\textwidth]{analysis/figures/22sinus10}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{\picwidth}
+        \includegraphics[width=\textwidth]{analysis/figures/22sinus11}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{\picwidth}
+        \includegraphics[width=\textwidth]{analysis/figures/22sinus12}
+        \caption{}
+    \end{subfigure}
 
+    \caption{Now we enter the noisy regime in which we can 
+        observe the effect of the state of the analysator. 
+        Here we are indulged to find the noisiest curve in 
+        order to check the range in which the $U_{\lambda / 2}$
+        might be to find. As you will notice from the figures we
+        suspect it to be in the range from $144.4V$ to $148.0V$
+        but also see the next series of figures.}
+    \label{fig:sinus2}
+\end{figure}
 
+\begin{figure}
+    \begin{subfigure}[b]{\picwidth}
+        \includegraphics[width=\textwidth]{analysis/figures/22sinus13}
+        \caption{}
+    \end{subfigure}\qquad
+    \begin{subfigure}[b]{\picwidth}
+        \includegraphics[width=\textwidth]{analysis/figures/22sinus14}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{\picwidth}
+        \includegraphics[width=\textwidth]{analysis/figures/22sinus15}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{\picwidth}
+        \includegraphics[width=\textwidth]{analysis/figures/22sinus16}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{\picwidth}
+        \includegraphics[width=\textwidth]{analysis/figures/22sinus17}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{\picwidth}
+        \includegraphics[width=\textwidth]{analysis/figures/22sinus18}
+        \caption{}
+    \end{subfigure}
+
+    \caption{This is the noisy-regime, for explanation see
+        Figure~\ref{fig:sinus2}. We have not seen any frequency
+        doubling though.}
+    \label{fig:sinus3}
+\end{figure}
+
+\begin{figure}
+    \begin{subfigure}[b]{\picwidth}
+        \includegraphics[width=\textwidth]{analysis/figures/22sinus19}
+        \caption{}
+    \end{subfigure}\qquad
+    \begin{subfigure}[b]{\picwidth}
+        \includegraphics[width=\textwidth]{analysis/figures/22sinus20}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{\picwidth}
+        \includegraphics[width=\textwidth]{analysis/figures/22sinus21}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{\picwidth}
+        \includegraphics[width=\textwidth]{analysis/figures/22sinus22}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{\picwidth}
+        \includegraphics[width=\textwidth]{analysis/figures/22sinus23}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{\picwidth}
+        \includegraphics[width=\textwidth]{analysis/figures/22sinus24}
+        \caption{}
+    \end{subfigure}
+
+    \caption{This series visualizes the upper limit and the end
+        of the noisy regime, as more and more the sinusinput
+        is dominating the shape of the signal with less noise.}
+    \label{fig:sinus4}
+\end{figure}
+\clearpage
+\subsubsection{Refined analysis of the impact of frequency on 
+    the regime}
+The figures in this section are accomplished with $U_{DC}=145.8 V$.
+In this analysis we investigate the effect of the frequency
+on the regime in which we get a rather noisy signal 
+
+\begin{figure}
+    \includegraphics[width=15cm]{analysis/figures/23sinus01}
+    \caption{In this figure we readjusted the frequency to
+        $f=3.0$ kHz. In this figure we noticed, as already said
+        in the last section, that the noisy regime was shifted
+        to lower Voltage.}
+\end{figure}
+
+\begin{figure}
+    \includegraphics[width=15cm]{analysis/figures/23sinus02}
+    \caption{At this level the regime of the voltage is shifted
+        again, but in this case to a higher value. Unfortunatelly
+        at this high frequency it is not possible to distinguish
+        clearly between the different regimes because the signal
+        is very noisy at all voltages (morelikely to shackle 
+            or wiggle).}
+\end{figure}
+
+\begin{figure}
+    \includegraphics[width=15cm]{analysis/figures/23sinus03}
+    \caption{}
+\end{figure}
+
+\clearpage
+\subsubsection{Reanalysis with at the lower frequency}
