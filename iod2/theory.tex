@@ -1,6 +1,6 @@
-\subsection{Theoretical Foundations}
+\subsection{Theoretical foundations}
 When describing molecules in the framework of quantum mechanics, we are faced with the problem of 
-finding solutions to the non-relativistic and time-independent Schrödinger-equation
+finding solutions to the non-relativistic and time-independent Schrödinger equation
 \begin{equation}
     \hat{H} \psi = \Big[- \frac{\hbar^2}{2m} 
         \nabla^2 + \hat{V}(\mathbf{r}) \Big] \psi = E \psi
@@ -18,7 +18,7 @@ treated with secondorder perturbationtheory. After this we
 immedeatly come to the molecule orbitals, which we need
 to resolve the energy levels being measured in this experiment.
 
-\subsubsection{Harmonic Oscillator}
+\subsubsection{Harmonic oscillator}
 The potential for the harmonic oscillator is given as follwing:
 \begin{equation}
     \hat{V}= \frac{m}{2} \omega^2 \hat{x}^2
@@ -28,7 +28,7 @@ introduce different basis of operators resulting in more
 adapted expressions for the energy
 ~\cite{fliessbach2008quantenmechanik}. We won"t derive 
 these results here, but rather state the eigenvalues 
-(with quantumnumber $\nu$)
+(with quantum number $\nu$)
 of the energy without proof
 (see also figure~\ref{fig:harmonic1}):
 \begin{equation}
@@ -44,7 +44,7 @@ where the wavefunctions are given by
     e^{-\frac{1}{2}\frac{m\omega}{\hbar}x^2}
 \end{equation}
 
-and $H_n$ are the hermite polynomials: 
+and $H_n$ are the Hermite polynomials: 
 
 \begin{equation}
     H_n(x)=(-1)^n e^{x^2}\frac{d^n}{dx^n}\left(e^{-x^2}\right) 
@@ -66,9 +66,10 @@ of the problems we need to approximate the solution with regards to an analyical
 solution which is given. In the following sections we will introduce
 the time-independent Perturbationtheory and give an example with the 
 anharmonic oscillator how such an approximation can take place.
-\subsubsection{Timeindependent Perturbationtheory}
+
+\subsubsection{Time-independent perturbation theory}
 We are following~\cite{fliessbach2008quantenmechanik}.
-Lets assume we know the Eigenvalues and -functions of a specific
+Lets assume we know the eigenvalues and -functions of a specific
 Hamiltonoperator $\hat{H_0}$ of the
 unperturbed system (we further assume the eigenspaces to be
 seperable, so we have no degeneracy. The case of degeneracy
@@ -86,7 +87,7 @@ by means of the initial Hamiltonian:
 \begin{equation}
     \hat{H} = \hat{H_0} + \lambda \hat{V}
 \end{equation}
-where we perturbate the original Hamiltonian with the Potential
+where we perturbate the original Hamiltonian with the potential
 $\hat{V}$ and give an approximate Soluation as long as Perturbation
 is not of the same order of magnitude as $H_0$. 
 The next step will be to apply this to the anharmonic 
@@ -108,7 +109,7 @@ As result the solutions we are looking for will become:
     |\psi_n \rangle &= |n\rangle + |\psi_{n,1} \rangle + \cdots 
 \end{align}
 We assume for now that this series is converging and plug it into
-the Schrödingerequation:
+the Schrödinger equation:
 \begin{equation}
     (\hat{H_0} + \lambda \hat{V})
    \left( |n\rangle + \sum_{\nu =1}^{\infty} \lambda^\nu
@@ -406,7 +407,7 @@ nucleon with mass
 \begin{equation}
     \mu = \frac{M_A M_B}{M_A + M_B}
 \end{equation}
-so that our new Schrödingerequation with the wavefunction of the
+so that our new Schrödinger equation with the wavefunction of the
 fictional nucleon will look like:
 \begin{equation}
     \nabla^2 \psi_N + \frac{2\mu}{\hbar^2} 
@@ -456,7 +457,7 @@ Written in units of $\mathrm{cm}$, we get the rotational terms
     F = \frac{J(J+1)\hbar}{4 \pi \mu c r^2} = B J (J + 1) \mathrm{with} B := \frac{\hbar}{4 \pi \mu c r^2}
 \end{equation}
 
-\paragraph{The rotationless Oscillator} just neglects the terms
+\paragraph{The rotationless oscillator} just neglects the terms
 arising from rotation, which is, looking at the lengthscale of
 the former calculated eigenvalues, not inopportune.
 The Operator then becomes:
@@ -464,10 +465,10 @@ The Operator then becomes:
     \frac{d^2 S}{dr^2} + \frac{2\mu}{\hbar^2}
     \left ( E - V(r) ) = 0 \right )
 \end{equation}
-The Eigenfunctions and -values are now very dependent on the 
+the eigenfunctions and -values are now very dependent on the 
 potential energy $V(r)$ which is until now not a known 
 potential, because it includes the repulsion due to the
-pauliprinciple of the electronorbits as well as the attraction
+Pauli principle of the electronorbits as well as the attraction
 of the charges. Furthermore the physical nature of dissociation
 of the two nucleons also has to be encoded into it.
 It is not possible to solve the potential analytically, but 
@@ -483,7 +484,7 @@ $\lim\limits_{r \rightarrow \infty}{V(r)} = const. $
     $ \lim\limits_{r \rightarrow \infty}{V(r)} - V(r_e)=: D_e$ 
 \end{itemize}
 The idea is now to capture this properties into the coefficients
-of the taylored Potential and by doing so resolving the principle
+of the taylored potential and by doing so resolving the principle
 physical behavior:
 \begin{equation}
     V(r) = V(r_e) 
@@ -501,7 +502,7 @@ potential differences.
     \frac{\partial^2 V(r)}{2\partial r^2}|_{r=r_e}(r - r_e)^2
     =: \frac{k_e}{2}(r-r_e)^2
 \end{equation}
-Following this approach we can use the energyeigenvalues of the
+Following this approach we can use the energy eigenvalues of the
 harmonic oscillator in order to approximate
 the vibrational states $\nu$:
 \begin{equation}
@@ -519,8 +520,8 @@ equation into $\mathrm{cm^{-1}}$:
 The wider we leave the regime around $r_e$, speaking about 
 higher vibrational states, the worse approximation with a harmonic
 oscillator becomes. Qualitatively this is the case when energies
-come nearer to the dissociation energy. An adhoc solution is 
-to treat this with the already mentioned perturbationtheory in such
+come closer to the dissociation energy. An adhoc solution is 
+to treat this with the already mentioned perturbation theory in such
 a way that we use the condition
 \begin{equation}
     \frac{\partial V(r)}{\partial r}|_{r=r_e}        \gg
@@ -529,7 +530,7 @@ a way that we use the condition
     \cdots
 \end{equation}
 and can therefore justify the Ansatz (see the Dunham expansion
-for more details):
+for more details \cite{}):
 \begin{equation}
     G(\nu) = \omega_e (\nu + \frac{1}{2} ) 
     - \omega_e x_e (\nu + \frac{1}{2} ) ^2 
@@ -541,12 +542,12 @@ for more details):
 Since in the experiment it is clearly impossible to seperate
 the incoming higher frequencies, we will treat $\omega_e x_e$ as 
 one variable, similarily to the others, where they also connected
-on lengthscales by
+on length scales by
 \begin{equation}
     \omega_e \gg \omega_ex_e \gg \omega_e y_e \cdots 
 \end{equation}
 As before we can shift the equations to make them more convenient,
-in this case to scale them to the zeroenergy
+in this case defining the energy of the ground level as zero:
 \begin{equation}
     G \mapsto G_0 := \left [G-G(0) \right ] 
         \quad \text{which is given by}
@@ -578,7 +579,7 @@ assumption are only valid in this regime, failing in the regime
 near the dissociationenergy. The logical next step to improve this 
 approximation is to look deeper into the form of the potential,
 which we will do in the next chapter by the morse-function.
-\subsubsection{Morse Potential}
+\subsubsection{Morse potential}
 Already 1929 Phillip McCord Morse proposed an empirical potential
 of the form \cite{Demtroeder1}:
 \begin{equation}
@@ -593,12 +594,12 @@ dissociationenergy by
 \end{equation}
 \begin{figure}
 \includegraphics[width=15cm]{pics/morse_potential}
-\caption{Comparison of the Morse and the harmonic Potential
-    with the real (experimental) Potential\cite{Demtroeder1}.}
+\caption{Comparison of the Morse and the harmonic potential
+    with the real (experimental) potential\cite{Demtroeder1}.}
 \label{fig:morse}
 \end{figure}
-Fortunatelly it is possible to solve the Schrödingerequation
-for the Potential analytically. We will shift the energies 
+Fortunatelly it is possible to solve the Schrödinger equation
+for the potential analytically. We will shift the energies 
 so we will have the following form of the potential:
 \begin{equation}
     V(r) = D_e \left[ 1 - e^{-a(r-r_e)}  \right]^2
