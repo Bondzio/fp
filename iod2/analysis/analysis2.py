@@ -152,7 +152,7 @@ def str_label_fit(i):
 # general parameters
 plot_show = 0
 save_fig = 1
-print_latex = 0
+print_latex = 1
 deg = [2, 1, 1]                                # degree of polynomial fit
 plt.close('all')
 colors = ['b', 'g', 'r', 'pink']
@@ -305,23 +305,27 @@ hbar_cgs = co.hbar * 10**7
 c_cgs = co.c * 10**2
 mu_cgs = 126.09447/2  * (co.u * 10**3)
 B_e = 0.02903
+r_e = np.sqrt((hbar_cgs)/(4 * co.pi * mu_cgs * c_cgs * B_e)) * 10**8
 for i in range(3):
     we = vib_co[i][-1]
-    a[i]  = we * un.sqrt((mu_cgs * c_cgs * co.pi)/(hbar_cgs* D_e1[i])) 
-    r_e[i] = np.sqrt((hbar_cgs)/(4 * co.pi * mu_cgs * c_cgs * B_e)) 
-    V  = lambda r: D_e1[i].n * (1 - np.exp(-a[i].n * (r - r_e[i]))) ** 2 
-    r  = np.linspace(0,10e-8,100)
+    wxe = vib_co[i][-2]
+    #a[i]  = we * uc.umath.sqrt((mu_cgs * c_cgs * co.pi)/(hbar_cgs* D_e1[i])) 
+    a[i]  = uc.umath.sqrt((4 * mu_cgs * c_cgs * co.pi * wxe)/(hbar_cgs)) * 10**-8
+    V  = lambda r: D_e1[i].n * (1 - np.exp(-a[i].n * (r - r_e))) ** 2 
+    r  = np.linspace(0,10,100)
     fig2 = plt.figure(figsize = figsize)
     #fig2.suptitle('Iodine 2 molecule - Morse potential')
     ax = plt.subplot(111)
     title_dl = '$v\'\' = %i \\rightarrow v\'$' %i
     #ax.set_title(title_dl)
-    morse_label = "$V(r) = D_e'(1 - \mathrm{exp}(-a'(r - r_e')))$"
+    morse_label = "$V'(r) = D_e'(1 - \mathrm{exp}(-a'(r - r_e')))$"
     ax.plot(r,V(r), "g-", label=morse_label)
-    ax.set_xlabel("radius $r$")
+    ax.plot([0, 10],[D_e1[i].n]*2, "k--", label="D_e' = %i $\mathrm{cm}^{-1}$"%D_e1[i].n)
+    ax.set_xlabel("radius $r$ / $\AA$")
     ax.set_ylabel("Potential $V(r)$ in $\mathrm{cm^{-1}}$")
     plt.grid(True)
-    ax.set_ylim(0, 1e4)
+    ax.set_xlim(2, 6)
+    ax.set_ylim(0, 6e3)
     leg = ax.legend(loc='upper right', fancybox=True)
     leg.get_frame().set_visible(False)
     if plot_show:
@@ -383,6 +387,7 @@ if print_latex:
     f3.write("f_e'' &=& {:L}".format(freq0)  + " \mathrm{Hz}\\\\\n")
     f3.write("k_e'' &=& {:L}".format(k0) + " \mathrm{\\frac{kg}{s^2]}\n")
     f3.write("D_e'' =" +  "{:L} \cm\n".format(D_e0))
+    f3.write("r_e' &=& %.2f \\AA \\\\\n"%(r_e))
     f3.write("\nresults from Birge-Sponer method: \n\n")
     for i in range(3):
         f3.write("progression: v'' = %i -> x' \n" %i)
@@ -398,6 +403,7 @@ if print_latex:
         f3.write(r"\sigma_{00} &=& " + "{:L} \cm\n".format(sigma00[i]))
         f3.write(r"E_\mathrm{diss} &=& " + "{:L} \cm\n".format(E_diss[i]))
         f3.write("D_{e, %i}'' &=&"%i +  "{:L} \cm\n".format(D_e01[i]))
+        f3.write("a_%i' &=& "%i +  "{:L}".format(a[i]) + r"\ \AA^{-1} \\" + "\n")
         #f3.write("goodness-of-fit: $\chi^2 / n_d = %f$" %gof[i])
         #f3.write("$n_d = %i = #points - (deg + 1)$" % n_d[i])
         f3.write("\n")
