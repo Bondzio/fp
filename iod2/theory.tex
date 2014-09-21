@@ -319,8 +319,8 @@ Which yields:
 \end{aligned}
 \end{equation}
 If we had a look at the closed form for all orders, we would
-notice the possibility to expand the Energy Difference in terms
-of powers of the original Energy $(n+\frac{1}{2})$ which we will
+notice the possibility to expand the difference in energy in terms
+of powers of the original energy $(n+\frac{1}{2})$ which we will
 state here without proof:
 \begin{equation}
     E_n = \hbar \omega_{0,0} \left(n + \frac{1}{2} \right) 
@@ -330,26 +330,26 @@ state here without proof:
 \end{equation}
 We did not include the small derivation independent of $n$,
 since we will look only at energydifferences. Notice that
-the final result is only valid for a small, odd Perturbation. 
-\subsubsection{Energylevels and Wavefunctions
-    of two-atomic molecules}
+the final result is only valid for a small, odd perturbation. 
 
-First we will write down the full Equations of the two-atomic
-molecule and investigate after which parts we can further
-simplify (This whole derivation will follow \cite{staatsexamen}):
+\subsubsection{Energylevels and wavefunctions
+    of two-atomic molecules}
+First we will write down the full equations of the two-atomic
+molecule and investigate afterwards which parts we can further
+simplify (the entire derivation will follow \cite{staatsexamen}):
 \begin{equation}
         \hat{H}\psi = E\psi 
 \end{equation}
-Where we can expand the Hamiltonian in the position-space,
-where we already split into the electrons ($i$) and the 
-two nucleons $A$ and $B$:
+where we can expand the Hamiltonian in the position space,
+and split it into one part for the electrons ($i$) and another 
+for the two nuclei $A$ and $B$:
 \begin{equation}
     \hat{H} = \frac{-\hbar^2}{2} 
         \underbrace{\left(
         \sum_{i}{\frac{\nabla_i^2}{m_e}}
         +\frac{\nabla_A^2}{M_A} +\frac{\nabla_B^2}{M_B}
 \right)}_{
-\substack{\text{kinetic energy}\\\text{of electrons and nucleons}}}
+\substack{\text{kinetic energy}\\\text{of electrons and nuclei}}}
 + \underbrace{\sum_{i>j}{\frac{e^2}{|r_i - r_j|}}
     }_{\substack{\text{potential energy}\\\text{electron-electron}}}
  - \underbrace{\sum_{i}{\frac{Z_A e^2}{|r_i - r_A|}}
@@ -359,9 +359,9 @@ two nucleons $A$ and $B$:
  +  \underbrace{\frac{Z_A Z_B e^2}{|r_A - r_B|}
  }_{\substack{\text{potential energy}\\\text{nucleon $A$ - nucleon $B$}}}
 \end{equation}
-Now we split the electronsolutions and the nucleonsolutions such
-that the solutions of the electrons change only little when the
-distance of the nucleons change, which is known as the
+Now we split the solutions for the electrons and nuclei such
+that the prior ones change only little when the
+distance of the nuclei changes, which is known as the
 \textsc{BORN-OPPENHEIMER}-Approximation \cite{staatsexamen}:
 \begin{align}
     \psi &= \psi_E ( \cdots r_i \cdots) \psi_N(r_A, r_B) \\
@@ -380,30 +380,30 @@ distance of the nucleons change, which is known as the
  \right ) \psi_N
 =  E_N \psi_N 
 \end{align}
-Where we fixed the positions for the Hamiltonian
+Here we fixed the positions for the Hamiltonian
 of the electrons such that they are not included in the
-wavefunction. The interaction between electrons and the nucleons
-will not be neglected since the Wavefunctions $\psi_E$ are still
-dependend of the distance between the nucleons $r$. 
+wavefunction. The interaction between electrons and the nuclei
+will not be neglected since the wavefunctions $\psi_E$ still depend 
+on the distance $r$ between the nuclei. 
 \par
-The obvious problem arises when trying to solve these equations,
+A problem arises when trying to solve these equations,
 since it is not possible without great difficulties. 
-The next step is to build up trialsolutions of $\psi_E$, 
-consisting of solutions when there is only one electron and a
-nucleon. These solutions are called one-electron orbital wave
+The next step is to build up trial solutions of $\psi_E$, 
+consisting of of solutions for one-electron-one-nucleon systems. 
+These are called one-electron orbital wave
 and will be abbreviated
-with \textit{MO} (\textit{Molecule orbital}) and the trialsolutions
-will be built up upon linear combinations of those
+with \textit{MO} (\textit{Molecule orbital}). The trial solutions
+will be built up upon linear combinations of of the \textit{MO}
 (\textit{Linear combinations of atomic orbitals} method,
 \textit{LCAO}). This method was first introduced 1929 by 
 Sir John Lennard-Jones and has to be used with caution, since
-it is only in certain limits applicable. The parameters which
-appear in these combinations can be constrained by 
-expectationvalues measured in experiments.
-Now we will turn our attention to the movement of nucleons.
+it is only applicable within certain limits. The parameters appearing 
+in these combinations can be constrained by 
+expectation values measured in experiments.
+We will now turn our attention to the movement of the nuclei.
 Since in our case we only have two of them, we can perform 
-a coordinatetransform to the normal coordinates with a fictional
-nucleon with mass
+a coordinate transformation to the center-of-momentum frame with 
+a fictional nucleon of mass
 \begin{equation}
     \mu = \frac{M_A M_B}{M_A + M_B}
 \end{equation}
@@ -413,15 +413,15 @@ fictional nucleon will look like:
     \nabla^2 \psi_N + \frac{2\mu}{\hbar^2} 
     \left[ E - V(r) \right] = 0 
 \end{equation}
-The Laplaceoperator written in spherical coordinates will yield
+The Laplace operator written in spherical coordinates will yield
 the spherical harmonics as eigenfunctions, so we can use a 
 seperational ansatz for our wavefunction:
 \begin{equation}
     \psi_N(r,\theta,\rho) = \frac{1}{r} S(r)Y(\theta,\rho)
 \end{equation}
 with the corresponding
-differentialoperator, where $J\in \mathbb{N}_0$
-corresponds to the Quantumnumber of the total angular momentum:
+differential operator, where $J\in \mathbb{N}_0$
+corresponds to the quantum number of the total angular momentum:
 \begin{equation}
     \frac{\partial}{\sin\theta \partial \theta}\left (\sin\theta
     \frac{\partial Y}{\partial \theta}\right ) +
@@ -429,7 +429,7 @@ corresponds to the Quantumnumber of the total angular momentum:
  + J(J+1)Y = 0
 \end{equation}
 Thus we can split the rest of the wavefunction into the 
-radial component of the Operator:
+radial component of the operator:
 
 \begin{equation}
     \frac{d^2 S}{dr^2} + \frac{2\mu}{\hbar^2}
@@ -437,54 +437,57 @@ radial component of the Operator:
 \end{equation}
 
 If there is no further degeneracy (for instance due to not
-considered interactions like spin) we can in theory write
-down the Energyeigenvalues in terms of the two Quantumnumbers
-$nu$ and $J$:
+considered interactions with the spin of the nuclei) 
+we can write down the energy eigenvalues in terms of the two 
+quantum numbers
+$\nu$ and $J$:
 \begin{equation}
     E = E_{\nu,J}
 \end{equation}
-Practically this is not possible, so we look at two extrem cases.
+Calculating the eigenvalues analytically is not possible, 
+so we look at two simplified extrem cases.
+
 \paragraph{The rigid Rotator} is based on the approximation to
-fix the range of the two nuclei ($r =$const.) and so we only
-look at $V(r)=0$ and $\frac{S(r)}{r} = 1$. We immedeatly get
-the solution (since the sphericalharmonics already resolved
-the eigenvalues):
+fix the distance between the two nuclei ($r =$const.) such that 
+we only look at $V(r)=0$ and $\frac{S(r)}{r} = 1$. We immedeately get
+the solutions:
 \begin{equation}
     E = \frac{J(J+1)\hbar^2}{2\mu r^2}
 \end{equation}
-Written in units of $\mathrm{cm}$, we get the rotational terms
+Written in cgs-units, we get the rotational terms
 \begin{equation}
-    F = \frac{J(J+1)\hbar}{4 \pi \mu c r^2} = B J (J + 1) \mathrm{with} B := \frac{\hbar}{4 \pi \mu c r^2}
+    F = \frac{J(J+1)\hbar}{4 \pi \mu c r^2} = B J (J + 1) \quad 
+    \mathrm{ with \ } B := \frac{\hbar}{4 \pi \mu c r^2}.
 \end{equation}
 
 \paragraph{The rotationless oscillator} just neglects the terms
-arising from rotation, which is, looking at the lengthscale of
-the former calculated eigenvalues, not inopportune.
-The Operator then becomes:
+arising from rotation, which is opportune, looking at the length scale of
+the former calculated eigenvalues.
+The operator then becomes:
 \begin{equation}
     \frac{d^2 S}{dr^2} + \frac{2\mu}{\hbar^2}
     \left ( E - V(r) ) = 0 \right )
 \end{equation}
-the eigenfunctions and -values are now very dependent on the 
-potential energy $V(r)$ which is until now not a known 
-potential, because it includes the repulsion due to the
-Pauli principle of the electronorbits as well as the attraction
+The eigenfunctions and -values depend on the 
+potential energy $V(r)$ which for now is unknown. It includes 
+the repulsion due to the
+Pauli principle of the electron orbits as well as the attraction
 of the charges. Furthermore the physical nature of dissociation
-of the two nucleons also has to be encoded into it.
-It is not possible to solve the potential analytically, but 
-we will start to write down the properties already known:
+of the two nuclei has to be taken into account.
+It is not possible to solve the potential analytically. However, 
+one can aprroximate $V(r)$ starting with the properties already known:
 \begin{itemize}
-        \item Pauliprinciple:
+        \item Pauli principle:
             $\lim\limits_{r \rightarrow 0}{V(r)} = \infty $
-        \item Dissociated nucleons:
+        \item Dissociated nuclei:
 $\lim\limits_{r \rightarrow \infty}{V(r)} = const. $
-\item Before the Dissociation: Attraction of the nucleons with
-    the maximal attraction at $r_e$ and the Dissociationenergy
+\item Before the dissociation: Attraction of the nuclei with
+    the maximal attraction at $r_e$ and the dissociation energy
     $D_e$ defined by 
     $ \lim\limits_{r \rightarrow \infty}{V(r)} - V(r_e)=: D_e$ 
 \end{itemize}
-The idea is now to capture this properties into the coefficients
-of the taylored potential and by doing so resolving the principle
+The idea is now to capture this properties in the coefficients
+of the taylored potential and, by doing so, resolving the principle
 physical behavior:
 \begin{equation}
     V(r) = V(r_e) 
@@ -493,8 +496,8 @@ physical behavior:
    + \frac{\partial^3 V(r)}{3!\partial r^3}|_{r=r_e}(r - r_e)^3
    + \cdots
 \end{equation}
-As first approximation for energies near the minimum $r=r_e$ we
-can finally use the harmonic potential. The constant term
+As a first approximation for energies near the minimum $r=r_e$ we
+can use the harmonic potential. The constant term
 $V(r_e)$ can be dropped since we are only interested in 
 potential differences.
 \begin{equation}
@@ -529,7 +532,7 @@ a way that we use the condition
     \frac{\partial^3 V(r)}{3!\partial r^3}|_{r=r_e}  
     \cdots
 \end{equation}
-and can therefore justify the Ansatz (see the Dunham expansion
+and can therefore justify the ansatz (see the Dunham expansion
 for more details \cite{}):
 \begin{equation}
     G(\nu) = \omega_e (\nu + \frac{1}{2} ) 
@@ -576,11 +579,12 @@ We have to keep in mind that this methods are merely based on the
 assumption that energies should be near the minimal energy at $r_e$.
 We can understand that the energyeigenvalues obtained by this
 assumption are only valid in this regime, failing in the regime
-near the dissociationenergy. The logical next step to improve this 
+near the dissociation energy. The logical next step to improve this 
 approximation is to look deeper into the form of the potential,
 which we will do in the next chapter by the morse-function.
+
 \subsubsection{Morse potential}
-Already 1929 Phillip McCord Morse proposed an empirical potential
+Already in 1929, Phillip McCord Morse proposed an empirical potential
 of the form \cite{Demtroeder1}:
 \begin{equation}
     V(r) = E_B \left[ 1 - e^{-a(r-r_e)}  \right]^2
