@@ -26,7 +26,7 @@ The potential for the harmonic oscillator is given as follwing:
 To solve this equation, the most convenient method is to
 introduce different basis of operators resulting in more 
 adapted expressions for the energy
-~\cite{fliessbach2008quantenmechanik}. We won"t derive 
+~\cite{fliessbach2008quantenmechanik}. We won't derive 
 these results here, but rather state the eigenvalues 
 (with quantum number $\nu$)
 of the energy without proof
@@ -50,36 +50,39 @@ and $H_n$ are the Hermite polynomials:
     H_n(x)=(-1)^n e^{x^2}\frac{d^n}{dx^n}\left(e^{-x^2}\right) 
 \end{equation}
 
-\begin{figure}
-    \includegraphics[width=15cm]{pics/harmonic1}
-    \caption{Energy levels of the harmonic oscillator with its 
-        related wavefunctions\cite{Demtroeder1}.}
+\begin{figure}[!t]
+    \begin{captionbeside}[]{
+        Energy levels of the harmonic oscillator with its 
+        related wavefunctions\cite{Demtroeder1}.
+        }[r]
+    \includegraphics[width=0.65\textwidth]{pics/harmonic1}
+    \end{captionbeside}
     \label{fig:harmonic1}
 \end{figure}
 
 This potential is of outstanding importance for our experiment,
 since the real potential will be aproximated in a region near
 the minimum with a harmonic potential. 
-To a few problems we can find the analytical solution
-to the schrödingerequation, but to most
-of the problems we need to approximate the solution with regards to an analyical
+For a few problems we can find the analytical solution
+to the Schrödinger equation, but in most cases 
+we need to approximate the solution with regards to an analyical
 solution which is given. In the following sections we will introduce
-the time-independent Perturbationtheory and give an example with the 
-anharmonic oscillator how such an approximation can take place.
+the time-independent perturbation theory and give an example with the 
+anharmonic oscillator of how such an approximation can take place.
+\FloatBarrier
 
 \subsubsection{Time-independent perturbation theory}
-We are following~\cite{fliessbach2008quantenmechanik}.
-Lets assume we know the eigenvalues and -functions of a specific
-Hamiltonoperator $\hat{H_0}$ of the
-unperturbed system (we further assume the eigenspaces to be
-seperable, so we have no degeneracy. The case of degeneracy
-can be done analogously) 
-, numbered with $n\in \mathbb{N}$:
-
+We are following~\cite{fliessbach2008quantenmechanik}, starting with 
+an unpertubed Hamiltonian $\hat{H_0}$ for the harmonic oscillator, 
+for which we know the 
+eigenstates and -values, numbered with $n\in \mathbb{N}$. 
 \begin{equation}
 \hat{H_0} |n\rangle = \epsilon_n |n\rangle 
 \end{equation}
-and now we search for the solution of the perturbated Hamiltonian:
+We further assume the eigenspaces to be
+separable, so we have no degeneracy. The case of degeneracy
+can be done analogously. 
+We search for the solutions of the perturbated Hamiltonian:
 \begin{equation}
     \hat{H}|\psi \rangle = E|\psi \rangle 
 \end{equation}
@@ -88,10 +91,10 @@ by means of the initial Hamiltonian:
     \hat{H} = \hat{H_0} + \lambda \hat{V}
 \end{equation}
 where we perturbate the original Hamiltonian with the potential
-$\hat{V}$ and give an approximate Soluation as long as Perturbation
+$\hat{V}$ and give an approximate solution as long as the perturbation
 is not of the same order of magnitude as $H_0$. 
 The next step will be to apply this to the anharmonic 
-Oscillator in order to get an estimation about the energyeigenvalues.
+oscillator in order to get an estimation about the energy eigenvalues.
 At first we have introduced a new parameter $\lambda$, which is the 
 strength of the perturbation; for $\lambda = 1$ we have the problem
 we want to solve, for $\lambda = 0 $ we arrive at the unperturbed
@@ -103,7 +106,7 @@ problem. Now we can expand in this parameter:
     |n\rangle + \sum_{\nu =1}^{\infty} \lambda^\nu
     |\psi_{n,\nu}(\lambda)\rangle
 \end{align}
-As result the solutions we are looking for will become:
+As a result, the solutions we are looking for will become:
 \begin{align}
     E_n &= \epsilon_n + E_{n,1} + E_{n,2} + \ldots\\ 
     |\psi_n \rangle &= |n\rangle + |\psi_{n,1} \rangle + \ldots 
@@ -129,22 +132,22 @@ match on both sides and receive a set of equations:
     \epsilon_n |\psi_{n,2}\rangle + E_{n,1}|\psi{n,1}\rangle 
     + E_{n,2}|n\rangle \label{eq:dev2}\
 \end{align}
-This set of equations yield recursive the Solutions of $E_{n,1}$,
-$E_{n,2}$ and so on. Now we expand these single Wavefunctions 
-into the new basis of energyeigenfunctions $|m \rangle$ with $m\in 
+This set of equations yield recursive the solutions of $E_{n,1}$,
+$E_{n,2}$ and so on. Now we expand these single wavefunctions 
+into the new basis of energy eigenfunctions $|m \rangle$ with $m\in 
 \mathbb{N}$:
 \begin{equation}
     |\psi_{n,1}\rangle = \sum_{m=1}^{\infty} a_{nm} |m \rangle
     \label{eq:psi_expansion}
 \end{equation}
-We can plug this expansion now into into equation~\eqref{eq:dev1}:
+We can plug this expansion into equation~\eqref{eq:dev1}:
 \begin{equation}
     \sum_{m=1}^{\infty} (\epsilon_n - \epsilon_m) a_{nm} |m\rangle
     + E_{n,1} |n\rangle = \hat{V}|n \rangle
 \end{equation}
-With the Projection onto the dual eigenstate $\langle k|$ we can
+With the projection onto the dual eigenstate $\langle k|$ we can
 use the orthonormality $\langle k | m \rangle = \delta_{m,k}$ 
-of the energyeigenfunctions:
+of the energy eigenfunctions:
 \begin{equation}
      (\epsilon_n - \epsilon_k) a_{nk} 
      + E_{n,1}\delta_{n,k}  = \langle k |\hat{V}|n \rangle
@@ -159,13 +162,13 @@ and for $k\neq m$:
     {\epsilon_n - \epsilon_k} \label{eq:a_nk}
 \end{equation}
 Equation~\eqref{eq:a_nk} together with~\eqref{eq:psi_expansion} 
-gives us now:
+gives us:
 \begin{equation}
     |\psi_{n}\rangle = |n\rangle + \lambda \sum_{m\neq n}^{\infty}
     \frac{\langle m |\hat{V}|n \rangle}{\epsilon_n - \epsilon_m}  
     |m \rangle + \lambda a_{n,n} + \mathcal{O}(\lambda^2)
 \end{equation}
-Now we can set $a_{n,n}=0$ (see footnote~\footnote{
+Setting $a_{n,n}=0$ (see footnote~\footnote{
 Again we can use orthonormality:
 \begin{equation*}
     1\overset{!}{=} \langle \psi_n|\psi_{n}\rangle 
@@ -179,37 +182,37 @@ When $\lambda > 0 $ this results into:
 \begin{equation*}
     a_{n,n} + a^*_{n,n} = 0 \Rightarrow \Re  [a_{n,n}] = 0
 \end{equation*}
-Since the Wavefunctions 
+Since the wavefunctions 
 are invariant with respect to a phase $\phi$,
-we can set without limitations $a_{nn}$ to zero.} for
-further details) and we arrive
+we can set $a_{nn}$ to zero without limitations.} 
+for further details), we arrive
 at:
 \begin{equation}
     |\psi_{n}\rangle = |n\rangle + \lambda \sum_{m\neq n}^{\infty}
     \frac{\langle m |\hat{V}|n \rangle}{\epsilon_n - \epsilon_m}  
     |m \rangle  + \mathcal{O}(\lambda^2)
 \end{equation}
-For the Energy we can make use of the third equation and go to
+For the energy we can make use of the third equation and go to
 the second order:
 \begin{equation}
 |\psi_{n,2}\rangle  = \sum_{m=1}^{X} b_{n,m} |m \rangle 
 \end{equation}
-We can plug this analogously into equation~\eqref{eq:dev2} and
+We can plug this into equation~\eqref{eq:dev2} analogously and
 arrive at:
 \begin{equation}
  \sum_{m}^{\infty} (\epsilon_n - \epsilon_m) b_{nm} |m\rangle +
  \sum_{m}^{\infty} E_{n,1} a_{n,m} |m \rangle + E_{n,2} |n \rangle =
  \sum_{m}^{\infty} a_{n,m} \hat{V} |m \rangle
 \end{equation}
-Where again we use the orthonormality. For $k=n$ we get:
+where we use the orthonormality again. For $k=n$ we get 
 \begin{equation}
     E_{n,2} = \sum_{m}^{\infty} a_{n,m} \langle n |\hat{V}|m\rangle
 = \sum_{m\neq n}^{\infty}\frac{|\langle n | \hat{V} | m \rangle |^2}
-    {\epsilon_n - \epsilon_m}
+    {\epsilon_n - \epsilon_m}.
 \end{equation}
-For $k\neq n$ we would arrive at the explicit formula for $b_{n,m}$
-but this is not necessary for the further computations.
-As final result we therefore get:
+For $k\neq n$ we would arrive at the explicit formula for $b_{n,m}$,
+but this is not necessary for further computations considered here.
+As a final result we therefore get:
 \begin{align}
     E_n &\approx \epsilon_n + \langle n|\hat{V} | n \rangle +
 \sum_{m\neq n}^{\infty}\frac{|\langle n | \hat{V} | m \rangle |^2}
@@ -229,7 +232,7 @@ Lets assume we have solved the harmonic oscillator with
     \hat{H_0}|n \rangle &= \epsilon_n |n \rangle \\
     \epsilon_n &= \hbar \omega_0 \left (n+ \frac{1}{2} \right)
 \end{align}
-Now perturbe this system with a kubic potential potential:
+Now perturbe this system with a cubic potential:
 \begin{equation}
 \hat{V} =\lambda \hat{x}^3
 \end{equation}
@@ -240,23 +243,22 @@ to be zero:
     E_{n,1} = \lambda \langle n | \hat{x}^3 | n \rangle = 0 
 \end{equation}
 The wavefunctions have to be corrected as follows:
-\begin{equation}
+\begin{eqnarray}
     |\psi_{n,1} \rangle = \sum_{m\neq n}^{\infty}
     \frac{\langle m |\hat{V}|n \rangle}{\epsilon_n - \epsilon_m}  
     |m \rangle 
-    = \frac{\lambda}{\hbar \omega}
+    = \frac{\lambda}{\hbar \omega}  \\
     |\psi_{n,1} \rangle = \sum_{m\neq n}^{\infty}
     \frac{\langle m |\hat{x}^3|n \rangle}{\epsilon_n - \epsilon_m}  
     |m \rangle 
-\end{equation}
-Now we have to calculate the matrix elements. Therefore we
-introduce the creation- and annihilationoperator 
-which are defined by $\hat{x}$:
+\end{eqnarray}
+We introduce the creation- and annihilation operator 
+which are defined by 
 \begin{equation}
     \hat{x} = \sqrt{\frac{\hbar}{2m\omega}}(\hat{a}^\dagger +
         \hat{a})
 \end{equation} 
-Now we can calculate iteratively the matrixelements
+and can therefore calculate the matrix elements iteratively
 \footnote{
     Here we make use how $\hat{a}$ and $\hat{a}^\dagger$ act 
     on the eigenfunctions $|n\rangle$:
@@ -302,12 +304,12 @@ $m = n \pm 3 $ are not zero, we arrive at:
     +\frac{1}{3} \sqrt{(n(n-1)(n-2)}|n - 3 \rangle  ) 
 \end{aligned}
 \end{equation}
-We can also calculate the energy corrections:
+We can also calculate the energy corrections
 \begin{equation}
     E_{n,2} = \langle n | \hat{V} | \psi_{n,1} \rangle 
     = \lambda \langle n | \hat{x}^3 | \psi_{n,1} \rangle 
 \end{equation}
-Which yields:
+which yields
 \begin{equation}
 \begin{aligned}
     E_{n,2} &= \frac{\hbar^2 \lambda^2}{2 m^3 \omega ^4}
@@ -331,11 +333,11 @@ state here without proof:
     + \ldots
 \end{equation}
 We did not include the small derivation independent of $n$,
-since we will look only at energydifferences. Notice that
+since we will look only at differences in energy. Notice that
 the final result is only valid for a small, odd perturbation. 
 
 
-\subsubsection{Energylevels and wavefunctions
+\subsubsection{Energy levels and wavefunctions
     of two-atomic molecules}
 First we will write down the full equations of the two-atomic
 molecule and investigate afterwards which parts we can further
@@ -612,11 +614,14 @@ dissociation energy by
     D_e = \lim\limits_{r \rightarrow \infty}{V(r)}
         = E_B \left[ 1 - \exp(a r_e)  \right]^2
 \end{equation}
-\begin{figure}
-\includegraphics[width=15cm]{pics/Morse_potential}
-\caption{Comparison of the Morse and the harmonic potential
-    with the real (experimental) potential\cite{Demtroeder1}.}
-\label{fig:Morse}
+\begin{figure}[!t]
+    \begin{captionbeside}[]{
+        Comparison of the Morse and the harmonic potential
+        with the real (experimental) potential\cite{Demtroeder1}.
+        }[r]
+        \includegraphics[width=0.65\textwidth]{pics/Morse_potential}
+    \end{captionbeside}
+    \label{fig:Morse}
 \end{figure}
 Fortunatelly it is possible to solve the Schrödinger equation
 for the potential analytically. We will shift the energies 
@@ -763,12 +768,12 @@ are given by (ref. to \cite{lefebvre2004spectra})
 \end{eqnarray}
 These rules reduce the possible transitions to 
 \begin{eqnarray}
-    A ^3\Pi_{u} &\leftarrow & X ^1\Sigma_g^+ \quad \mathrm{and} \\
-    B ^3\Pi_{0u}^+ &\leftarrow & X ^1\Sigma_g^+, 
+    X ^1\Sigma_g^+ &\rightarrow & A ^3\Pi_{u} \quad \mathrm{and} \\
+    X ^1\Sigma_g^+ &\rightarrow & B ^3\Pi_{0u}^+, 
 \end{eqnarray}
 of which the first one shows only $3 - 4\%$ of the intensity of 
 the second one. We thus reduce the discussion to the transition 
-$B \leftarrow X$. 
+$X \rightarrow B$. 
 
 
 The vibrational changes don't require furthers constraints, but the rotational 
@@ -814,7 +819,7 @@ The solution of this equation is
 \begin{equation}
     m_s = \frac{B_{v'} + B_{v''}}{2(B_{v'} - B_{v''})}
 \end{equation}
-Obviously there are two possibilities:
+There are two possibilities~\cite{Demtroeder1}:
 \begin{itemize}
         \item $B_{v'} < B_{v''} \Leftrightarrow \sigma_\mathrm{head} > \sigma_0$:
             Band head located on the R-branch, thus shifted 
@@ -879,9 +884,9 @@ for the statistical distributions for different $n$, $v$ and $J$ as well as the
 Franck-Condon factors for the transitions and refer the reader to the literature, such 
 as \cite{lefebvre2004spectra}. 
 
-Before closing on theoretical preparation, we can use the given values for $B_e$ to 
+We can use the given values for $B_e$ to 
 perform a calculation of $r_e$, using equation \eqref{eqn:B_e} and 
-$\mu \approx 127/2 \mathrm{u} = 1.05\mathrm{e}-22$g. We get:
+$\mu m_{I}\/2 \mathrm{u} = 1.05\mathrm{e}-22$g. We get:
 \begin{eqnarray}
     r_e   &=& \sqrt{\frac{\hbar}{4 \pi \mu c B_e}} \label{eqn:r_e}\\
     r_e'' &=& 2.675 \AA \label{eqn:r_e0}\\
@@ -904,4 +909,43 @@ we can identify the parameters calculated above:
   \end{captionbeside}
     \label{fig:i2_pot}
 \end{figure}
+
+Before closing on theoretical preparation, we will state the values for all the 
+parameters in question as they are given in literature in table \ref{tab:lit_val}.
+In figure~\ref{fig:i2_pot2}, the different energies are shown according to their 
+definitions. 
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l |l |}
+        \hline
+        Ground state $X ^1\Sigma_{\sigma \, \mathrm{u}}^{+}$ & 
+        Excited state $B ^3\Pi_{\sigma \, \mathrm{u}}^{+}$ \\ \hline
+        $\omega_e'' = 214.50 \cm    $ & $\omega_e' = 125.69 \cm             $  \\ \hline
+        $\omega_e x_e'' = 0.614 \cm $ & $\omega_e x_e' = 0.764 \cm          $  \\ \hline
+        $                           $ & $\omega_e y_e' = -0.00567 \cm ^*    $  \\ \hline
+        $ D_e'' = 12453 ^{**}$      & $ D_e' = 4391.0 \cm ^*                $  \\ \hline
+        $ B_e'' = 0.03737           $ & $ B_e' = 0.02903                    $  \\ \hline
+        $ \alpha_e'' = 0.000113     $ & $ \alpha_e' = 0.000158              $  \\ \hline
+        $ r_e'' = 2.666 \ \AA       $ & $ r_e' = 3.024 \ \AA                $  \\ \hline
+        $ T_e'' = 0 \cm             $ & $T_e' = 15769.01 \cm                $ \\ \hline
+    \end{tabular}
+    \caption{Literature values for some characteristic parameters of the I2 molecule.
+    Values without any marker are taken from \cite{nist}, 
+    those marked by $^*$ from \cite{steinfeld1965spectroscopic} and 
+    those marked by $^{**}$ from \cite{leroy1970spectroscopic}.}
+    \label{tab:lit_val}
+\end{table}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{pics/i2_pot2.pdf}
+    \caption{Potential energy curves for thr ground state and the first excited 
+    state, including the various differences in energy defined in this section. 
+    The continuous lines are derived by the Rydberg-Klein-Rees method (here not 
+    further described, see \cite{zare1964calculation} for a description). 
+    Taken from \cite{staatsexamen}.}
+    \label{fig:i2_pot2}
+\end{figure}
+
 \FloatBarrier

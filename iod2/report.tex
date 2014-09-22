@@ -80,9 +80,9 @@
 
 \newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
 % commaneds for units & co.
-\newcommand{\cm}{\mathrm{cm^{-1}}}
-\newcommand{\nm}{\mathrm{nm}}
-\newcommand{\pltw}{1.0\textwidth}
+\newcommand{\cm}{\ \mathrm{cm^{-1}}}
+\newcommand{\nm}{\ \mathrm{nm}}
+\newcommand{\pltw}{0.9\textwidth}
 \newcommand{\mpltw}{0.68\textwidth}
 \newcommand{\picwidth}{0.8\textwidth}
 \newcommand{\unc}{0.3}  % uncertainty in nm
@@ -119,11 +119,9 @@
 \input{theory}
 \input{setup}
 \clearpage
-\section{Measurements}
-\clearpage
 \input{interpretation}
 \clearpage
-\section{Conclusion}
+\input{conclusion}
 \cleardoublepage
 
 \phantomsection
@@ -132,4 +130,7 @@
 \bibliographystyle{plain}
 \bibliography{report}
 \listoffigures
+
+\input{appendix}
+
 \end{document}

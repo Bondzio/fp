@@ -23,7 +23,7 @@ golden_ratio = (1 + np.sqrt(5)) / 2
 l1 = 7.0
 figsize = [golden_ratio * l1, l1]
 
-lambda_error = 0.3                        # uncertainty of spectrometer in lambda (nonimal = 0.3)
+lambda_error = 0.3                     # uncertainty of spectrometer in lambda (nonimal = 0.3)
 
 # since there are three progressions, we define all used quantities as dictionaries 
 # which are then index with the number of progression ( = v'')

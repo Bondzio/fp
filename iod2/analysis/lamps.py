@@ -106,7 +106,7 @@ halog_l = np.load(f_halog_l)   # wavelenght
 # Plot spetrum without corrections
 fig2 = plt.figure(figsize=figsize)
 ax = plt.subplot(111)
-ax.plot(halog_i, '-')    # does not fit the intensitiy with the iodine!
+ax.plot(halog_l, halog_i, '-')    # does not fit the intensitiy with the iodine!
 ax.set_xlim = ([0, 2050])
 ax.set_xlabel("Wavelength $\lambda$ / nm")
 ax.set_ylabel("Intensity $I(\sigma)$ / counts" )

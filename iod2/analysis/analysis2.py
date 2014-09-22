@@ -151,7 +151,7 @@ def str_label_fit(i):
 
 # general parameters
 plot_show = 0
-save_fig = 1
+save_fig = 0
 print_latex = 1
 deg = [2, 1, 1]                                # degree of polynomial fit
 plt.close('all')
@@ -337,7 +337,7 @@ for i in range(3):
 # chi2 plots
 fig3 = plt.figure(figsize = [21.0, 7.0])
 fig3.suptitle('Iodine 2 molecule - $\chi^2$ plots, uncorr. poly-fit parameters')
-for i in range(1):
+for i in range(3):
 # diagonalize covariance matrix
     eigval, eigvec[i] = np.linalg.eig(covA[i])
     beta[i] = np.linalg.solve(eigvec[i], coeff[i]) # uncorrelated parameters
@@ -404,7 +404,7 @@ if print_latex:
         f3.write(r"E_\mathrm{diss} &=& " + "{:L} \cm\n".format(E_diss[i]))
         f3.write("D_{e, %i}'' &=&"%i +  "{:L} \cm\n".format(D_e01[i]))
         f3.write("a_%i' &=& "%i +  "{:L}".format(a[i]) + r"\ \AA^{-1} \\" + "\n")
-        #f3.write("goodness-of-fit: $\chi^2 / n_d = %f$" %gof[i])
-        #f3.write("$n_d = %i = #points - (deg + 1)$" % n_d[i])
+        f3.write("goodness-of-fit: \chi^2 / n_d = %f\n" %gof[i])
+        f3.write("n_d = %i = #points - (deg + 1)\n" % n_d[i])
         f3.write("\n")
     f3.close()
