@@ -1,6 +1,6 @@
 import numpy as np
 # transform angle 17x degrees into negative angles
-input_dir = "data_faraday/"
+input_dir = "../data_faraday/"
 output_dir = input_dir
 for i in range(4):
     f = open(input_dir + "2.%i.csv"%(i+1))   # read data from csv table

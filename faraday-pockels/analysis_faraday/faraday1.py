@@ -1,9 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+input_dir = "../data_faraday/"
+
 for i in range(1):
-    a = np.load("a_%i.npy"%(i+1))
-    I = np.load("i_%i.npy"%(i+1))
+    a = np.load(input_dir +"a_%i.npy"%(i+1))
+    I = np.load(input_dir + "i_%i.npy"%(i+1))
     I_fit = np.linspace(0,5,100) 
     S_a = 0.5
     weights = a*0 + 1/S_a 
