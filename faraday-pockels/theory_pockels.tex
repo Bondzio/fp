@@ -3,12 +3,54 @@
 \subsection{Linear and circular polarized light}
 
 \subsection{Birefringence and index ellipsoid}
-% Overview
-If light is propagating in a material, it's speed is determined by the 
-\emph{index of refraction} or\emph{refraction index} $n$ according to 
+If the refraction index $n$ of a material depends on the linear polarization of light, 
+then a beam of light propagating in the material will be split up into 
+two beams with perpendicular polarization and different propagation speed 
 \beq
-   a = b 
+   v_i = \frac{c}{n_i}, 
 \eeq
+In order to explain this phenomenon, it is helpful to introduce quantities 
+connected to the structure of the material, i.~e. it being anisotropic, 
+and retrieve the way the light propagates by looking at the solutions 
+of Maxwell's equations in matter, 
+\bea
+\nabla \cdot \mathbf{D} &=& \rho_\text{f} 
+\label{eq:max1} \\ 
+\nabla \cdot \mathbf{B} &=& 0
+\label{eq:max2} \\ 
+\nabla \times \mathbf{E} &=& -\frac{\partial \mathbf{B}} {\partial t}
+\label{eq:max3} \\ 
+    \nabla \times \mathbf{H} &=& \mathbf{J}_\text{f} + 
+        \frac{\partial \mathbf{D}} {\partial t}, 
+\label{eq:max4} \\ 
+\eea
+where 
+\bit
+\item $\D$ is the electric displacement field,
+\item $\mathbf{H}$ is the magnetizing field,
+\item $\mathbf{J}_\text{f}$ is the free current density, and
+\item $\mathbf{\rho}_\text{f}$ is the free charge density.
+\eit
+If we assume $\mathbf{\rho}_\text{f}$, $\mathbf{\rho}_\text{f} = 0$ 
+(no free charge and currents), and the permeability $\mu$ of the material 
+to be just the vacuum permeability $\mu_0$, then 
+$\B = \mu \mathbf{H} = \mu_0 \mathbf{H}$ and applying the curl 
+operator to \eqref{eq:max3} yields:
+\bea
+\nabla \times \nabla \times \mathbf{E} &=& \
+    - \frac{\part }{\partial t} \left(\nabla \times \mathbf{B}\right) &=& \nn
+    - \mu_0 \frac{\part }{\partial t} \left(\nabla \times \mathbf{H}\right) &=&\nn
+    - \mu_0 \frac{\part }{\partial t} \left(\mathbf{J}_\text{f} + 
+        \frac{\partial \mathbf{D}} {\partial t}\right) &=&\nn
+     -\mu_0 \frac{\part^2 \mathbf{D} }{\partial t^2}  \\
+\nabla \cdot \mathbf{D} =0
+\eea
+
+
+
+biaxil - uniaxial 
+optical axis 
+
 
 \subsection{Deducing the Pockels effect in terms of nonlinear Maxwell equations}
 \subsubsection{Primary and secondary electro-optical effect}
