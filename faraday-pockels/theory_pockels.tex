@@ -26,24 +26,37 @@ of Maxwell's equations in matter,
 \eea
 where 
 \bit
-\item $\D$ is the electric displacement field,
-\item $\mathbf{H}$ is the magnetizing field,
+\item $\D$ is the electric displacement field, related to the eletric field $\E$ 
+    by the constitutive equation 
+    \beq
+        \D = \epsilon \E 
+    \label{eq:const1}
+    \eeq
+\item $\mathbf{H}$ is the magnetizing field, with the constitutive equation 
+    \beq
+        \mathbf{H} = \mu \B
+    \label{eq:const2}
+    \eeq
 \item $\mathbf{J}_\text{f}$ is the free current density, and
 \item $\mathbf{\rho}_\text{f}$ is the free charge density.
 \eit
+Equations \eqref{eq:const1} and \eqref{eq:const2} are valid for materials without 
+coupling between magnetic and eletric fields, which is the case in our 
+crystal. We are, however, facing an anistropic material, so that 
+$\epsilon$ is a tensor, while we assume the permeability $\mu$ of the material 
+to be just the vacuum permeability $\mu_0$, such that
+$\B = \mu \mathbf{H} = \mu_0 \mathbf{H}$. 
 If we assume $\mathbf{\rho}_\text{f}$, $\mathbf{\rho}_\text{f} = 0$ 
-(no free charge and currents), and the permeability $\mu$ of the material 
-to be just the vacuum permeability $\mu_0$, then 
-$\B = \mu \mathbf{H} = \mu_0 \mathbf{H}$ and applying the curl 
+(no free charge and currents), then applying the curl 
 operator to \eqref{eq:max3} yields:
 \bea
-\nabla \times \nabla \times \mathbf{E} &=& \
-    - \frac{\part }{\partial t} \left(\nabla \times \mathbf{B}\right) &=& \nn
-    - \mu_0 \frac{\part }{\partial t} \left(\nabla \times \mathbf{H}\right) &=&\nn
-    - \mu_0 \frac{\part }{\partial t} \left(\mathbf{J}_\text{f} + 
-        \frac{\partial \mathbf{D}} {\partial t}\right) &=&\nn
-     -\mu_0 \frac{\part^2 \mathbf{D} }{\partial t^2}  \\
-\nabla \cdot \mathbf{D} =0
+    \nabla \times \nabla \times \mathbf{E} &=& 
+    - \frac{\partial }{\partial t} \left(\nabla \times \mathbf{B}\right)  \nn
+    &=& - \mu_0 \frac{\partial }{\partial t} \left(\nabla \times \mathbf{H}\right) \nn
+    &=& - \mu_0 \frac{\partial }{\partial t} \left(\mathbf{J}_\text{f} + 
+        \frac{\partial \D} {\partial t}\right) \nn
+    &=& -\mu_0 \frac{\partial^2 \D }{\partial t^2}  \\
+    \nabla \cdot \mathbf{D} &=& 0
 \eea
 
 
@@ -58,7 +71,7 @@ optical axis
 
 \subsection{Structure of crystal lattice}
 
-\subsection{Reduction of components of dielctric tensor for $\bar{4}2$m cristals}
+\subsection{Reduction of components of dielctric tensor for $\bar{4}2$m crystals}
 
 \subsection{Discussion of the effect for the transverse Pockels Cell}
 
