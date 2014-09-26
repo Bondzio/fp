@@ -14,22 +14,22 @@ connected to the structure of the material, i.~e. it being anisotropic,
 and retrieve the way the light propagates by looking at the solutions 
 of Maxwell's equations in matter, 
 \bea
-\nabla \cdot \mathbf{D} &=& \rho_\text{f} 
+\nabla \cdot \D &=& \rho_\text{f} 
 \label{eq:max1} \\ 
-\nabla \cdot \mathbf{B} &=& 0
+\nabla \cdot \B &=& 0
 \label{eq:max2} \\ 
-\nabla \times \mathbf{E} &=& -\frac{\partial \mathbf{B}} {\partial t}
+\nabla \times \E &=& -\frac{\partial \B} {\partial t}
 \label{eq:max3} \\ 
     \nabla \times \mathbf{H} &=& \mathbf{J}_\text{f} + 
-        \frac{\partial \mathbf{D}} {\partial t}, 
-\label{eq:max4} \\ 
+        \frac{\partial \D} {\partial t}, 
+\label{eq:max4}
 \eea
 where 
 \bit
 \item $\D$ is the electric displacement field, related to the eletric field $\E$ 
     by the constitutive equation 
     \beq
-        \D = \epsilon \E 
+        \D = \eps \E 
     \label{eq:const1}
     \eeq
 \item $\mathbf{H}$ is the magnetizing field, with the constitutive equation 
@@ -43,23 +43,49 @@ where
 Equations \eqref{eq:const1} and \eqref{eq:const2} are valid for materials without 
 coupling between magnetic and eletric fields, which is the case in our 
 crystal. We are, however, facing an anistropic material, so that 
-$\epsilon$ is a tensor, while we assume the permeability $\mu$ of the material 
+$\eps$ is a tensor, while we assume the permeability $\mu$ of the material 
 to be just the vacuum permeability $\mu_0$, such that
 $\B = \mu \mathbf{H} = \mu_0 \mathbf{H}$. 
 If we assume $\mathbf{\rho}_\text{f}$, $\mathbf{\rho}_\text{f} = 0$ 
 (no free charge and currents), then applying the curl 
-operator to \eqref{eq:max3} yields:
+operator to \eqref{eq:max3} and \eqref{max1} yields:
 \bea
-    \nabla \times \nabla \times \mathbf{E} &=& 
-    - \frac{\partial }{\partial t} \left(\nabla \times \mathbf{B}\right)  \nn
+    \nabla \times \nabla \times \E &=& 
+    - \frac{\partial }{\partial t} \left(\nabla \times \B\right)  \nn
     &=& - \mu_0 \frac{\partial }{\partial t} \left(\nabla \times \mathbf{H}\right) \nn
     &=& - \mu_0 \frac{\partial }{\partial t} \left(\mathbf{J}_\text{f} + 
         \frac{\partial \D} {\partial t}\right) \nn
-    &=& -\mu_0 \frac{\partial^2 \D }{\partial t^2}  \\
-    \nabla \cdot \mathbf{D} &=& 0
+    &=& -\mu_0 \frac{\partial^2 \D }{\partial t^2}  \nn
+    &=& -\mu_0 \frac{\partial^2}{\partial t^2} \eps \E
+    \label{eq:max3b} \\
+    \nabla \cdot \D &=& 0
+    \label{eq:max1b}
 \eea
-
-
+For plane waves, described by
+\beq
+    \E_\K = \E_0 \exp \left[i(\mathbf{k \cdot r}-\omega t)\right] \, , 
+\eeq
+inserting in \eqref{eq:max3b} and \eqref{eq:max1b} gives
+\bea
+    |\mathbf{k}|^2\En-\mathbf{(k \cdot E_0) k} 
+    &=& \mu_0 \omega^2 (\mathbf{\eps} \, \En)
+    \label{eq:max3c} \\
+    \K \cdot (\eps \, \En) &=& 0
+    \label{eq:max1c}
+\eea
+By applying the principle axis theorem~\cite{strange1994introduction}, 
+we can write $\eps$ as a diagonal matrix, 
+\beq
+\mathbf{\epsilon}= \epsilon_0 \begin{bmatrix} n_x^2 & 0 & 0 \\ 0& n_y^2 & 0 \\ 0& 0& n_z^2 \end{bmatrix} \, ,
+\eeq
+with refractive indeces $n_x, n_y, n_z$ along the principle axis. 
+whereby \eqref{eq:max3c} and \eqref{eq:max1c} yield the solutions
+\newcommand{\K}{\mathbf{k}}
+\bea
+\left(-k_y^2-k_z^2+\frac{\omega^2n_x^2}{c^2}\right)E_x + k_xk_yE_y + k_xk_zE_z &=& 0
+k_xk_yE_x + \left(-k_x^2-k_z^2+\frac{\omega^2n_y^2}{c^2}\right)E_y + k_yk_zE_z &=& 0
+k_xk_zE_x + k_yk_zE_y + \left(-k_x^2-k_y^2+\frac{\omega^2n_z^2}{c^2}\right)E_z &=& 0
+\eea
 
 biaxil - uniaxial 
 optical axis 
