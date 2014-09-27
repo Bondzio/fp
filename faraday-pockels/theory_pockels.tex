@@ -46,9 +46,9 @@ crystal. We are, however, facing an anistropic material, so that
 $\eps$ is a tensor, while we assume the permeability $\mu$ of the material 
 to be just the vacuum permeability $\mu_0$, such that
 $\B = \mu \mathbf{H} = \mu_0 \mathbf{H}$. 
-If we assume $\mathbf{\rho}_\text{f}$, $\mathbf{\rho}_\text{f} = 0$ 
+If we assume $\mathbf{\rho}_\text{f} = 0$, $\mathbf{J}_\text{f} = 0$ 
 (no free charge and currents), then applying the curl 
-operator to \eqref{eq:max3} and \eqref{max1} yields:
+operator to \eqref{eq:max3} and \eqref{eq:max1} yields:
 \bea
     \nabla \times \nabla \times \E &=& 
     - \frac{\partial }{\partial t} \left(\nabla \times \B\right)  \nn
@@ -70,21 +70,61 @@ inserting in \eqref{eq:max3b} and \eqref{eq:max1b} gives
     |\mathbf{k}|^2\En-\mathbf{(k \cdot E_0) k} 
     &=& \mu_0 \omega^2 (\mathbf{\eps} \, \En)
     \label{eq:max3c} \\
-    \K \cdot (\eps \, \En) &=& 0
+    \K \cdot (\eps \, \En) &=& 0.
     \label{eq:max1c}
 \eea
-By applying the principle axis theorem~\cite{strange1994introduction}, 
-we can write $\eps$ as a diagonal matrix, 
+By applying the principle axis theorem~\cite{strang2003introduction}, 
+we can write $\eps$ as the diagonal matrix 
 \beq
-\mathbf{\epsilon}= \epsilon_0 \begin{bmatrix} n_x^2 & 0 & 0 \\ 0& n_y^2 & 0 \\ 0& 0& n_z^2 \end{bmatrix} \, ,
+\mathbf{\epsilon}= \epsilon_0 
+\begin{bmatrix} 
+n_x^2   & 0     & 0 \\ 
+0       & n_y^2 & 0 \\ 
+0       & 0     & n_z^2 
+\end{bmatrix} \, ,
 \eeq
 with refractive indeces $n_x, n_y, n_z$ along the principle axis. 
-whereby \eqref{eq:max3c} and \eqref{eq:max1cc} yield the solutions
+whereby \eqref{eq:max3c} and \eqref{eq:max1c} yield the solutions
 \bea
 \left(-k_y^2-k_z^2+\frac{\omega^2n_x^2}{c^2}\right)E_x + k_xk_yE_y + k_xk_zE_z &=& 0 \\
 k_xk_yE_x + \left(-k_x^2-k_z^2+\frac{\omega^2n_y^2}{c^2}\right)E_y + k_yk_zE_z &=& 0 \\
 k_xk_zE_x + k_yk_zE_y + \left(-k_x^2-k_y^2+\frac{\omega^2n_z^2}{c^2}\right)E_z &=& 0
 \eea
+with components $E_i$ and $k_i$ of $\E$ and $\K$ along the $i$-axis, $i \in \left\{x, y, z\right\}$.
+The solutions of this set of equation linear in $E_i$ is solved if the determinant vanishes:
+\beq
+\begin{vmatrix} 
+\left(-k_y^2-k_z^2+\frac{\omega^2n_x^2}{c^2}\right) & k_xk_y & k_xk_z \\ 
+k_xk_y & \left(-k_x^2-k_z^2+\frac{\omega^2n_y^2}{c^2}\right) & k_yk_z \\ 
+k_xk_z & k_yk_z & \left(-k_x^2-k_y^2+\frac{\omega^2n_z^2}{c^2}\right) 
+\end{vmatrix} =0\, 
+\eeq
+Rearraging the solution of this equation yields
+\beq
+\frac{\omega^4}{c^4} - 
+\frac{\omega^2}{c^2}
+\left(\frac{k_x^2+k_y^2}{n_z^2} + \frac{k_x^2+k_z^2}{n_y^2} + \frac{k_y^2+k_z^2}{n_x^2}\right) + 
+\K^2\left(\frac{k_x^2}{n_y^2n_z^2} + \frac{k_y^2}{n_x^2n_z^2} + \frac{k_z^2}{n_x^2n_y^2}\right) 
+= 0 
+\label{eq:sol_general}
+\eeq
+
+The effect of birefraction can be explained for biaxial crystals, first, being defined 
+by roational symmetry around one axis. If we chose the $z$-axis, we can rename of 
+refraction indices into $n_x = n_y =: n_o$ and $n_z =: n_e$, where $o$ and $e$ stand for 
+ordinary and extraordinary, respectivly, as will be explained below. In this case, 
+we can factor equation \eqref{eq:sol_general} into 
+\beq
+\left(\frac{k_x^2}{n_o^2}+\frac{k_y^2}{n_o^2}+\frac{k_z^2}{n_o^2} -\frac{\omega^2}{c^2}\right)
+\left(\frac{k_x^2}{n_e^2}+\frac{k_y^2}{n_e^2}+\frac{k_z^2}{n_o^2} -\frac{\omega^2}{c^2}\right)
+=0 \, . 
+\label{eq:sol_biax}
+\eeq
+We get two sets of legal $\K$-vectors by setting either of the two factors to zero. 
+The first set corresponds to the surface of a sphere with radius $n_o$, 
+the second to a spheroid with rotational symmetry about the $z$-axis. 
+
+
 
 biaxil - uniaxial 
 optical axis 
