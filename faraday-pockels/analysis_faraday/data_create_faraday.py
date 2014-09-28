@@ -9,11 +9,10 @@ for i in range(4):
         a += [float(line)]
     f.close()
     a = np.array(a)
-    if i == 3:
-        for k, I in enumerate(a):
-            if I > 90:  # dont take 'positive' values
-                a[k] = I - 180
-    np.save(output_dir + "a_%i"%i, a)
+    for k, ai in enumerate(a):
+        if ai > 90:  # dont take 'positive' values
+            a[k] = ai - 180
+    np.save(output_dir + "a_%i"%(i+1), a)
 
 # create np arrays for I
 Imax = 4.8

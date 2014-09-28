@@ -49,7 +49,7 @@ which we can insert into the definition of $\alpha$ and the refraction index $n 
 \alpha = \phi l &= \frac{\omega l}{2} \left (\frac{1}{v_-} - \frac{1}{v_+} \right) \\ 
  &= \frac{\omega l}{2c} \left (n_- - n_+ \right)
 \end{align}
-From equation \eqref{eq:v+} and \eqref{eq:v-} we get (implying for small $\phi$ in the last step):
+From equation \eqref{eq:v+} and \eqref{eq:v-} we get (implying for tiny $\phi$ in the last step):
 \begin{equation}
 v_{+/-} = \frac{\omega}{\frac{\omega}{v} \mp \phi} = \frac{v}{1 \mp \frac{\phi v}{\omega}} 
 = v \left ( 1 \pm \frac{\phi v}{\omega}+ \left (\frac{\phi v}{\omega} \right)^2
@@ -70,7 +70,7 @@ wave is shifted by this frequency with regards to the original coordinate system
 \alpha = \frac{\omega l}{2c} \left (n_{\omega + \omega_L} - n_{\omega - \omega_L}\right )  
 \end{equation}
 The refraction index in dependence of the frequency is given by the dispersion relation, which is 
-dependent on the medium. For small frequencies we can taylor: 
+dependent on the medium. For tiny frequencies we can taylor: 
 \begin{equation}
 n(\omega + \omega_L) \approx n(\omega) \pm \omega_L \frac{\partial n}{\partial \omega}
 \end{equation}
@@ -80,9 +80,16 @@ and now we can write in this in terms of $\omega \frac{n}{w} = -\lambda \frac{n}
 \frac{e l B \lambda}{2m c^2} \frac{\partial n}{\partial \lambda} \quad \text{Formula of Bequerel}
 \end{equation}
 
-\subsection{Half shade polarimeter}
 
 \subsection{Experimental setup}
+The setup of our experiment is as following: We have a coil as an inductor in which the light
+surpasses a flintglass, which is inside of the coil (see figure~\ref{fig:faraday_setup}). The
+coil is being cooled by a cooling unit. The water is supplied by an external  water feed pipe
+and flowing of with a drainage. The light is emitted by a sodium light. After it goes through
+the halfshade polarizer, then the coil and again through a polarizer when we can finally 
+observe it with the eyelet. We can rotate the second polarizer 
+to analyze the polarization direction of the incoming light and change the current flowing through
+the coil.
 \begin{figure}
     \begin{centering}
         \includegraphics[width=18cm]{figures/faraday_setup2}
@@ -90,6 +97,55 @@ and now we can write in this in terms of $\omega \frac{n}{w} = -\lambda \frac{n}
         \label{fig:faraday_setup}
     \end{centering}
 \end{figure}
+
+\subsection{Half shade polarizer}
+The halfshade polarizer functions as following. We use a Nicol prism, which was invented in
+1828 by William Nicol. Its essentially a rhombohedral crystal of iceland spar with a 69° cut with
+respect to the optical axis of the crystal, another diagonal cut only to be attached to each
+other again. The two Nicols in the device are used differently: The large Nicol polarizes the
+incoming light of the sodium lamp while the tiny Nicol rotates the polarization plane of 
+a part of the light with an angle $\epsilon$. This is the reason why in the end we see different
+areas with different degree of intensity in the eyelet (see figure~\ref{fig:halfshadepolarizer}).
+Since it is more convenient for the eye to recognize the case with equal intensity than to
+distinguish the case with different areas, we will use it for analyzing the rotation angle.
+If we now turn on the magnetic field $B$ we observe the rotation of the incoming light, which
+now can be tracked down by adjusting the analyzer to regain the state with equal intensity.
+\begin{figure}
+    \begin{centering}
+        \includegraphics[width=14cm]{figures/halfshadepolarizer}
+        \caption{Half shade polarizer (figure from \cite{staatsexamen}) where we used the
+            abbreviations: \\
+            $N$ = polarization direction of the large Nicol\\
+            $n$ = polarization direction of the tiny Nicol\\
+            $A$ = polarization direction of the second polarizer\\
+            In the experiment we use the configuration c), since it is most convenient
+            for the eye to recognize and thus can resample the best precision.
+            }
+        \label{fig:halfshadepolarizer}
+    \end{centering}
+\end{figure}
+\subsection{Calculating the magnitude of the magnetic field inside of the coil}
+We start with the law of Biot-Savart of a electric flow $I$ along the path $C$ which generates
+a magnetic field $B$ at position $r$:
+\begin{equation}
+    \vec{B} = \frac{\mu_0}{4\pi} \int_{C} \frac{I d\vec{l} \times \vec{r}}{|\vec{r}|^3} 
+\end{equation}
+which can be rewritten, if we use the absolute value instead of vectors and the Radius $R$ of the
+coil with the horizontal position $x$:
+\begin{equation}
+    dB = \frac{\mu_0}{4\pi} \frac{I dl}{R^2 + x^2} 
+\end{equation}
+We only need the fraction of the x-direction. Let now $\theta$ be the angle betwen the $y,z$ 
+direction and the $x-$axis:
+\begin{align}
+    \sqrt{R^2 + x^2} \cos(\theta) &= R \\
+    \Rightarrow dB_x &= dB \cos\theta = dB \left (\frac{R}{\sqrt{R^2 + x^2}} \right) = 
+    \frac{\mu_0}{4\pi} \frac{I  \cdot R \cdot dl}{\sqrt{\left (R^2 + x^2 \right )^3}} \\
+    B_x &= \frac{\mu_0}{4\pi} \frac{I  \cdot R}{\sqrt{\left (R^2 + x^2 \right )^3}} \int_C dl 
+    = \frac{\mu_0}{4\pi} \frac{I  \cdot R}{\sqrt{\left (R^2 + x^2 \right )^3}} \left (2\pi R \right )
+\end{align}
+
+
 
 
 \subsection{Method of measuring the rotation angle}
