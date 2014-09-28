@@ -29,12 +29,12 @@ where
 \item $\D$ is the electric displacement field, related to the eletric field $\E$ 
     by the constitutive equation 
     \beq
-        \D = \eps \E 
+        \D = \Eps \E 
     \label{eq:const1}
     \eeq
 \item $\mathbf{H}$ is the magnetizing field, with the constitutive equation 
     \beq
-        \mathbf{H} = \mu \B
+        \mathbf{H} = \mu^{-1} \B
     \label{eq:const2}
     \eeq
 \item $\mathbf{J}_\text{f}$ is the free current density, and
@@ -43,86 +43,82 @@ where
 Equations \eqref{eq:const1} and \eqref{eq:const2} are valid for materials without 
 coupling between magnetic and eletric fields, which is the case in our 
 crystal. We are, however, facing an anistropic material, so that 
-$\eps$ is a tensor, while we assume the permeability $\mu$ of the material 
+$\Eps$ is a tensor, while we assume the permeability $\mu$ of the material 
 to be just the vacuum permeability $\mu_0$, such that
 $\B = \mu \mathbf{H} = \mu_0 \mathbf{H}$. 
 If we assume $\mathbf{\rho}_\text{f} = 0$, $\mathbf{J}_\text{f} = 0$ 
-(no free charge and currents), then applying the curl 
-operator to \eqref{eq:max3} and \eqref{eq:max1} yields:
+(no free charge and currents), and consider plane waves, 
+described by
 \bea
-    \nabla \times \nabla \times \E &=& 
-    - \frac{\partial }{\partial t} \left(\nabla \times \B\right)  \nn
-    &=& - \mu_0 \frac{\partial }{\partial t} \left(\nabla \times \mathbf{H}\right) \nn
-    &=& - \mu_0 \frac{\partial }{\partial t} \left(\mathbf{J}_\text{f} + 
-        \frac{\partial \D} {\partial t}\right) \nn
-    &=& -\mu_0 \frac{\partial^2 \D }{\partial t^2}  \nn
-    &=& -\mu_0 \frac{\partial^2}{\partial t^2} \eps \E
-    \label{eq:max3b} \\
-    \nabla \cdot \D &=& 0
-    \label{eq:max1b}
+    \E &=& \E_0 \exp \left[i(\mathbf{k \cdot r}-\omega t)\right] \\
+    \mathbf{H} &=& \mathbf{H_0} \exp \left[i(\mathbf{k \cdot r}-\omega t)\right], 
 \eea
-For plane waves, described by
+then inserting into \eqref{eq:max3} and \eqref{eq:max4} yields:
+\bea
+    \mu_0 \omega \mathbf{H} &=& \K \times \E 
+    \label{eq:plan_H} \\
+    \omega \D &=& - \K \times \mathbf{H}.
+    \label{eq:plan_D} 
+\eea
+We observe, that $\K, \D$, and $\Ha$ are mutually perpendicular. 
+Looking at the energy flux
 \beq
-    \E_\K = \E_0 \exp \left[i(\mathbf{k \cdot r}-\omega t)\right] \, , 
+    \mathbf{S} = \E \times \Ha, 
 \eeq
-inserting in \eqref{eq:max3b} and \eqref{eq:max1b} gives
+we further see, that the directions of $\mathbf{S}$ and $\K$ do not 
+coincide if $\E \nparallel \Eps \E$. If we define the 
+refractive index $\mathbf{n}$ by 
+\beq
+    \K = \frac{\omega}{c} \N \, ,
+\eeq
+we can rewrite equations \eqref{eq:plan_H} and \eqref{eq:plan_B} as 
 \bea
-    |\mathbf{k}|^2\En-\mathbf{(k \cdot E_0) k} 
-    &=& \mu_0 \omega^2 (\mathbf{\eps} \, \En)
-    \label{eq:max3c} \\
-    \K \cdot (\eps \, \En) &=& 0.
-    \label{eq:max1c}
+    \mathbf{H} &=& \frac{1}{\mu_0 c} \N \times \E 
+    \label{eq:plan_Hb} \\
+    \D &=& - \frac{1}{c} \N \times \mathbf{H}.
+    \label{eq:plan_Db} \, .
 \eea
+Inserting the latter one into the first and using 
+the identity $c^2 = \frac{1}{\mu_0 \epsn}$, we get 
+\bea
+    \D  &=& \frac{1}{\mu_0 c^2} \N \times \left(\E \times \N\right) \nonumber \\
+        &=& \epsn \left(n^2 \E - \left(\N \cdot \E\right) \N \right)
+\eea
+With the constitutive equation \eqref{eq:const1}, we obtain three 
+equations linear in the components $E_k$:
+\beq
+    \left(n^2 \delta_{ik} - n_i n_k - \frac{\epsilon_{ik}}{\epsn}\right) E_k = 0
+\eeq
+This equation is solve if its determinant vanishes:
+\beq
+    \mathrm{det}\,\left|n^2 \delta_{ik} - n_i n_k - \frac{\epsilon_{ik}}{\epsn}\right| = 0
+\eeq
 By applying the principle axis theorem~\cite{strang2003introduction}, 
-we can write $\eps$ as the diagonal matrix 
-\beq
-\mathbf{\epsilon}= \epsilon_0 
-\begin{bmatrix} 
-n_x^2   & 0     & 0 \\ 
-0       & n_y^2 & 0 \\ 
-0       & 0     & n_z^2 
-\end{bmatrix} \, ,
-\eeq
-with refractive indeces $n_x, n_y, n_z$ along the principle axis. 
-whereby \eqref{eq:max3c} and \eqref{eq:max1c} yield the solutions
+we can write $\Eps$ as the diagonal matrix with elements $\eps_x, \eps_y, \eps_z$. 
+This yields \emph{Fresnel's equation}:
 \bea
-\left(-k_y^2-k_z^2+\frac{\omega^2n_x^2}{c^2}\right)E_x + k_xk_yE_y + k_xk_zE_z &=& 0 \\
-k_xk_yE_x + \left(-k_x^2-k_z^2+\frac{\omega^2n_y^2}{c^2}\right)E_y + k_yk_zE_z &=& 0 \\
-k_xk_zE_x + k_yk_zE_y + \left(-k_x^2-k_y^2+\frac{\omega^2n_z^2}{c^2}\right)E_z &=& 0
+    \frac{n^2}{\epsn} \left(\eps_x n_x^2 + \eps_y n_y^2 + \eps_z n_z^2 \right) 
+    - \left[
+        \frac{n_x^2}{\epsn^2} \eps_x \left(\eps_y + \eps_z\right) + 
+        \frac{n_y^2}{\epsn^2} \eps_y \left(\eps_z + \eps_x\right) + 
+        \frac{n_z^2}{\epsn^2} \eps_z \left(\eps_x + \eps_y\right) 
+    \right] + \nonumber \\
+    + \quad \frac{\eps_x \eps_y \eps_z}{\epsn^3} = 0
+    \label{eq:fresnel}
 \eea
-with components $E_i$ and $k_i$ of $\E$ and $\K$ along the $i$-axis, $i \in \left\{x, y, z\right\}$.
-The solutions of this set of equation linear in $E_i$ is solved if the determinant vanishes:
+Being of second order in $n_i^2$, $i \in \{x, y, z\}$, there are up to two linearly 
+independent solutions, corresponding to two possible directions of polarization. 
+The case of a uniaxial crystal is especially easy to solve. If we take the 
+$z$-axis to be that of rotational symmetry, we can rename the components of 
+$\Eps$ with $\eps_x = \eps_y = \eps_\perp$ and $\eps_z = \eps_\parallel$. 
+Fresnel's equation \eqref{eq:fresnel} can then be factored into
 \beq
-\begin{vmatrix} 
-\left(-k_y^2-k_z^2+\frac{\omega^2n_x^2}{c^2}\right) & k_xk_y & k_xk_z \\ 
-k_xk_y & \left(-k_x^2-k_z^2+\frac{\omega^2n_y^2}{c^2}\right) & k_yk_z \\ 
-k_xk_z & k_yk_z & \left(-k_x^2-k_y^2+\frac{\omega^2n_z^2}{c^2}\right) 
-\end{vmatrix} =0\, 
+    \left(n^2 - \frac{\eps_\perp}{\epsn}\right) 
+    \left[\frac{\eps_\parallel}{\epsn} n^2 + 
+        \frac{\eps_\perp}{\epsn} \left(n_x^2 + n_y^2\right) + 
+        \frac{\eps_\perp \eps_\parallel}{\epsn^2} 
+    \right] = 0
 \eeq
-Rearraging the solution of this equation yields
-\beq
-\frac{\omega^4}{c^4} - 
-\frac{\omega^2}{c^2}
-\left(\frac{k_x^2+k_y^2}{n_z^2} + \frac{k_x^2+k_z^2}{n_y^2} + \frac{k_y^2+k_z^2}{n_x^2}\right) + 
-\K^2\left(\frac{k_x^2}{n_y^2n_z^2} + \frac{k_y^2}{n_x^2n_z^2} + \frac{k_z^2}{n_x^2n_y^2}\right) 
-= 0 
-\label{eq:sol_general}
-\eeq
-
-The effect of birefraction can be explained for biaxial crystals, first, being defined 
-by roational symmetry around one axis. If we chose the $z$-axis, we can rename of 
-refraction indices into $n_x = n_y =: n_o$ and $n_z =: n_e$, where $o$ and $e$ stand for 
-ordinary and extraordinary, respectivly, as will be explained below. In this case, 
-we can factor equation \eqref{eq:sol_general} into 
-\beq
-\left(\frac{k_x^2}{n_o^2}+\frac{k_y^2}{n_o^2}+\frac{k_z^2}{n_o^2} -\frac{\omega^2}{c^2}\right)
-\left(\frac{k_x^2}{n_e^2}+\frac{k_y^2}{n_e^2}+\frac{k_z^2}{n_o^2} -\frac{\omega^2}{c^2}\right)
-=0 \, . 
-\label{eq:sol_biax}
-\eeq
-We get two sets of legal $\K$-vectors by setting either of the two factors to zero. 
-The first set corresponds to the surface of a sphere with radius $n_o$, 
-the second to a spheroid with rotational symmetry about the $z$-axis. 
 
 
 
