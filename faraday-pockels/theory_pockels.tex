@@ -117,10 +117,17 @@ Fresnel's equation \eqref{eq:fresnel} can then be factored into
     \left[\frac{\eps_\parallel}{\epsn} n^2 + 
         \frac{\eps_\perp}{\epsn} \left(n_x^2 + n_y^2\right) + 
         \frac{\eps_\perp \eps_\parallel}{\epsn^2} 
-    \right] = 0
+    \right] = 0 \, .
 \eeq
-
-
+In other words, we have two quadratic equations
+\bea
+    n^2 &=& \frac{\eps_\perp}{\epsn} 
+    \label{eq:sphere}\\
+    \frac{n_z^2}{\eps_\perp} + \frac{n_x^2 + n_y^2}{\eps_\parallel} &=& 1
+    \label{eq:ellipsoid}
+\eea
+Equation \eqref{eq:sphere} gives a sphere for the wave-vector surface, while 
+equation \eqref{eq:ellipsoid} corresponds to an ellipsoid. 
 
 biaxil - uniaxial 
 optical axis 
