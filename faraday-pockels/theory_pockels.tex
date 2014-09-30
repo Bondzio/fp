@@ -71,7 +71,7 @@ refractive index $\mathbf{n}$ by
 \beq
     \K = \frac{\omega}{c} \N \, ,
 \eeq
-we can rewrite equations \eqref{eq:plan_H} and \eqref{eq:plan_B} as 
+we can rewrite equations \eqref{eq:plan_H} and \eqref{eq:plan_D} as 
 \bea
     \mathbf{H} &=& \frac{1}{\mu_0 c} \N \times \E 
     \label{eq:plan_Hb} \\
@@ -111,6 +111,7 @@ independent solutions, corresponding to two possible directions of polarization.
 The case of a uniaxial crystal is especially easy to solve. If we take the 
 $z$-axis to be that of rotational symmetry, we can rename the components of 
 $\Eps$ with $\eps_x = \eps_y = \eps_\perp$ and $\eps_z = \eps_\parallel$. 
+The $z$-axis is also called the \emph{optical axis}.
 Fresnel's equation \eqref{eq:fresnel} can then be factored into
 \beq
     \left(n^2 - \frac{\eps_\perp}{\epsn}\right) 
@@ -122,15 +123,149 @@ Fresnel's equation \eqref{eq:fresnel} can then be factored into
 In other words, we have two quadratic equations
 \bea
     n^2 &=& \frac{\eps_\perp}{\epsn} 
-    \label{eq:sphere}\\
+    \label{eq:sphere} \\
     \frac{n_z^2}{\eps_\perp} + \frac{n_x^2 + n_y^2}{\eps_\parallel} &=& 1
     \label{eq:ellipsoid}
 \eea
-Equation \eqref{eq:sphere} gives a sphere for the wave-vector surface, while 
-equation \eqref{eq:ellipsoid} corresponds to an ellipsoid. 
+Equation \eqref{eq:sphere} gives a sphere for the wave-vector surface. To the 
+corresponding types of waves, the crystal behaves like an isotropic body, being 
+characterized by the refractive index $n = \sqrt{\eps_\perp}$. These waves are 
+called \emph{ordinary waves}. The second type, accordingly named 
+\emph{extraordinary waves}, is confined by the ellipsoid \eqref{eq:ellipsoid}. 
+It's magnitude depends on 
+the angle $\theta$ to the optical axis by 
+\beq
+    \frac{1}{n^2} = \frac{\sin^2 \theta}{\eps_\parallel} - 
+        \frac{\cos^2 \theta}{\eps_\perp} \, .
+    label{eq:theta}
+\eeq
+\\
 
-biaxil - uniaxial 
-optical axis 
+
+In order to relate these two surfaces to two directions of polarization and 
+determine the direction of a ray, we introduced the \emph{ray vector} $\mathbf{s}$, 
+which is defined by the direction of the group velocity
+\beq
+    \frac{\partial \omega}{\partial \K}
+\eeq
+and the magnitude fullfilling 
+\beq
+    \mathbf{s} \cdot \N = 1\,.
+\eeq
+The ray vector defines the \emph{ray surface} by the condition 
+$\phi = \mathrm{const.}$ 
+for all $\mathbf{s}$ on that surface, where $\phi$ is the phase of the wave. 
+
+We can show that $\mathbf{s} \parallel \mathbf{S}$: Differentiating 
+equations \eqref{eq:plan_Hb} and \eqref{eq:plan_Db}, we get 
+\bea
+    c \delta \D &=& \delta \Ha \times \N + \Ha \times \delta \N \\
+    \mu_0 c \delta \Ha &=& \N \times \delta \E + \delta \N \times \E \, ,
+\eea
+which by multiplying with $\E$ and $\Ha$, respectively, and applying 
+basic properties of vector and scalar products, yield
+\bea
+    c \E \cdot \delta \D &=& \E \cdot \left(\delta \Ha \times \N \right) + 
+        \E \cdot \left(\Ha \times \delta \N \right) \nonumber \\
+    &=& \delta \Ha \cdot \left(\N \times \E \right) + 
+        \delta \N \cdot \left(\E \times \Ha \right) \nonumber \\
+    &=& \mu_0 c \Ha \cdot \delta \Ha + \delta \N \cdot \left(\E \times \Ha \right) \\
+    \mu_0 c \Ha \cdot \delta \Ha &=& c \D \cdot \delta \E + 
+        \delta \N \cdot \left(\E \times \Ha \right) \, ,
+\eea
+using again \eqref{eq:plan_Hb} and \eqref{eq:plan_Db}. It follows directly, that 
+\beq
+    \delta \N \cdot \left( \E \times \Ha \right) = \delta \N \cdot \mathbf{S} = 0 \, .
+\eeq
+To show, that $\se$ and $\mathbf{S}$ have the same direction, we need to show, 
+that $\se$ is orthogonal on the surface of the wave vector surface, or, since 
+the infinitesimal displacement $\delta \N$ lies 
+on that surface, that $\se \cdot \delta \N = 0$. 
+The wave vector surface given by \eqref{eq:fresnel} can be described by 
+$f(\omega, \K) = 0$, which implies 
+\beq
+    \frac{\partial \omega}{\partial \K} = 
+    - \frac{\partial f / \partial \K}{\partial f / \partial \omega}
+\eeq
+for the group velocity and thus 
+\beq
+    \se \parallel \frac{\partial f }{\partial \K} \parallel \frac{\partial f}{\partial \N}
+    \label{eq:s_dir}
+\eeq
+since the gradient along $\K$ is taken for constant $\omega$. $\partial f / \partial \N$, however, 
+is normal to the surface $f = 0$, so we can conclude, that
+\bea
+    \se \cdot \delta \N &=& 0 \\
+    \Rightarrow \qquad \se &\parallel& \mathbf{S} \, .
+\eea
+If follows, that 
+\beq
+    \se \cdot \Ha = 0 \qquad \se \cdot \E = 0 \, .
+    \label{eq:coplanar}
+\eeq
+For uniaxial crystals, we can specify the ray surface in a form similar to 
+\eqref{eq:ellipsoid} by doing analoge calculations with the folloing substitutions:
+\beq
+    \E \leftrightarrow c \D \, ; 
+    \qquad \N \leftrightarrow \mu_0 c \se \, ; 
+    \qquad \eps_{ik} \leftrightarrow {\eps^{-1}}_{ik} \, .
+\eeq
+The result is 
+\bea
+    s^2 &=& \frac{\epsn}{\eps_\perp}
+    \label{eq:s_sphere} \\
+    \eps_\perp {s_z}^2 + \eps_\parallel \left( {s_x}^2 + {s_y}^2\right)&=& 1 \, .
+    \label{eq:s_ellipsoid}
+\eea
+Since $\eps_x = \eps_y$, $\N$ and $\se$ must be coplanar with the optical axes. This 
+common plane is called \emph{principal axis} for a given $\N$. Let this plane be 
+defined by the $xz$-plane. We can get the direction 
+of $\se$ from the relation \eqref{eq:s_dir}, namely by taking the derivatives of 
+\eqref{eq:ellipsoid} with respect to $n_x$ and $n_z$:
+\beq
+    \frac{s_x}{s_z} = \frac{\eps_\perp n_x}{\eps_\parallel n_z} \, .
+\eeq
+The angle $\theta'$ between optical axis and ray vector is given in terms of 
+$\theta$, as defined in equation \eqref{eq:theta}:
+\beq
+    \tan \theta' = \frac{\eps_\perp}{\eps_\parallel} \tan \theta\, .
+\eeq
+We observe, that the directions of $\N$ and $\se$ aor only the same for 
+$\theta = m \pi / 2$, $m \in mathbb{Z}$, 
+thus for waves propagating parallel or perpendicular to the optical axis. 
+\\
+
+The polarization is analyzed taking yet another direction: 
+Instead of describing the wave vector surface in principle axis 
+coordinates of $\eps$, we can use coordinates corresponding to 
+the fact, the $\D$ is transverse to $\N$. Taking one axis to be 
+parallel to $\N$, we denote the other two directions with Greek letters. 
+For the components of $\D$, we get 
+\beq
+    D_\alpha = n^2 E_\alpha
+\eeq
+and with the constitutive equation \eqref{eq:const1} 
+\beq
+    E_\alpha = {\eps^{-1}}_{\alpha \beta} D_\beta \, 
+\eeq
+we get the two dimensional eigenvalue problem
+\beq
+    {\eps^{-1}}_{\alpha \beta} D_\beta = n^{-2} D_\beta \, .
+\eeq
+In the case of no degeneracy, we obtain two orthogonal eigenvectors 
+$\D_1$ and $\D_2$. Degeneracy is only present, if the components of 
+$\eps^{-1}$ are all the same in its own principla axis coordinate system - 
+this would just be the case of isotropic materials. 
+
+We unite the results of the foregoing anaylsis with the following conclusion: 
+$\N, \se, \E$ and $\D$ are always coplanar. For extraordinary waves, 
+$\N$ and $\se$ are not parallel, but in the same principal section. 
+The wave is thus polarized such that $\E$ and $\D$ lie in that principal 
+section. As $\D$ for the ordinary waves of the same $\N$ as perpendicular 
+to that of the extraordinary, their polarization is such that 
+$\E$ and $\D$ are perpendicular to the principal section. 
+
+
 
 
 \subsection{Deducing the Pockels effect in terms of nonlinear Maxwell equations}
