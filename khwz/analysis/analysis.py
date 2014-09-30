@@ -49,14 +49,20 @@ def plot_4_1():
     plt.savefig("./figures/plot4_1.pdf")
     plt.show()
 
+
 data = (np.load("./data/measure5_1.npy")[2:])
-c    = np.where(data!=0)
+c    = (np.where(data!=0)[0])[2:]
 x = np.arange(0,len(data),1)
 plt.figure()
-plt.grid(True)
-plt.errorbar(x[c],data[c], yerr= np.sqrt(data[c]))
-#plt.scatter(x[c],data[c])
-plt.savefig("./figures/plot5_1.png")
-plt.savefig("./figures/plot5_1.pdf")
+plt.hist(data[c])
 plt.show()
+
+def plot_5_1():
+    plt.figure()
+    plt.grid(True)
+    #plt.errorbar(x[c],data[c], yerr= np.sqrt(data[c]))
+    plt.scatter(x[c],data[c])
+    plt.savefig("./figures/plot5_1.png")
+    plt.savefig("./figures/plot5_1.pdf")
+    plt.show()
 

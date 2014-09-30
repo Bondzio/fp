@@ -119,4 +119,3 @@ for i in range(4):
     plt.ylabel("angle $\\alpha$")
     plt.savefig(figure_dir +"fig2%d.pdf"%(i+1))
 
-    
