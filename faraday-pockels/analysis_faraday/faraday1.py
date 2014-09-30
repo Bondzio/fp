@@ -90,32 +90,86 @@ def la_coeff(f1, coeff, cov, var_names, additional_digits=0):
 
     return 0
 
+def unv(uarray):        # returning nominal values of a uarray
+    return un.nominal_values(uarray)
 
-for i in range(4):
-    a = np.load(input_dir +"a_%i.npy"%(i+1))
-    I = np.load(input_dir + "i_%i.npy"%(i+1))
-    I_fit = np.linspace(min(I),max(I),100) 
+def usd(uarray):        # returning the standard deviations of a uarray
+    return un.std_devs(uarray)
+
+def chi2_min(x,y,p,Sy):
+    return  np.sum(((np.polyval(p,x) - y) / Sy) ** 2 )
+
+def single_plots():
+    for i in range(4):
+        a = np.load(input_dir +"a_%i.npy"%(i+1))
+        I = np.load(input_dir + "i_%i.npy"%(i+1))
+        I_fit = np.linspace(min(I),max(I),100) 
+
+        S_a = 0.5
+        S_I = 0.05
+
+        weights = a*0 + 1/S_a 
+        p, cov= np.polyfit(I,a, 1, full=False, cov=True, w=weights)
+
+        a_fit = np.polyval(p, I_fit)
+        print(chi2_min(I,a,p,S_a)/(len(I)-1))
+
+        plt.figure()
+        plt.xlim(min(I), max(I))
+        plt.plot(I_fit,a_fit)
+        plt.fill_between(I_fit, \
+                    np.polyval(p - np.sqrt(np.diag(cov)), I_fit), \
+                    np.polyval(p + np.sqrt(np.diag(cov)), I_fit), \
+                    facecolor="r", color="b", alpha=0.3 )
+        f1 = open("coefficients.tex","a")
+        la_coeff(f1, p,cov, ["p_1","p_1"])
+        
+        plt.errorbar(I,a,yerr=S_a,xerr=S_I, fmt=".")
+        plt.title("Measurement 2.%d"%(i+1))
+
+        plt.grid(True)
+        plt.xlabel("Current $I(\\alpha)$")
+        plt.ylabel("angle $\\alpha$")
+        plt.savefig(figure_dir +"fig2%d.pdf"%(i+1))
+
+single_plots()
+
+def all_one():
+    a = np.array([])
+    I = np.array([])
+
     S_a = 0.5
+    S_I = 0.05
+
+    plt.figure()
+
+    c = ["b","g","r"] 
+    for ii,i in enumerate([1,3,4]):
+        a0 = np.load(input_dir +"a_%i.npy"%(i))
+        I0 = np.load(input_dir + "i_%i.npy"%(i))
+        a = np.append(a,a0)
+        I = np.append(I,I0)
+        plt.errorbar(I0,a0,yerr=S_a,xerr=S_I, fmt=".",c=c[ii])
+
+    I_fit = np.linspace(min(I),max(I),100) 
     weights = a*0 + 1/S_a 
     p, cov= np.polyfit(I,a, 1, full=False, cov=True, w=weights)
+    print(chi2_min(I,a,p,S_a)/(len(I)-1))
 
     a_fit = np.polyval(p, I_fit)
-    S_I = 0.05
-    plt.figure()
     plt.xlim(min(I), max(I))
-    plt.plot(I_fit,a_fit)
     plt.fill_between(I_fit, \
                 np.polyval(p - np.sqrt(np.diag(cov)), I_fit), \
                 np.polyval(p + np.sqrt(np.diag(cov)), I_fit), \
                 facecolor="r", color="b", alpha=0.3 )
     f1 = open("coefficients.tex","a")
     la_coeff(f1, p,cov, ["p_1","p_1"])
+    print(cov)
     
-    plt.errorbar(I,a,yerr=S_a,xerr=S_I, fmt=".")
-    plt.title("Measurement 2.%d"%(i+1))
-
+    plt.title("Measurement 2.1, 2.3 and 2.4")
     plt.grid(True)
     plt.xlabel("Current $I(\\alpha)$")
     plt.ylabel("angle $\\alpha$")
-    plt.savefig(figure_dir +"fig2%d.pdf"%(i+1))
+    plt.savefig(figure_dir +"fig_all.pdf")
 
+all_one()
