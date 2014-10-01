@@ -77,6 +77,7 @@ coincide if $\E \nparallel \Eps \E$. If we define the
 refractive index $\mathbf{n}$ by 
 \begin{equation}
     \K = \frac{\omega}{c} \N \, ,
+    \label{eq:def_n}
 \end{equation}
 we can rewrite equations \eqref{eq:plan_H} and \eqref{eq:plan_D} as 
 \begin{subequations}
@@ -126,7 +127,13 @@ independent solutions, corresponding to two possible directions of polarization.
 is especially easy to solve. 
 If we take the $z$-axis to be that of rotational symmetry, 
 we can rename the components of 
-$\Eps$ with $\eps_x = \eps_y = \eps_\perp$ and $\eps_z = \eps_\parallel$. 
+$\Eps$ with 
+\begin{align}
+\eps_x &= \eps_y = \eps_\perp 
+\label{eq:eps_perp}\\
+\eps_z &= \eps_\parallel \, .
+\label{eq:eps_parallel}
+\end{align}
 The $z$-axis is also called the \emph{optical axis}.
 Fresnel's equation \eqref{eq:fresnel} can then be factored into
 \begin{equation}
@@ -301,27 +308,80 @@ two ellipsoids: There are no more ordinary rays, but only
 extraordinary ones. We can find two 
 optical axes as point of self intersection of the 
 surface, usually obtainted by looking at the intersections 
-the the coordinate planes in the principla axis basis. 
-Along these optical axis, we again observed no distinction 
-between two possible polarizations. 
+the the coordinate planes in the principla axis basis.
+In order to do so, we set to zero one of the components 
+in Fresnel's equation \eqref{eq:fresnel}. For the 
+$xy$-plane, we set $n_z = 0$ and obtain
+\begin{equation}
+    \left(n^2 - \frac{\eps_z}{\epsn}\right) 
+    \left(\frac{\eps_x}{\epsn} n_x^2 + 
+        \frac{\eps_y}{\epsn} n_x^2  -
+        \frac{\eps_x \eps_y}{\epsn^2} 
+    \right) = 0 \, .
+\end{equation}
+with the solutions
+\begin{align}
+    n^2 &= \frac{\eps_z}{\epsn} 
+    \label{eq:sphere} \\
+    {n_x}^2 \frac{\epsn}{\eps_y} + {n_y}^2 \frac{\epsn}{\eps_x} &= 1
+    \label{eq:ellipsoid}
+\end{align}
+and the analogues for $n_y = 0$ and $n_x = 0$, obtained by 
+interchanging $x, y$ and $z$. If we assume 
+\begin{equation}
+    \eps_z > \eps_y > \eps_x, 
+\end{equation}
+we see that the intersects appear only in the $xz$-plane, as shown in 
+figure \ref{fig:biaxial_ellipsoid}.
+\begin{figure}
+\centering
+\includegraphics[width=\pltw]{figures/biaxial_ellipsoid.pdf}
+\caption{Surface defined by Fresnel's equation for biaxial crystals.
+    The lines are shown only on the planes parallel to the principle 
+    axis of the crystal. The point of intersection defines the optical axis, 
+    shown as a dashed line. 
+    Taken from \cite{landau1984electrodynamics}. }
+\label{fig:biaxial_ellipsoid}
+\end{figure}
+The optical axes are now defined by the straight lines intersecting 
+the self intersects of the surface and the origin. 
 Wave vector $\K$ and ray vector $\se$ have the same direction, 
 only if they are orientated along one of the principle axes, 
 otherwise they split up into two rays. 
+Further, if $\K$ lies in one of the coordinate planes, so does $\se$.
 There is, however an important exception: If the wave vector 
 coincides with one of the optical axes, there are 
 infinitely many ray vectors associated with it:
 be can observe the phenomenon of 
 \emph{internal conical refraction}. 
+\FloatBarrier
+
+\subsection{Primary and secondary electro-optical effect}
+\paragraph{The electro-optic tensor}
+ can be splitted into two components:
+The primary electro-optic effect with coefficient $r_{ij}'$
+for the case of zero strain, where the crystal is 
+not able to deform. The secondary effect corresponds to deformation 
+due to photoelastic and piezoelectric effects, described by the 
+respective coefficients $d_{jk}$ and $p_{ik}$.
+We can write
+\begin{equation}
+    r_{ij} = r_{ij}' + p_{ik} d_{jk}.
+\end{equation}
+In order to separate the effects, we apply an external field $\E$ 
+oscillating at a frequency such that the crystal is not able 
+to follow. 
+
+\subsection{Short introduction to piezoelectric effect}
 
 
 \subsection{Influence of electric field on the index ellipsiod}
-
 \paragraph{The index ellipsoid} 
 as one of the two solutions for Fresnel's equation 
 \eqref{eq:fresnel} for uniaxial crystals can be defined by the 
 index ellipsoid, 
 \begin{equation}
-    \sum_{i, j} {(B_0)}_{ij} n_i n_j = 1 \, ,
+    \sum\limits_{i, j} {(B_0)}_{ij} n_i n_j = 1 \, ,
 \end{equation}
 where, if we move use the principle axis coordinate system of 
 the dielectric tensor $\eps$, 
@@ -332,13 +392,17 @@ the ${(B_0)}_{ij}$ are defined by equation \eqref{eq:ellipsoid}:
         {(B_0)}_{11} = {(B_0)}_{22} = \frac{\epsn}{\eps_\perp}\, ; \quad
         {(B_0)}_{33} = \frac{\epsn}{\eps_\parallel}\, 
 \end{equation}
-For $i \neq j$, ${B_0}_{ij} = 0$. In the first order of $\E$ and 
-neglecting photoelastic effects, we can now 
-apply a pertubation to $B_0$ and get
+For $i \neq j$, $(B_0)_{ij} = 0$. 
+We can now apply a pertubation $\Delta B$ 
+of first order in $\E$ to $B_0$,  
+neglecting photoelastic effects, and get
 ~\cite{sauter1996nonlinear}
-\begin{equation}
-    B_{ij} = (B_0)_{ij} + (\Delta B)_{ij} = (B_0)_{ij} + \sum{k} r_{ijk}E_k(0) \, .
-\end{equation}
+\begin{align}
+    \sum\limits_{i, j} B_{ij} n_i n_j &= 1 \, ,
+    \label{eq:ellipsoid_pertubed} \\
+    B_{ij} = (B_0)_{ij} + (\Delta B)_{ij} &= (B_0)_{ij} + \sum\limits_{k} r_{ijk}E_k \, .
+    \label{eq:B_ij}
+\end{align}
 The \emph{electro-optic tensor} $r_{ijk}$ is symmetric in the first two indices.
 We can thus apply a different notation as a $6 \times 3$ matrix with the definitions 
 \begin{align}
@@ -354,26 +418,38 @@ for $k = 1, 2, 3$. The coefficient has a order of about
 $10^{-10}$ to $10^{-12}$ m/V.~\cite{sauter1996nonlinear}
 
 
-\subsection{Primary and secondary electro-optical effect}
-The electro-optic tensor can be splitted into two components:
-The primary electro-optic effect with coefficient $r_{ij}'$
-for the case of zero strain, where the crystal is 
-not able to deform. The secondary effect corresponds to deformation 
-due to photoelastic and piezoelectric effects, described by the 
-respective coefficients $d_{jk}$ and $p_{ik}$.
-We can write
-\begin{equation}
-    r_{ij} = r_{ij}' + p_{ik} d_{jk}.
-\end{equation}
-In order to separate the effects, we apply an external field $\E$ 
-oscillating at a frequency such that the crystal is not able 
-to follow. 
-
-
-
 \subsection{Structure of crystal lattice}
 
-\subsection{Hermann-Mauguin notation}
+
+\subsubsection{Crystal systems}
+% https://en.wikipedia.org/wiki/Crystal_system
+$\bar{4}2m$ Tetragonal
+relate point group to int. notation
+% https://en.wikipedia.org/wiki/Crystallographic_point_group#Hermann.E2.80.93Mauguin_notation
+
+
+\subsubsection{Optical axes of crystals}
+\label{sec:optical_axes}
+source: \cite{landau1984electrodynamics}
+Cubic: $\eps_{ij} = \eps \delta$, regarding optical properties: isotropic body
+
+Uniaxial crystals: rhombohedral, tetragonal, hexagonal
+optical  axis coincides with threefold, 
+fourfold or sixfold axis of symmtry, respectively
+other two axes arbitrary
+
+biaxial: triclinic, monoclinic, orthorhombic
+
+triclinic: principla dielectric axes unrelated, varying with frequency
+moniclinic: one axis crystallographically fixed: coincides with twofold 
+axes of symmetry, or is perpendicular to the plane of symmetry, 
+other two axes vary with frequency
+orthorhombic: al three axes fixed, coincide with three mutually 
+perpendicular twofold axes of symmetry
+
+
+
+\subsubsection{Hermann-Mauguin notation}
 \paragraph{The international} or \emph{Hermann-Mauguin notation} 
 is used in crystallography to describe the symmetry groups of crystals. 
 The convention allows to comprise all information about the symmetry 
@@ -432,6 +508,7 @@ plane perpendicular to the first one and a twofold rotational symmetry
 around the $x_3$-axis. 
 
 \subsection{Reduction of components of dielctric tensor for $\bar{4}2m$ crystals}
+\label{sec:reduce}
 \paragraph{As described in} 
 the previous section, the ADP-crystal has the symmetry group 
 $\bar{4}2m$. We can reduce the number of non-zero components of the 
@@ -454,7 +531,33 @@ new basis can be calculated from those in the old one by
         \left( R^{-1}\right)_k^n
         r_{lmn} \, .
 \end{equation}
-We eliminate the components of $r_{ijk}$ by applying sequentially 
+
+
+\paragraph{Before applying the symmetries} 
+of the crystal under consideration 
+we make one general observation: Crystals with an inversion 
+center are not subject to either the Pockels effect. 
+This can be deduced as follows:
+As a center of inversion means symmetry under the transformation 
+\begin{equation}
+    \begin{split}
+    x_1 &\rightarrow -x_1 \\
+    x_2 &\rightarrow -x_2 \\
+    x_3 &\rightarrow -x_3  \, ,
+    \end{split}
+\end{equation}
+all components in the new bases $\hat{r}_{ijk}$ will be defined 
+by 
+\begin{equation}
+   \hat{r}_{ijk} = - r_{ijk}.
+\end{equation}
+But symmetry implies equality. Thus all components have to be zero. 
+The same reasoning applies to other effects with a similar mathematical 
+structure, such as the piezoelectric effect. 
+
+
+\paragraph{Returning to the} $\bar{4}2m$ group, 
+we eliminate the components of $r_{ijk}$ by applying sequentially 
 the following transformations, for which the crystal is symmetric:
 \begin{itemize}
     \item
@@ -572,14 +675,104 @@ the remaining components with corresponding equalities are given by
 These can be renamed in the way given by equations \eqref{eq:notation}, 
 which leaves only the three remaining components
 \begin{equation}
-    r_{14} = r_{25} \qquad \text{ and } \qquad  r_{36}\, .
+    r_{41} = r_{52} \qquad \text{ and } \qquad  r_{63}\, .
 \end{equation}
 
-
-
 \subsection{Discussion of the effect for the transverse Pockels Cell}
+By applying the result of the foregoing discussion, we can significantly 
+reduce the parameters in questions for the pertubed index ellipsoid
+\eqref{eq:B_ij}. We resume the most important results:
+\begin{itemize}
+    \item
+    Without the external field, the crystal is uniaxial 
+    (refer to section \ref{sec:optical_axes}).
+    \item
+    We chose the principle dielectric axis system. The 
+    components of $\eps$ are named $\eps_\perp$ and 
+    $\eps_\parallel$ as defined in equations 
+    \eqref{eq:eps_perp} and \eqref{eq:eps_parallel}.  
+    \item
+    Optical axis and $\bar{4}$-axis coincide. We define 
+    this axis to be the $x_3$-axis. Thus, the 
+    only non-zero components of the electro-optical tensor 
+    $r_{ij}$ are $r_{41} = r_{52}$ and $r_{63}$ in the 
+    chosen coordinates, as described in the previous section 
+    \ref{sec:reduce}
+\end{itemize}
+Inserting these conditions in \eqref{eq:ellipsoid_pertubed}, 
+we arrive at the defining equation
+\begin{equation}
+    \frac{\epsn}{\eps_\perp}\left(n_1^2 + n_2^2\right) + 
+    \frac{\epsn}{\eps_\parallel} n_3^2 + 
+    2 r_{41} \left(E_1 n_2 + E_2 n_1\right)n_3 + 
+    2 r_{63} E_3 n_1 n_2  = 1\, ,
+    \label{eq:ellipsoid_red}
+\end{equation}
+where, as before, the wave vectors $\K$ are related to 
+$\N$ by \eqref{eq:def_n}. 
+The Pockels Cell used in this experiment is a transverse one, 
+thus the $\E$-field is applied in direction of $x_1$, e.~i. 
+$E_2 = E_3 = 0$. This yields
+\begin{equation}
+    \frac{\epsn}{\eps_\perp}\left(n_1^2 + n_2^2\right) + 
+    \frac{\epsn}{\eps_\parallel} n_3^2 + 
+    2 r_{41} E_1 n_2 n_3  = 1 \, .
+    \label{eq:ellipsoid_trans}
+\end{equation}
+The crystal is aligned with a $45^\circ$-Y-cut. In order to 
+use the laboratory frame as coordinate system, we rotate our 
+coordinate system by $45^\circ$ around the $x_1$-axis, 
+after which the components of $\N$ read
+\begin{align}
+    n_1 &= n_1'  \\
+    n_2 &= \frac{1}{\sqrt{2}}\left(n_2' + n_3'\right) \\
+    n_3 &= \frac{1}{\sqrt{2}}\left(n_2' - n_3'\right) \, .\\
+    \label{eq:trans_ycut}
+\end{align}
+Equation \eqref{eq:ellipsoid_trans} then becomes
+\begin{align}
+    1 &= 
+    \frac{\epsn}{\eps_\perp}
+    \left[ {n_1'}^2 + 
+    \frac{1}{2} \left({n_2'}^2 + {n_3'}^2 \right) + 
+    {n_2'}{n_3'} \right] + 
+    \frac{\epsn}{\eps_\parallel}
+    \left[\frac{1}{2} \left({n_2'}^2 + {n_3'}^2 \right) -  
+    {n_2'}{n_3'} \right] + 
+    r_{41} E_1 \left({n_2'}^2 - {n_3'}^2\right) 
+    \nonumber \\
+    &= 
+    \frac{\epsn}{\eps_\perp}  {n_1'}^2 + 
+    \epsn \frac{1}{2} \left( \frac{1}{\eps_\perp} + \frac{1}{\eps_\parallel}\right)
+    \left({n_2'}^2 + {n_3'}^2 \right) + 
+    \epsn \left( \frac{1}{\eps_\perp} - \frac{1}{\eps_\parallel}\right)
+    {n_2'}{n_3'}  + 
+    r_{41} E_1 \left({n_2'}^2 - {n_3'}^2\right) 
+    \nonumber \\
+    &= 
+    \frac{\epsn}{\eps_\perp}  {n_1'}^2 + 
+    {n_2'}^2 \left(\frac{\epsn}{\eps_x} + r_{41} E_1 \right) +
+    {n_3'}^2 \left(\frac{\epsn}{\eps_x} - r_{41} E_1 \right) +
+    {n_2'}{n_3'} \epsn \left( \frac{1}{\eps_\perp} - \frac{1}{\eps_\parallel}\right) \, ,
+    \label{eq:ell_calc}
+\end{align}
+where we defined 
+\begin{equation}
+    \frac{1}{\eps_x} := 
+    \frac{1}{2} \left( \frac{1}{\eps_\perp} + \frac{1}{\eps_\parallel}\right) \, .
+    \label{eq:def_eps_x}
+\end{equation}
+We observe, that the main axes of the ellipsoid are no longer parallel to the 
 
-
+If the ray outside the cell is going in the $x_2'$-direction, then, 
+since outside ray vector $\se$ and wave vector $\K$ coincide, the only 
+non-zero component of $\N'$ is $n_2'$, yielding 
+\begin{align}
+    1 &= 
+    {n_2'}^2 \left(\frac{\epsn}{\eps_x} + r_{41} E_1 \right) \\
+    \Rightarrow \qquad 
+    &= b
+\end{align}
 
 
 \subsection{Polarization filters}
