@@ -1,6 +1,9 @@
 \section{Evaluation for Faraday effect}
-Now we fitted the plots with a leastsquare linear polynomial, but
-as it turns out the given standard deviations seem to be estimated much to high,
+Now we fitted the plots with a leastsquare linear polynomial:
+\begin{equation}
+    \alpha(I) = p_1 I + p_1
+\end{equation}
+As it turns out the given standard deviations seem to be estimated much to high,
 one would expect more fluctuation 
 around the fitted polynome. This observation can be made more 
 precise using the $\chi^2$-test. For a variable $y_i$ in a sample of 
@@ -26,6 +29,7 @@ calculation of the \textit{Verdet} constant. As we calculated the covariance mat
 plots, we will use measurement \textbf{2.4} for the further calculations. Since we used
 a randomized array of Currents we tried to minimize the systematic error which resulted
 in the most stable behavior of the measurements.
+
 \begin{eqnarray}
     \mathrm{cov}(p_i, p_j) &=& 
     \begin{pmatrix}
@@ -35,11 +39,11 @@ in the most stable behavior of the measurements.
 \\ \Rightarrow \qquad
     p_1 &=& 2.606 \pm 0.012 \cm\\
     p_2 &=& 0.349 \pm 0.032 \cm \\
-    \chi ^2/(N-1) &=&  0.020
+    \chi ^2/(N-1) &=&  0.124
 \end{eqnarray}
 The displacement $p1$ can be explained in terms of the experimental setup: The Gauge of the 
 angle is not fixed such that the lower limit is zero. Since we are only interested in the slope,
-this is not relevant for the result. The $\chi^2$ test is too low, which either indicates that
+this is not relevant for the result. The $\chi^2$-test is too low, which either indicates that
 the functional relationship between the variables is fulfilled very poorly or that the chosen
 standard deviation is estimated to high. The latter is not unprobable, since it is also
 visible optically, see figure~\ref{fig:23}. Now we turn our attention to the calculation:
@@ -49,7 +53,6 @@ visible optically, see figure~\ref{fig:23}. Now we turn our attention to the cal
       &= \left [ 0.04868 \pm 0.00022 \right ] \cdot 10^{-3} \quad \mathrm{Deg/A}
 \end{align}
 Where we use $1\ \mathrm{Oe} = \frac{1000}{4\pi}\ \mathrm{A/m}$, $\quad1$ Deg $=60$ min \quad and $\mu = 2556$.
-
 
 
 
@@ -68,7 +71,7 @@ Where we use $1\ \mathrm{Oe} = \frac{1000}{4\pi}\ \mathrm{A/m}$, $\quad1$ Deg $=
 \\ \Rightarrow \qquad
     p_1 &=& 2.561 \pm 0.021 \cm\\
     p_2 &=& 0.45 \pm 0.06 \cm \\ 
-    \chi ^2/(N-1) &=&  0.092
+    \chi ^2/(N-1) &=&  0.577
 \end{eqnarray*}
 }
 
@@ -88,9 +91,10 @@ Where we use $1\ \mathrm{Oe} = \frac{1000}{4\pi}\ \mathrm{A/m}$, $\quad1$ Deg $=
 \\ \Rightarrow \qquad
     p_1 &=& 2.53 \pm 0.06 \cm\\
     p_2 &=& 0.41 \pm 0.18 \cm \\
-    \chi ^2/(N-1) &=& 0.114
+    \chi ^2/(N-1) &=& 0.715
 \end{eqnarray*}
 }
+
 
 
 %\label{fig:fig22}
@@ -111,12 +115,13 @@ Where we use $1\ \mathrm{Oe} = \frac{1000}{4\pi}\ \mathrm{A/m}$, $\quad1$ Deg $=
 \\ \Rightarrow \qquad
     p_1 &=& 2.606 \pm 0.012 \cm\\
     p_2 &=& 0.349 \pm 0.032 \cm \\
-    \chi ^2/(N-1) &=&  0.020
+    \chi ^2/(N-1) &=&  0.124
 \end{eqnarray*}
 }
 \label{fig:23}
     \end{centering}
 \end{figure}
+
 
 \begin{figure}
     \begin{centering}
@@ -132,7 +137,7 @@ Where we use $1\ \mathrm{Oe} = \frac{1000}{4\pi}\ \mathrm{A/m}$, $\quad1$ Deg $=
 \\ \Rightarrow \qquad
     p_1 &=& 2.561 \pm 0.018 \cm\\
     p_2 &=& 0.38 \pm 0.05 \cm \\
-    \chi ^2/(N-1) &=&  0.060
+    \chi ^2/(N-1) &=&  0.373
 \end{eqnarray*}
 }
     \end{centering}

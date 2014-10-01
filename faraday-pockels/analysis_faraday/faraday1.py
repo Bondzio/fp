@@ -105,7 +105,7 @@ def single_plots():
         I = np.load(input_dir + "i_%i.npy"%(i+1))
         I_fit = np.linspace(min(I),max(I),100) 
 
-        S_a = 0.5
+        S_a = 0.2
         S_I = 0.05
 
         weights = a*0 + 1/S_a 
@@ -113,26 +113,27 @@ def single_plots():
 
         a_fit = np.polyval(p, I_fit)
         #print(chi2_min(I,a,p,S_a)/(len(I)-1))
-        def plot():
-            plt.figure()
-            plt.xlim(min(I), max(I))
-            plt.plot(I_fit,a_fit)
-            plt.fill_between(I_fit, \
-                        np.polyval(p - np.sqrt(np.diag(cov)), I_fit), \
-                        np.polyval(p + np.sqrt(np.diag(cov)), I_fit), \
-                        facecolor="r", color="b", alpha=0.3 )
-            f1 = open("coefficients.tex","a")
-            la_coeff(f1, p,cov, ["p_1","p_1"])
-            
-            plt.errorbar(I,a,yerr=S_a,xerr=S_I, fmt=".")
-            plt.title("Measurement 2.%d"%(i+1))
+        plt.figure()
+        plt.xlim(min(I), max(I))
+        plt.plot(I_fit,a_fit)
+        plt.fill_between(I_fit, \
+                    np.polyval(p - np.sqrt(np.diag(cov)), I_fit), \
+                    np.polyval(p + np.sqrt(np.diag(cov)), I_fit), \
+                    facecolor="r", color="b", alpha=0.3 )
+        f1 = open("coefficients.tex","a")
+        la_coeff(f1, p,cov, ["p_1","p_1"])
 
-            plt.grid(True)
-            plt.xlabel("Current $I(\\alpha)$")
-            plt.ylabel("angle $\\alpha$")
-            plt.savefig(figure_dir +"fig2%d.pdf"%(i+1))
+        print(chi2_min(I,a,p,S_a)/(len(I)-1))
+        
+        plt.errorbar(I,a,yerr=S_a,xerr=S_I, fmt=".")
+        plt.title("Measurement 2.%d"%(i+1))
 
+        plt.grid(True)
+        plt.xlabel("Current $I(\\alpha)$")
+        plt.ylabel("angle $\\alpha$")
+        plt.savefig(figure_dir +"fig2%d.pdf"%(i+1))
 
+single_plots()
 
 def all_one():
     a = np.array([])
@@ -172,12 +173,13 @@ def all_one():
     plt.ylabel("angle $\\alpha$")
     plt.savefig(figure_dir +"fig_all.pdf")
 
+
 def verdet_constant():
         a = np.load(input_dir +"a_3.npy")
         I = np.load(input_dir + "i_3.npy")
         I_fit = np.linspace(min(I),max(I),100) 
 
-        S_a = 0.5
+        S_a = 0.2
         S_I = 0.05
 
         weights = a*0 + 1/S_a 

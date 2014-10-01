@@ -90,6 +90,7 @@ the halfshade polarizer, then the coil and again through a polarizer when we can
 observe it with the eyelet. We can rotate the second polarizer 
 to analyze the polarization direction of the incoming light and change the current flowing through
 the coil.
+
 \begin{figure}
     \begin{centering}
         \includegraphics[width=18cm]{figures/faraday_setup2}
@@ -130,22 +131,67 @@ a magnetic field $B$ at position $r$:
 \begin{equation}
     \vec{B} = \frac{\mu_0}{4\pi} \int_{C} \frac{I d\vec{l} \times \vec{r}}{|\vec{r}|^3} 
 \end{equation}
-which can be rewritten, if we use the absolute value instead of vectors and the Radius $R$ of the
+which can be rewritten, if we use the absolute value instead of vectors and the Radius $r$ of the
 coil with the horizontal position $x$:
 \begin{equation}
-    dB = \frac{\mu_0}{4\pi} \frac{I dl}{R^2 + x^2} 
+    dB = \frac{\mu_0}{4\pi} \frac{N \cdot I dl}{r^2 + x^2} 
 \end{equation}
+
 We only need the fraction of the x-direction. Let now $\theta$ be the angle betwen the $y,z$ 
-direction and the $x-$axis:
+direction and the $x-$axis using $\sqrt{{l'}^2 + x^2} \cos(\theta) = {l'}$:
 \begin{align}
-    \sqrt{R^2 + x^2} \cos(\theta) &= R \\
-    \Rightarrow dB_x &= dB \cos\theta = dB \left (\frac{R}{\sqrt{R^2 + x^2}} \right) = 
-    \frac{\mu_0}{4\pi} \frac{I  \cdot R \cdot dl}{\sqrt{\left (R^2 + x^2 \right )^3}} \\
-    B_x &= \frac{\mu_0}{4\pi} \frac{I  \cdot R}{\sqrt{\left (R^2 + x^2 \right )^3}} \int_C dl 
-  = \frac{\mu_0}{4\pi} \frac{I  \cdot R}{\sqrt{\left (R^2 + x^2 \right )^3}} \left (2\pi R \right )
+    \Rightarrow dB_x &= dB \cos\theta = dB \left (\frac{{l'}}{\sqrt{{l'}^2 + x^2}} \right) = 
+    \frac{\mu_0}{4\pi} \frac{N\cdot I  \cdot {l'} \cdot dl}{\sqrt{\left ({l'}^2 + x^2 \right )^3}} \\
+    B_x &= \frac{\mu_0}{4\pi} \frac{N\cdot I  \cdot {l'}}{\sqrt{\left ({l'}^2 + x^2 \right )^3}} \int_C dl 
+  = \frac{\mu_0}{4\pi} \frac{N\cdot I  \cdot {l'}}{\sqrt{\left ({l'}^2 + x^2 \right )^3}} \left (2\pi {l'} \right )
+  =  \frac{\mu_0}{2} \frac{N\cdot I  \cdot {l'}^2}{\sqrt{\left ({l'}^2 + x^2 \right )^3}} 
 \end{align}
+We now define the following quantities, see figure~\ref{fig:integral}: 
+\begin{itemize}
+\setlength\itemsep{0.0mm}
+    \item[$x,y,z$] \ldots respective lengths in directions of the coordinate system 
+    \item[$l$]     \ldots length of the flint glass, in our case $l=150$mm.
+    \item[$L$]     \ldots length of the Coil, in our case $L=175$mm.
+    \item[$2x_1$]  \ldots inner diameter of the coil $2x_1=20$mm
+    \item[$2x_2$]  \ldots outer diameter of the coil $2x_2=150$mm 
+\end{itemize}
 
-
+\begin{figure}
+    \begin{centering}
+        \includegraphics[width=14cm]{figures/integral}
+\caption{Sketch from the variables (figure from \cite{staatsexamen}) which we will use
+            for calculating the integral. 
+            }
+        \label{fig:integral}
+    \end{centering}
+\end{figure}
+Now we look at the surface element which is sketched in figure~\ref{fig:integral},
+arriving at:
+\begin{equation}
+ \delta B_x =  \frac{\mu_0}{2} \frac{N \cdot \delta I  \cdot R^2}{\sqrt{\left (R^2 + x^2 \right )^3}} ,
+ \quad \delta I = \frac{ I \cdot dx \cdot dl'}{L(x_2 - x_1)}
+\end{equation}
+Now we get by inserting the $\delta I$ into the magnetic field and integrating over
+the whole $x$-axis (which we will denote for simplicity by $B$):
+\begin{align}
+    B &= \underbrace{ \frac{N\cdot I}{2 L (x_2 - x_1)} }_{:=\beta}
+    \int^{L-z}_{-z} \int^{x_1}_{x_2} \frac{x^2}{(x^2 + l'^2)^{3/2}} dx dl'\\
+\end{align}
+Now we can use the integrals
+\begin{align}
+    \int \frac{a^2 dy}{(a^2 + y^2)^{3/2}} =  \frac{y}{\sqrt{a^2 + y^2}} \\
+    \int \frac{dy}{(a^2 + y^2)^{1/2}} =  \log{\left [ y + \sqrt{a^2 + y^2} \right]}
+\end{align}
+which is easy to see if you differentiate the right side respectively. From this follows:
+\begin{align}
+    B &= \beta \int^{x_1}_{x_2} \left (  \frac{L - z}{\sqrt{x^2 + (L-z)^2}} +
+      \frac{z}{\sqrt{x^2 + z^2}}    \right ) dx  \\
+  &= \beta  \left (
+  (L-z) \log{\left [ \frac{x_2 + \sqrt{(L-z)^2 + x_2^2}} { x_1 + \sqrt{(L-z)^2 + x_1^2}} \right]}
+  +z \log{\left [ \frac{x_2 + \sqrt{z^2 + x_2^2}} { x_1 + \sqrt{z^2 + x_1^2}} \right]}
+  \right)
+\end{align}
+which is in the middle of the coil with $z = L/2$:
 
 
 \subsection{Method of measuring the rotation angle}
