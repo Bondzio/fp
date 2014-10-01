@@ -133,7 +133,6 @@ def single_plots():
         plt.ylabel("angle $\\alpha$")
         plt.savefig(figure_dir +"fig2%d.pdf"%(i+1))
 
-single_plots()
 
 def all_one():
     a = np.array([])
@@ -172,7 +171,7 @@ def all_one():
     plt.xlabel("Current $I(\\alpha)$")
     plt.ylabel("angle $\\alpha$")
     plt.savefig(figure_dir +"fig_all.pdf")
-
+oe = 1000 / (4*np.pi)
 
 def verdet_constant():
         a = np.load(input_dir +"a_3.npy")
@@ -188,6 +187,26 @@ def verdet_constant():
         (p1, p2) = uc.correlated_values([p[0],p[1]], cov)
 
         print(p1/2556)
-        print(p1/2556/100 *1000/(4*np.pi) *60)
+        print(p1/2556/100 *oe *60)
 
-verdet_constant()
+from uncertainties.umath import sqrt,log
+from scipy.constants import mu_0
+def integral():
+    x1 = uc.ufloat( 20 /2 *10**(-3)  ,   1*10**(-3))
+    x2 = uc.ufloat( 150/2 *10**(-3)  ,   1*10**(-3))
+    L =  uc.ufloat( 175   *10**(-3)  ,   1*10**(-3))
+    l =  uc.ufloat( 150   *10**(-3)  ,   1*10**(-3))
+    I =  uc.ufloat(10 , 0.1)
+    N =  3600
+    beta = N * I / (2   * (x2-x1)) 
+    #magnetic field at z = L/2
+    H = beta * log((x2 + sqrt((L/2)**2+ x2**2))/ ( x1 +\
+        sqrt((L/2)**2 + x1**2))) 
+    print(H)
+    print(H/oe)
+
+integral()
+    
+
+
+

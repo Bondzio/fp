@@ -174,7 +174,7 @@ arriving at:
 Now we get by inserting the $\delta I$ into the magnetic field and integrating over
 the whole $x$-axis (which we will denote for simplicity by $B$):
 \begin{align}
-    B &= \underbrace{ \frac{N\cdot I}{2 L (x_2 - x_1)} }_{:=\beta}
+    B &= \underbrace{ \frac{\mu_0 N\cdot I}{2 L (x_2 - x_1)} }_{:=\beta}
     \int^{L-z}_{-z} \int^{x_1}_{x_2} \frac{x^2}{(x^2 + l'^2)^{3/2}} dx dl'\\
 \end{align}
 Now we can use the integrals
@@ -184,7 +184,7 @@ Now we can use the integrals
 \end{align}
 which is easy to see if you differentiate the right side respectively. From this follows:
 \begin{align}
-    B &= \beta \int^{x_1}_{x_2} \left (  \frac{L - z}{\sqrt{x^2 + (L-z)^2}} +
+    B &= \beta \int^{x_2}_{x_1} \left (  \frac{L - z}{\sqrt{x^2 + (L-z)^2}} +
       \frac{z}{\sqrt{x^2 + z^2}}    \right ) dx  \\
   &= \beta  \left (
   (L-z) \log{\left [ \frac{x_2 + \sqrt{(L-z)^2 + x_2^2}} { x_1 + \sqrt{(L-z)^2 + x_1^2}} \right]}
@@ -192,6 +192,11 @@ which is easy to see if you differentiate the right side respectively. From this
   \right)
 \end{align}
 which is in the middle of the coil with $z = L/2$:
+\begin{equation}
+    B(z = L/2) = \beta 
+    L \log{\left [ \frac{x_2 + \sqrt{\frac{L}{2}^2+ x_2^2}} { x_1 + \sqrt{\frac{L}{2}^2 + x_1^2}} \right]}
+\end{equation}
+which is with our specifications of the experimental setup:
 
 
 \subsection{Method of measuring the rotation angle}
