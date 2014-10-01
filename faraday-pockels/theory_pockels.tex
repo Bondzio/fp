@@ -2,44 +2,47 @@
 
 \subsection{Linear and circular polarized light}
 
-\subsection{Birefringence and index ellipsoid}
-If the refraction index $n$ of a material depends on the linear polarization of light, 
+\subsection{Birefringence}
+\paragraph{If the refraction index}
+ $n$ of a material depends on the linear polarization of light, 
 then a beam of light propagating in the material will be split up into 
 two beams with perpendicular polarization and different propagation speed 
-\beq
+\begin{equation}
    v_i = \frac{c}{n_i}, 
-\eeq
+\end{equation}
 In order to explain this phenomenon, it is helpful to introduce quantities 
 connected to the structure of the material, i.~e. it being anisotropic, 
 and retrieve the way the light propagates by looking at the solutions 
-of Maxwell's equations in matter, 
-\bea
-\nabla \cdot \D &=& \rho_\text{f} 
+of Maxwell's equations in matter,
+\begin{subequations} 
+\begin{align}
+\nabla \cdot \D &= \rho_\text{f} 
 \label{eq:max1} \\ 
-\nabla \cdot \B &=& 0
+\nabla \cdot \B &= 0
 \label{eq:max2} \\ 
-\nabla \times \E &=& -\frac{\partial \B} {\partial t}
+\nabla \times \E &= -\frac{\partial \B} {\partial t}
 \label{eq:max3} \\ 
-    \nabla \times \mathbf{H} &=& \mathbf{J}_\text{f} + 
+    \nabla \times \mathbf{H} &= \mathbf{J}_\text{f} + 
         \frac{\partial \D} {\partial t}, 
 \label{eq:max4}
-\eea
+\end{align}
+\end{subequations}
 where 
-\bit
+\begin{itemize}
 \item $\D$ is the electric displacement field, related to the eletric field $\E$ 
     by the constitutive equation 
-    \beq
+    \begin{equation}
         \D = \Eps \E 
     \label{eq:const1}
-    \eeq
+    \end{equation}
 \item $\mathbf{H}$ is the magnetizing field, with the constitutive equation 
-    \beq
+    \begin{equation}
         \mathbf{H} = \mu^{-1} \B
     \label{eq:const2}
-    \eeq
+    \end{equation}
 \item $\mathbf{J}_\text{f}$ is the free current density, and
 \item $\mathbf{\rho}_\text{f}$ is the free charge density.
-\eit
+\end{itemize}
 Equations \eqref{eq:const1} and \eqref{eq:const2} are valid for materials without 
 coupling between magnetic and eletric fields, which is the case in our 
 crystal. We are, however, facing an anistropic material, so that 
@@ -49,54 +52,63 @@ $\B = \mu \mathbf{H} = \mu_0 \mathbf{H}$.
 If we assume $\mathbf{\rho}_\text{f} = 0$, $\mathbf{J}_\text{f} = 0$ 
 (no free charge and currents), and consider plane waves, 
 described by
-\bea
-    \E &=& \E_0 \exp \left[i(\mathbf{k \cdot r}-\omega t)\right] \\
-    \mathbf{H} &=& \mathbf{H_0} \exp \left[i(\mathbf{k \cdot r}-\omega t)\right], 
-\eea
+\begin{subequations}
+\begin{align}
+    \E &= \E_0 \exp \left[i(\mathbf{k \cdot r}-\omega t)\right] \\
+    \mathbf{H} &= \mathbf{H_0} \exp \left[i(\mathbf{k \cdot r}-\omega t)\right], 
+\end{align}
+\end{subequations}
 then inserting into \eqref{eq:max3} and \eqref{eq:max4} yields:
-\bea
-    \mu_0 \omega \mathbf{H} &=& \K \times \E 
+\begin{subequations}
+\begin{align}
+    \mu_0 \omega \mathbf{H} &= \K \times \E 
     \label{eq:plan_H} \\
-    \omega \D &=& - \K \times \mathbf{H}.
+    \omega \D &= - \K \times \mathbf{H}.
     \label{eq:plan_D} 
-\eea
+\end{align}
+\end{subequations}
 We observe, that $\K, \D$, and $\Ha$ are mutually perpendicular. 
 Looking at the energy flux
-\beq
+\begin{equation}
     \mathbf{S} = \E \times \Ha, 
-\eeq
+\end{equation}
 we further see, that the directions of $\mathbf{S}$ and $\K$ do not 
 coincide if $\E \nparallel \Eps \E$. If we define the 
 refractive index $\mathbf{n}$ by 
-\beq
+\begin{equation}
     \K = \frac{\omega}{c} \N \, ,
-\eeq
+\end{equation}
 we can rewrite equations \eqref{eq:plan_H} and \eqref{eq:plan_D} as 
-\bea
-    \mathbf{H} &=& \frac{1}{\mu_0 c} \N \times \E 
+\begin{subequations}
+\begin{align}
+    \mathbf{H} &= \frac{1}{\mu_0 c} \N \times \E 
     \label{eq:plan_Hb} \\
-    \D &=& - \frac{1}{c} \N \times \mathbf{H}.
+    \D &= - \frac{1}{c} \N \times \mathbf{H}
     \label{eq:plan_Db} \, .
-\eea
+\end{align}
+\end{subequations}
 Inserting the latter one into the first and using 
 the identity $c^2 = \frac{1}{\mu_0 \epsn}$, we get 
-\bea
-    \D  &=& \frac{1}{\mu_0 c^2} \N \times \left(\E \times \N\right) \nonumber \\
-        &=& \epsn \left(n^2 \E - \left(\N \cdot \E\right) \N \right)
-\eea
+\begin{equation}
+    \begin{split}
+    \D  &= \frac{1}{\mu_0 c^2} \N \times \left(\E \times \N\right) \\
+        &= \epsn \left(n^2 \E - \left(\N \cdot \E\right) \N \right)
+    \label{eq:D(E)}
+    \end{split}
+\end{equation}
 With the constitutive equation \eqref{eq:const1}, we obtain three 
 equations linear in the components $E_k$:
-\beq
+\begin{equation}
     \left(n^2 \delta_{ik} - n_i n_k - \frac{\epsilon_{ik}}{\epsn}\right) E_k = 0
-\eeq
+\end{equation}
 This equation is solve if its determinant vanishes:
-\beq
+\begin{equation}
     \mathrm{det}\,\left|n^2 \delta_{ik} - n_i n_k - \frac{\epsilon_{ik}}{\epsn}\right| = 0
-\eeq
+\end{equation}
 By applying the principle axis theorem~\cite{strang2003introduction}, 
 we can write $\Eps$ as the diagonal matrix with elements $\eps_x, \eps_y, \eps_z$. 
 This yields \emph{Fresnel's equation}:
-\bea
+\begin{align}
     \frac{n^2}{\epsn} \left(\eps_x n_x^2 + \eps_y n_y^2 + \eps_z n_z^2 \right) 
     - \left[
         \frac{n_x^2}{\epsn^2} \eps_x \left(\eps_y + \eps_z\right) + 
@@ -105,159 +117,174 @@ This yields \emph{Fresnel's equation}:
     \right] + \nonumber \\
     + \quad \frac{\eps_x \eps_y \eps_z}{\epsn^3} = 0
     \label{eq:fresnel}
-\eea
+\end{align}
 Being of second order in $n_i^2$, $i \in \{x, y, z\}$, there are up to two linearly 
 independent solutions, corresponding to two possible directions of polarization. 
-The case of a uniaxial crystal is especially easy to solve. If we take the 
-$z$-axis to be that of rotational symmetry, we can rename the components of 
+
+
+\paragraph{The case of a uniaxial crystal} 
+is especially easy to solve. 
+If we take the $z$-axis to be that of rotational symmetry, 
+we can rename the components of 
 $\Eps$ with $\eps_x = \eps_y = \eps_\perp$ and $\eps_z = \eps_\parallel$. 
 The $z$-axis is also called the \emph{optical axis}.
 Fresnel's equation \eqref{eq:fresnel} can then be factored into
-\beq
+\begin{equation}
     \left(n^2 - \frac{\eps_\perp}{\epsn}\right) 
-    \left[\frac{\eps_\parallel}{\epsn} n^2 + 
-        \frac{\eps_\perp}{\epsn} \left(n_x^2 + n_y^2\right) + 
+    \left[\frac{\eps_\parallel}{\epsn} n_z^2 + 
+        \frac{\eps_\perp}{\epsn} \left(n_x^2 + n_y^2\right) -
         \frac{\eps_\perp \eps_\parallel}{\epsn^2} 
     \right] = 0 \, .
-\eeq
+\end{equation}
 In other words, we have two quadratic equations
-\bea
-    n^2 &=& \frac{\eps_\perp}{\epsn} 
+\begin{align}
+    n^2 &= \frac{\eps_\perp}{\epsn} 
     \label{eq:sphere} \\
-    \frac{n_z^2}{\eps_\perp} + \frac{n_x^2 + n_y^2}{\eps_\parallel} &=& 1
+    n_z^2 \frac{\epsn}{\eps_\perp} + \left(n_x^2 + n_y^2\right) \frac{\epsn}{\eps_\parallel} &= 1
     \label{eq:ellipsoid}
-\eea
+\end{align}
 Equation \eqref{eq:sphere} gives a sphere for the wave-vector surface. To the 
 corresponding types of waves, the crystal behaves like an isotropic body, being 
-characterized by the refractive index $n = \sqrt{\eps_\perp}$. These waves are 
+characterized by the refractive index $n = \sqrt{\eps_\perp / \epsn}$. These waves are 
 called \emph{ordinary waves}. The second type, accordingly named 
 \emph{extraordinary waves}, is confined by the ellipsoid \eqref{eq:ellipsoid}. 
 It's magnitude depends on 
 the angle $\theta$ to the optical axis by 
-\beq
-    \frac{1}{n^2} = \frac{\sin^2 \theta}{\eps_\parallel} - 
-        \frac{\cos^2 \theta}{\eps_\perp} \, .
-    label{eq:theta}
-\eeq
-\\
+\begin{equation}
+    \frac{1}{n^2} = \epsn \left( \frac{\sin^2 \theta}{\eps_\parallel} - 
+        \frac{\cos^2 \theta}{\eps_\perp} \right)\, .
+    \label{eq:theta}
+\end{equation}
 
-
-In order to relate these two surfaces to two directions of polarization and 
+\paragraph{In order to relate} 
+these two surfaces to two directions of polarization and 
 determine the direction of a ray, we introduced the \emph{ray vector} $\mathbf{s}$, 
 which is defined by the direction of the group velocity
-\beq
+\begin{equation}
     \frac{\partial \omega}{\partial \K}
-\eeq
+\end{equation}
 and the magnitude fullfilling 
-\beq
+\begin{equation}
     \mathbf{s} \cdot \N = 1\,.
-\eeq
+\end{equation}
 The ray vector defines the \emph{ray surface} by the condition 
 $\phi = \mathrm{const.}$ 
 for all $\mathbf{s}$ on that surface, where $\phi$ is the phase of the wave. 
 
 We can show that $\mathbf{s} \parallel \mathbf{S}$: Differentiating 
 equations \eqref{eq:plan_Hb} and \eqref{eq:plan_Db}, we get 
-\bea
-    c \delta \D &=& \delta \Ha \times \N + \Ha \times \delta \N \\
-    \mu_0 c \delta \Ha &=& \N \times \delta \E + \delta \N \times \E \, ,
-\eea
+\begin{subequations}
+\begin{align}
+    c \delta \D &= \delta \Ha \times \N + \Ha \times \delta \N \\
+    \mu_0 c \delta \Ha &= \N \times \delta \E + \delta \N \times \E \, ,
+\end{align}
+\end{subequations}
 which by multiplying with $\E$ and $\Ha$, respectively, and applying 
 basic properties of vector and scalar products, yield
-\bea
-    c \E \cdot \delta \D &=& \E \cdot \left(\delta \Ha \times \N \right) + 
-        \E \cdot \left(\Ha \times \delta \N \right) \nonumber \\
-    &=& \delta \Ha \cdot \left(\N \times \E \right) + 
-        \delta \N \cdot \left(\E \times \Ha \right) \nonumber \\
-    &=& \mu_0 c \Ha \cdot \delta \Ha + \delta \N \cdot \left(\E \times \Ha \right) \\
-    \mu_0 c \Ha \cdot \delta \Ha &=& c \D \cdot \delta \E + 
+\begin{subequations}
+\begin{align}
+    \begin{split}
+    c \E \cdot \delta \D 
+    &= \E \cdot \left(\delta \Ha \times \N \right) + 
+        \E \cdot \left(\Ha \times \delta \N \right) \\
+    &= \delta \Ha \cdot \left(\N \times \E \right) + 
+        \delta \N \cdot \left(\E \times \Ha \right)  \\
+    &= \mu_0 c \Ha \cdot \delta \Ha + 
+        \delta \N \cdot \left(\E \times \Ha \right)
+    \end{split} \\
+    \mu_0 c \Ha \cdot \delta \Ha &= c \D \cdot \delta \E + 
         \delta \N \cdot \left(\E \times \Ha \right) \, ,
-\eea
+\end{align}
+\end{subequations}
 using again \eqref{eq:plan_Hb} and \eqref{eq:plan_Db}. It follows directly, that 
-\beq
+\begin{equation}
     \delta \N \cdot \left( \E \times \Ha \right) = \delta \N \cdot \mathbf{S} = 0 \, .
-\eeq
+\end{equation}
 To show, that $\se$ and $\mathbf{S}$ have the same direction, we need to show, 
 that $\se$ is orthogonal on the surface of the wave vector surface, or, since 
 the infinitesimal displacement $\delta \N$ lies 
 on that surface, that $\se \cdot \delta \N = 0$. 
 The wave vector surface given by \eqref{eq:fresnel} can be described by 
 $f(\omega, \K) = 0$, which implies 
-\beq
+\begin{equation}
     \frac{\partial \omega}{\partial \K} = 
     - \frac{\partial f / \partial \K}{\partial f / \partial \omega}
-\eeq
+\end{equation}
 for the group velocity and thus 
-\beq
+\begin{equation}
     \se \parallel \frac{\partial f }{\partial \K} \parallel \frac{\partial f}{\partial \N}
     \label{eq:s_dir}
-\eeq
+\end{equation}
 since the gradient along $\K$ is taken for constant $\omega$. $\partial f / \partial \N$, however, 
 is normal to the surface $f = 0$, so we can conclude, that
-\bea
-    \se \cdot \delta \N &=& 0 \\
-    \Rightarrow \qquad \se &\parallel& \mathbf{S} \, .
-\eea
+\begin{align}
+    \se \cdot \delta \N &= 0 \\
+    \Rightarrow \qquad \se &\parallel \mathbf{S} \, .
+\end{align}
 If follows, that 
-\beq
+\begin{equation}
     \se \cdot \Ha = 0 \qquad \se \cdot \E = 0 \, .
     \label{eq:coplanar}
-\eeq
+\end{equation}
 For uniaxial crystals, we can specify the ray surface in a form similar to 
 \eqref{eq:ellipsoid} by doing analoge calculations with the folloing substitutions:
-\beq
+\begin{equation}
     \E \leftrightarrow c \D \, ; 
     \qquad \N \leftrightarrow \mu_0 c \se \, ; 
     \qquad \eps_{ik} \leftrightarrow {\eps^{-1}}_{ik} \, .
-\eeq
+\end{equation}
 The result is 
-\bea
-    s^2 &=& \frac{\epsn}{\eps_\perp}
+\begin{align}
+    s^2 &= \frac{\epsn}{\eps_\perp}
     \label{eq:s_sphere} \\
-    \eps_\perp {s_z}^2 + \eps_\parallel \left( {s_x}^2 + {s_y}^2\right)&=& 1 \, .
+    {s_z}^2 \frac{\eps_\perp}{\epsn} + \left( {s_x}^2 + 
+        {s_y}^2\right) \frac{\eps_\parallel}{\epsn} &= 1 \, .
     \label{eq:s_ellipsoid}
-\eea
+\end{align}
 Since $\eps_x = \eps_y$, $\N$ and $\se$ must be coplanar with the optical axes. This 
 common plane is called \emph{principal axis} for a given $\N$. Let this plane be 
 defined by the $xz$-plane. We can get the direction 
 of $\se$ from the relation \eqref{eq:s_dir}, namely by taking the derivatives of 
 \eqref{eq:ellipsoid} with respect to $n_x$ and $n_z$:
-\beq
+\begin{equation}
     \frac{s_x}{s_z} = \frac{\eps_\perp n_x}{\eps_\parallel n_z} \, .
-\eeq
+\end{equation}
 The angle $\theta'$ between optical axis and ray vector is given in terms of 
 $\theta$, as defined in equation \eqref{eq:theta}:
-\beq
+\begin{equation}
     \tan \theta' = \frac{\eps_\perp}{\eps_\parallel} \tan \theta\, .
-\eeq
+\end{equation}
 We observe, that the directions of $\N$ and $\se$ aor only the same for 
-$\theta = m \pi / 2$, $m \in mathbb{Z}$, 
+$\theta = m \pi / 2$, $m \in \mathbb{Z}$, 
 thus for waves propagating parallel or perpendicular to the optical axis. 
-\\
 
-The polarization is analyzed taking yet another direction: 
+
+\paragraph{The polarization} is analyzed taking yet another direction: 
 Instead of describing the wave vector surface in principle axis 
 coordinates of $\eps$, we can use coordinates corresponding to 
 the fact, the $\D$ is transverse to $\N$. Taking one axis to be 
 parallel to $\N$, we denote the other two directions with Greek letters. 
-For the components of $\D$, we get 
-\beq
-    D_\alpha = n^2 E_\alpha
-\eeq
+For the components of $\D$, we get from equation \eqref{eq:D(E)}
+\begin{equation}
+    D_\alpha = \epsn n^2 E_\alpha
+\end{equation}
 and with the constitutive equation \eqref{eq:const1} 
-\beq
+\begin{equation}
     E_\alpha = {\eps^{-1}}_{\alpha \beta} D_\beta \, 
-\eeq
+\end{equation}
 we get the two dimensional eigenvalue problem
-\beq
-    {\eps^{-1}}_{\alpha \beta} D_\beta = n^{-2} D_\beta \, .
-\eeq
+\begin{equation}
+    {\eps^{-1}}_{\alpha \beta} D_\beta = \epsn^{-1} n^{-2} D_\beta \,
+\end{equation}
+for the two-dimensional symmetric tensor $\eps^{-1}$. 
 In the case of no degeneracy, we obtain two orthogonal eigenvectors 
 $\D_1$ and $\D_2$. Degeneracy is only present, if the components of 
 $\eps^{-1}$ are all the same in its own principla axis coordinate system - 
 this would just be the case of isotropic materials. 
 
-We unite the results of the foregoing anaylsis with the following conclusion: 
+
+\paragraph{We unite the results} of the foregoing anaylsis with the 
+following conclusion: 
 $\N, \se, \E$ and $\D$ are always coplanar. For extraordinary waves, 
 $\N$ and $\se$ are not parallel, but in the same principal section. 
 The wave is thus polarized such that $\E$ and $\D$ lie in that principal 
@@ -265,18 +292,295 @@ section. As $\D$ for the ordinary waves of the same $\N$ as perpendicular
 to that of the extraordinary, their polarization is such that 
 $\E$ and $\D$ are perpendicular to the principal section. 
 
+\paragraph{For biaxial crystals,}
+ the solutions are more complicated and 
+treated for example in \cite{landau1984electrodynamics}. 
+The fourth order surface defined by Fresnel's equation 
+\eqref{eq:fresnel} can now be separated into 
+two ellipsoids: There are no more ordinary rays, but only 
+extraordinary ones. We can find two 
+optical axes as point of self intersection of the 
+surface, usually obtainted by looking at the intersections 
+the the coordinate planes in the principla axis basis. 
+Along these optical axis, we again observed no distinction 
+between two possible polarizations. 
+Wave vector $\K$ and ray vector $\se$ have the same direction, 
+only if they are orientated along one of the principle axes, 
+otherwise they split up into two rays. 
+There is, however an important exception: If the wave vector 
+coincides with one of the optical axes, there are 
+infinitely many ray vectors associated with it:
+be can observe the phenomenon of 
+\emph{internal conical refraction}. 
 
 
+\subsection{Influence of electric field on the index ellipsiod}
 
-\subsection{Deducing the Pockels effect in terms of nonlinear Maxwell equations}
-\subsubsection{Primary and secondary electro-optical effect}
-\subsubsection{Influence of electric field on the index ellipsiod}
+\paragraph{The index ellipsoid} 
+as one of the two solutions for Fresnel's equation 
+\eqref{eq:fresnel} for uniaxial crystals can be defined by the 
+index ellipsoid, 
+\begin{equation}
+    \sum_{i, j} {(B_0)}_{ij} n_i n_j = 1 \, ,
+\end{equation}
+where, if we move use the principle axis coordinate system of 
+the dielectric tensor $\eps$, 
+the ${(B_0)}_{ij}$ are defined by equation \eqref{eq:ellipsoid}:
+\begin{equation}
+    {(B_0)}_{ij} = \frac{\epsn}{\eps_{ij}} 
+     \qquad   \Rightarrow \qquad 
+        {(B_0)}_{11} = {(B_0)}_{22} = \frac{\epsn}{\eps_\perp}\, ; \quad
+        {(B_0)}_{33} = \frac{\epsn}{\eps_\parallel}\, 
+\end{equation}
+For $i \neq j$, ${B_0}_{ij} = 0$. In the first order of $\E$ and 
+neglecting photoelastic effects, we can now 
+apply a pertubation to $B_0$ and get
+~\cite{sauter1996nonlinear}
+\begin{equation}
+    B_{ij} = (B_0)_{ij} + (\Delta B)_{ij} = (B_0)_{ij} + \sum{k} r_{ijk}E_k(0) \, .
+\end{equation}
+The \emph{electro-optic tensor} $r_{ijk}$ is symmetric in the first two indices.
+We can thus apply a different notation as a $6 \times 3$ matrix with the definitions 
+\begin{align}
+    &r_{11k} = r_{1k}\, ,&
+    &r_{22k} = r_{2k}\, ,&
+    &r_{33k} = r_{3k}\, ,& \nonumber \\
+    &r_{23k} = r_{32k} = r_{4k}\, ,& 
+    &r_{13k} = r_{31k} = r_{5k}\, ,&
+    &r_{12k} = r_{21k} = r_{6k} &
+    \label{eq:notation}
+\end{align}
+for $k = 1, 2, 3$. The coefficient has a order of about 
+$10^{-10}$ to $10^{-12}$ m/V.~\cite{sauter1996nonlinear}
+
+
+\subsection{Primary and secondary electro-optical effect}
+The electro-optic tensor can be splitted into two components:
+The primary electro-optic effect with coefficient $r_{ij}'$
+for the case of zero strain, where the crystal is 
+not able to deform. The secondary effect corresponds to deformation 
+due to photoelastic and piezoelectric effects, described by the 
+respective coefficients $d_{jk}$ and $p_{ik}$.
+We can write
+\begin{equation}
+    r_{ij} = r_{ij}' + p_{ik} d_{jk}.
+\end{equation}
+In order to separate the effects, we apply an external field $\E$ 
+oscillating at a frequency such that the crystal is not able 
+to follow. 
+
+
 
 \subsection{Structure of crystal lattice}
 
-\subsection{Reduction of components of dielctric tensor for $\bar{4}2$m crystals}
+\subsection{Hermann-Mauguin notation}
+\paragraph{The international} or \emph{Hermann-Mauguin notation} 
+is used in crystallography to describe the symmetry groups of crystals. 
+The convention allows to comprise all information about the symmetry 
+of the crystal lattice in three components, in our case $\bar{4}2m$. 
+The notation follows the following rules~\cite{sands1993introduction}:
+\begin{itemize}
+    \item
+    Each component corresponds to a different direction. Terms 
+    written as $n/m$, where $n \in \mathbb{N}$ are interpreted 
+    as one component. 
+    \item
+    $m$ indicates a mirror plane, its direction is th normal to this plane.
+    \item
+    For orthorhombic systems, all directions are mutually perpendicular. 
+    The symbols refer to the $x$, $y$, and $z$ axis, respectively.
+    \item
+    For tetragonal systems, we chose the first component to be the $z$-axis, 
+    with the symbol $4$ or $\bar{4}$. The second component refers to the 
+    mutually perpendicular $x$- and $y$-axes and the third to directions in the 
+    $xy$-plane bisecting the angles between $x$ and $y$. 
+    \item
+    In trigonal and hexagonal systems, the second component refers to 
+    equivalent directions ($120^\circ$ or $60^\circ$ apart) in the $xy$-plane, 
+    which is normal to the $z$-axis with $3, \bar{3}, 6$ or $\bar{6}$ symmetry. 
+    \item
+    For hexagonal systems, a third component corresponds to directions bisecting 
+    the angles between axes specified by the second component. 
+    \item
+    If the second term is a $3$, then the system is cubic. The $3$ refers to the 
+    four body diagonals of the cube, the first symbol refers to the cube axes, and the 
+    third component to the face diagonals.
+    \item
+    If two or more axes coincide, the higher symmetry (generating more points) is 
+    shown. 
+\end{itemize}
+We can immediately name the groups without higher-order axes, namely those 
+containing only twofold axes, mirror planes and inversion center. The 
+crystallographic point groups are $1$ and $\bar{1}$ of the 
+triclinic crystal system, $2, m$, and $\frac{2}{m}$ (monoclinic) and 
+$222, \frac{2}{m\frac{2}{m}}\frac{2}{m}$, and $mm2$ of the orthorombic system. 
+
+\paragraph{The $\bar{4}2m$-symmetry}
+under consideration in this experiment corresponds to 
+\begin{itemize}
+    \item
+    a fourfold rotoinversional symmetry around the $x_3$-axis
+    \item
+    a twofold rotational symmetry around the $x_1$-axis
+    \item
+    and a mirror plane parallel to the $x_3$-axis and the bisection of the 
+    angles between $x_1$- and $x_2$-axis, 
+\end{itemize}
+where we renamed the axes $x, y$ and $z$ into $x_1, x_2$ and $x_3$, respectively. 
+The $\bar{4}$-axis includes another mirror 
+plane perpendicular to the first one and a twofold rotational symmetry 
+around the $x_3$-axis. 
+
+\subsection{Reduction of components of dielctric tensor for $\bar{4}2m$ crystals}
+\paragraph{As described in} 
+the previous section, the ADP-crystal has the symmetry group 
+$\bar{4}2m$. We can reduce the number of non-zero components of the 
+electro-optical tensor $r_{ijk}$ by the following consideration:
+If we apply a coordinate transform $R$ to our basis for which 
+our crystal is symmetric, then $r_ijk$ has to have the same symmetry, 
+i.~e. the repsresentation of $r_ijk$ in the new basis has to be the same.
+We define $R$ with its action on the basis by 
+\begin{equation}
+    \mathbf{\hat{e}}_i = R_i^j \mathbf{e}_j \, ,
+\end{equation}
+where $\mathbf{\hat{e}}_i$ and $\mathbf{e}_i$ are 
+the $i$-th components of the new and old basis, respectively. 
+Since $r_{ij}$ is a tensor, the components $\hat{r}_{ijk}$ in the 
+new basis can be calculated from those in the old one by 
+\begin{equation}
+    \hat{r}_{ijk} = 
+        \left( R^{-1}\right)_i^l
+        \left( R^{-1}\right)_j^m
+        \left( R^{-1}\right)_k^n
+        r_{lmn} \, .
+\end{equation}
+We eliminate the components of $r_{ijk}$ by applying sequentially 
+the following transformations, for which the crystal is symmetric:
+\begin{itemize}
+    \item
+    rotation by $180^\circ$ around the $x_3$-axis;
+    \item
+    rotation by $90^\circ$ around the $x_3$-axis and inversion;
+    \item
+    rotation by $180^\circ$ around the $x_1$-axis. 
+\end{itemize}
+For the first rotation, the coordinates transfer with 
+\begin{equation}
+    \begin{split}
+    x_1 &\rightarrow -x_1 \\
+    x_2 &\rightarrow -x_2 \\
+    x_3 &\rightarrow x_3  \, .
+    \end{split}
+\end{equation}
+The matrix representation is given by
+\begin{equation}
+    R^{-1} = 
+    \begin{pmatrix}
+    -1 &  0 &  0 \\
+     0 & -1 &  0 \\
+     0 &  0 &  1 
+    \end{pmatrix} \, .
+\end{equation}
+We calculate the first component in an examplary manner, 
+\begin{equation}
+    \begin{split}
+    \hat{r}_{111} &= 
+        \left( R^{-1}\right)_1^l
+        \left( R^{-1}\right)_1^m
+        \left( R^{-1}\right)_1^n
+        r_{lmn}  \\
+        &= (-1)(-1)(-1)r_{111} \\
+        &= -r_{111} \, .
+    \end{split}
+\end{equation}
+One can see immediately that for all components an odd number 
+of indices $i \in \{1, 2\}$ yields $\hat{r}_{ijk} = -r_{ijk}$, 
+while an even number yields $\hat{r}_{ijk} = r_{ijk}$. 
+Since the condition of symmtry implies $\hat{r}_{ijk} = r_{ijk}$, 
+we can summarize all components which do not have to equal zero:
+\begin{align}
+    &{r}_{113}\, ,& 
+    &{r}_{123} = {r}_{213}\, , &
+    &{r}_{231} = {r}_{321}\, , \nonumber \\ 
+    &{r}_{223}\, ,& 
+    &{r}_{131} = {r}_{311}\, , & 
+    &{r}_{232} = {r}_{322}\, , \nonumber \\ 
+    &{r}_{333}\, ,& 
+    &{r}_{132} = {r}_{312}
+\end{align}
+A rotation by $90^\circ$ around the  
+$x_3$ axis and following 
+inversion is given by the coordinate transformation 
+\begin{equation}
+    \begin{split}
+    x_1 &\rightarrow -x_2  \\
+    x_2 &\rightarrow x_1 \\
+    x_3 &\rightarrow -x_3  \, .
+    \end{split}
+\end{equation}
+with the matrix representation
+\begin{equation}
+    R^{-1} = 
+    \begin{pmatrix}
+    0 & -1 &  0 \\
+    1 &  0 &  0 \\
+    0 &  0 & -1 
+    \end{pmatrix} \, .
+\end{equation}
+Applying ths transformation to the remaining components yields:
+\begin{align*}
+    \hat{r}_{123} &=  r_{213} \, ,&  
+    \hat{r}_{213} &=  r_{123} \, , \\
+    \hat{r}_{132} &=  r_{231} \, ,&    
+    \hat{r}_{231} &=  r_{132} \, , \\
+    \hat{r}_{312} &=  r_{321} \, ,&   
+    \hat{r}_{321} &=  r_{312} \, , \\
+    \hat{r}_{113} &= -r_{223} \, ,&  
+    \hat{r}_{223} &= -r_{113} \, , \\
+    \hat{r}_{131} &= -r_{232} \, ,&  
+    \hat{r}_{232} &= -r_{131} \, , \\
+    \hat{r}_{311} &= -r_{322} \, ,&  
+    \hat{r}_{322} &= -r_{311} \, , \\
+    \hat{r}_{333} &= -r_{333} \,         % !
+\end{align*}
+We see, that only $r_{333}$ has to vanish, while further 
+equalities are introduced. 
+To further reduce the number, we  apply the rotation by 
+$180^\circ$ around the $x_1$-axis, given by 
+\begin{equation}
+    \begin{split}
+    x_1 &\rightarrow x_1  \\
+    x_2 &\rightarrow -x_2 \\
+    x_3 &\rightarrow -x_3 \\
+    \end{split} \ ; \qquad
+    R^{-1} = 
+    \begin{pmatrix}
+    1 &  0 &  0 \\
+    0 & -1 &  0 \\
+    0 &  0 & -1 
+    \end{pmatrix} \, .
+\end{equation}
+Since $R^{-1}$ is diagonal, the indices remain the same, thus 
+components with changing sign have to vanish. This is the case 
+only for an those triples of indices with an 
+odd number of indices $i \in \{2, 3\}$. We conclude, that 
+the remaining components with corresponding equalities are given by
+\begin{align*}
+    r_{123} &=  r_{213}\, , \\
+    r_{132} &=  r_{312} = r_{231} = r_{321}\,
+\end{align*}
+These can be renamed in the way given by equations \eqref{eq:notation}, 
+which leaves only the three remaining components
+\begin{equation}
+    r_{14} = r_{25} \qquad \text{ and } \qquad  r_{36}\, .
+\end{equation}
+
+
 
 \subsection{Discussion of the effect for the transverse Pockels Cell}
+
+
+
 
 \subsection{Polarization filters}
 
