@@ -172,19 +172,23 @@ arriving at:
  \quad \delta I = \frac{ I \cdot dx \cdot dl'}{L(x_2 - x_1)}
 \end{equation}
 Now we get by inserting the $\delta I$ into the magnetic field and integrating over
-the whole $x$-axis (which we will denote for simplicity by $B$):
+the whole $x$-axis (which we will denote for simplicity by $H$ with $B = \mu H$):
 \begin{align}
-    B &= \underbrace{ \frac{\mu_0 N\cdot I}{2 L (x_2 - x_1)} }_{:=\beta}
+    H &= \underbrace{ \frac{ N\cdot I}{2 L (x_2 - x_1)} }_{:=\beta}
     \int^{L-z}_{-z} \int^{x_1}_{x_2} \frac{x^2}{(x^2 + l'^2)^{3/2}} dx dl'\\
 \end{align}
-Now we can use the integrals
+Now and in what follows we can use the integrals:
 \begin{align}
-    \int \frac{a^2 dy}{(a^2 + y^2)^{3/2}} =  \frac{y}{\sqrt{a^2 + y^2}} \\
-    \int \frac{dy}{(a^2 + y^2)^{1/2}} =  \log{\left [ y + \sqrt{a^2 + y^2} \right]}
+    \int \frac{a^2 dy}{(a^2 + y^2)^{3/2}}&=  \frac{y}{\sqrt{a^2 + y^2}} \\
+    \int \frac{dy}{(a^2 + y^2)^{1/2}} &=  \log{\left [ y + \sqrt{a^2 + y^2} \right]}\\
+    \int \frac{y dy}{\sqrt{y^2 + a^2}} &= \sqrt{y^2 + a^2} \\
+    \int \sqrt{y^2 + a^2} dy &= \frac{1}{2} \left(
+    y \sqrt{ y^2 + a^2} + a^2 \log \left [ y + \sqrt{y^2 + a^2} \right ] 
+        \right )
 \end{align}
 which is easy to see if you differentiate the right side respectively. From this follows:
 \begin{align}
-    B &= \beta \int^{x_2}_{x_1} \left (  \frac{L - z}{\sqrt{x^2 + (L-z)^2}} +
+    H &= \beta  \int^{x_2}_{x_1} \left (  \frac{L - z}{\sqrt{x^2 + (L-z)^2}} +
       \frac{z}{\sqrt{x^2 + z^2}}    \right ) dx  \\
   &= \beta  \left (
   (L-z) \log{\left [ \frac{x_2 + \sqrt{(L-z)^2 + x_2^2}} { x_1 + \sqrt{(L-z)^2 + x_1^2}} \right]}
@@ -193,12 +197,42 @@ which is easy to see if you differentiate the right side respectively. From this
 \end{align}
 which is in the middle of the coil with $z = L/2$:
 \begin{equation}
-    B(z = L/2) = \beta 
-    L \log{\left [ \frac{x_2 + \sqrt{\frac{L}{2}^2+ x_2^2}} { x_1 + \sqrt{\frac{L}{2}^2 + x_1^2}} \right]}
+    H(z = L/2) = \beta \cdot L \cdot
+    \log{\left [ \frac{x_2 + \sqrt{(\frac{L}{2})^2+ x_2^2}} { x_1 + \sqrt{(\frac{L}{2})^2 + x_1^2}} \right]}
 \end{equation}
 which is with our specifications of the experimental setup:
+\begin{align}
+    H( z = 87.5 \mathrm{mm}) &=   \left [ 1.84 \pm 0.02\right ] 10^5\quad  \mathrm{A/m} \\
+         &=  \left [ 2305 \pm 26\right ] \quad \mathrm{Oe}
+\end{align}
+\subsection{Integral of the rotation angle}
+Now we pursue to calculate the angle $\alpha$ by $d\alpha = V H(z) dz$,
+following from the magnetic field we just calculated but not only integrating over $x$, but
+also over $z$:
+\begin{align}
+    \alpha &= V\ \cdot\beta  \int^{z=\frac{L+l}{2}}_{z=\frac{L-l}{2}} \int^{x_1}_{x_1}
+    \left (  \frac{L - z}{\sqrt{x^2 + (L-z)^2}} +
+      \frac{z}{\sqrt{x^2 + z^2}}    \right ) dx dz \\
+  &=  2 \cdot V\ \cdot\beta  \int^{x_1}_{x_1}
+    \left (  
+        \sqrt{x^2 + \left (\frac{L+z}{2}\right )^2} -\sqrt{x^2 + \left (\frac{L-z}{2}\right )^2}
+        \right ) dx  
+    \end{align}
+Which then results into:
+\begin{equation}\label{e:barwq}\begin{split}
+=   V\beta \bigl [
+     x_2 \left (\sqrt{ x_2^2 + \frac{(L+l)}{4}^2}- \sqrt{ x_2^2 + \frac{(L-l)}{4}^2}\right ) 
+     -x_1 \left (\sqrt{ x_1^2 + \frac{(L+l)}{4}^2}- \sqrt{ x_1^2 + \frac{(L-l)}{4}^2}\right )  \\
+    +\left (
+    \frac{(L+l)}{4}^2 \log{
+        \left [ \frac{x_2 + \sqrt{\frac{(L+l)}{4}^2  + x_2^2}} { x_1 + \sqrt{\frac{(L+z)}{4}^2 + x_1^2}} \right]}
+- \frac{(L-l)}{4}^2 \log{
+        \left [ \frac{x_2 + \sqrt{\frac{(L-l)}{4}^2  + x_2^2}} { x_1 + \sqrt{\frac{(L-z)}{4}^2 + x_1^2}} \right]}
+  \right)
+    \bigr ]
+\end{split}\end{equation}
+When we now plug in the specifications of our setup we get:
+\begin{equation}
+    \alpha = V \cdot I \cdot \left (534.1 \pm 8.6 \right )
+\end{equation}
 
-
-\subsection{Method of measuring the rotation angle}
-
-\subsection{Method of measuring angle between dirctions of polarization of half-shade polarimeter}

@@ -191,7 +191,8 @@ def verdet_constant():
 
 from uncertainties.umath import sqrt,log
 from scipy.constants import mu_0
-def integral():
+
+def integral_1():
     x1 = uc.ufloat( 20 /2 *10**(-3)  ,   1*10**(-3))
     x2 = uc.ufloat( 150/2 *10**(-3)  ,   1*10**(-3))
     L =  uc.ufloat( 175   *10**(-3)  ,   1*10**(-3))
@@ -205,7 +206,24 @@ def integral():
     print(H)
     print(H/oe)
 
-integral()
+def integral_2():
+    x1 = uc.ufloat( 20 /2 *10**(-3)  ,   1*10**(-3))
+    x2 = uc.ufloat( 150/2 *10**(-3)  ,   1*10**(-3))
+    L =  uc.ufloat( 175   *10**(-3)  ,   1*10**(-3))
+    l =  uc.ufloat( 150   *10**(-3)  ,   1*10**(-3))
+    I =  uc.ufloat(10 , 0.1)
+    N =  3600
+
+    A = N  / (2   * (x2-x1)) 
+    factor =  (x2 * (sqrt( x2**2 + ((L+l)/2)**2)- sqrt( x2**2 + ((L-l)/2)**2) ) \
+       +x1 * (sqrt( x1**2 + ((L+l)/2)**2)- sqrt( x1**2 + ((L-l)/2)**2) )  \
+    + (((L+l)/2)**2* log((x2 + sqrt(((L+l)/2)**2  + x2**2))/ (x1 + sqrt(((L+l)/2)**2  + x1**2)) ) \
+    - ((L-l)/(4))**2* log((x2 + sqrt(((L-l)/2)**2  + x2**2))/ (x1 + sqrt(((L-l)/2)**2  + x1**2)) )))
+
+    print(factor)
+    print(A * factor)
+
+integral_2()
     
 
 
