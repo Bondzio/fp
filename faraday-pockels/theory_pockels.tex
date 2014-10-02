@@ -1,19 +1,9 @@
 \section{Theory behind the Pockels effect}
 
-\subsection{Linear and circular polarized light}
-
-\subsection{Birefringence}
-\paragraph{If the refraction index}
- $n$ of a material depends on the linear polarization of light, 
-then a beam of light propagating in the material will be split up into 
-two beams with perpendicular polarization and different propagation speed 
-\begin{equation}
-   v_i = \frac{c}{n_i}, 
-\end{equation}
-In order to explain this phenomenon, it is helpful to introduce quantities 
-connected to the structure of the material, i.~e. it being anisotropic, 
-and retrieve the way the light propagates by looking at the solutions 
-of Maxwell's equations in matter,
+\subsection{Light propagating in matter}
+\paragraph{The basis of discussing} 
+electro-optical effects are 
+Maxwell's equations in matter~\cite{boyd2003nonlinear}:
 \begin{subequations} 
 \begin{align}
 \nabla \cdot \D &= \rho_\text{f} 
@@ -26,22 +16,24 @@ of Maxwell's equations in matter,
         \frac{\partial \D} {\partial t}, 
 \label{eq:max4}
 \end{align}
+\label{eq:maxwell}
 \end{subequations}
 where 
 \begin{itemize}
-\item $\D$ is the electric displacement field, related to the eletric field $\E$ 
+    \item $\D$ is the electric displacement field, related to the eletric field $\E$ 
     by the constitutive equation 
     \begin{equation}
         \D = \Eps \E 
     \label{eq:const1}
     \end{equation}
-\item $\mathbf{H}$ is the magnetizing field, with the constitutive equation 
+    where $\Eps$ is the dielectric tensor;
+    \item $\mathbf{H}$ is the magnetizing field, with the constitutive equation 
     \begin{equation}
-        \mathbf{H} = \mu^{-1} \B
+        \mathbf{H} = \mu^{-1} \, ;
     \label{eq:const2}
     \end{equation}
-\item $\mathbf{J}_\text{f}$ is the free current density, and
-\item $\mathbf{\rho}_\text{f}$ is the free charge density.
+    \item $\mathbf{J}_\text{f}$ is the free current density, and
+    \item $\mathbf{\rho}_\text{f}$ is the free charge density.
 \end{itemize}
 Equations \eqref{eq:const1} and \eqref{eq:const2} are valid for materials without 
 coupling between magnetic and eletric fields, which is the case in our 
@@ -50,7 +42,14 @@ $\Eps$ is a tensor, while we assume the permeability $\mu$ of the material
 to be just the vacuum permeability $\mu_0$, such that
 $\B = \mu \mathbf{H} = \mu_0 \mathbf{H}$. 
 If we assume $\mathbf{\rho}_\text{f} = 0$, $\mathbf{J}_\text{f} = 0$ 
-(no free charge and currents), and consider plane waves, 
+(no free charge and currents), we obtain the homogenious 
+Maxwell equations. By applying the curl operator $\nabla \times$ 
+to \eqref{eq:max3}, we get the wave equation 
+\begin{equation}
+    - \Delta \E + \frac{\eps}{\epsn c^2} \frac{\partial^2 \E}{\partial t^2}  = 0
+    \label{eq:wave_eq}
+\end{equation}
+which possesses plane waves as solutions, 
 described by
 \begin{subequations}
 \begin{align}
@@ -58,7 +57,8 @@ described by
     \mathbf{H} &= \mathbf{H_0} \exp \left[i(\mathbf{k \cdot r}-\omega t)\right], 
 \end{align}
 \end{subequations}
-then inserting into \eqref{eq:max3} and \eqref{eq:max4} yields:
+
+Inserting into \eqref{eq:max3} and \eqref{eq:max4} yields:
 \begin{subequations}
 \begin{align}
     \mu_0 \omega \mathbf{H} &= \K \times \E 
@@ -73,7 +73,68 @@ Looking at the energy flux
     \mathbf{S} = \E \times \Ha, 
 \end{equation}
 we further see, that the directions of $\mathbf{S}$ and $\K$ do not 
-coincide if $\E \nparallel \Eps \E$. If we define the 
+coincide if $\E \nparallel \Eps \E$. 
+
+\paragraph{As a consequence}, 
+plane waves can be polarized in any direction 
+perpendicular to $\K$. Linear polarized waves conserve the 
+direction of polarization in time and space. They are formed 
+the superposing two waves with the same frequency and a 
+relative phase $\Delta \phi = n \pi$, where $n \in \mathbb{Z}$. 
+Any linearly polarized wave can be split up into two orthogonal 
+components of equal amplitude, each forming an angle of $45^\circ$ 
+with the original polarization.
+A linear combination of two aves of the same frequency $\omega$, 
+wavevector $\K$ but orthogonal polarization and a fixed phase 
+difference $\Delta \phi \neq 0$ is generally polarized elliptically.
+For the special case of equal amplitudes and $\Delta \phi = \pi /2$,
+the polarization is circular. 
+
+\paragraph{In order to asses} 
+the differences in phase induces by the Pockels effect, we need to 
+relate refraction to the phase. To do so, we look at two plane waves  
+\begin{align}
+\E_1(\mathbf{r}, t) = (\E_1)_0 \exp\left\{i(\K_1 \cdot \mathbf{r} - \omega t) \right\} \\ 
+\E_2(\mathbf{r}, t) = (\E_2)_0 \exp\left\{i(\K_2 \cdot \mathbf{r} - \omega t) \right\} \\ 
+\end{align}
+with the same frequency $\omega$,
+we can define $\Delta \phi$ at 
+one time $t$ and position $\mathbf{r}$ by 
+\begin{equation}
+    \Delta \phi := \left(\K_2 - \K_1 \right) \cdot \mathbf{r}\, .
+\end{equation}
+By the definition of $\N$ \eqref{eq:def_n} and the identity 
+\begin{equation}
+    \omega = \frac{2 \pi c}{\lambda} \, ,
+\end{equation}
+we can write 
+\begin{equation}
+    \Delta \phi = \frac{2 \pi}{\lambda} 
+    \left(\N_2 - \N_1 \right) \cdot \mathbf{r} \, .
+\end{equation}
+If we further assume $\N$ to be parallel to $\mathbf{r}$, 
+and measure $\Delta \phi$ after the two waves passed 
+through a crystal of lenght $l$, then we get
+\begin{equation}
+    \Delta \phi_l = \frac{2 \pi}{\lambda} 
+    \left(n_2 - n_1 \right) l \, .
+    \label{eq:dphi}
+\end{equation}
+
+
+\subsection{Birefringence}
+\paragraph{If the refraction index}
+ $n$ of a material depends on the linear polarization of light, 
+then a beam of light propagating in the material will be split up into 
+two beams with perpendicular polarization and different propagation speed 
+\begin{equation}
+   v_i = \frac{c}{n_i}, 
+\end{equation}
+In order to explain this phenomenon, it is helpful to examine the 
+structure of the material and connected quantities, as well as 
+to retrieve the way light propagates by looking at the solutions 
+of Maxwell's equations in matter \eqref{eq:maxwell}.
+If we define the 
 refractive index $\mathbf{n}$ by 
 \begin{equation}
     \K = \frac{\omega}{c} \N \, ,
@@ -334,7 +395,6 @@ interchanging $x, y$ and $z$. If we assume
 we see that the intersects appear only in the $xz$-plane, as shown in 
 figure \ref{fig:biaxial_ellipsoid}.
 \begin{figure}
-\centering
 \includegraphics[width=\pltw]{figures/biaxial_ellipsoid.pdf}
 \caption{Surface defined by Fresnel's equation for biaxial crystals.
     The lines are shown only on the planes parallel to the principle 
@@ -356,9 +416,9 @@ be can observe the phenomenon of
 \emph{internal conical refraction}. 
 \FloatBarrier
 
-\subsection{Primary and secondary electro-optical effect}
+\subsection{Primary and secondary electro-optic effect}
 \paragraph{The electro-optic tensor}
- can be splitted into two components:
+can be splitted into two components:
 The primary electro-optic effect with coefficient $r_{ij}'$
 for the case of zero strain, where the crystal is 
 not able to deform. The secondary effect corresponds to deformation 
@@ -371,8 +431,6 @@ We can write
 In order to separate the effects, we apply an external field $\E$ 
 oscillating at a frequency such that the crystal is not able 
 to follow. 
-
-\subsection{Short introduction to piezoelectric effect}
 
 
 \subsection{Influence of electric field on the index ellipsiod}
@@ -512,7 +570,7 @@ around the $x_3$-axis.
 \paragraph{As described in} 
 the previous section, the ADP-crystal has the symmetry group 
 $\bar{4}2m$. We can reduce the number of non-zero components of the 
-electro-optical tensor $r_{ijk}$ by the following consideration:
+electro-optic tensor $r_{ijk}$ by the following consideration:
 If we apply a coordinate transform $R$ to our basis for which 
 our crystal is symmetric, then $r_ijk$ has to have the same symmetry, 
 i.~e. the repsresentation of $r_ijk$ in the new basis has to be the same.
@@ -694,7 +752,7 @@ reduce the parameters in questions for the pertubed index ellipsoid
     \item
     Optical axis and $\bar{4}$-axis coincide. We define 
     this axis to be the $x_3$-axis. Thus, the 
-    only non-zero components of the electro-optical tensor 
+    only non-zero components of the electro-optic tensor 
     $r_{ij}$ are $r_{41} = r_{52}$ and $r_{63}$ in the 
     chosen coordinates, as described in the previous section 
     \ref{sec:reduce}
@@ -763,24 +821,139 @@ where we defined
     \label{eq:def_eps_x}
 \end{equation}
 We observe, that the main axes of the ellipsoid are no longer parallel to the 
-
-If the ray outside the cell is going in the $x_2'$-direction, then, 
-since outside ray vector $\se$ and wave vector $\K$ coincide, the only 
-non-zero component of $\N'$ is $n_2'$, yielding 
+crystal's princial axes.
+For the experiment, we rely on polarized beams. For a ray with 
+$\K$ in the $x_2'$-direction, polarized in the area bisecting the 
+$x_1'$- and $x_3'$-axis, the component $n_2'$ vanishes.
+Equation \eqref{eq:ell_calc} then reduces to
+\begin{equation}
+    1 = \frac{\epsn}{\eps_\perp}  {n_1'}^2 + 
+    {n_3'}^2 \left(\frac{\epsn}{\eps_x} - r_{41} E_1 \right) \, .
+    \label{eq:ell_02}
+\end{equation}
+The wave splits up into two rays, one polarized in $x_1'$-, 
+the other in $x_3'$-direction. Accordingly, they experience the refraction 
 \begin{align}
-    1 &= 
-    {n_2'}^2 \left(\frac{\epsn}{\eps_x} + r_{41} E_1 \right) \\
-    \Rightarrow \qquad 
-    &= b
+    n_1' &= \sqrt{\frac{\eps_\perp}{\epsn}} 
+    \label{eq:n1p} \\
+    n_3' &= \frac{\sqrt{\frac{\eps_x}{\epsn}}}{\sqrt{1 - r_{41} E_1 \frac{\eps_x}{\epsn}}}
+    \label{eq:n3p} 
 \end{align}
-
+In order to facilitate the result, we do a scale analysis for the 
+parameters of the given Pockels Cell, given by
+~\cite{versuchsanleitung}:
+\begin{align*}
+    &\text{thickness of crystall:} &d &= 2.4 \, \text{mm} \\
+    &\text{electro-optic coefficient:} &r_{41} &= 23.4 
+        \,\mathrm{pm / V \ @ \ 20^\circ \ C} \\
+    &\text{refractive index in $x_1$ and $x_2$ direction:} &n_1 &= 1.522 \\
+    &\text{refractive index in $x_3$ direction:} &n_3 &= 1.477 
+\end{align*}
+With $n = \sqrt{\eps / \epsn}$, we get $\eps_x / \epsn \sim 1$, for 
+a voltage of $U = 240$V, $E = U / d \sim 10^5$V/m, 
+so we can approximate $r_{41} E_1 \eps_x / \epsn \sim 10^{-6}$. 
+We can thus expand \eqref{eq:n3p} to the first order in $E_1$ and 
+obtain
+\begin{equation}
+    n_3' \approx \sqrt{\frac{\eps_x}{\epsn}} + 
+        \frac{1}{2} r_{41} E_1 \left(\frac{\eps_x}{\epsn}\right)^\frac{3}{2}
+    \label{eq:n3paprrox} \, .
+\end{equation}
+For the phase difference of the two components after passing through a crystal 
+of length $l$, we get with \eqref{eq:dphi}:
+\begin{equation}
+    \begin{split}
+    \Delta \phi_1 
+    &= \frac{2l \pi}{\lambda} \left(n_3' - n_1' \right) \\
+    &= \frac{l \pi}{\lambda}\Bigg[
+    \underbrace{r_{41} E_1 \left(\frac{\eps_x}{\epsn}\right)^\frac{3}{2}}_\text{Pockels effect} + 
+    \underbrace{\left(\sqrt{\frac{\eps_x}{\epsn}} - \sqrt{\frac{\eps_\perp}{\epsn}} 
+    \right)}_\text{natural birefraction}
+    \Bigg]
+    \end{split}
+    \label{eq:dphi_1}
+\end{equation}
+In order to reunited the beams that are split up by the Pockels effect, 
+we let the beam pass another crystal and corresponding $\E$-field 
+turned around together by $180^\circ$. 
+Since the situation is symmetric for the phase difference, we get for the 
+\begin{equation}
+    \Delta \phi_2 = \Delta \phi_1
+\end{equation}
+resulting phase difference  
+The second summand in \eqref{dphi_1} corresponds to the natural birefringence. 
+It can be cancelled out by applying another pair of crystals turned by 
+$90^\circ$ towards the first one. In this case, the beam polarized 
+in the former $x_1'$-direction is subject to the refractive index 
+$n_3'$ and vice versa. In order to not cancel the part depending on $\E$, 
+the field has to be turned around with respect to the new coordinates. 
+The phase difference is then given by 
+\begin{equation}
+    \begin{split}
+    \Delta \phi_3 = \Delta \phi_4
+    &= \frac{2l \pi}{\lambda} \left(n_1' - n_3' \right) \\
+    &= -\frac{l \pi}{\lambda}\left[
+    r_{41} (-E_1) \left(\frac{\eps_x}{\epsn}\right)^\frac{3}{2} + 
+    \left(\sqrt{\frac{\eps_x}{\epsn}} - \sqrt{\frac{\eps_\perp}{\epsn}}
+    \right)
+    \right]
+   \end{split}
+    \label{eq:dphi_34}
+\end{equation}
+Adding all phase differences yields
+\begin{equation}
+    \begin{split}
+    \Delta \phi_\mathrm{total}  
+    &= \Delta \phi_1 + \Delta \phi_2 + \Delta \phi_3 + \Delta \phi_4 \\
+    &= \frac{4l \pi}{\lambda} r_{41} E_1 \left(\frac{\eps_x}{\epsn}\right)^\frac{3}{2} 
+    \end{split}
+    \label{eq:dphi_34}
+\end{equation}
+At $\Delta \phi = \pi$, the Pockels Cell acts as a \emph{half-wave plate}. 
+In this case, light will pass through orthogonally oriented polarizers 
+with the cell in between entirely only for the correspoding $\E_{\lambda/2}$,
+while for $\E = 0$, no light is transmitted. Using $E = U / d$, we can thus 
+define $U_{\lambda / 2}$ and use the setup to measure the electro-optic 
+coefficient 
+\begin{equation}
+    r_{41} = \frac{\lambda d}{4 l U_{\lambda / 2}} 
+    \sqrt{\frac{1}{2} \left(\frac{\epsn}{\eps_\perp} + \frac{\epsn}{\eps_\parallel}\right)}^3
+    \label{eq:r_41_U}
+\end{equation}
 
 \subsection{Polarization filters}
 
-\subsection{Methods of determining $U_\lambda$}
+\subsection{Methods of determining $\Ula$}
+In order to determine $\Ula$, we measure the intensity of a laser 
+passing a linear polarization filter, the Pockels Cell and a second filter 
+in perpendicular orientation, 
+which acts as an analysator. The intensity is expected to show a maximum at 
+$\Ula$ and a minimum for $U = 0$ and $U = 2\Ula$. We apply the following two methods:
 \subsubsection{Saw tooth}
+The voltage follows a saw tooth signal, increasing linearly from 0 V up to 500 V 
+at a frequency of ca. 30 Hz. An oscilloscope records the intensity measured 
+at a photodiode in phase with the saw tooth signal. $\Ula$ is then the difference 
+in $U$ between Minimum and Maximum of the signal. 
 \subsubsection{Modulated direct current}
+Here, we use a direct current $U_\mathrm{DC} \in (0, 300)$ V modulated by a 
+sine $U_\mathrm{AC}$ of amplitude $40 \ \mathrm{V_{pp}}$. 
+For $U_\mathrm{DC} \ll \Ula$, an AC-coupled 
+oscilloscope is expected to show a response following the sine. However, for 
+$U_\mathrm{DC} = \Ula$, each time $U_\mathrm{AC} = 0$, the response shows a maxima. 
+Accordingly, we expect a frequency doubling in the intensity signal. 
 
 \subsection{Experimental setup}
+The experimental setup
+
+
+
+Using the definition $n = \sqrt{\eps / \epsn}$, we can calculate $\eps_x$:
+\begin{align}
+    \frac{\eps_1}{\epsn} &= n_1^2 = 2.408 \\
+    \frac{\eps_3}{\epsn} &= n_3^2 = 2.182 \\
+    \frac{\eps_x}{\epsn} &= \frac{2 \eps_1 \eps_3}{\epsn \left( \eps_1 + \eps_3\right)} = 2.289
+\end{align}
+
+
 \subsubsection{Properties of He-Ne-Laser}
 \subsubsection{Properties of used photodiode}
