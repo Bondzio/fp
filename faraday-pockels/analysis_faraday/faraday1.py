@@ -191,14 +191,16 @@ def verdet_constant():
 
 from uncertainties.umath import sqrt,log
 from scipy.constants import mu_0
+def magnetic_field():
 
-def integral_1():
     x1 = uc.ufloat( 20 /2 *10**(-3)  ,   1*10**(-3))
     x2 = uc.ufloat( 150/2 *10**(-3)  ,   1*10**(-3))
     L =  uc.ufloat( 175   *10**(-3)  ,   1*10**(-3))
     l =  uc.ufloat( 150   *10**(-3)  ,   1*10**(-3))
     I =  uc.ufloat(10 , 0.1)
     N =  3600
+
+
     beta = N * I / (2   * (x2-x1)) 
     #magnetic field at z = L/2
     H = beta * log((x2 + sqrt((L/2)**2+ x2**2))/ ( x1 +\
@@ -206,7 +208,7 @@ def integral_1():
     print(H)
     print(H/oe)
 
-def integral_2():
+def comparison_H():
     x1 = uc.ufloat( 20 /2 *10**(-3)  ,   1*10**(-3))
     x2 = uc.ufloat( 150/2 *10**(-3)  ,   1*10**(-3))
     L =  uc.ufloat( 175   *10**(-3)  ,   1*10**(-3))
@@ -214,16 +216,52 @@ def integral_2():
     I =  uc.ufloat(10 , 0.1)
     N =  3600
 
-    A = N  / (2   * (x2-x1)) 
+
+    beta = N * I / (2   * (x2-x1)) 
+    #magnetic field at z = L/2
+    H = beta * log((x2 + sqrt((L/2)**2+ x2**2))/ ( x1 +\
+        sqrt((L/2)**2 + x1**2))) 
+    H2 = N * I/L
+    print(H)
+    print(H/oe)
+    print(H2)
+    print(H2/oe)
+
+comparison_H()
+
+
+def integral():
+    x1 = uc.ufloat( 20 /2 *10**(-3)  ,   1*10**(-3))
+    x2 = uc.ufloat( 150/2 *10**(-3)  ,   1*10**(-3))
+    L =  uc.ufloat( 175   *10**(-3)  ,   1*10**(-3))
+    l =  uc.ufloat( 150   *10**(-3)  ,   1*10**(-3))
+    I =  uc.ufloat(10 , 0.1)
+    N =  3600
+
+    A = N  / (2 *L  * (x2-x1)) 
     factor =  (x2 * (sqrt( x2**2 + ((L+l)/2)**2)- sqrt( x2**2 + ((L-l)/2)**2) ) \
-       +x1 * (sqrt( x1**2 + ((L+l)/2)**2)- sqrt( x1**2 + ((L-l)/2)**2) )  \
+              -x1 * (sqrt( x1**2 + ((L+l)/2)**2)- sqrt( x1**2 + ((L-l)/2)**2) )  \
     + (((L+l)/2)**2* log((x2 + sqrt(((L+l)/2)**2  + x2**2))/ (x1 + sqrt(((L+l)/2)**2  + x1**2)) ) \
-    - ((L-l)/(4))**2* log((x2 + sqrt(((L-l)/2)**2  + x2**2))/ (x1 + sqrt(((L-l)/2)**2  + x1**2)) )))
+    -((L-l)/(4))**2* log((x2 + sqrt(((L-l)/2)**2  + x2**2))/ (x1 + sqrt(((L-l)/2)**2  + x1**2)) )))
 
     print(factor)
     print(A * factor)
 
-integral_2()
+    a = np.load(input_dir +"a_3.npy")
+    I = np.load(input_dir + "i_3.npy")
+    I_fit = np.linspace(min(I),max(I),100) 
+
+    S_a = 0.2
+    S_I = 0.05
+
+    weights = a*0 + 1/S_a 
+    p, cov= np.polyfit(I,a, 1, full=False, cov=True, w=weights)
+
+    (p1, p2) = uc.correlated_values([p[0],p[1]], cov)
+
+    print(p1 / (A*factor))
+    print(p1/2556/100 *oe *60)
+
     
 
 
