@@ -23,10 +23,11 @@ where
     \item $\D$ is the electric displacement field, related to the eletric field $\E$ 
     by the constitutive equation 
     \begin{equation}
-        \D = \Eps \E 
+        \D = \eps_0 \Eps \E 
     \label{eq:const1}
     \end{equation}
-    where $\Eps$ is the dielectric tensor;
+    where $\Eps$ is the dielectric tensor and $\eps_0$ is the permittivity of free 
+    space; 
     \item $\mathbf{H}$ is the magnetizing field, with the constitutive equation 
     \begin{equation}
         \mathbf{H} = \mu^{-1} \, ;
@@ -46,14 +47,14 @@ If we assume $\mathbf{\rho}_\text{f} = 0$, $\mathbf{J}_\text{f} = 0$
 Maxwell equations. By applying the curl operator $\nabla \times$ 
 to \eqref{eq:max3}, we get the wave equation 
 \begin{equation}
-    - \Delta \E + \frac{\eps}{\epsn c^2} \frac{\partial^2 \E}{\partial t^2}  = 0
+    - \Delta \E + \frac{\eps}{\eps_0 c^2} \frac{\partial^2 \E}{\partial t^2}  = 0
     \label{eq:wave_eq}
 \end{equation}
 which possesses plane waves as solutions, 
 described by
 \begin{subequations}
 \begin{align}
-    \E &= \E_0 \exp \left[i(\mathbf{k \cdot r}-\omega t)\right] \\
+    \E &= \En \exp \left[i(\mathbf{k \cdot r}-\omega t)\right] \\
     \mathbf{H} &= \mathbf{H_0} \exp \left[i(\mathbf{k \cdot r}-\omega t)\right], 
 \end{align}
 \end{subequations}
@@ -150,34 +151,34 @@ we can rewrite equations \eqref{eq:plan_H} and \eqref{eq:plan_D} as
 \end{align}
 \end{subequations}
 Inserting the latter one into the first and using 
-the identity $c^2 = \frac{1}{\mu_0 \epsn}$, we get 
+the identity $c^2 = \frac{1}{\mu_0 \eps_0}$, we get 
 \begin{equation}
     \begin{split}
     \D  &= \frac{1}{\mu_0 c^2} \N \times \left(\E \times \N\right) \\
-        &= \epsn \left(n^2 \E - \left(\N \cdot \E\right) \N \right)
+        &= \eps_0 \left(n^2 \E - \left(\N \cdot \E\right) \N \right)
     \label{eq:D(E)}
     \end{split}
 \end{equation}
 With the constitutive equation \eqref{eq:const1}, we obtain three 
 equations linear in the components $E_k$:
 \begin{equation}
-    \left(n^2 \delta_{ik} - n_i n_k - \frac{\epsilon_{ik}}{\epsn}\right) E_k = 0
+    \left(n^2 \delta_{ik} - n_i n_k - \epsilon_{ik}\right) E_k = 0
 \end{equation}
 This equation is solve if its determinant vanishes:
 \begin{equation}
-    \mathrm{det}\,\left|n^2 \delta_{ik} - n_i n_k - \frac{\epsilon_{ik}}{\epsn}\right| = 0
+    \mathrm{det}\,\left|n^2 \delta_{ik} - n_i n_k - \epsilon_{ik}\right| = 0
 \end{equation}
 By applying the principle axis theorem~\cite{strang2003introduction}, 
 we can write $\Eps$ as the diagonal matrix with elements $\eps_x, \eps_y, \eps_z$. 
 This yields \emph{Fresnel's equation}:
 \begin{align}
-    \frac{n^2}{\epsn} \left(\eps_x n_x^2 + \eps_y n_y^2 + \eps_z n_z^2 \right) 
+    n^2 \left(\eps_x n_x^2 + \eps_y n_y^2 + \eps_z n_z^2 \right) 
     - \left[
-        \frac{n_x^2}{\epsn^2} \eps_x \left(\eps_y + \eps_z\right) + 
-        \frac{n_y^2}{\epsn^2} \eps_y \left(\eps_z + \eps_x\right) + 
-        \frac{n_z^2}{\epsn^2} \eps_z \left(\eps_x + \eps_y\right) 
+        n_x^2 \eps_x \left(\eps_y + \eps_z\right) + 
+        n_y^2 \eps_y \left(\eps_z + \eps_x\right) + 
+        n_z^2 \eps_z \left(\eps_x + \eps_y\right) 
     \right] + \nonumber \\
-    + \quad \frac{\eps_x \eps_y \eps_z}{\epsn^3} = 0
+    + \quad \eps_x \eps_y \eps_z = 0
     \label{eq:fresnel}
 \end{align}
 Being of second order in $n_i^2$, $i \in \{x, y, z\}$, there are up to two linearly 
@@ -198,29 +199,29 @@ $\Eps$ with
 The $z$-axis is also called the \emph{optical axis}.
 Fresnel's equation \eqref{eq:fresnel} can then be factored into
 \begin{equation}
-    \left(n^2 - \frac{\eps_\perp}{\epsn}\right) 
-    \left[\frac{\eps_\parallel}{\epsn} n_z^2 + 
-        \frac{\eps_\perp}{\epsn} \left(n_x^2 + n_y^2\right) -
-        \frac{\eps_\perp \eps_\parallel}{\epsn^2} 
+    \left(n^2 - \eps_\perp\right) 
+    \left[\eps_\parallel n_z^2 + 
+        \eps_\perp \left(n_x^2 + n_y^2\right) -
+        \eps_\perp \eps_\parallel 
     \right] = 0 \, .
 \end{equation}
 In other words, we have two quadratic equations
 \begin{align}
-    n^2 &= \frac{\eps_\perp}{\epsn} 
+    n^2 &= \eps_\perp
     \label{eq:sphere} \\
-    n_z^2 \frac{\epsn}{\eps_\perp} + \left(n_x^2 + n_y^2\right) \frac{\epsn}{\eps_\parallel} &= 1
+    n_z^2 \eps_\perp + \left(n_x^2 + n_y^2\right) \eps_\parallel &= 1
     \label{eq:ellipsoid}
 \end{align}
 Equation \eqref{eq:sphere} gives a sphere for the wave-vector surface. To the 
 corresponding types of waves, the crystal behaves like an isotropic body, being 
-characterized by the refractive index $n = \sqrt{\eps_\perp / \epsn}$. These waves are 
+characterized by the refractive index $n = \sqrt{\eps_\perp}$. These waves are 
 called \emph{ordinary waves}. The second type, accordingly named 
 \emph{extraordinary waves}, is confined by the ellipsoid \eqref{eq:ellipsoid}. 
 It's magnitude depends on 
 the angle $\theta$ to the optical axis by 
 \begin{equation}
-    \frac{1}{n^2} = \epsn \left( \frac{\sin^2 \theta}{\eps_\parallel} - 
-        \frac{\cos^2 \theta}{\eps_\perp} \right)\, .
+    \frac{1}{n^2} =  \frac{\sin^2 \theta}{\eps_\parallel} - 
+        \frac{\cos^2 \theta}{\eps_\perp} \, .
     \label{eq:theta}
 \end{equation}
 
@@ -303,10 +304,10 @@ For uniaxial crystals, we can specify the ray surface in a form similar to
 \end{equation}
 The result is 
 \begin{align}
-    s^2 &= \frac{\epsn}{\eps_\perp}
+    s^2 &= \eps_\perp
     \label{eq:s_sphere} \\
-    {s_z}^2 \frac{\eps_\perp}{\epsn} + \left( {s_x}^2 + 
-        {s_y}^2\right) \frac{\eps_\parallel}{\epsn} &= 1 \, .
+    {s_z}^2 \eps_\perp + \left( {s_x}^2 + 
+        {s_y}^2\right) \eps_\parallel &= 1 \, .
     \label{eq:s_ellipsoid}
 \end{align}
 Since $\eps_x = \eps_y$, $\N$ and $\se$ must be coplanar with the optical axes. This 
@@ -338,11 +339,11 @@ For the components of $\D$, we get from equation \eqref{eq:D(E)}
 \end{equation}
 and with the constitutive equation \eqref{eq:const1} 
 \begin{equation}
-    E_\alpha = {\eps^{-1}}_{\alpha \beta} D_\beta \, 
+    E_\alpha = \frac{1}{\epsn} {\eps^{-1}}_{\alpha \beta} D_\beta \, 
 \end{equation}
 we get the two dimensional eigenvalue problem
 \begin{equation}
-    {\eps^{-1}}_{\alpha \beta} D_\beta = \epsn^{-1} n^{-2} D_\beta \,
+    {\eps^{-1}}_{\alpha \beta} D_\beta =  n^{-2} D_\beta \,
 \end{equation}
 for the two-dimensional symmetric tensor $\eps^{-1}$. 
 In the case of no degeneracy, we obtain two orthogonal eigenvectors 
@@ -361,11 +362,14 @@ to that of the extraordinary, their polarization is such that
 $\E$ and $\D$ are perpendicular to the principal section. 
 
 \paragraph{For biaxial crystals,}
- the solutions are more complicated and 
+the solutions are more complicated and 
 treated for example in \cite{landau1984electrodynamics}. 
 The fourth order surface defined by Fresnel's equation 
-\eqref{eq:fresnel} can now be separated into 
-two ellipsoids: There are no more ordinary rays, but only 
+\eqref{eq:fresnel} cannot be separated into two 
+simple geometric figures any more, but form a 
+complex surface with exactly four points of selfintersection
+~\cite{born1999principles}. 
+There are no more ordinary rays, but only 
 extraordinary ones. We can find two 
 optical axes as point of self intersection of the 
 surface, usually obtainted by looking at the intersections 
@@ -374,23 +378,23 @@ In order to do so, we set to zero one of the components
 in Fresnel's equation \eqref{eq:fresnel}. For the 
 $xy$-plane, we set $n_z = 0$ and obtain
 \begin{equation}
-    \left(n^2 - \frac{\eps_z}{\epsn}\right) 
-    \left(\frac{\eps_x}{\epsn} n_x^2 + 
-        \frac{\eps_y}{\epsn} n_x^2  -
-        \frac{\eps_x \eps_y}{\epsn^2} 
+    \left(n^2 - \eps_z\right) 
+    \left(\eps_x n_x^2 + 
+        \eps_y n_x^2  -
+        \eps_x \eps_y 
     \right) = 0 \, .
 \end{equation}
 with the solutions
 \begin{align}
-    n^2 &= \frac{\eps_z}{\epsn} 
+    n^2 &= \eps_z 
     \label{eq:sphere} \\
-    {n_x}^2 \frac{\epsn}{\eps_y} + {n_y}^2 \frac{\epsn}{\eps_x} &= 1
+    \frac{{n_x}^2}{ \eps_y} + \frac{{n_y}^2}{ \eps_x} &= 1
     \label{eq:ellipsoid}
 \end{align}
 and the analogues for $n_y = 0$ and $n_x = 0$, obtained by 
 interchanging $x, y$ and $z$. If we assume 
 \begin{equation}
-    \eps_z > \eps_y > \eps_x, 
+    \eps_x < \eps_y < \eps_z, 
 \end{equation}
 we see that the intersects appear only in the $xz$-plane, as shown in 
 figure \ref{fig:biaxial_ellipsoid}.
@@ -398,7 +402,8 @@ figure \ref{fig:biaxial_ellipsoid}.
 \includegraphics[width=\pltw]{figures/biaxial_ellipsoid.pdf}
 \caption{Surface defined by Fresnel's equation for biaxial crystals.
     The lines are shown only on the planes parallel to the principle 
-    axis of the crystal. The point of intersection defines the optical axis, 
+    axis of the crystal with $\eps_x < \eps_y < \eps_z$.
+    The point of intersection defines the optical axis, 
     shown as a dashed line. 
     Taken from \cite{landau1984electrodynamics}. }
 \label{fig:biaxial_ellipsoid}
@@ -416,53 +421,37 @@ be can observe the phenomenon of
 \emph{internal conical refraction}. 
 \FloatBarrier
 
-\subsection{Primary and secondary electro-optic effect}
-\paragraph{The electro-optic tensor}
-can be splitted into two components:
-The primary electro-optic effect with coefficient $r_{ij}'$
-for the case of zero strain, where the crystal is 
-not able to deform. The secondary effect corresponds to deformation 
-due to photoelastic and piezoelectric effects, described by the 
-respective coefficients $d_{jk}$ and $p_{ik}$.
-We can write
-\begin{equation}
-    r_{ij} = r_{ij}' + p_{ik} d_{jk}.
-\end{equation}
-In order to separate the effects, we apply an external field $\E$ 
-oscillating at a frequency such that the crystal is not able 
-to follow. 
-
-
-\subsection{Influence of electric field on the index ellipsiod}
+\subsection{The electro-optic effect}
 \paragraph{The index ellipsoid} 
 as one of the two solutions for Fresnel's equation 
 \eqref{eq:fresnel} for uniaxial crystals can be defined by the 
 index ellipsoid, 
 \begin{equation}
-    \sum\limits_{i, j} {(B_0)}_{ij} n_i n_j = 1 \, ,
+    \eta_{ij}^{(0)} n_i n_j = 1 \, ,
 \end{equation}
-where, if we move use the principle axis coordinate system of 
-the dielectric tensor $\eps$, 
-the ${(B_0)}_{ij}$ are defined by equation \eqref{eq:ellipsoid}:
+where $\eta^{(0)} = {\eps^{(0)}}^{-1}$ is the \emph{impermeability 
+tensor} of the unpertubed crystal with dielectric tensor $\eps^{(0)}$ 
+and we sum over equal indices. 
+Applying an electric field $\E$ on the crystal, $\eta^{(0)}$ will be 
+changed to $\eta$. For reasonably small fields, we can expand
+$\eta$ in powers of $\E$ as 
 \begin{equation}
-    {(B_0)}_{ij} = \frac{\epsn}{\eps_{ij}} 
-     \qquad   \Rightarrow \qquad 
-        {(B_0)}_{11} = {(B_0)}_{22} = \frac{\epsn}{\eps_\perp}\, ; \quad
-        {(B_0)}_{33} = \frac{\epsn}{\eps_\parallel}\, 
+    \eta_{ij} = \eta_{ij}^{(0)} + r_{ijk} E_k + s_{ijkl} E_k E_l + \ldots
 \end{equation}
-For $i \neq j$, $(B_0)_{ij} = 0$. 
-We can now apply a pertubation $\Delta B$ 
-of first order in $\E$ to $B_0$,  
-neglecting photoelastic effects, and get
-~\cite{sauter1996nonlinear}
-\begin{align}
-    \sum\limits_{i, j} B_{ij} n_i n_j &= 1 \, ,
-    \label{eq:ellipsoid_pertubed} \\
-    B_{ij} = (B_0)_{ij} + (\Delta B)_{ij} &= (B_0)_{ij} + \sum\limits_{k} r_{ijk}E_k \, .
-    \label{eq:B_ij}
-\end{align}
-The \emph{electro-optic tensor} $r_{ijk}$ is symmetric in the first two indices.
-We can thus apply a different notation as a $6 \times 3$ matrix with the definitions 
+The linear electro-optic effect is thus described by the 
+\emph{electro-optic tensor} $r$, while 
+$s$ is associtated with the quadratic electro-optic effect, etc. 
+In this experiment, we will only look at effects of first order, 
+since the associated second order \emph{Kerr effect} is 
+neglectible for the given conditions~\cite{staatsexamen}.
+Some basic properties of $r$ can be deduced immediately by 
+looking at those of $\eps$: Since $\eps$ is real and symmetric, the 
+same has to apply to $\eta$. Thus, $r$ has to be symmetric in the 
+first two indices:
+\begin{equation}
+    r_{ijk} = r_{jik}
+\end{equation}
+We introduce a different notation as a $6 \times 3$ matrix with the definitions 
 \begin{align}
     &r_{11k} = r_{1k}\, ,&
     &r_{22k} = r_{2k}\, ,&
@@ -475,51 +464,111 @@ We can thus apply a different notation as a $6 \times 3$ matrix with the definit
 for $k = 1, 2, 3$. The coefficient has a order of about 
 $10^{-10}$ to $10^{-12}$ m/V.~\cite{sauter1996nonlinear}
 
+\paragraph{The electro-optic tensor}
+$r$ can be splitted into two components:
+The \emph{primary} electro-optic effect with coefficient $r_{ij}'$
+for the case of zero strain, where the crystal is 
+not able to deform. The \emph{secondary} effect corresponds to deformation 
+due to photoelastic and piezoelectric effects, described by the 
+respective coefficients $d_{jk}$ and $p_{ik}$.
+We can write
+\begin{equation}
+    r_{ij} = r_{ij}' + p_{ik} d_{jk}.
+\end{equation}
+In order to separate the effects, we apply an external field $\E$ 
+oscillating at a frequency such that the crystal is not able 
+to follow. In this case, the secondary electro-optical effect is surpressed, 
+so we expect to measure $r'$. 
 
-\subsection{Structure of crystal lattice}
-
-
+\subsection{Structure of crystals}
 \subsubsection{Crystal systems}
+Crystals can be categorized into groups by their symmetries. 
+There are three different categorizations in use, being 
+partly equivalent and, accordingly introducing some confusion. 
+The \emph{crystal system} divides crystals into their seven 
+respective \emph{point groups}, the \emph{lattice system} 
+categorizes according to the \emph{Bravais lattices}. While 
+five of the crystal systems can be identified with five 
+lattice systems, the hexagonal and trigonal crystal systems 
+are different from the hexagonal and rhombohedral lattice systems. 
+The \emph{crystal family} as a third categorization unifies 
+the latter two and is thus made up of six elements. 
+
+
 % https://en.wikipedia.org/wiki/Crystal_system
 $\bar{4}2m$ Tetragonal
 relate point group to int. notation
 % https://en.wikipedia.org/wiki/Crystallographic_point_group#Hermann.E2.80.93Mauguin_notation
 
 
-\subsubsection{Optical axes of crystals}
+\subsubsection{Optical classification of crystals}
 \label{sec:optical_axes}
 source: \cite{landau1984electrodynamics}
-Cubic: $\eps_{ij} = \eps \delta$, regarding optical properties: isotropic body
-
-Uniaxial crystals: rhombohedral, tetragonal, hexagonal
-optical  axis coincides with threefold, 
-fourfold or sixfold axis of symmtry, respectively
-other two axes arbitrary
-
-biaxial: triclinic, monoclinic, orthorhombic
-
-triclinic: principla dielectric axes unrelated, varying with frequency
-moniclinic: one axis crystallographically fixed: coincides with twofold 
-axes of symmetry, or is perpendicular to the plane of symmetry, 
-other two axes vary with frequency
-orthorhombic: al three axes fixed, coincide with three mutually 
-perpendicular twofold axes of symmetry
-
-
+Crystals can be classified into three groups according to their 
+optical properties. 
+\begin{itemize}
+    \item 
+    Group I - \emph{Isotropic crystals}:\\
+    Crystals of the cubic system, for which $\eps_{ij} = \eps \delta$, and 
+    $\eps$ is a scalar, meaning that three crystallographically 
+    equivalent and mutually perpendicular axes can be chosen freely. 
+    Optically, these crystals are equivalent to isotropic bodies. 
+    \item
+    Group II - \emph{Uniaxial crystals}: \\
+    Crystals not belonging to group I, but for which one can choose 
+    two or more crystallographically equivalent axes in a plane. 
+    These crystals are in the rhobohedral, tetragonal or hexagonal system. 
+    The optical axes coincides with the threefold, 
+    fourfold or sixfold axis of symmtry, respectively, while the 
+    other two axes arbitrary
+    \item
+    Group III - \emph{Biaxial crystals}: \\
+    Crystals in which no two crystallographically equivalent axes may 
+    be chosen, belonging to the triclinic, monoclinic, or orthorhombic 
+    system. For the triclinic crystals, principla dielectric axes are 
+    unrelated to the crystallographic  axes and vary with frequency. 
+    For monoclinic ones, only one principle dielectric axis is crystallographically 
+    fixed. It coincides with the twofold axes of symmetry, 
+    or is perpendicular to the plane of symmetry, while other two axes 
+    vary with frequency. 
+    In orthorhombic crystals, all three principly dielectric axes are fixed. 
+    They coincide with three mutually perpendicular twofold axes of symmetry.
+\end{itemize}
+A survey of all possible case is given in table \ref{fig:crystal_ellipsoid}.
+\begin{figure}
+\includegraphics[width=\pltw]{figures/crystal_ellipsoid.pdf}
+\caption{
+    Table summarizing the optical properties of crystals, grouping them 
+    according to the principle axes of the dieletric tensor $\eps$. 
+    Two vectors at a small angle are indicating frequency-dependency 
+    of the correspoding principle axes (signifying positions for two different 
+    frequencies/colours). Axes that can be rotated freely in a plane are represented 
+    by dashed vectors. 
+    From \cite{born1999principles}. }
+\label{fig:crystal_ellipsoid}
+\end{figure}
 
 \subsubsection{Hermann-Mauguin notation}
 \paragraph{The international} or \emph{Hermann-Mauguin notation} 
 is used in crystallography to describe the symmetry groups of crystals. 
 The convention allows to comprise all information about the symmetry 
-of the crystal lattice in three components, in our case $\bar{4}2m$. 
+of the crystal lattice in up to three components, in our case $\bar{4}2m$. 
 The notation follows the following rules~\cite{sands1993introduction}:
 \begin{itemize}
     \item
-    Each component corresponds to a different direction. Terms 
-    written as $n/m$, where $n \in \mathbb{N}$ are interpreted 
-    as one component. 
+    Each component corresponds to a different direction. 
+    \item
+    A number $n \in \mathbb{N}$ corresponds to a $n$-fold rotational symmetry 
+    around the given axis. 
+    \item
+    A number with an overbar $\bar{n}$ corresponds 
+    to a rotoinversion as one operation. The special case $\bar{1}$ thus 
+    means a simple inversion without rotation, i.~e. the existence of 
+    an inversion center. 
     \item
     $m$ indicates a mirror plane, its direction is th normal to this plane.
+    Terms written as $n/m$ thus indicate rotational symmetry and a mirror plane 
+    normal to the axis of rotation, and are interpreted as one component. 
     \item
     For orthorhombic systems, all directions are mutually perpendicular. 
     The symbols refer to the $x$, $y$, and $z$ axis, respectively.
@@ -757,11 +806,14 @@ reduce the parameters in questions for the pertubed index ellipsoid
     chosen coordinates, as described in the previous section 
     \ref{sec:reduce}
 \end{itemize}
-Inserting these conditions in \eqref{eq:ellipsoid_pertubed}, 
+
+
+Inserting these conditions in the index generalized index ellipsoid 
+\eqref{eq:ellipsoid_pertubed}, 
 we arrive at the defining equation
 \begin{equation}
-    \frac{\epsn}{\eps_\perp}\left(n_1^2 + n_2^2\right) + 
-    \frac{\epsn}{\eps_\parallel} n_3^2 + 
+    \frac{1}{\eps_\perp}\left(n_1^2 + n_2^2\right) + 
+    \frac{1}{\eps_\parallel} n_3^2 + 
     2 r_{41} \left(E_1 n_2 + E_2 n_1\right)n_3 + 
     2 r_{63} E_3 n_1 n_2  = 1\, ,
     \label{eq:ellipsoid_red}
@@ -772,8 +824,8 @@ The Pockels Cell used in this experiment is a transverse one,
 thus the $\E$-field is applied in direction of $x_1$, e.~i. 
 $E_2 = E_3 = 0$. This yields
 \begin{equation}
-    \frac{\epsn}{\eps_\perp}\left(n_1^2 + n_2^2\right) + 
-    \frac{\epsn}{\eps_\parallel} n_3^2 + 
+    \frac{1}{\eps_\perp}\left(n_1^2 + n_2^2\right) + 
+    \frac{1}{\eps_\parallel} n_3^2 + 
     2 r_{41} E_1 n_2 n_3  = 1 \, .
     \label{eq:ellipsoid_trans}
 \end{equation}
@@ -790,28 +842,28 @@ after which the components of $\N$ read
 Equation \eqref{eq:ellipsoid_trans} then becomes
 \begin{align}
     1 &= 
-    \frac{\epsn}{\eps_\perp}
+    \frac{1}{\eps_\perp}
     \left[ {n_1'}^2 + 
     \frac{1}{2} \left({n_2'}^2 + {n_3'}^2 \right) + 
     {n_2'}{n_3'} \right] + 
-    \frac{\epsn}{\eps_\parallel}
+    \frac{1}{\eps_\parallel}
     \left[\frac{1}{2} \left({n_2'}^2 + {n_3'}^2 \right) -  
     {n_2'}{n_3'} \right] + 
     r_{41} E_1 \left({n_2'}^2 - {n_3'}^2\right) 
     \nonumber \\
     &= 
-    \frac{\epsn}{\eps_\perp}  {n_1'}^2 + 
-    \epsn \frac{1}{2} \left( \frac{1}{\eps_\perp} + \frac{1}{\eps_\parallel}\right)
+    \frac{1}{\eps_\perp} {n_1'}^2 + 
+    \frac{1}{2} \left(\frac{1}{\eps_\perp} + \frac{1}{\eps_\parallel}\right)
     \left({n_2'}^2 + {n_3'}^2 \right) + 
-    \epsn \left( \frac{1}{\eps_\perp} - \frac{1}{\eps_\parallel}\right)
+    \left( \frac{1}{\eps_\perp} - \frac{1}{\eps_\parallel}\right)
     {n_2'}{n_3'}  + 
     r_{41} E_1 \left({n_2'}^2 - {n_3'}^2\right) 
     \nonumber \\
     &= 
-    \frac{\epsn}{\eps_\perp}  {n_1'}^2 + 
-    {n_2'}^2 \left(\frac{\epsn}{\eps_x} + r_{41} E_1 \right) +
-    {n_3'}^2 \left(\frac{\epsn}{\eps_x} - r_{41} E_1 \right) +
-    {n_2'}{n_3'} \epsn \left( \frac{1}{\eps_\perp} - \frac{1}{\eps_\parallel}\right) \, ,
+    \frac{1}{\eps_\perp}  {n_1'}^2 + 
+    {n_2'}^2 \left(\frac{1}{\eps_x} + r_{41} E_1 \right) +
+    {n_3'}^2 \left(\frac{1}{\eps_x} - r_{41} E_1 \right) +
+    {n_2'}{n_3'} \left( \frac{1}{\eps_\perp} - \frac{1}{\eps_\parallel}\right) \, ,
     \label{eq:ell_calc}
 \end{align}
 where we defined 
@@ -827,16 +879,16 @@ $\K$ in the $x_2'$-direction, polarized in the area bisecting the
 $x_1'$- and $x_3'$-axis, the component $n_2'$ vanishes.
 Equation \eqref{eq:ell_calc} then reduces to
 \begin{equation}
-    1 = \frac{\epsn}{\eps_\perp}  {n_1'}^2 + 
-    {n_3'}^2 \left(\frac{\epsn}{\eps_x} - r_{41} E_1 \right) \, .
+    1 = \frac{1}{\eps_\perp}  {n_1'}^2 + 
+    {n_3'}^2 \left(\frac{1}{\eps_x} - r_{41} E_1 \right) \, .
     \label{eq:ell_02}
 \end{equation}
 The wave splits up into two rays, one polarized in $x_1'$-, 
 the other in $x_3'$-direction. Accordingly, they experience the refraction 
 \begin{align}
-    n_1' &= \sqrt{\frac{\eps_\perp}{\epsn}} 
+    n_1' &= \sqrt{\eps_\perp} 
     \label{eq:n1p} \\
-    n_3' &= \frac{\sqrt{\frac{\eps_x}{\epsn}}}{\sqrt{1 - r_{41} E_1 \frac{\eps_x}{\epsn}}}
+    n_3' &= \frac{\sqrt{\eps_x}}{\sqrt{1 - r_{41} E_1 \eps_x}}
     \label{eq:n3p} 
 \end{align}
 In order to facilitate the result, we do a scale analysis for the 
@@ -855,8 +907,8 @@ so we can approximate $r_{41} E_1 \eps_x / \epsn \sim 10^{-6}$.
 We can thus expand \eqref{eq:n3p} to the first order in $E_1$ and 
 obtain
 \begin{equation}
-    n_3' \approx \sqrt{\frac{\eps_x}{\epsn}} + 
-        \frac{1}{2} r_{41} E_1 \left(\frac{\eps_x}{\epsn}\right)^\frac{3}{2}
+    n_3' \approx \sqrt{\eps_x} + 
+        \frac{1}{2} r_{41} E_1 {\eps_x}^\frac{3}{2}
     \label{eq:n3paprrox} \, .
 \end{equation}
 For the phase difference of the two components after passing through a crystal 
@@ -866,8 +918,8 @@ of length $l$, we get with \eqref{eq:dphi}:
     \Delta \phi_1 
     &= \frac{2l \pi}{\lambda} \left(n_3' - n_1' \right) \\
     &= \frac{l \pi}{\lambda}\Bigg[
-    \underbrace{r_{41} E_1 \left(\frac{\eps_x}{\epsn}\right)^\frac{3}{2}}_\text{Pockels effect} + 
-    \underbrace{\left(\sqrt{\frac{\eps_x}{\epsn}} - \sqrt{\frac{\eps_\perp}{\epsn}} 
+    \underbrace{r_{41} E_1 {\eps_x}^\frac{3}{2}}_\text{Pockels effect} + 
+    \underbrace{\left(\sqrt{\eps_x} - \sqrt{\eps_\perp} 
     \right)}_\text{natural birefraction}
     \Bigg]
     \end{split}
@@ -893,8 +945,8 @@ The phase difference is then given by
     \Delta \phi_3 = \Delta \phi_4
     &= \frac{2l \pi}{\lambda} \left(n_1' - n_3' \right) \\
     &= -\frac{l \pi}{\lambda}\left[
-    r_{41} (-E_1) \left(\frac{\eps_x}{\epsn}\right)^\frac{3}{2} + 
-    \left(\sqrt{\frac{\eps_x}{\epsn}} - \sqrt{\frac{\eps_\perp}{\epsn}}
+    r_{41} (-E_1) {\eps_x}^\frac{3}{2} + 
+    \left(\sqrt{\eps_x} - \sqrt{\eps_\perp}
     \right)
     \right]
    \end{split}
@@ -905,7 +957,7 @@ Adding all phase differences yields
     \begin{split}
     \Delta \phi_\mathrm{total}  
     &= \Delta \phi_1 + \Delta \phi_2 + \Delta \phi_3 + \Delta \phi_4 \\
-    &= \frac{4l \pi}{\lambda} r_{41} E_1 \left(\frac{\eps_x}{\epsn}\right)^\frac{3}{2} 
+    &= \frac{4l \pi}{\lambda} r_{41} E_1 {\eps_x}^\frac{3}{2} 
     \end{split}
     \label{eq:dphi_34}
 \end{equation}
@@ -917,7 +969,7 @@ define $U_{\lambda / 2}$ and use the setup to measure the electro-optic
 coefficient 
 \begin{equation}
     r_{41} = \frac{\lambda d}{4 l U_{\lambda / 2}} 
-    \sqrt{\frac{1}{2} \left(\frac{\epsn}{\eps_\perp} + \frac{\epsn}{\eps_\parallel}\right)}^3
+    \left(\frac{1}{2} \left(\frac{1}{\eps_\perp} + \frac{1}{\eps_\parallel}\right)\right)^{\frac{3}{2}}
     \label{eq:r_41_U}
 \end{equation}
 
@@ -947,11 +999,11 @@ The experimental setup
 
 
 
-Using the definition $n = \sqrt{\eps / \epsn}$, we can calculate $\eps_x$:
+Using the definition $n = \sqrt{\eps}$, we can calculate $\eps_x$:
 \begin{align}
-    \frac{\eps_1}{\epsn} &= n_1^2 = 2.408 \\
-    \frac{\eps_3}{\epsn} &= n_3^2 = 2.182 \\
-    \frac{\eps_x}{\epsn} &= \frac{2 \eps_1 \eps_3}{\epsn \left( \eps_1 + \eps_3\right)} = 2.289
+    \eps_1 &= n_1^2 = 2.408 \\
+    \eps_3 &= n_3^2 = 2.182 \\
+    \eps_x &= \frac{2 \eps_1 \eps_3}{\epsn \left( \eps_1 + \eps_3\right)} = 2.289
 \end{align}
 
 
