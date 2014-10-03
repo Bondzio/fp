@@ -516,6 +516,7 @@ system, respectively. And overview is given in table
 a sixfold rotational or rotoinversional symmetry, while the 
 trigonal has a threefold rotational symmetry. 
 
+\renewcommand{\arraystretch}{1.5}
 \begin{table}[htdp]
     \begin{tabular}{|p{0.37\textwidth}|p{0.61\textwidth}|}
         \hline
@@ -554,7 +555,6 @@ with the highest symmetry remains well defined. In table \ref{tab:point_groups},
 we give an overview of the crystals and their associated point groups as 
 well as subgroups.
 
-\renewcommand{\arraystretch}{1.5}
 \begin{table}[htdp]
     \begin{tabular}{|p{0.37\textwidth}|p{0.23\textwidth}|p{0.37\textwidth}|}
         \hline
@@ -579,14 +579,47 @@ well as subgroups.
 \label{tab:point_groups}
 \end{table}
 
+Point groups can further be illustrated by their \emph{stereographic projections}, 
+that is constructed as follows: We take the plane going through the origin 
+of the point group and being perpendicular to the axis of highest 
+symmetry to be the plane of projection. We further construct a sphere 
+of arbitry radius and draw straight lines from the origin through the 
+centers of the crystal's faces. If we take all intersections of these lines 
+with the surface of the upper hemisphere and draw lines to the south pole, 
+the intersects with the projection plane give the desired stereographic projection. 
+The process is illustrated in the figures \ref{fig:stereo}. 
 
-The correspondance between crystal groups, point 
 
-Group theoretical arguments show, that there are 32 
-possible crystal classes named after a point group. 
-A point group is formally defined a set of point symmetry 
-operations, leaving at least on point unmoved, thus excluding 
-lattice translations. 
+\begin{figure}[h]
+    \begin{subfigure}[b]{\picwidth}
+    \includegraphics[width=\textwidth]{figures/stereo_1}
+    \label{fig:stereo_1}
+    \end{subfigure}\qquad
+    \begin{subfigure}[b]{\picwidth}
+    \includegraphics[width=\textwidth]{figures/stereo_2}
+    \label{fig:stereo_2}
+    \end{subfigure}
+    \begin{subfigure}[b]{\picwidth}
+    \includegraphics[width=\textwidth]{figures/stereo_3}
+    \label{fig:stereo_3}
+    \end{subfigure}
+    \caption{
+        \ref{fig:stereo_1}:
+            Crystal at the center of the sphere for the stereographic 
+            projection with points of intersections, here shown for 
+            galena (PbS).
+        \ref{fig:stereo_2}:
+            Construction of the stereographic projection with the 
+            plane of projection and south pole.
+        \ref{fig:stereo_3}:
+            Result of stereographic projection for PbS. The lines 
+            show the interconnection great circles projected on the plane. 
+            All figrues taken from ~\cite{borchardt1995crystallography}.}
+    \label{fig:stereo}
+\end{figure}
+
+
+
 
 % https://en.wikipedia.org/wiki/Crystal_system
 $\bar{4}2m$ Tetragonal
