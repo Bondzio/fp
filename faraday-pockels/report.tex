@@ -92,23 +92,27 @@
 \horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
 }
 
+
 \author{Friedrich Schüßler and Volker Karle} % Your name
 
 \date{\normalsize\today} % Today's date or a custom date
-
 
 
 \begin{document}
 
 \blendcolors*{!83}\color{black}
 \maketitle
-
+\begin{center}
+ \includegraphics[width=0.6\linewidth]{figures/unifreiburg}
+\end{center}
+\thispagestyle{empty}
 \newpage
     {\pagestyle{plain}
+    \thispagestyle{empty}
     \tableofcontents
+    \thispagestyle{empty}
     \cleardoublepage}
 \newpage
-\setcounter{page}{1}
 
 
 %----------------------------------------------------------------------------------------
@@ -116,6 +120,7 @@
 %----------------------------------------------------------------------------------------
 \input{newcommands}
 
+\setcounter{page}{1}
 \input{intro}
 \clearpage
 
