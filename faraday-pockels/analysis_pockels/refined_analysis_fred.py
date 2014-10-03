@@ -41,50 +41,58 @@ def acf(x, length=20):
 # Two subplots, unpack the axes array immediately
 plt.close('all')
 # Examplary cases: k = 8, k = 12
-k =8
-U2 = np.load("npy/U2_%03d.npy"%k)
-t  = np.load("npy/T_%03d.npy"%k) * 1000
-# in order to apply fourier anaylsis, we need to specify the range first.
-# range for k = 8: find first and fifth minimum: 
-# min of U2[np.where(t < 1)], U2[np.where((t > 8) * (t < 9))]
-range_lower = np.where(t < 1)[0]
-range_upper = np.where((t > 8) * (t < 9))[0]
-lower = np.argmin(U2[range_lower]) + np.min(range_lower)
-upper = np.argmin(U2[range_upper]) + np.min(range_upper)
-U2 = U2[lower: upper]
-t = t[lower: upper]
+ks = range(8, 15)
+for i, k in enumerate(ks):
+    U1 = np.load("npy/U1_%03d.npy"%k)
+    U2 = np.load("npy/U2_%03d.npy"%k)
+    t  = np.load("npy/T_%03d.npy"%k) * 1000
+    # in order to apply fourier anaylsis, we need to specify the range first.
+    # we use the first and the fifth minimum of U1
+    range_lower = np.where((t > 1.0) * (t < 1.5))[0]
+    range_upper = np.where((t > 8.5) * (t < 9.5))[0]
+    lower = np.argmin(U1[range_lower]) + np.min(range_lower)
+    upper = np.argmin(U1[range_upper]) + np.min(range_upper)
+    #U2 = U2[lower: upper]
+    #t = t[lower: upper]
 
-Tmax = np.max(t)
-N = len(U2) 
-N2 = N-2
-T = Tmax/N
-w   = blackman(N)
+    Tmax = np.max(t)
+    N = len(U2) 
+    N2 = N-2
+    T = Tmax/N
+    #w   = blackman(N)
+    w = np.ones(N)
 
-U2f = fft(U2)
+    U2f = fft(U2)
+    U2f_abs = (2.0 / N * np.abs(U2f[0:N/2])**2)
+    tf = np.linspace(0.0, 1.0/(2.0*T), N/2)
 
-U2acf = acf(U2,N2)
+# Using the auto correlation function of U2
+    U2acf = acf(U2,N2)
+    w2   = blackman(N2)
+    w2 = np.ones(N2)
+    U2acff = fft(U2acf*w2) 
+    tf2 = np.linspace(0.0, 1.0/(2.0*T), (N2)/2)
 
-w2   = blackman(N2)
-U2acff = fft(U2acf*w2) 
-tf = np.linspace(0.0, 1.0/(2.0*T), N/2)
-tf2 = np.linspace(0.0, 1.0/(2.0*T), (N2)/2)
+# Plotting 
+    if k == 14:
+        f, axarr = plt.subplots(2, 2, figsize = (11.5,6))
+        f.suptitle('plots for k = %i'%k)
+        axarr[0, 0].plot(t,U1)
+        #axarr[0, 0].plot(t,0.02 * w)       # Compare graphically with and without window
+        #axarr[0, 0].plot(t,U2 * w)
+        axarr[0, 0].plot(t[[lower, upper]],U1[[lower, upper]], 'o')
+        axarr[0, 0].set_title('Normal Plot')
+        axarr[0, 1].plot(tf, U2f_abs)
+        axarr[0, 1].set_title('Fourier Transform')
+        axarr[0, 1].set_ylim([0, 0.05])
+        axarr[0, 1].set_xlim([0, 2])
+    '''
+        axarr[1, 0].plot(t[2:],U2acf)
+        axarr[1, 0].set_title('Autocorrelation function')
 
-f, axarr = plt.subplots(2, 2, figsize = (11.5,6))
-axarr[0, 0].plot(t,U2)
-axarr[0, 0].plot(t,0.02 * w)
-axarr[0, 0].plot(t,U2 * w)
-#axarr[0, 0].plot(t[[lower, upper]],U2[[lower, upper]], 'o')
-axarr[0, 0].set_title('Normal Plot')
-
-axarr[0, 1].semilogy(tf, 2.0 / N * np.abs(U2f[0:N/2])**2)
-axarr[0, 1].set_title('Fourier Transform with blackman')
-
-axarr[1, 0].plot(t[2:],U2acf)
-axarr[1, 0].set_title('Autocorrelation function')
-
-axarr[1, 1].semilogy(tf2, 2.0 / N2 * np.abs(U2acff[0:N2/2])**2)
-axarr[1, 1].set_title('Fourier transform of Autocorrelation function')
-
+        axarr[1, 1].semilogy(tf2, 2.0 / N2 * np.abs(U2acff[0:N2/2])**2)
+        axarr[1, 1].set_title('Fourier transform of Autocorrelation function')
+    '''
 plt.show()
 
 
