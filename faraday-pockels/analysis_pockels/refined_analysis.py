@@ -85,6 +85,8 @@ def plot_fourier():
 
     plt.show()
 
+plot_fourier()
+
 def go_through():
     for k in range(27+1):
         U2 = np.load("npy/U2_%03d.npy"%k)
