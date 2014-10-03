@@ -544,8 +544,43 @@ trigonal has a threefold rotational symmetry.
 Another characterization of crystals can be done by the point groups. 
 If we discard all lattice translations are discarded, we get 
 a remaining set of symmetry operations on one of the lattice points, 
-the so-called \emph{point group}. The symmetry operations $n, \bar{n}$ and $m$ 
- 
+the so-called \emph{point group}. The symmetry operations $n, \bar{n}$ and $m$  
+go through that point, while inversion ($\bar{1}$) is defined at the point. 
+The space groups of highest symmetry for each crystal system is identified 
+with one point group. We again obtain seven point groups. As higher symmetries 
+imply lower ones (e.~g. $4/m 2/m 2/m$ implies $2/m$), the lower 
+symmetries often apply to several systems. However, a the identification 
+with the highest symmetry remains well defined. In table \ref{tab:point_groups}, 
+we give an overview of the crystals and their associated point groups as 
+well as subgroups.
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[htdp]
+    \begin{tabular}{|p{0.37\textwidth}|p{0.23\textwidth}|p{0.37\textwidth}|}
+        \hline
+        \rowcolor{LightCyan}
+        $\textbf{Crystal system}$ & 
+        \multicolumn{2}{|c|}{$\textbf{Point groups   }$} \\ 
+        \hline
+        Trigonal        & $ \bar{1} $   & $ 1 $  \\ 
+        Monoclinic      & $\frac{2}{m}$ & $m, 2$     \\ 
+        Orthorhombic    & $\frac{2}{m} \frac{2}{m} \frac{2}{m}$ & $mm2, 222$     \\
+        Tetragonal      & $\frac{4}{m} \frac{2}{m} \frac{2}{m}$ & $\bar{4}2m, 4mm, 422, \frac{4}{m}, \bar{4}, 4$     \\ 
+        Trigonal        & $\bar{3} \frac{2}{m}$         & $3m, 32, \bar{3}, 3$      \\ 
+        Hexagonal       & $\frac{6}{m} \frac{2}{m} \frac{2}{m}$ & $\bar{6}m2, 6mm, 622, \frac{6}{m}, \bar{6}, 6$     \\ 
+        Cubic           & $\frac{4}{m}\bar{3}\frac{2}{m}$ & $\bar{4}3m, 432, \frac{2}{m}\bar{3}, 23 $     \\ 
+        \hline
+    \end{tabular}
+\caption{
+    Point groups, their subgroups and associated crystal systems. For the nomenclature, see 
+    section \ref{sec:int_notation}. 
+    Reference: \ref{borchardt1995crystallography}
+    }
+\label{tab:point_groups}
+\end{table}
+
+
+The correspondance between crystal groups, point 
 
 Group theoretical arguments show, that there are 32 
 possible crystal classes named after a point group. 
@@ -607,6 +642,7 @@ A survey of all possible case is given in table \ref{fig:crystal_ellipsoid}.
 \end{figure}
 
 \subsubsection{Notation of crystal classes}
+\label{sec:int_notation}
 \paragraph{The international} or \emph{Hermann-Mauguin notation} 
 is used in crystallography to describe the symmetry groups of crystals. 
 The convention allows to comprise all information about the symmetry 
@@ -672,7 +708,7 @@ The $\bar{4}$-axis includes another mirror
 plane perpendicular to the first one and a twofold rotational symmetry 
 around the $x_3$-axis. 
 
-\subsection{Reduction of components of dielctric tensor for $\bar{4}2m$ crystals}
+\subsection{Reduction of Dielctric tensor}
 \label{sec:reduce}
 \paragraph{As described in} 
 the previous section, the ADP-crystal has the symmetry group 
@@ -843,7 +879,7 @@ which leaves only the three remaining components
     r_{41} = r_{52} \qquad \text{ and } \qquad  r_{63}\, .
 \end{equation}
 
-\subsection{Discussion of the effect for the transverse Pockels Cell}
+\subsection{Application to Pockels Cell}
 By applying the result of the foregoing discussion, we can significantly 
 reduce the parameters in questions for the pertubed index ellipsoid
 \eqref{eq:B_ij}. We resume the most important results:
@@ -1067,3 +1103,4 @@ Using the definition $n = \sqrt{\eps}$, we can calculate $\eps_x$:
 
 \subsubsection{Properties of He-Ne-Laser}
 \subsubsection{Properties of used photodiode}
+
