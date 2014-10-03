@@ -481,8 +481,10 @@ to follow. In this case, the secondary electro-optical effect is surpressed,
 so we expect to measure $r'$. 
 
 \subsection{Structure of crystals}
+
 \subsubsection{Crystal systems}
-Crystals can be categorized into groups by their symmetries. 
+\paragraph{Crystals can be categorized} 
+into groups by their symmetries. 
 There are three different categorizations in use, being 
 partly equivalent and, accordingly introducing some confusion. 
 The seven \emph{crystal system} divides crystals into 
@@ -495,7 +497,8 @@ are different from the hexagonal and rhombohedral lattice systems.
 The \emph{crystal family} as a third categorization unifies 
 the latter two and is thus made up of six elements. 
 
-The lattice system is based on the restrictions on the axial 
+\paragraph{The lattice system} 
+is based on the restrictions on the axial 
 system, defined by the three 
 \emph{primitive vectors} $\mathbf{a, b, c}$, which 
 by the lattice translation operator 
@@ -541,18 +544,64 @@ trigonal has a threefold rotational symmetry.
 \label{tab:crystal_systems}
 \end{table}
 
-Another characterization of crystals can be done by the point groups. 
+\paragraph{Another characterization of crystals} 
+can be done by the point groups. 
 If we discard all lattice translations are discarded, we get 
 a remaining set of symmetry operations on one of the lattice points, 
 the so-called \emph{point group}. The symmetry operations $n, \bar{n}$ and $m$  
 go through that point, while inversion ($\bar{1}$) is defined at the point. 
+There are 32 point groups, which can be further ordered hierarchically to obtain 
+the crystal groups. 
 The space groups of highest symmetry for each crystal system is identified 
-with one point group. We again obtain seven point groups. As higher symmetries 
+with one point group. As higher symmetries 
 imply lower ones (e.~g. $4/m 2/m 2/m$ implies $2/m$), the lower 
-symmetries often apply to several systems. However, a the identification 
+symmetries often apply to several systems. However, the identification 
 with the highest symmetry remains well defined. In table \ref{tab:point_groups}, 
 we give an overview of the crystals and their associated point groups as 
 well as subgroups.
+The point groups are often named by 
+the \emph{international} or \emph{Hermann-Mauguin notation} 
+This convention allows to comprise all information about the point group in 
+three symbols.
+The notation follows the following rules~\cite{sands1993introduction}:
+\begin{itemize}
+    \item
+    Each component corresponds to a different direction. 
+    \item
+    A number $n \in \mathbb{N}$ corresponds to a $n$-fold rotational symmetry 
+    around the given axis. For crystals, $n$ is restricted to $1, 2, 3, 4, 6$.
+    \item
+    A number with an overbar $\bar{n}$ corresponds 
+    to a rotoinversion as one operation. The special case $\bar{1}$ thus 
+    means a simple inversion without rotation, i.~e. the existence of 
+    an inversion center. 
+    \item
+    $m$ indicates a mirror plane, its direction is th normal to this plane.
+    Terms written as $n/m$ thus indicate rotational symmetry and a mirror plane 
+    normal to the axis of rotation, and are interpreted as one component. 
+    \item
+    For orthorhombic systems, all directions are mutually perpendicular. 
+    The symbols refer to the $x$, $y$, and $z$ axis, respectively.
+    \item
+    For tetragonal systems, we chose the first component to be the $z$-axis, 
+    with the symbol $4$ or $\bar{4}$. The second component refers to the 
+    mutually perpendicular $x$- and $y$-axes and the third to directions in the 
+    $xy$-plane bisecting the angles between $x$ and $y$. 
+    \item
+    In trigonal and hexagonal systems, the second component refers to 
+    equivalent directions ($120^\circ$ or $60^\circ$ apart) in the $xy$-plane, 
+    which is normal to the $z$-axis with $3, \bar{3}, 6$ or $\bar{6}$ symmetry. 
+    \item
+    For hexagonal systems, a third component corresponds to directions bisecting 
+    the angles between axes specified by the second component. 
+    \item
+    If the second term is a $3$, then the system is cubic. The $3$ refers to the 
+    four body diagonals of the cube, the first symbol refers to the cube axes, and the 
+    third component to the face diagonals.
+    \item
+    If two or more axes coincide, the higher symmetry (generating more points) is 
+    shown. 
+\end{itemize}
 
 \begin{table}[htdp]
     \begin{tabular}{|p{0.37\textwidth}|p{0.23\textwidth}|p{0.37\textwidth}|}
@@ -578,7 +627,24 @@ well as subgroups.
 \label{tab:point_groups}
 \end{table}
 
-Point groups can further be illustrated by their \emph{stereographic projections}, 
+\paragraph{The $\bar{4}2m$-symmetry}
+under consideration in this experiment corresponds to 
+\begin{itemize}
+    \item
+    a fourfold rotoinversional symmetry around the $x_3$-axis
+    \item
+    a twofold rotational symmetry around the $x_1$-axis
+    \item
+    and a mirror plane parallel to the $x_3$-axis and the bisection of the 
+    angles between $x_1$- and $x_2$-axis, 
+\end{itemize}
+where we renamed the axes $x, y$ and $z$ into $x_1, x_2$ and $x_3$, respectively. 
+The $\bar{4}$-axis includes another mirror 
+plane perpendicular to the first one and a twofold rotational symmetry 
+around the $x_3$-axis. 
+
+\paragraph{Point groups can further} 
+be illustrated by their \emph{stereographic projections}, 
 that is constructed as follows: We take the plane going through the origin 
 of the point group and being perpendicular to the axis of highest 
 symmetry to be the plane of projection. We further construct a sphere 
@@ -608,26 +674,17 @@ The process is illustrated in the figures \ref{fig:stereo}.
     \caption{
         Illustration of the stereographic projection:\\
         \ref{fig:stereo_1}:
-            Crystal at the center of the sphere for the stereographic 
-            projection with points of intersections, here shown for 
-            galena (PbS).
+            Crystal at the center of the sphere with points of intersections, 
+            here shown for galena (PbS).
         \ref{fig:stereo_2}:
-            Construction of the stereographic projection with the 
+            Construction of the projection with the 
             plane of projection and south pole.
         \ref{fig:stereo_3}:
             Result of stereographic projection for PbS. The lines 
-            show the interconnection great circles projected on the plane. 
-            All figrues taken from ~\cite{borchardt1995crystallography}.}
+            show the interconnecting great circles projected on the plane. 
+            All figures taken from ~\cite{borchardt1995crystallography}.}
     \label{fig:stereo}
 \end{figure}
-
-
-
-
-% https://en.wikipedia.org/wiki/Crystal_system
-$\bar{4}2m$ Tetragonal
-relate point group to int. notation
-% https://en.wikipedia.org/wiki/Crystallographic_point_group#Hermann.E2.80.93Mauguin_notation
 
 
 \subsubsection{Optical classification of crystals}
@@ -677,72 +734,6 @@ A survey of all possible case is given in table \ref{fig:crystal_ellipsoid}.
 \label{fig:crystal_ellipsoid}
 \end{figure}
 
-\subsubsection{Notation of crystal classes}
-\label{sec:int_notation}
-\paragraph{The international} or \emph{Hermann-Mauguin notation} 
-is used in crystallography to describe the symmetry groups of crystals. 
-The convention allows to comprise all information about the symmetry 
-of the crystal lattice in up to three components, in our case $\bar{4}2m$. 
-The notation follows the following rules~\cite{sands1993introduction}:
-\begin{itemize}
-    \item
-    Each component corresponds to a different direction. 
-    \item
-    A number $n \in \mathbb{N}$ corresponds to a $n$-fold rotational symmetry 
-    around the given axis. For crystals, $n$ is restricted to $1, 2, 3, 4, 6$.
-    \item
-    A number with an overbar $\bar{n}$ corresponds 
-    to a rotoinversion as one operation. The special case $\bar{1}$ thus 
-    means a simple inversion without rotation, i.~e. the existence of 
-    an inversion center. 
-    \item
-    $m$ indicates a mirror plane, its direction is th normal to this plane.
-    Terms written as $n/m$ thus indicate rotational symmetry and a mirror plane 
-    normal to the axis of rotation, and are interpreted as one component. 
-    \item
-    For orthorhombic systems, all directions are mutually perpendicular. 
-    The symbols refer to the $x$, $y$, and $z$ axis, respectively.
-    \item
-    For tetragonal systems, we chose the first component to be the $z$-axis, 
-    with the symbol $4$ or $\bar{4}$. The second component refers to the 
-    mutually perpendicular $x$- and $y$-axes and the third to directions in the 
-    $xy$-plane bisecting the angles between $x$ and $y$. 
-    \item
-    In trigonal and hexagonal systems, the second component refers to 
-    equivalent directions ($120^\circ$ or $60^\circ$ apart) in the $xy$-plane, 
-    which is normal to the $z$-axis with $3, \bar{3}, 6$ or $\bar{6}$ symmetry. 
-    \item
-    For hexagonal systems, a third component corresponds to directions bisecting 
-    the angles between axes specified by the second component. 
-    \item
-    If the second term is a $3$, then the system is cubic. The $3$ refers to the 
-    four body diagonals of the cube, the first symbol refers to the cube axes, and the 
-    third component to the face diagonals.
-    \item
-    If two or more axes coincide, the higher symmetry (generating more points) is 
-    shown. 
-\end{itemize}
-We can immediately name the groups without higher-order axes, namely those 
-containing only twofold axes, mirror planes and inversion center. The 
-crystallographic point groups are $1$ and $\bar{1}$ of the 
-triclinic crystal system, $2, m$, and $\frac{2}{m}$ (monoclinic) and 
-$222, \frac{2}{m\frac{2}{m}}\frac{2}{m}$, and $mm2$ of the orthorombic system. 
-
-\paragraph{The $\bar{4}2m$-symmetry}
-under consideration in this experiment corresponds to 
-\begin{itemize}
-    \item
-    a fourfold rotoinversional symmetry around the $x_3$-axis
-    \item
-    a twofold rotational symmetry around the $x_1$-axis
-    \item
-    and a mirror plane parallel to the $x_3$-axis and the bisection of the 
-    angles between $x_1$- and $x_2$-axis, 
-\end{itemize}
-where we renamed the axes $x, y$ and $z$ into $x_1, x_2$ and $x_3$, respectively. 
-The $\bar{4}$-axis includes another mirror 
-plane perpendicular to the first one and a twofold rotational symmetry 
-around the $x_3$-axis. 
 
 \subsection{Reduction of Dielctric tensor}
 \label{sec:reduce}
@@ -770,7 +761,7 @@ new basis can be calculated from those in the old one by
 \end{equation}
 
 
-\paragraph{Before applying the symmetries} 
+\paragraph{Before applying the symmetries}
 of the crystal under consideration 
 we make one general observation: Crystals with an inversion 
 center are not subject to either the Pockels effect. 
