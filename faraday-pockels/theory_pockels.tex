@@ -123,6 +123,7 @@ through a crystal of lenght $l$, then we get
 \end{equation}
 
 
+
 \subsection{Birefringence}
 \paragraph{If the refraction index}
  $n$ of a material depends on the linear polarization of light, 
@@ -485,8 +486,9 @@ so we expect to measure $r'$.
 Crystals can be categorized into groups by their symmetries. 
 There are three different categorizations in use, being 
 partly equivalent and, accordingly introducing some confusion. 
-The \emph{crystal system} divides crystals into their seven 
-respective \emph{point groups}, the \emph{lattice system} 
+The seven \emph{crystal system} divides crystals into 
+according to the \emph{point group} of highest symmetry, 
+the \emph{lattice system} 
 categorizes according to the \emph{Bravais lattices}. While 
 five of the crystal systems can be identified with five 
 lattice systems, the hexagonal and trigonal crystal systems 
@@ -494,6 +496,97 @@ are different from the hexagonal and rhombohedral lattice systems.
 The \emph{crystal family} as a third categorization unifies 
 the latter two and is thus made up of six elements. 
 
+The lattice system is based on the restrictions on the axial 
+system, defined by the three 
+\emph{primitive vectors} $\mathbf{a, b, c}$, which 
+by the lattice translation operator 
+\begin{equation}
+    \mathbf{R} = n_1 \mathbf{a} + n_2 \mathbf{b} + n_3 \mathbf{c}
+\end{equation}
+define the \emph{Bravais lattice}. Each endpoint of a vector 
+can be associated to one atom in the lattice of the crystal. 
+Restricting only lenghts $a, b, c$ and angles $\alpha, \beta, \gamma$ 
+between the primitive vectors, 
+one obtaines the six crystal families, which by separating the 
+family for $a = b \neq c, \alpha = \beta = 90^\circ, \gamma = 120^\circ$ 
+into either hexagonal and trigonal system 
+or hexagonal and rhombohedral system yields the crystal or lattice 
+system, respectively. And overview is given in table 
+\ref{tab:crystal_systems}. The hexagonal system is characterized by 
+a sixfold rotational or rotoinversional symmetry, while the 
+trigonal has a threefold rotational symmetry. 
+
+\begin{table}[htdp]
+    \begin{tabular}{|p{0.37\textwidth}|p{0.61\textwidth}|}
+        \hline
+        \rowcolor{LightCyan}
+        $\textbf{Crystal system}$ & 
+        $\textbf{Restrictions on the axial system   }$ \\ 
+        \hline
+        Trigonal        & $a \neq b \neq c; \quad \alpha = \beta = \gamma$ \\ 
+        Monoclinic      & $a \neq b \neq c; \quad \alpha = \gamma = 90\Deg, \beta > 90\Deg$ \\ 
+        Orthorhombic    & $a \neq b \neq c; \quad \alpha = \beta = \gamma = 90\Deg$         \\
+        Tetragonal      & $a    = b \neq c; \quad \alpha = \beta = \gamma = 90\Deg$         \\ 
+        Trigonal        & $a    = b \neq c; \quad \alpha = \beta = 90\Deg, \gamma = 120\Deg$ \\ 
+        Hexagonal       & $a    = b \neq c; \quad \alpha = \beta = 90\Deg, \gamma = 120\Deg$ \\ 
+        Cubic           & $a    = b =    c; \quad \alpha = \beta = \gamma = 90\Deg$         \\ 
+        \hline
+    \end{tabular}
+\caption{
+    The seven crystal systems, characterized by the restrictions on the axial system. 
+    The trigonal and hexagonal systems are characterized by threefold and sixfold rotational 
+    symmetries. 
+    Reference: \ref{borchardt1995crystallography}
+    }
+\label{tab:crystal_systems}
+\end{table}
+
+Another characterization of crystals can be done by the point groups. 
+If we discard all lattice translations are discarded, we get 
+a remaining set of symmetry operations on one of the lattice points, 
+the so-called \emph{point group}. The symmetry operations $n, \bar{n}$ and $m$  
+go through that point, while inversion ($\bar{1}$) is defined at the point. 
+The space groups of highest symmetry for each crystal system is identified 
+with one point group. We again obtain seven point groups. As higher symmetries 
+imply lower ones (e.~g. $4/m 2/m 2/m$ implies $2/m$), the lower 
+symmetries often apply to several systems. However, a the identification 
+with the highest symmetry remains well defined. In table \ref{tab:point_groups}, 
+we give an overview of the crystals and their associated point groups as 
+well as subgroups.
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[htdp]
+    \begin{tabular}{|p{0.37\textwidth}|p{0.23\textwidth}|p{0.37\textwidth}|}
+        \hline
+        \rowcolor{LightCyan}
+        $\textbf{Crystal system}$ & 
+        \multicolumn{2}{|c|}{$\textbf{Point groups   }$} \\ 
+        \hline
+        Trigonal        & $ \bar{1} $   & $ 1 $  \\ 
+        Monoclinic      & $\frac{2}{m}$ & $m, 2$     \\ 
+        Orthorhombic    & $\frac{2}{m} \frac{2}{m} \frac{2}{m}$ & $mm2, 222$     \\
+        Tetragonal      & $\frac{4}{m} \frac{2}{m} \frac{2}{m}$ & $\bar{4}2m, 4mm, 422, \frac{4}{m}, \bar{4}, 4$     \\ 
+        Trigonal        & $\bar{3} \frac{2}{m}$         & $3m, 32, \bar{3}, 3$      \\ 
+        Hexagonal       & $\frac{6}{m} \frac{2}{m} \frac{2}{m}$ & $\bar{6}m2, 6mm, 622, \frac{6}{m}, \bar{6}, 6$     \\ 
+        Cubic           & $\frac{4}{m}\bar{3}\frac{2}{m}$ & $\bar{4}3m, 432, \frac{2}{m}\bar{3}, 23 $     \\ 
+        \hline
+    \end{tabular}
+\caption{
+    Point groups, their subgroups and associated crystal systems. For the nomenclature, see 
+    section \ref{sec:int_notation}. 
+    Reference: \ref{borchardt1995crystallography}
+    }
+\label{tab:point_groups}
+\end{table}
+
+
+The correspondance between crystal groups, point 
+
+Group theoretical arguments show, that there are 32 
+possible crystal classes named after a point group. 
+A point group is formally defined a set of point symmetry 
+operations, leaving at least on point unmoved, thus excluding 
+lattice translations. 
 
 % https://en.wikipedia.org/wiki/Crystal_system
 $\bar{4}2m$ Tetragonal
@@ -549,6 +642,7 @@ A survey of all possible case is given in table \ref{fig:crystal_ellipsoid}.
 \end{figure}
 
 \subsubsection{Notation of crystal classes}
+\label{sec:int_notation}
 \paragraph{The international} or \emph{Hermann-Mauguin notation} 
 is used in crystallography to describe the symmetry groups of crystals. 
 The convention allows to comprise all information about the symmetry 
@@ -559,7 +653,7 @@ The notation follows the following rules~\cite{sands1993introduction}:
     Each component corresponds to a different direction. 
     \item
     A number $n \in \mathbb{N}$ corresponds to a $n$-fold rotational symmetry 
-    around the given axis. 
+    around the given axis. For crystals, $n$ is restricted to $1, 2, 3, 4, 6$.
     \item
     A number with an overbar $\bar{n}$ corresponds 
     to a rotoinversion as one operation. The special case $\bar{1}$ thus 
@@ -1009,3 +1103,4 @@ Using the definition $n = \sqrt{\eps}$, we can calculate $\eps_x$:
 
 \subsubsection{Properties of He-Ne-Laser}
 \subsubsection{Properties of used photodiode}
+
