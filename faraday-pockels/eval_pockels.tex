@@ -1,1 +1,30 @@
 \section{Evaluation for Pockels effects}
+\subsection{Fourieranalysis of frequencies}
+\subsection{Calculation of the electrooptic coefficient}
+Now we can use the former calculation to calculate the electrooptic coefficient.
+\begin{equation}
+    r_{41} = \frac{\lambda d}{4 l U_{\lambda / 2}} 
+    \left(\frac{1}{2} \left(\frac{1}{\eps_\perp} + \frac{1}{\eps_\parallel}\right)\right)^{\frac{3}{2}}
+    \label{eq:r_41_U}
+\end{equation}
+Now we use the following constraints (these were given before):
+\begin{itemize}
+\setlength\itemsep{0em}
+\item[] $\lambda = (632.8\pm 0.1)$nm
+\item[] $n_1     = 1.522\pm 0.001$
+\item[] $n_3     = 1.477\pm 0.001$
+\item[] $l       = ( 20\pm 0.1)$mm
+\item[] $d       = (2.4\pm 0.1)$mm
+\end{itemize}
+Now we can calculate $r_{41}$ with respect to $U_{\lambda/2}$ with two different methods.
+\subsubsection{Saw tooth method}
+\label{ssub:Saw tooth method}
+
+\subsubsection{DC current method}
+\label{ssub:DC current method}
+We estimated $U_{\lambda/2}    = (135  \pm 15)$.
+% r !python analysis_pockels/r41_calc.py
+Our result is the following: 
+\begin{equation*}
+r_{41} = \left (20.9 \pm 2.5 \right )  \mathrm{pm}
+\end{equation*}
