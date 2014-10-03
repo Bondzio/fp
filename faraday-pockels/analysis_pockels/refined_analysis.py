@@ -37,8 +37,9 @@ def save_all():
 def acf(x, length=20):
     return np.array([1]+[np.corrcoef(x[:-i], x[i:])[0,1] for i in range(1, length)])
 
+
 # Two subplots, unpack the axes array immediately
-k = 1
+k = 10
 U2 = np.load("npy/U2_%03d.npy"%k)
 t  = np.load("npy/T_%03d.npy"%k)
 Tmax = np.max(t)
