@@ -123,6 +123,7 @@ through a crystal of lenght $l$, then we get
 \end{equation}
 
 
+
 \subsection{Birefringence}
 \paragraph{If the refraction index}
  $n$ of a material depends on the linear polarization of light, 
@@ -485,8 +486,9 @@ so we expect to measure $r'$.
 Crystals can be categorized into groups by their symmetries. 
 There are three different categorizations in use, being 
 partly equivalent and, accordingly introducing some confusion. 
-The \emph{crystal system} divides crystals into their seven 
-respective \emph{point groups}, the \emph{lattice system} 
+The seven \emph{crystal system} divides crystals into 
+according to the \emph{point group} of highest symmetry, 
+the \emph{lattice system} 
 categorizes according to the \emph{Bravais lattices}. While 
 five of the crystal systems can be identified with five 
 lattice systems, the hexagonal and trigonal crystal systems 
@@ -494,6 +496,57 @@ are different from the hexagonal and rhombohedral lattice systems.
 The \emph{crystal family} as a third categorization unifies 
 the latter two and is thus made up of six elements. 
 
+The lattice system is based on the restrictions on the axial 
+system, defined by the three 
+\emph{primitive vectors} $\mathbf{a, b, c}$, which 
+by the lattice translation operator 
+\begin{equation}
+    \mathbf{R} = n_1 \mathbf{a} + n_2 \mathbf{b} + n_3 \mathbf{c}
+\end{equation}
+define the \emph{Bravais lattice}. Each endpoint of a vector 
+can be associated to one atom in the lattice of the crystal. 
+Restricting only lenghts $a, b, c$ and angles $\alpha, \beta, \gamma$ 
+between the primitive vectors, 
+one obtaines the six crystal families, which by separating the 
+family for $a = b \neq c, \alpha = \beta = 90^\circ, \gamma = 120^\circ$ 
+into either hexagonal and trigonal system 
+or hexagonal and rhombohedral system yields the crystal or lattice 
+system, respectively. And overview is given in table 
+\ref{tab:crystal_systems}. The hexagonal system is characterized by 
+a sixfold rotational or rotoinversional symmetry, while the 
+trigonal has a threefold rotational symmetry. 
+
+\begin{table}[htdp]
+    \begin{tabular}{|p{0.37\textwidth}|p{0.61\textwidth}|}
+        \hline
+        \rowcolor{LightCyan}
+        $\textbf{Crystal system}$ & 
+        $\textbf{Restrictions on the axial system   }$ \\ 
+        \hline
+        Trigonal        & $a \neq b \neq c; \quad \alpha = \beta = \gamma$ \\ 
+        Monoclinic      & $a \neq b \neq c; \quad \alpha = \gamma = 90\Deg, \beta > 90\Deg$ \\ 
+        Orthorhombic    & $a \neq b \neq c; \quad \alpha = \beta = \gamma = 90\Deg$         \\
+        Tetragonal      & $a    = b \neq c; \quad \alpha = \beta = \gamma = 90\Deg$         \\ 
+        Trigonal        & $a    = b \neq c; \quad \alpha = \beta = 90\Deg, \gamma = 120\Deg$ \\ 
+        Hexagonal       & $a    = b \neq c; \quad \alpha = \beta = 90\Deg, \gamma = 120\Deg$ \\ 
+        Cubic           & $a    = b =    c; \quad \alpha = \beta = \gamma = 90\Deg$         \\ 
+        \hline
+    \end{tabular}
+\caption{}
+\label{tab:crystal_systems}
+\end{table}
+
+
+The space groups of the Bravais lattice ar those with the 
+highest posisble symmetry for the corresponding crystal 
+systems. 
+
+
+Group theoretical arguments show, that there are 32 
+possible crystal classes named after a point group. 
+A point group is formally defined a set of point symmetry 
+operations, leaving at least on point unmoved, thus excluding 
+lattice translations. 
 
 % https://en.wikipedia.org/wiki/Crystal_system
 $\bar{4}2m$ Tetragonal
@@ -559,7 +612,7 @@ The notation follows the following rules~\cite{sands1993introduction}:
     Each component corresponds to a different direction. 
     \item
     A number $n \in \mathbb{N}$ corresponds to a $n$-fold rotational symmetry 
-    around the given axis. 
+    around the given axis. For crystals, $n$ is restricted to $1, 2, 3, 4, 6$.
     \item
     A number with an overbar $\bar{n}$ corresponds 
     to a rotoinversion as one operation. The special case $\bar{1}$ thus 

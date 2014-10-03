@@ -27,7 +27,7 @@
 \usepackage{pgfplots}
 \usepackage{wrapfig}
 \usepackage{sidecap}
-\usepackage{colortbl}  
+\usepackage{color, colortbl}  
 %\usepackage[pass,showframe]{geometry} % just to show the margins
 %\usepackage{booktabs}
 %\usepackage{minted}
@@ -80,12 +80,6 @@
 %	TITLE SECTION
 %----------------------------------------------------------------------------------------
 
-\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
-
-\newcommand{\pltw}{0.9\textwidth}
-\newcommand{\mpltw}{0.68\textwidth}
-%\newcommand{\picwidth}{0.8\textwidth}
-
 \title{ 
 \normalfont \normalsize 
 \textsc{Albert-Ludwigs-University Freiburg} \\ [25pt] % Your university, school and/or department name(s)
@@ -99,6 +93,16 @@
 \date{\normalsize\today} % Today's date or a custom date
 
 
+%--------------------------------------------------------------------------------------------
+% New Commands
+%--------------------------------------------------------------------------------------------
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\newcommand{\pltw}{0.9\textwidth}
+\newcommand{\mpltw}{0.68\textwidth}
+%\newcommand{\picwidth}{0.8\textwidth}
+
+\definecolor{LightCyan}{rgb}{0.88,1,1}
 
 \begin{document}
 
