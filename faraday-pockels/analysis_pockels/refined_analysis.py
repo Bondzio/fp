@@ -3,6 +3,17 @@ import matplotlib.pyplot as plt
 from scipy.fftpack import fft
 from scipy.signal import blackman
 
+from matplotlib import rcParams
+rcParams['axes.labelsize'] = 12
+rcParams['xtick.labelsize'] = 12
+rcParams['ytick.labelsize'] = 12
+rcParams['legend.fontsize'] = 12
+rcParams['font.family'] = 'serif'
+rcParams['font.serif'] = ['Computer Modern Roman']
+rcParams['text.usetex'] = True
+rcParams['figure.figsize'] = 7.3, 4.2
+
+
 
 def save_data(name,filename):
     f = open("../data_pockels/"+name+".tab", "r", encoding = "latin-1")
@@ -37,38 +48,56 @@ def save_all():
 def acf(x, length=20):
     return np.array([1]+[np.corrcoef(x[:-i], x[i:])[0,1] for i in range(1, length)])
 
-# Two subplots, unpack the axes array immediately
-k = 1
-U2 = np.load("npy/U2_%03d.npy"%k)
-t  = np.load("npy/T_%03d.npy"%k)
-Tmax = np.max(t)
-N = len(U2) 
-N2 = N-2
-T = Tmax/N*1000 
-w   = blackman(N)
+def plot_fourier():
+    # Two subplots, unpack the axes array immediately
+    k = 12
+    U2 = np.load("npy/U2_%03d.npy"%k)
+    t  = np.load("npy/T_%03d.npy"%k)
+    Tmax = np.max(t)
+    N = len(U2) 
+    N2 = N-2
+    T = Tmax/N*1000 
+    w   = blackman(N)
 
-U2f = fft(U2*w)
+    U2f = fft(U2*w)
 
-U2acf = acf(U2,N2)
+    U2acf = acf(U2,N2)
 
-w2   = blackman(N2)
-U2acff = fft(U2acf*w2) 
-tf = np.linspace(0.0, 1.0/(2.0*T), N/2)
-tf2 = np.linspace(0.0, 1.0/(2.0*T), (N2)/2)
+    w2   = blackman(N2)
+    U2acff = fft(U2acf*w2) 
+    tf = np.linspace(0.0, 1.0/(2.0*T), N/2)
+    tf2 = np.linspace(0.0, 1.0/(2.0*T), (N2)/2)
 
-f, axarr = plt.subplots(2, 2, figsize = (11.5,6))
-axarr[0, 0].plot(t*1000,U2)
-axarr[0, 0].set_title('Normal Plot')
+    f, axarr = plt.subplots(2, 2, figsize = (11.5,8.2))
+    axarr[0, 0].plot(t*1000,U2)
+    axarr[0, 0].set_title('Normal Plot')
 
-axarr[0, 1].semilogy(tf, 2.0 / N * np.abs(U2f[0:N/2])**2)
-axarr[0, 1].set_title('Fourier Transform with blackman')
+    axarr[0, 1].plot(tf, 2.0 / N * np.abs(U2f[0:N/2])**2)
+    axarr[0, 1].set_title('Fourier Transform with blackman')
 
-axarr[1, 0].plot(t[2:]*1000,U2acf)
-axarr[1, 0].set_title('Autocorrelation function')
+    axarr[1, 0].plot(t[2:]*1000,U2acf)
+    axarr[1, 0].set_title('Autocorrelation function')
+    axarr[1, 1].set_xlabel('time in ms')
 
-axarr[1, 1].semilogy(tf2, 2.0 / N2 * np.abs(U2acff[0:N2/2])**2)
-axarr[1, 1].set_title('Fourier transform of Autocorrelation function')
+    axarr[1, 1].plot(tf2, 2.0 / N2 * np.abs(U2acff[0:N2/2])**2)
+    axarr[1, 1].set_title('Fourier transform of Autocorrelation function')
+    axarr[1, 1].set_xlabel('Frequency in kHz')
 
-plt.show()
+    plt.show()
 
+def go_through():
+    for k in range(27+1):
+        U2 = np.load("npy/U2_%03d.npy"%k)
+        t  = np.load("npy/T_%03d.npy"%k)
+        Tmax = np.max(t)
+        N = len(U2) 
+        N2 = N-2
+        T = Tmax/N*1000 
+
+        w2   = blackman(N2)
+
+        U2acf = acf(U2,N2)
+        U2acff = fft(U2acf*w2) 
+
+        tf2 = np.linspace(0.0, 1.0/(2.0*T), (N2)/2)
 
