@@ -26,7 +26,6 @@ def sawthoothmethod():
         print(U_[t])
 
 
-sawthoothmethod()
 
 def sinusmethod():
     """TODO: Docstring for sinusmethod.
@@ -40,9 +39,10 @@ def sinusmethod():
     n3   = uc.ufloat(1.477, 0.001)
     l    = uc.ufloat( 20E-3, 0.1E-3)
     d    = uc.ufloat(2.4E-3, 0.1E-3)
-    U    = uc.ufloat(135  , 15)
+    U    = uc.ufloat(139  , 5)
 
 
-    r41 = lamb * d / (4 * l *U * 2) * sqrt(0.5*(1/n1**2 + 1/n3**2))**3 
+    r41 = lamb * d / (4 * l *U ) * sqrt(0.5*(1/n1**2 + 1/n3**2))**3 
     print('{:L}'.format(r41*1e12))
+sinusmethod()
 
