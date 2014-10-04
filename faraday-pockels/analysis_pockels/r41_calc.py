@@ -46,4 +46,3 @@ def sinusmethod():
     r41 = lamb * d / (4 * l *U * 2) * sqrt(0.5*(1/n1**2 + 1/n3**2))**3 
     print('{:L}'.format(r41*1e12))
 
-
