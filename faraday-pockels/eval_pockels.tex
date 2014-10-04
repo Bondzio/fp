@@ -1,7 +1,20 @@
 \section{Evaluation for Pockels effects}
-\subsection{Fourieranalysis of frequencies}
-\subsection{Calculation of the electrooptic coefficient}
-Now we can use the former calculation to calculate the electrooptic coefficient.
+\subsection{Fourier analysis of frequencies}
+As described before \ref{sec:pdf}, we use Fourier analysis to determine 
+the input voltage $U_\mathrm{DC}$ at which frequency doubling occurs. 
+To illustrate the procedure, we show an example at $U_\mathrm{DC} = 137.0$ V.
+The cut-off is taken at $t = 1.1$ ms and $t = 9.05$ ms, as shown in figure 
+\ref{fig:cut_off_example}. The result of the FFT is then shown in figure 
+\ref{fig:fft_example} for a larger range of frequencies and those of interest, 
+namly $\nu < 2$ kHz. One clearly observes the two peaks close to 
+0.5 kHz and 1.0 kHz, being of the same scale. This procedure is 
+done with all datasets corresponding to the signals shown in 
+the figures \ref{fig:}
+
+
+
+\subsection{Calculation of the electro-optic coefficient}
+Now we can use the former calculation to calculate the electro-optic coefficient.
 \begin{equation}
     r_{41} = \frac{\lambda d}{4 l U_{\lambda / 2}} 
     \left(\frac{1}{2} \left(\frac{1}{\eps_\perp} + \frac{1}{\eps_\parallel}\right)\right)^{\frac{3}{2}}
