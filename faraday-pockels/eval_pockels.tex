@@ -22,26 +22,24 @@ The two different methods are now exercised below.
 All propagation of errors is calculated using the python package 
 'uncertainties'~\cite{uc}.
 
-
 \subsection{Saw tooth method}
-Now we calculated the maxima of the signal originating from the applied saw tooth input
-
-\label{ssub:Saw tooth method}
-\begin{aligned}
- (2.2+/-0.4)\\
-26.1 \pm 5.5
-(2.2+/-0.4)
-26.1 \pm 5.5
-(2.2+/-0.4)
-26.1 \pm 5.5
-(2.2+/-0.4)
-26.1 \pm 5.5
-(2.1+/-0.4)
-27.1 \pm 5.7
-mean: (2.63+/-0.25)
-
-   
-\end{aligned}
+Now we calculated the maxima of the signal originating from the applied saw tooth input.
+From the calculated position of the maxima we took the applied voltage by the saw tooth input,
+this input is reduced in our plots due to the resistance of the oscilloscope.
+We estimated the former value by (where $U_{max} = 500V$):
+\begin{equation}
+    U_{\textrm{without R}} =\frac{U_{osc}\cdot U_{max}}{\textrm{max}(U_{osc}) - \textrm{min}(U_{osc})}
+\end{equation}
+and calculated for each measurement in 2.1 sawtooth 1-5 the $r_{41}$ coefficient (where we 
+    use pikometer):
+\begin{align*}
+    U_{\lambda/2} = \left(214 \pm 50\right)V,  \quad r_{41} =  (26.3 \pm 6.2)pm \\
+    U_{\lambda/2} = \left(214 \pm 50\right)V , \quad r_{41} =  (26.3 \pm 6.2)pm \\
+    U_{\lambda/2} = \left(210 \pm 50\right)V , \quad r_{41} =  (26.7 \pm 6.4)pm \\
+    U_{\lambda/2} = \left(214 \pm 50\right)V , \quad r_{41} =  (26.3 \pm 6.2)pm \\
+    U_{\lambda/2} = \left(203 \pm 50\right)V , \quad r_{41} =  (27.7 \pm 6.9)pm \\
+    \text{mean: } r_{41}= (26.7 \pm 2.9) pm
+\end{align*}
 \subsection{DC current method}
 \label{ssub:DC current method}
 As seen in the measurements section, the frequency doubling can be 
@@ -136,5 +134,6 @@ It is not clear, to which extend natural birefraction or
 secondary electro-optical effects can be neglected, although 
 we would suspect these errors to be much smaller than the ones 
 induced by the electronics. 
+
 
 

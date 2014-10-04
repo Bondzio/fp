@@ -34,7 +34,7 @@ def r41(U):
 
     r41 = lamb * d / (4 * l *U ) * (0.5*(1/n1**2 + 1/n3**2))**(3 / 2) 
     
-    print('{:L}'.format(r41*1e12))
+    print('U_{\lambda/2} =','{:L}'.format(U),'{:L}'.format(r41*1e12),"\\\\")
     return r41
 
 def sawtoothmethod():
@@ -43,12 +43,12 @@ def sawtoothmethod():
         T,U1,U2 = read_data("2.1.sawtooth"+str(i))
         t = np.argmax(U2)
         D = uc.ufloat(100,20)
-        U1_ = uc.ufloat(U1[t], 0.1)
-        print(U1_*D)
-        u+=[r41(U1_*D)]
+        print((U1/(np.max(U1) -  np.min(U1)))[t] * 500) 
+        U_ = uc.ufloat((U1/(np.max(U1) -  np.min(U1)))[t] * 500, 50)
+        u+=[r41(U_)]
     print("mean:",np.mean(u))
 
-sawtoothmethod()
+#sawtoothmethod()
 
-#r41(uc.ufloat(139  , 5))
+r41(uc.ufloat(2*139  , 5))
 
