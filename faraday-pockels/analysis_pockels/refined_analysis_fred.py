@@ -41,7 +41,8 @@ def acf(x, length=20):
 # Two subplots, unpack the axes array immediately
 plt.close('all')
 # Examplary cases: k = 8, k = 12
-ks = range(8, 19)
+ks = range(8, 19)       # plots
+k_example = 12
 freq1 = np.zeros(len(ks))
 freq2 = np.zeros(len(ks))
 f, axarr = plt.subplots(1,2, figsize = (12,5))
@@ -60,46 +61,63 @@ for i, k in enumerate(ks):
     t = t[lower: upper]
     U1n = U1[lower:upper]
 
-
     Tmax = np.max(t)
     N = len(U2) 
-    N2 = N-2
     T = Tmax/N
-    #w   = blackman(N)
-    w = np.ones(N)
 
-    U2f = fft(U2)
+    U2f = fft(U2)       # fourier transfor of U2
 
-    U2f_abs = (2.0 / N * np.abs(U2f[0:N/2])**2)
-    tf = np.linspace(0.0, 1.0/(2.0*T), N/2)
-    axarr[0].semilogy(tf, U2f_abs)
-    freq1[i] = U2f_abs[4]
-    freq2[i] = U2f_abs[8]
+    psd_U2 = (2.0 / N * np.abs(U2f[0:N/2])**2)     # power spectral density
+    f = np.linspace(0.0, 1.0/(2.0*T), N/2)      # frequencies
+    axarr[0].semilogy(f, psd_U2)           
+    freq1[i] = psd_U2[4]
+    freq2[i] = psd_U2[8]
+
+    if k == k_example:
+        print(k)
+        f3, ax3 = plt.subplots(1, 1, figsize = (15,11))
+        f3.suptitle('Examplary plot for k = %i'%k)
+        ymin = -0.015
+        ymax = 0.025
+        ax3.plot(t, U2, label='$U_\mathrm{out}(t)$')                # plots of cut-off output
+        ax3.plot(t_old, U1*0.2, label='$0.2 U_\mathrm{in}(t)$')                          # plotting the incoming signal
+        ax3.plot(t_old[[lower, lower]], [ymin, ymax], 'b--', label='cut-off') # plotting the cut-offs
+        ax3.plot(t_old[[upper, upper]], [ymin, ymax], 'b--') # plotting the cut-offs
+        ax3.legend(loc=4)
+        ax3.set_ylim([ymin, ymax])
+        ax3.set_xlabel('$t$')
+        ax3.set_ylabel('$U(t)$')
+        ax3.legend()
 
     mx = 4
     my = 3
     m = mx * my
     if i % m == 0:
         f2, axarr2 = plt.subplots(mx, my, figsize = (15,11))
-        f2.suptitle('Plots for k = %i, %i, %i, %i'%(k, k+1, k+2, k+3))
+        f2.suptitle('Plots for all k')
     ax = axarr2[int(i%m/my), (i%m)%my]
-    ax.plot(t,U2, label='k = %i'%k)
-    ax.plot(t_old,U1*0.2)
-    ax.plot(t_old[[lower, upper]],U1[[lower, upper]]*0.2, 'o')
+    ax.plot(t, U2, label='k = %i'%k)                # plots of cut-off output
+    ax.plot(t_old, U1*0.2)                          # plotting the incoming signal
+    ax.plot(t_old[[lower, upper]], U1[[lower, upper]]*0.2, 'o') # plotting the cut-offs
     ax.legend(loc=4)
 axarr[0].set_title('Fourier Transform')
-axarr[0].set_ylim([0, 0.05])
 axarr[0].set_xlim([0, 2])
+axarr[0].set_ylim([0, 0.05])
+axarr[0].set_xlabel('$\\nu$')
+axarr[0].set_ylabel('$\mathrm{PSD(\\nu)}$')
 
-axarr[1].semilogy(ks, freq1, label='0.5kHz')
-axarr[1].semilogy(ks, freq2, label='1.0kHz')
+axarr[1].semilogy(ks, freq1, label='\\nu_1 = 0.5kHz')
+axarr[1].semilogy(ks, freq2, label='\\nu_2 = 1.0kHz')
 axarr[1].set_title('Amplitude at 0.5 and 1.0 kHz')
 axarr[1].set_ylim([0, 0.05])
+axarr[0].set_xlabel('$k$')
+axarr[0].set_ylabel('$\mathrm{PSD(\\nu_i)}$')
 axarr[1].legend()
 
 
 for i, k in enumerate(ks):
     # Using the auto correlation function of U2
+    N2 = N-2
     U2acf = acf(U2,N2)
     w2   = blackman(N2)
     w2 = np.ones(N2)
