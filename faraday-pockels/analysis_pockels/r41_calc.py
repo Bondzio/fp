@@ -33,16 +33,22 @@ def r41(U):
     d    = uc.ufloat(2.4E-3, 0.1E-3)
 
     r41 = lamb * d / (4 * l *U ) * (0.5*(1/n1**2 + 1/n3**2))**(3 / 2) 
+    
     print('{:L}'.format(r41*1e12))
+    return r41
 
 def sawtoothmethod():
+    u = []
     for i in range(1,5+1):
         T,U1,U2 = read_data("2.1.sawtooth"+str(i))
         t = np.argmax(U2)
-        print(U1[t]*110)
-        r41(uc.ufloat(U1[t]*110  , 5))
+        D = uc.ufloat(100,20)
+        U1_ = uc.ufloat(U1[t], 0.1)
+        print(U1_*D)
+        u+=[r41(U1_*D)]
+    print("mean:",np.mean(u))
 
 sawtoothmethod()
 
-r41(uc.ufloat(139  , 5))
+#r41(uc.ufloat(139  , 5))
 
