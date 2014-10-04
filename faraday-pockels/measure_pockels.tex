@@ -75,44 +75,10 @@ certain degree of the analysator.
     \label{fig:saw2}
 \end{figure}
 \flushleft
-
-\begin{figure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 21sawtooth1}
-        \caption{}
-    \end{subfigure}\qquad
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 21sawtooth2}
-        \caption{}
-    \end{subfigure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 21sawtooth3}
-        \caption{}
-    \end{subfigure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 21sawtooth4}
-        \caption{}
-    \end{subfigure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 21sawtooth5}
-        \caption{}
-    \end{subfigure}
-    \caption{
-        This is the final calibration of the analyzer. As you
-        can see we did not change the state anymore and all the
-        results are in general the same.
-        }
-    \label{fig:saw3}
-\end{figure}
-\flushleft
-\clearpage
 \subsection{Sinus signal: Without direct current}
 The Frequency generated was about $f=5.4$ Khz, but it was not stable
 but oscillating within $0.1$ Khz. The manipulation of the trigger-
 level increased the stability to a acceptable level. 
-\begin{figure}
-\includegraphics[width=15cm]{\figdirpockels 22sinus01}
-\end{figure}
 \subsection{Sinus signal: Applying Direct Current}
 Now we will look at the inluence of different parameters on
 the received signal, especially the effect of changing the
@@ -156,8 +122,8 @@ into this behavior in the next chapter.
     \end{subfigure}
 
     \caption{These series of figures show the impact of
-        an applied sinussignal and a Direct Current with
-        varying Voltage. In general we do not recognize huge 
+        an applied sinussignal and a direct current with
+        varying voltage. In general we do not recognize huge 
         qualitative differences amongst those, but we will look
         later with a more refined analysis to it.}
     \label{fig:sinus1}
@@ -198,71 +164,6 @@ into this behavior in the next chapter.
         but also see the next series of figures.}
     \label{fig:sinus2}
 \end{figure}
-
-\begin{figure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 22sinus13}
-        \caption{}
-    \end{subfigure}\qquad
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 22sinus14}
-        \caption{}
-    \end{subfigure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 22sinus15}
-        \caption{}
-    \end{subfigure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 22sinus16}
-        \caption{}
-    \end{subfigure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 22sinus17}
-        \caption{}
-    \end{subfigure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 22sinus18}
-        \caption{}
-    \end{subfigure}
-
-    \caption{This is the noisy-regime, for explanation see
-        Figure~\ref{fig:sinus2}. We have not seen any frequency
-        doubling though.}
-    \label{fig:sinus3}
-\end{figure}
-
-\begin{figure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 22sinus19}
-        \caption{}
-    \end{subfigure}\qquad
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 22sinus20}
-        \caption{}
-    \end{subfigure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 22sinus21}
-        \caption{}
-    \end{subfigure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 22sinus22}
-        \caption{}
-    \end{subfigure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 22sinus23}
-        \caption{}
-    \end{subfigure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 22sinus24}
-        \caption{}
-    \end{subfigure}
-
-    \caption{This series visualizes the upper limit and the end
-        of the noisy regime, as more and more the sinusinput
-        is dominating the shape of the signal with less noise.}
-    \label{fig:sinus4}
-\end{figure}
-\clearpage
 \subsection{Refined frequency analysis}
 The figures in this section are accomplished with $U_{DC}=145.8 V$.
 In this analysis we investigate the effect of the frequency
@@ -274,16 +175,6 @@ the frequencyrange on the oscillscope from
 $[1 - 25]$kHz to $[35 - 2500]$ Hz in order to stabilize the signal.
 Now since we have found the frequency with which we have a chance
 to find the already mentioned frequency-doubling, we will
-begin an additional series of measurements in search for it. 
-
-\begin{figure}
-    \includegraphics[width=15cm]{\figdirpockels 23sinus01}
-    \caption{In this figure we readjusted the frequency to
-        $f=3.0$ kHz. In this figure we noticed, as already said
-        in the last section, that the noisy regime was shifted
-        to lower Voltage.}
-\end{figure}
-
 \begin{figure}
     \includegraphics[width=15cm]{\figdirpockels 23sinus02}
     \caption{At this level the regime of the voltage is shifted
@@ -293,82 +184,15 @@ begin an additional series of measurements in search for it.
         is very noisy at all voltages (due to shackling 
             and wiggling).}
 \end{figure}
-
-\begin{figure}
-    \includegraphics[width=15cm]{\figdirpockels 23sinus03}
-    \caption{This is the frequency at which we will do a more
-        refined analysis in the next chapter. We quantified the
-        shift of the noisy regime up to $U_{DC}=5V$, from
-        its approximate former center of $145V$ to $140V$.}
-\end{figure}
 \clearpage
 \subsection{Reanalysis at the lower frequency}
+At the frequency $f=1$kHz we repeat now the former analysis and are
+able to search after the so called \textit{frequency doubling}.
+The signal is much more stable compared to the higher frequencies 
+with regards to the noise and we will see in the analysis that
+it is even possible to interpolate the regime we are searching after.
+Therefore we inspect the curves from $U=135$V up to $U=142$V.
 \begin{figure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 23sinus07}
-        \caption{}
-    \end{subfigure}\qquad
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 23sinus08}
-        \caption{}
-    \end{subfigure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 23sinus09}
-        \caption{}
-    \end{subfigure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 23sinus10}
-        \caption{}
-    \end{subfigure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 23sinus11}
-        \caption{}
-    \end{subfigure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 23sinus12}
-        \caption{}
-    \end{subfigure}
-    \caption{Refined search for the noisy regime.}
-    \label{fig:sinus5}
-\end{figure}
-
-\begin{figure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 23sinus07}
-        \caption{}
-    \end{subfigure}\qquad
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 23sinus08}
-        \caption{}
-    \end{subfigure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 23sinus09}
-        \caption{}
-    \end{subfigure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 23sinus10}
-        \caption{}
-    \end{subfigure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 23sinus11}
-        \caption{}
-    \end{subfigure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 23sinus12}
-        \caption{}
-    \end{subfigure}
-    \caption{Refined search for the noisy regime.}
-    \label{fig:sinus6}
-\end{figure}
-\begin{figure}
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 23sinus13}
-        \caption{}
-    \end{subfigure}\qquad
-    \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=\textwidth]{\figdirpockels 23sinus14}
-        \caption{}
-    \end{subfigure}
     \begin{subfigure}[b]{\picwidth}
         \includegraphics[width=\textwidth]{\figdirpockels 24sinus01}
         \caption{}
@@ -470,7 +294,7 @@ begin an additional series of measurements in search for it.
 \end{figure}
 \clearpage
 \subsection{Further investigations regarding the laser}\label{sec:laser}
-Now we removed everything except of the photodiode and noticed that
+Now we removed everything except from the photodiode and noticed that
 the laser exhibits the noise signal which we found in the beginning
 (see figure~\ref{fig:laser_a}). After this we also removed the
 laser and noticed that the light coming from the ceiling was 
@@ -516,7 +340,11 @@ laser since it is reduced due to a change of the analysator.
         \caption{}
         \label{fig:laser_f}
     \end{subfigure}
-        \caption{Refined analysis of Laser.}
+    \caption{Refined analysis of Laser. (a), (c) and (d) shows the very low frequency which
+        the laser inhibits as a nuisance. We expect this coming from the electronic components
+        the laser consists of. Figure (b) shows the frequency only originating from the room light.
+        (e) and (f) shows the nuisance frequency of the laser with a lower intensity (by changing
+            the state of the analysator).}
     \label{fig:laser}
 \end{figure}
 
