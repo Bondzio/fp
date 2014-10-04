@@ -18,16 +18,8 @@ def read_data(name):
     U2 = np.array(U2)
     return (T,U1,U2)
 
-def sawthoothmethod():
-    for i in range(1,5+1):
-        T,U1,U2 = read_data("2.1.sawtooth"+str(i))
-        t = np.argmax(U2)
-        U_ = (U1-np.min(U1)) / (np.max(U1)-np.min(U1)) * 500
-        print(U_[t])
 
-
-
-def sinusmethod():
+def r41(U):
     """TODO: Docstring for sinusmethod.
 
     :arg1: TODO
@@ -39,10 +31,19 @@ def sinusmethod():
     n3   = uc.ufloat(1.477, 0.001)
     l    = uc.ufloat( 20E-3, 0.1E-3)
     d    = uc.ufloat(2.4E-3, 0.1E-3)
-    U    = uc.ufloat(139  , 5)
-
 
     r41 = lamb * d / (4 * l *U ) * sqrt(0.5*(1/n1**2 + 1/n3**2))**3 
     print('{:L}'.format(r41*1e12))
-sinusmethod()
+
+def sawthoothmethod():
+    for i in range(1,5+1):
+        T,U1,U2 = read_data("2.1.sawtooth"+str(i))
+        t = np.argmax(U2)
+        print(U1[t]*110)
+        r41(uc.ufloat(U1[t]*110  , 5))
+
+sawthoothmethod()
+
+
+r41(2*uc.ufloat(139  , 5))
 
