@@ -539,7 +539,7 @@ trigonal has a threefold rotational symmetry.
     The seven crystal systems, characterized by the restrictions on the axial system. 
     The trigonal and hexagonal systems are characterized by threefold and sixfold rotational 
     symmetries. 
-    Reference: \ref{borchardt1995crystallography}
+    Reference: \cite{borchardt1995crystallography}
     }
 \label{tab:crystal_systems}
 \end{table}
@@ -625,7 +625,7 @@ The notation follows the following rules~\cite{sands1993introduction}:
 \caption{
     Point groups, their subgroups and associated crystal systems, 
     written in the \emph{international notation}.
-    Reference: \ref{borchardt1995crystallography}
+    Reference: \cite{borchardt1995crystallography}
     }
 \label{tab:point_groups}
 \end{table}
@@ -645,10 +645,13 @@ where we renamed the axes $x, y$ and $z$ into $x_1, x_2$ and $x_3$, respectively
 The $\bar{4}$-axis includes another mirror 
 plane perpendicular to the first one and a twofold rotational symmetry 
 around the $x_3$-axis. 
+The structure is usually called tetragonal scalenohedral. 
 
 \paragraph{Point groups can further} 
-be illustrated by their \emph{stereographic projections}, 
-that is constructed as follows: We take the plane going through the origin 
+be illustrated by their \emph{stereographic projections},
+that is constructed as follows
+~\cite{borchardt1995crystallography}: 
+We take the plane going through the origin 
 of the point group and being perpendicular to the axis of highest 
 symmetry to be the plane of projection. We further construct a sphere 
 of arbitry radius and draw straight lines from the origin through the 
@@ -656,7 +659,12 @@ centers of the crystal's faces. If we take all intersections of these lines
 with the surface of the upper hemisphere and draw lines to the south pole, 
 the intersects with the projection plane give the desired stereographic projection. 
 The process is illustrated in the figures \ref{fig:stereo}. 
-
+The projection can then be further reduced to the \emph{assymetric face unit}, 
+which is the smallest unit of surface of the sphere, which will generate 
+the entire sphere by application of all symmetry operations
+~\cite{borchardt1995crystallography}.
+For the $\bar{4}2m$-crystals, both the stereogram and the asymmteric face unit are 
+shown in figure \ref{fig:stereo_42m}.
 
 \begin{figure}[h]
     \begin{subfigure}[b]{\picwidth}
@@ -685,9 +693,41 @@ The process is illustrated in the figures \ref{fig:stereo}.
         \ref{fig:stereo_3}:
             Result of stereographic projection for PbS. The lines 
             show the interconnecting great circles projected on the plane. 
-            All figures taken from ~\cite{borchardt1995crystallography}.}
+            All figures taken from~\cite{borchardt1995crystallography}.}
     \label{fig:stereo}
 \end{figure}
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.36\textwidth}
+    \includegraphics[width=\textwidth]{figures/stereogram_42m}
+    \caption{}
+    \label{fig:stereogram_42m}
+    \end{subfigure}\qquad
+    \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{figures/asym_face_unit_42m}
+    \caption{}
+    \label{fig:asym_face_unit_42m}
+    \end{subfigure}
+    \caption{
+        Stereogram (\ref{fig:stereogram_42m}) and asymmetric face unit
+        \ref{fig:asym_face_unit_42m} of the $\bar{4}2m$ point group,
+        to which the ADP crystal used in this experiment belongs. 
+        The symbols are 
+        defined as follows: The square with diagonal corresponds 
+        to the fourfold rotoinversion axis $\bar{4}$ perpendicular 
+        to the plane, the small oval to the twofold rotation axis 
+        $2$, which lies in the plane. The solid line at $45\Deg$
+        corresponds to the mirror plane $m$. 
+        Application of all symmetry operations on the shaded area 
+        yield the entire stereographic projection. 
+        Taken from~\cite{borchardt1995crystallography}.
+        }
+    \label{fig:stereo_42m}
+\end{figure}
+
+
+
 \FloatBarrier
 
 \subsubsection{Optical classification of crystals}
@@ -910,6 +950,7 @@ which leaves only the three remaining components
 \end{equation}
 
 \subsection{Application to Pockels Cell}
+\label{sec:application_cell}
 By applying the result of the foregoing discussion, we can significantly 
 reduce the parameters in questions for the pertubed index ellipsoid
 \eqref{eq:B_ij}. We resume the most important results:
@@ -1016,15 +1057,8 @@ the other in $x_3'$-direction. Accordingly, they experience the refraction
     \label{eq:n3p} 
 \end{align}
 In order to facilitate the result, we do a scale analysis for the 
-parameters of the given Pockels Cell, given by
-~\cite{versuchsanleitung}:
-\begin{align*}
-    &\text{thickness of crystall:} &d &= 2.4 \, \text{mm} \\
-    &\text{electro-optic coefficient:} &r_{41} &= 23.4 
-        \,\mathrm{pm / V \ @ \ 20^\circ \ C} \\
-    &\text{refractive index in $x_1$ and $x_2$ direction:} &n_1 &= 1.522 \\
-    &\text{refractive index in $x_3$ direction:} &n_3 &= 1.477 
-\end{align*}
+parameters of the given Pockels Cell, which are stated in the 
+section describing the experimental setup \ref{sec:setup_pockels}.
 With $n = \sqrt{\eps / \epsn}$, we get $\eps_x / \epsn \sim 1$, for 
 a voltage of $U = 240$V, $E = U / d \sim 10^5$V/m, 
 so we can approximate $r_{41} E_1 \eps_x / \epsn \sim 10^{-6}$. 
@@ -1096,25 +1130,4 @@ coefficient
     \left(\frac{1}{2} \left(\frac{1}{\eps_\perp} + \frac{1}{\eps_\parallel}\right)\right)^{\frac{3}{2}}
     \label{eq:r_41_U}
 \end{equation}
-
-\subsection{Polarization filters}
-
-\subsection{Methods of determining $\Ula$}
-In order to determine $\Ula$, we measure the intensity of a laser 
-passing a linear polarization filter, the Pockels Cell and a second filter 
-in perpendicular orientation, 
-which acts as an analysator. The intensity is expected to show a maximum at 
-$\Ula$ and a minimum for $U = 0$ and $U = 2\Ula$. We apply the following two methods:
-\subsubsection{Saw tooth}
-The voltage follows a saw tooth signal, increasing linearly from 0 V up to 500 V 
-at a frequency of ca. 30 Hz. An oscilloscope records the intensity measured 
-at a photodiode in phase with the saw tooth signal. $\Ula$ is then the difference 
-in $U$ between Minimum and Maximum of the signal. 
-\subsubsection{Modulated direct current}
-Here, we use a direct current $U_\mathrm{DC} \in (0, 300)$ V modulated by a 
-sine $U_\mathrm{AC}$ of amplitude $40 \ \mathrm{V_{pp}}$. 
-For $U_\mathrm{DC} \ll \Ula$, an AC-coupled 
-oscilloscope is expected to show a response following the sine. However, for 
-$U_\mathrm{DC} = \Ula$, each time $U_\mathrm{AC} = 0$, the response shows a maxima. 
-Accordingly, we expect a frequency doubling in the intensity signal. 
 
