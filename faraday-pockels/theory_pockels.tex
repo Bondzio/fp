@@ -608,7 +608,10 @@ The notation follows the following rules~\cite{sands1993introduction}:
         \hline
         \rowcolor{LightCyan}
         $\textbf{Crystal system}$ & 
-        \multicolumn{2}{|c|}{$\textbf{Point groups   }$} \\ 
+        \multicolumn{2}{|l|}{$\textbf{Point groups   }$} \\ 
+        \cline{2-3}
+        \rowcolor{LightCyan}
+        &$\textbf{Highest symmetry }$ & $\textbf{subgroups}$\\ 
         \hline
         Trigonal        & $ \bar{1} $   & $ 1 $  \\ 
         Monoclinic      & $\frac{2}{m}$ & $m, 2$     \\ 
@@ -620,8 +623,8 @@ The notation follows the following rules~\cite{sands1993introduction}:
         \hline
     \end{tabular}
 \caption{
-    Point groups, their subgroups and associated crystal systems. For the nomenclature, see 
-    section \ref{sec:int_notation}. 
+    Point groups, their subgroups and associated crystal systems, 
+    written in the \emph{international notation}.
     Reference: \ref{borchardt1995crystallography}
     }
 \label{tab:point_groups}
@@ -685,13 +688,12 @@ The process is illustrated in the figures \ref{fig:stereo}.
             All figures taken from ~\cite{borchardt1995crystallography}.}
     \label{fig:stereo}
 \end{figure}
-
+\FloatBarrier
 
 \subsubsection{Optical classification of crystals}
 \label{sec:optical_axes}
-source: \cite{landau1984electrodynamics}
 Crystals can be classified into three groups according to their 
-optical properties. 
+optical properties~\cite{born1999principles}. 
 \begin{itemize}
     \item 
     Group I - \emph{Isotropic crystals}:\\
@@ -721,7 +723,7 @@ optical properties.
     They coincide with three mutually perpendicular twofold axes of symmetry.
 \end{itemize}
 A survey of all possible case is given in table \ref{fig:crystal_ellipsoid}.
-\begin{figure}
+\begin{table}
 \includegraphics[width=\pltw]{figures/crystal_ellipsoid.pdf}
 \caption{
     Table summarizing the optical properties of crystals, grouping them 
@@ -732,8 +734,9 @@ A survey of all possible case is given in table \ref{fig:crystal_ellipsoid}.
     by dashed vectors. 
     From \cite{born1999principles}. }
 \label{fig:crystal_ellipsoid}
-\end{figure}
+\end{table}
 
+\FloatBarrier
 
 \subsection{Reduction of Dielctric tensor}
 \label{sec:reduce}
@@ -1114,20 +1117,4 @@ For $U_\mathrm{DC} \ll \Ula$, an AC-coupled
 oscilloscope is expected to show a response following the sine. However, for 
 $U_\mathrm{DC} = \Ula$, each time $U_\mathrm{AC} = 0$, the response shows a maxima. 
 Accordingly, we expect a frequency doubling in the intensity signal. 
-
-\subsection{Experimental setup}
-The experimental setup
-
-
-
-Using the definition $n = \sqrt{\eps}$, we can calculate $\eps_x$:
-\begin{align}
-    \eps_1 &= n_1^2 = 2.408 \\
-    \eps_3 &= n_3^2 = 2.182 \\
-    \eps_x &= \frac{2 \eps_1 \eps_3}{\epsn \left( \eps_1 + \eps_3\right)} = 2.289
-\end{align}
-
-
-\subsubsection{Properties of He-Ne-Laser}
-\subsubsection{Properties of used photodiode}
 
