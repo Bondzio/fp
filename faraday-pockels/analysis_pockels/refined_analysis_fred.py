@@ -40,7 +40,7 @@ def acf(x, length=20):
 ############################################################################################################
 # Two subplots, unpack the axes array immediately
 show_fig = 1
-save_fig = 1
+save_fig = 0
 plt.close('all')
 fig_dir = '../figures/'
 
@@ -82,8 +82,8 @@ for i, k in enumerate(ks):
 
     if k == k_example:
         if not save_fig:
-            fig2.suptitle('Examplary plot for $U_\mathrm{DC} = %.1f$'%U_DC[i])
-            fig3.suptitle('Fourier transform for $U_\mathrm{DC} = %.1f$'%U_DC[i])
+            fig2.suptitle('Examplary plot for $U_\mathrm{DC} = %.1f$ V'%U_DC[i])
+            fig3.suptitle('Fourier transform for $U_\mathrm{DC} = %.1f$ V'%U_DC[i])
         ymin = -0.015
         ymax = 0.025
         ax2.plot(t, U2, label='$U_\mathrm{out}(t)$')                # plots of cut-off output
@@ -92,33 +92,33 @@ for i, k in enumerate(ks):
         ax2.plot(t_old[[upper, upper]], [ymin, ymax], 'k--') # plotting the cut-offs
         ax2.legend(loc=4)
         ax2.set_ylim([ymin, ymax])
-        ax2.set_xlabel('$t$')
-        ax2.set_ylabel('$U(t)$')
+        ax2.set_xlabel('$t \, / \, \mathrm{ms}$')
+        ax2.set_ylabel('$U(t) \, / \, \mathrm{V}$')
         ax2.legend()
 
         ax3[0].semilogy(f, psd_U2)           
         ax3[0].set_xlim([0, 70])
-        ax3[0].set_xlabel('$\\nu$')
-        ax3[0].set_ylabel('$\mathrm{|FFT(U_\mathrm{out})|^2(\\nu)}$')
+        ax3[0].set_xlabel('$\\nu \, / \, \mathrm{kHz}$')
+        ax3[0].set_ylabel('$|\mathrm{FFT}\left[U_\mathrm{out} \left(\\nu\\right)\\right]|^2 \, / \, \mathrm{V}^2$')
         ax3[1].semilogy(f, psd_U2)           
         ax3[1].set_xlim([0, 2])
         ax3[1].set_ylim([10**-7, 0.05])
-        ax3[1].set_xlabel('$\\nu$')
-        ax3[1].set_ylabel('$\mathrm{|FFT(U_\mathrm{out})|^2(\\nu)}$')
+        ax3[1].set_xlabel('$\\nu \, / \, \mathrm{kHz}$')
+        ax3[1].set_ylabel('$|\mathrm{FFT}\left[U_\mathrm{out} \left(\\nu\\right)\\right]|^2 \, / \, \mathrm{V}^2$')
 
 axarr[0].plot([f[4], f[4]], [10**-7, 1], 'k-.', label='$\\nu_1 = %.2f\, \mathrm{kHz}$'%(f[4]))
 axarr[0].plot([f[8], f[8]], [10**-7, 1], 'k--', label='$\\nu_1 = %.2f\, \mathrm{kHz}$'%(f[8]))
 axarr[0].set_xlim([0, 2])
 axarr[0].set_ylim([10**-7, 0.05])
-axarr[0].set_xlabel('$\\nu$')
-axarr[0].set_ylabel('$\mathrm{|FFT(U_\mathrm{out})|^2(\\nu)}$')
+axarr[0].set_xlabel('$\\nu \, / \, \mathrm{kHz}$')
+axarr[0].set_ylabel('$|\mathrm{FFT}\left[U_\mathrm{out} \left(\\nu\\right)\\right]|^2 \, / \, \mathrm{V}^2$')
 axarr[0].legend(loc=4)
 
 axarr[1].semilogy(U_DC, freq1, 'b.', label='$\\nu_1 = %.2f\, \mathrm{kHz}$'%(f[4]))
 axarr[1].semilogy(U_DC, freq2, 'r.', label='$\\nu_2 = %.2f\, \mathrm{kHz}$'%(f[8]))
 axarr[1].set_ylim([10**-4, 0.05])
-axarr[1].set_xlabel('$U_\mathrm{DC}$')
-axarr[0].set_ylabel('$\mathrm{|FFT(U_\mathrm{out})|^2(\\nu_i)}$')
+axarr[1].set_xlabel('$U_\mathrm{DC} \, / \, \mathrm{V}$')
+axarr[1].set_ylabel('$|\mathrm{FFT}\left[U_\mathrm{out} \left(\\nu_i\\right)\\right]|^2 \, / \, \mathrm{V}^2$')
 axarr[1].legend(loc=4)
 if not save_fig:
     axarr[0].set_title('PSD for all U_DC')
