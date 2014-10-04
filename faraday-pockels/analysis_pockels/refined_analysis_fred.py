@@ -42,7 +42,7 @@ def acf(x, length=20):
 plt.close('all')
 # Examplary cases: k = 8, k = 12
 ks = range(8, 19)       # plots
-k_example = 12
+k_example = 9
 freq1 = np.zeros(len(ks))
 freq2 = np.zeros(len(ks))
 f, axarr = plt.subplots(1,2, figsize = (12,5))
@@ -74,21 +74,32 @@ for i, k in enumerate(ks):
     freq2[i] = psd_U2[8]
 
     if k == k_example:
-        print(k)
         f3, ax3 = plt.subplots(1, 1, figsize = (15,11))
         f3.suptitle('Examplary plot for k = %i'%k)
         ymin = -0.015
         ymax = 0.025
         ax3.plot(t, U2, label='$U_\mathrm{out}(t)$')                # plots of cut-off output
         ax3.plot(t_old, U1*0.2, label='$0.2 U_\mathrm{in}(t)$')                          # plotting the incoming signal
-        ax3.plot(t_old[[lower, lower]], [ymin, ymax], 'b--', label='cut-off') # plotting the cut-offs
-        ax3.plot(t_old[[upper, upper]], [ymin, ymax], 'b--') # plotting the cut-offs
+        ax3.plot(t_old[[lower, lower]], [ymin, ymax], 'k--', label='cut-off') # plotting the cut-offs
+        ax3.plot(t_old[[upper, upper]], [ymin, ymax], 'k--') # plotting the cut-offs
         ax3.legend(loc=4)
         ax3.set_ylim([ymin, ymax])
         ax3.set_xlabel('$t$')
         ax3.set_ylabel('$U(t)$')
         ax3.legend()
 
+        f4, ax4 = plt.subplots(1, 2, figsize = (11,6))
+        f4.suptitle('Fourier transform for k = %i'%k)
+        ax4[0].semilogy(f, psd_U2)           
+        ax4[0].set_xlim([0, 70])
+        ax4[0].set_xlabel('$\\nu$')
+        ax4[0].set_ylabel('$\mathrm{|FFT(U_\mathrm{out})|^2(\\nu)}$')
+        ax4[1].semilogy(f, psd_U2)           
+        ax4[1].set_xlim([0, 2])
+        ax4[1].set_ylim([10**-7, 0.05])
+        ax4[1].set_xlabel('$\\nu$')
+        ax4[1].set_ylabel('$\mathrm{|FFT(U_\mathrm{out})|^2(\\nu)}$')
+"""
     mx = 4
     my = 3
     m = mx * my
@@ -100,19 +111,25 @@ for i, k in enumerate(ks):
     ax.plot(t_old, U1*0.2)                          # plotting the incoming signal
     ax.plot(t_old[[lower, upper]], U1[[lower, upper]]*0.2, 'o') # plotting the cut-offs
     ax.legend(loc=4)
-axarr[0].set_title('Fourier Transform')
-axarr[0].set_xlim([0, 2])
-axarr[0].set_ylim([0, 0.05])
-axarr[0].set_xlabel('$\\nu$')
-axarr[0].set_ylabel('$\mathrm{PSD(\\nu)}$')
+"""
 
-axarr[1].semilogy(ks, freq1, label='\\nu_1 = 0.5kHz')
-axarr[1].semilogy(ks, freq2, label='\\nu_2 = 1.0kHz')
-axarr[1].set_title('Amplitude at 0.5 and 1.0 kHz')
-axarr[1].set_ylim([0, 0.05])
-axarr[0].set_xlabel('$k$')
-axarr[0].set_ylabel('$\mathrm{PSD(\\nu_i)}$')
-axarr[1].legend()
+
+axarr[0].set_title('Fourier Transform')
+axarr[0].plot([f[4], f[4]], [10**-7, 1], 'k-.', label='$\\nu_1 = %.2f\, \mathrm{kHz}$'%(f[4]))
+axarr[0].plot([f[8], f[8]], [10**-7, 1], 'k--', label='$\\nu_1 = %.2f\, \mathrm{kHz}$'%(f[8]))
+axarr[0].set_xlim([0, 2])
+axarr[0].set_ylim([10**-7, 0.05])
+axarr[0].set_xlabel('$\\nu$')
+axarr[0].set_ylabel('$\mathrm{|FFT(U_\mathrm{out})|^2(\\nu)}$')
+axarr[0].legend(loc=4)
+
+axarr[1].semilogy(ks, freq1, 'b.', label='$\\nu_1 = %.2f\, \mathrm{kHz}$'%(f[4]))
+axarr[1].semilogy(ks, freq2, 'r.', label='$\\nu_2 = %.2f\, \mathrm{kHz}$'%(f[8]))
+axarr[1].set_title('Amplitude at %.2f and %.2f kHz'%(f[4], f[8]))
+axarr[1].set_ylim([10**-4, 0.05])
+axarr[1].set_xlabel('$k$')
+axarr[0].set_ylabel('$\mathrm{|FFT(U_\mathrm{out})|^2(\\nu_i)}$')
+axarr[1].legend(loc=4)
 
 
 for i, k in enumerate(ks):
