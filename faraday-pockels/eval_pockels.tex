@@ -1,6 +1,34 @@
 \section{Evaluation for Pockels effects}
-\subsection{Fourier analysis of frequencies}
-As described before \ref{sec:pdf}, we use Fourier analysis to determine 
+In this section, we calculate the electro-optic coefficient 
+by two methods, using the result of the theoretical part, given by
+\begin{equation}
+    r_{41} = \frac{\lambda d}{4 l U_{\lambda / 2}} 
+    \left(\frac{1}{2} \left(\frac{1}{\eps_\perp} + \frac{1}{\eps_\parallel}\right)\right)^{\frac{3}{2}}\, .
+    \label{eq:r_41_U}
+\end{equation}
+
+If we take the values given in section \ref{tab:pockels_technical}, 
+and estimate the uncertainties, we get the following parameters:
+\begin{itemize}
+\setlength\itemsep{0em}
+\item[] $\lambda = (632.8\pm 0.1)$nm
+\item[] $n_1     = 1.522\pm 0.001$
+\item[] $n_3     = 1.477\pm 0.001$
+\item[] $l       = ( 20\pm 0.1)$mm
+\item[] $d       = (2.4\pm 0.1)$mm
+\end{itemize}
+
+Now we can calculate $r_{41}$ with respect to $U_{\lambda/2}$ with two different methods.
+
+\subsection{Saw tooth method}
+\label{ssub:Saw tooth method}
+
+\subsection{DC current method}
+\label{ssub:DC current method}
+As seen in the measurements section, the frequency doubling can be 
+observed best for a frequency of the input sine signal with 
+$0.5 kHz$. For the corresponding data sets, we use Fourier analysis 
+described in~\ref{sec:pdf} to determine 
 the input voltage $U_\mathrm{DC}$ at which frequency doubling occurs. 
 To illustrate the procedure, we show an example at $U_\mathrm{DC} = 137.0$ V.
 The cut-off is taken at $t = 1.1$ ms and $t = 9.05$ ms, as shown in figure 
@@ -18,7 +46,7 @@ is shown in figure \ref{fft_all}.
 One can clearly observe the drop in amplitude for $U_\mathrm{DC} = 139.0$ kHz. 
 We will thus take this to be our measured value for $\Ula$.
 \begin{figure}
-\includegraphics[width=\pltw]{figures/cut_off_example.pdf}
+\includegraphics[width=\textwidth]{figures/cut_off_example.pdf}
 \caption{
     Example for cut off points, for measured data at 
     $U_\mathrm{DC} = 137.0$ V. The minima of the input 
@@ -32,7 +60,7 @@ We will thus take this to be our measured value for $\Ula$.
 \end{figure}
 
 \begin{figure}
-\includegraphics[width=\pltw]{figures/fft_example.pdf}
+\includegraphics[width=\textwidth]{figures/fft_example.pdf}
 \caption{
     Example for results of fourier analysis, for measured data at 
     $U_\mathrm{DC} = 137.0$ V.
@@ -45,7 +73,7 @@ We will thus take this to be our measured value for $\Ula$.
 \end{figure}
 
 \begin{figure}
-\includegraphics[width=0.9\textwidth]{figures/fft_all.pdf}
+\includegraphics[width=1.0\textwidth]{figures/fft_all.pdf}
 \caption{
     Taken the quantity
     $|\mathrm{FFT}\left[U_\mathrm{out} \left(\nu\right)\right]|^2$ 
@@ -62,33 +90,16 @@ We will thus take this to be our measured value for $\Ula$.
 \label{fig:fft_all}
 \end{figure}
 
+The value of $\Ula$ for the given input signal is thus 
+found with $\Ula = (135  \pm 15)$. 
+The estimated the uncertainty on $\Ula$ based on the 
+observation, that $\Ula$ appeared to be 
+depending on the frequency. This phenomenon is not 
+explained in the formalism used in the theoretical sections. 
+Further, we expect quite large uncertainties due to 
+electronic noise and offsets. 
 
-
-\subsection{Calculation of the electro-optic coefficient}
-Now we can use the former calculation to calculate the electro-optic coefficient.
-\begin{equation}
-    r_{41} = \frac{\lambda d}{4 l U_{\lambda / 2}} 
-    \left(\frac{1}{2} \left(\frac{1}{\eps_\perp} + \frac{1}{\eps_\parallel}\right)\right)^{\frac{3}{2}}
-    \label{eq:r_41_U}
-\end{equation}
-Now we use the following parameters (these were given before):
-\begin{itemize}
-\setlength\itemsep{0em}
-\item[] $\lambda = (632.8\pm 0.1)$nm
-\item[] $n_1     = 1.522\pm 0.001$
-\item[] $n_3     = 1.477\pm 0.001$
-\item[] $l       = ( 20\pm 0.1)$mm
-\item[] $d       = (2.4\pm 0.1)$mm
-\end{itemize}
-Now we can calculate $r_{41}$ with respect to $U_{\lambda/2}$ with two different methods.
-\subsubsection{Saw tooth method}
-\label{ssub:Saw tooth method}
-
-\subsubsection{DC current method}
-\label{ssub:DC current method}
-We estimated $U_{\lambda/2}    = (135  \pm 15)$.
-% r !python analysis_pockels/r41_calc.py
-Our result is the following: 
+Using the parameters given above, we get the following result: 
 \begin{equation*}
-r_{41} = \left (20.9 \pm 2.5 \right )  \mathrm{pm}
+r_{41} = \left (41.7 \pm 2.3 \right )  \mathrm{pm}
 \end{equation*}
