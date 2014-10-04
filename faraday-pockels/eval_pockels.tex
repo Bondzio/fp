@@ -9,7 +9,58 @@ The cut-off is taken at $t = 1.1$ ms and $t = 9.05$ ms, as shown in figure
 namly $\nu < 2$ kHz. One clearly observes the two peaks close to 
 0.5 kHz and 1.0 kHz, being of the same scale. This procedure is 
 done with all datasets corresponding to the signals shown in 
-the figures \ref{fig:}
+the figures \ref{fig:sinus8}, which has shown the largest 
+change regarding frequency doubling by eye. The result of the fourier 
+analysis in the range from $0$ to $2$ kHz as well as the 
+value of $|\mathrm{FFT}\left[U_\mathrm{out} \left(\nu\right)\right]|^2$ for 
+$\nu_1 = 0.45$ kHz and $\nu_2 = 0.91$ kHz 
+is shown in figure \ref{fft_all}.
+One can clearly observe the drop in amplitude for $U_\mathrm{DC} = 139.0$ kHz. 
+We will thus take this to be our measured value for $\Ula$.
+\begin{figure}
+\includegraphics[width=\pltw]{figures/cut_off_example.pdf}
+\caption{
+    Example for cut off points, for measured data at 
+    $U_\mathrm{DC} = 137.0$ V. The minima of the input 
+    signal $U_\mathrm{in}$, which is shown rescaled in this plos, 
+    are found numerically in the ranges 
+    $t \in (1.0, 1.5)$ ms and $t \in (8.5, 9.5)$ ms. 
+    Further window functions are not applied. 
+    By eye, the frequency doubling is seen already. 
+    }
+\label{fig:cut_off_example}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=\pltw]{figures/fft_example.pdf}
+\caption{
+    Example for results of fourier analysis, for measured data at 
+    $U_\mathrm{DC} = 137.0$ V.
+    On the larger range, one observes strong peaks for low frequencies 
+    and one relatively high peak at $\nu = 35.0$ kHz, which will not be 
+    subject to further analysis. On the reduced range, the two peaks 
+    due to the input signal and frequency doubling can be observed. 
+    }
+\label{fig:fourier_example}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=0.9\textwidth]{figures/fft_all.pdf}
+\caption{
+    Taken the quantity
+    $|\mathrm{FFT}\left[U_\mathrm{out} \left(\nu\right)\right]|^2$ 
+    for all datasets yields a fairly confusing image, 
+    which is, however, instructive as one observes the 
+    frequency doubling for the different direct currents 
+    $U_\mathrm{DC}$.
+    In the right plot, the minimum for the lower frequency indicates 
+    the maximal frequency doubling. We expected a maximum in the 
+    double frequency, which clearly doesn't show. This 
+    may be due to the small size of the dataset (in terms 
+        of $t$ or the number of oscillations). 
+    }
+\label{fig:fft_all}
+\end{figure}
 
 
 
@@ -20,7 +71,7 @@ Now we can use the former calculation to calculate the electro-optic coefficient
     \left(\frac{1}{2} \left(\frac{1}{\eps_\perp} + \frac{1}{\eps_\parallel}\right)\right)^{\frac{3}{2}}
     \label{eq:r_41_U}
 \end{equation}
-Now we use the following constraints (these were given before):
+Now we use the following parameters (these were given before):
 \begin{itemize}
 \setlength\itemsep{0em}
 \item[] $\lambda = (632.8\pm 0.1)$nm

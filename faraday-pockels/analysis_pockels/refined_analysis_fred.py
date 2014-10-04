@@ -129,7 +129,7 @@ if show_fig:
     fig2.show()
     fig3.show()
 if save_fig: 
-    fig1.savefig(fig_dir + "fourier_all.pdf")
+    fig1.savefig(fig_dir + "fft_all.pdf")
     fig2.savefig(fig_dir + "cut_off_example.pdf")
     fig3.savefig(fig_dir + "fft_example.pdf")
 
