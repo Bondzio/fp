@@ -44,6 +44,5 @@ def sawtoothmethod():
 
 sawtoothmethod()
 
-
-r41(2*uc.ufloat(139  , 5))
+r41(uc.ufloat(139  , 5))
 
