@@ -18,7 +18,10 @@ and estimate the uncertainties, we get the following parameters:
 \item[] $d       = (2.4\pm 0.1)$mm
 \end{itemize}
 
-Now we can calculate $r_{41}$ with respect to $U_{\lambda/2}$ with two different methods.
+The two different methods are now exercised below.
+All propagation of errors is calculated using the python package 
+'uncertainties'~\cite{uc}.
+
 
 \subsection{Saw tooth method}
 \label{ssub:Saw tooth method}
@@ -42,7 +45,7 @@ change regarding frequency doubling by eye. The result of the fourier
 analysis in the range from $0$ to $2$ kHz as well as the 
 value of $|\mathrm{FFT}\left[U_\mathrm{out} \left(\nu\right)\right]|^2$ for 
 $\nu_1 = 0.45$ kHz and $\nu_2 = 0.91$ kHz 
-is shown in figure \ref{fft_all}.
+is shown in figure \ref{fig:fft_all}.
 One can clearly observe the drop in amplitude for $U_\mathrm{DC} = 139.0$ kHz. 
 We will thus take this to be our measured value for $\Ula$.
 \begin{figure}
@@ -69,7 +72,7 @@ We will thus take this to be our measured value for $\Ula$.
     subject to further analysis. On the reduced range, the two peaks 
     due to the input signal and frequency doubling can be observed. 
     }
-\label{fig:fourier_example}
+\label{fig:fft_example}
 \end{figure}
 
 \begin{figure}
@@ -103,3 +106,19 @@ Using the parameters given above, we get the following result:
 \begin{equation*}
 r_{41} = \left (41.7 \pm 2.3 \right )  \mathrm{pm}
 \end{equation*}
+
+Clearly, this result is not anywhere close to the value given in 
+literature with $r = 23.4$ pm at room temperature. There are 
+various possibilities regarding the origin of this disagreement. 
+First, we name the uncertainies in the setup and electronics. 
+Secondly, we suspect a wrongly setup of the polarization filters, 
+which might may not have been aligned properly with an 
+angle of $45\Deg$. Thirdly, we observed the strong frequency dependance of 
+the point of frequency doubling, which leads to the assumption, that 
+the theoretical calculations are missing an important factor. 
+It is not clear, to which extend natural birefraction or 
+secondary electro-optical effects can be neglected, although 
+we would suspect these errors to be much smaller than the ones 
+induced by the electronics. 
+
+
