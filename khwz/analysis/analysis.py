@@ -45,9 +45,13 @@ def plot_2_1():
         plt.title("Measure 2.1%s with    $\mu=%.3f$ $\sigma = %.3f$" %(q,coeff[1],coeff[2]))
         plt.xlabel("Channels")
         plt.ylabel("counts")
+        plt.grid()
         plt.savefig("figures/plot2_1"+q+".png")
         plt.savefig("figures/plot2_1"+q+".pdf")
         plt.show()
+
+plot_2_1()
+
 def plot_4_1():
     data = np.load("./data/measure4_1.npy")[2:]
     c    = np.where(data!=0)
@@ -62,14 +66,10 @@ def plot_4_1():
     plt.show()
 
 
-data = (np.load("./data/measure5_1.npy")[2:])
-c    = (np.where(data!=0)[0])[2:]
-x = np.arange(0,len(data),1)
-plt.figure()
-plt.hist(data[c])
-plt.show()
-
 def plot_5_1():
+    data = (np.load("./data/measure5_1.npy")[2:])
+    c    = (np.where(data!=0)[0])[2:]
+    x = np.arange(0,len(data),1)
     plt.figure()
     plt.grid(True)
     #plt.errorbar(x[c],data[c], yerr= np.sqrt(data[c]))
