@@ -1,6 +1,18 @@
 import numpy as np
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
+
+from matplotlib import rcParams
+rcParams['axes.labelsize'] = 12
+rcParams['xtick.labelsize'] = 12
+rcParams['ytick.labelsize'] = 12
+rcParams['legend.fontsize'] = 12
+rcParams['font.family'] = 'serif'
+rcParams['font.serif'] = ['Computer Modern Roman']
+rcParams['text.usetex'] = True
+rcParams['figure.figsize'] = 7.3, 4.2
+
+
 def plot_2_1():
     for q in "abcde": 
 
