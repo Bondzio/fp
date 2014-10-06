@@ -135,6 +135,7 @@ In order to explain this phenomenon, it is helpful to examine the
 structure of the material and connected quantities, as well as 
 to retrieve the way light propagates by looking at the solutions 
 of Maxwell's equations in matter \eqref{eq:maxwell}.
+We follow the deduction given by~\ref{landau1984electrodynamics}.
 If we define the 
 refractive index $\mathbf{n}$ by 
 \begin{equation}
@@ -418,7 +419,7 @@ There is, however an important exception: If the wave vector
 coincides with one of the optical axes, there are 
 infinitely many ray vectors associated with it:
 be can observe the phenomenon of 
-\emph{internal conical refraction}. 
+\emph{internal conical refraction}~\ref{landau1984electrodynamics}. 
 \FloatBarrier
 
 \subsection{The electro-optic effect}
@@ -433,7 +434,12 @@ where $\eta^{(0)} = {\eps^{(0)}}^{-1}$ is the \emph{impermeability
 tensor} of the unpertubed crystal with dielectric tensor $\eps^{(0)}$ 
 and we sum over equal indices. 
 Applying an electric field $\E$ on the crystal, $\eta^{(0)}$ will be 
-changed to $\eta$. For reasonably small fields, we can expand
+changed to $\eta$. 
+\begin{equation}
+    \eta_{ij} n_i n_j = 1 \, ,
+    \label{eq:pertubed}  
+\end{equation}
+For reasonably small fields, we can expand
 $\eta$ in powers of $\E$ as 
 \begin{equation}
     \eta_{ij} = \eta_{ij}^{(0)} + r_{ijk} E_k + s_{ijkl} E_k E_l + \ldots
@@ -953,7 +959,7 @@ which leaves only the three remaining components
 \label{sec:application_cell}
 By applying the result of the foregoing discussion, we can significantly 
 reduce the parameters in questions for the pertubed index ellipsoid
-\eqref{eq:B_ij}. We resume the most important results:
+\eqref{eq:pertubed}. We resume the most important results:
 \begin{itemize}
     \item
     Without the external field, the crystal is uniaxial 
@@ -973,8 +979,7 @@ reduce the parameters in questions for the pertubed index ellipsoid
 \end{itemize}
 
 
-Inserting these conditions in the index generalized index ellipsoid 
-\eqref{eq:ellipsoid_pertubed}, 
+Inserting these conditions in the index generalized index ellipsoid, 
 we arrive at the defining equation
 \begin{equation}
     \frac{1}{\eps_\perp}\left(n_1^2 + n_2^2\right) + 
