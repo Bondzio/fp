@@ -98,7 +98,7 @@ backend = bibtex
 \normalfont \normalsize 
 \textsc{Albert-Ludwigs-University Freiburg} \\ [25pt] % Your university, school and/or department name(s)
 \horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
-\huge \textsc{Nuclearspin} \\ % The assignment title
+\huge \textsc{Nuclear magnetic resonance} \\ % The assignment title
 \horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
 }
 
@@ -136,14 +136,19 @@ backend = bibtex
 %----------------------------------------------------------------------------------------
 \input{newcommands}
 \setcounter{page}{1}
-\section{Theory}
-Mein Lieblingsbuch~\autocite{strang2003introduction}
-und hier \cite{boyd2003nonlinear}
-\clearpage
+\input{intro}
+\input{theory}
+%\input{setup}
+%\clearpage
+%\input{interpretation}
+%\clearpage
+%\input{conclusion}
+\cleardoublepage
 
 \section{Bibliography}
 \printbibliography[heading=subbibintoc,type=article,title={Articles only}]
 \printbibliography[heading=subbibintoc,type=book,title={Books only}]
+\printbibliography[heading=subbibintoc,type=misc,title={Misc only}]
 
 
 \end{document}
