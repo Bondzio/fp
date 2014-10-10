@@ -1,8 +1,8 @@
 import numpy as np
 import pylab as plt
 
-show_fig = 0
-save_fig = 0
+show_fig = 1
+save_fig = 1
 save_tab = 1
 plt.close('all')
 fig_dir = '../figures/'
@@ -23,12 +23,13 @@ z = np.delete(z, [1,2])
 np.save(output_dir + "b_z", b)
 np.save(output_dir + "z", z)
 
-fig1, ax1 = plt.subplots(1,1, figsize = (12,5))
-ymin = 330
+# Plot B(z) with errorbars
+fig1, ax1 = plt.subplots(1,1, figsize = (8.09,5))
+ymin = 300
 ymax = 360
-b_error = 1     # uncertainty on B measurement, taken to be the last significant digit
+b_error = 5     # uncertainty on B measurement, taken to be the last significant digit
 z_error = 0.4     # uncertainty in measuring the depth z
-ax1.errorbar(z, b, xerr=z_error, yerr=b_error, fmt='.', label=' ')                # plots of cut-off output
+ax1.errorbar(z, b, xerr=z_error, yerr=b_error, fmt='.')                # plots of cut-off output
 ax1.plot([20, 20], [0, 400], 'k--', label='working point')                # plots of cut-off output
 ax1.legend(loc=4)
 ax1.set_xlim([0, 40])
@@ -39,35 +40,44 @@ if not save_fig:
     fig1.suptitle('Magnetic field $B$ at height $z$')
     ax1.set_title('$\mathrm{for} \,  I = 2.62$ A')
 
-# give out latex tables:
+# give out latex table:
 if save_tab:
     tab_name = "b_height"
-    str_l = r"\cline{1-3}\cline{5-7}\cline{9-11}" + "\n"
-    col_length = 12
-    if save_tab:
-        f1 = open(tab_dir + tab_name + ".txt", "w+")
-        f1.write(r"\begin{table}[htdp]" + "\n")
-        f1.write("\\begin{tabular}{\n    " + "|l |l ||c |"*2 + "l|l |}\n")
-        f1.write(str_l)
-        f1.write(r"    \rowcolor{LightCyan}" + "\n")
-        f1.write(r"    $B$ / mT & $z$ / mm &&$B$ / mT & $z$ / mm && $B$ / mT & $z$ / mm" + "\n")
-        for i in range(col_length):
-            tab = ("    " + "%i & %i &&"*2 + "%i & %i \\\\ \n") \
-                    %(b[i], z[i], b[i + col_length], z[i + col_length], b[i + 2*col_length], z[i + 2*col_length])
-            f1.write(tab)
-        f1.write(str_l)
-        f1.write(r"\end{tabular}" + "\n")
-        f1.write(r"\caption{" + "\n")
-        f1.write(r"    Measurement 1.1: Magnetic field $B$ at height $z$" + "\n")
-        f1.write(r"    }" + "\n")
-        f1.write(r"\label{tab:" + tab_name + "}" + "\n")
-        f1.write(r"\end{table}" + "\n")
-        f1.close()
+    f1 = open(tab_dir + tab_name + ".tex", "w+")
+    n_cols = 3          # number of columns
+    n_rows = 12         # number of rows
+    ind = "    "
+    inds = 2*ind
+    cc = "\cellcolor{LightCyan}" # color of name cells
+    cells = ("|p{1.34cm}|p{2.16cm}|p{0.8cm}" * n_cols)[:-8]
+    str_l = inds + r"\cline{1-2}\cline{4-5}\cline{7-8}" + "\n"
+
+    f1.write(r"\begin{table}[htdp]" + "\n")
+    f1.write(r"\centering" + "\n")
+    #f1.write(ind + "\\begin{tabular}{|l |l |c |l |l |c |l |l |}\n")
+    f1.write(ind + r"\begin{tabular}{" + cells + "}\n")
+    f1.write(str_l)
+    f1.write(((inds + "$z$ / mm " + cc + "& $B$ / mT " + cc +"&&\n") * n_cols)[:-3] + "\\\\ \n")
+    f1.write(str_l)
+    for i in range(n_rows):
+        row = (inds + (("%i & %i &&" * n_cols)\
+                %(z[i], b[i], z[i + n_rows], b[i + n_rows], z[i + 2*n_rows], b[i + 2*n_rows]))[:-2]
+                + "\\\\ \n") 
+        f1.write(row)
+    f1.write(str_l)
+    f1.write(ind + r"\end{tabular}" + "\n")
+    f1.write(ind + r"\caption{" + "\n")
+    f1.write(ind + r"    Measurement of unmodulated magnetic field $B$ at height $z$ for $I = 2.62$ A."\
+            + "Corresponding uncertainties: $\Delta z = %.1f$ mm, $\Delta B = %i$ mT."%(z_error, b_error) + "\n")
+    f1.write(ind + r"    }" + "\n")
+    f1.write(ind + r"\label{tab:" + tab_name + "}" + "\n")
+    f1.write(r"\end{table}" + "\n")
+    f1.close()
 
 if show_fig:
     fig1.show()
 if save_fig: 
-    fig1.savefig(fig_dir + "b.pdf")
+    fig1.savefig(fig_dir + "b_height.pdf")
 
 
 

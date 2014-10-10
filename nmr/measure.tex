@@ -2,7 +2,7 @@
 \label{sec:procedure}
 In order to derive the magnetic moments and gyromagnetic ratios, 
 we use the relationship to applied magnetic fields given by the Zeeman effect 
-as established in the theory section \ref{sec:theory). 
+as established in the theory section \ref{sec:theory)}. 
 The point of resonance leads to the appearance of absorption lines 
 in the strength of the highly oscillating field. These absorption lines 
 will then be measured. 
@@ -33,16 +33,42 @@ The sensor was initialized for $B = 0$ mT before the measurement. We first measu
 entire range accessibile for a constant current $I$. Results are shown in table \ref{tab:b_height}. 
 Not all the collected data is displayed, as the linear dependence is shown already by a subset. Further 
 the dependency on $U$ is not displayed, as the magnetic field induced electrically only depends on the 
-$I$.
+$I$. The uncertainty $\Delta B = 5$ mT was chosen because of fluctuations over time, especially a 
+downshift in magnetic field and current in time, being clearly connected to the rising resistance with 
+increasing temperature of the coil. $\Delta z = 0.4$ is the accuracy allowed by the scale fixed to the 
+Hall effect sensor. A possible offset both for $B$ and $z$ cannot be excluded. At least in the latter case, 
+the consequences would be very small, as the working point is quite large and the homogenity, which 
+in this case could still be shown, is of much higher importance. 
 \input{tables/b_height}
-
  
-Then, we measured the dependency of $B(I)$ 
-in a broader range of $I \in (0.57 2.58)$ A and for a smaller range, closer to the suspected region of resonance 
-for the given HF generator (table \ref{tab:B_I}). 
-
+Then, we measured the dependency of $B(I)$ in a broader range of $I \in (0.57 2.58)$ A 
+and for a smaller range, closer to the suspected region of resonance 
+for the given HF generator (table \ref{tab:b_I}). A third measurement at small scale 
+but higher current $I > 3.45$ A is not displayed, as this region will not be under 
+concern in the evaluation (see appendix \ref{sec:appendix}). 
+\input{tables/b_I}
+\FloatBarrier
 
 \subsection{Direct measurement of resonance frequency}
+In this section, we give an overview over the direct measurements of the resonance frequency
+for the different probes. The first part of this measurement was dominated by difficulties 
+to find the absorption peaks, as the signal we observed on the oscilloscope was quite noisy. 
+Only after a long time searching and further support of our tutor did we find any absorption 
+peaks at all. This is due to several problems of rather technical nature:
+\begin{itemize}
+    \item
+        The fine tuning of the frequency was not possible. We relied on fine tuning the 
+        current and with it the underlying (constant) magnetic field of the main coil. 
+        Even this tuning was not easy and limitied to a degree of exactness which 
+        allowed only to find \emph{a} signal of absorption. Very shortly after finding the 
+        signal, it disappeared again, seemingly due to fluctuations in the current. As stated 
+        before, we suspect changes in resistance due to developement of heat in the coil. 
+        The recordings were thus made directly after finding a signal. Contrary to the 
+        expectations prior to the experiment, we were not able to get a more exact 
+        value of $f_R$ by trying to get equidistant absorption peaks. 
+\end{itemize}
+
+
 
 \subsection{Measurements with Lock-In method}
 \subsubsection{Calibration of phase difference}
@@ -50,7 +76,64 @@ for the given HF generator (table \ref{tab:B_I}).
 \section{Interpretation}
 
 \subsection{Homogenity of $B$}
-The results of the measurement of the homogenity of the magnetic field $B$ are plotted in figure 
+The results of the measurement of the homogenity of the magnetic field $B$ 
+without applying the modulation are plotted in figure 
 \ref{fig:b_height}. As one can see, a good working point is defined for $z = -2$ cm, since 
 this is close to the midpoint of the observed plateau. The exitence of the plateau indicates the homogenity 
-of the field, which is a necessary foundation for the further analysis. 
+of the field, which is a necessary foundation for the further analysis.
+\begin{figure}
+\includegraphics[width=\textwidth]{figures/b_height.pdf}
+\caption{   
+    Measurement of the homogenity of the unmodulated magnetic field $B$ in the vertical direction $z$. 
+    The appied current is $I = 2.62$ A. As we observe a plateau between $z = 7$ mm and $z = 31$ mm, 
+    we define the working point for the further experiments for $z = 20$ mm.
+    For measured values, refer to table \ref{tab:b_height}.
+    }
+\label{fig:b_height}
+\end{figure}
+\FloatBarrier
+
+\subsection{Dependency $B(I)$}
+Measuring the magnetic fields of the main coil for different currents yielded two 
+important results, which can be observed in figure \ref{fig:b_I}:
+\begin{itemize}
+\item
+    In the regime $I < 3$ A, $B(I)$ behaves linear. We calculated fit parameters 
+    for a least square fit using the corresponding routine 'numpy.polyfit'\ref{scipy} for 
+    a first degree polynome $f(I) = p_0 I + p_1$ for the pairs $(I, B(I))$, $I \le 3.36$ A. 
+    The resulting parameters $p_0$ and $p_1$ with covariance matrix are given by:
+    \begin{align}
+        p_0 &= 129 \pm 3 \mT / \A\\
+        p_1 &= 16 \pm 7 \mT\\
+        \mathrm{cov}(p_i, p_j) &= 
+        \begin{pmatrix}
+            11.1\frac{\mT^2}{\A^2} &-21.5\frac{\mT^2}{\A} \\
+            -21.5\frac{\mT^2}{\A} &51.0\mT^2 \\
+        \end{pmatrix} 
+        \, \mathrm{}
+    \end{align}
+    The relative error 
+    \begin{equation}
+        \frac{\Delta p_0}{p_0} = 3 / 129 \approx 2\%
+    \end{equation}
+    indicates the linear behaviour in the chosen regime which is expected from the 
+    graphical analysis. 
+\item
+    We observe a non-linear behaviour for $I > 3$ A. However, this regime is 
+    not reached during the other measurements, so that we relinquish the further analysis. 
+\end{itemize}
+\begin{figure}
+\includegraphics[width=\textwidth]{figures/b_I.pdf}
+\caption{   
+    Measurement of magnetic field $B$ of the main coil depending on the applied current 
+    $I$ at the working point $z = 20$ mm. The error bars corresponding 
+    to the uncertainties $\Delta I = 0.01$ A 
+    and $\Delta B = 5$ mT are plotted but visibly very small at this scale. 
+    The line is showing the least square fit for $f(I) = p_0 I + p_1$. The 
+    lighter shade indicates the uncertainties calculated from the parameters 
+    and the covariance matrix. 
+    The measured values are shown in table \ref{tab:b_I}.
+    }
+\label{fig:b_I}
+\end{figure}
+

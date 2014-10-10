@@ -34,7 +34,7 @@ block=space,               % kleiner horizontaler Platz zwischen den Feldern
 backref=false,              % Seiten anzeigen, auf denen die Referenz vorkommt
 backrefstyle=three+,       % fasst Seiten zusammen, z.B. S. 2f, 6ff, 7-10
 date=short,                % Datumsformat
-backend=biber
+backend=bibtex
 ]{biblatex}
 \setlength{\bibitemsep}{1em}     % Abstand zwischen den Literaturangaben
 \setlength{\bibhang}{2em}        % Einzug nach jeweils erster Zeile
@@ -140,7 +140,6 @@ backend=biber
 \input{intro}
 \input{theory}
 %\input{setup}
-\input{measure}
 %\clearpage
 %\input{interpretation}
 %\clearpage
