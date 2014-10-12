@@ -1,34 +1,8 @@
-\section{Procedure}
-\label{sec:procedure}
-In order to derive the magnetic moments and gyromagnetic ratios, 
-we use the relationship to applied magnetic fields given by the Zeeman effect 
-as established in the theory section \ref{sec:theory)}. 
-The point of resonance leads to the appearance of absorption lines 
-in the strength of the highly oscillating field. These absorption lines 
-will then be measured. 
-The steps undertaken in this experiment are the following:
-\begin{enumerate}
-\item
-measuring the homogenity of the magnetic field in order to define a stable working point;
-\item
-measuring the resonance frequency for a given external magnetic field by searching for 
-equidistant absorption peaks;
-\item
-measuring the resonance frequency with a lock-in amplifier and sine modulated saw tooth signal.
-\end{enumerate}
-From the obtained data, we then calculate the following quantities:
-\begin{enumerate}
-\item
-nuclear magnetic moment of $^19$F;
-\item
-gyromagnetic moment of proton in $^1$H, glycole and fluor.
-\end{enumerate}
-
-
 \section{Measurements}
 
 \subsection{Measuring the magnetic field}
-We measured the magnetic field inside the hole for the probe with the Hallo eefect sensor described in the setup section. 
+\paragraph{We measured the magnetic} 
+field inside the hole for the probe with the Hall effect sensor described in the setup section. 
 The sensor was initialized for $B = 0$ mT before the measurement. We first measured over the 
 entire range accessibile for a constant current $I$. Results are shown in table \ref{tab:b_height}. 
 Not all the collected data is displayed, as the linear dependence is shown already by a subset. Further 
@@ -41,7 +15,8 @@ the consequences would be very small, as the working point is quite large and th
 in this case could still be shown, is of much higher importance. 
 \input{tables/b_height}
  
-Then, we measured the dependency of $B(I)$ in a broader range of $I \in (0.57 2.58)$ A 
+\paragraph{Then, we measured} 
+the dependency of $B(I)$ in a broader range of $I \in (0.57 2.58)$ A 
 and for a smaller range, closer to the suspected region of resonance 
 for the given HF generator (table \ref{tab:b_I}). A third measurement at small scale 
 but higher current $I > 3.45$ A is not displayed, as this region will not be under 
@@ -50,90 +25,99 @@ concern in the evaluation (see appendix \ref{sec:appendix}).
 \FloatBarrier
 
 \subsection{Direct measurement of resonance frequency}
-In this section, we give an overview over the direct measurements of the resonance frequency
+\paragraph{In this section}, 
+we give an overview over the direct measurements of the resonance frequency
 for the different probes. The first part of this measurement was dominated by difficulties 
 to find the absorption peaks, as the signal we observed on the oscilloscope was quite noisy. 
 Only after a long time searching and further support of our tutor did we find any absorption 
 peaks at all. This is due to several problems of rather technical nature:
 \begin{itemize}
     \item
-        The fine tuning of the frequency was not possible. We relied on fine tuning the 
+        The fine tuning of the frequency was not possible to the necessary degree (only
+        steps of $0.05$ MHz possible). Once specified, the frequency was quite stable, though, 
+        with fluctuations of $\Delta f_{HF} = \pm 0.0001$ MHz (last displayed digit).
+    \item
+        As a consequence, we relied on fine tuning the 
         current and with it the underlying (constant) magnetic field of the main coil. 
         Even this tuning was not easy and limitied to a degree of exactness which 
-        allowed only to find \emph{a} signal of absorption. Very shortly after finding the 
-        signal, it disappeared again, seemingly due to fluctuations in the current. As stated 
-        before, we suspect changes in resistance due to developement of heat in the coil. 
-        The recordings were thus made directly after finding a signal. Contrary to the 
-        expectations prior to the experiment, we were not able to get a more exact 
+        allowed only to find \emph{a} signal of absorption. Absorption was seen only in 
+        a range of $\Delta I < 0.01$ A, thus smaller than the last digit displayed and 
+        corresponding to roating the potentiometer by the lowest angles possible using our hands. 
+    \item
+        Very shortly after finding the signal, it disappeared again.
+        Contrary to our expectations prior to the experiment, 
+        we were not able to get a more exact 
         value of $f_R$ by trying to get equidistant absorption peaks. 
+        We obtained the data displayed below by saving a 'single run' of the 
+        oscilloscope right after the absorption signal was noticed. 
+    \item 
+        Analogously to the measurements of the section above, we saw the current dropping 
+        over time while the voltage remained stable withing the displayed digits. 
+        The rate of dropping can be specified by approximately 
+        \begin{equation}
+            \frac{\Delta I }{\Delta t} = \frac{0.01 \, \A}{10 \, \mathrm{min}} \, .
+        \end{equation}
+    \item
+        We got a much more pronounced signal for small amplitudes of the HF oscillation. 
+        However, this amplitude was very unstable close to it's minimum. Many times, it would 
+        drop below the threshold of generating a signal at all, so that we had to readjust the 
+        corresponding potentiometer constantly. Only the later measurements during the second day 
+        of measuring could be achieved at a higher and more stable amplitude. 
 \end{itemize}
-
-
-
-\subsection{Measurements with Lock-In method}
-\subsubsection{Calibration of phase difference}
-
-\section{Interpretation}
-
-\subsection{Homogenity of $B$}
-The results of the measurement of the homogenity of the magnetic field $B$ 
-without applying the modulation are plotted in figure 
-\ref{fig:b_height}. As one can see, a good working point is defined for $z = -2$ cm, since 
-this is close to the midpoint of the observed plateau. The exitence of the plateau indicates the homogenity 
-of the field, which is a necessary foundation for the further analysis.
-\begin{figure}
-\includegraphics[width=\textwidth]{figures/b_height.pdf}
-\caption{   
-    Measurement of the homogenity of the unmodulated magnetic field $B$ in the vertical direction $z$. 
-    The appied current is $I = 2.62$ A. As we observe a plateau between $z = 7$ mm and $z = 31$ mm, 
-    we define the working point for the further experiments for $z = 20$ mm.
-    For measured values, refer to table \ref{tab:b_height}.
-    }
-\label{fig:b_height}
-\end{figure}
+The collected data was recorded in form of the signal measured by the oscilloscope. 
+We show the input signal given by the sine modulation of the external $B$-field and 
+the correlated absorption signal in the figures below. Figure \ref{fig:f_r_F} shows 
+some of the measured absorption peaks for fluor, either as a fluid or in Teflon. 
+One can observe that the number of peaks does not coincide with the number of zero 
+intersects of the $B$-modulation, which is shown on the bottom of the figure. 
+However, the measured frequency and corresponding can still be used for further calculations, 
+keeping in mind appropriate errors. 
+As seen in figures \ref{fig:f_r_H} and \ref{fig:f_r_glycol}, the same is true for 
+the measurements of the proton of $^1$H in water and in glycol.
+\input{analysis/plots_f_r}
 \FloatBarrier
 
-\subsection{Dependency $B(I)$}
-Measuring the magnetic fields of the main coil for different currents yielded two 
-important results, which can be observed in figure \ref{fig:b_I}:
-\begin{itemize}
-\item
-    In the regime $I < 3$ A, $B(I)$ behaves linear. We calculated fit parameters 
-    for a least square fit using the corresponding routine 'numpy.polyfit'\ref{scipy} for 
-    a first degree polynome $f(I) = p_0 I + p_1$ for the pairs $(I, B(I))$, $I \le 3.36$ A. 
-    The resulting parameters $p_0$ and $p_1$ with covariance matrix are given by:
-    \begin{align}
-        p_0 &= 129 \pm 3 \mT / \A\\
-        p_1 &= 16 \pm 7 \mT\\
-        \mathrm{cov}(p_i, p_j) &= 
-        \begin{pmatrix}
-            11.1\frac{\mT^2}{\A^2} &-21.5\frac{\mT^2}{\A} \\
-            -21.5\frac{\mT^2}{\A} &51.0\mT^2 \\
-        \end{pmatrix} 
-        \, \mathrm{}
-    \end{align}
-    The relative error 
-    \begin{equation}
-        \frac{\Delta p_0}{p_0} = 3 / 129 \approx 2\%
-    \end{equation}
-    indicates the linear behaviour in the chosen regime which is expected from the 
-    graphical analysis. 
-\item
-    We observe a non-linear behaviour for $I > 3$ A. However, this regime is 
-    not reached during the other measurements, so that we relinquish the further analysis. 
-\end{itemize}
-\begin{figure}
-\includegraphics[width=\textwidth]{figures/b_I.pdf}
-\caption{   
-    Measurement of magnetic field $B$ of the main coil depending on the applied current 
-    $I$ at the working point $z = 20$ mm. The error bars corresponding 
-    to the uncertainties $\Delta I = 0.01$ A 
-    and $\Delta B = 5$ mT are plotted but visibly very small at this scale. 
-    The line is showing the least square fit for $f(I) = p_0 I + p_1$. The 
-    lighter shade indicates the uncertainties calculated from the parameters 
-    and the covariance matrix. 
-    The measured values are shown in table \ref{tab:b_I}.
-    }
-\label{fig:b_I}
-\end{figure}
+\subsection{Measurements with lock-in method}
+\paragraph{The measurement with}
+the lock-in failed. we were not able to observe the expected signal 
+after dedicating an entire day for this part of the experiment. We will, however document some 
+of the calibration to illustrate the results of the theoretical section about the lock-in method 
+and to possibly identify mistakes we made. 
+We started the calibration by setting up the HF-generator and the main coil's magnetic field 
+for the $^1$H sample such that a resonance signal could be observed as in the previous section.
+This was achieved for a frequency of $\nu = 16.8220$ MHz and a current $I = 2.96$ A. 
+The sine modulator's signal was set to the frequency of the one in the previous section, 
+namely $31.9 \pm 1.0$ Hz, as can be obtained graphically by the period of $3T = (0.094 \pm 0.003)$ s 
+of the rectangular signal in figure \ref{fig:phase}. Calculating the frequency from the 
+oscilloscope's signal is necessary since the display of the sine generator was broken. 
+We then analysed the phase difference between the sine modulation and the rectangular gate 
+for the integration. The first part of this calibration was done by eye, observing the 
+signal of the lock-in analyser without integration. The results are displayed in the figure
+\ref{fig:phase}. As can be observed, for $T = 0$, the phase difference $\Delta \phi$ is not zero. 
+Since we want to integrate the signal, we need to have a phse difference close to $\Delta \phi = n \pi$, 
+$n \in \mathbb{N}$. We thus set the potentiometer 'Time const' to $T = 5.00 \pm 0.03$ with the 
+toggles set to $T_\mathrm{step} = 25ms$, Mode = Norm and $T_0$ = Norm. For integration, we 
+chose a time span of 1 s. 
+\input{analysis/phase}
 
+\paragraph{After completing the} 
+phase calibration for the given frequency, we calibrated the 
+sawtooth signal. We tried various values for the parameters available to configuration. 
+However, with the given setup, we did not observe any absorption peak as anticipated in the 
+theoretical section. After some tries, we decided varying the frequency of the sine signal as 
+well, again recalibrating the phase difference to $\Delta \phi = 2 \pi$ analogously.  
+We given an example of the recorded data in figure \ref{lock_in_example}, where we show 
+the sine modulated sawtooth for $T_\mathrm{sawtooth} = 30$ s for a range of $t \in [0, 2] s$ and
+over the entire time span $t \in [-30, 30]$, as well as 
+the measured signal, basically consisting of noise. The frequency can again be calculated 
+by reading of the period from the first graph:
+\begin{align}
+    32T  &= \left((1.97 - 0.00) \pm 0.02\right) \, \mathrm{s} \\
+        &= (1.97 \pm 0.02) \, \mathrm{s} \\
+    \Rightarrow \qquad f_\mathrm{sine} &= \frac{32}{32T} = 16.24 \mathrm{Hz} \\
+    s_{f_\mathrm{sine}} &= \frac{32}{(32T)^2} s_{32T} = 0.16 \mathrm{Hz} \, .
+\end{align}
+The signal did not differ substantially from the one shown in the example. We thus have to 
+relinquish from calculating the desired quantities from this method. 
+\input{analysis/example}
+\FloatBarrier

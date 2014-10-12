@@ -33,7 +33,7 @@ block=space,               % kleiner horizontaler Platz zwischen den Feldern
 backref=false,              % Seiten anzeigen, auf denen die Referenz vorkommt
 backrefstyle=three+,       % fasst Seiten zusammen, z.B. S. 2f, 6ff, 7-10
 date=short,                % Datumsformat
-backend = bibtex
+backend = biber
 ]{biblatex}
 \setlength{\bibitemsep}{1em}     % Abstand zwischen den Literaturangaben
 \setlength{\bibhang}{2em}        % Einzug nach jeweils erster Zeile
@@ -136,6 +136,7 @@ backend = bibtex
 %----------------------------------------------------------------------------------------
 \input{newcommands}
 \setcounter{page}{1}
+        f1.write(str_l)
 \section{Theory}
 \input{intro}
 Mein Lieblingsbuch~\autocite{strang2003introduction}
@@ -143,6 +144,7 @@ und hier \cite{boyd2003nonlinear}
 \input{measurements}
 \clearpage
 
+        f1.write(str_l)
 \section{Bibliography}
 \printbibliography[heading=subbibintoc,type=article,title={Articles only}]
 \printbibliography[heading=subbibintoc,type=book,title={Books only}]

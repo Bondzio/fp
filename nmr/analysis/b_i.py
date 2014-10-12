@@ -3,6 +3,11 @@ import pylab as plt
 import uncertainties as uc
 from uncertainties import unumpy as un
 from math import log10, floor
+import seaborn as sns
+sns.set(style='ticks', palette='Set2')
+sns.despine()
+plt.rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+plt.rc('text', usetex=True)
 
 def unv(uarray):        # returning nominal values of a uarray
     return un.nominal_values(uarray)
@@ -91,7 +96,7 @@ def la_coeff(f1, coeff, cov, var_names, additional_digits=0):
 ################################################################################
 
 show_fig = 1
-save_fig = 0
+save_fig = 1
 save_tab = 1
 plt.close('all')
 fig_dir = '../figures/'
