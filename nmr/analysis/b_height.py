@@ -1,5 +1,10 @@
 import numpy as np
 import pylab as plt
+import seaborn as sns
+sns.set(style='ticks', palette='Set2')
+sns.despine()
+plt.rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+plt.rc('text', usetex=True)
 
 show_fig = 1
 save_fig = 1
@@ -40,6 +45,11 @@ if not save_fig:
     fig1.suptitle('Magnetic field $B$ at height $z$')
     ax1.set_title('$\mathrm{for} \,  I = 2.62$ A')
 
+if show_fig:
+    fig1.show()
+if save_fig: 
+    fig1.savefig(fig_dir + "b_height.pdf")
+
 # give out latex table:
 if save_tab:
     tab_name = "b_height"
@@ -73,11 +83,6 @@ if save_tab:
     f1.write(ind + r"\label{tab:" + tab_name + "}" + "\n")
     f1.write(r"\end{table}" + "\n")
     f1.close()
-
-if show_fig:
-    fig1.show()
-if save_fig: 
-    fig1.savefig(fig_dir + "b_height.pdf")
 
 
 

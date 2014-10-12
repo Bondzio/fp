@@ -43,7 +43,7 @@ def la_coeff(f1, coeff, cov, var_names, additional_digits=0):
     """
     prints coeffients and their covariance matrix to a .tex file
     """
-    f1.write(r"\begin{eqnarray}" + "\n")
+    f1.write(r"\begin{align}" + "\n")
     for j, co in enumerate(coeff):
         str_co = "    " + var_names[j]
         digit = dig_err(cov, j) + additional_digits
@@ -92,8 +92,7 @@ def la_coeff(f1, coeff, cov, var_names, additional_digits=0):
         if j == len(coeff) -1:
             str_co = str_co[:-2]
         f1.write(str_co +"\n")
-    f1.write(r"\end{eqnarray}" + "\n\n")
-
+    f1.write(r"\end{align}" + "\n\n")
     return 0
 
 def chi2_theta(x, y, sigma, coeff, dx, dy, deg=1):
