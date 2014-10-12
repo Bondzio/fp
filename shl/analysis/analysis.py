@@ -250,4 +250,113 @@ def plot_5_1_hist():
     make_fig(fig,1,1,name="plot5_1_hist")
     plt.show()
 
-plot_5_1_hist()
+def calib_TAC_MCA():
+    delay   = np.array([0,8,16,24,32,40,48,56,64,72,80,88,96,104,112,120,128,136,144,152,160,168,176,184,190.5])
+    channel = np.array([20,24,29,34,41,47,53,59,66,72,78,84,90,96,102,109,115,121,127,133,139,145,151,157,162])
+    x_error = delay * 0 + 1
+    y_error = channel * 0 + 1
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+
+    plt.errorbar(channel,delay, yerr= y_error,xerr= x_error, fmt= "x")
+
+    p, cov= np.polyfit(channel,delay, 1, full=False, cov=True, w=y_error)
+    x_fit = np.linspace(20,162,1000)
+
+    data_fit     = (np.polyval(p, x_fit))
+    data_fit_min = (np.polyval(p - np.sqrt(np.diag(cov)),x_fit))
+    data_fit_max = (np.polyval(p + np.sqrt(np.diag(cov)),x_fit))
+
+    plt.plot(x_fit,data_fit)
+    
+    plt.xlim(20,162)
+    plt.ylim(0,191)
+
+    plt.ylabel("Delay",fontsize = 14)
+    plt.xlabel("Channel", fontsize = 14)
+
+    ax.xaxis.set_tick_params(labelsize = 14)
+    ax.yaxis.set_tick_params(labelsize = 14)
+
+
+
+    plt.fill_between(x_fit, data_fit_min , data_fit_max,facecolor="r", color="b", alpha=0.3 )
+    make_fig(fig,1,1,name = "plot7")
+
+def calib_TAC_MCA2():
+    delay   = np.array([25,108.5,162.,0.5,65.5,113.5,75.5,49,79,135.5,23.5,98.5,135.5,110.5,121,127,45,51.5,184,80,185,88.5,52,167.5,44.5])
+    channel = np.array([35,100,141,22,66,104,74,54,77,121,34,92,119,102,110,114,51,56,157,78,158,84,56,145,50])
+    x_error = delay * 0 + 1
+    y_error = channel * 0 + 1
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+
+    plt.errorbar(channel,delay, yerr= y_error,xerr= x_error, fmt= "x")
+
+    p, cov= np.polyfit(channel,delay, 1, full=False, cov=True, w=y_error)
+    x_fit = np.linspace(20,162,1000)
+
+    data_fit     = (np.polyval(p, x_fit))
+    data_fit_min = (np.polyval(p - np.sqrt(np.diag(cov)),x_fit))
+    data_fit_max = (np.polyval(p + np.sqrt(np.diag(cov)),x_fit))
+
+    plt.plot(x_fit,data_fit)
+    
+    plt.xlim(20,162)
+    plt.ylim(0,191)
+
+    plt.ylabel("Delay",fontsize = 14)
+    plt.xlabel("Channel", fontsize = 14)
+
+    ax.xaxis.set_tick_params(labelsize = 14)
+    ax.yaxis.set_tick_params(labelsize = 14)
+
+
+
+    plt.fill_between(x_fit, data_fit_min , data_fit_max,facecolor="r", color="b", alpha=0.3 )
+    make_fig(fig,1,1,name = "plot7")
+
+
+def calib_TAC_MCA_rescaled():
+    delay   = np.array([0,8,16,24,32,40,48,56,64,72,80,88,96,104,112,120,128,136,144,152,160,168,176,184,190.5])
+    channel = np.array([20,24,29,34,41,47,53,59,66,72,78,84,90,96,102,109,115,121,127,133,139,145,151,157,162])
+    x_error = delay * 0 + 1
+    y_error = channel * 0 + 1.5
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+
+
+    p, cov= np.polyfit(channel,delay, 1, full=False, cov=True, w=y_error)
+    x_fit = np.linspace(20,162,1000)
+
+    data_fit     = (np.polyval(p, x_fit))
+    data_fit_min = (np.polyval(p - np.sqrt(np.diag(cov)),x_fit))- (p[0]*x_fit + p[1])
+    data_fit_max = (np.polyval(p + np.sqrt(np.diag(cov)),x_fit))- (p[0]*x_fit + p[1])
+    
+    delay   = delay   - (p[0]*channel + p[1])
+    data_fit = data_fit - (p[0]*x_fit   + p[1])
+
+    plt.plot(x_fit,data_fit)
+    
+    plt.fill_between(x_fit, data_fit_min , data_fit_max,facecolor="r", color="b", alpha=0.3 )
+    plt.errorbar(channel,delay, yerr= y_error,xerr= x_error, fmt= "x")
+
+    plt.xlim(20,162)
+    plt.ylim(-3,3)
+
+    plt.ylabel("Delay",fontsize = 14)
+    plt.xlabel("Channel", fontsize = 14)
+
+    ax.xaxis.set_tick_params(labelsize = 14)
+    ax.yaxis.set_tick_params(labelsize = 14)
+
+
+
+    make_fig(fig,1,1,name = "plot7b")
+
+
+calib_TAC_MCA2()
+

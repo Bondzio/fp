@@ -175,6 +175,7 @@ The measurement ran about 14 hours over night. See Figure~\ref{fig:4_1} for the 
         The errors which are visualized here are approximated by $S_{N_i} = \sqrt{N_i}$.}
     \label{fig:4_1}
 \end{figure}
+\clearpage
 \subsubsection{Random coicidences}
 \label{ssub:Random coicidences}
 For measuring the background we used the same configuration as before, except of the TAC-input:
@@ -183,14 +184,30 @@ For measuring the background we used the same configuration as before, except of
     \item TAC Stop: SCA1, triggered by 122 keV (no delay)
 \end{itemize}
 A first approach with $\Delta t = 16$ns failed, since we observed a clear peak in low channels in contrary
-to an expected equally distributed signal. 
+to an expected equally distributed signal. After changing to $\Delta t=48$ns we observe a clear
+background noise signal, which you can see in Figure~\ref{fig:5_1}.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{analysis/figures/plot5_1_hist}
     \caption{Measurement 5.1: Random coincidences and their histogram.}
     \label{fig:5_1}
 \end{figure}
+
+\clearpage
 \subsection{Calibration of TAC-MCA Signal}
 \label{sub:calibration_of_tac_mca_signal}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.7\linewidth]{analysis/figures/plot7}
+    \caption{Calibration of the TAC-MCA Signal.}
+    \label{fig:plot7}
+\end{figure}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.7\linewidth]{analysis/figures/plot7b}
+    \caption{Calibration of the TAC-MCA Signal.}
+    \label{fig:plot7}
+\end{figure}
+
 
 
