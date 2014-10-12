@@ -93,7 +93,7 @@ Figure~\ref{fig:measure2.1} for the figures of the measurement 2.1.
     \label{fig:measure2.1}
 \end{figure}
 \clearpage
-\subsection{Measuring delayed coincidences}
+\subsection{Measuring $\Delta t$ of coincidences}
 \label{sub:measuring_delayed_coincidences}
 \subsubsection{Setting the energy window}
 \label{ssub:Setting the energy window}
@@ -160,29 +160,37 @@ $\Delta t = 140$ns.\\\\
 \end{minipage}
 \end{minipage}
 \clearpage
-\subsubsection{Conduction of the experiment over night}
+\subsubsection{Delayed coincidences}
 The measurement ran about 14 hours over night. See Figure~\ref{fig:4_1} for the visualization.
 \label{ssub:Conduction of the experiment over night}
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{analysis/figures/plot4_1}
-    \caption{Measurement 4.1: $\Delta t $}
+    \caption{Measurement 4.1: You will notice that the shape
+        of the peak looks gaussian, which is rather unexpected. However
+        further analysis show, that the peak is not symmetric and hence the left 
+        side will be fitted against a exponential curve, while the origin of the
+        right side is the background, which will be analyzed in the next section.
+        The errors which are visualized here are approximated by $S_{N_i} = \sqrt{N_i}$.}
     \label{fig:4_1}
 \end{figure}
-
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{analysis/figures/plot4_1_log}
-    \caption{Measurement 4.1: $\Delta t $}
-    \label{fig:4_1log}
-\end{figure}
-
-
+\subsubsection{Random coicidences}
+\label{ssub:Random coicidences}
+For measuring the background we used the same configuration as before, except of the TAC-input:
+\begin{itemize}
+    \item TAC Start: SCA2, triggered by the 14.4 keV Peak, delayed with $\Delta t = 48$ns
+    \item TAC Stop: SCA1, triggered by 122 keV (no delay)
+\end{itemize}
+A first approach with $\Delta t = 16$ns failed, since we observed a clear peak in low channels in contrary
+to an expected equally distributed signal. 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{analysis/figures/plot5_1_hist}
     \caption{Measurement 5.1: Random coincidences and their histogram.}
     \label{fig:5_1}
 \end{figure}
+\subsection{Calibration of TAC-MCA Signal}
+\label{sub:calibration_of_tac_mca_signal}
+
 
