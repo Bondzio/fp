@@ -1945,27 +1945,3 @@
     <bcf:datasource type="file" datatype="bibtex">report.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">Hooshyar</bcf:citekey>
-    <bcf:citekey order="2">Hooshyar</bcf:citekey>
-    <bcf:citekey order="3">Hooshyar</bcf:citekey>
-    <bcf:citekey order="4">Hooshyar</bcf:citekey>
-    <bcf:citekey order="5">Hooshyar</bcf:citekey>
-    <bcf:citekey order="6">Hooshyar</bcf:citekey>
-    <bcf:citekey order="7">strang2003introduction</bcf:citekey>
-    <bcf:citekey order="8">Hooshyar</bcf:citekey>
-  </bcf:section>
-  <bcf:sortlist section="0" name="none" type="entry" sortscheme="none">
-  <bcf:sorting>
-    <bcf:sort order="1">
-      <bcf:sortitem order="1">citeorder</bcf:sortitem>
-    </bcf:sort>
-  </bcf:sorting>
-  </bcf:sortlist>
-  <bcf:sortlist section="0" name="none" type="entry" sortscheme="none">
-  <bcf:sorting>
-    <bcf:sort order="1">
-      <bcf:sortitem order="1">citeorder</bcf:sortitem>
-    </bcf:sort>
-  </bcf:sorting>
-  </bcf:sortlist>
-</bcf:controlfile>

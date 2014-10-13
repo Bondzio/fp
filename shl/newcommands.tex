@@ -35,7 +35,17 @@
 % Width for figures
 \newcommand{\pltw}{0.9\textwidth}
 \newcommand{\mpltw}{0.68\textwidth}
-\newcommand{\picwidth}{0.47\textwidth}
+\newcommand{\picwidth}{0.50\textwidth}
 \newcommand{\picwidthh}{0.36\textwidth}
+
+
+\newcommand{\nucl}[3]{
+\ensuremath{
+\phantom{\ensuremath{^{#1}_{#2}}}
+\llap{\ensuremath{^{#1}}}
+\llap{\ensuremath{_{\rule{0pt}{.75em}#2}}}
+\mbox{#3}
+}
+}
 
 \definecolor{LightCyan}{rgb}{0.88,1,1}

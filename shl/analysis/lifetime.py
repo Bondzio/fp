@@ -2,6 +2,7 @@ import numpy as np
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 import seaborn as sns
+
 from matplotlib import rcParams
 rcParams['axes.labelsize'] = 14
 rcParams['xtick.labelsize'] = 14
@@ -10,7 +11,9 @@ rcParams['legend.fontsize'] = 14
 rcParams['font.family'] = 'serif'
 rcParams['font.serif'] = ['Computer Modern Roman']
 rcParams['text.usetex'] = True
-rcParams['figure.figsize'] = 8.3, 5.2
+rcParams['figure.figsize'] = 9.3, 4.2
+
+
 
 fig_dir = "./figures/"
 
@@ -33,6 +36,29 @@ def halflife():
 import scipy.constants as cs
 eV = cs.eV
 c  = cs.c
+hbar = cs.hbar
+
+def breit_wigner():
+    """Plot the breit-wigner distribution
+    We use KeV here
+    and the example 57Co to 57Fe
+
+    """
+    M_i = 136.5 
+    M_f = np.linspace(-200,600,1000)
+    T_12 = 270 * 24 * 60 * 60
+    tau  = T_12 / np.log(2) 
+    Gamma = 10**6 * hbar/tau / (eV)**2  
+    print(Gamma)
+    N_f = 100* Gamma / (2*np.pi*( (M_f - M_i)**2 + Gamma**2/4 ))
+
+    plt.figure()
+    plt.plot(M_f,N_f)
+    plt.xlabel("Energy in keV")
+    plt.ylabel("Probability in \%")
+    plt.savefig("figures/breit_wigner.pdf")
+
+breit_wigner()
 
 def energy_terms(Z,N):
     """Liquid Drop Model
@@ -59,6 +85,7 @@ def energy_terms(Z,N):
     f2 = a2 * A**(2/3)
     f3 = a3 * (Z * ( Z-1) )*A**(-1/3)
     f4 = a4 * (Z - A/2)**2 / A
+
     val = 1
     if (Z%2 == True) and (N%2 == True):
         val *= -1
@@ -72,33 +99,31 @@ from matplotlib.colors import LogNorm
 def plotdrops():
     """ Plotting the dropplets
     """
-    pass
-Z = np.arange(1,150,1)
-N = np.arange(1,151,1)
+    Z = np.arange(1,150,1)
+    N = np.arange(1,151,1)
 
-ZZ,NN = np.meshgrid(Z,N)
+    ZZ,NN = np.meshgrid(Z,N)
 
-total_energies = ZZ*0.0   
-binding_energies = ZZ*0.0   
+    total_energies = ZZ*0.0   
+    binding_energies = ZZ*0.0   
 
-for i in range(len(N)):
-    for j in range(len(Z)):
-        print(i,j)
-        total_energies[i,j] , binding_energies[i,j]  = energy_terms(ZZ[i,j],NN[i,j])
+    for i in range(len(N)):
+        for j in range(len(Z)):
+            print(i,j)
+            total_energies[i,j] , binding_energies[i,j]  = energy_terms(ZZ[i,j],NN[i,j])
 
-plt.figure()
-plt.pcolor(ZZ,NN,total_energies,cmap='RdBu',norm=LogNorm(total_energies.min(), vmax=total_energies.max()))
-plt.xlim(min(Z),max(Z))
-plt.ylim(min(N),max(N))
-plt.colorbar()
-plt.show()
+    plt.figure()
+    plt.pcolor(ZZ,NN,total_energies,cmap='RdBu',norm=LogNorm(total_energies.min(), vmax=total_energies.max()))
+    plt.xlim(min(Z),max(Z))
+    plt.ylim(min(N),max(N))
+    plt.colorbar()
+    plt.show()
 
-plt.figure()
-plt.pcolor(ZZ,NN,binding_energies,cmap='RdBu')
-plt.xlim(min(Z),max(Z))
-plt.ylim(min(N),max(N))
-plt.colorbar()
-plt.show()
+    plt.figure()
+    plt.pcolor(ZZ,NN,binding_energies,cmap='RdBu')
+    plt.xlim(min(Z),max(Z))
+    plt.ylim(min(N),max(N))
+    plt.colorbar()
+    plt.show()
 
 
-plotdrops()

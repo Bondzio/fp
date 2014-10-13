@@ -48,7 +48,8 @@ The half-life $t_{1/2}$ is obviously connected by $t_{1/2}= -\mathrm{log}(2)/ \l
     \centering
     \includegraphics[width=0.9\linewidth]{analysis/figures/halflife}
     \caption{Probability $\mathcal{P}(t) = 1 -  \exp(-\lambda t)$ of an atom to decay after time $t$.
-        Here we chose as an example the decay of Cs $\rightarrow$ Fe with $t_{1/2}=270$ over a timerange
+        Here we chose as an example the decay of
+        $^{57}\textrm{Cs}\rightarrow ^{57}\textrm{Fe}$ with $t_{1/2}=270$ over a timerange
     of 4 years.}
     \label{fig:decay}
 \end{figure}
@@ -122,6 +123,35 @@ where $a_1$ has to be found depending on the volume.
       Where the function $f(A)$ should be estimated by fitting the data, 
       often $f(A) = a_5 A^{-\frac{1}{2}}$ is used.
 \end{itemize}
+\subsubsection{Unstable States}
+\label{ssub:Unstable States}
+If we want investigate the form of the energy distribution of a decay, we have to 
+introduce the \textit{natural decay width}, given by
+\begin{equation}
+    \Gamma_f = \frac{\hbar}{\tau_f} 
+\end{equation}
+which can be defined for each channel $f$, such that in total we get
+\begin{equation}
+    \Gamma = \sum_{f} \Gamma_f
+\end{equation}
+Where we can define the \textit{branching ratio} for channel $f$ as:
+\begin{equation}
+    B_f = \frac{\Gamma_f}{\Gamma}
+\end{equation}
+The energy distribution of the unstable state to a final state $f$ resolves into a 
+\textit{Breit-Wigner-distribution}:
+\begin{equation}
+    N_f(M_f) = \frac{\Gamma_f}{(M_f-M_i)^2 c^4 + \Gamma^2/4}
+\end{equation}
+With the mass of the decaying state $M_i$ and the invariant mass of decay products $M_f$.
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{analysis/figures/breit_wigner}
+    \caption{Breit-Wigner distribution. Here again with
+        $^{57}Cs\rightarrow ^{57}Fe$ with $t_{1/2}=270$. Hence we have $M_i = 136.5$keV and
+    $\Gamma_f = \hbar / \textrm{log}(2)t_{1/2} = 122$keV, which resamples in the width of the curve.}
+    \label{fig:name}
+\end{figure}
 \clearpage
 
 
