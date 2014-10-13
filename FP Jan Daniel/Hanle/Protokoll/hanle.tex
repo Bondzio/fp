@@ -1,0 +1,50 @@
+\documentclass[ %
+    11pt, %
+    a4paper, %
+    BCOR=12mm, %
+    DIV=12, %
+    headsepline=true, %
+    parskip=half, %
+    %draft=true, %
+]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{braket}
+%%englisches Protokoll
+%\usepackage[british,UKenglish,USenglish,english,american]{babel}
+% %
+%%deutsches Protokoll
+\usepackage[ngerman]{babel}
+% %
+\usepackage{amssymb,amsmath,setspace}
+\usepackage{engrec}
+\usepackage{enumerate}
+\usepackage{empheq}
+\usepackage{picins}
+\usepackage{floatflt}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{natbib}
+\usepackage{pdfpages}
+\usepackage{hyperref}
+\graphicspath{{Bilder/}}%% Allgemeine Bilder
+\usepackage[paper=a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
+
+\begin{document}
+
+\input{Kapitel/titelseite}
+
+\pagenumbering{Roman}
+
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+\input{Kapitel/theorie}
+\input{Kapitel/aufbau}
+\input{Kapitel/durchfuehrung}
+\input{Kapitel/auswertung}
+
+%Inhaltsverzeichnis
+\end{document}

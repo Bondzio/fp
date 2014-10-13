@@ -1,0 +1,51 @@
+\subsection{Mathematica-Notebook}
+
+~\\~\\
+
+\newcommand{\mathsym}[1]{{}}
+\newcommand{\unicode}[1]{{}}
+
+
+\begin{doublespace}
+\noindent\(\pmb{\text{Tc}=1764; \text{pc}=167000000;}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\pmb{\text{a1}= -4.57618368; \text{a2}=-1.40726277; \text{a3}=2.36263541; \text{a4}=-31.0889985; \text{a5}=58.0183959; }\\
+\pmb{\text{a6}=-27.6304546;}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\pmb{\text{TR}[\text{T$\_$}]\text{:=} 1-(T/\text{Tc})}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\pmb{p[\text{T$\_$}]\text{:=} \text{pc}*(1/(133.322))*E{}^{\wedge}((\text{Tc}/T)*(\text{a1}*\text{TR}[T]+\text{a2}*\text{TR}[T]{}^{\wedge}(1.89)+\text{a3}*\text{TR}[T]{}^{\wedge}2))}\)
+\end{doublespace}
+
+\begin{doublespace}
+~~~~~~\(\pmb{+\text{a4}*\text{TR}[T]{}^{\wedge}8+\text{a5}*\text{TR}[T]{}^{\wedge}(8.5)+\text{a6}*\text{TR}[T]{}^{\wedge}9))}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\pmb{\text{sT}=0.5;}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\pmb{\text{dp}[\text{T$\_$}]\text{:=}p'[T]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\pmb{\text{sp}[\text{T$\_$}]\text{:=}\text{Sqrt}[\text{dp}[T]{}^{\wedge}2*\text{sT}{}^{\wedge}2]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\pmb{\text{tabT}=\text{Table}[\{(T-273.15),p[T],\text{sp}[T]\},\{T,(-10+273.15),(13+273.15)\}]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\{\{-10.,0.0000721933,\text{3.865450997317437$\grave{ }$*${}^{\wedge}$-6}\},\{-9.,0.0000803202,\text{4.2675761898068916$\grave{ }$*${}^{\wedge}$-6}\},\\\{-8.,0.000089289,\text{4.707820511540614$\grave{
+}$*${}^{\wedge}$-6}\},\{-7.,0.0000991791,\text{5.189433453065112$\grave{ }$*${}^{\wedge}$-6}\},\\\{-6.,0.000110077,\text{5.7159090532974774$\grave{
+}$*${}^{\wedge}$-6}\},\{-5.,0.000122075,\text{6.291001701804908$\grave{ }$*${}^{\wedge}$-6}\},\\\{-4.,0.000135276,\text{6.918742777599731$\grave{ }$*${}^{\wedge}$-6}\},\{-3.,0.000149788,\text{7.603458157347446$\grave{
+}$*${}^{\wedge}$-6}\},\\\{-2.,0.000165731,\text{8.34978662661849$\grave{ }$*${}^{\wedge}$-6}\},\{-1.,0.000183232,\text{9.1626992284663$\grave{ }$*${}^{\wedge}$-6}\},\\\{0.,0.000202429,0.0000100475\},\{1.,0.000223473,0.0000110099\},\\\{2.,0.000246525,0.0000120561\},\{3.,0.000271758,0.0000131924\},\\\{4.,0.000299359,0.0000144259\},\{5.,0.000329531,0.000015764\},\\\{6.,0.00036249,0.0000172147\},\{7.,0.00039847,0.0000187863\},\\\{8.,0.000437722,0.0000204878\},\{9.,0.000480515,0.000022329\},\\\{10.,0.000527138,0.0000243199\},\{11.,0.000577901,0.0000264715\},\\\{12.,0.000633138,0.0000287952\},\{13.,0.000693205,0.0000313034\}\}\)
+\end{doublespace}
