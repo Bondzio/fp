@@ -19,9 +19,9 @@ def plot_all():
     - Issa 
 
     """
-    names = [ "npy/2.%d_HM1508-2"%i for i in range(1,5+1)]
-    names +=  ["npy/3.1_HM1508-2"]
-    for name in names:
+    names =  [ ("npy/2.%d_HM1508-2"%i,"2.%d"%i) for i in range(1,5+1)]
+    #names =  [ ("npy/3.%d_HM1508-2"%i,"3.%d"%i) for i in range(1,8+1)]
+    for name,shortname in names:
         t = np.load(name+"_t.npy")
         A = np.load(name+"_channelA.npy")
 
@@ -40,9 +40,10 @@ def plot_all():
 
         fig = plt.figure()
         plt.scatter(t,A, alpha = 0.4)
-        plt.plot(t, sin_fit(t,*coeff))
-        #plt.xlabel("time $t$",fontsize = 14)
-        #plt.ylabel("Amplitude $U$ in Volt", fontsize = 14)
+        #plt.plot(t, sin_fit(t,*coeff))
+        plt.xlabel("time $t$",fontsize = 14)
+        plt.ylabel("Amplitude $U$ in Volt", fontsize = 14)
+        plt.title(shortname)
         plt.show()
 
 plot_all()

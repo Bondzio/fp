@@ -109,3 +109,5 @@ if save_fig: f1 = open('plots_f_r.tex', 'w+')
 for i in range(3):
     plot_signal(n[i], js[i], sample[i], I[i], nu[i], captions[i], fig_name[i], figsize[i])
 if save_fig: f1.close()
+
+       
