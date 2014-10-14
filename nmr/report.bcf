@@ -1843,9 +1843,6 @@
       <bcf:constraint type="mandatory">
         <bcf:field>title</bcf:field>
       </bcf:constraint>
-<<<<<<< HEAD
-    </bcf:con
-=======
     </bcf:constraints>
     <bcf:constraints>
       <bcf:entrytype>misc</bcf:entrytype>
@@ -1948,8 +1945,8 @@
     <bcf:citekey order="2">Demtroeder1</bcf:citekey>
     <bcf:citekey order="3">gerthsen</bcf:citekey>
     <bcf:citekey order="4">gerthsen</bcf:citekey>
-    <bcf:citekey order="5">lockin</bcf:citekey>
-    <bcf:citekey order="6">lockin</bcf:citekey>
+    <bcf:citekey order="5">versuchsanleitung</bcf:citekey>
+    <bcf:citekey order="6">versuchsanleitung</bcf:citekey>
     <bcf:citekey order="7">versuchsanleitung</bcf:citekey>
     <bcf:citekey order="8">versuchsanleitung</bcf:citekey>
     <bcf:citekey order="9">versuchsanleitung</bcf:citekey>
@@ -1960,24 +1957,22 @@
     <bcf:citekey order="14">versuchsanleitung</bcf:citekey>
     <bcf:citekey order="15">versuchsanleitung</bcf:citekey>
     <bcf:citekey order="16">versuchsanleitung</bcf:citekey>
-    <bcf:citekey order="17">versuchsanleitung</bcf:citekey>
-    <bcf:citekey order="18">versuchsanleitung</bcf:citekey>
   </bcf:section>
-  <bcf:sortlist section="0" name="none" type="entry" sortscheme="none">
+  <bcf:sortlist section="0" type="entry" label="none">
   <bcf:sorting>
     <bcf:sort order="1">
       <bcf:sortitem order="1">citeorder</bcf:sortitem>
     </bcf:sort>
   </bcf:sorting>
   </bcf:sortlist>
-  <bcf:sortlist section="0" name="none" type="entry" sortscheme="none">
+  <bcf:sortlist section="0" type="entry" label="none">
   <bcf:sorting>
     <bcf:sort order="1">
       <bcf:sortitem order="1">citeorder</bcf:sortitem>
     </bcf:sort>
   </bcf:sorting>
   </bcf:sortlist>
-  <bcf:sortlist section="0" name="none" type="entry" sortscheme="none">
+  <bcf:sortlist section="0" type="entry" label="none">
   <bcf:sorting>
     <bcf:sort order="1">
       <bcf:sortitem order="1">citeorder</bcf:sortitem>
@@ -1985,4 +1980,3 @@
   </bcf:sorting>
   </bcf:sortlist>
 </bcf:controlfile>
->>>>>>> da141b5d40630572f38fbe40712d23d63d1e2b86

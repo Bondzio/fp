@@ -61,7 +61,7 @@ def plot_lock_in(n, js, captions, fig_name, figsize):
         f1.write('\t\caption{\n')
         for caption in captions:
             f1.write('\t\t' + caption + '\n')
-        f1.write('\t\t}\n\t\label{fig:%s}\n'%fig_name)
+        f1.write('\t\t}\n\t\label{fig:lock_in_%s}\n'%fig_name)
         f1.write('\end{figure}\n\n')
     if show_fig:
         fig.show()
