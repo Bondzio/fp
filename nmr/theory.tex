@@ -103,26 +103,33 @@ expect our signal frequency to be: \\\\
     $90^\circ$ or $270^\circ$ & 0 
 \end{tabular}
 \vspace{0.5cm}\\\\
+
+\subsubsection{Measuring the resonance}
 In our experiment we use as a reference signal a sawtooth curve, modulated
 with a sinus:
 \begin{equation}
    U(t) = U_{sz} \left[ t - \lfloor t \rfloor \,  \right] + U_0 \sin(\omega t)
 \end{equation}
-where the $\lfloor t \rfloor$ denotes to the gauss bracket (rounding up). 
+where the $\lfloor t \rfloor$ denotes to the gauss bracket (rounding down). 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/sawtooth}
     \caption{Reference signal for our lockin amplifier}
     \label{fig:sawtooth}
 \end{figure}
-\subsubsection{Measuring the resonance}
+We use the sawtooth curve to find the frequency, which will be 
+realized as the derivate of a peak (see figure~\ref{fig:lockin2}).
+The frequency of the sinuscurve should be much smaller than the 
+frequency of the sawtooth singal in order to be able to resolve the 
+searched frequency.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/lockin2}
-    \caption{}
-    \label{fig:figures/lockin2}
+    \caption{Reference and resulting signal with the lockin method
+        \cite{versuchsanleitung}.}
+    \label{fig:lockin2}
 \end{figure}
-
+\clearpage
 
 
 \subsection{Materiales used in the experiment}
