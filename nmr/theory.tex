@@ -10,7 +10,7 @@ $m_l$ and $m_s$, respectively. For the nucleus with wavefunction $\Psi_N$,
 spin and angular momentum are coupled to the 
 nuclear spin with corresponding operator $\hat{I}$. Its properties are given by:
 \begin{align}
-    \hat{I} \Psi_N &= \mathbf{I} \Psi_N \\ 
+    \hat{\mathbf{I}} \Psi_N &= \mathbf{I} \Psi_N \\ 
 \intertext{for which}
     \mathbf{I}^2 &= \hbar^2 I(I + 1)  &\text{(absolute value)} \\
     \left[\hat{H}, \hat{I}^2\right]_- &= 0  &\text{(constant)}
@@ -23,23 +23,102 @@ It is given by
     I_z &= m_I \hbar \\
     m_I &\in \left\{-I, -I + 1, \ldots, I - 1, I\right\}
 \end{align}
-Thus, we have $2I + 1$ values for $m_I$. Depending on whether $I$ is integer or half integer, 
+Thus, we have $2I + 1$ values for $m_I$, which due to its determining role in the Zeeman effect is 
+also called \emph{magnetic quantum number}. Depending on whether $I$ is integer or half integer, 
 we have to apply Bose- or Fermi-statistics; the particles are called bosons or fermions, 
 accordingly~\cite{Demtroeder1}.
 
 \subsection{Magnetic moment}
-Magnetic moment
+Connected to the nuclear spin, we observe the \emph{nuclear magnetic moment}
 \begin{equation}
-    \mathbf{\mu} \mu = \gamma_K \mathbf{I}
+    \mu_N = \gamma_N \mathbf{I},
 \end{equation}
-unit: \emph{nuclear magnetcon}
+where $\gamma_N$ is the \emph{gyromagnetic ratio} for the nucleus, which 
+can be written in terms of the \emph{nuclear magneton} $\mu_K$
+as
 \begin{equation}
-    \mu_K = \frac{\hbar e}{2 m_p}
+    \gamma_N = \frac{g_N \mu_K}{\hbar} \, .
 \end{equation}
-
+The dimensionless \emph{nuclear g-factor} $g_N$ depends on the constituents of the 
+nucleus and is a quantity experimentally measured. $\mu_K$ is defined 
+analogously to the Bohr magneton $\mu_B$, but for protons, such that 
+\begin{equation}
+    \mu_K := \frac{\hbar e}{2 m_p} \, .
+\end{equation}
+with elementary charge $e = 1.602\mathrm{e}-19$ A s 
+and proton mass $m_p = 1.673\mathrm{e}-27$~kg~\cite{Demtroeder1}.
+As ferminons, protons and neutrons follow the Pauli principle of exclusion. 
+Having spin $S_N = \frac{1}{2}$, there are two possible 'orientations' for 
+the $z$-component, namely $m_{s_N} = \pm \frac{1}{2}$. Thus, one orbital 
+is filled with two particles of opposite spin. A nucleus can then be 
+characterized by the number of protons and neutrons each being 
+even ('g') or odd ('u'). A 'gg' nucleus thus has total nuclear spin $I = 0$, 
+as for example the case for ($_8^{16}$O)- and ($_6^{12}$C)-atoms. 
+'gu' and 'ug' nuclei have $I = \frac{1}{2}$, like the 'ug' ($^1$H) isotope 
+measured in this experiment as the only non-zero spin component both of 
+glycol (C$_2$H$_6$O$_2$) and water (H$_2$O). The other probe under consideration, 
+the $_9^{19}$F with 9 protons and 10 neutrons, 
+also has a 'ug' nucleus and thus $I = frac{1}{2}$, but a different nuclear g-factor. 
+Nuclei with odd numbers of 
+protons and neutrons have spin $I = 1$; they are aligned parallel due to a lower 
+energy stemming from the quark structure of the nucleons respect to the anti-parallel 
+alignment with zero nuclear spin. An example is the deuterium $^2$H. However, in this 
+experiment, we will not look at this case. 
 
 \subsection{Nuclear magnetic resonance}
-\subsection{Relaxation}
+The energy of a magnetic dipole $\mu$ in an external field $\B$ is given by 
+\begin{equation}
+    E = - \mu_N \cdot \B
+\end{equation}
+in both the classical and the quantum mechanical case. In the latter, 
+we take the projection of $\mu$ onto the direction of $\B$ with magnitude 
+$B := |\B|$ and thus obtain 
+\begin{equation}
+    E = - g_N \mu_K m_I B \, .
+\end{equation}
+An energy level which prior to switching on the magnetic field is degenerate in $m_I$ 
+will thus be subject to the \emph{Zeeman effect}, describing the split up into two 
+distinct levels with difference in energy $\Delta E$. Since $\Delta m_I = 1$, the 
+distance between the two levels is given by 
+\begin{equation}
+    \Delta E = - g_N \mu_K B \, .
+\end{equation}
+In order to 'flip spins', i.~e. to change state from $m_I = - \frac{1}{2}$ to $m_I = + \frac{1}{2}$, 
+or vice versa, the energy has to be absorped or released. The source for absorption can be a photon $\gamma$
+of the corresponding energy, thus with frequency 
+\begin{equation}
+    \Delta \nu = \frac{\Delta E}{h} = \frac{g_N \mu_K B}{h} = \frac{\gamma_N B}{2 \pi}\, .
+\end{equation}
+The frequency band is widened by the typical effects, such as natural width, Doppler effect 
+and collisions. 
+In order to examine the effect of a probe on the energy of an external field, there are several
+aspects to look at. At first glance, one might come to the conclusion, that the effects of 
+absorping photons of the field and those photons being added to the field cancel each other. 
+This is not the case though, because of the following reasons:
+\begin{itemize}
+    \item
+        The spontaneous emission is distributed isotropically, such that these photons are lost for 
+        the external field along one axis.
+    \item
+        The number of atoms in the two states is not equal, since the states are distributed according to 
+        a Boltzmann distribution, namely $n_{m_I} \propto \exp\left\{-\frac{E_{m_I}}{kT}\right\}$. 
+        Thus we can write the ratio of the two occupation numbers by
+        \begin{equation}
+            \frac{n_{+1/2}}{n_{-1/2}} 
+                = \exp\left\{-\frac{E_{+1/2} - E_{-1/2}}{kT} \right\}
+                = \exp\left\{-\frac{\Delta E}{kT} \right\} \, .
+        \end{equation}
+        We conclude, that the number of states with $m_I = -\frac{1}{2}$ is higher than the energetically 
+        higher state with $m_I = +\frac{1}{2}$. Thus, more photons are absorped than emitted. 
+\end{itemize}
+One would now expect this latter effect to cease after some time, as $n_{+1/2}$ raises at the expense of 
+$n_{-1/2}$. However, there are relaxation processes that keep up the imbalance between the two. 
+Apart from spontaneous emission, there is the spin-lattice relaxation allows $\Delta E$ to be passed 
+over to the lattice without radiation, such that the energy is lost to the field. 
+Yet another effect is the spin-spin interaction which changes the external $\B$-field of atoms close 
+to a flipped spin slightly with respect to the case without flip. This results in widening of the 
+absorption line. 
+
 \subsection{Hall effect and sensor}
 \subsection{Lock-in method}
 
