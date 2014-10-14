@@ -94,6 +94,43 @@ Figure~\ref{fig:measure2.1} for the figures of the measurement 2.1.
 \end{figure}
 \clearpage
 \subsection{Measuring $\Delta t$ of coincidences}
+
+\subsubsection{Calibration of TAC-MCA Signal}
+In order to relate the channels to the Delay, we used the following
+measurement for calibration. We used a least square fit for the parameters
+of the linear relation:
+\begin{align}
+    \label{eq:coeff}
+    y &= ax + b \\
+    a &= \left[ 1.315 \pm 0.005 \right]s\\
+    b &= \left[ -22.6 \pm 0.5 \right]s 
+\end{align}
+The resulting covariance matrix of the fit is the following:
+\begin{align}
+    \label{eq:cov}
+    \mathrm{cov}(a, b) &=& 
+    \begin{pmatrix}
+        2.318\mathrm{e}-05 &-2.089\mathrm{e}-03 \\
+        -2.089\mathrm{e}-03 &2.328\mathrm{e}-01 \\
+    \end{pmatrix}
+\end{align}
+The $\chi^2$-test results in:
+\begin{align}
+    \label{eq:}
+   \chi^2 = 0.972
+\end{align}
+
+\label{sub:calibration_of_tac_mca_signal}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{analysis/figures/plot7}
+    \caption{Calibration of the TAC-MCA Signal. The errorbars are too small
+        to see clearly, since the $\chi^2$ test ist also nearly 1.}
+    \label{fig:plot7}
+\end{figure}
+
+
+
 \label{sub:measuring_delayed_coincidences}
 \subsubsection{Setting the energy window}
 \label{ssub:Setting the energy window}
@@ -194,19 +231,4 @@ background noise signal, which you can see in Figure~\ref{fig:5_1}.
 \end{figure}
 
 \clearpage
-\subsection{Calibration of TAC-MCA Signal}
-\label{sub:calibration_of_tac_mca_signal}
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{analysis/figures/plot7}
-    \caption{Calibration of the TAC-MCA Signal.}
-    \label{fig:plot7}
-\end{figure}
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{analysis/figures/plot7b}
-    \caption{Calibration of the TAC-MCA Signal.}
-    \label{fig:plot7}
-\end{figure}
-
 
