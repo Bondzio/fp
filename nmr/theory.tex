@@ -126,6 +126,39 @@ to a flipped spin slightly with respect to the case without flip. This results i
 absorption line. 
 
 \subsection{Hall effect and sensor}
+If we look at a conductor with an applied current, which located inside of an magnetic field
+(see figure~\ref{fig:halleffect}), the Lorentz force
+\begin{equation}
+    F = q ( E + v \times B)
+\end{equation}
+acts on the moving charges such that perpendicular to the direction of the current we will have a Potential,
+which compensates the Lorentz force:
+\begin{equation}
+    e E_H = -e v \times B
+\end{equation}
+By integrating over the distance $b$ of the conducter and supposing a linear
+relationship, we arrive at:
+\begin{equation}
+    U_H = - b v B
+\end{equation}
+which can be expressed in terms of the Current $I = d \cdot c \cdot j$ where $d$ is the width of the 
+conducter and $j=e n v$ the current density:
+\begin{equation}
+    U_H = \frac{- I\cdot B}{e\cdot n\cdot d}  = -A_H \frac{I\cdot B}{d}
+\end{equation}
+where we introduced the Hall-coefficient $A_H =\frac{1}{e\cdot n}$ of the material.
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/halleffect}
+    \caption{This is the conducter we are talking about in the introduction \cite{gerthsen} to the hall effect.
+    The lorentz force is driving the charges perpendicular to the magnetic field until the potential is 
+    high enough for the charges to saturate.}
+    \label{fig:halleffect}
+\end{figure}
+
+
+
+
 
 \subsection{Lock-in method}
 In order to supress noise and frequencies from other processes, we use
@@ -183,19 +216,6 @@ expect our signal frequency to be: \\\\
     $90^\circ$ or $270^\circ$ & 0 
 \end{tabular}
 \vspace{0.5cm}\\\\
-In our experiment we use as a reference signal a sawtooth curve, modulated
-with a sinus:
-\begin{equation}
-   U(t) = U_{sz} \left[ t - \lfloor t \rfloor \,  \right] + U_0 \sin(\omega t)
-\end{equation}
-where the $\lfloor t \rfloor$ denotes to the gauss bracket (rounding up). 
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=0.8\linewidth]{figures/sawtooth}
-    \caption{Reference signal for our lockin amplifier}
-    \label{fig:sawtooth}
-\end{figure}
-
 
 \subsection{Materiales used in the experiment}
 
