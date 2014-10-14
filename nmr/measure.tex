@@ -5,11 +5,12 @@
 field inside the hole for the probe with the Hall effect sensor described in the setup section. 
 The sensor was initialized for $B = 0$ mT before the measurement. We first measured over the 
 entire range accessibile for a constant current $I$. Results are shown in table \ref{tab:b_height}. 
+The height $z$ is measured from the point where the hole for the probe ends above. 
 Not all the collected data is displayed, as the linear dependence is shown already by a subset. Further 
 the dependency on $U$ is not displayed, as the magnetic field induced electrically only depends on the 
-$I$. The uncertainty $\Delta B = 5$ mT was chosen because of fluctuations over time, especially a 
+$I$. The uncertainty $s_B = 5$ mT was chosen because of fluctuations over time, especially a 
 downshift in magnetic field and current in time, being clearly connected to the rising resistance with 
-increasing temperature of the coil. $\Delta z = 0.4$ is the accuracy allowed by the scale fixed to the 
+increasing temperature of the coil. $s_z = 0.4$ is the accuracy allowed by the scale fixed to the 
 Hall effect sensor. A possible offset both for $B$ and $z$ cannot be excluded. At least in the latter case, 
 the consequences would be very small, as the working point is quite large and the homogenity, which 
 in this case could still be shown, is of much higher importance. 
@@ -65,6 +66,8 @@ peaks at all. This is due to several problems of rather technical nature:
         of measuring could be achieved at a higher and more stable amplitude. 
 \end{itemize}
 The collected data was recorded in form of the signal measured by the oscilloscope. 
+Due to the described instabilities, we mdade all recordings right after finding a signal. 
+Several seconds later, there was no more signal observed.
 We show the input signal given by the sine modulation of the external $B$-field and 
 the correlated absorption signal in the figures below. Figure \ref{fig:f_r_F} shows 
 some of the measured absorption peaks for fluor, either as a fluid or in Teflon. 
@@ -73,7 +76,34 @@ intersects of the $B$-modulation, which is shown on the bottom of the figure.
 However, the measured frequency and corresponding can still be used for further calculations, 
 keeping in mind appropriate errors. 
 As seen in figures \ref{fig:f_r_H} and \ref{fig:f_r_glycol}, the same is true for 
-the measurements of the proton of $^1$H in water and in glycol.
+the measurements of the proton of $^1$H in water and in glycol. For the measurements with 
+water, glycole, Teflon and the last measurement of the fluid fluor, we measured the $B$-field 
+directly. We estimate the uncertainties to be $s_B = 5$ mT due to the fluctuations seen before and 
+$s_{\nu_r} = 0.0001$ MHz, the last digit displayed. 
+Choosing the last measurement for fluid fluor and one arbitrary for the other three samples, we get the 
+following pairs of resonance frequency $\nu_r$ and measured 
+$B$-field, shown in table \ref{tab:f_r}. 
+We did not use the linear fit, since we already observed the nonlinear behavior and 
+made separate measurements for $B$ right after finding the absorption signal. 
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[htdp]
+\centering
+\begin{tabular}{|p{6.18cm}|p{3.82cm}|p{3.82cm}|}
+        \hline
+        \rowcolor{LightCyan}
+        Sample & $B_\mathrm{measured}$ / mT & $\nu_r$ / MHz\\ \hline
+        $^{19}$F, fluid & 419 & 18.6905\\
+        $^{19}$F, Teflon & 423 & 18.68130\\
+        $^1$H   & 395 & 16.8503 \\
+        Glycol  & 394 & 16.8704 \\
+        \hline
+    \end{tabular}
+    \caption{
+        Measured pairs of $B$ and resonance frequency $\nu_r$ for all four samples with the direct measurement 
+        of the absorption peaks. The uncertainties are estimated by $s_B = 5$ mT by $s_{\nu_r}$. 
+        }
+    \label{tab:f_r}
+\end{table}
 \input{analysis/plots_f_r}
 \FloatBarrier
 

@@ -123,19 +123,22 @@ f1.close()
 # plot B(I) with error bars
 fig1, ax1 = plt.subplots(1,1, figsize = (8.09,5))
 b_error = 5    # uncertainty on B measurement, taken to be the last significant digit
-I_error = 0.01     # uncertainty in measuring the depth z
-ax1.errorbar(I, b, xerr=I_error, yerr=b_error, fmt='.')                
-ax1.plot(Is, np.polyval(coeff, Is), '-')                
+I_error = 0.01     # uncertainty in measuring the current I
 ax1.fill_between(Is, 
         unv(np.polyval(c, Is)) + usd(np.polyval(c, Is)),
         unv(np.polyval(c, Is)) - usd(np.polyval(c, Is)),
         facecolor=colors[0], color=colors[0], alpha=0.2)
+ax1.plot(Is, np.polyval(coeff, Is), '-', linewidth=1.0)                
 #ax1.errorbar(I[:i_max], b[:i_max], xerr=I_error, yerr=b_error, fmt='.') 
 #ax1.errorbar(I2, b2, xerr=I_error, yerr=b_error, fmt='.')                
 #ax1.legend(loc=4)
+ax1.errorbar(I, b, xerr=I_error, yerr=b_error, fmt='b,', elinewidth=1.0, capsize=1.2, capthick=0.8)
 ax1.set_xlim([0, 6])
+xmin = 0
+xmax = 5.2
+ax1.set_xlim([xmin, xmax])
 ymin = 0
-ymax = 600
+ymax = 550
 ax1.set_ylim([ymin, ymax])
 ax1.set_xlabel('$I \, / \, \mathrm{A}$')
 ax1.set_ylabel('$B(I) \, / \, \mathrm{mT}$')
