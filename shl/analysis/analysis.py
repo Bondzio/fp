@@ -259,7 +259,6 @@ def calib_TAC_MCA():
     fig = plt.figure()
     ax = fig.add_subplot(111)
 
-    plt.errorbar(channel,delay, yerr= y_error,xerr= x_error, fmt= "x")
 
     p, cov= np.polyfit(channel,delay, 1, full=False, cov=True, w=y_error)
     x_fit = np.linspace(20,162,1000)
@@ -282,6 +281,8 @@ def calib_TAC_MCA():
 
 
     plt.fill_between(x_fit, data_fit_min , data_fit_max,facecolor="r", color="b", alpha=0.3 )
+
+    plt.errorbar(channel,delay, yerr= y_error,xerr= x_error, fmt= "x")
     make_fig(fig,1,1,name = "plot7")
 
 def calib_TAC_MCA2():
@@ -316,9 +317,9 @@ def calib_TAC_MCA2():
 
 
     plt.fill_between(x_fit, data_fit_min , data_fit_max,facecolor="r", color="b", alpha=0.3 )
-    make_fig(fig,1,1,name = "plot7")
+    make_fig(fig,1,1,name = "plot71")
 
-
+calib_TAC_MCA()
 def calib_TAC_MCA_rescaled():
     delay   = np.array([0,8,16,24,32,40,48,56,64,72,80,88,96,104,112,120,128,136,144,152,160,168,176,184,190.5])
     channel = np.array([20,24,29,34,41,47,53,59,66,72,78,84,90,96,102,109,115,121,127,133,139,145,151,157,162])
@@ -358,5 +359,4 @@ def calib_TAC_MCA_rescaled():
     make_fig(fig,1,1,name = "plot7b")
 
 
-calib_TAC_MCA2()
 
