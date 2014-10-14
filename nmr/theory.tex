@@ -42,12 +42,13 @@ can be written in terms of the \emph{nuclear magneton} $\mu_K$
 as
 \begin{equation}
     \gamma_N = \frac{g_N \mu_K}{\hbar} \, .
+    \label{eq:gamma}
 \end{equation}
 The dimensionless \emph{nuclear g-factor} $g_N$ depends on the constituents of the 
 nucleus and is a quantity experimentally measured. $\mu_K$ is defined 
 analogously to the Bohr magneton $\mu_B$, but for protons, such that 
 \begin{equation}
-    \mu_K := \frac{\hbar e}{2 m_p} \, .
+    \mu_K := \frac{\hbar e}{2 m_p} = 5.05079\mathrm{e}-27 \, \mathrm{\frac{J}{T}}\, .
 \end{equation}
 with elementary charge $e = 1.602\mathrm{e}-19$ A s 
 and proton mass $m_p = 1.673\mathrm{e}-27$~kg~\cite{Demtroeder1}.
@@ -91,7 +92,8 @@ In order to 'flip spins', i.~e. to change state from $m_I = - \frac{1}{2}$ to $m
 or vice versa, the energy has to be absorped or released. The source for absorption can be a photon $\gamma$
 of the corresponding energy, thus with frequency 
 \begin{equation}
-    \Delta \nu = \frac{\Delta E}{h} = \frac{g_N \mu_K B}{h} = \frac{\gamma_N B}{2 \pi}\, .
+    \nu = \frac{\Delta E}{h} = \frac{g_N \mu_K B}{h} = \frac{\gamma_N B}{2 \pi}\, .
+    \label{eq:nu}
 \end{equation}
 The frequency band is widened by the typical effects, such as natural width, Doppler effect 
 and collisions. 
@@ -159,12 +161,8 @@ where we introduced the Hall-coefficient $A_H =\frac{1}{e\cdot n}$ of the materi
 
 
 \subsection{Lock-in method}
-\subsubsection{General Idea}
-\label{ssub:General Idea}
-
 In order to supress noise and frequencies from other processes, we use
-a frequently used method called ``lock-in amplification''
-(see~\cite{lockin} for more details). Depending on your
+a frequently used method called ``lock-in amplification''. Depending on your
 setup it is possible to reduce the noise by a factor $10^6$. The method
 is based on the orthogonality relation of sinusoidal functions (which
 can be seen easily if you differentiate the left with respect to $x$):
@@ -192,7 +190,7 @@ on shorter times:
     (a,b)_{2\pi /b} = \frac{b \sin(2\pi k\frac{a}{b})}{a^2 - b^2}
 \end{equation}
 We notice we can distinguish whether the frequencies are equal or not 
-since there is a singularity, but with restrictions~\cite{lockin}:
+since there is a singularity, but with restrictions:
 \begin{itemize}
     \item The integral is evaluated continuosly, which is not possible
         in the real case, so the singularity is replaced by peak, which
@@ -219,6 +217,3 @@ expect our signal frequency to be: \\\\
 \end{tabular}
 \vspace{0.5cm}\\\\
 
-\subsection{Materiales used in the experiment}
-
-(PTFE, know by the brand name Teflon), 
