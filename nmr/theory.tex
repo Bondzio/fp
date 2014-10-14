@@ -44,8 +44,12 @@ unit: \emph{nuclear magnetcon}
 \subsection{Hall effect and sensor}
 
 \subsection{Lock-in method}
+\subsubsection{General Idea}
+\label{ssub:General Idea}
+
 In order to supress noise and frequencies from other processes, we use
-a frequently used method called ``lock-in amplification''. Depending on your
+a frequently used method called ``lock-in amplification''
+(see~\cite{lockin} for more details). Depending on your
 setup it is possible to reduce the noise by a factor $10^6$. The method
 is based on the orthogonality relation of sinusoidal functions (which
 can be seen easily if you differentiate the left with respect to $x$):
@@ -73,7 +77,7 @@ on shorter times:
     (a,b)_{2\pi /b} = \frac{b \sin(2\pi k\frac{a}{b})}{a^2 - b^2}
 \end{equation}
 We notice we can distinguish whether the frequencies are equal or not 
-since there is a singularity, but with restrictions:
+since there is a singularity, but with restrictions~\cite{lockin}:
 \begin{itemize}
     \item The integral is evaluated continuosly, which is not possible
         in the real case, so the singularity is replaced by peak, which
@@ -111,6 +115,14 @@ where the $\lfloor t \rfloor$ denotes to the gauss bracket (rounding up).
     \caption{Reference signal for our lockin amplifier}
     \label{fig:sawtooth}
 \end{figure}
+\subsubsection{Measuring the resonance}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/lockin2}
+    \caption{}
+    \label{fig:figures/lockin2}
+\end{figure}
+
 
 
 \subsection{Materiales used in the experiment}
