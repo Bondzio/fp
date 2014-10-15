@@ -82,8 +82,8 @@ n = [4, 2, 2]
 js = [range(4), [4, 5], [6, 7]]
 F = "$^{19}$F, fluid"
 T = "$^{19}$F, Teflon"
-H =  "$^1$H"
-G =  "glycol"
+H =  "$^1$H, water"
+G =  "$^1$H, glycol"
 sample = [[F, F, T, F], [H, H], [G, G]]
 I = [[3.23, 3.21, 3.21, 3.23], [2.94, 2.94], [2.94, 2.94]]
 nu = [[16.8573, 16.8811, 16.8130, 16.8905], [16.8503, 16.8503], [16.8704, 16.8704]]
@@ -94,11 +94,11 @@ captions = [[
         'we were not able to produce equidistant peaks with a distance of half the,',
         'wavelength of the input signal, shown in the lowest graph.'
     ],[
-        'Absorption peaks of $^1$H',
+        'Absorption peaks of proton ($^1$H) in water',
         'at two times, both with $B_\mathrm{measured} = 395$ mT.',
         'No equidistant absorption peaks at the zero intersect of the sine are seen.'
     ],[
-        'Measured absorption peaks of glycol',
+        'Measured absorption peaks of proton ($^1$H) in glycol',
         'at two times, both with $B_\mathrm{measured} = 394$ mT.',
         'Again, no equidistant absorption peaks at the zero intersect of the sine are seen.'
     ]]
