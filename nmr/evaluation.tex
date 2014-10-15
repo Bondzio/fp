@@ -27,7 +27,7 @@ important results, which can be observed in figure \ref{fig:b_I}:
 \begin{itemize}
     \item
         In the regime $I < 3$ A, $B(I)$ behaves linear. We calculated fit parameters 
-        for a least square fit using the corresponding routine 'numpy.polyfit'\ref{scipy} for 
+        for a least square fit using the corresponding routine 'numpy.polyfit'\cite{scipy} for 
         a first degree polynome $f(I) = p_0 I + p_1$ for the pairs $(I, B(I))$, $I \le 3.36$ A. 
         The resulting parameters $p_0$ and $p_1$ with covariance matrix are given by:
         \begin{align}
@@ -45,7 +45,8 @@ important results, which can be observed in figure \ref{fig:b_I}:
             \frac{\Delta p_0}{p_0} = 3 / 129 \approx 2\%
         \end{equation}
         indicates the linear behaviour in the chosen regime which is expected from the 
-        graphical analysis. 
+        graphical analysis. The shading in the figure is done by propagating the error with 
+        the python package 'uncertainties'~\cite{uc} for each plotted value.
     \item
         We observe a non-linear behaviour for $I > 3$ A. However, this regime is 
         not reached during the other measurements, so that we relinquish the further analysis. 
@@ -145,7 +146,7 @@ In literature, we find the following values:
     \caption{
         Literature values for the gyromagnetic ratio $\gamma_N$ and the nuclear g-factor $g_N$.
         }
-    \label{tab:g_N}
+    \label{tab:lit_val_g}
 \end{table}
 The comparison shows, that for all probes the values for $\gamma_N$ and accordingly also for 
 $g_N$ cover the literature values within the stated errors.

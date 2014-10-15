@@ -1962,26 +1962,3 @@
     <bcf:citekey order="19">ver</bcf:citekey>
     <bcf:citekey order="20">nist</bcf:citekey>
     <bcf:citekey order="21">crc</bcf:citekey>
-  </bcf:section>
-  <bcf:sortlist section="0" type="entry" label="none">
-  <bcf:sorting>
-    <bcf:sort order="1">
-      <bcf:sortitem order="1">citeorder</bcf:sortitem>
-    </bcf:sort>
-  </bcf:sorting>
-  </bcf:sortlist>
-  <bcf:sortlist section="0" type="entry" label="none">
-  <bcf:sorting>
-    <bcf:sort order="1">
-      <bcf:sortitem order="1">citeorder</bcf:sortitem>
-    </bcf:sort>
-  </bcf:sorting>
-  </bcf:sortlist>
-  <bcf:sortlist section="0" type="entry" label="none">
-  <bcf:sorting>
-    <bcf:sort order="1">
-      <bcf:sortitem order="1">citeorder</bcf:sortitem>
-    </bcf:sort>
-  </bcf:sorting>
-  </bcf:sortlist>
-</bcf:controlfile>

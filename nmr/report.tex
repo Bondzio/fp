@@ -23,22 +23,22 @@
 
 % Biblatex
 
-\usepackage[
-style=nature,    % Zitierstil
-isbn=false,                % ISBN nicht anzeigen, gleiches geht mit nahezu allen anderen Feldern
-pagetracker=true,          % ebd. bei wiederholten Angaben (false=ausgeschaltet, page=Seite, spread=Doppelseite, true=automatisch)
-maxbibnames=50,            % maximale Namen, die im Literaturverzeichnis angezeigt werden (ich wollte alle)
-maxcitenames=3,            % maximale Namen, die im Text angezeigt werden, ab 4 wird u.a. nach den ersten Autor angezeigt
-autocite=inline,           % regelt Aussehen für \autocite (inline=\parancite)
-block=space,               % kleiner horizontaler Platz zwischen den Feldern
-backref=false,              % Seiten anzeigen, auf denen die Referenz vorkommt
-backrefstyle=three+,       % fasst Seiten zusammen, z.B. S. 2f, 6ff, 7-10
-date=short,                % Datumsformat
-backend=biber
-]{biblatex}
-\setlength{\bibitemsep}{1em}     % Abstand zwischen den Literaturangaben
-\setlength{\bibhang}{2em}        % Einzug nach jeweils erster Zeile
-\bibliography{report}  % Bibtex-Datei wird schon in der Preambel eingebunden
+%\usepackage[
+%backend=biber,
+%style=nature,    % Zitierstil
+%isbn=false,                % ISBN nicht anzeigen, gleiches geht mit nahezu allen anderen Feldern
+%pagetracker=true,          % ebd. bei wiederholten Angaben (false=ausgeschaltet, page=Seite, spread=Doppelseite, true=automatisch)
+%maxbibnames=50,            % maximale Namen, die im Literaturverzeichnis angezeigt werden (ich wollte alle)
+%maxcitenames=3,            % maximale Namen, die im Text angezeigt werden, ab 4 wird u.a. nach den ersten Autor angezeigt
+%autocite=inline,           % regelt Aussehen für \autocite (inline=\parancite)
+%block=space,               % kleiner horizontaler Platz zwischen den Feldern
+%backref=false,              % Seiten anzeigen, auf denen die Referenz vorkommt
+%backrefstyle=three+,       % fasst Seiten zusammen, z.B. S. 2f, 6ff, 7-10
+%date=short,                % Datumsformat
+%]{biblatex}
+%\setlength{\bibitemsep}{1em}     % Abstand zwischen den Literaturangaben
+%\setlength{\bibhang}{2em}        % Einzug nach jeweils erster Zeile
+%\bibliography{report}  % Bibtex-Datei wird schon in der Preambel eingebunden
 
 \usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
 \usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
@@ -148,10 +148,18 @@ backend=biber
 \input{conclusion}
 \cleardoublepage
 
-\section{Bibliography}
-\printbibliography[heading=subbibintoc,type=article,title={Articles only}]
-\printbibliography[heading=subbibintoc,type=book,title={Books only}]
-\printbibliography[heading=subbibintoc,type=misc,title={Misc only}]
+%\section{Bibliography}
+%\printbibliography[heading=subbibintoc,type=article,title={Articles only}]
+%\printbibliography[heading=subbibintoc,type=book,title={Books only}]
+%\printbibliography[heading=subbibintoc,type=misc,title={Misc only}]
 
+\phantomsection
+
+\addcontentsline{toc}{section}{Bibliography}
+\bibliographystyle{plain}
+\bibliography{report}
+\listoffigures
+
+\input{appendix}
 
 \end{document}
