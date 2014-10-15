@@ -78,6 +78,8 @@ docs/_build/
 *.fdb_latexmk
 *.synctex.gz
 
+*.bcf
+
 # Pratikum
 Protokoll.pdf
 report.pdf
