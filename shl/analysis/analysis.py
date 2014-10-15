@@ -96,7 +96,7 @@ def plot_4_1():
     c    = np.where(data!=0)
     x = np.arange(0,len(data),1)
     x = x[c]
-    #x = 1.3149710372035508*x -22.617788714272098
+    x = 1.3149710372035508*x -22.617788714272098
     
     data = data[c]
 
@@ -125,9 +125,9 @@ def plot_4_1():
     ax.yaxis.set_tick_params(labelsize = 14)
 
 
-    make_fig(fig,1,1,name="plot4_1")
+    make_fig(fig,1,0,name="plot4_1")
 
-
+plot_4_1()
 def plot_4_1_log():
     data = np.load("./data/measure4_1.npy")[2:]
 
@@ -272,7 +272,7 @@ def reg2():
     x = x[c]
 
     #scaling to time units
-    x = 1.3149710372035508*x -22.617788714272098
+    x = 6.3149710372035508*x -22.617788714272098
     c = (x>0)
     x = x[c]
     data = data[c]
@@ -299,10 +299,11 @@ def reg2():
         p_uc = uc.correlated_values(p, cov)
         c = p_uc[2]
 
-        T12_lit = 98
-        c_lit = np.exp(-np.log(2)/T12_lit)
-        print("literatur",c_lit)
-        print("fixed",c)
+        T12_lit = 98 
+        lamb_lit = -(np.log(2)/T12_lit)
+        print("lit",lamb_lit)
+        
+
         lamb = umath.log(c)
         print(lamb)
         T12 = -np.log(2) /lamb 
@@ -318,7 +319,7 @@ def reg2():
         data_fit_max = func(x_fit, *pmax)
 
         plt.plot(x_fit,data_fit)
-        plt.plot(x_fit,func(x_fit,p[0],p[1],c_lit))
+        plt.plot(x_fit,90*np.exp(x_fit * lamb_lit))
         plt.fill_between(x_fit, data_fit_min , data_fit_max,facecolor="r", color="b", alpha=0.3 )
 
         # place a text box in upper left in axes coords
@@ -331,8 +332,6 @@ def reg2():
 
         ax.add_patch(plt.Rectangle((0,0.1),155,100,alpha = 0.2))
 
-
-
     plt.errorbar(x,data, yerr=error,fmt="x")
     #plt.scatter(x,data,c="blue",alpha = 0.9,s=100, marker="x")
     plt.ylim(min(data)*0.8,max(data))
@@ -342,7 +341,6 @@ def reg2():
     plt.ylabel("counts", fontsize = 14)
     make_fig(fig,1,1,name="plot4_1_reg")
 
-reg2()
 # Random coicidences
 
 
