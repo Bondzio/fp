@@ -90,14 +90,14 @@ The gaussian error propagation yields for the uncertainties $s_{\gamma_N}$ and $
 \end{align}
 Calculation with the values given in table \ref{tab:f_r} yields:
 \renewcommand{\arraystretch}{1.5}
-\begin{table}[htdp]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{6.18cm}|p{3.82cm}|p{3.82cm}|}
         \hline
         \rowcolor{LightCyan}
         Sample & $\gamma_N$ / (s$^{-1}$ T$^{-1}$) & $g_N$ \\ \hline
-        $^{19}$F, fluid     & $\left(2.80 \pm 0.03\right) \times 10^{8}$ & $5.85 \pm 0.07$ \\
-        $^{19}$F, Teflon    & $\left(2.78 \pm 0.03\right) \times 10^{8}$ & $5.79 \pm 0.07$ \\
+        $^{19}$F , fluid     & $\left(2.80 \pm 0.03\right) \times 10^{8}$ & $5.85 \pm 0.07$ \\
+        $^{19}$F , Teflon    & $\left(2.78 \pm 0.03\right) \times 10^{8}$ & $5.79 \pm 0.07$ \\
         $^1$H               & $\left(2.68 \pm 0.03\right) \times 10^{8}$ & $5.60 \pm 0.07$ \\
         Glycol              & $\left(2.69 \pm 0.03\right) \times 10^{8}$ & $5.62 \pm 0.07$ \\
         \hline
@@ -106,20 +106,49 @@ Calculation with the values given in table \ref{tab:f_r} yields:
         Calculated values for the gyromagnetic ratio $\gamma_N$ and the nuclear g-factor $g_N$. 
         }
     \label{tab:g_N}
-\end{table}
+\end{table} 
 For the fluorine, we can further calculate the magnetic moment $\mu$, since we know the 
-nuclear spin to be $I = \frac{1}{2}$. We get 
+nuclear spin to be $I = \frac{1}{2}$. Using the value of the Teflon probe, we get 
 \begin{equation}
-    \mu = 0.5  \gamma_N = \left(1.40 \pm 0.02\right) \times 10^8 \, .
+    \begin{split}
+        \mu_{^{19}\mathrm{F}} &= \hbar \sqrt{I(I + 1)}  \gamma_{N, ^{19}\mathrm{F}} \\
+            &= \hbar \frac{\sqrt{3}}{2}  \gamma_{N, ^{19}\mathrm{F}} \\
+            &= \left(2.53 \pm 0.03\right) \times 10^{-26} \, \mathrm{A \, m^2}\, .
+    \end{split}
 \end{equation}
 
+In literature, we find the following values:
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{3.82cm}|p{3.82cm}|p{3.82cm}|p{2.00cm}|}
+        \hline
+        \rowcolor{LightCyan}
+        Sample & $\gamma_N$ / (s$^{-1}$ T$^{-1}$) & $g_N$ & Source\\ \hline
+        $^{19}$F    & $ 2.51662 \times 10^{8}$  & $ 5.25454$ & \cite{nist}\\ 
+        $^1$H       & $ 2.67521 \times 10^{8}$  & $ 5.58566$ & \cite{crc}\\
+        \hline
+    \end{tabular}
+    \caption{
+        Literature values for the gyromagnetic ratio $\gamma_N$ and the nuclear g-factor $g_N$.
+        }
+    \label{tab:g_N}
+\end{table}
+The comparison shows, that the gyromagnetic ratio for $^{19}$F is to high compared to the 
+accepted values given in literature by about ten times the estimated standard deviation for both probes. 
+This indicates either a wrong estimation of the error or a systematic error. 
+The value for the hydrogen, however, covers the literature value within the stated errors. 
+
+
 \subsubsection{Comments on the errors}
+
 The fine tuning becomes somewhat useless, as the uncertainty of the current, given by the last 
 significant digit, is much higher then the difference between 'no absorption seen' and 
 'absorption observed'. The drift of the current over time is clearly connected to the developement 
 of heat in the coil, which in turn raises the resistance. Due to the high sensitivity of the absorption 
 to small changes in $I$, we assume that this drift might be one of the reasons for not finding 
-a stable and equidistant signal as expected in the theory section. 
+a stable and equidistant signal as expected in the theory section. This is further the reason to 
+doubt the assassment of the error on $B$. 
 
 
 
