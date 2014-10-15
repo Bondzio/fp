@@ -1,6 +1,7 @@
 \section{Evaluation}
 \subsection{Homogenity of $B$}
-The results of the measurement of the homogenity of the magnetic field $B$ 
+\paragraph{The results of the}
+measurement of the homogenity of the magnetic field $B$ 
 without applying the modulation are plotted in figure 
 \ref{fig:b_height}. As one can see, a good working point is defined for $z = -2$ cm, since 
 this is close to the midpoint of the observed plateau. The existence of the plateau indicates the homogenity 
@@ -20,7 +21,8 @@ of the field, which is a necessary foundation for the further analysis.
 
 
 \subsection{Dependency $B(I)$}
-Measuring the magnetic fields of the main coil for different currents yielded two 
+\paragraph{Measuring the magnetic}
+fields of the main coil for different currents yielded two 
 important results, which can be observed in figure \ref{fig:b_I}:
 \begin{itemize}
     \item
@@ -65,8 +67,19 @@ important results, which can be observed in figure \ref{fig:b_I}:
 
 
 \subsection{Direct measurement of $f_r$}
+\subsubsection{General comments}
+\paragraph{As already indicated}
+in the 'measurements' section \ref{sec:measure_direct}, 
+the fine tuning was somewhat useless, as the uncertainty of the current, given by the last 
+significant digit, is much higher then the difference between 'no absorption seen' and 
+'absorption observed'. The drift of the current over time is clearly connected to the developement 
+of heat in the coil, which in turn raises the resistance. Due to the high sensitivity of the absorption 
+to small changes in $I$ we assume that this drift might be one of the reasons for not finding 
+a stable and equidistant signal as expected in the theory section.
+
 \subsubsection{Calculating magnetic moments and gyromagnetic ratios}
-Using equations \eqref{eq:gamma} and \eqref{eq:nu}, we can calculate both 
+\paragraph{Using equations}
+\eqref{eq:gamma} and \eqref{eq:nu}, we can calculate both 
 the gyromagnetic ratio $\gamma_N$ and the nuclear g-factor $g_N$ for the samples 
 tested. Solving the two equations for the two, we get:
 \begin{align}
@@ -96,10 +109,10 @@ Calculation with the values given in table \ref{tab:f_r} yields:
         \hline
         \rowcolor{LightCyan}
         Sample & $\gamma_N$ / (s$^{-1}$ T$^{-1}$) & $g_N$ \\ \hline
-        $^{19}$F , fluid     & $\left(2.80 \pm 0.03\right) \times 10^{8}$ & $5.85 \pm 0.07$ \\
-        $^{19}$F , Teflon    & $\left(2.78 \pm 0.03\right) \times 10^{8}$ & $5.79 \pm 0.07$ \\
-        $^1$H               & $\left(2.68 \pm 0.03\right) \times 10^{8}$ & $5.60 \pm 0.07$ \\
-        Glycol              & $\left(2.69 \pm 0.03\right) \times 10^{8}$ & $5.62 \pm 0.07$ \\
+        $^{19}$F , fluid    & $\left(2.53 \pm 0.03\right) \times 10^{8}$ & $5.29 \pm 0.06$ \\
+        $^{19}$F , Teflon   & $\left(2.50 \pm 0.03\right) \times 10^{8}$ & $5.21 \pm 0.06$ \\
+        $^1$H, water        & $\left(2.68 \pm 0.03\right) \times 10^{8}$ & $5.60 \pm 0.07$ \\
+        $^1$H, glycol       & $\left(2.69 \pm 0.03\right) \times 10^{8}$ & $5.62 \pm 0.07$ \\
         \hline
     \end{tabular}
     \caption{
@@ -113,7 +126,7 @@ nuclear spin to be $I = \frac{1}{2}$. Using the value of the Teflon probe, we ge
     \begin{split}
         \mu_{^{19}\mathrm{F}} &= \hbar \sqrt{I(I + 1)}  \gamma_{N, ^{19}\mathrm{F}} \\
             &= \hbar \frac{\sqrt{3}}{2}  \gamma_{N, ^{19}\mathrm{F}} \\
-            &= \left(2.53 \pm 0.03\right) \times 10^{-26} \, \mathrm{A \, m^2}\, .
+            &= \left(2.28 \pm 0.03\right) \times 10^{-26} \, \mathrm{A \, m^2}\, .
     \end{split}
 \end{equation}
 
@@ -134,25 +147,8 @@ In literature, we find the following values:
         }
     \label{tab:g_N}
 \end{table}
-The comparison shows, that the gyromagnetic ratio for $^{19}$F is to high compared to the 
-accepted values given in literature by about ten times the estimated standard deviation for both probes. 
-This indicates either a wrong estimation of the error or a systematic error. 
-The value for the hydrogen, however, covers the literature value within the stated errors. 
-
-
-\subsubsection{Comments on the errors}
-
-The fine tuning becomes somewhat useless, as the uncertainty of the current, given by the last 
-significant digit is much higher then the difference between 'no absorption seen' and 
-'absorption observed'. The drift of the current over time is clearly connected to the developement 
-of heat in the coil, which in turn raises the resistance. Due to the high sensitivity of the absorption 
-to small changes in $I$, we assume that this drift might be one of the reasons for not finding 
-a stable and equidistant signal as expected in the theory section.
-to small changes in $I$ we assume that this drift might be one of the reasons for not finding 
-a stable and equidistant signal as expected in the theory section.  This is further the reason to 
-doubt the assassment of the error on $B$. 
-
-
+The comparison shows, that for all probes the values for $\gamma_N$ and accordingly also for 
+$g_N$ cover the literature values within the stated errors.
 
 
 

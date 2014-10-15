@@ -1,6 +1,8 @@
 \section{Theoretical backgrounds}
+\label{sec:theory}
 \subsection{Nuclear spin}
-Assuming a particles bescribed by its wavefunction $\Psi$, we can describe 
+\paragraph{Assuming a particle}
+described by its wavefunction $\Psi$, we can describe 
 its fundamental properties by quantum numbers corresponding to eigenstates
 of different operators. Aside from the quantum number $n$ corresponding to the 
 Hamiltonian $\hat{H}$ and thus to the energy level, particles can be further characterized 
@@ -33,7 +35,8 @@ we have to apply Bose- or Fermi-statistics; the particles are called bosons or f
 accordingly~\cite{dem}.
 
 \subsection{Magnetic moment}
-Connected to the nuclear spin we observe the \emph{nuclear magnetic moment}
+\paragraph{Connected to the}
+nuclear spin we observe the \emph{nuclear magnetic moment}
 \begin{equation}
     \mu_N = \gamma_N \mathbf{I},
 \end{equation}
@@ -51,7 +54,7 @@ analogously to the Bohr magneton $\mu_B$, but for protons, such that
     \mu_K := \frac{\hbar e}{2 m_p} = 5.05079\mathrm{e}-27 \, \mathrm{\frac{J}{T}}\, .
 \end{equation}
 with elementary charge $e = 1.602\mathrm{e}-19$ A s 
-and proton mass $m_p = 1.673\mathrm{e}-27$~kg~\cite{Demtroeder1}.
+and proton mass $m_p = 1.673\mathrm{e}-27$~kg~\cite{dem}.
 As ferminons, protons and neutrons follow the Pauli principle of exclusion. 
 Having spin $S_N = \frac{1}{2}$, there are two possible 'orientations' for 
 the $z$-component, namely $m_{s_N} = \pm \frac{1}{2}$. Thus, one orbital 
@@ -59,7 +62,7 @@ is filled with two particles of opposite spin. A nucleus can then be
 characterized by the number of protons and neutrons each being 
 even ('g') or odd ('u'). A 'gg' nucleus thus has total nuclear spin $I = 0$, 
 as for example the case for ($_8^{16}$O)- and ($_6^{12}$C)-atoms. 
-'gu' and 'ug' nuclei have $I = \frac{1}{2}$, like the 'ug' ($^1$H) isotope 
+'gu' and 'ug' nuclei have $I = \frac{1}{2}$, like the 'ug' proton ($^1$H) 
 measured in this experiment as the only non-zero spin component both of 
 glycol (C$_2$H$_6$O$_2$) and water (H$_2$O). The other probe under consideration, 
 the $_9^{19}$F with 9 protons and 10 neutrons, 
@@ -68,10 +71,11 @@ Nuclei with odd numbers of
 protons and neutrons have spin $I = 1$; they are aligned parallel due to a lower 
 energy stemming from the quark structure of the nucleons respect to the anti-parallel 
 alignment with zero nuclear spin. An example is the deuterium $^2$H. However, in this 
-experiment we will not look at this case. 
+experiment we will not look at this case.\cite{ver}
 
 \subsection{Nuclear magnetic resonance}
-The energy of a magnetic dipole $\mu$ in an external field $\B$ is given by 
+\paragraph{The energy of a}
+magnetic dipole $\mu$ in an external field $\B$ is given by 
 \begin{equation}
     E = - \mu_N \cdot \B
 \end{equation}
@@ -89,22 +93,24 @@ distance between the two levels is given by
     \Delta E = - g_N \mu_K B \, .
 \end{equation}
 In order to 'flip spins', i.~e. to change state from $m_I = - \frac{1}{2}$ to $m_I = + \frac{1}{2}$, 
-or vice versa, the energy has to be absorped or released. The source for absorption can be a photon $\gamma$
-of the corresponding energy, thus with frequency 
+or vice versa, the energy has to be absorped or released. The selection rule $\Delta I = 0, \, \Delta m_I= \pm1$ 
+forbids spontaneous transitions without emission or absorption and further corresponds to \emph{magnetic dipole} 
+radiation.~\cite{mel} The source, an oscillating $\B$-field, has to have a frequency $\nu$ correspoding to $\Delta E$ by
 \begin{equation}
     \nu = \frac{\Delta E}{h} = \frac{g_N \mu_K B}{h} = \frac{\gamma_N B}{2 \pi}\, .
     \label{eq:nu}
 \end{equation}
 The frequency band is widened by the typical effects, such as natural width, Doppler effect 
 and collisions. 
-In order to examine the effect of a probe on the energy of an external field, there are several
+\paragraph{In order to examine}
+the effect of a probe on the energy of an external field, there are several
 aspects to look at. At first glance, one might come to the conclusion, that the effects of 
 absorping photons of the field and those photons being added to the field cancel each other. 
 This is not the case though, because of the following reasons:
 \begin{itemize}
     \item
         The spontaneous emission is distributed isotropically, such that these photons are lost for 
-        the external field along one axis.
+        the external field along one axis. Furthermore, spontaneous emission is observed very rarely. 
     \item
         The number of atoms in the two states is not equal, since the states are distributed according to 
         a Boltzmann distribution, namely $n_{m_I} \propto \exp\left\{-\frac{E_{m_I}}{kT}\right\}$. 
@@ -118,35 +124,54 @@ This is not the case though, because of the following reasons:
         higher state with $m_I = +\frac{1}{2}$. Thus, more photons are absorped than emitted. 
 \end{itemize}
 One would now expect this latter effect to cease after some time, as $n_{+1/2}$ raises at the expense of 
-$n_{-1/2}$. However, there are relaxation processes that keep up the imbalance between the two. 
-Apart from spontaneous emission, there is the spin-lattice relaxation allows $\Delta E$ to be passed 
-over to the lattice without radiation, such that the energy is lost to the field. 
+$n_{-1/2}$. However, the spins can flip down via a different mechanism as well:
+The spin-lattice relaxation allows $\Delta E$ to be passed 
+over to the lattice without radiation, such that the energy is lost to the field. This happens with a 
+typical \emph{lattice relaxation time} $T_l$. If the number of excess nuclei $n_0$ is decreased 
+exponentially at rate $R$, 
+\begin{equation}
+    n_0(t) = N_0 \exp\left\{-R t \right\}, 
+\end{equation}
+with initial number $N_0$, then for $R \ll 1 / T_l$, $n_0 \rightarrow N_0$ for $t \rightarrow \infty$, 
+whereas in the opposite case $R \gg 1 / T_l$, $n_0 \rightarrow 0$ for $t \rightarrow \infty$, since 
+the rate of relaxation is characterized by $1 / T_l$. A simple conclusion is, that 
+the induced power of the high frequency $\B$-field should not be too high.~\cite{mel}
+
 Yet another effect is the spin-spin interaction which changes the external $\B$-field of atoms close 
 to a flipped spin slightly with respect to the case without flip. This results in widening of the 
 absorption line. 
 
+\paragraph{Todays applications in}
+analytical chemestry use the fine structure of the absorption lines. For much more homogeneous 
+external fields applied, one can measure this fine structure which depends on the organic compound 
+to which the corresponding atoms belong. Due to their high gyromagnetic ratio, both protons and 
+$^{19}$F atoms are used in this kind of anaylsis. 
+
 \subsection{Hall effect and sensor}
-If we look at a conductor with an applied current, which located inside of an magnetic field
+\paragraph{If we look at a}
+conductor with an applied current located inside of an magnetic field
 (see figure~\ref{fig:halleffect}), the Lorentz force
 \begin{equation}
     F = q ( E + v \times B)
 \end{equation}
-acts on the moving charges such that perpendicular to the direction of the current we will have a potential,
-which compensates the Lorentz force:
+acts on the moving charges such that perpendicular to the direction of the current we will have a potential
+compensating the Lorentz force:
 \begin{equation}
     e E_H = -e v \times B
 \end{equation}
 By integrating over the distance $b$ of the conducter and supposing a linear
-relationship, we arrive at:
+relationship, we arrive at
 \begin{equation}
-    U_H = - b v B
+    U_H = - b v B \, .
 \end{equation}
-which can be expressed in terms of the Current $I = d \cdot c \cdot j$ where $d$ is the width of the 
+This can be expressed in terms of the current $I = d \cdot c \cdot j$ where $d$ is the width of the 
 conducter and $j=e n v$ the current density:
 \begin{equation}
-    U_H = \frac{- I\cdot B}{e\cdot n\cdot d}  = -A_H \frac{I\cdot B}{d}
+    U_H = \frac{- I\cdot B}{e\cdot n\cdot d}  = -A_H \frac{I\cdot B}{d} \, ,
 \end{equation}
-where we introduced the Hall-coefficient $A_H =\frac{1}{e\cdot n}$ of the material.
+where we introduced the Hall-coefficient $A_H =\frac{1}{e\cdot n}$ of the material. 
+For know material constants, the relationship can be used in \emph{Hall effect sensors}, 
+a device also used in this experiment for measurung the strength of the applied magnetic field. 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/halleffect}
@@ -156,16 +181,13 @@ where we introduced the Hall-coefficient $A_H =\frac{1}{e\cdot n}$ of the materi
     \label{fig:halleffect}
 \end{figure}
 
-
-
-
-
 \subsection{Lock-in method}
-In order to supress noise and frequencies from other processes, we use
-a frequently used method called ``lock-in amplification''. Depending on your
+\paragraph{In order to supress}
+noise and frequencies from other processes, we use
+a frequently used method called ``lock-in amplification''. Depending on the
 setup it is possible to reduce the noise by a factor $10^6$. The method
 is based on the orthogonality relation of sinusoidal functions (which
-can be seen easily if you differentiate the left with respect to $x$):
+can be seen easily differentiating the left with respect to $x$):
 \begin{equation}
     \int \sin(a x) \sin(b x) dx =\frac{ b \sin(a x) \cos(b x)-a \cos(a x)
             \sin(b x)}{a^2-b^2}
@@ -176,7 +198,7 @@ If we let the integration go from $\infty$ to $-\infty$ we end up with:
 \end{equation}
 Which stems from the sinusoidal functions forming a complete basis with
 the integral as inner product.
-Since we cannot use the integral over the whole real line, we have to rely
+Since we cannot use the integral over the entire real line, we have to rely
 on shorter times: 
 \begin{equation}
     (a,b)_t := \int_{0}^{t} \sin(a x) \sin(b x) dx = \delta(a - b)
@@ -200,7 +222,7 @@ since there is a singularity, but with restrictions:
     can appear as well, which should be taken into account.
 \item The strength which discriminates the $a=b$ from the $a\neq b$ case
     (the effective bandwidth)
-    depends on the Ampitude of the reference signal. 
+    depends on the amplitude of the reference signal. 
 \end{itemize}
 
 Now we can 

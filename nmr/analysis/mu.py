@@ -10,11 +10,11 @@ plt.rc('font',**{'family':'serif','sans-serif':['helvetica']})
 
 # Calculating the gyromagnetic ratio and nuclea g-factor
 
-nu = np.array([18.6905, 18.68130, 16.8503, 16.8704]) * 10**6
+nu = np.array([16.8905, 16.8130, 16.8503, 16.8704]) * 10**6
 B = np.array([419, 423, 395, 394]) * 10**-3
 
 s_nu = 0.0001 * 10**6
-s_B = 15 * 10**-3
+s_B = 5 * 10**-3
 nu = un.uarray(nu, s_nu)
 B = un.uarray(B, s_B)
 
