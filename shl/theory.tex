@@ -19,7 +19,7 @@ We used the proton, electron and neutron masses $M_p$, $M_e$ and $M_n$
 \end{figure}
 If we look at the distribution of stable nuclei (see figure~\ref{fig:nuclidmap}) we notice
 that they occur only in a very narrow band. All other nuclei are unstable and decay spontaneously.
-The decay is characerized by a \textit{decay constant} $\lambda$, which is related to the activity $\mathcal{A}$
+The decay is characerized by a \emph{decay constant} $\lambda$, which is related to the activity $\mathcal{A}$
 by 
 \begin{equation}\label{eq:decay}
     \mathcal{A} = -\frac{\partial N}{\partial t} = \lambda N 
@@ -68,7 +68,7 @@ have to be fitted with experiments. For this reason, the model is called semi-em
 It was first established by Weizsäcker and yields a 
 good approximation for the atomic masses. The assumptions underlying are:
 \begin{enumerate}
-    \item The interior mass densities are approximately equal; (OF WHAT???)
+    \item The interior mass densities are approximately equal; +++OF WHAT???
         \label{it1}
     \item Their total binding energies are approximately proportional to their masses.
         \label{it2}
@@ -127,27 +127,30 @@ consisting of the mass of the nucleons and electrons:
       The function $f(A)$ should be estimated by fitting the data, 
       often $f(A) = a_5 A^{-\frac{1}{2}}$ is used.
 \end{itemize}
++++SUMMARY???
+
 \subsubsection{Unstable States}
 \label{ssub:Unstable States}
 If we want investigate the form of the energy distribution of a decay, we have to 
-introduce the \textit{natural decay width}, given by
+introduce the \emph{natural decay width}, given by
 \begin{equation}
     \Gamma_f = \frac{\hbar}{\tau_f} 
 \end{equation}
 which can be defined for each channel $f$, such that in total we get
 \begin{equation}
-    \Gamma = \sum_{f} \Gamma_f
+    \Gamma = \sum_{f} \Gamma_f \, .
 \end{equation}
-Where we can define the \textit{branching ratio} for channel $f$ as:
++++WHY SUMMING???
+We can define the \emph{branching ratio} for channel $f$ by
 \begin{equation}
-    B_f = \frac{\Gamma_f}{\Gamma}
+    B_f = \frac{\Gamma_f}{\Gamma} \, .
 \end{equation}
 The energy distribution of the unstable state to a final state $f$ resolves into a 
-\textit{Breit-Wigner-distribution}:
+\emph{Breit-Wigner-distribution}: +++WHAT IS MEANT???
 \begin{equation}
     N_f(M_f) = \frac{\Gamma_f}{(M_f-M_i)^2 c^4 + \Gamma^2/4}
 \end{equation}
-With the mass of the decaying state $M_i$ and the invariant mass of decay products $M_f$.
+with the mass of the decaying state $M_i$ and the invariant mass of decay products $M_f$.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.9\linewidth]{analysis/figures/breit_wigner}
