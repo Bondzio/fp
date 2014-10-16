@@ -77,7 +77,6 @@ docs/_build/
 *.fls
 *.fdb_latexmk
 *.synctex.gz
-
 *.bcf
 
 # Pratikum

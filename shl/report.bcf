@@ -1843,6 +1843,10 @@
       <bcf:constraint type="mandatory">
         <bcf:field>title</bcf:field>
       </bcf:constraint>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a846cef87af5978bfa909a8c569f57d545203a49
     </bcf:constraints>
     <bcf:constraints>
       <bcf:entrytype>misc</bcf:entrytype>
@@ -1941,21 +1945,33 @@
     <bcf:datasource type="file" datatype="bibtex">report.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
+<<<<<<< HEAD
     <bcf:citekey order="1">Hooshyar</bcf:citekey>
+=======
+    <bcf:citekey order="1">bettini2008introduction</bcf:citekey>
+>>>>>>> a846cef87af5978bfa909a8c569f57d545203a49
     <bcf:citekey order="2">Hooshyar</bcf:citekey>
     <bcf:citekey order="3">Hooshyar</bcf:citekey>
     <bcf:citekey order="4">Hooshyar</bcf:citekey>
     <bcf:citekey order="5">Hooshyar</bcf:citekey>
     <bcf:citekey order="6">Hooshyar</bcf:citekey>
   </bcf:section>
+<<<<<<< HEAD
   <bcf:sortlist section="0" type="entry" label="none">
+=======
+  <bcf:sortlist section="0" name="none" type="entry" sortscheme="none">
+>>>>>>> a846cef87af5978bfa909a8c569f57d545203a49
   <bcf:sorting>
     <bcf:sort order="1">
       <bcf:sortitem order="1">citeorder</bcf:sortitem>
     </bcf:sort>
   </bcf:sorting>
   </bcf:sortlist>
+<<<<<<< HEAD
   <bcf:sortlist section="0" type="entry" label="none">
+=======
+  <bcf:sortlist section="0" name="none" type="entry" sortscheme="none">
+>>>>>>> a846cef87af5978bfa909a8c569f57d545203a49
   <bcf:sorting>
     <bcf:sort order="1">
       <bcf:sortitem order="1">citeorder</bcf:sortitem>
@@ -1963,3 +1979,9 @@
   </bcf:sorting>
   </bcf:sortlist>
 </bcf:controlfile>
+<<<<<<< HEAD
+=======
+=======
+    </bcf:con
+>>>>>>> 13913f3f53b63ae5e8893cb96aeb5c1bb9e621a7
+>>>>>>> a846cef87af5978bfa909a8c569f57d545203a49
