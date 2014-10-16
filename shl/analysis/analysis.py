@@ -34,7 +34,10 @@ def make_fig(fig, show=True,save=False, name="foo"):
 # Energy distributions
 
 def plot_2_1():
-    for q in "abcde": 
+    couples = [("a","Pos1","right"),("b","Pos1","right"),("c","Pos1","right")\
+            ,("d","Pos1","right"),("e","Pos1","right")]
+
+    for q,pos,pm in couples: 
         data = np.load("./data/measure2_1"+q+".npy")
 
         # Define some test data which is close to Gaussian
@@ -61,12 +64,12 @@ def plot_2_1():
 
 
         ax.errorbar(bin_centres, hist, label='Test data',yerr = np.sqrt(len(data)))
-        ax.plot(bin_centres, hist_fit, label='Fitted data')
+        #ax.plot(bin_centres, hist_fit, label='Fitted data')
 
         # Finally, lets get the fitting parameters, i.e. the mean and standard deviation:
         mu  = coeff[1]
         sigma = coeff[2]
-        ax.set_title = ("Measure 2.1%s with    $\mu=%.3f$ $\sigma = %.3f$" %(q,coeff[1],coeff[2]))
+        #ax.set_title = ("Measure 2.1%s with    $\mu=%.3f$ $\sigma = %.3f$" %(q,coeff[1],coeff[2]))
 
         ax.set_xlabel("Channels", fontsize = 40)
         ax.set_ylabel("counts", fontsize = 40)
@@ -77,7 +80,7 @@ def plot_2_1():
         
         # place a text box in upper left in axes coords
         props = dict(boxstyle='round', facecolor='white', alpha=0.5)
-        textstr = '$\mu=%.2f$\n$\sigma=%.2f$'%(mu, sigma)
+        textstr = 'Position: %s\n PM: %s'%(pos,pm)
         if q in "a,c,e": 
             xpos = 0.05 
         else:
@@ -87,7 +90,6 @@ def plot_2_1():
         ax.grid(True)
         ax.set_xlim(min(bin_centres),max(bin_edges))
         make_fig(fig,0,1,name="plot2_1"+q)
-
 
 # Delayed coincidences
 
@@ -115,10 +117,10 @@ def plot_4_1():
     xx = np.linspace(min(x),max(x),1000)
     #plt.plot(xx,s1(xx))
     #plt.fill_between(x, s1, s2, facecolor='grey', alpha=0.3,interpolate=True)
-    T12_lit = 98
-    lamb_lit = -(np.log(2)/T12_lit)
-    plt.plot(x, 70*np.exp(-lamb_lit * (x-162)))
-    plt.plot(x, 70*np.exp(-lamb_lit * (x-152)*6))
+    #T12_lit = 98
+    #lamb_lit = -(np.log(2)/T12_lit)
+    #plt.plot(x, 70*np.exp(-lamb_lit * (x-162)))
+    #plt.plot(x, 70*np.exp(-lamb_lit * (x-152)*6))
 
 
     plt.ylim(min(data)*0.8,max(data))
@@ -132,7 +134,6 @@ def plot_4_1():
 
     make_fig(fig,1,1,name="plot4_1")
 
-plot_4_1()
 def plot_4_1_log():
     data = np.load("./data/measure4_1.npy")[2:]
 
@@ -347,8 +348,6 @@ def reg2():
     make_fig(fig,1,1,name="plot4_1_reg")
 
 # Random coicidences
-
-
 def plot_5_1():
     data = (np.load("./data/measure5_1.npy")[2:])
     c    = (np.where(data<25)[0])[2:]
@@ -407,10 +406,12 @@ def plot_5_1_hist():
 
     make_fig(fig,1,1,name="plot5_1_hist")
     plt.show()
-
+# Time calibration
 def calib_TAC_MCA():
     delay   = np.array([0,8,16,24,32,40,48,56,64,72,80,88,96,104,112,120,128,136,144,152,160,168,176,184,190.5])
     channel = np.array([20,24,29,34,41,47,53,59,66,72,78,84,90,96,102,109,115,121,127,133,139,145,151,157,162])
+    np.save("data/delay",delay)
+    np.save("data/chennel",channel)
     x_error = delay * 0 + 1
     y_error = channel * 0 + 1
 
@@ -449,7 +450,7 @@ def calib_TAC_MCA():
     plt.fill_between(x_fit, data_fit_min , data_fit_max,facecolor="r", color="b", alpha=0.3 )
 
     plt.errorbar(channel,delay, yerr= y_error,xerr= x_error, fmt= "x")
-    make_fig(fig,1,0,name = "plot7")
+    make_fig(fig,1,1,name = "plot7")
 
 def calib_TAC_MCA2():
     delay   = np.array([25,108.5,162.,0.5,65.5,113.5,75.5,49,79,135.5,23.5,98.5,135.5,110.5,121,127,45,51.5,184,80,185,88.5,52,167.5,44.5])
