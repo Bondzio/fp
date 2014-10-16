@@ -118,6 +118,7 @@ def plot_4_1():
     T12_lit = 98
     lamb_lit = -(np.log(2)/T12_lit)
     plt.plot(x, 70*np.exp(-lamb_lit * (x-162)))
+    plt.plot(x, 70*np.exp(-lamb_lit * (x-152)*6))
 
 
     plt.ylim(min(data)*0.8,max(data))
