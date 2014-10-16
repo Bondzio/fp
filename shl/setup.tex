@@ -1,19 +1,43 @@
 \section{Setup and procedure}
-\subsection{Procedure} 
+First we give an overview of the program which constitutes the experiment. In another subsection, 
+we give a describtion of the setup used. 
+\subsection{Procedure}
+The procedure of measurements consists of the following six points:
 \begin{enumerate}
     \item 
-        assessing the detectors and probe at hand with the oscilloscope;
+        \textbf{Assessing the detectors and probe at hand with the oscilloscope:}
+        We measure the signals of the preamplifier (PA) as wel as uni- and bipolar outputs of 
+        main amplifier (MA) at the oscilloscope. With this signal, we calculate the ascending time 
+        of the signal.
     \item 
-        recording the energy spectrum of $^{57}$Co and $^{241}$Am with the multichannel analyzer (MA); 
+        \textbf{recording the energy spectrum of $^{57}$Co and $^{241}$Am:}
+        The multichannel analyzer (MA) we measure the energy spectrum of both probes 
+        for ca. 10 minutes. With the $^{57}$Co sample, we test the sensibility of each detector
+        and the optimal positioning of the sample (which is not symmetric). After assigning the 
+        channel-energy relationship based on the knowledge of some peaks, we interprete the other visible peaks.
     \item
-        setting the energy windows;
+        \textbf{setting the energy windows:}
+        In this step, we restrict the events passed by the single channel analyzer (SCA) to those 
+        of the 14.4 keV and 122 keV photons, respectively.
     \item
-        measuring the delayed coincidences 
+        \textbf{measuring the delayed coincidences:}
+        Using the Time-to-Amplitude converter (TAC), we record the delays between 14.4 keV and 122 keV 
+        events. Since the 14.4 keV photon is only emitted in 10 \% of the cases, we use this signal to start the 
+        TAC, and stop with the delayed 122 keV photon, expecting to drastically reduce the dead time of the 
+        measurement.
     \item
-        measuring the background (random coincidences)
+        \textbf{measuring the background (random coincidences):}
+        Taking out the delay of the 122 keV signal and further introducing a delay on the 14.4 keV signal, 
+        we measure the background. 
     \item
-        time calibration of Time to Amplitude converter (TAC)
+        \textbf{time calibration of Time to Amplitude converter (TAC):}
+        In order to correlate measured channel and the respective time delay, we measure the channel 
+        assigned by TAC and MCA corresponding to a known delay and perform a fit a linear function between 
+        the two quantities. This correspondance will be used in the anaylsis of the delayed coincidences. 
 \end{enumerate}
+
+
+
 
 
 
