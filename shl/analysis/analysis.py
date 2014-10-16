@@ -114,7 +114,11 @@ def plot_4_1():
     s2 = savitzky_golay(errorB, 61, 3)
     xx = np.linspace(min(x),max(x),1000)
     #plt.plot(xx,s1(xx))
-    plt.fill_between(x, s1, s2, facecolor='grey', alpha=0.3,interpolate=True)
+    #plt.fill_between(x, s1, s2, facecolor='grey', alpha=0.3,interpolate=True)
+    T12_lit = 98
+    lamb_lit = -(np.log(2)/T12_lit)
+    plt.plot(x, 70*np.exp(-lamb_lit * (x-162)))
+
 
     plt.ylim(min(data)*0.8,max(data))
     plt.xlim(min(x)*0.8,max(x))
@@ -125,7 +129,7 @@ def plot_4_1():
     ax.yaxis.set_tick_params(labelsize = 14)
 
 
-    make_fig(fig,1,0,name="plot4_1")
+    make_fig(fig,1,1,name="plot4_1")
 
 plot_4_1()
 def plot_4_1_log():
