@@ -9,8 +9,7 @@ The parameters set for the first configuration are shown in table~\ref{tab:confi
 First we measured the signal from the detector and photomultiplier. We noticed
 that the peaks of shape a) and b) were at irregular points in time (see figure \ref{fig:osci}). 
 We changed the input from the left to the right detector but did not observe a appreciable differences.
-Rotating the sample did not
-change the result significantly, either. 
+Rotating the sample did not change the result significantly, either. 
 \\
 \\
  \begin{minipage}{\textwidth}
@@ -18,7 +17,7 @@ change the result significantly, either.
     \centering
     \includegraphics[width=0.8\linewidth]{figures/uni_bipolar2}
     \captionof{figure}{Oscillscope: a) refers to the unipolar channel and b) to 
-the bipolar channel.}
+        the bipolar channel.}
     \label{fig:osci}
   \end{minipage}
   \hfill
@@ -107,17 +106,17 @@ chosen position for the sample is thus +++???.
 
 \subsubsection{Calibration of TAC-MCA Signal}
 \label{subs:calib_TAC}
-In order to relate the channels to the Delay, we used the following
+In order to relate the channels to the delay, we used the following
 measurement for calibration. We used a least square fit for the parameters
 of the linear relation:
 \begin{align}
     \label{eq:coeff}
     y &= ax + b \\
-    a &= \left[ 1.315 \pm 0.005 \right]s\\
-    b &= \left[ -22.6 \pm 0.5 \right]s 
+    a &= \left[ 1.315 \pm 0.005 \right] \mathrm{ns} / \mathrm{Channel}\\
+    b &= \left[ -22.6 \pm 0.5 \right]\mathrm{ns} 
 \end{align}
+where the $x$-values are given by the number of the corresponding channel. 
 The resulting covariance matrix of the fit is the following:
-+++UNITS???
 \begin{align}
     \label{eq:cov}
     \mathrm{cov}(a, b) &=& 
@@ -126,6 +125,8 @@ The resulting covariance matrix of the fit is the following:
         -2.089\mathrm{e}-03 &2.328\mathrm{e}-01 \\
     \end{pmatrix}
 \end{align}
+where the units correspond to those of $a$ and $b$ 
+(e.~g. $\mathrm{cov}(a,a) = 2.318\mathrm{e}-05 \mathrm{ns^2} / \mathrm{Channel}^2$).
 The $\chi^2$-test results in:
 \begin{align}
     \label{eq:}
