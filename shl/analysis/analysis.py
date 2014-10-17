@@ -34,8 +34,8 @@ def make_fig(fig, show=True,save=False, name="foo"):
 # Energy distributions
 
 def plot_2_1():
-    couples = [("a","Pos1","right"),("b","Pos1","right"),("c","Pos1","right")\
-            ,("d","Pos1","right"),("e","Pos1","right")]
+    couples = [("a","Pos1","right"),("b","Pos1","left"),("c","Pos2","right")\
+            ,("d","Pos2","left"),("e","Pos2","left")]
 
     for q,pos,pm in couples: 
         data = np.load("./data/measure2_1"+q+".npy")
@@ -90,7 +90,6 @@ def plot_2_1():
         ax.grid(True)
         ax.set_xlim(min(bin_centres),max(bin_edges))
         make_fig(fig,0,1,name="plot2_1"+q)
-
 # Delayed coincidences
 
 def plot_4_1():
@@ -526,5 +525,79 @@ def calib_TAC_MCA_rescaled():
 
     make_fig(fig,1,1,name = "plot7b")
 
+def plot_6():
+    """
 
+        Rainer Marie Rilke: Magie
+
+    Aus unbeschreiblicher Verwandlung stammen
+    solche Gebilde-: Fühl! und glaub!
+    Wir leidens oft: zu Asche werden Flammen;
+    doch: in der Kunst: zur Flamme wird der Staub.
+
+    Hier ist Magie. In das Bereich des Zaubers
+    scheint das gemeine Wort hinaufgestuft...
+    und ist doch wirklich wie der Ruf des Taubers,
+    der nach der unsichtbaren Taube ruft. 
+
+    """
+    f, (ax1, ax2) = plt.subplots(1, 2)
+
+    data = np.load("data/measure6_1.npy")
+    channel = np.arange(0,len(data),1)
+    ax1.errorbar(channel,data,yerr = np.sqrt(data))
+
+    ax1.set_xlabel("Channels", fontsize = 14)
+    ax1.set_ylabel("counts", fontsize = 14)
+    ax1.xaxis.set_tick_params(labelsize = 14)
+    ax1.yaxis.set_tick_params(labelsize = 14)
+
+    ax1.set_xlim(0,max(channel))
+
+    # place a text box in upper left in axes coords
+    props = dict(boxstyle='round', facecolor='white', alpha=0.5)
+    textstr = 'Left detector\n $t = 2682$s\n Ma Coarse gain: 500'
+    ax1.text(0.1, 0.95, textstr, transform=ax1.transAxes, fontsize=14, va='top', bbox=props)
+
+    data = np.load("data/measure6_2.npy")
+    channel = np.arange(0,len(data),1)
+    ax2.errorbar(channel,data,yerr = np.sqrt(data))
+
+    ax2.set_xlabel("Channels", fontsize = 14)
+    ax2.set_ylabel("counts", fontsize = 14)
+    ax2.xaxis.set_tick_params(labelsize = 14)
+    ax2.yaxis.set_tick_params(labelsize = 14)
+
+    ax2.set_xlim(0,140)
+    # place a text box in upper left in axes coords
+    props = dict(boxstyle='round', facecolor='white', alpha=0.5)
+    textstr = 'Left detector\n $t = 2843$s\n Ma Coarse gain: 200'
+    ax2.text(0.1, 0.95, textstr, transform=ax2.transAxes, fontsize=14, va='top', bbox=props)
+    plt.show()
+
+    fig = plt.figure()
+    ax  = plt.subplot(111)
+
+    data = np.load("data/measure6_3.npy")
+    channel = np.arange(0,len(data),1)
+    ax.errorbar(channel,data,yerr = np.sqrt(data))
+
+    ax.set_xlabel("Channels", fontsize = 14)
+    ax.set_ylabel("counts", fontsize = 14)
+    ax.xaxis.set_tick_params(labelsize = 14)
+    ax.yaxis.set_tick_params(labelsize = 14)
+
+    ax.set_xlim(0,150)
+
+    # place a text box in upper left in axes coords
+    props = dict(boxstyle='round', facecolor='white', alpha=0.5)
+    textstr = 'Right detector\n $t = 2883$s\n Ma Coarse gain: 200'
+    ax.text(0.7, 0.95, textstr, transform=ax.transAxes, fontsize=14, va='top', bbox=props)
+    plt.show()
+
+
+
+
+
+plot_6()
 
