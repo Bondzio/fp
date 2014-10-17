@@ -5,38 +5,11 @@
 \label{sub:preparations_and_calibration_of_the_setup}
 \subsubsection{Controlling the setup with the oscilloscope}
 \label{ssub:Controlling the setup with the oscilloscope}
-The parameters set for the first configuration are shown in table~\ref{tab:config}. 
 First we measured the signal from the detector and photomultiplier. We noticed peaks at irregular points in time 
 as can be seen in figure \ref{fig:osci_signal}. Next, the uni- and bipolar signals of the MA are 
-examined (see an example in figure \ref{fig:uni_bipolar}). We can read out rise and fall times for the signal, 
-defined as time between 10\% and 90\% of the amplitude and vice verse. 
-\begin{itemize}
-    \item
-        Bipolar:    rise time = $600 \pm 50$ ns, fall time $400 \pm 50$ ns;
-    \item
-        Unipolar:   rise time = $800 \pm 50$ ns, fall time $1400 \pm 100$ ns.
-\end{itemize}
-Without further information about the activity of the probe, we cannot give a statement about 
-possible overlapping of signals. Referring to the prior plot of the peaks distributed in time, we 
-assume the probablity of overlapping signals to be low enough, though. 
-It is further apparent that the bipolar signal has a much higher resolution in time and is therefore 
-more suitable for the time sensitive measurement of delayed coincidences. 
-We changed the input from the left to the right detector but did not observe a appreciable differences.
-Rotating the sample did not change the result significantly, either. 
-
-\begin{minipage}{\textwidth}
-  \begin{minipage}[b]{0.49\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/uni_bipolar2}
-    \captionof{figure}{
-        Events detected by the right detector over a range of 6 ms. 
-        The decline rate of 200 $\mu$s is fast enough to evade the 
-        coincidence of two events at the given rate. 
-        }
-    \label{fig:osci_signal}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[b]{0.49\textwidth}
+examined (see an example in figure \ref{fig:uni_bipolar}). 
+The parameters set at the MA are shown in table~\ref{tab:config}. 
+\begin{table}[H]
     \centering
     \begin{tabular}{|l|l|}
      \hline
@@ -53,17 +26,43 @@ Rotating the sample did not change the result significantly, either.
      \hline
     \end{tabular}
     \label{tab:config}
-    \captionof{table}{
+    \caption{
         Configuration of MA, MCA in measurement 2.1.1.
         }
-    \end{minipage}
-\end{minipage}
+\end{table}
+We can read out rise and fall times for the signal, 
+defined as time between 10\% and 90\% of the amplitude and vice verse. 
+\begin{itemize}
+    \item
+        Bipolar:    rise time = $(600 \pm 50)$ ns, fall time $(400 \pm 50)$ ns;
+    \item
+        Unipolar:   rise time = $(800 \pm 50)$ ns, fall time $(1400 \pm 100)$ ns.
+\end{itemize}
+Without further information about the activity of the probe, we cannot give a statement about 
+possible overlapping of signals. Referring to the prior plot of the peaks distributed in time, we 
+assume the probablity of overlapping signals to be low enough, though. 
+It is further apparent that the bipolar signal has a much higher resolution in time and is therefore 
+more suitable for the time sensitive measurement of delayed coincidences. 
+We changed the input from the left to the right detector but did not observe a appreciable differences.
+Rotating the sample did not change the result significantly, either.  
+\\\\
+\begin{SCfigure}
+    \begin{centering}
+        \caption{
+            Events detected by the right detector over a range of 6 ms. 
+            The decline rate of 200 $\mu$s is fast enough to evade the 
+            coincidence of two events at the given rate. 
+            }
+        \includegraphics[width=0.45\linewidth]{figures/osci_signal}
+        \label{fig:osci_signal}
+    \end{centering}
+\end{SCfigure}
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/uni_bipolar2}
     \caption{Oscillscope: a) refers to the unipolar channel and b) to 
-        the bipolar channel.}
+        the bipolar channel of the MA.}
     \label{fig:uni_bipolar}
 \end{figure}
 
