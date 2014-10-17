@@ -44,19 +44,22 @@ def breit_wigner():
     and the example 57Co to 57Fe
 
     """
-    M_i = 136.5 
-    M_f = np.linspace(-200,600,1000)
-    T_12 = 270 * 24 * 60 * 60
+    M_i = 1 
+    M_f = np.linspace(M_i * 0.999, M_i * 1.001 ,1000)
+
+    T_12 = 10**-(12) 
     tau  = T_12 / np.log(2) 
-    Gamma = 10**6 * hbar/tau / (eV)**2  
-    print(Gamma)
+    Gamma = hbar/tau / (eV) 
     N_f = 100* Gamma / (2*np.pi*( (M_f - M_i)**2 + Gamma**2/4 ))
 
     plt.figure()
     plt.plot(M_f,N_f)
+    plt.xlim(M_i * 0.999, M_i * 1.001)
     plt.xlabel("Energy in keV")
     plt.ylabel("Probability in \%")
-    plt.savefig("figures/breit_wigner.pdf")
+    plt.show()
+
+    #plt.savefig("figures/breit_wigner.pdf")
 
 breit_wigner()
 

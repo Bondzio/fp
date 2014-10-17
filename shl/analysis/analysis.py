@@ -13,7 +13,11 @@ from matplotlib import rcParams
 from scipy.interpolate import UnivariateSpline,InterpolatedUnivariateSpline,interp1d
 from smooth import savitzky_golay
 import uncertainties as uc
+import uncertainties.unumpy as un
 from uncertainties import umath
+
+
+import pickle
 
 
 rcParams['font.family'] = 'serif'
@@ -660,8 +664,8 @@ def reg_6_3(plot = False):
 
         make_fig(fig,1,1,name = "plot6_3_reg")
 
-    mu = (p_uc[3].n,p_uc[4].n,p_uc[5].n)
-    Smu = (p_uc[3].s,p_uc[4].s,p_uc[5].s)
+    mu = [p_uc[3].n,p_uc[4].n,p_uc[5].n]
+    Smu = [p_uc[3].s,p_uc[4].s,p_uc[5].s]
     energies = [26.3, 33.2,59.5]
     return energies,mu,Smu 
 
@@ -672,13 +676,12 @@ def reg_2_1a(plot = False):
     channel = np.arange(0,len(data),1)
     channel_fit = np.linspace(0,len(data)+1,1000)
 
-    def func(x, *p):
-        a1,a2,a3,a4,a5,mu1,mu2,mu3,mu4,mu5,sigma1,sigma2,sigma3,sigma4,sigma5,c = p
-        return a1*np.exp(- (x-mu1)**2 / (2*sigma1)**2 ) + \
-               a2*np.exp(- (x-mu2)**2 / (2*sigma2)**2 ) + \
-               a3*np.exp(- (x-mu3)**2 / (2*sigma3)**2 ) + \
-               a4*np.exp(- (x-mu4)**2 / (2*sigma4)**2 ) + \
-               a5*np.exp(- (x-mu5)**2 / (2*sigma5)**2 ) + c
+    def func(x, a1,a2,a3,a4,a5,mu1,mu2,mu3,mu4,mu5,sigma1,sigma2,sigma3,sigma4,sigma5,c):
+        return a1*np.exp(1)**(- (x-mu1)**2 / (2*sigma1)**2 ) + \
+               a2*np.exp(1)**(- (x-mu2)**2 / (2*sigma2)**2 ) + \
+               a3*np.exp(1)**(- (x-mu3)**2 / (2*sigma3)**2 ) + \
+               a4*np.exp(1)**(- (x-mu4)**2 / (2*sigma4)**2 ) + \
+               a5*np.exp(1)**(- (x-mu5)**2 / (2*sigma5)**2 ) + c
 
     # p0 is the initial guess for the fitting coefficients 
     p0 = [1000,1000, 4000,5000, 28000,18,42,119,140,190,1, 1,1,1,1, 500]
@@ -721,8 +724,11 @@ def reg_2_1a(plot = False):
         ax.xaxis.set_tick_params(labelsize = 14)
         ax.yaxis.set_tick_params(labelsize = 14)
 
-        data_fit_min = func(channel_fit,*(p - np.sqrt(np.diag(cov))))
-        data_fit_max = func(channel_fit,*(p + np.sqrt(np.diag(cov))))
+        data_fit = func(channel_fit, *p) 
+        error_on_fit = un.std_devs(func(channel_fit, *p_uc))
+        data_fit_min = data_fit - error_on_fit
+        data_fit_max = data_fit + error_on_fit
+
         plt.fill_between(channel_fit, data_fit_min , data_fit_max,facecolor="r", color="b", alpha=0.3 )
 
         plt.grid(True)
@@ -730,26 +736,73 @@ def reg_2_1a(plot = False):
 
         make_fig(fig,1,0,name = "plot2_1a_reg")
 
-    mu = [p_uc[5].n,p_uc[5].n,p_uc[7].n,p_uc[8].n,p_uc[9].n]
-    Smu =[p_uc[5].s,p_uc[6].s,p_uc[7].s,p_uc[8].s,p_uc[9].s]
-    energies = [0,14.4,0,122.1]
-    return energies,mu,Smu 
+    mu = [p_uc[6].n,p_uc[9].n]
+    Smu =[p_uc[6].s,p_uc[9].s]
+    mu2 = [p_uc[5+q] for q in range(5)]
+    energies = [14.4,122.1]
+
+    return energies,mu,Smu, mu2
 
 
 def energy_scale():
 
     E_am, mu_am, Smu_am = reg_6_3(False)
-    E_co, mu_co, Smu_co = reg_2_1a(True)
-    print(E_co,mu_co,Smu_co)
-    plot = False
+    E_co, mu_co, Smu_co, mu2 = reg_2_1a(False)
+    plot = True 
+
+    #plt.errorbar(E_am,mu_am,yerr= Smu_am, fmt="x") 
+    #plt.errorbar(E_co,mu_co,yerr= Smu_co, fmt="x") 
+    E = [E_co[1]] + E_am[1:3]
+    mu = [mu_co[1] ]+ mu_am[1:3]
+    error = [Smu_co[1]] + Smu_am[1:3]
+
+    def func(x, a,b):
+        return a*x + b
+
+    # p0 is the initial guess for the fitting coefficients 
+    p0 = [1,1]
+
+    p, cov = curve_fit(func, mu, E, p0=p0, sigma = error)
+    p_uc = uc.correlated_values(p, cov)
+    print(p_uc)
+
+
+    for mu_ in mu2: 
+        print(mu_,"Channel => ",func(mu_,*p_uc),"keV")
 
     if plot:
+
         fig = plt.figure()
         ax  = plt.subplot(111)
 
-        plt.errorbar(energies,mu,yerr= Smu, fmt="x") 
-        plt.xlabel("Energy $E$ / keV", fontsize = 14)
-        plt.ylabel("mean $\mu$ /  channel", fontsize = 14)
-        plt.show()
+        plt.scatter(mu_co[1],E_co[1],c="r", label = "Cobalt source: 122.1 keV Peak") 
+        plt.scatter(mu_am[1:3],E_am[1:3],c="b", label = "Americium source: 33.2 keV and 59.5 keV") 
+        plt.legend(fontsize = 15)
+
+
+        channel_fit = np.linspace(0,300,1000)
+        plt.xlim(0,300)
+        plt.ylim(0,250)
+
+        data_fit = func(channel_fit, *p) 
+        
+
+        props = dict(boxstyle='round', facecolor='white', alpha=0.5)
+        textstr = 'E = $a\cdot \mathrm{channel} + b$\n$a=%.3f$ keV/channel\n$b=%.3f$ keV'%(p[0],p[1])
+        ax.text(0.6,0.3, textstr, transform=ax.transAxes, fontsize=14, va='top', bbox=props)
+
+
+        plt.plot(channel_fit,data_fit)
+        error_on_fit = un.std_devs(func(channel_fit, *p_uc))
+        data_fit_min = data_fit - error_on_fit
+        data_fit_max = data_fit + error_on_fit
+
+        plt.fill_between(channel_fit, data_fit_min , data_fit_max,facecolor="r", color="b", alpha=0.3 )
+
+        plt.grid(True)
+
+        plt.ylabel("Energy $E$ / keV", fontsize = 14)
+        plt.xlabel("mean $\mu$ /  channel", fontsize = 14)
+        make_fig(fig,1,1,name = "plot_E")
 
 energy_scale()
