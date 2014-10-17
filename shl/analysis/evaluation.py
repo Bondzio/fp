@@ -6,6 +6,7 @@ from matplotlib import rcParams
 import seaborn as sns
 
 import uncertainties as uc
+import uncertainties.unumpy as un
 from uncertainties import umath
 
 """
@@ -38,14 +39,21 @@ def make_fig(fig, show=True,save=False, name="foo"):
     if save == True:
         fig.savefig(fig_dir + name + ".pdf")
 
-plot         = True  # Do you really want to plot?
-fit          = True  # Do the fitting with scipy.curve_fit 
-redistribute = False # Redistributing the background 
-save         = True  # Saving the figure (You should have plotted though)
-show         = True  # Showing the figure ("After all is said and done, more is said than done" Aesop)
-caling       = True  # rescaling the channels to time 
-flip         = True  # Flipping the plot such that e^x -> e^-x 
-cut          = True  # Cutting all the data for which t<0 
+def unv(uarray):        # returning nominal values of a uarray
+    return un.nominal_values(uarray)
+
+def usd(uarray):        # returning the standard deviations of a uarray
+    return un.std_devs(uarray)
+
+plot        = True  # Do you really want to plot?
+fit         = True  # Do the fitting with scipy.curve_fit 
+redistribute= False # Redistributing the background 
+save        = False  # Saving the figure (You should have plotted though)
+show        = True  # Showing the figure ("After all is said and done, more is said than done" Aesop)
+scaling     = False  # rescaling the channels to time 
+flip        = True  # Flipping the plot such that e^x -> e^-x 
+cut         = False  # Cutting all the data for which t<0 
+incl_zeros   = True # include zeros into the fit (otherwise, fit omits data!)
 
 total_time = 52658
 
@@ -54,7 +62,7 @@ if scaling == True:
     delay = np.load("data/delay.npy")
     channel = np.load("data/channel.npy")
 
-    #these errors were also confirmed by the χ² test
+    #these errors were also confirmed by the chi² test
     x_error = delay * 0 + 1
     y_error = channel * 0 + 1
 
@@ -111,8 +119,12 @@ if redistribute == True:
     print("number of nonzero:",len(np.nonzero(data)[0]))
 else:
     data -= mass
-    data = data[data>0]
-    channel = channel[data>0]
+    if incl_zeros:
+        # I would suggest to not take out the points with n=0, becuase they do influence the fit:
+        data[data<=0] = 0
+    else:
+        data = data[data>0]
+        channel = channel[data>0]
 
 if scaling == True:
     # rescale
@@ -128,47 +140,48 @@ if flip == True:
     t = t[::-1]
 
 error = np.sqrt(data)
+if incl_zeros:
+    error[error == 0] = 1
+weights = (1 / error ** 2)
 
 if plot==True:
     fig = plt.figure()
     ax  = plt.subplot(111)
 
 if fit==True:
-    def func(x, *p):
-        a,b,c = p
-        return a + b * np.exp(-c*x)
+    def func(x, a, b, c):
+        return a + b * np.exp(1) ** (-c*x)
 
     # p0 is the initial guess for the fitting coefficients 
-    p0 = [1, 1,1]
+    p0 = [1, 1, 1]
 
-    p, cov = curve_fit(func, t, data, p0=p0, sigma = error)
-
-
+    p, cov = curve_fit(func, t, data, p0=p0, sigma = weights)
 
     p_uc = uc.correlated_values(p, cov)
     lamb = p_uc[2]
 
     T12_lit = 98 
-    lamb_lit = -(np.log(2)/T12_lit)
+    lamb_lit = -(np.log(2) / T12_lit)
     print("literature lambda: %.3f"%lamb_lit)
-    print("fitted lambda:",lamb)
-    
+    print("fitted lambda:", lamb)
 
-    t_fit = np.linspace(min(t),max(t))
+    t_fit = np.linspace(min(t), max(t))
 
+    data_lit = func(t_fit, *(0, max(data), -lamb_lit))
     data_fit = func(t_fit,*p) 
-    data_lit = func(t_fit,*(0,max(data),-lamb_lit))
-    pmin = (p - np.sqrt(np.diag(cov)))
-    pmax = (p + np.sqrt(np.diag(cov)))
+    data_fit_min = unv(func(t_fit, *p_uc)) - usd(func(t_fit, *p_uc))
+    data_fit_max = unv(func(t_fit, *p_uc)) + usd(func(t_fit, *p_uc))
+    #pmin = (p - np.sqrt(np.diag(cov)))
+    #pmax = (p + np.sqrt(np.diag(cov)))
 
-    data_fit_min = func(t_fit, *pmin)
-    data_fit_max = func(t_fit, *pmax)
+    #data_fit_min = func(t_fit, *pmin)
+    #data_fit_max = func(t_fit, *pmax)
 
     if plot == True:    
 
-        plt.plot(t_fit,data_fit)
-        plt.plot(t_fit,data_lit)
-        plt.fill_between(t_fit, data_fit_min , data_fit_max,facecolor="r", color="b", alpha=0.3 )
+        plt.plot(t_fit, data_fit)
+        plt.plot(t_fit, data_lit)
+        plt.fill_between(t_fit, data_fit_min , data_fit_max, facecolor="r", color="b", alpha=0.3 )
 
         # place a text box in upper left in axes coords
         props = dict(boxstyle='round', facecolor='white', alpha=0.5)
@@ -181,11 +194,14 @@ if fit==True:
         ax.add_patch(plt.Rectangle((0,0.1),155,100,alpha = 0.2))
 
 if plot == True:
-    plt.errorbar(t,data, yerr=error,fmt="x")
-    plt.ylim(min(data)*0.8,max(data))
+    plt.errorbar(t, data, yerr=error, fmt="x")
+    plt.ylim(min(data)*0.8, max(data))
     #plt.yscale("log")
-    plt.xlim(min(t)*0.8,max(t))
-    plt.xlabel("time in $ns$", fontsize = 14)
+    plt.xlim(min(t)*0.8, max(t))
+    if scaling:
+        plt.xlabel("time in $ns$", fontsize = 14)
+    else:
+        plt.xlabel("channel", fontsize = 14)
     plt.ylabel("counts", fontsize = 14)
-    make_fig(fig,show,save,name="plot4_1_reg")
+    make_fig(fig, show, save, name="plot4_1_reg")
 
