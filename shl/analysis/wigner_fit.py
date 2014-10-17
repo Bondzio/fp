@@ -32,6 +32,8 @@ To do: Plugin energy scaling for x-axis.
 Fitting Breit Wigner
 gamma -> tau 
 
+after: voigt profile
+
 
 k
 def gauss(x, *p):
