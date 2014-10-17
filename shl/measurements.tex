@@ -50,9 +50,9 @@ be suitable, we increased gain and coarse gain of the MA to 8.6 and 200, respect
 This way, the observed spectrum was distributed over the entire range of bins. 
 The setup is listed in table~\ref{tab:config2}. With the four possible combinations
 of position and detector, we obtained four different histograms, shown in figure~\ref{fig:measure2.1}.
-For the further measurements, we chose detector +++??? for the lower and much less 
+For the further measurements, we chose the photomultiplier on the left side for the lower and much less 
 pronounced peak, since it show a higher sensibility in that region. The 
-chosen position for the sample is thus +++???.
+chosen position for the sample is thus Pos1, which corresponds to figure~\ref{fig:measure2.1} (a) and (b).
 \begin{table}[htp]
     \begin{tabular}{|l|l|l||l|l|l|}
         \hline
@@ -101,6 +101,21 @@ chosen position for the sample is thus +++???.
         }
     \label{fig:measure2.1}
 \end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{analysis/figures/plot6_12}
+    \caption{Ameritium spectrum}
+    \label{fig:plot6_13}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{analysis/figures/plot6_3}
+    \caption{Ameritium spectrum}
+    \label{fig:plot6_13}
+\end{figure}
+
 \clearpage
 \subsection{Measuring $\Delta t$ of coincidences}
 
@@ -224,7 +239,8 @@ The measurement ran about 14 hours over night. See Figure~\ref{fig:4_1} for the 
         further analysis show, that the peak is not symmetric and hence the left 
         side will be fitted against a exponential curve, while the origin of the
         right side is the background, which will be analyzed in the next section.
-        The errors which are visualized here are approximated by $S_{N_i} = \sqrt{N_i}$.}
+        The errors which are visualized here are approximated by $S_{N_i} = \sqrt{N_i}$, since
+        the counts per bin resample a poissonian process.}
     \label{fig:4_1}
 \end{figure}
 \clearpage
@@ -244,5 +260,8 @@ background noise signal, which you can see in Figure~\ref{fig:5_1}.
     \caption{Measurement 5.1: Random coincidences and their histogram.}
     \label{fig:5_1}
 \end{figure}
+
+\label{ssub:}
+
 \clearpage
 
