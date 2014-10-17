@@ -699,27 +699,27 @@ def reg_2_1a(plot = False):
         
         ax.plot(channel_fit, func(channel_fit,*p))
         ax.plot(channel_fit,channel_fit*0 + p[-1],"--")
-        text = False
+        text =True 
         if text:
-            pos = [(0.05,0.25),( 0.2,0.55),( 0.7,0.95)]
+            pos = [(0.02,0.35),( 0.55,0.8),( 0.7,0.95)]
             
             props = dict(boxstyle='round', facecolor='white', alpha=0.5)
 
-            for q in range(3):
+            for i,q in enumerate([0,4]):
 
                 a,Sa = p_uc[q].n, p_uc[q].s
-                mu,Smu = p_uc[q+3].n, p_uc[q+3].s
-                sigma,Ssigma = p_uc[q+6].n , p_uc[q+6].s
+                mu,Smu = p_uc[q+5].n, p_uc[q+5].s
+                sigma,Ssigma = p_uc[q+10].n , p_uc[q+10].s
                 
                 #textstr = '$A=%.3f \pm %.3f$\n$\mu = %.3f \pm %.3f$\n$\sigma = %.3f \pm %.3f$'%(a,Sa,mu,Smu,sigma,Ssigma)
-                qq = q+1
-                textstr = '$A_%d=%.3f$\n$\mu_%d = %.3f$\n$\sigma_%d = %.3f$'%(qq,a,qq,mu,qq,sigma)
-                ax.text(pos[q][0], pos[q][1], textstr, transform=ax.transAxes, fontsize=14, va='top', bbox=props)
+                ii = i+1
+                textstr = '$A_%d=%.3f$\n$\mu_%d = %.3f$\n$\sigma_%d = %.3f$'%(ii,a,ii,mu,ii,sigma)
+                ax.text(pos[i][0], pos[i][1], textstr, transform=ax.transAxes, fontsize=14, va='top', bbox=props)
 
-            textstr = '$c = %.3f$'%(p[-1])
-            ax.text(0.6,0.1, textstr, transform=ax.transAxes, fontsize=14, va='top', bbox=props)
-
-        ax.set_xlabel("channels", fontsize = 14)
+                ax.set_xlabel("channels", fontsize = 14)
+                
+        ax.add_patch(plt.Rectangle((10,0.1),18,3000,alpha = 0.2))
+        ax.add_patch(plt.Rectangle((165,0.1),50,30000,alpha = 0.2))
         ax.set_ylabel("counts", fontsize = 14)
         ax.xaxis.set_tick_params(labelsize = 14)
         ax.yaxis.set_tick_params(labelsize = 14)
@@ -732,9 +732,10 @@ def reg_2_1a(plot = False):
         plt.fill_between(channel_fit, data_fit_min , data_fit_max,facecolor="r", color="b", alpha=0.3 )
 
         plt.grid(True)
+        plt.xlim(0,250)
 
 
-        make_fig(fig,1,0,name = "plot2_1a_reg")
+        make_fig(fig,1,1,name = "plot2_1a_reg")
 
     mu = [p_uc[6].n,p_uc[9].n]
     Smu =[p_uc[6].s,p_uc[9].s]
@@ -743,11 +744,12 @@ def reg_2_1a(plot = False):
 
     return energies,mu,Smu, mu2
 
+reg_2_1a(True)
 
 def energy_scale():
 
     E_am, mu_am, Smu_am = reg_6_3(False)
-    E_co, mu_co, Smu_co, mu2 = reg_2_1a(False)
+    E_co, mu_co, Smu_co, mu2 = reg_2_1a(True)
     plot = True 
 
     #plt.errorbar(E_am,mu_am,yerr= Smu_am, fmt="x") 
@@ -805,4 +807,4 @@ def energy_scale():
         plt.xlabel("mean $\mu$ /  channel", fontsize = 14)
         make_fig(fig,1,1,name = "plot_E")
 
-energy_scale()
+#energy_scale()
