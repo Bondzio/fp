@@ -44,10 +44,10 @@ fit         = True  # Do the fitting with scipy.curve_fit
 redistribute= False # Redistributing the background 
 save        = False  # Saving the figure (You should have plotted though)
 show        = True  # Showing the figure ("After all is said and done, more is said than done" Aesop)
-scaling     = False  # rescaling the channels to time 
+scaling     = True # rescaling the channels to time 
 flip        = True  # Flipping the plot such that e^x -> e^-x 
-cut         = False  # Cutting all the data for which t<0 
-incl_zeros   = True # include zeros into the fit (otherwise, fit omits data!)
+cut         = True  # Cutting all the data for which t<0 
+incl_zeros  = True # include zeros into the fit (otherwise, fit omits data!)
 
 total_time = 52658
 
@@ -127,8 +127,13 @@ else:
     t = channel
 
 if cut == True:
-    data = data[t>0]
-    t    = t[t>0]
+    if scaling:
+        data = data[t>0]
+        t    = t[t>0]
+    else:
+        t_min = 18
+        data = data[t_min:]
+        t = t[t_min:]
 
 if flip == True:
     t = t[::-1]
@@ -136,7 +141,6 @@ if flip == True:
 error = np.sqrt(data)
 if incl_zeros:
     error[error == 0] = 1
-weights = (1 / error ** 2)
 
 if plot==True:
     fig = plt.figure()
@@ -144,12 +148,12 @@ if plot==True:
 
 if fit==True:
     def func(x, a, b, c):
-        return a + b * np.exp(1) ** (-c*x)
+        return a + b * np.exp(1)**(-c*x)
 
     # p0 is the initial guess for the fitting coefficients 
-    p0 = [1, 1, 1]
+    p0 = [0, 1, 0]
 
-    p, cov = curve_fit(func, t, data, p0=p0, sigma = weights)
+    p, cov = curve_fit(func, t, data, p0=p0, sigma =error)
 
     p_uc = uc.correlated_values(p, cov)
     lamb = p_uc[2]
@@ -162,7 +166,7 @@ if fit==True:
     t_fit = np.linspace(min(t), max(t))
 
     data_lit = func(t_fit, *(0, max(data), -lamb_lit))
-    data_fit = func(t_fit,*p) 
+    data_fit = func(t_fit, *p) 
     error_on_fit = un.std_devs(func(t_fit, *p_uc))
     data_fit_min = data_fit - error_on_fit
     data_fit_max = data_fit + error_on_fit
