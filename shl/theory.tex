@@ -150,15 +150,22 @@ The energy distribution of the unstable state to a final state $f$ resolves into
 \begin{equation}
     N_f(M_f) = \frac{\Gamma_f}{(M_f-M_i)^2 c^4 + \Gamma_f^2/4}
 \end{equation}
-with the mass of the decaying state $M_i$ and the invariant mass of decay products $M_f$.
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=0.9\linewidth]{analysis/figures/breit_wigner}
-    \caption{Breit-Wigner distribution. Here again with
-        $^{57}Cs\rightarrow ^{57}Fe$ with $t_{1/2}=270$. Hence we have $M_i = 136.5$keV and
-    $\Gamma_f = \hbar / \textrm{log}(2)t_{1/2} = 122$keV, which resamples in the width of the curve.}
-    \label{fig:name}
-\end{figure}
+with the mass of the decaying state $M_i$ and the invariant mass of decay products $M_f$. \\\\
+At this point one might ask why it is necessary to make use of such a sophisticated setup (see next chapter
+for the technical devices we are using). It would be much easier to measure a very high resolution of the
+energy peak of the process and fit the peak with the a Breit-Wigner distribution in order to get $\Gamma$. 
+In the interest of investigating this question, we will do some approximations regarding to the
+half life period we are interested in, whereas we have $E = 14.4$ eV and $t_{1/2} = 98$ns:
+\begin{equation}
+    \Gamma = \frac{\hbar}{\tau} = \frac{\log(2)\cdot \hbar}{t_{1/2}} \approx 4.66 \cdot 10^{-9} \mathrm{eV} 
+\end{equation}
+This is beyond the limits of a meaningful calculation or measurement, which indicates that the peak should
+be totally sharp with regards to the Breit-Wigner shape. The broad width of our curves is not due to the
+resonance but due to a gaussian process related to thermodynamical influences. Hence it is not possible
+in this case\footnote{In other cases it is a good possibility, but only when the width $\Gamma$ is comparable
+to the resolution of the experimental setup of the spectroscope. This is for instance the case for extremely
+short half lifes as possible in high energy physics.}
+to obtain the half life period with the help of the energy distribution.
 \clearpage
 
 \subsection{Overview of technical instruments}

@@ -13,7 +13,11 @@ from matplotlib import rcParams
 from scipy.interpolate import UnivariateSpline,InterpolatedUnivariateSpline,interp1d
 from smooth import savitzky_golay
 import uncertainties as uc
+import uncertainties.unumpy as un
 from uncertainties import umath
+
+
+import pickle
 
 
 rcParams['font.family'] = 'serif'
@@ -541,39 +545,42 @@ def plot_6():
     der nach der unsichtbaren Taube ruft. 
 
     """
-    f, (ax1, ax2) = plt.subplots(1, 2)
+    f, (ax1, ax2) = plt.subplots(1, 2, figsize = (16,8))
 
     data = np.load("data/measure6_1.npy")
     channel = np.arange(0,len(data),1)
     ax1.errorbar(channel,data,yerr = np.sqrt(data))
 
-    ax1.set_xlabel("Channels", fontsize = 14)
-    ax1.set_ylabel("counts", fontsize = 14)
-    ax1.xaxis.set_tick_params(labelsize = 14)
-    ax1.yaxis.set_tick_params(labelsize = 14)
+    ax1.set_xlabel("Channels", fontsize = 25)
+    ax1.set_ylabel("counts", fontsize = 25)
+    ax1.xaxis.set_tick_params(labelsize = 25)
+    ax1.yaxis.set_tick_params(labelsize = 25)
 
     ax1.set_xlim(0,max(channel))
 
     # place a text box in upper left in axes coords
     props = dict(boxstyle='round', facecolor='white', alpha=0.5)
     textstr = 'Left detector\n $t = 2682$s\n Ma Coarse gain: 500'
-    ax1.text(0.1, 0.95, textstr, transform=ax1.transAxes, fontsize=14, va='top', bbox=props)
+    ax1.text(0.1, 0.95, textstr, transform=ax1.transAxes, fontsize=25, va='top', bbox=props)
+    
 
     data = np.load("data/measure6_2.npy")
     channel = np.arange(0,len(data),1)
     ax2.errorbar(channel,data,yerr = np.sqrt(data))
 
-    ax2.set_xlabel("Channels", fontsize = 14)
-    ax2.set_ylabel("counts", fontsize = 14)
-    ax2.xaxis.set_tick_params(labelsize = 14)
-    ax2.yaxis.set_tick_params(labelsize = 14)
+    ax2.set_xlabel("Channels", fontsize = 25)
+    ax2.set_ylabel("counts", fontsize = 25)
+    ax2.xaxis.set_tick_params(labelsize = 25)
+    ax2.yaxis.set_tick_params(labelsize = 25)
 
     ax2.set_xlim(0,140)
     # place a text box in upper left in axes coords
     props = dict(boxstyle='round', facecolor='white', alpha=0.5)
     textstr = 'Left detector\n $t = 2843$s\n Ma Coarse gain: 200'
-    ax2.text(0.1, 0.95, textstr, transform=ax2.transAxes, fontsize=14, va='top', bbox=props)
+    ax2.text(0.1, 0.95, textstr, transform=ax2.transAxes, fontsize=25, va='top', bbox=props)
+    plt.savefig("figures/plot6_12.pdf")
     plt.show()
+    
 
     fig = plt.figure()
     ax  = plt.subplot(111)
@@ -593,11 +600,209 @@ def plot_6():
     props = dict(boxstyle='round', facecolor='white', alpha=0.5)
     textstr = 'Right detector\n $t = 2883$s\n Ma Coarse gain: 200'
     ax.text(0.7, 0.95, textstr, transform=ax.transAxes, fontsize=14, va='top', bbox=props)
+    plt.savefig("figures/plot6_3.pdf")
     plt.show()
 
+def reg_6_3(plot = False):
+
+    data = np.load("data/measure6_3.npy")
+    error = np.sqrt(data)
+    channel = np.arange(0,len(data),1)
+    channel_fit = np.linspace(0,len(data)+1,1000)
+
+    def func(x, *p):
+        a1,a2,a3,mu1,mu2,mu3,sigma1,sigma2,sigma3,c = p
+        return a1*np.exp(- (x-mu1)**2 / (2*sigma1)**2 ) + \
+               a2*np.exp(- (x-mu2)**2 / (2*sigma2)**2 ) + \
+               a3*np.exp(- (x-mu3)**2 / (2*sigma3)**2 ) + c
+
+    # p0 is the initial guess for the fitting coefficients 
+    p0 = [1000, 8000, 22000, 22, 45, 96, 1,2,3, 500]
+
+    p, cov = curve_fit(func, channel, data, p0=p0, sigma = error)
+
+    p_uc = uc.correlated_values(p, cov)
+
+    if plot:
+        fig = plt.figure()
+        ax  = plt.subplot(111)
+
+        ax.errorbar(channel,data,yerr = np.sqrt(data))
+        
+        ax.plot(channel_fit, func(channel_fit,*p))
+        ax.plot(channel_fit,channel_fit*0 + p[-1],"--")
+        pos = [(0.05,0.25),( 0.2,0.55),( 0.7,0.95)]
+        
+        props = dict(boxstyle='round', facecolor='white', alpha=0.5)
+
+        for q in range(3):
+
+            a,Sa = p_uc[q].n, p_uc[q].s
+            mu,Smu = p_uc[q+3].n, p_uc[q+3].s
+            sigma,Ssigma = p_uc[q+6].n , p_uc[q+6].s
+            
+            #textstr = '$A=%.3f \pm %.3f$\n$\mu = %.3f \pm %.3f$\n$\sigma = %.3f \pm %.3f$'%(a,Sa,mu,Smu,sigma,Ssigma)
+            qq = q+1
+            textstr = '$A_%d=%.3f$\n$\mu_%d = %.3f$\n$\sigma_%d = %.3f$'%(qq,a,qq,mu,qq,sigma)
+            ax.text(pos[q][0], pos[q][1], textstr, transform=ax.transAxes, fontsize=14, va='top', bbox=props)
+
+        textstr = '$c = %.3f$'%(p[-1])
+        ax.text(0.6,0.1, textstr, transform=ax.transAxes, fontsize=14, va='top', bbox=props)
+
+        ax.set_xlabel("channels", fontsize = 14)
+        ax.set_ylabel("counts", fontsize = 14)
+        ax.xaxis.set_tick_params(labelsize = 14)
+        ax.yaxis.set_tick_params(labelsize = 14)
+
+        data_fit_min = func(channel_fit,*(p - np.sqrt(np.diag(cov))))
+        data_fit_max = func(channel_fit,*(p + np.sqrt(np.diag(cov))))
+        plt.fill_between(channel_fit, data_fit_min , data_fit_max,facecolor="r", color="b", alpha=0.3 )
+
+        plt.grid(True)
+
+        ax.set_xlim(0,150)
+
+        make_fig(fig,1,1,name = "plot6_3_reg")
+
+    mu = [p_uc[3].n,p_uc[4].n,p_uc[5].n]
+    Smu = [p_uc[3].s,p_uc[4].s,p_uc[5].s]
+    energies = [26.3, 33.2,59.5]
+    return energies,mu,Smu 
+
+def reg_2_1a(plot = False):
+
+    data = np.load("data/measure2_1a.npy")
+    error = np.sqrt(data)
+    channel = np.arange(0,len(data),1)
+    channel_fit = np.linspace(0,len(data)+1,1000)
+
+    def func(x, a1,a2,a3,a4,a5,mu1,mu2,mu3,mu4,mu5,sigma1,sigma2,sigma3,sigma4,sigma5,c):
+        return a1*np.exp(1)**(- (x-mu1)**2 / (2*sigma1)**2 ) + \
+               a2*np.exp(1)**(- (x-mu2)**2 / (2*sigma2)**2 ) + \
+               a3*np.exp(1)**(- (x-mu3)**2 / (2*sigma3)**2 ) + \
+               a4*np.exp(1)**(- (x-mu4)**2 / (2*sigma4)**2 ) + \
+               a5*np.exp(1)**(- (x-mu5)**2 / (2*sigma5)**2 ) + c
+
+    # p0 is the initial guess for the fitting coefficients 
+    p0 = [1000,1000, 4000,5000, 28000,18,42,119,140,190,1, 1,1,1,1, 500]
+
+    p, cov = curve_fit(func, channel, data, p0=p0, sigma = error)
+    
+
+    p_uc = uc.correlated_values(p, cov)
+
+    if plot:
+        fig = plt.figure()
+        ax  = plt.subplot(111)
+
+        ax.errorbar(channel,data,yerr = np.sqrt(data))
+        
+        ax.plot(channel_fit, func(channel_fit,*p))
+        ax.plot(channel_fit,channel_fit*0 + p[-1],"--")
+        text = False
+        if text:
+            pos = [(0.05,0.25),( 0.2,0.55),( 0.7,0.95)]
+            
+            props = dict(boxstyle='round', facecolor='white', alpha=0.5)
+
+            for q in range(3):
+
+                a,Sa = p_uc[q].n, p_uc[q].s
+                mu,Smu = p_uc[q+3].n, p_uc[q+3].s
+                sigma,Ssigma = p_uc[q+6].n , p_uc[q+6].s
+                
+                #textstr = '$A=%.3f \pm %.3f$\n$\mu = %.3f \pm %.3f$\n$\sigma = %.3f \pm %.3f$'%(a,Sa,mu,Smu,sigma,Ssigma)
+                qq = q+1
+                textstr = '$A_%d=%.3f$\n$\mu_%d = %.3f$\n$\sigma_%d = %.3f$'%(qq,a,qq,mu,qq,sigma)
+                ax.text(pos[q][0], pos[q][1], textstr, transform=ax.transAxes, fontsize=14, va='top', bbox=props)
+
+            textstr = '$c = %.3f$'%(p[-1])
+            ax.text(0.6,0.1, textstr, transform=ax.transAxes, fontsize=14, va='top', bbox=props)
+
+        ax.set_xlabel("channels", fontsize = 14)
+        ax.set_ylabel("counts", fontsize = 14)
+        ax.xaxis.set_tick_params(labelsize = 14)
+        ax.yaxis.set_tick_params(labelsize = 14)
+
+        data_fit = func(channel_fit, *p) 
+        error_on_fit = un.std_devs(func(channel_fit, *p_uc))
+        data_fit_min = data_fit - error_on_fit
+        data_fit_max = data_fit + error_on_fit
+
+        plt.fill_between(channel_fit, data_fit_min , data_fit_max,facecolor="r", color="b", alpha=0.3 )
+
+        plt.grid(True)
 
 
+        make_fig(fig,1,0,name = "plot2_1a_reg")
+
+    mu = [p_uc[6].n,p_uc[9].n]
+    Smu =[p_uc[6].s,p_uc[9].s]
+    mu2 = [p_uc[5+q] for q in range(5)]
+    energies = [14.4,122.1]
+
+    return energies,mu,Smu, mu2
 
 
-plot_6()
+def energy_scale():
 
+    E_am, mu_am, Smu_am = reg_6_3(False)
+    E_co, mu_co, Smu_co, mu2 = reg_2_1a(False)
+    plot = True 
+
+    #plt.errorbar(E_am,mu_am,yerr= Smu_am, fmt="x") 
+    #plt.errorbar(E_co,mu_co,yerr= Smu_co, fmt="x") 
+    E = [E_co[1]] + E_am[1:3]
+    mu = [mu_co[1] ]+ mu_am[1:3]
+    error = [Smu_co[1]] + Smu_am[1:3]
+
+    def func(x, a,b):
+        return a*x + b
+
+    # p0 is the initial guess for the fitting coefficients 
+    p0 = [1,1]
+
+    p, cov = curve_fit(func, mu, E, p0=p0, sigma = error)
+    p_uc = uc.correlated_values(p, cov)
+    print(p_uc)
+
+
+    for mu_ in mu2: 
+        print(mu_,"Channel => ",func(mu_,*p_uc),"keV")
+
+    if plot:
+
+        fig = plt.figure()
+        ax  = plt.subplot(111)
+
+        plt.scatter(mu_co[1],E_co[1],c="r", label = "Cobalt source: 122.1 keV Peak") 
+        plt.scatter(mu_am[1:3],E_am[1:3],c="b", label = "Americium source: 33.2 keV and 59.5 keV") 
+        plt.legend(fontsize = 15)
+
+
+        channel_fit = np.linspace(0,300,1000)
+        plt.xlim(0,300)
+        plt.ylim(0,250)
+
+        data_fit = func(channel_fit, *p) 
+        
+
+        props = dict(boxstyle='round', facecolor='white', alpha=0.5)
+        textstr = 'E = $a\cdot \mathrm{channel} + b$\n$a=%.3f$ keV/channel\n$b=%.3f$ keV'%(p[0],p[1])
+        ax.text(0.6,0.3, textstr, transform=ax.transAxes, fontsize=14, va='top', bbox=props)
+
+
+        plt.plot(channel_fit,data_fit)
+        error_on_fit = un.std_devs(func(channel_fit, *p_uc))
+        data_fit_min = data_fit - error_on_fit
+        data_fit_max = data_fit + error_on_fit
+
+        plt.fill_between(channel_fit, data_fit_min , data_fit_max,facecolor="r", color="b", alpha=0.3 )
+
+        plt.grid(True)
+
+        plt.ylabel("Energy $E$ / keV", fontsize = 14)
+        plt.xlabel("mean $\mu$ /  channel", fontsize = 14)
+        make_fig(fig,1,1,name = "plot_E")
+
+energy_scale()
