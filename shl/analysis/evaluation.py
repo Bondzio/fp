@@ -39,12 +39,6 @@ def make_fig(fig, show=True,save=False, name="foo"):
     if save == True:
         fig.savefig(fig_dir + name + ".pdf")
 
-def unv(uarray):        # returning nominal values of a uarray
-    return un.nominal_values(uarray)
-
-def usd(uarray):        # returning the standard deviations of a uarray
-    return un.std_devs(uarray)
-
 plot        = True  # Do you really want to plot?
 fit         = True  # Do the fitting with scipy.curve_fit 
 redistribute= False # Redistributing the background 
@@ -169,8 +163,9 @@ if fit==True:
 
     data_lit = func(t_fit, *(0, max(data), -lamb_lit))
     data_fit = func(t_fit,*p) 
-    data_fit_min = unv(func(t_fit, *p_uc)) - usd(func(t_fit, *p_uc))
-    data_fit_max = unv(func(t_fit, *p_uc)) + usd(func(t_fit, *p_uc))
+    error_on_fit = un.std_devs(func(t_fit, *p_uc))
+    data_fit_min = data_fit - error_on_fit
+    data_fit_max = data_fit + error_on_fit
     #pmin = (p - np.sqrt(np.diag(cov)))
     #pmax = (p + np.sqrt(np.diag(cov)))
 
