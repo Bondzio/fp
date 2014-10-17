@@ -64,19 +64,20 @@ The half-life $t_{1/2}$ is obviously connected by $t_{1/2}= -\mathrm{log}(2)/ \l
     \label{fig:nuclidmap}
 \end{figure}
 \label{ssub:Semi-Empirical Mass Formula: The Liquid Drop Model}
-Going along with  \cite{Hooshyar}, we approach an theoretic model containing constants which
+Going along with  \cite{Hooshyar}, we approach a theoretical model containing constants which
 have to be fitted with experiments. For this reason, the model is called semi-empirical. 
 It was first established by Weizsäcker and yields a 
 good approximation for the atomic masses. The assumptions underlying are:
 \begin{enumerate}
-    \item The interior mass densities of atoms are approximately equal
+    \item All nuclei have approximately the same interio mass density.
         \label{it1}
     \item Their total binding energies are approximately proportional to their masses.
         \label{it2}
 \end{enumerate}
 Both turnout to be valid in the regime we are looking at.
-The assumptions show why the model is called \emph{liquid drop model}: (\ref{it1}) relates to the equality of densities
-of drops and (\ref{it2}) to the proportionality of latent heats of vaporization to the masses of a drops. 
+The assumptions show why the model is called \emph{liquid drop model}: 
+(\ref{it1}) is the analogue of regarding the nuclei as incompressible fluids, 
+(\ref{it2}) is related to the proportionality of latent heats of vaporization to the masses of a drop. 
 We construct the energy in units of masses with different contributions:
 \begin{equation}
     M_{tot} = \sum_{i=0}^{5} f_i 
@@ -168,48 +169,54 @@ to obtain the half life period with the help of the energy distribution.
 \clearpage
 
 \subsection{Overview of technical instruments}
-We will give a short overview over the technical instruments used. We will not go into their usage
-in our experiment though, since this will be explained in the next chapter.
+We will give a short overview over the technical instruments used. The exact role 
+of the devices will be explained in section thereafter.
 \label{sub:overview_of_technical_instruments}
 \paragraph{Scintillator}
-In order to detect the $\gamma$ - rays from the radioactive sample, we use a widely used detector called
-scintillator, where scintillator refers first to the material used than to the instrument. 
-We can measure the energy as well
-as the time of detection. More precisely we use the phenomena of scintillation, which stands in short
-for the material being luminescent when excited by high energetic rays. The energy of incoming particles
-is adsorbed and released in another frequency (ideally in the visible or UV-Spectrum). 
-For the detector this material is coupled to a photomultiplier in order
-to gain an measurable signal. In our case we use the organic crystal \textbf{NaI(Tl)} as scintillator, which
+In order to detect the $\gamma$ - rays from a radioactive sample, we use a widely used detector called/
+\emph{scintillator}. The name refers to a quality of the material used: The \emph{scintillation}, or production 
+of flashes of light induced by the passing $\gamma$ photons. 
+The energy of incoming particles
+is adsorbed and released at a lower frequency (ideally in the visible or UV-spectrum). 
+We can measure the energy as well as the time of detection. 
+In our case we use the organic crystal \textbf{NaI(Tl)} as scintillator, which
 is preferable because of its high yield~\cite{ver} in comparison to others. However, the decay time is longer
 than for organic scintillatiors, which is not a problem in our case since the low activity of our probe will
 not result in (a measurable quantity of) jammed photons.
-\paragraph{The Photomultiplier} will be used to amplify the signal from the scintillator. It is built upon
-two fundamental physical phenomena: The \textit{photoeffect} and the \textit{secondary emission}. While former
+In the detector, this material is coupled to a photomultiplier in order
+to gain an measurable signal. 
+
+\paragraph{The Photomultiplier}
+will be used to amplify the signal from the scintillator. It is built upon
+two fundamental physical phenomena: The \textit{photoeffect} and the \textit{secondary emission}. While the former
 is well known due to its scientific father\footnote{Despite the effect that Heinrich Hertz discovered the 
 Photoeffect 1887, Albert Einstein published an explanation 1905 with which he shows the quantum character
 of light. 1921 he was rewarded the Nobel Price in physics.}, the latter is less popular: Particles (with
 sufficient energy) induce the emission of secondary particles while going through a specific material. In
 our case the primary particles will be the photons emitted by the scintillator, while the secondary induced
 in the photomultiplier are electrons. These electrons are accelerated towards an electrode (which is called
-\textit{dynode} in this special case) in order to induce the emission of further electrons, repeating the
-this procedure over and over again until even single photons can be detected clearly
+\textit{dynode} in this special case) in order to induce the emission of further electrons. 
+The process is repeated over and over such that even single photons can be detected clearly
 (see figure~\ref{fig:photomultiplier} for a schematic diagram).
-Depending on the experimental setup it is possible to amplify an signal by eight orders of magnitude. 
+Depending on the experimental setup it is possible to amplify a signal by eight orders of magnitude. 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/photomultiplier}
-    \caption{Taken from~\cite{bettini2008introduction}. Schematic diagram of a photomultiplier tube. You
-        notice how the incoming photons are translated into electrons, which are accelerated towards the
-        next dynode such that more and more electrons are induced to amplify the signal.}
+    \caption{
+        Schematic diagram of a photomultiplier tube. The incoming photons are translated into electrons, 
+        which are accelerated towards the
+        next dynode such that more and more electrons are induced to amplify the signal.
+        Taken from~\cite{bettini2008introduction}. 
+        }
     \label{fig:photomultiplier}
 \end{figure}
-\paragraph{SCA (Single Channel Analyzer)} is the next instrument to process the signal detected. In general
+\paragraph{The Single Channel Analyzer (SCA)} is the next instrument to process the signal detected. In general
 it refers to a electronic component creating a outputsignal only when the amplitude (of the input) happens to be
 between predefined constraints. Hence the SCA is a binary unit. We will use it amongst others for
 applying an energy window to the spectrum in order to indentify certain peaks with events. 
-\paragraph{TAC (Time Amplitude Converter)} is the missing link between energies detected by the scintillator
+\paragraph{The Time-to-amplitude Converter (TAC)} is the missing link between energies detected by the scintillator
 and times. It is possible to convert the amount of time between a start and a stop signal into an amplitude,
-which can be analyzed further statistically. The component was developed by a famous italian physicist
+which can be further analyzed statistically. The component was developed by a famous italian physicist%
 \footnote{1942 Bruno Rossi invented the TAC in order to ascertain the half life period of mesons. The first
     experiment of this kind was done in similar fashion as ours: The time difference between the
     arrival of a meson in an absorber and its decay through an electron emission was measured with an
@@ -217,9 +224,8 @@ which can be analyzed further statistically. The component was developed by a fa
     \textit{``How is it possible that results bearing on fundamental problems of
         elementary particle physics could be achieved by experiments of an almost childish simplicity,
         costing only a few thousand dollars and requiring only the help of one or two graduate students? ``}}
-
-and is used especially because of the linear relationship betwen amplitude and real time, which we will also
+and is used especially because of the linear relationship betwen amplitude and real time, a quality we will also
 show in a measurement.
-\paragraph{MCA (Multi Channel Analyzer)} These are used intensively for sorting a stream of voltage pulses
+\paragraph{Multi Channel Analyzer (MCA)} are used intensively for sorting a stream of voltage pulses
 into a histogram, integrating over a specific amount of time. The stored number of events versus pulse-height
-can be analyzed after.
+can be analyzed afterwards.
