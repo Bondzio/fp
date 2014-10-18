@@ -1,7 +1,7 @@
 \section{Theory}
 \subsection{Short introduction to nuclear and particle physics}
 In order to understand the notions of half life period and nuclear fission we
-give a short introduction into nuclear and particle physics following \cite{bettini2008introduction}.
+give a short introduction into nuclear and particle physics following \cite{martin2006nuclear}
 In the following, let $Z$ be the atomic number, $N$ the number of neutrons and $A$ the number of nuclei, also
 called nucleon number. Thus, $A = Z + N$. The electric charge of the nucleus in the ground state is $+Z e$.
 It is common to describe the so called \emph{nuclides} with $_{Z}^{A}\textrm{Y}$.\\
@@ -65,7 +65,8 @@ The half-life $t_{1/2}$ is obviously connected by $t_{1/2}= -\mathrm{log}(2)/ \l
 \end{figure}
 \label{ssub:Semi-Empirical Mass Formula: The Liquid Drop Model}
 Going along with  \cite{Hooshyar}, we approach a theoretical model containing constants which
-have to be fitted with experiments. For this reason, the model is called semi-empirical. 
+have to be fitted with experiments. For this reason, the model is called semi-empirical and 
+is often referred to as \emph{SEMF} (semi-empirical mass formula).
 It was first established by Weizsäcker and yields a 
 good approximation for the atomic masses. The assumptions underlying are:
 \begin{enumerate}
@@ -168,12 +169,150 @@ short half lifes as possible in high energy physics.}
 to obtain the half life period with the help of the energy distribution.
 \clearpage
 
+\subsection{Modes of radioactive decay}
+Radioactivity has been experimentally observed since the end of the 19th century, 
+starting with the experiments of Henri Becquerel (1896), when the atom was still seen 
+either within the 'plum pudding model', and later, after the experiments performed by 
+Rutherford et.~al. in 1911, a 'planetary model'. Rutherford coined the terms still in 
+use today to describe various types of radioactive decay, using the greek letters 
+$\alpha$, $\beta$ and $\gamma$. A more refined but not complete overview is 
+given by the following.~ \cite{martin2006nuclear}
+The mass and atomic numbers of the daughter nuclei ($A'$ and $Z'$, respectively) 
+is given in terms of $A$ and $Z$ corresponding to the parent nucleus. 
+\begin{description}
+    \item [Decay involving the emission of nuclei:] Changing both $A$ and $Z$.
+        \begin{itemize}
+            \item
+                \textbf{$\alpha$-decay:} a $~_2^4$He particle is emitted, the daughter nucleus 
+                has a mass number of $A' = A - 4$ and atomic number $Z' = Z - 2$. Example:
+                \begin{equation}
+                    \mathrm{~^{238}_{92}U}\rightarrow\mathrm{~^{234}_{90}Th} + \mathrm{~^{4}_{2}He} 
+                \end{equation}
+            \item
+                \textbf{Spontaneous fission:} parent nucleus breaks up into two daughter nuclei \emph{without}
+                external action. This only occurs in very heavy nuclei. $\mathrm{~^{238}_{92}U}$ can be
+                used as an example in this case, as well:
+                \begin{equation}
+                    \mathrm{~^{238}_{92}U}\rightarrow\mathrm{~^{145}_{57}La} + \mathrm{~^{90}_{35}Br} + 3n  \, .
+                \end{equation}
+                Instead of breaking into two parts of equal size, the most probable cases yield daughter 
+                nuclei differing by approximately 45 in mass number -- a question that remains to be solved 
+                until today.
+        \end{itemize}
+    \item [$\beta$ decay:]
+        This form of radioactive decay is observed in atoms of lower mass also. 
+        It conserves mass number $A$. The decay chain follows characteristic mass parabolas which 
+        can be predicted by the SEMF and have a minimum corresponding to the stable end of a decay chain.
+        \begin{itemize}
+            \item
+                \textbf{$\beta^-$ decay:} conversion of a neutron into a proton with emission of electron and 
+                electron antineutrino, raising the atomic number $Z$ by one:
+                \begin{equation}
+                    {}^{1}_{0} \mathrm {n} \to {}^{1}_{1} \mathrm {p} + \mathrm{e}^{-} + \overline{\nu}_e 
+                \end{equation}
+            \item
+                \textbf{$\beta^+$ decay:} conversion of a proton into a neutron with emission of positron and 
+                electron neutrino, reducing the atomic number $Z$ by one:
+                \begin{equation}
+                    {}^{1}_{0} \mathrm {p} \to {}^{1}_{1} \mathrm {n} + \mathrm{e}^{+} + \nu_e 
+                \end{equation}
+            \item
+                \textbf{Electron capture (EC):} an electron of one of the inner orbitals is 'captured', transforming a proton 
+                into a neutron under emission of an electron neutrino
+                \begin{equation}
+                    {}^{1}_{0} \mathrm {p} + \mathrm{e}^{+} \to {}^{1}_{1} \mathrm {n} + \nu_e 
+                \end{equation}
+                In most cases, the electron stems from the K-orbital. The daugther nucleus is left in 
+                an unstable excited state, like in the case of the $^{57}$Co used in the experiment. 
+                Figuratively, the hole in the lower shell produced by the $e^-$-capture is successively 
+                passed to the outer ones under emission of characteristic $\gamma$-rays. 
+        \end{itemize}
+    \item [Transition between states of the same nucleus:] 
+        A nucleus in an excited state decays into a state of 
+        lower energy without changing $A$ and $Z$.
+        \begin{itemize}
+            \item
+                \textbf{Isomeric transition:} The energy is transfrerred to a photon. This is the process to be observed 
+                in the experiment. 
+            \item
+                \textbf{Internal conversion:} Succession transfer of energy to an elctron of the outer orbital, 
+                which is then ejected. The resulting excited state is lowered by emission of characteristic 
+                x-rays or a so-called \emph{Auger electron}. 
+        \end{itemize}
+\end{description}
+
+\subsection{Expected peaks}
+Examining the two probes at hand, we expect various peaks in the energy spectrum. 
+Depending on the kinds of decay and energies involved, there are five outstanding features:~\cite{ver}
+\begin{description}
+    \item [Photo peak:] 
+        The entire energy $E_\gamma$ of the emitted photon is transfered to the scintillator 
+        via the photoelectric effect, if all electrons and photons of the further relaxation are 
+        absorbed by the scintillator.
+    \item [Escape peak:] 
+        If a x-ray quantum escapes from the scintillator, the entry is recorded in the 
+        escape peak bucket. In our case of the NaI(Ti)-scintillator, the corresponding photoelectric 
+        effect occurs preferably at the iodine atoms, for which the energy difference between K- and L-orbital 
+        and therefor the energy of the characteristic x-rays is 28 keV. We thus expect an escape peak 
+        at $E_\gamma - 28$ keV. 
+    \item [Compton edge:] 
+        The Compton effect allow a transfer in energy within a specific but continuous range. 
+        The edge of this range, the maximal energy transfered by the involved elastic scattering, 
+        is called the compton edge. However, since the Compton effect is dominant at a range of 
+        $E_\gamma \in (200\, \mathrm{keV}, 5\, \mathrm{MeV})$ for $Z \approx 50$, we don't expect it to be of 
+        measurable magnitude in this experiment. 
+    \item [Backscattering peak:] 
+        Photons scattered from the shielding transfer part of their energy in the process 
+        and are thus recorded in the backscattering peak. 
+    \item [X-ray fluorescence peak:] 
+        Interaction of the $\gamma$-quanta and electrons in the shielding can produce 
+        yet another peak, if the original photon is not but the resulting photons or 
+        Auger electrons are recorded in the scintillator. 
+\end{description}
+
 \subsection{Decay of $^{57}$Co and $^{241}$Am}
-The excited state to be examined is of the isotope $^{57}$Fe, one of four stable isotopes 
+\paragraph{The excited state to be}
+examined is of the isotope $^{57}$Fe, one of four stable isotopes 
 with an abundance of 2.1\%~\cite{nist}. We do not excite a sample of the isotope, though, but 
 use a $^{57}$Co sample, which decays into a state energetically above the one considered. 
-This state lies at 136.5 keV above the ground state. 
+A simplified scheme of the decay is shown in figure \ref{fig:decay_scheme_Co}.
+The $^{57}$Co atoms decay due to electron capture, such that the nucleon number is not changed. 
+The half life for this decay is 270 days, so the sample is expected to have a somewhat 
+moderate activity. We also note that the activity might be considerably low, 
+such that the expected results may be of lower excactness compared to those obtained in 
+the previous years.
+This state lies at 136.5 keV above the ground state and has a half live of only 9 ns. 
+It decays into the 14.4 keV state with a probability of 88\%. This latter state, which is the one 
+we will examine, has a nominal half live of 98 ns and decays directly to the ground level. 
+A photon, however, is only emitted in 19\% of the cases -- the bulk tranfers to the ground level 
+by inner conversion and can thus not be registered by the detectors used in the experiment.%
+~\cite{ver}
+\begin{SCfigure}
+    \begin{centering}
+        \includegraphics[width=0.70\linewidth]{figures/decay_scheme_Co}
+        \caption{Simplified decay scheme of $^{57}$Co, modified from~\cite{ver}}
+        \label{fig:decay_scheme_Co}
+    \end{centering}
+\end{SCfigure}
 
+\paragraph{The second sample under}
+consideration is the $^{241}$Am sample, which by $\alpha$ decay turns into $^{237}$Np, the 
+first transuranic element which has been first synthesized only in 1940. The excited 
+states expected to be observable in this experiment are shown in figure~\ref{fig:decay_scheme_Am}. 
+After the $\alpha$ decay, the nuclues is found in the upper state with $59.5$ keV 
+above the ground state and a half live of $67$ ns. It follows a decay either into another 
+but very short lived ($T_{1/2} < 4$ ns) excited state at $33.2$ keV or into the 
+ground state. The $33.2$ keV falls into the ground state, as well. All described conversions 
+emit a photon and are thus expected to be visible. This sample will be used exclusively for the 
+identification of the cited peaks in order to develope the relationship between channels and 
+photon energy. 
+\begin{SCfigure}
+    \begin{centering}
+        \includegraphics[width=0.70\linewidth]{figures/decay_scheme_Am}
+        \caption{Simplified decay scheme of $^{57}$Am, taken from~\cite{ver}}
+        \label{fig:decay_scheme_Am}
+    \end{centering}
+\end{SCfigure}
 
 
 \subsection{Overview of technical instruments}
@@ -196,10 +335,10 @@ to gain an measurable signal.
 
 \paragraph{The Photomultiplier}
 will be used to amplify the signal from the scintillator. It is built upon
-two fundamental physical phenomena: The \textit{photoeffect} and the \textit{secondary emission}. While the former
+two fundamental physical phenomena: The \textit{photoelectric effect} and the \textit{secondary emission}. While the former
 is well known due to its scientific father\footnote{Despite the effect that Heinrich Hertz discovered the 
-Photoeffect 1887, Albert Einstein published an explanation 1905 with which he shows the quantum character
-of light. 1921 he was rewarded the Nobel Price in physics.}, the latter is less popular: Particles (with
+photoeletric effect 1887, Albert Einstein published an explanation 1905 with which he shows the quantum character
+of light. 1921 he was rewarded with the Nobel Price in physics.}, the latter is less popular: Particles (with
 sufficient energy) induce the emission of secondary particles while going through a specific material. In
 our case the primary particles will be the photons emitted by the scintillator, while the secondary induced
 in the photomultiplier are electrons. These electrons are accelerated towards an electrode (which is called
@@ -214,7 +353,7 @@ Depending on the experimental setup it is possible to amplify a signal by eight 
         Schematic diagram of a photomultiplier tube. The incoming photons are translated into electrons, 
         which are accelerated towards the
         next dynode such that more and more electrons are induced to amplify the signal.
-        Taken from~\cite{bettini2008introduction}. 
+        Taken from~\cite{martin2006nuclear}. 
         }
     \label{fig:photomultiplier}
 \end{figure}

@@ -61,8 +61,8 @@ Rotating the sample did not change the result significantly, either.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/uni_bipolar2}
-    \caption{Oscillscope: a) refers to the unipolar channel and b) to 
-        the bipolar channel of the MA.}
+    \caption{Signal of the MA on the oscillscope (modified photo), 
+        (a) unipolar channel and (b) bipolar channel.}
     \label{fig:uni_bipolar}
 \end{figure}
 
@@ -104,12 +104,16 @@ chosen position for the sample is thus Pos1, which corresponds to figure~\ref{fi
 \clearpage
 \begin{figure}[htpb]
     \centering
-    \includegraphics[width=1.1\linewidth]{analysis/figures/plot6_3_reg}
-    \caption{These are the fitting curves of the ameritium spectrum with respect to gaussian distributions:
+    \includegraphics[width=1.0\linewidth]{analysis/figures/plot6_3_reg}
+    \caption{
+        These are the fitting curves of the ameritium spectrum with respect to gaussian distributions:
         $A_1\exp{\left[\frac{(x-\mu_1)^2}{2 \sigma_1^2} \right]}+
          A_2\exp{\left[\frac{(x-\mu_2)^2}{2 \sigma_2^2} \right]}+
-         A_3\exp{\left[\frac{(x-\mu_3)^2}{2 \sigma_3^2} \right]}+ c$}
-         \label{fig:name}
+         A_3\exp{\left[\frac{(x-\mu_3)^2}{2 \sigma_3^2} \right]}+ c$.
+        The measured data is plotted in blue, the fits are shwon in green with corresponding 
+        errors underlying. 
+        }
+    \label{fig:name}
 \end{figure}
 \subsection{Measuring $\Delta t$ of coincidences}
 
@@ -130,8 +134,8 @@ The resulting covariance matrix of the fit is the following:
     \label{eq:cov}
     \mathrm{cov}(a, b) &=& 
     \begin{pmatrix}
-        2.318 \cdot 10^{-5}\mathrm{ns}^2 &-2.089\cdot 10^{-3}\mathrm{ns}^2\\
-        -2.089\cdot 10^{-3}\mathrm{ns}^2&2.328\cdot 10^{-1}\mathrm{ns}^2\\
+        2.318 \cdot 10^{-5} &-2.089\cdot 10^{-3}\\
+        -2.089\cdot 10^{-3}&2.328\cdot 10^{-1}\\
     \end{pmatrix}
 \end{align}
 where the units correspond to those of $a$ and $b$ 
@@ -147,13 +151,13 @@ The $\chi^2$-test results in:
     \centering
     \includegraphics[width=1.0\linewidth]{analysis/figures/plot7}
     \caption{Calibration of the TAC-MCA Signal. The errorbars are too small
-        to see clearly, since the $\chi^2$ test ist also nearly 1.}
+        to see clearly. Correspondingly, the $\chi^2$ test is almost 1.}
     \label{fig:plot7}
 \end{figure}
 
 
-
 \label{sub:measuring_delayed_coincidences}
+
 \subsubsection{Setting the energy window}
 \label{ssub:Setting the energy window}
 Setting the windows for the chosen combination of smaple position and detectors did 
@@ -165,13 +169,13 @@ $\Delta t = 140$ns.\\\\
  \begin{minipage}{\textwidth}
   \begin{minipage}[b]{0.49\textwidth}
    \begin{tabular}{|l|l|}
-        \hline
-       14.4 keV signal & right detector \\
-       122 keV signal & left detector \\
-       coarse gain & 200 \\
-       gain & 8.6 \\
+       \hline
+       14.4 keV signal  & right detector \\
+       122 keV signal   & left detector \\
+       coarse gain      & 200 \\
+       gain             & 8.6 \\
        Shaping time & $0.5\mu$s \\
-        \hline
+       \hline
    \end{tabular}
 
   \captionof{table}{Configuration of MA1}
@@ -180,13 +184,13 @@ $\Delta t = 140$ns.\\\\
   \begin{minipage}[b]{0.49\textwidth}
     \centering
    \begin{tabular}{|l|l|}
-        \hline
-       Lower Level & $4.75\pm0.05$ \\
-       Upper Level & $3.72\pm0.05$ \\
-       Delay & 1.0 (minimum possible) \\
-        walk ADJ & $0.1 - 1.1\mu$s (NOR)  \\
-       Pos Out & Linear Gate ``enable''\\
-        \hline
+       \hline
+       Lower Level  & $4.75\pm0.05$ \\
+       Upper Level  & $3.72\pm0.05$ \\
+       Delay        & 1.0 (minimum possible) \\
+       walk ADJ     & $0.1 - 1.1\mu$s (NOR)  \\
+       Pos Out      & Linear Gate ``enable''\\
+       \hline
    \end{tabular}
   \captionof{table}{Configuration of SCA1}
 \end{minipage}
@@ -194,13 +198,13 @@ $\Delta t = 140$ns.\\\\
 \begin{minipage}{\textwidth}
   \begin{minipage}[b]{0.49\textwidth}
    \begin{tabular}{|l|l|}
-        \hline
-       coarse gain & 500 \\
-       gain & 8.6 \\
+       \hline
+       coarse gain  & 500 \\
+       gain         & 8.6 \\
        Shaping time & $0.5\mu$s \\
-       input & right detector \\ 
-        delay & out \\
-        \hline
+       input        & right detector \\ 
+       delay        & out \\
+       \hline
    \end{tabular}
 
   \captionof{table}{Configuration of MA2}
@@ -209,13 +213,13 @@ $\Delta t = 140$ns.\\\\
   \begin{minipage}[b]{0.49\textwidth}
     \centering
    \begin{tabular}{|l|l|}
-        \hline
-       Lower Level & $2.02\pm0.05$ \\
-       Upper Level & $3.04\pm0.05$ \\
-       Delay & 1.0 (minimum possible) \\
-        walk ADJ & $0.1 - 1.1\mu$s (NOR)  \\
-       Pos Out & Linear Gate ``enable''\\
-        \hline
+       \hline
+       Lower Level  & $2.02\pm0.05$ \\
+       Upper Level  & $3.04\pm0.05$ \\
+       Delay        & 1.0 (minimum possible) \\
+       walk ADJ     & $0.1 - 1.1\mu$s (NOR)  \\
+       Pos Out      & Linear Gate ``enable''\\
+       \hline
    \end{tabular}
   \captionof{table}{Configuration of SCA2}
 \end{minipage}
@@ -228,9 +232,9 @@ The measurement ran about 14 hours over night. See Figure~\ref{fig:4_1} for the 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{analysis/figures/plot4_1}
-    \caption{Measurement 4.1: You will notice that the shape
-        of the peak looks gaussian, which is rather unexpected. However
-        further analysis show, that the peak is not symmetric and hence the left 
+    \caption{Measurement 4.1: One notices that the shape
+        of the peak looks gaussian, which is rather unexpected. However,
+        further analysis show that the peak is not symmetric and hence the left 
         side will be fitted against a exponential curve, while the origin of the
         right side is the background, which will be analyzed in the next section.
         The errors which are visualized here are approximated by $S_{N_i} = \sqrt{N_i}$, since
@@ -246,16 +250,22 @@ For measuring the background we used the same configuration as before, except of
     \item TAC Stop: SCA1, triggered by 122 keV (no delay)
 \end{itemize}
 A first approach with $\Delta t = 16$ns failed, since we observed a clear peak in low channels in contrary
-to an expected equally distributed signal. After changing to $\Delta t=48$ns we observe a clear
-background noise signal, which you can see in Figure~\ref{fig:5_1}.
+to an expected equally distributed signal. After changing to $\Delta t=48$ns the signal looked much more 
+like the expected background noise signal (see figure~\ref{fig:5_1}).
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{analysis/figures/plot5_1_hist}
-    \caption{Measurement 5.1: Random coincidences and their histogram.}
+    \caption{
+        Measurement 5.1: Result of the background measurement. 
+        The left plot shows the recorded histogram (counts per bin). 
+        On the right one can observe the distribution of number of counts 
+        in one box: It is quite clear that the number of events is much to small 
+        to get a decent approximation of the background. Instead of the expected 
+        normal distribution around a somewhat higher number of counts, most boxes 
+        contain not a single event. 
+        }
     \label{fig:5_1}
 \end{figure}
-
-\label{ssub:}
 
 \clearpage
 
