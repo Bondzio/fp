@@ -43,16 +43,7 @@ def la_coeff(f1, coeff, cov, var_names, additional_digits=0):
         str_co = "    " + var_names[j]
         digit = dig_err(cov, j) + additional_digits
         var = round(co, digit)
-        """
-        if digit < 1:
-            str_co  += " &=& %i "%int(var) 
-        if digit < 4:
-            pre_str = " &=&%." + str(digit) + r"f "
-            str_co  += pre_str%(var) 
-        else:
-            str_co += " &=& %.3e "%var
-        """
-        str_co += " &=& %.3e "%co
+        str_co += " &=& %.3f "%co
         str_co += r"\cm \nonumber \\"
         str_co = em(str_co)
         f1.write(str_co +"\n")
@@ -64,16 +55,7 @@ def la_coeff(f1, coeff, cov, var_names, additional_digits=0):
         for entry in row:
             digit = dig_val(entry) + additional_digits
             var = round(entry, digit)
-            """
-            if digit < 1:
-                str_row += " %i &"%int(var)
-            elif digit < 4:
-                pre_str = "%." + str(digit) + "f &"
-                str_row += pre_str%var
-            else:
-                str_row += "%.1e &"%var
-            """
-            str_row += "%.3e &"%entry
+            str_row += "%.3f &"%entry
         str_row = str_row[:-1] + r"\\"
         str_row = em(str_row)
         f1.write(str_row + "\n")

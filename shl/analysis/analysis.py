@@ -621,6 +621,12 @@ def reg_6_3(plot = False):
 
     p, cov = curve_fit(func, channel, data, p0=p0, sigma = error)
 
+    f1 = open("coefficients_6_3.tex","a")
+    st.la_coeff(f1, p,cov, ["A_1","A_2","A_3","\mu_1","\mu_2","\mu_3","\sigma_1","\sigma_2","\sigma_3","c"])
+    f1.close()
+
+
+
     p_uc = uc.correlated_values(p, cov)
 
     if plot:
@@ -688,8 +694,13 @@ def reg_2_1a(plot = False):
 
     p, cov = curve_fit(func, channel, data, p0=p0, sigma = error)
     
+    f1 = open("coefficients_5_1.tex","a")
+    st.la_coeff(f1, p,cov, ["A_1","A_2","A_3","A_4","A_5","\mu_1","\mu_2","\mu_3","\mu_4","\mu_5","\sigma_1","\sigma_2","\sigma_3","\sigma_4","\sigma_5","c"])
+    f1.close()
+
 
     p_uc = uc.correlated_values(p, cov)
+    
 
     if plot:
         fig = plt.figure()
@@ -735,7 +746,7 @@ def reg_2_1a(plot = False):
         plt.xlim(0,250)
 
 
-        make_fig(fig,1,1,name = "plot2_1a_reg")
+        make_fig(fig,0,0,name = "plot2_1a_reg")
 
     mu = [p_uc[6].n,p_uc[9].n]
     Smu =[p_uc[6].s,p_uc[9].s]
@@ -743,14 +754,11 @@ def reg_2_1a(plot = False):
     energies = [14.4,122.1]
 
     return energies,mu,Smu, mu2
-
-reg_2_1a(True)
-
 def energy_scale():
 
     E_am, mu_am, Smu_am = reg_6_3(False)
-    E_co, mu_co, Smu_co, mu2 = reg_2_1a(True)
-    plot = True 
+    E_co, mu_co, Smu_co, mu2 = reg_2_1a(False)
+    plot =False 
 
     #plt.errorbar(E_am,mu_am,yerr= Smu_am, fmt="x") 
     #plt.errorbar(E_co,mu_co,yerr= Smu_co, fmt="x") 
@@ -766,8 +774,11 @@ def energy_scale():
 
     p, cov = curve_fit(func, mu, E, p0=p0, sigma = error)
     p_uc = uc.correlated_values(p, cov)
-    print(p_uc)
 
+    
+    f1 = open("coefficients_energy.tex","a")
+    st.la_coeff(f1, p,cov, ["a","b"])
+    f1.close()
 
     for mu_ in mu2: 
         print(mu_,"Channel => ",func(mu_,*p_uc),"keV")
@@ -807,4 +818,4 @@ def energy_scale():
         plt.xlabel("mean $\mu$ /  channel", fontsize = 14)
         make_fig(fig,1,1,name = "plot_E")
 
-#energy_scale()
+energy_scale()
