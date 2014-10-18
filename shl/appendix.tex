@@ -1,8 +1,59 @@
-\subsection{Handwritten records of the experiment}
-%    \includegraphics[width=\linewidth]{record/}
+\section{Appendix}
+\label{sec:appendix}
+\subsection{Configurations of devices}
+% \subsection{Controlling the setup with the oscilloscope}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|}
+        \hline
+        coarse grain    & 200\\
+        gain            &   10.0 \\
+        sharpening time &   0.5 $\mu$s\\
+        sample          & position 1\\
+        detector        & right \\
+        output          & to unipolar MCA\\
+        BLR             & "AFJ" \\
+        +/-             & "Pos" \\
+        delay           & "out" \\
+        \hline
+    \end{tabular}
+    \label{tab:config}
+    \caption{
+        Configuration of the MA for measurement of the energy spectrum.
+        }
+\end{table}
+
+% \subsubsection{Measuring the full energy spectrum}
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{|l|l|l||l|l|l|}
+        \hline
+        2.1a) & position  & Pos1         & 2.1b) & position  & Pos1\\
+              & detector          & right        &       & detector          & left \\
+              & time        & $360\pm1$sec &       & time        & $380\pm1$sec \\
+        \hline 
+        2.1c) & position  & Pos2         & 2.1d) & position  & Pos2         \\
+              & detector          & right        &       & detector          & left \\
+              & time        & $402\pm1$sec &       & time        & $368\pm1$sec \\
+        \hline 
+        2.1e) & position  & Pos2         \\
+              & detector          & left \\
+              & time        & $360\pm1$sec \\
+    \cline{1-3}
+    \end{tabular}
+    \caption{
+        Configurations in measurement of energy spectrum of $^{57}$Co.
+        "Pos1" and "Pos2" are defined as shown in figure \ref{fig:position_1}. 
+        "time" is referring to the time over which the spectrum was recorded. 
+        The results are shown in figures \ref{fig:measure2.1}.
+        }
+    \label{tab:config2}
+\end{table}
 \clearpage
+
 \subsection{Additional figures}
-\begin{figure}
+\subsubsection{Energy spectrum of $^{57}$Co}
+\begin{figure}[H]
     \begin{subfigure}[b]{\picwidth}
         \includegraphics[width=\textwidth]{analysis/figures/plot2_1a}
         \caption{}
@@ -31,21 +82,23 @@
     \label{fig:measure2.1}
 \end{figure}
 
-\begin{figure}[htpb]
+\subsubsection{Energy spectrum of $^{241}$Am}
+\begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{analysis/figures/plot6_12}
     \caption{$^{241}Am$ energy spectrum}
     \label{fig:plot6_13}
 \end{figure}
-
-\begin{figure}[htpb]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{analysis/figures/plot6_3}
     \caption{$^{241}Am$ energy spectrum}
     \label{fig:plot6_13}
 \end{figure}
 \clearpage
+
 \subsection{Covariance matrices}
+\subsubsection{Covariance matrix of $^{57}$Co energy spectrum}
 \label{subs:covariance}
 This is the covariance matrix and the parameters for the cobalt probe, see
 figure~\ref{fig:fit1} for the figure.
@@ -88,9 +141,10 @@ figure~\ref{fig:fit1} for the figure.
    \normalsize
    \\\\
  \clearpage
+
+\subsubsection{Covariance matrix of $^{241}$Am energy spectrum}
 This is the covariance matrix and the parameters for the americium probe, see
 figure~\ref{fig:fit2} for the figure.
-
 \begin{align*}
     A_1 &=& \left(6.7 \pm 5.4\right) \times 10^{2} \quad \mathrm{counts}\\
     A_2 &=& \left(7.95 \pm 0.29\right) \times 10^{3} \quad\mathrm{counts}\\
@@ -118,5 +172,10 @@ figure~\ref{fig:fit2} for the figure.
         183.6 &-119.3 &27.7 &0.1 &0.0 &0.0 &0.9 &-0.5 &-0.3 &467.8 \\
     \end{pmatrix}
 \end{equation*}
+\normalsize
 
-   \normalsize
+\subsection{Handwritten records of the experiment}
+\label{sec:appendix_records}
+    \includegraphics[width=\linewidth]{records/page1.jpeg}
+\clearpage
+
