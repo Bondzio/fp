@@ -169,8 +169,10 @@ If we extrapolate this for the delayed coincidences, we arrive at
 = 2.726\quad \mathrm{events/ channel}
 \end{split}
 \end{align}
-In order to account for the background we will add a constant term to the exponential ansatz: 
+In order to account for the background we will add a constant term to the exponential ansatz (we will already
+flip the data in the time regime at the peak in order to reduce the number of freedoms by one):
 \begin{equation}
+\label{eq:expfit}
 a + b\cdot \exp \left [ - \lambda t \right ] 
 \end{equation}
 It is \textbf{not} feasible to subtract a certain value, for two reasons:
@@ -182,10 +184,31 @@ events.
 in a (in this measurement not realizable) infinite limit equally distributed. We cannot proceed on the assumption
 that after 52658s there will be an equally distributed background signal on every channel.
 \end{enumerate}
+The least squares fit of with \eqref{eq:expfit} results in 
+
+\begin{align}
+    \mathrm{cov}&=& 
+    \begin{pmatrix}
+        0.029 &0.180 &0.000 \\
+        0.180 &27.885 &0.009 \\
+        0.000 &0.009 &0.000 \\
+    \end{pmatrix}
+\\ \Rightarrow \qquad
+    a &=& 0.07 \pm 0.17 \quad \mathrm{counts}\\
+    b &=& 96.6 \pm 5.3 \quad \mathrm{counts}\\
+    c &=& 0.0584 \pm 0.0026 \quad \mathrm{ns}^{-1}
+\end{align}
+
+
+
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\linewidth]{analysis/figures/plot4_1_reg}
-    \caption{Name}
+    \caption{This is the result of the exponential fit, where the red bars indicate the measurements with respective
+errors whereas the pink line refers to the fit.
+The green line indicates the curve with the literature value for $\lambda$ such 
+that $N(t) = a + b\cdot e^{-\lambda_{lit} t}$. It is clearly visible that this line does not even agree with
+the data at all, neither in the range of their errors nor in their direction. }
     \label{fig:name}
 \end{figure}
 
