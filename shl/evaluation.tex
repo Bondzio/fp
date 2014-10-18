@@ -39,10 +39,12 @@ to fit these peaks linearly (see figure~\ref{fig:fit_peaks}).
     \centering
     \includegraphics[width=1.1\linewidth]{analysis/figures/plot6_3_reg}
     \caption{These are the fitting curves of the americium spectrum with respect to gaussian distributions. The covariance matrix
-is given in section~\ref{subs:covariance}, along with the parameters and their errors.
+        is given in section~\ref{subs:covariance}, along with the parameters and their errors.
         $A_1\exp{\left[\frac{(x-\mu_1)^2}{2 \sigma_1^2} \right]}+
          A_2\exp{\left[\frac{(x-\mu_2)^2}{2 \sigma_2^2} \right]}+
          A_3\exp{\left[\frac{(x-\mu_3)^2}{2 \sigma_3^2} \right]}+ c$}
+        The measured data is plotted in blue, the fits are shown in green with corresponding 
+        errors underlying. 
          \label{fig:fit1}
 \end{figure}
 
@@ -146,8 +148,9 @@ The $\chi^2$-test results in:
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{analysis/figures/plot7}
-    \caption{Calibration of the TAC-MCA Signal. The errorbars are too small
-        to see clearly, since the $\chi^2$ test ist also nearly 1.}
+    \caption{
+        Calibration of the TAC-MCA Signal. The errorbars are too small
+        to see clearly. Correspondingly, the $\chi^2$ test is almost 1.}
     \label{fig:plot7}
 \end{figure}
 
