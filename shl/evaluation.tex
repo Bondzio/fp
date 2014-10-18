@@ -199,10 +199,24 @@ The least squares fit of with \eqref{eq:expfit} results in
 \\ \Rightarrow \qquad
     a &=& 0.07 \pm 0.17 \quad \mathrm{counts}\\
     b &=& 96.6 \pm 5.3 \quad \mathrm{counts}\\
-    c &=& 0.0584 \pm 0.0026 \quad \mathrm{ns}^{-1}
+    \lambda &=& 0.0584 \pm 0.0026 \quad \mathrm{ns}^{-1}
 \end{align}
-
-
+From the fitted parameter $\lambda$ we can calculate directly the half time period $t_{1/2}$:
+\begin{equation}
+T_{1/2} =\frac{\log(2)}{\lambda} =\left [11.9 \pm 0.5 \right ] ns 
+\end{equation}
+where the literature value is given by \cite{ver} $T_{1/2, \mathrm{lit}}=98$ns, which is 
+in a totally different regime, also not in the range of the errors (See figure~\ref{fig:last_plot}).
+Ad this point we have to note that the following actions did not change the result in any way, we will also
+explain why this does not have any effect on the wrong result.
+\begin{itemize}
+\item As it is visible in figure~\ref{fig:last_plot}, the exponential of the literatur is totally different
+in the slope, such that any influence by the background will not change the slope of the fitted curve 
+significantly. The main background parameter is $a$, which is also really slow within the fit. 
+\item The flipping in the time regime, fitting before scaling to ns or taking a different function (like
+$a+b\cdot c^{-t}$ or a linear fit in the log-plot) does not result in any different result, as we expected.
+\end{itemize}
+The summaration and interpretation will be given in the following conclusion.
 
 \begin{figure}[htpb]
     \centering
@@ -210,8 +224,27 @@ The least squares fit of with \eqref{eq:expfit} results in
     \caption{This is the result of the exponential fit, where the red bars indicate the measurements with respective
 errors whereas the pink line refers to the fit.
 The green line indicates the curve with the literature value for $\lambda$ such 
-that $N(t) = a + b\cdot e^{-\lambda_{lit} t}$. It is clearly visible that this line does not even agree with
+that $N(t) = a + b\cdot e^{-\lambda_{\mathrm{lit}}\cdot t}$. It is clearly visible that this line does not even agree with
 the data at all, neither in the range of their errors nor in their direction. }
-    \label{fig:name}
+    \label{fig:last_plot}
 \end{figure}
-
+\section{conclusion}
+The fitting of the energy spectra supplied reasonable results, such that the fitting gave rise to a linear fitting
+of the time with respect to the channels, as was expected.
+Unfortunatelly we were not able to reproduce the literature value of $T_{1/2, \mathrm{lit}}=98$ns, our procedure
+yields the result
+\begin{equation}
+T_{1/2} =\left [11.9 \pm 0.5 \right ] ns .
+\end{equation}
+Since the data resamples in a exponential way and the fitting paramter seem to agree very good with the data,
+we would like to emphasize the possibiliy of a technical problem which we were not able to resolve yet. There
+are two possibilities with varying probability:
+\begin{itemize}
+\item We might have chosen the wrong peak and therfore have measured a different half life period of a different 
+process. Since there were some few peaks this is not impossible but rather unprobable,  however, since there
+is this great disparty between literatur and measurement we conclude that this is a possibility.
+\item Between delay and channel is an element which we have no considered yet, but which changes the timecaling
+ (slope) in such way (probably 4x - 5x) that our data is probable correct, but the amplification measured with the
+TCA is not possible to use. We tried a trial run for different factors and realizied that even small changes
+shift the energy values. We think this possibility is more probable than the former. 
+\end{itemize}
