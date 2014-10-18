@@ -1,0 +1,111 @@
+\newcommand{\figdir}{analysis/figures/}
+
+\section{Evaluation}
+\subsection{Techniques used in the evaluation}
+All calculations in this section are done with scripts written in 
+the \textit{python} programming language~\cite{python}, relaying in several 
+packages:
+\begin{itemize}
+    \item
+        \textit{matplotlib}~\cite{Hunter2007} for plotting,
+    \item
+        \textit{scipy}~\cite{scipy} for fitting, and 
+    \item
+        \textit{uncertainties}~\cite{uc} for error propagation.
+\end{itemize}
+The latter applies gaussian error propagation for correlated and uncorrelated variables. 
+We will thus not explicitly write down the formulas for the error propagation 
+for each quantity calculated but instead state the numerical result, only. 
+We will, however make a quick remark on the use of cavariance matrices in 
+error propagation: Contrary to measured data, which in our case is usually 
+expected to be uncorrelated, all fitted data yields variables that in general correlate. 
+The propagation is then done as follows:
+Let's assume we have random
+variables $x_0,...,x_N$ which are correlatated through the $N\times N$ Matrix $cov(x_i,x_j)$.
+For a scalar function $f(x_0,...,x_N) \rightarrow \mathbb{R}$, the variance is estimated (linearly) by:
+\begin{equation}
+Var[f] = \sigma^2 = \sum_{i,j} \frac{\partial f}{\partial x_i} \frac{\partial f}{\partial x_j} cov(x_i,x_j) \,.
+\end{equation} 
+If instead, $\mathbf{f}$ is a vector field in $m$ dimensions, namely 
+$\mathbf{f}(x_0,...,x_N) \rightarrow \mathbb{R}^m$, then the components of $\mathbf{f}$ 
+are further correlated. We can write down the relation between the covariance matrices $V$ and $U$ of 
+$\mathbf{x}$ and $\mathbf{f}$, respectively, in matrix relations:
+\begin{equation}
+    U = A V A^T
+\end{equation}
+where $A$ is the matrix defined by 
+\begin{equation}
+    A_{ij} = \left[ \frac{\partial f_i}{\partial x_j}\right]_{\mathbf{x} = \mathbf{\mu}}
+\end{equation}
+with expectation value $E[\mathbf{x}] = \mathbf{\mu}$.~\cite{cowan1998statistical}
+
+\subsection{Lattice constant of sine grating}
+Observing the intensity on the screen, we noticed that the beam was not 
+diffracted in the plane $y = const.$ (where y denotes the horizontal direction). 
+We thus notated the coordinates on the graph paper. The measured values 
+are displayed in table \ref{tab:sine_distances}. The estimated error of 
+$s_{xy} = 1$ mm in both directions mainly stems from the fact that the edge of the beam 
+has only a limited sharpness. 
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[htdp]
+    \centering
+    \begin{tabular}{|p{6.18cm}|p{3.82cm}|p{3.82cm}|}
+        \hline
+        \rowcolor{LightCyan}
+        Maximum & $x$ / mm & $y$  / mm \\ \hline
+        $0.$        & 3     & 3\\
+        $1.$, left & 48    & -1\\
+        $1.$, right  & -42   & 7\\
+        \hline
+    \end{tabular}
+    \caption{
+        Measurements of positions of maxima for the sine amplitude grating. 
+        The error is estimated to be $s_{xy} := s_x = s_y = 1$ mm. 
+        }
+    \label{tab:sine_distances}
+\end{table}
+The distance $d_\mathrm{sin}$ between the zeroth and first maximum is calculated by taking half of 
+the distance between the two first maxima:
+\begin{align}
+    d_\mathrm{sin}   &= \frac{1}{2} \sqrt{(x_l - x_r)^2 + (y_l - y_r)^2} = 45.1 \mathrm{mm} \\
+    \begin{split}
+        s_{d_\mathrm{sin}} &= \sqrt{\sum{
+                \left(\frac{\partial d_\mathrm{sin}}{\partial x_i}\right)^2 s_{x_i}  + 
+                \left(\frac{\partial d_\mathrm{sin}}{\partial y_i}\right)^2 s_{y_i} 
+                }} \\
+        &= \frac{s_{xy}}{\sqrt{2}} \\
+        &= 0.7 \, \mathrm{mm}\, ,
+    \end{split}
+\end{align}
+where $x_r, x_l$ and $y_r, y_l$ correspond to the coordinates of right and left 
+maximum, respectively and $s_{d_\mathrm{sin}}$ denotes the error calculated by gaussian error propagation.
+The distance between screen and grating was $l_\mathrm{sin} = (56 \pm 2)$ mm. By geometric construction, 
+we can identify the angle $\theta$ between the lines connecting grating and the maxima 
+of zeroth and first order on the screen, respectively. Using further the 
+necessary condition for positive interference (see eqn \eqref{eq:inter_cond} in the theory section), 
+we calculate the lattice constant $K_\mathrm{sin}$ for the sine grating:
+\begin{align}
+    \sin(\theta)&= \frac{d_\mathrm{sin}}{\sqrt{l_\mathrm{sin}^2 + d_\mathrm{sin}^2}} \\
+    \sin(\theta)&= \frac{m\lambda}{K_\mathrm{sin}} \\
+    \Rightarrow \qquad 
+    K_\mathrm{sin}    &= m \lambda\sqrt{\left(\frac{l_\mathrm{sin}}{d_\mathrm{sin}}\right)^2 + 1} 
+        = (1.01 \pm 0.02) \, \mu\mathrm{m} \\
+\end{align}
+Although no nominal value is stated, the measured value suggests, that the grating has been 
+constructed to a nominal value of $K_\mathrm{sin, nom} = 1$ $\mu$m. 
+
+\subsection{Calibration}
+For all further measurements, we needed to calibrate the setup and use the gauge gratings 
+to establish the relationship between the signal observed on the oscilloscope and the 
+actual distance between the peaks which would be observed on a screen at the position of diode 1. 
+For this part, we set the lenses such that the beam would be widened and colliminated. We tested the collimination 
+with the graph paper. The measured distances can be seen in the handwritten records, see appendix \ref{sec:records}.
+The small focal lenght of lens 3 ($f_3 = 300$ mm) made it impossible to focus the beam exactly onto diode 1. We 
+chose the closest position allowed by the setup, such the the lense would not interfere with the second beam. 
+The only distance used in for further calculations is the distance $l$ between the grating and the diode, 
+which is given by 
+\begin{equation}
+    l = \left[(297 \pm 3) + (140 \pm 3)\right] \, mathrm{mm}
+    = (437 \pm 4) \, mathrm{mm} \, .
+\end{equation}
+
