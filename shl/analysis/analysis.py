@@ -410,6 +410,7 @@ def plot_5_1_hist():
     make_fig(fig,1,1,name="plot5_1_hist")
     plt.show()
 # Time calibration
+
 def calib_TAC_MCA():
     delay   = np.array([0,8,16,24,32,40,48,56,64,72,80,88,96,104,112,120,128,136,144,152,160,168,176,184,190.5])
     channel = np.array([20,24,29,34,41,47,53,59,66,72,78,84,90,96,102,109,115,121,127,133,139,145,151,157,162])
@@ -452,8 +453,9 @@ def calib_TAC_MCA():
 
     plt.fill_between(x_fit, data_fit_min , data_fit_max,facecolor="r", color="b", alpha=0.3 )
 
-    plt.errorbar(channel,delay, yerr= y_error,xerr= x_error, fmt= "x")
+    plt.errorbar(channel,delay, yerr= y_error,xerr= x_error, fmt= "x",c="0.0")
     make_fig(fig,1,1,name = "plot7")
+calib_TAC_MCA()
 
 def calib_TAC_MCA2():
     delay   = np.array([25,108.5,162.,0.5,65.5,113.5,75.5,49,79,135.5,23.5,98.5,135.5,110.5,121,127,45,51.5,184,80,185,88.5,52,167.5,44.5])
@@ -519,8 +521,8 @@ def calib_TAC_MCA_rescaled():
     plt.xlim(20,162)
     plt.ylim(-3,3)
 
-    plt.ylabel("Delay",fontsize = 14)
-    plt.xlabel("Channel", fontsize = 14)
+    plt.ylabel("delay",fontsize = 14)
+    plt.xlabel("channel", fontsize = 14)
 
     ax.xaxis.set_tick_params(labelsize = 14)
     ax.yaxis.set_tick_params(labelsize = 14)
@@ -818,4 +820,3 @@ def energy_scale():
         plt.xlabel("mean $\mu$ /  channel", fontsize = 14)
         make_fig(fig,1,1,name = "plot_E")
 
-energy_scale()
