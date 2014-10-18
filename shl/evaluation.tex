@@ -1,6 +1,7 @@
 \section{Evaluation}
 \subsection{Techniques used in the evaluation}
-For the statistical evaluation of the measurements we relied on the \textit{python} programming language~
+\paragraph{For the statistical evaluation}
+of the measurements we relied on the \textit{python} programming language~
 \cite{python} with several packages, including \textit{matplotlib}~\cite{Hunter2007} for plotting,
  \textit{scipy}~\cite{scipy} for fitting and \textit{uncertainties}~\cite{uc} for error propagation. 
 The fitted lines
@@ -8,7 +9,7 @@ were done in each case with a least-square fit of the respective distribution. T
 is given by its covariance matrix, which we will give for each fit since it is not unlikely that the parameters
 correlate. Further calculations are always done using those covariance matrices. Lets assume we have random
 variables $x_0,...,x_N$ which are correlatated through the $N\times N$ Matrix $cov(x_i,x_j)$, respectively.
-Further we assume to have a skalar function $f(x_0,...,x_N) \rightarrow \mathbb{R}$, then the variance
+Further we assume to have a scalar function $f(x_0,...,x_N) \rightarrow \mathbb{R}$, then the variance
 of this new random variable can be estimated (linearly) by:
 \begin{equation}
 Var[f] = \sigma^2 = \sum_{i,j} \frac{\partial f}{\partial x_i} \frac{\partial f}{\partial x_j} cov(x_i,x_j)
@@ -17,7 +18,8 @@ This is implicitly done within each calculation which is applied in our evaluati
 procedure in every calculation). If not further specified, we suppose that we can apply a poisson distribution
 for each bin, such that the error we use is $\mu = \sqrt{N}$ like a poisson process would predict.
 \subsection{Energy spectrum}
-The first step in the evaluation is to make sure that the peaks which are used can be related
+\paragraph{The first step}
+in the evaluation is to make sure that the peaks which are used can be related
 to the events we are looking for in the right energy scale.
 In order to relate the channels to
  energies we first use fits for the different peaks in order
@@ -73,7 +75,8 @@ along with the covariance matrix in section~\ref{subs:covariance}.}
 \end{figure}
 
 \subsection{Calibration of energy spectrum}
-At this stage we had to decide with which peaks we would fit linearly; we chose
+\paragraph{At this stage we had}
+to decide with which peaks we would fit linearly; we chose
 the two peaks from the americium probe and the high peak from cobalt (see figure~\ref{fig:fit_peaks}).
 
 \begin{eqnarray}
@@ -98,8 +101,8 @@ $193.76 \pm 0.13 $ & $ 121.6 \pm 2.4 $
 \end{tabular}
 \caption{Calculation of the energies from the peaks of the cobalt probe.}
 \end{wraptable}
- Now its possible to relate the other peaks we see in the cobalt probe with their respective energies.
-In fact this will give us the possibility to interprete the peaks with respect to their physical reality.
+It is possible to relate the other peaks we see in the cobalt probe with their respective energies.
+In fact, this will give us the possibility to interprete the peaks with respect to their physical reality.
 It is not possible to make a precise interpretation, but we will estimate the orders of magnitude:
 \begin{itemize}
 \item 122 keV and 14.4 keV are related to the events we are working with
@@ -111,13 +114,14 @@ It is not possible to make a precise interpretation, but we will estimate the or
     \includegraphics[width=1.0\linewidth]{analysis/figures/plot_E}
     \caption{This is the result of the energy calibration. We used three events about which we were at least
 almost sure to have the right events and related them to their respective energy. With three data points  
-it definitely does not make sence to use a $\chi^2$-test, so there is no way to check the fidelity.}
+it definitely does not make sense to use a $\chi^2$-test, so there is no way to check the fidelity.}
     \label{fig:fit_peaks}
 \end{figure}
 
-\subsubsection{Calibration of TAC-MCA Signal}
+\subsection{Calibration of TAC-MCA Signal}
 \label{subs:calib_TAC}
-In order to relate the channels to the delay, we used the following
+\paragraph{In order to relate}
+the channels to the delay, we used the following
 measurement for calibration. We used a least square fit for the parameters
 of the linear relation:
 \begin{align}
@@ -156,11 +160,12 @@ The $\chi^2$-test results in:
 
 
 
-\subsection{Naive approach: Ad-hoc solution}
-In this section we will make use of the previous sections: Forwarding the channel to the time regime and
+\subsection{Calculating the half life}
+\paragraph{In this section}
+we will make use of the previous sections: Forwarding the channel to the time regime and
 reducing the background from our main figure in order to evaluate the half life period.\\\\
-The measurement of randomized concidences lasted 4.1 lasted \textbf{6080 seconds} = 1 hour 41 minutes and 20 seconds, while
-the measurement of delayed coincidences lasted \textbf{52658 seconds} =  14 hours, 37 minutes and 38 seconds. 
+The measurement of randomized concidences lasted \textbf{6080 seconds} = 1 hour 41 minutes and 20 seconds, while
+the that of delayed coincidences lasted \textbf{52658 seconds} =  14 hours, 37 minutes and 38 seconds. 
 In order to compensate for this disparity, we need to extrapolate the background by the following
 \begin{equation}
 \mathrm{\textbf{total:} } \quad 79 \quad \mathrm{events} \quad \Rightarrow 5.177\cdot 10^{-5}\quad \mathrm{events/ (channel \cdot second)}
@@ -187,7 +192,7 @@ events.
 in a (in this measurement not realizable) infinite limit equally distributed. We cannot proceed on the assumption
 that after 52658s there will be an equally distributed background signal on every channel.
 \end{enumerate}
-The least squares fit of with \eqref{eq:expfit} results in 
+The least squares fit with \eqref{eq:expfit} results in 
 
 \begin{align}
     \mathrm{cov}&=& 
@@ -207,24 +212,24 @@ T_{1/2} =\frac{\log(2)}{\lambda} =\left [11.9 \pm 0.5 \right ] ns
 \end{equation}
 where the literature value is given by \cite{ver} $T_{1/2, \mathrm{lit}}=98$ns, which is 
 in a totally different regime, also not in the range of the errors (See figure~\ref{fig:last_plot}).
-Ad this point we have to note that the following actions did not change the result in any way, we will also
+At this point we have to note that the following actions did not change the result in any way. We will also
 explain why this does not have any effect on the wrong result.
 \begin{itemize}
 \item As it is visible in figure~\ref{fig:last_plot}, the exponential of the literatur is totally different
-in the slope, such that any influence by the background will not change the slope of the fitted curve 
-significantly. The main background parameter is $a$, which is also really slow within the fit. 
-\item The flipping in the time regime, fitting before scaling to ns or taking a different function (like
+in slope, such that any influence of the background would not change the slope of the fitted curve 
+significantly. The main background parameter is $a$, which is really small within the fit. 
+\item The flipping in the time regime, fitting before scaling to nanoseconds or taking a different function (like
 $a+b\cdot c^{-t}$ or a linear fit in the log-plot) does not result in any different result, as we expected.
 \end{itemize}
-The summaration and interpretation will be given in the following conclusion.
+The summary and interpretation will be given in the following conclusion.
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\linewidth]{analysis/figures/plot4_1_reg}
     \caption{This is the result of the exponential fit, where the red bars indicate the measurements with respective
-errors whereas the pink line refers to the fit.
+errors whereas the blue line refers to the fit.
 The green line indicates the curve with the literature value for $\lambda$ such 
-that $N(t) = a + b\cdot e^{-\lambda_{\mathrm{lit}}\cdot t}$. It is clearly visible that this line does not even agree with
+that $N(t) = a + b\cdot e^{-\lambda_{\mathrm{lit}}\cdot t}$. It is clearly visible that this line does not agree with
 the data at all, neither in the range of their errors nor in their direction. }
     \label{fig:last_plot}
 \end{figure}
