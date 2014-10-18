@@ -9,6 +9,8 @@ import uncertainties as uc
 import uncertainties.unumpy as un
 from uncertainties import umath
 
+import stat1 as st
+
 """
 Ein Wort
 
@@ -42,7 +44,7 @@ def make_fig(fig, show=True,save=False, name="foo"):
 plot        = True  # Do you really want to plot?
 fit         = True  # Do the fitting with scipy.curve_fit 
 redistribute= False # Redistributing the background 
-save        = False  # Saving the figure (You should have plotted though)
+save        = True  # Saving the figure (You should have plotted though)
 show        = True  # Showing the figure ("After all is said and done, more is said than done" Aesop)
 scaling     = True # rescaling the channels to time 
 flip        = True  # Flipping the plot such that e^x -> e^-x 
@@ -155,13 +157,20 @@ if fit==True:
 
     p, cov = curve_fit(func, t, data, p0=p0, sigma =error)
 
+    f1 = open("coefficients_eval.tex","a")
+    st.la_coeff(f1, p,cov, ["a","b","c"])
+    f1.close()
+
+
     p_uc = uc.correlated_values(p, cov)
+
     lamb = p_uc[2]
 
     T12_lit = 98 
     lamb_lit = -(np.log(2) / T12_lit)
     print("literature lambda: %.3f"%lamb_lit)
     print("fitted lambda:", lamb)
+    print("fitted T12:",np.log(2)/lamb)
 
     t_fit = np.linspace(min(t), max(t))
 
@@ -184,7 +193,7 @@ if fit==True:
 
         # place a text box in upper left in axes coords
         props = dict(boxstyle='round', facecolor='white', alpha=0.5)
-        textstr = '$a + b \cdot e^{-cx}$ with\n$a=%.2f$\n$b=%.2f$\n$c=%.2f$'%(p[0], p[1],p[2])
+        textstr = '$a + b \cdot e^{-ct}$ with\n$a=%.2f$ counts\n$b=%.2f$ counts\n$c=%.2f {ns}^{-1}$'%(p[0], p[1],p[2])
         ax.text(0.6, 0.85, textstr, transform=ax.transAxes, fontsize=18, va='top', bbox=props)
 
         ax.xaxis.set_tick_params(labelsize = 14)
@@ -198,7 +207,7 @@ if plot == True:
     #plt.yscale("log")
     plt.xlim(min(t)*0.8, max(t))
     if scaling:
-        plt.xlabel("time in $ns$", fontsize = 14)
+        plt.xlabel("time $t$ in ns", fontsize = 14)
     else:
         plt.xlabel("channel", fontsize = 14)
     plt.ylabel("counts", fontsize = 14)
