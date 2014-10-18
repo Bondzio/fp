@@ -94,7 +94,7 @@ backend = biber
 
 \setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
 \setcapindent{1cm} 
-
+\setcounter{MaxMatrixCols}{50}
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
 %----------------------------------------------------------------------------------------
@@ -150,8 +150,7 @@ backend = biber
 \clearpage
 
 \section{Bibliography}
-\printbibliography[heading=subbibintoc,type=article,title={Articles only}]
-\printbibliography[heading=subbibintoc,type=book,title={Books only}]
+\printbibliography[heading=subbibintoc]
 \section{Appendix}
 \input{appendix}
 

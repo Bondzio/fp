@@ -621,6 +621,12 @@ def reg_6_3(plot = False):
 
     p, cov = curve_fit(func, channel, data, p0=p0, sigma = error)
 
+    f1 = open("coefficients_6_3.tex","a")
+    st.la_coeff(f1, p,cov, ["A_1","A_2","A_3","\mu_1","\mu_2","\mu_3","\sigma_1","\sigma_2","\sigma_3","c"])
+    f1.close()
+
+
+
     p_uc = uc.correlated_values(p, cov)
 
     if plot:
@@ -688,8 +694,13 @@ def reg_2_1a(plot = False):
 
     p, cov = curve_fit(func, channel, data, p0=p0, sigma = error)
     
+    f1 = open("coefficients_5_1.tex","a")
+    st.la_coeff(f1, p,cov, ["A_1","A_2","A_3","A_4","A_5","\mu_1","\mu_2","\mu_3","\mu_4","\mu_5","\sigma_1","\sigma_2","\sigma_3","\sigma_4","\sigma_5","c"])
+    f1.close()
+
 
     p_uc = uc.correlated_values(p, cov)
+    
 
     if plot:
         fig = plt.figure()
@@ -699,27 +710,27 @@ def reg_2_1a(plot = False):
         
         ax.plot(channel_fit, func(channel_fit,*p))
         ax.plot(channel_fit,channel_fit*0 + p[-1],"--")
-        text = False
+        text =True 
         if text:
-            pos = [(0.05,0.25),( 0.2,0.55),( 0.7,0.95)]
+            pos = [(0.02,0.35),( 0.55,0.8),( 0.7,0.95)]
             
             props = dict(boxstyle='round', facecolor='white', alpha=0.5)
 
-            for q in range(3):
+            for i,q in enumerate([0,4]):
 
                 a,Sa = p_uc[q].n, p_uc[q].s
-                mu,Smu = p_uc[q+3].n, p_uc[q+3].s
-                sigma,Ssigma = p_uc[q+6].n , p_uc[q+6].s
+                mu,Smu = p_uc[q+5].n, p_uc[q+5].s
+                sigma,Ssigma = p_uc[q+10].n , p_uc[q+10].s
                 
                 #textstr = '$A=%.3f \pm %.3f$\n$\mu = %.3f \pm %.3f$\n$\sigma = %.3f \pm %.3f$'%(a,Sa,mu,Smu,sigma,Ssigma)
-                qq = q+1
-                textstr = '$A_%d=%.3f$\n$\mu_%d = %.3f$\n$\sigma_%d = %.3f$'%(qq,a,qq,mu,qq,sigma)
-                ax.text(pos[q][0], pos[q][1], textstr, transform=ax.transAxes, fontsize=14, va='top', bbox=props)
+                ii = i+1
+                textstr = '$A_%d=%.3f$\n$\mu_%d = %.3f$\n$\sigma_%d = %.3f$'%(ii,a,ii,mu,ii,sigma)
+                ax.text(pos[i][0], pos[i][1], textstr, transform=ax.transAxes, fontsize=14, va='top', bbox=props)
 
-            textstr = '$c = %.3f$'%(p[-1])
-            ax.text(0.6,0.1, textstr, transform=ax.transAxes, fontsize=14, va='top', bbox=props)
-
-        ax.set_xlabel("channels", fontsize = 14)
+                ax.set_xlabel("channels", fontsize = 14)
+                
+        ax.add_patch(plt.Rectangle((10,0.1),18,3000,alpha = 0.2))
+        ax.add_patch(plt.Rectangle((165,0.1),50,30000,alpha = 0.2))
         ax.set_ylabel("counts", fontsize = 14)
         ax.xaxis.set_tick_params(labelsize = 14)
         ax.yaxis.set_tick_params(labelsize = 14)
@@ -732,9 +743,10 @@ def reg_2_1a(plot = False):
         plt.fill_between(channel_fit, data_fit_min , data_fit_max,facecolor="r", color="b", alpha=0.3 )
 
         plt.grid(True)
+        plt.xlim(0,250)
 
 
-        make_fig(fig,1,0,name = "plot2_1a_reg")
+        make_fig(fig,0,0,name = "plot2_1a_reg")
 
     mu = [p_uc[6].n,p_uc[9].n]
     Smu =[p_uc[6].s,p_uc[9].s]
@@ -742,13 +754,11 @@ def reg_2_1a(plot = False):
     energies = [14.4,122.1]
 
     return energies,mu,Smu, mu2
-
-
 def energy_scale():
 
     E_am, mu_am, Smu_am = reg_6_3(False)
     E_co, mu_co, Smu_co, mu2 = reg_2_1a(False)
-    plot = True 
+    plot =False 
 
     #plt.errorbar(E_am,mu_am,yerr= Smu_am, fmt="x") 
     #plt.errorbar(E_co,mu_co,yerr= Smu_co, fmt="x") 
@@ -764,8 +774,11 @@ def energy_scale():
 
     p, cov = curve_fit(func, mu, E, p0=p0, sigma = error)
     p_uc = uc.correlated_values(p, cov)
-    print(p_uc)
 
+    
+    f1 = open("coefficients_energy.tex","a")
+    st.la_coeff(f1, p,cov, ["a","b"])
+    f1.close()
 
     for mu_ in mu2: 
         print(mu_,"Channel => ",func(mu_,*p_uc),"keV")
