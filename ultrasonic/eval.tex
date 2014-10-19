@@ -38,6 +38,10 @@ where $A$ is the matrix defined by
     A_{ij} = \left[ \frac{\partial f_i}{\partial x_j}\right]_{\mathbf{x} = \mathbf{\mu}}
 \end{equation}
 with expectation value $E[\mathbf{x}] = \mathbf{\mu}$.~\cite{cowan1998statistical}
+In order to facilitate notation, the covariance matrices will in general be notated without 
+specifying the units. If not specified explicitly, the units will correspond to those of the
+variables: If $x_i, x_j$ ahve the units $[x_i], [x_j]$, respectively, 
+then the entry of the covariance matrix has the unit $[x_i] * [x_j]$. 
 
 \subsection{Lattice constant of sine grating}
 Observing the intensity on the screen, we noticed that the beam was not 
@@ -102,10 +106,87 @@ For this part, we set the lenses such that the beam would be widened and collimi
 with the graph paper. The measured distances can be seen in the handwritten records, see appendix \ref{sec:records}.
 The small focal lenght of lens 3 ($f_3 = 300$ mm) made it impossible to focus the beam exactly onto diode 1. We 
 chose the closest position allowed by the setup, such the the lense would not interfere with the second beam. 
-The only distance used in for further calculations is the distance $l$ between the grating and the diode, 
-which is given by 
+
+We measured the peaks with the amplitude grating two times, since we noticed a difference when turning the grating. 
+Both measurements are plotted in figure \ref{fig:calibrate_peaks}. 
+We searched for the times at the maxima numerically, taking the center value in case of a plateau. 
+The results are plotted as dotted lines, the numbers are given in table \ref{tab:gauge_peaks}. 
+The error was estimated somewhat bigger then the calculated standard deviation (in almost 
+    all cases, $s_{\overline{t_\mathrm{max, calculated}}}  = 0.004$ ms), which has little meaning, 
+since we only took two measurements. In any case, the error does not play a further role, 
+since the linear fit does not include the error apart from weighing. Furthermore, the 
+shift due to moving the grating is seen on each peak - in the 
+end, we are only interested in distances.  
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[htdp]
+    \centering
+    \begin{tabular}{|p{3cm}|p{2cm}|p{2cm}|p{2cm}|}
+        \hline
+        \rowcolor{LightCyan}
+        Maximum & $t_1$ / ms & $t_2$  / ms & $\overline{t_\mathrm{max}}$ / ms \\ \hline
+        $3.$, left  & 0.204     & 0.211 & 0.207 \\
+        $2.$, left  & 0.298     & 0.306 & 0.302 \\
+        $1.$, left  & 0.393     & 0.400 & 0.397 \\
+        $0.$,       & 0.489     & 0.496 & 0.492 \\
+        $1.$, right & 0.585     & 0.591 & 0.588 \\
+        $2.$, right & 0.682     & 0.686 & 0.684 \\
+        \hline
+    \end{tabular}
+    \caption{
+        Peaks for the calibration grating. We estimate the error on each 
+        value of $\overline{t_\mathrm{max}}$ with 
+        $s_{\overline{t_\mathrm{max}}} = 0.01$ ms.
+        }
+    \label{tab:calibrate_peaks}
+\end{table}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/calibrate_peaks}
+    \caption{
+        Measured signal for the gauge gratings, each corresponding to a different orientation of the 
+        grating. The maxima are found nuerically, taking the central value in case of a plateau. 
+        The is a clear offset of the maxima corresponding to the same order. For further calculations, 
+        we take the mean value of the two. 
+        }
+     \label{fig:calibrate_peaks}
+\end{figure}
+
+From the maxima, we could calculate the linear correspondance $\theta(t)$, 
+which is derived by \ref{eq:N_lines_interference}:
 \begin{equation}
-    l = \left[(297 \pm 3) + (140 \pm 3)\right] \, mathrm{mm}
-    = (437 \pm 4) \, mathrm{mm} \, .
+    \theta(m) = \arcsin\left(\frac{m \lambda}{K}\right)
 \end{equation}
+Since the mirror rotates with constant angular speed $\omega_1$, we can 
+also write $\theta(t)$. By correctly identifying the maxima, and using the 
+known lattice constant $K_\mathrm{gauge}$ of the gauge grating, we can perform a linear fit.
+The result is plotted in figure \ref{fig:calibrate_fit}. The values and the corresponding 
+covariance matrix are: 
+\begin{align}
+    \omega &= 0.667 \, \mathrm{rad / s}\\
+    \phi_0 &= -0.328 \, \mathrm{rad}\\
+	\mathrm{cov} &=
+	\begin{pmatrix}
+		6.2\mathrm{e}-06 &-2.8\mathrm{e}-06 \\
+		-2.8\mathrm{e}-06 &1.4\mathrm{e}-06 \\
+	\end{pmatrix}  \, .
+\end{align}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/calibrate_fit}
+    \caption{
+        Fit of the angles identified for the gauge grating with known 
+        lattice constant of $K = 10,000$ lines/m. The errors on the time corresponds to the
+        shift observed when turning the grating around. The fit is drawn with the errors obtained 
+        by error propagation using the corresponding covariance matrix - however, the errors 
+        are hardly visible due to be good agreement to the linear relation expected. 
+        }
+    \label{fig:calibrate_fit}
+\end{figure}
+
+\subsection{Lattice constant and resolution for five gratings}
+Using $\theta(t)$, we can calculate the lattice constants for the five amplitude gratings. 
+We again apply the formula \ref{eq:N_lines_interference}. Since we use numerical computation, 
+there is no need to do the first order approximation of the sine.
 

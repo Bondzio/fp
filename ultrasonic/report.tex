@@ -60,7 +60,6 @@ backend = bibtex
 
 \usepackage{latexsym}
 \usepackage{textcomp}
-\usepackage[T1]{fontenc}
 \usepackage{bm}% bold math
 \usepackage{graphicx}
 \usepackage{eso-pic}
@@ -142,8 +141,9 @@ backend = bibtex
 \clearpage
 
 \section{Bibliography}
-\printbibliography[heading=subbibintoc,type=article,title={Articles only}]
-\printbibliography[heading=subbibintoc,type=book,title={Books only}]
+\printbibliography[heading=subbibintoc,type=article,title={Articles}]
+\printbibliography[heading=subbibintoc,type=book,title={Books}]
+\printbibliography[heading=subbibintoc,type=misc,title={Other}]
 
 
 \end{document}
