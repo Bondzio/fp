@@ -1,63 +1,63 @@
-import numpy as np
-from scipy.optimize import curve_fit
-import matplotlib.pyplot as plt
+    import numpy as np
+    from scipy.optimize import curve_fit
+    import matplotlib.pyplot as plt
 
 
-#fredsche routinen
-import stat1 as st
+    #fredsche routinen
+    import stat1 as st
 
 
-import seaborn as sns
+    import seaborn as sns
 
-from matplotlib import rcParams
-from scipy.interpolate import UnivariateSpline,InterpolatedUnivariateSpline,interp1d
-from smooth import savitzky_golay
-import uncertainties as uc
-import uncertainties.unumpy as un
-from uncertainties import umath
-
-
-import pickle
+    from matplotlib import rcParams
+    from scipy.interpolate import UnivariateSpline,InterpolatedUnivariateSpline,interp1d
+    from smooth import savitzky_golay
+    import uncertainties as uc
+    import uncertainties.unumpy as un
+    from uncertainties import umath
 
 
-rcParams['font.family'] = 'serif'
-rcParams['font.serif'] = ['Computer Modern Roman']
-rcParams['text.usetex'] = True
-rcParams['figure.autolayout'] = True
+    import pickle
 
 
-fig_dir = "./figures/"
-
-def make_fig(fig, show=True,save=False, name="foo"):
-    if show == True:
-        fig.show()
-    if save == True:
-        fig.savefig(fig_dir + name + ".pdf")
+    rcParams['font.family'] = 'serif'
+    rcParams['font.serif'] = ['Computer Modern Roman']
+    rcParams['text.usetex'] = True
+    rcParams['figure.autolayout'] = True
 
 
-# Energy distributions
+    fig_dir = "./figures/"
 
-def plot_2_1():
-    couples = [("a","Pos1","right"),("b","Pos1","left"),("c","Pos2","right")\
-            ,("d","Pos2","left"),("e","Pos2","left")]
+    def make_fig(fig, show=True,save=False, name="foo"):
+        if show == True:
+            fig.show()
+        if save == True:
+            fig.savefig(fig_dir + name + ".pdf")
 
-    for q,pos,pm in couples: 
-        data = np.load("./data/measure2_1"+q+".npy")
 
-        # Define some test data which is close to Gaussian
+    # Energy distributions
 
-        hist, bin_edges = data, np.arange(0,len(data)+1,1)
-        bin_centres = (bin_edges[:-1] + bin_edges[1:])/2
+    def plot_2_1():
+        couples = [("a","Pos1","right"),("b","Pos1","left"),("c","Pos2","right")\
+                ,("d","Pos2","left"),("e","Pos2","left")]
 
-        # Define model function to be used to fit to the data above:
-        def gauss(x, *p):
-            A, mu, sigma = p
-            return A*np.exp(-(x-mu)**2/(2.*sigma**2))
+        for q,pos,pm in couples: 
+            data = np.load("./data/measure2_1"+q+".npy")
 
-        # p0 is the initial guess for the fitting coefficients (A, mu and sigma above)
-        p0 = [1., 0., 1.]
+            # Define some test data which is close to Gaussian
 
-        coeff, var_matrix = curve_fit(gauss, bin_centres, hist, p0=p0)
+            hist, bin_edges = data, np.arange(0,len(data)+1,1)
+            bin_centres = (bin_edges[:-1] + bin_edges[1:])/2
+
+            # Define model function to be used to fit to the data above:
+            def gauss(x, *p):
+                A, mu, sigma = p
+                return A*np.exp(-(x-mu)**2/(2.*sigma**2))
+
+            # p0 is the initial guess for the fitting coefficients (A, mu and sigma above)
+            p0 = [1., 0., 1.]
+
+            coeff, var_matrix = curve_fit(gauss, bin_centres, hist, p0=p0)
 
         # Get the fitted curve
         hist_fit = gauss(bin_centres, *coeff)
@@ -626,56 +626,29 @@ def reg_6_3(plot = False):
     f1 = open("coefficients_6_3.tex","a")
     st.la_coeff(f1, p,cov, ["A_1","A_2","A_3","\mu_1","\mu_2","\mu_3","\sigma_1","\sigma_2","\sigma_3","c"])
     f1.close()
+def reg_6_3(plot = False):
+
+    data = np.load("data/measure6_3.npy")
+    error = np.sqrt(data)
+    channel = np.arange(0,len(data),1)
+    channel_fit = np.linspace(0,len(data)+1,1000)
+
+    def func(x, *p):
+        a1,a2,a3,mu1,mu2,mu3,sigma1,sigma2,sigma3,c = p
+        return a1*np.exp(- (x-mu1)**2 / (2*sigma1)**2 ) + \
+               a2*np.exp(- (x-mu2)**2 / (2*sigma2)**2 ) + \
+               a3*np.exp(- (x-mu3)**2 / (2*sigma3)**2 ) + c
+
+    # p0 is the initial guess for the fitting coefficients 
+    p0 = [1000, 8000, 22000, 22, 45, 96, 1,2,3, 500]
+
+    p, cov = curve_fit(func, channel, data, p0=p0, sigma = error)
+
+    f1 = open("coefficients_6_3.tex","a")
+    st.la_coeff(f1, p,cov, ["A_1","A_2","A_3","\mu_1","\mu_2","\mu_3","\sigma_1","\sigma_2","\sigma_3","c"])
+    f1.close()
 
 
-
-    p_uc = uc.correlated_values(p, cov)
-
-    if plot:
-        fig = plt.figure()
-        ax  = plt.subplot(111)
-
-        ax.errorbar(channel,data,yerr = np.sqrt(data))
-        
-        ax.plot(channel_fit, func(channel_fit,*p))
-        ax.plot(channel_fit,channel_fit*0 + p[-1],"--")
-        pos = [(0.05,0.25),( 0.2,0.55),( 0.7,0.95)]
-        
-        props = dict(boxstyle='round', facecolor='white', alpha=0.5)
-
-        for q in range(3):
-
-            a,Sa = p_uc[q].n, p_uc[q].s
-            mu,Smu = p_uc[q+3].n, p_uc[q+3].s
-            sigma,Ssigma = p_uc[q+6].n , p_uc[q+6].s
-            
-            #textstr = '$A=%.3f \pm %.3f$\n$\mu = %.3f \pm %.3f$\n$\sigma = %.3f \pm %.3f$'%(a,Sa,mu,Smu,sigma,Ssigma)
-            qq = q+1
-            textstr = '$A_%d=%.3f$\n$\mu_%d = %.3f$\n$\sigma_%d = %.3f$'%(qq,a,qq,mu,qq,sigma)
-            ax.text(pos[q][0], pos[q][1], textstr, transform=ax.transAxes, fontsize=14, va='top', bbox=props)
-
-        textstr = '$c = %.3f$'%(p[-1])
-        ax.text(0.6,0.1, textstr, transform=ax.transAxes, fontsize=14, va='top', bbox=props)
-
-        ax.set_xlabel("channels", fontsize = 14)
-        ax.set_ylabel("counts", fontsize = 14)
-        ax.xaxis.set_tick_params(labelsize = 14)
-        ax.yaxis.set_tick_params(labelsize = 14)
-
-        data_fit_min = func(channel_fit,*(p - np.sqrt(np.diag(cov))))
-        data_fit_max = func(channel_fit,*(p + np.sqrt(np.diag(cov))))
-        plt.fill_between(channel_fit, data_fit_min , data_fit_max,facecolor="r", color="b", alpha=0.3 )
-
-        plt.grid(True)
-
-        ax.set_xlim(0,150)
-
-        make_fig(fig,1,1,name = "plot6_3_reg")
-
-    mu = [p_uc[3].n,p_uc[4].n,p_uc[5].n]
-    Smu = [p_uc[3].s,p_uc[4].s,p_uc[5].s]
-    energies = [26.3, 33.2,59.5]
-    return energies,mu,Smu 
 
 def reg_2_1a(plot = False):
 
