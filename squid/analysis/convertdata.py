@@ -32,17 +32,16 @@ def csv_to_npy(filename):
     np.save(output_dir + filename + "_channelB", channelB)
 
     return t, channelA, channelB
+for i in range(1,5+1):
+    csv_to_npy("2.%d_HM1508-2"%i)
 
-csv_to_npy("2.1_HM1508-2")
-csv_to_npy("2.2_HM1508-2")
-csv_to_npy("2.3_HM1508-2")
-csv_to_npy("2.4_HM1508-2")
-csv_to_npy("2.5_HM1508-2")
-csv_to_npy("3.1_HM1508-2")
-csv_to_npy("3.2_HM1508-2")
-csv_to_npy("3.3_HM1508-2")
-csv_to_npy("3.4_HM1508-2")
-csv_to_npy("3.5_HM1508-2")
-csv_to_npy("3.6_HM1508-2")
-csv_to_npy("3.7_HM1508-2")
-csv_to_npy("3.8_HM1508-2")
+for i in range(1,8+1):
+    csv_to_npy("3.%d_HM1508-2"%i)
+
+for i in range(1,5+1):
+    csv_to_npy("4.%d_HM1508-2"%i)
+
+for i in range(1,5+1):
+    csv_to_npy("5.%d_HM1508-2"%i)
+
+
