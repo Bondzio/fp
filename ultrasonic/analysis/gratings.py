@@ -36,6 +36,8 @@ def plot_maxi(maxis, dotted=False):
     ax1.set_ylabel("$U$ / V")
     if show_fig:
         fig1.show()
+    if save_fig:
+        fig1.savefig(fig_dir + "gratings_maxi" + plot_suffix[0] + ".pdf")
     return 0
 
 def func(x,*p):
@@ -70,32 +72,36 @@ rcParams['ytick.labelsize'] = fontsize_labels
 
 plt.close("all")
 show_fig = True
-save_fig = False
+save_fig = True
 fig_dir = "../figures/"
 npy_dir = "./data_npy/"
 plotsize = (6.2, 3.83)  # width corresponds to \textwidth in latex document (ratio = golden ratio ;))
 
-lamb = 632.8e-6 # wavelength of laser
-# import coefficients for theta(t) = omega * t + phi_0; 
-# created in "./calibration.py", theta_coeff = np.array([omega, phi_0])
+lamb = 632.8e-9 # wavelength of laser
+"""
+import coefficients for theta(t) = omega * t + phi_0; 
+created in "./calibration.py", theta_coeff = np.array([omega, phi_0])
+"""
 theta_coeff = np.load(npy_dir + "gauge_fit_coeff.npy")
 theta_cov = np.load(npy_dir + "gauge_fit_cov.npy")
 theta_coeff_corr = uc.correlated_values(theta_coeff, theta_cov)
 s_t_m = 0.01 # error on the maxima in ms
 theta = lambda t: np.polyval(theta_coeff_corr, un.uarray(t, s_t_m))
-#theta = lambda t: np.polyval(theta_coeff_corr, t)
+#theta = lambda t: np.polyval(theta_coeff_corr, t) # strangly, this version yields smaller errors
 
 # finding minima and plotting
-plot_suffixes = ["1", "2b", "3", "4b", "5b"]
-neighbouring = [70] * 4 + [120]
-minimal = [0.01, 0.0036, 0.006, 0.0045, 0.0075]
-m_min = [-4, -3, -4, -2, -2]
+plot_suffixes = ["1", "2b", "3", "4b", "5b"]    # original data name
+neighbouring = [70] * 4 + [120]                 # number of neighbouring peaks to be tested for max
+minimal = [0.01, 0.0036, 0.006, 0.0045, 0.0075] # minimal value for a found maximum to be accepted
+m_min = [-4, -3, -5, -5, -2]                    # minimal order observed (only valid for gratings 1, 2, 5)
+# write results into a tabular environment in file
 f = open(r"./gratings_lattice_constants.tex", "w+")
-f.write("\t\\begin{tabular}{|p{6.18cm}|p{3.82cm}|p{3.82cm}|}\n")
+f.write("\t\\begin{tabular}{|p{3.82cm}|p{6.18cm}|p{3.82cm}|}\n")
 f.write("\t\t\hline\n")
 f.write("\t\t\\rowcolor{LightCyan}\n")
 f.write("\t\tGrating & Orders visible & $\overline{K}$ / ($\mu$m)  \\\\ \hline\n")
 for i in range(5):  # i+1 = nr of grating
+    f.write("\t\t$%i$  & "%(i+1))
     plot_suffix, n, m = plot_suffixes[i], neighbouring[i], minimal[i]
     npy_files = npy_dir + "grating_" + plot_suffix
     t = np.load(npy_files + "_t" + ".npy")
@@ -109,7 +115,6 @@ for i in range(5):  # i+1 = nr of grating
     plot_maxi(maxis, dotted=False)
     K = lambda m, t: m * lamb / theta(t) 
     Ks = []
-    f.write("\t\t$%i$  & "%(i+1))
     for j, maxi in enumerate(maxis):
         m = m_min[i] + j    # maximum of m-th order
         if i+1 == 3:        # for grating nr 3, the 3rd maxima are visible
@@ -121,24 +126,11 @@ for i in range(5):  # i+1 = nr of grating
             Ks += [K(m, t_m)]
             #print("m =", m, "t =", t_m, "theta =", theta(t_m), "K =", K(m, t_m))
         if j ==0:
-            f.write("%i"%(m))
+            f.write("$%i"%(m))
         else:
             f.write(", %i"%(m))
-    Ks = np.array(Ks)
-    K_mean = weighted_avg_and_std(Ks)
-    print("K_mean =", K_mean)
-    f.write(" &  {0:L} \\\\\n".format(K_mean*10**3))
+    K_mean = weighted_avg_and_std(np.array(Ks)) # calculate weighted mean and std_dev for K
+    f.write("$ & $ {0:L}$ \\\\\n".format(K_mean * 10 ** 6)) 
 f.write("\t\t\hline\n")
 f.write("\t\end{tabular}\n")
 f.close()
-
-
-
-#        a1,a2,a3,a4,a5,mu1,mu2,mu3,mu4,mu5,sigma1,sigma2,sigma3,sigma4,sigma5,c):
-
-
-if save_fig:
-    fig1.savefig(fig_dir + "calibrate_peaks.pdf")
-    #fig2.savefig(fig_dir + "calibrate_fit.pdf")
-
-#fig2.show()
