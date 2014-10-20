@@ -145,7 +145,7 @@ end, we are only interested in distances.
     \includegraphics[width=1.0\linewidth]{figures/calibrate_peaks}
     \caption{
         Measured signal for the gauge gratings, each corresponding to a different orientation of the 
-        grating. The maxima are found nuerically, taking the central value in case of a plateau. 
+        grating. The maxima are found numerically, taking the central value in case of a plateau. 
         The is a clear offset of the maxima corresponding to the same order. For further calculations, 
         we take the mean value of the two. 
         }
@@ -187,6 +187,11 @@ covariance matrix are:
 
 \subsection{Lattice constant and resolution for five gratings}
 Using $\theta(t)$, we can calculate the lattice constants for the five amplitude gratings. 
+For that, we find the times corresponding to the $m$th maximum numerically. The width 
+of the peaks is approxmately equal at half maximum, such that we do not put weights 
+on each maximum. We also neglect to fit gaussians on each peak. An application of such methods 
+for this measurement does not increase the 
+
 We again apply the formula \ref{eq:N_lines_interference}. Since we use numerical computation, 
 there is no need to do the first order approximation of the sine.
 

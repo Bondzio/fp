@@ -30,12 +30,21 @@ def plot_maxi(maxis, dotted=False):
     if dotted:
         [ax1.plot(t[maxi], signal[maxi], 'o', color=peak_plot.get_color(), linewidth=1) for maxi in maxis]
     [ax1.plot([t[maxi]] * 2, [0, signal[maxi]], '--', color=peak_plot.get_color(), linewidth=1) for maxi in maxis]
-    next(ax1._get_lines.color_cycle)
+    #ax1.plot(t, func(t,*p), alpha=0.8)
     ax1.set_xlabel("$t$ / ms")
     ax1.set_ylabel("$U$ / V")
     if show_fig:
         fig1.show()
     return 0
+
+def func(x,*p):
+    """
+    p must be of the form: p = [a1, ..., a{n_peaks}, mu1, ..., m{n_peaks}, sigma1, ..., sigma{n_peaks}, c]
+    """
+    y = p[-1]
+    for i in range(n_peaks):
+        y += p[i] * np.exp(-(x - p[n_peaks + i]) ** 2 / (2 * p[2 * n_peaks + i])**2)
+    return y
 
 fontsize_labels = 12    # size used in latex document
 rcParams['font.family'] = 'serif'
@@ -62,7 +71,7 @@ p_uc = uc.correlated_values(p, cov)
 # finding minima and plotting
 plot_suffixes = ["1", "2b", "3", "4b", "5b"]
 neighbouring = [70] * 4 + [120]
-minimal = [0.01, 0.036, 0.006, 0.0045, 0.0075]
+minimal = [0.01, 0.0036, 0.006, 0.0045, 0.0075]
 for i in range(5):
     plot_suffix, n, m = plot_suffixes[i], neighbouring[i], minimal[i]
     npy_files = npy_dir + "grating_" + plot_suffix
@@ -70,7 +79,15 @@ for i in range(5):
     t = t * 10 ** 3 # time in ms!!!
     signal = np.load(npy_files + "_ch_a" + ".npy")
     maxis = search_maxi(plot_suffix, n, m)
+    n_peaks = len(maxis)
+    #p0 = np.concatenate((signal[maxis], t[maxis], np.array([0.02]*n_peaks), [0]), axis=0)
+    #p, cov = curve_fit(func, t, signal, p0=p0)
     plot_maxi(maxis, dotted=False)
+
+
+
+#        a1,a2,a3,a4,a5,mu1,mu2,mu3,mu4,mu5,sigma1,sigma2,sigma3,sigma4,sigma5,c):
+
 
 if save_fig:
     fig1.savefig(fig_dir + "calibrate_peaks.pdf")
