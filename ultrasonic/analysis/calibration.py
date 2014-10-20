@@ -57,7 +57,7 @@ rcParams['xtick.labelsize'] = fontsize_labels
 rcParams['ytick.labelsize'] = fontsize_labels
 
 plt.close("all")
-show_fig = False
+show_fig = True
 save_fig = True
 fig_dir = "../figures/"
 npy_dir = "./data_npy/"
@@ -73,6 +73,7 @@ for q in "ab":  # use both measurements to get deviation
     npy_files = npy_dir + "gauge_" + q
     t = np.load(npy_files + "_t" + ".npy")
     t = t * 10 ** 3 # time in ms!!!
+    t = t - t[-1] / 2 # t = 0 doesn't lie on the physical t=0. Translate the center to t=0!
     signal = np.load(npy_files + "_ch_a" + ".npy")
 
     # get local maxima
@@ -128,6 +129,7 @@ textstr = '\\begin{eqnarray*}\\theta(t) &=& \omega t + \phi_0 \\\\ \
         \phi_0    &=&%.3f \, \mathrm{rad}\end{eqnarray*}'%(p[0], p[1])
 ax2.text(0.1, 0.85, textstr, transform=ax2.transAxes, fontsize=fontsize_labels, va='top', bbox=props)
 
+ax2.set_xlim(t[0], t[-1])
 ax2.set_ylim(-0.3, 0.3)
 ax2.set_xlabel("$t$ / ms")
 ax2.set_ylabel("$\\theta$ / rad")

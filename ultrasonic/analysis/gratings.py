@@ -12,7 +12,7 @@ def search_maxi(plot_suffix, neighbours=100, minimum=0.01, n_plateau=50):
     # get local maxima
     maxis = ext(signal, np.greater_equal, order=neighbours)[0] # all maxima with next <order> points greater_equal
     maxis = maxis[signal[maxis] > minimum]   # only those greater <float>
-    maxis = maxis[t[maxis] > t[-1] * 0.02]   # only those maxima greater then 2% of the maximum time
+    maxis = maxis[t[maxis] > t[10]]   # only those maxima greater then 2% of the maximum time
     maxis_j = []
     # reduce numbers of maxima to one per plateau
     i = 0
@@ -31,6 +31,7 @@ def plot_maxi(maxis, dotted=False):
         [ax1.plot(t[maxi], signal[maxi], 'o', color=peak_plot.get_color(), linewidth=1) for maxi in maxis]
     [ax1.plot([t[maxi]] * 2, [0, signal[maxi]], '--', color=peak_plot.get_color(), linewidth=1) for maxi in maxis]
     #ax1.plot(t, func(t,*p), alpha=0.8)
+    ax1.set_xlim(t[0], t[-1])
     ax1.set_xlabel("$t$ / ms")
     ax1.set_ylabel("$U$ / V")
     if show_fig:
@@ -45,6 +46,18 @@ def func(x,*p):
     for i in range(n_peaks):
         y += p[i] * np.exp(-(x - p[n_peaks + i]) ** 2 / (2 * p[2 * n_peaks + i])**2)
     return y
+
+def weighted_avg_and_std(uarray):
+    """
+    Return the weighted average and standard deviation.
+    Input: uncertainties.unumpy.uarray(nominal_values, std_devs)
+    """
+    values = un.nominal_values(uarray)
+    weights = 1 / (un.std_devs(uarray) ** 2)
+    average = np.average(values, weights=weights)
+    variance_biased = np.average((values-average)**2, weights=weights)  # Fast and numerically precise
+    variance = variance_biased / (1 - np.sum(weights ** 2)/(np.sum(weights) **2))
+    return uc.ufloat(average, np.sqrt(variance))
 
 fontsize_labels = 12    # size used in latex document
 rcParams['font.family'] = 'serif'
@@ -62,27 +75,62 @@ fig_dir = "../figures/"
 npy_dir = "./data_npy/"
 plotsize = (6.2, 3.83)  # width corresponds to \textwidth in latex document (ratio = golden ratio ;))
 
-lamb = 632.8e-6
-K = 10e-3
-p = np.load(npy_dir + "gauge_fit_coeff.npy")
-cov = np.load(npy_dir + "gauge_fit_cov.npy")
-p_uc = uc.correlated_values(p, cov)
+lamb = 632.8e-6 # wavelength of laser
+# import coefficients for theta(t) = omega * t + phi_0; 
+# created in "./calibration.py", theta_coeff = np.array([omega, phi_0])
+theta_coeff = np.load(npy_dir + "gauge_fit_coeff.npy")
+theta_cov = np.load(npy_dir + "gauge_fit_cov.npy")
+theta_coeff_corr = uc.correlated_values(theta_coeff, theta_cov)
+s_t_m = 0.01 # error on the maxima in ms
+theta = lambda t: np.polyval(theta_coeff_corr, un.uarray(t, s_t_m))
+#theta = lambda t: np.polyval(theta_coeff_corr, t)
 
 # finding minima and plotting
 plot_suffixes = ["1", "2b", "3", "4b", "5b"]
 neighbouring = [70] * 4 + [120]
 minimal = [0.01, 0.0036, 0.006, 0.0045, 0.0075]
-for i in range(5):
+m_min = [-4, -3, -4, -2, -2]
+f = open(r"./gratings_lattice_constants.tex", "w+")
+f.write("\t\\begin{tabular}{|p{6.18cm}|p{3.82cm}|p{3.82cm}|}\n")
+f.write("\t\t\hline\n")
+f.write("\t\t\\rowcolor{LightCyan}\n")
+f.write("\t\tGrating & Orders visible & $\overline{K}$ / ($\mu$m)  \\\\ \hline\n")
+for i in range(5):  # i+1 = nr of grating
     plot_suffix, n, m = plot_suffixes[i], neighbouring[i], minimal[i]
     npy_files = npy_dir + "grating_" + plot_suffix
     t = np.load(npy_files + "_t" + ".npy")
     t = t * 10 ** 3 # time in ms!!!
+    t = t - t[-1] / 2 # t = 0 doesn't lie on the physical t=0. Translate the center to t=0!
     signal = np.load(npy_files + "_ch_a" + ".npy")
     maxis = search_maxi(plot_suffix, n, m)
     n_peaks = len(maxis)
     #p0 = np.concatenate((signal[maxis], t[maxis], np.array([0.02]*n_peaks), [0]), axis=0)
     #p, cov = curve_fit(func, t, signal, p0=p0)
     plot_maxi(maxis, dotted=False)
+    K = lambda m, t: m * lamb / theta(t) 
+    Ks = []
+    f.write("\t\t$%i$  & "%(i+1))
+    for j, maxi in enumerate(maxis):
+        m = m_min[i] + j    # maximum of m-th order
+        if i+1 == 3:        # for grating nr 3, the 3rd maxima are visible
+            m = [-5, -4, -2, -1, 0, 1, 2, 4, 5][j]
+        if i+1 == 4:        # for grating nr 4, the 2nd and 4th maxima are not visible
+            m = [-5, -3, -1, 0, 1, 3, 5][j]
+        if m != 0:      # omitting zeroth order
+            t_m = t[maxi]
+            Ks += [K(m, t_m)]
+            #print("m =", m, "t =", t_m, "theta =", theta(t_m), "K =", K(m, t_m))
+        if j ==0:
+            f.write("%i"%(m))
+        else:
+            f.write(", %i"%(m))
+    Ks = np.array(Ks)
+    K_mean = weighted_avg_and_std(Ks)
+    print("K_mean =", K_mean)
+    f.write(" &  {0:L} \\\\\n".format(K_mean*10**3))
+f.write("\t\t\hline\n")
+f.write("\t\end{tabular}\n")
+f.close()
 
 
 
