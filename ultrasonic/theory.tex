@@ -54,6 +54,7 @@ F(k) &= \mathcal{F}_x\left [f(x)\right ](k) =
 \end{align}
 The most important properties are:
 \begin{align}
+    \label{eq:fourier}
 &\mathcal{F}\left [a f(x) + b g(x)\right ]
     = a F(k) + b G(k) 
     &\mbox{ (Linearity) }\\
@@ -76,12 +77,6 @@ know, we arrive at
 Now we can parametrize the Point $P$ in various scenarious. Let's assume a screen on the right side of
 figure~\ref{fig:beam} at an angle $\theta$. Obviously the Distance $R$ can be parametrized such that
 $R = x \sin \theta $, where $x$ is the horizontal distance (see figure~\ref{fig:beam2}).
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=0.5\linewidth]{figures/beam2}
-    \caption{One dimensional parametrization of the aperture function.}
-    \label{fig:beam2}
-\end{figure}
 Coming from this it is now possible to calculate the intensity from various one-dimensional aperture
 functions
 \begin{align}
@@ -98,17 +93,29 @@ functions
 Such that we have for the Intensity density (dropping factor 4, see figure~\ref{fig:sinc1})
 \begin{equation}
     \label{eq:sinc1}
-    I(\theta) \propto \psi^2 \propto \frac{\sin^2 (k \frac{b}{2} \sin ( \theta )) }{k^2 \sin^2(\theta)} .
+    I(\theta) \propto \psi^2 \propto \frac{\sin^2 (k \frac{b}{2} \sin ( \theta )) }{k^2 \sin^2(\theta)}.
 \end{equation}
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/sinc1}
     \caption{This is the theoretic intensity distribution following equation~\eqref{eq:sinc1}. 
-        We plugged in $\lambda = 632$nm and $b = 1 \mu$m. The density is normed to one.}
+        We plugged in $\lambda = 632.8$nm and $b = 1 \mu$m. The density is normed to one.}
     \label{fig:sinc1}
 \end{figure}
+\paragraph{diffraction gratings} 
+Equation~\eqref{eq:sinc1} leads straigtfoward to the intensity density of
+the diffraction grating, using \eqref{eq:fourier}. We need to understand 
+that a diffraction grating is the result of convoluting of a simple opening
+(using the $\Theta$ function which is one for $x>0$ and zero otherwise)
+\begin{align}
+    \label{eq:multisplit}
+    g_b(x) &= \Theta(x - \frac{b}{2}) - \Theta( \frac{b}{2} - x ) \qquad
+    \text{Single split} \\ 
+    g(x)   &= \int g_b(x) g_B(x-x') dx' = \sum_{j=0}^{N-1} \Theta 
+    \qquad \text{Multi split} 
+\end{align}
+## TODO 
 
-\subsection{Resolution of gratings}
 \label{sec:resolution}
 
 \subsection{Grating with $N$ lines}
