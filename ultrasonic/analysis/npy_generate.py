@@ -20,7 +20,8 @@ def osci_csv_npy(file_in, file_out):
 # generate npy files
 npy_dir = "./data_npy/"
 gauge = False
-gratings = True
+gratings = False
+aperture = True
 
 if gauge:
     for q in "ab":
@@ -33,3 +34,12 @@ if gratings:
         file_in = "../data/2.2_lattices/2.2_lattice" + q + "_HM1508.csv"
         file_out = npy_dir + "grating_" + q
         osci_csv_npy(file_in, file_out)
+
+if aperture:
+    for q1 in ["1", "2", "3", "4", "5", "7", "8"]:
+        for q2 in ["a", "b"]:
+            plot_suffix = q1 + q2 
+            print(q1 + q2)
+            file_in = "../data/2.3_lattice1_apertur/2.3_pos" + q1 + "_" + q2 + "_HM1508.csv"
+            file_out = npy_dir + "aperture_" + plot_suffix
+            osci_csv_npy(file_in, file_out)

@@ -103,17 +103,29 @@ fig2, ax2 = plt.subplots(1, 1, figsize=plotsize)
 # Prepare variables: take average of both maxima
 t_max_both = t[np.array(maxis_both).T]
 t_max = np.zeros(len(t_max_both))
-std_dev = t_max * 0
+t_std_dev = t_max * 0
 for i, t_max_pair in enumerate(t_max_both):
     t_max[i] = np.average(t_max_pair)
-    std_dev[i] = np.std(t_max_pair)
+    t_std_dev[i] = np.std(t_max_pair)
 # caculate the angles corresponding to the maxima, using sin(theta) = m lamb / K
 m = np.arange(-3, 3) # order of maxima: in this case: -3 -- 2
 theta = np.arcsin(m * lamb / K)
-ax2.errorbar(t_max, theta, xerr=std_dev, fmt='k,', zorder=2.9) 
+ax2.errorbar(t_max, theta, xerr=t_std_dev, fmt='k,', zorder=2.9) 
 # linear fit
+"""
 p, cov = np.polyfit(t_max, theta, 1, cov=True)
 p_uc = uc.correlated_values(p, cov)
+"""
+# We want to include the errors of t_max...
+def t_func(theta, a, b):
+    return a*theta + b
+p, cov = curve_fit(t_func, theta, t_max, p0=None, sigma=t_std_dev) # add absolute_sigma=True!!!!
+p_uc = uc.correlated_values(p, cov)
+theta_0 = -p_uc[1]/p_uc[0]
+omega = 1 / p_uc[0]
+p_uc = np.array([omega, theta_0])
+p = un.nominal_values(p_uc)
+cov = uc.covariance_matrix(p_uc)
 # plotting the linear fit, including shading of errors
 data_fit = np.polyval(p, t)
 fit_plot, = ax2.plot(t, data_fit, alpha=1, zorder=2.1)
@@ -124,10 +136,10 @@ ax2.fill_between(t, data_fit_min , data_fit_max, facecolor=fit_plot.get_color(),
 
 # place a text box in upper right in axes coords, using eqnarray
 props = dict(boxstyle='round', facecolor='white', alpha=0.5)
-textstr = '$\omega t + \phi_0$ with\n$\omega=%.2f$ rad/ms\n$\phi_0=%.2f$ rad'%(p[0], p[1])
-textstr = '\\begin{eqnarray*}\\theta(t) &=& \omega t + \phi_0 \\\\ \
+textstr = '$\omega t + \\theta_0$ with\n$\omega=%.2f$ rad/ms\n$\\theta_0=%.2f$ rad'%(p[0], p[1])
+textstr = '\\begin{eqnarray*}\\theta(t) &=& \omega t + \\theta_0 \\\\ \
         \omega      &=&%.4f \, \mathrm{ rad/s} \\\\  \
-        \phi_0    &=&%.4f \, \mathrm{rad}\end{eqnarray*}'%(p[0], p[1])
+        \\theta_0    &=&%.4f \, \mathrm{rad}\end{eqnarray*}'%(p[0], p[1])
 ax2.text(0.1, 0.85, textstr, transform=ax2.transAxes, fontsize=fontsize_labels, va='top', bbox=props)
 
 ax2.set_xlim(t[0], t[-1])
@@ -143,7 +155,7 @@ np.save(npy_dir + "gauge_fit_cov", cov)
 
 # print covariance matrix to file
 f1 = open("coefficients.tex", "w+")
-var_names = [r"\omega", r"\phi_0"]
+var_names = [r"\omega", r"\theta_0"]
 la_coeff(f1, p, cov, var_names, digits=4)
 f1.close()
 
