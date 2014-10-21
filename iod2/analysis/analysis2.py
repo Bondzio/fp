@@ -113,8 +113,8 @@ def weighted_avg_and_std(uarray):
     Return the weighted average and standard deviation.
     Input: uncertainties.unumpy.uarray(nominal_values, std_devs)
     """
-    values = unv(uarray)
-    weights = 1 / (usd(uarray) ** 2)
+    values = un.nominal_values(uarray)
+    weights = 1 / (un.std_devs(uarray) ** 2)
     average = np.average(values, weights=weights)
     variance_biased = np.average((values-average)**2, weights=weights)  # Fast and numerically precise
     variance = variance_biased / (1 - np.sum(weights ** 2)/(np.sum(weights) **2))

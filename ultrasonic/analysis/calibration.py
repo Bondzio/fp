@@ -57,7 +57,7 @@ rcParams['xtick.labelsize'] = fontsize_labels
 rcParams['ytick.labelsize'] = fontsize_labels
 
 plt.close("all")
-show_fig = False
+show_fig = True
 save_fig = True
 fig_dir = "../figures/"
 npy_dir = "./data_npy/"
@@ -66,13 +66,14 @@ plotsize = (6.2, 3.83)  # width corresponds to \textwidth in latex document (rat
 # Gauge
 # parameters of the gauge grating
 fig1, ax1 = plt.subplots(1, 1, figsize=plotsize)
-lamb = 632.8e-6
-K = 10e-3
+lamb = 632.8e-9
+K = 10 ** -4 # 10 lines / mm => lattice constant K = 10^-4 m
 maxis_both = []
 for q in "ab":  # use both measurements to get deviation
     npy_files = npy_dir + "gauge_" + q
     t = np.load(npy_files + "_t" + ".npy")
     t = t * 10 ** 3 # time in ms!!!
+    t = t - t[-1] / 2 # t = 0 doesn't lie on the physical t=0. Translate the center to t=0!
     signal = np.load(npy_files + "_ch_a" + ".npy")
 
     # get local maxima
@@ -91,6 +92,7 @@ for q in "ab":  # use both measurements to get deviation
     peak_plot, = ax1.plot(t, signal, alpha=0.8)
     [ax1.plot([t[maxi]] * 2, [0, signal[maxi]], '--', color=peak_plot.get_color(), linewidth=1) for maxi in maxis]
     next(ax1._get_lines.color_cycle)
+ax1.set_xlim(t[0], t[-1])
 ax1.set_xlabel("$t$ / ms")
 ax1.set_ylabel("$U$ / V")
 
@@ -124,11 +126,12 @@ ax2.fill_between(t, data_fit_min , data_fit_max, facecolor=fit_plot.get_color(),
 props = dict(boxstyle='round', facecolor='white', alpha=0.5)
 textstr = '$\omega t + \phi_0$ with\n$\omega=%.2f$ rad/ms\n$\phi_0=%.2f$ rad'%(p[0], p[1])
 textstr = '\\begin{eqnarray*}\\theta(t) &=& \omega t + \phi_0 \\\\ \
-        \omega      &=&%.3f \, \mathrm{ rad/s} \\\\  \
-        \phi_0    &=&%.3f \, \mathrm{rad}\end{eqnarray*}'%(p[0], p[1])
+        \omega      &=&%.4f \, \mathrm{ rad/s} \\\\  \
+        \phi_0    &=&%.4f \, \mathrm{rad}\end{eqnarray*}'%(p[0], p[1])
 ax2.text(0.1, 0.85, textstr, transform=ax2.transAxes, fontsize=fontsize_labels, va='top', bbox=props)
 
-ax2.set_ylim(-0.3, 0.3)
+ax2.set_xlim(t[0], t[-1])
+ax2.set_ylim(-0.03, 0.03)
 ax2.set_xlabel("$t$ / ms")
 ax2.set_ylabel("$\\theta$ / rad")
 
@@ -141,7 +144,7 @@ np.save(npy_dir + "gauge_fit_cov", cov)
 # print covariance matrix to file
 f1 = open("coefficients.tex", "w+")
 var_names = [r"\omega", r"\phi_0"]
-la_coeff(f1, p, cov, var_names, digits=3)
+la_coeff(f1, p, cov, var_names, digits=4)
 f1.close()
 
 if show_fig:
