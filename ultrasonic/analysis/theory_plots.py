@@ -30,18 +30,19 @@ def make_fig(fig, show=True,save=False, name="foo"):
 lamb = 632.8e-9
 
 k = 1 / lamb
-#theta = np.linspace(-np.pi,np.pi,1000)
+theta = np.linspace(-np.pi,np.pi,1000)
 x0 = np.linspace(-2,2,1000)
 b = 1e-5
-#I = np.sin(k * b/2* np.sin(theta))**2/ (k**2 * np.sin(theta)**2) 
-I = np.sin(k * b/2* x0)**2/ (k**2 * x0**2) 
+I = np.sin(k * b/2* np.sin(theta))**2/ (k**2 * np.sin(theta)**2) 
+#I = np.sin(k * b/2* x0)**2/ (k**2 * x0**2) 
 I/=np.sum(I)
+
 
 fig = plt.figure()
 ax  = plt.subplot(111)
-#use_2pi(fig,ax)
+use_2pi(fig,ax)
 plt.plot(x0, I)
-plt.xlabel(r"Position $x$")
+plt.xlabel(r"angle $\theta$")
 plt.ylabel(r"density $\mathcal{P}$")
 plt.show()
 make_fig(fig, 1 ,1, "sinc1")
