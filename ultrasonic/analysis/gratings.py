@@ -113,7 +113,7 @@ for i in range(5):  # i+1 = nr of grating
     #p0 = np.concatenate((signal[maxis], t[maxis], np.array([0.02]*n_peaks), [0]), axis=0)
     #p, cov = curve_fit(func, t, signal, p0=p0)
     plot_maxi(maxis, dotted=False)
-    K = lambda m, t: m * lamb / theta(t) 
+    K = lambda m, t: m * lamb / un.sin(theta(t) )
     Ks = []
     for j, maxi in enumerate(maxis):
         m = m_min[i] + j    # maximum of m-th order

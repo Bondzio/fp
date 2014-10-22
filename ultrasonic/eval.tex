@@ -170,6 +170,12 @@ covariance matrix are:
 		1.6\mathrm{e}-09 &8.5\mathrm{e}-10 \\
 	\end{pmatrix} 
 \end{align}
+The standard devation $\sigma_\omega$ of the relevant parameter $\omega$ is only about 
+$\sigma_\omega / \omega = 0.6 \%$. This small error is linked to the constant rotational speed 
+one could expect of the motor. The correleation of $\omega$ to $\theta_0$ is of one magnitude smaller 
+than the variance - the effect could thus be neglected in the further calculations (although we keep 
+    on using the correlated variables).
+
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{figures/calibrate_fit}
@@ -188,10 +194,17 @@ Using $\theta(t)$, we can calculate the lattice constants for the five amplitude
 For that, we find the times corresponding to the $m$th maximum numerically. The width 
 of the peaks is approxmately equal at half maximum, such that we do not put weights 
 on each maximum. We also neglect to fit gaussians on each peak. An application of such methods 
-for this measurement does not increase the 
+for this measurement does not increase the precision of the measurement to a appreciable degree, 
+as the peaks in the measured ata are already quite symmetric and the applied simpler method yields 
+good results, at least in comparison with other errors. 
+Plots of the measured data and the maxima can be found in the appendix. 
 
 We again apply the formula \ref{eq:N_lines_interference}. Since we use numerical computation, 
-there is no need to do the first order approximation of the sine.
+there is no need to do the first order approximation of the sine. The lattice constants are thus 
+found by
+\begin{equation}
+    K_i = \frac{m\lambda}{\sin(\theta)}
+\end{equation}
 
 \begin{table}[htdp]
     \centering
@@ -214,3 +227,5 @@ there is no need to do the first order approximation of the sine.
         }
     \label{tab:gratings_K}
 \end{table}
+
+

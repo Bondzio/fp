@@ -58,7 +58,8 @@ rcParams['ytick.labelsize'] = fontsize_labels
 
 plt.close("all")
 show_fig = True
-save_fig = True
+save_fig = False # see below
+save_coeff = False # do ONLY save, if scipy 0.14. is in use...
 fig_dir = "../figures/"
 npy_dir = "./data_npy/"
 plotsize = (6.2, 3.83)  # width corresponds to \textwidth in latex document (ratio = golden ratio ;))
@@ -119,7 +120,8 @@ p_uc = uc.correlated_values(p, cov)
 # We want to include the errors of t_max...
 def t_func(theta, a, b):
     return a*theta + b
-p, cov = curve_fit(t_func, theta, t_max, p0=None, sigma=t_std_dev) # add absolute_sigma=True!!!!
+p, cov = curve_fit(t_func, theta, t_max, p0=None, sigma=t_std_dev, absolute_sigma=True) # this will not work for scipy 0.13.
+
 p_uc = uc.correlated_values(p, cov)
 theta_0 = -p_uc[1]/p_uc[0]
 omega = 1 / p_uc[0]
@@ -150,8 +152,9 @@ ax2.set_ylabel("$\\theta$ / rad")
 
 # Saving relevant data and plotting
 
-np.save(npy_dir + "gauge_fit_coeff", p)
-np.save(npy_dir + "gauge_fit_cov", cov)
+if save_coeff:
+    np.save(npy_dir + "gauge_fit_coeff", p)
+    np.save(npy_dir + "gauge_fit_cov", cov)
 
 # print covariance matrix to file
 f1 = open("coefficients.tex", "w+")
