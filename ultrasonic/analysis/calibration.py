@@ -119,7 +119,7 @@ p_uc = uc.correlated_values(p, cov)
 # We want to include the errors of t_max...
 def t_func(theta, a, b):
     return a*theta + b
-p, cov = curve_fit(t_func, theta, t_max, p0=None, sigma=t_std_dev) # add absolute_sigma=True!!!!
+p, cov = curve_fit(t_func, theta, t_max, p0=None, sigma=t_std_dev, absolute_sigma=True)
 p_uc = uc.correlated_values(p, cov)
 theta_0 = -p_uc[1]/p_uc[0]
 omega = 1 / p_uc[0]
