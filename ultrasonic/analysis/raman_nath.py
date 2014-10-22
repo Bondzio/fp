@@ -49,6 +49,8 @@ def plot_3d():
 
     make_fig(fig,1,0,"3dplot")
 
+
+plot_3d()
 def search_maxi(signal,t,neighbours=5, minimum=0.05, n_plateau=10):
     # get local maxima
     maxis = ext(signal, np.greater_equal, order=neighbours)[0] # all maxima with next <order> points greater_equal
@@ -70,13 +72,16 @@ def plot_maxi(dotted=False):
     theta_coeff = np.load(npy_dir2 + "gauge_fit_coeff.npy")
     theta_cov = np.load(npy_dir2 + "gauge_fit_cov.npy")
     #theta_coeff_corr = uc.correlated_values(theta_coeff, theta_cov)
-    theta = lambda t: np.polyval([theta_coeff[0],0], t-0.515)
+    theta = lambda t: np.polyval([theta_coeff[0],0], t-0.516)
 
-
-
-    #for i in np.arange(20,0,-1):
-    for i in [19,18,17]:
-        signal = np.load(npy_dir + "phase_%03d_ch_a.npy"%i)
+    U = np.load(npy_dir + "U.npy")
+    i  = 1
+    signal = np.load(npy_dir + "phase_%03d_ch_a.npy"%i)
+    I0 = max(signal)
+    signals = []
+    for i in np.arange(20,0,-1):
+    #for i in [1]:
+        signal = np.load(npy_dir + "phase_%03d_ch_a.npy"%i) / I0
         t    = np.load(npy_dir + "phase_%03d_t.npy"%i) *10**3
         t = theta(t)
         print(t)
@@ -88,19 +93,21 @@ def plot_maxi(dotted=False):
         ax1.plot(t, signal, alpha=0.8)
 
         if dotted:
-            pass
-        #    [ax1.plot(t[maxi], signal[maxi], 'o', linewidth=1, label = str(k)) for k,maxi in enumerate(maxis)]
-        #ax1.scatter(t[i0],signal[i0],s = 500, marker= "*")
+            [ax1.plot(t[maxi], signal[maxi], 'o', linewidth=1, label = str(k)) for k,maxi in enumerate(maxis)]
+        ax1.scatter(t[i0],signal[i0],s = 500, marker= "*")
+        signals += [signal[i0]]
         
 
         plt.title("index %d"%i)
         #ax1.plot(t, func(t,*p), alpha=0.8)
-        ax1.set_xlim(-0.1,+0.1)
+        ax1.set_xlim(-0.01,+0.01)
         ax1.set_xlabel("$\\theta$ in degree")
         ax1.set_ylabel("$U$ / V")
         #plt.legend()
+        plt.close()
+        make_fig(fig1,0,0,"no plot here")
+    plt.figure()
+    plt.scatter(U,signals)
+    plt.show()
 
-        make_fig(fig1,1,0,"no plot here")
-
-plot_maxi(False)
 
