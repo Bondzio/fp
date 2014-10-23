@@ -106,14 +106,23 @@ for i in range(5):  # i+1 = nr of grating
     npy_files = npy_dir + "grating_" + plot_suffix
     t = np.load(npy_files + "_t" + ".npy")
     t = t * 10 ** 3 # time in ms!!!
-    t = t - t[-1] / 2 # t = 0 doesn't lie on the physical t=0. Translate the center to t=0!
     signal = np.load(npy_files + "_ch_a" + ".npy")
     maxis = search_maxi(plot_suffix, n, m)
+    for j, maxi in enumerate(maxis):
+        m = m_min[i] + j    # maximum of m-th order
+        if i+1 == 3:        # for grating nr 3, the 3rd maxima are visible
+            m = [-5, -4, -2, -1, 0, 1, 2, 4, 5][j]
+        if i+1 == 4:        # for grating nr 4, the 2nd and 4th maxima are not visible
+            m = [-5, -3, -1, 0, 1, 3, 5][j]
+        if m == 0:
+            t = t - t[maxi]
+            print('trans')
+            break
     n_peaks = len(maxis)
     #p0 = np.concatenate((signal[maxis], t[maxis], np.array([0.02]*n_peaks), [0]), axis=0)
     #p, cov = curve_fit(func, t, signal, p0=p0)
     plot_maxi(maxis, dotted=False)
-    K = lambda m, t: m * lamb / theta(t) 
+    K = lambda m, t: m * lamb / un.sin(theta(t) )
     Ks = []
     for j, maxi in enumerate(maxis):
         m = m_min[i] + j    # maximum of m-th order

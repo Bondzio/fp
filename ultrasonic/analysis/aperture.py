@@ -37,7 +37,7 @@ def plot_maxi(maxis, dotted=False):
     if show_fig:
         fig1.show()
     if save_fig:
-        fig1.savefig(fig_dir + "gratings_maxi" + plot_suffix[0] + ".pdf")
+        fig1.savefig(fig_dir + "aperture_" + plot_suffix[0] + ".pdf")
     return 0
 
 fontsize_labels = 12    # size used in latex document
