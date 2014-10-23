@@ -58,7 +58,7 @@ rcParams['ytick.labelsize'] = fontsize_labels
 
 plt.close("all")
 show_fig = True
-save_fig = False # see below
+save_fig = True # see below
 save_coeff = False # do ONLY save, if scipy 0.14. is in use...
 fig_dir = "../figures/"
 npy_dir = "./data_npy/"
@@ -95,46 +95,12 @@ for j, q in enumerate("ab"):  # use both measurements to get deviation
 
     # set t = 0 to the 0th maximum!!! (the osci set t=0 rather arbitrarily)
     t = t - t[maxis[3]]
-    """
-    def plot_signal(n, js, sample, I, nu, captions, fig_name, figsize):
-        # Plot U(t) as n stacked plots
-        fig, ax= plt.subplots(n+1, 1, sharex=True, figsize=figsize)
-        fig.subplots_adjust(hspace=0)          # create overlap
-        xticklabels = ax[0].get_xticklabels()    
-        plt.setp(xticklabels, visible=False)    # hide the xticks of the upper plot
-        # plotting measured signal
-        for k, j in enumerate(js):
-            t, sig, sine = csv_to_npy(j+1)
-            signal_label = 'signal for %s with $I = %.2f$ A, $\\nu = %.4f$ MHz'%(sample[k], I[k], nu[k])
-            ax[j].plot(t, sig, '-', label=signal_label, linewidth=0.5)                # plot signal
-            ax[j].set_ylim(top=(ax[k].get_ylim()[1]*1.6)) # hide the overlapping ytick of the upper plot
-        # plotting sine modulation
-        ax[n].plot(t, sine, '-', label='sine modulation', linewidth=0.5)                # plot B-modulation
-        ax[n].set_xlabel('$t \, / \, \mathrm{s}$')
-        for k in range(n + 1):
-            ax[k].legend(loc=1, frameon=True, fontsize=12)
-            ax[k].grid(b=True)
-            ax[k].set_xlim(min(t), max(t))
-            ax[k].set_ylabel('$U(t) \, / \, \mathrm{V}$')
-            ax[k].set_yticks(ax[k].get_yticks()[1:-1]) # hide the overlapping ytick of the upper plot
-        if save_fig:
-            fig.savefig(fig_dir + fig_name + ".pdf")
-            f1.write('\\begin{figure}\n')
-            f1.write('\t\includegraphics[width=\\textwidth]{figures/%s.pdf}\n'%fig_name)
-            f1.write('\t\caption{\n')
-            for caption in captions:
-                f1.write('\t\t' + caption + '\n')
-            f1.write('\t\t}\n\t\label{fig:%s}\n'%fig_name)
-            f1.write('\end{figure}\n\n')
-        if show_fig:
-            fig.show()
-        return 0
-        """
     signal_label = "Orientation " + "12"[j]
     peak_plot, = ax1[j].plot(t, signal, '-', label=signal_label, linewidth=0.5, alpha=1.)                # plot signal
     [ax1[j].plot([t[maxi]] * 2, [0, signal[maxi]], '--', color=peak_plot.get_color(), linewidth=1) for maxi in maxis]
     next(ax1[j]._get_lines.color_cycle)
     ax1[j].set_xlim(t[0], t[-1])
+    ax1[j].set_ylim(0, 0.5)
     ax1[j].set_ylabel("$U$ / V")
     ax1[j].legend(loc=4)
 
