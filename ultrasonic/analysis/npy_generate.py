@@ -21,7 +21,8 @@ def osci_csv_npy(file_in, file_out):
 npy_dir = "./data_npy/"
 gauge = False
 gratings = False
-aperture = True
+aperture = False 
+raman = True
 
 if gauge:
     for q in "ab":
@@ -43,3 +44,10 @@ if aperture:
             file_in = "../data/2.3_lattice1_apertur/2.3_pos" + q1 + "_" + q2 + "_HM1508.csv"
             file_out = npy_dir + "aperture_" + plot_suffix
             osci_csv_npy(file_in, file_out)
+if raman:
+    for q in range(1,20 +1,1):
+        print(q)
+        file_in = "../data/2.5_phase/2.5_%d_HM1508.csv"%q
+        file_out = npy_dir + "raman_nath/phase_%03d"%(q) 
+        osci_csv_npy(file_in, file_out)
+

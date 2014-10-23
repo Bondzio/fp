@@ -162,16 +162,17 @@ known lattice constant $K_\mathrm{gauge}$ of the gauge grating, we can perform a
 The result is plotted in figure \ref{fig:calibrate_fit}. The values and the corresponding 
 covariance matrix are: 
 \begin{align}
-	\omega &= 0.0664 \, \mathrm{rad / s}\\
-	\theta_0 &= 0.0005 \, \mathrm{rad}\\
+	\omega &= 0.0663 \\
+	\theta_0 &= 0.0005 \\
 	\mathrm{cov} &=
 	\begin{pmatrix}
-		2.9\mathrm{e}-08 &1.6\mathrm{e}-09 \\
-		1.6\mathrm{e}-09 &8.5\mathrm{e}-10 \\
+		2.0\mathrm{e}-07 &-6.1\mathrm{e}-09 \\
+		-6.1\mathrm{e}-09 &6.0\mathrm{e}-09 \\
 	\end{pmatrix} 
 \end{align}
 The standard devation $\sigma_\omega$ of the relevant parameter $\omega$ is only about 
-$\sigma_\omega / \omega = 0.6 \%$. This small error is linked to the constant rotational speed 
+$\sigma_\omega / \omega = sqrt(2.0 * 10^{-7}) / 0.0663 \approx 0.7 \%$. 
+This small error is linked to the constant rotational speed 
 one could expect of the motor. The correleation of $\omega$ to $\theta_0$ is of one magnitude smaller 
 than the variance - the effect could thus be neglected in the further calculations (although we keep 
     on using the correlated variables).
@@ -197,14 +198,25 @@ on each maximum. We also neglect to fit gaussians on each peak. An application o
 for this measurement does not increase the precision of the measurement to a appreciable degree, 
 as the peaks in the measured ata are already quite symmetric and the applied simpler method yields 
 good results, at least in comparison with other errors. 
-Plots of the measured data and the maxima can be found in the appendix. 
+Plots of the measured data and the maxima can be found in the appendix, see 
+\ref{fig:gratings_maxima}. 
+
 
 We again apply the formula \ref{eq:N_lines_interference}. Since we use numerical computation, 
 there is no need to do the first order approximation of the sine. The lattice constants are thus 
 found by
 \begin{equation}
-    K_i = \frac{m\lambda}{\sin(\theta)}
+    K_i = \frac{m\lambda}{\sin(\theta)}\, .
 \end{equation}
+One observes from the plotted data that only a finite number of maixma is seen and, more important, 
+that some maxima of lower order than the highest maximum observable are not visible, either. 
+Thus, assigning the maxima has to be done by hand, already assuming the almost equal distances between the 
+maxima. In order to calculate the angle $\theta$, we translated the time $t_\mathrm{osci} \rightarrow t$ 
+such that $t = 0$. 
+This had to be done, as the oscilloscope did not save the time with respect to the trigger 
+but set $t = 0$ to the first data point. 
+
+
 
 \begin{table}[htdp]
     \centering
@@ -212,11 +224,11 @@ found by
 		\hline
 		\rowcolor{LightCyan}
 		Grating & Orders visible & $\overline{K}$ / ($\mu$m)  \\ \hline
-		$1$  & $-4, -3, -2, -1, 0, 1, 2, 3, 4$ & $ 126.1 \pm 1.3$ \\
+		$1$  & $-4, -3, -2, -1, 0, 1, 2, 3, 4$ & $ 126.2 \pm 1.2$ \\
 		$2$  & $-3, -2, -1, 0, 1, 2$ & $ 34.3 \pm 1.3$ \\
-		$3$  & $-5, -4, -2, -1, 0, 1, 2, 4, 5$ & $ 100.5 \pm 4.4$ \\
-		$4$  & $-5, -3, -1, 0, 1, 3, 5$ & $ 100.9 \pm 1.6$ \\
-		$5$  & $-2, -1, 0, 1, 2$ & $ 50.8 \pm 1.3$ \\
+		$3$  & $-5, -4, -2, -1, 0, 1, 2, 4, 5$ & $ 100.6 \pm 4.4$ \\
+		$4$  & $-5, -3, -1, 0, 1, 3, 5$ & $ 101.0 \pm 1.5$ \\
+		$5$  & $-2, -1, 0, 1, 2$ & $ 50.9 \pm 1.3$ \\
 		\hline
 	\end{tabular}
     \caption{
