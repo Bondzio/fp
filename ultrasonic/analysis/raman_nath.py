@@ -3,6 +3,7 @@ import numpy as np
 from scipy.optimize import curve_fit
 import scipy.constants as co
 from scipy.signal import argrelextrema as ext
+from scipy.special import jn
 
 #uncertainties
 import uncertainties as uc
@@ -49,8 +50,6 @@ def plot_3d():
 
     make_fig(fig,1,0,"3dplot")
 
-
-plot_3d()
 def search_maxi(signal,t,neighbours=5, minimum=0.05, n_plateau=10):
     # get local maxima
     maxis = ext(signal, np.greater_equal, order=neighbours)[0] # all maxima with next <order> points greater_equal
@@ -66,8 +65,10 @@ def search_maxi(signal,t,neighbours=5, minimum=0.05, n_plateau=10):
     maxis = maxis[maxis_j]
     return maxis
 
-def plot_maxi(dotted=False):
+def func(U, n, alpha):
+    return jn(n , alpha * U)**2
 
+def plot_maxi(plot_all=False):
     # without errors on x
     theta_coeff = np.load(npy_dir2 + "gauge_fit_coeff.npy")
     theta_cov = np.load(npy_dir2 + "gauge_fit_cov.npy")
@@ -86,28 +87,37 @@ def plot_maxi(dotted=False):
         t = theta(t)
         print(t)
         i0 = np.argmin(t[t>0]) + len(t[t<0])
+        signals += [signal[i0]]
 
         maxis = search_maxi(signal,t)
-        fig1 = plt.figure()
-        ax1 = plt.subplot(111)
-        ax1.plot(t, signal, alpha=0.8)
+        if plot_all:
+            fig1 = plt.figure()
+            ax1 = plt.subplot(111)
+            ax1.plot(t, signal, alpha=0.8)
 
-        if dotted:
             [ax1.plot(t[maxi], signal[maxi], 'o', linewidth=1, label = str(k)) for k,maxi in enumerate(maxis)]
-        ax1.scatter(t[i0],signal[i0],s = 500, marker= "*")
-        signals += [signal[i0]]
-        
+            ax1.scatter(t[i0],signal[i0],s = 500, marker= "*")
+            
 
-        plt.title("index %d"%i)
-        #ax1.plot(t, func(t,*p), alpha=0.8)
-        ax1.set_xlim(-0.01,+0.01)
-        ax1.set_xlabel("$\\theta$ in degree")
-        ax1.set_ylabel("$U$ / V")
-        #plt.legend()
-        plt.close()
-        make_fig(fig1,0,0,"no plot here")
+            plt.title("index %d"%i)
+            #ax1.plot(t, func(t,*p), alpha=0.8)
+            ax1.set_xlim(-0.01,+0.01)
+            ax1.set_xlabel("$\\theta$ in degree")
+            ax1.set_ylabel("$U$ / V")
+            #plt.legend()
+            plt.close()
+            make_fig(fig1,0,0,"no plot here")
+
+
+    p0 = [ 0.5]
+    func_0= lambda U,alpha :func(U, 0, alpha)
+    coeff, var_matrix = curve_fit(func, U, signals, p0=p0)
+
+    U_fit = np.linspace(min(U),max(U),1000)
+    signal_fit = func_0(U_fit, coeff)
+
     plt.figure()
-    plt.scatter(U,signals)
+    plt.scatter(U,signals[::-1])
     plt.show()
 
-
+plot_maxi()
