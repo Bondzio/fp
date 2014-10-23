@@ -33,7 +33,7 @@ block=space,               % kleiner horizontaler Platz zwischen den Feldern
 backref=false,              % Seiten anzeigen, auf denen die Referenz vorkommt
 backrefstyle=three+,       % fasst Seiten zusammen, z.B. S. 2f, 6ff, 7-10
 date=short,                % Datumsformat
-backend = bibtex
+backend = biber
 ]{biblatex}
 \setlength{\bibitemsep}{1em}     % Abstand zwischen den Literaturangaben
 \setlength{\bibhang}{2em}        % Einzug nach jeweils erster Zeile
@@ -41,11 +41,15 @@ backend = bibtex
 
 \usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
 \usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+
+\usepackage{eufrak}
 \usepackage{amsmath,amsfonts,amsthm} % Math packages
 \usepackage{pgfplots}
 \usepackage{wrapfig}
 \usepackage{sidecap}
 \usepackage{color, colortbl}  
+
+\usepackage{afterpage}
 %\usepackage[pass,showframe]{geometry} % just to show the margins
 %\usepackage{booktabs}
 %\usepackage{minted}
@@ -60,6 +64,7 @@ backend = bibtex
 
 \usepackage{latexsym}
 \usepackage{textcomp}
+\usepackage[T1]{fontenc}
 \usepackage{bm}% bold math
 \usepackage{graphicx}
 \usepackage{eso-pic}
@@ -69,6 +74,7 @@ backend = bibtex
 \usepackage{epsfig}
 \usepackage{framed,color}
 \usepackage{placeins}   % FloatBarrier
+\usepackage{float}   % places floats correctly
 \usepackage[usenames,dvipsnames]{pstricks}
 \usepackage{epsfig}
 \usepackage{tikz}
@@ -88,7 +94,7 @@ backend = bibtex
 
 \setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
 \setcapindent{1cm} 
-
+\setcounter{MaxMatrixCols}{50}
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
 %----------------------------------------------------------------------------------------
@@ -97,7 +103,7 @@ backend = bibtex
 \normalfont \normalsize 
 \textsc{Albert-Ludwigs-University Freiburg} \\ [25pt] % Your university, school and/or department name(s)
 \horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
-\huge \textsc{Ultrasonic} \\ % The assignment title
+\huge \textsc{Long half lifes} \\ % The assignment title
 \horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
 }
 
@@ -112,13 +118,14 @@ backend = bibtex
 %--------------------------------------------------------------------------------------------
 \newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
 
+\interfootnotelinepenalty=10000
 
 \begin{document}
 
 \blendcolors*{!83}\color{black}
 \maketitle
 \begin{center}
- \includegraphics[width=0.6\linewidth]{figures/unifreiburg}
+ \includegraphics[width=0.7\linewidth]{figures/unifreiburg}
 \end{center}
 \thispagestyle{empty}
 \newpage
@@ -135,17 +142,10 @@ backend = bibtex
 %----------------------------------------------------------------------------------------
 \input{newcommands}
 \setcounter{page}{1}
-\input{theory}
-\input{setup}
-\input{eval}
-\input{eval_raman}
 \clearpage
 
 \section{Bibliography}
-\printbibliography[heading=subbibintoc,type=article,title={Articles}]
-\printbibliography[heading=subbibintoc,type=book,title={Books}]
-\printbibliography[heading=subbibintoc,type=misc,title={Other}]
+\printbibliography[heading=subbibintoc]
 \clearpage
-\input{appendix}
 
 \end{document}
