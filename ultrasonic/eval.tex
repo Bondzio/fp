@@ -113,10 +113,8 @@ We searched for the times at the maxima numerically, taking the center value in 
 The results are plotted as dotted lines, the numbers are given in table \ref{tab:gauge_peaks}. 
 The error was estimated somewhat bigger then the calculated standard deviation (in almost 
     all cases, $s_{\overline{t_\mathrm{max, calculated}}}  = 0.004$ ms), which has little meaning, 
-since we only took two measurements. In any case, the error does not play a further role, 
-since the linear fit does not include the error apart from weighing. Furthermore, the 
-shift due to moving the grating is seen on each peak - in the 
-end, we are only interested in distances.  
+since we only took two measurements. The estimated errors are then further propagated for the fits. 
+
 \renewcommand{\arraystretch}{1.5}
 \begin{table}[htdp]
     \centering
@@ -135,7 +133,8 @@ end, we are only interested in distances.
     \caption{
         Peaks for the calibration grating. We estimate the error on each 
         value of $\overline{t_\mathrm{max}}$ with 
-        $s_{\overline{t_\mathrm{max}}} = 0.01$ ms.
+        $s_{\overline{t_\mathrm{max}}} = 0.01$ ms for all maxima except the 
+        very small peak for $m = 2$ on the right side ($s = 0.04$).
         }
     \label{tab:calibrate_peaks}
 \end{table}
@@ -184,8 +183,7 @@ than the variance - the effect could thus be neglected in the further calculatio
         Fit of the angles identified for the gauge grating with known 
         lattice constant of $K = 10,000$ lines/m. The errors on the time corresponds to the
         shift observed when turning the grating around. The fit is drawn with the errors obtained 
-        by error propagation using the corresponding covariance matrix - however, the errors 
-        are hardly visible due to be good agreement to the linear relation expected. 
+        by error propagation using the corresponding covariance matrix.
         }
     \label{fig:calibrate_fit}
 \end{figure}
@@ -201,7 +199,6 @@ good results, at least in comparison with other errors.
 Plots of the measured data and the maxima can be found in the appendix, see 
 \ref{fig:gratings_maxima}. 
 
-
 We again apply the formula \ref{eq:N_lines_interference}. Since we use numerical computation, 
 there is no need to do the first order approximation of the sine. The lattice constants are thus 
 found by
@@ -215,7 +212,6 @@ maxima. In order to calculate the angle $\theta$, we translated the time $t_\mat
 such that $t = 0$. 
 This had to be done, as the oscilloscope did not save the time with respect to the trigger 
 but set $t = 0$ to the first data point. 
-
 
 
 \begin{table}[htdp]

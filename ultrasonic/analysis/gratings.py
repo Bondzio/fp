@@ -116,11 +116,8 @@ for i in range(5):  # i+1 = nr of grating
             m = [-5, -3, -1, 0, 1, 3, 5][j]
         if m == 0:
             t = t - t[maxi]
-            print('trans')
             break
     n_peaks = len(maxis)
-    #p0 = np.concatenate((signal[maxis], t[maxis], np.array([0.02]*n_peaks), [0]), axis=0)
-    #p, cov = curve_fit(func, t, signal, p0=p0)
     plot_maxi(maxis, dotted=False)
     K = lambda m, t: m * lamb / un.sin(theta(t) )
     Ks = []

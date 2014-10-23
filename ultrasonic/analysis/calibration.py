@@ -58,7 +58,7 @@ rcParams['ytick.labelsize'] = fontsize_labels
 
 plt.close("all")
 show_fig = True
-save_fig = True # see below
+save_fig = False # see below
 save_coeff = False # do ONLY save, if scipy 0.14. is in use...
 fig_dir = "../figures/"
 npy_dir = "./data_npy/"
@@ -112,11 +112,10 @@ fig2, ax2 = plt.subplots(1, 1, figsize=plotsize)
 # Prepare variables: take average of both maxima
 t_max_both = t[np.array(maxis_both).T]
 t_max = np.zeros(len(t_max_both))
-t_std_dev = t_max * 0
 for i, t_max_pair in enumerate(t_max_both):
     t_max[i] = np.average(t_max_pair)
-    t_std_dev[i] = np.std(t_max_pair)
 # caculate the angles corresponding to the maxima, using sin(theta) = m lamb / K
+t_std_dev = np.array([0.01]*5 + [0.02]) # defined by hand
 m = np.arange(-3, 3) # order of maxima: in this case: -3 -- 2
 theta = np.arcsin(m * lamb / K)
 ax2.errorbar(t_max, theta, xerr=t_std_dev, fmt='k,', zorder=2.9) 
