@@ -71,7 +71,7 @@ rcParams['xtick.labelsize'] = fontsize_labels
 rcParams['ytick.labelsize'] = fontsize_labels
 
 plt.close("all")
-show_fig = True
+show_fig = False
 save_fig = True
 fig_dir = "../figures/"
 npy_dir = "./data_npy/"
@@ -91,17 +91,28 @@ theta = lambda t: np.polyval(theta_coeff_corr, un.uarray(t, s_t_m))
 
 # finding minima and plotting
 plot_suffixes = ["1", "2b", "3", "4b", "5b"]    # original data name
-neighbouring = [70] * 4 + [120]                 # number of neighbouring peaks to be tested for max
+neighbouring = [70] * 4 + [120]                 # number of neighboring peaks to be tested for max
 minimal = [0.01, 0.0036, 0.006, 0.0045, 0.0075] # minimal value for a found maximum to be accepted
 m_min = [-4, -3, -5, -5, -2]                    # minimal order observed (only valid for gratings 1, 2, 5)
+
+# calculating the resolution
+phi = uc.ufloat(2.9, 0.5) * 10**-3              # diameter of laser in m
+n_visible = np.array([10, 6, 10, 9, 6])         # visible maxima at maximal illumination
+
 # write results into a tabular environment in file
-f = open(r"./gratings_lattice_constants.tex", "w+")
+f = open(r"./gratings_K.tex", "w+")
+f2 = open(r"./gratings_resolution.tex", "w+")
 f.write("\t\\begin{tabular}{|p{3.82cm}|p{6.18cm}|p{3.82cm}|}\n")
 f.write("\t\t\hline\n")
 f.write("\t\t\\rowcolor{LightCyan}\n")
 f.write("\t\tGrating & Orders visible & $\overline{K}$ / ($\mu$m)  \\\\ \hline\n")
+f2.write("\t\\begin{tabular}{|p{2cm}|p{3.82cm}|p{3.82cm}|p{3.82cm}|}\n")
+f2.write("\t\t\hline\n")
+f2.write("\t\t\\rowcolor{LightCyan}\n")
+f2.write("\t\tGrating & $n$ orders visible & $N$ lines illuminated & resolution $a$ \\\\ \hline\n")
 for i in range(5):  # i+1 = nr of grating
     f.write("\t\t$%i$  & "%(i+1))
+    f2.write("\t\t$%i$  & $%i$ & "%(i+1, n_visible[i]))
     plot_suffix, n, m = plot_suffixes[i], neighbouring[i], minimal[i]
     npy_files = npy_dir + "grating_" + plot_suffix
     t = np.load(npy_files + "_t" + ".npy")
@@ -116,11 +127,8 @@ for i in range(5):  # i+1 = nr of grating
             m = [-5, -3, -1, 0, 1, 3, 5][j]
         if m == 0:
             t = t - t[maxi]
-            print('trans')
             break
     n_peaks = len(maxis)
-    #p0 = np.concatenate((signal[maxis], t[maxis], np.array([0.02]*n_peaks), [0]), axis=0)
-    #p, cov = curve_fit(func, t, signal, p0=p0)
     plot_maxi(maxis, dotted=False)
     K = lambda m, t: m * lamb / un.sin(theta(t) )
     Ks = []
@@ -139,7 +147,13 @@ for i in range(5):  # i+1 = nr of grating
         else:
             f.write(", %i"%(m))
     K_mean = weighted_avg_and_std(np.array(Ks)) # calculate weighted mean and std_dev for K
-    f.write("$ & $ {0:L}$ \\\\\n".format(K_mean * 10 ** 6)) 
+    f.write("$ & $ {0:L} $ \\\\\n".format(K_mean * 10 ** 6)) 
+    N = phi / K_mean                    # number of lines illuminated
+    a = N * n_visible[i]                # resolution 
+    f2.write("${0:L}$ & $ %i \pm %i $ \\\\\n".format(N)%(a.n, a.s)) 
 f.write("\t\t\hline\n")
 f.write("\t\end{tabular}\n")
 f.close()
+f2.write("\t\t\hline\n")
+f2.write("\t\end{tabular}\n")
+f2.close()

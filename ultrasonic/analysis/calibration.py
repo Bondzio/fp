@@ -95,46 +95,12 @@ for j, q in enumerate("ab"):  # use both measurements to get deviation
 
     # set t = 0 to the 0th maximum!!! (the osci set t=0 rather arbitrarily)
     t = t - t[maxis[3]]
-    """
-    def plot_signal(n, js, sample, I, nu, captions, fig_name, figsize):
-        # Plot U(t) as n stacked plots
-        fig, ax= plt.subplots(n+1, 1, sharex=True, figsize=figsize)
-        fig.subplots_adjust(hspace=0)          # create overlap
-        xticklabels = ax[0].get_xticklabels()    
-        plt.setp(xticklabels, visible=False)    # hide the xticks of the upper plot
-        # plotting measured signal
-        for k, j in enumerate(js):
-            t, sig, sine = csv_to_npy(j+1)
-            signal_label = 'signal for %s with $I = %.2f$ A, $\\nu = %.4f$ MHz'%(sample[k], I[k], nu[k])
-            ax[j].plot(t, sig, '-', label=signal_label, linewidth=0.5)                # plot signal
-            ax[j].set_ylim(top=(ax[k].get_ylim()[1]*1.6)) # hide the overlapping ytick of the upper plot
-        # plotting sine modulation
-        ax[n].plot(t, sine, '-', label='sine modulation', linewidth=0.5)                # plot B-modulation
-        ax[n].set_xlabel('$t \, / \, \mathrm{s}$')
-        for k in range(n + 1):
-            ax[k].legend(loc=1, frameon=True, fontsize=12)
-            ax[k].grid(b=True)
-            ax[k].set_xlim(min(t), max(t))
-            ax[k].set_ylabel('$U(t) \, / \, \mathrm{V}$')
-            ax[k].set_yticks(ax[k].get_yticks()[1:-1]) # hide the overlapping ytick of the upper plot
-        if save_fig:
-            fig.savefig(fig_dir + fig_name + ".pdf")
-            f1.write('\\begin{figure}\n')
-            f1.write('\t\includegraphics[width=\\textwidth]{figures/%s.pdf}\n'%fig_name)
-            f1.write('\t\caption{\n')
-            for caption in captions:
-                f1.write('\t\t' + caption + '\n')
-            f1.write('\t\t}\n\t\label{fig:%s}\n'%fig_name)
-            f1.write('\end{figure}\n\n')
-        if show_fig:
-            fig.show()
-        return 0
-        """
     signal_label = "Orientation " + "12"[j]
     peak_plot, = ax1[j].plot(t, signal, '-', label=signal_label, linewidth=0.5, alpha=1.)                # plot signal
     [ax1[j].plot([t[maxi]] * 2, [0, signal[maxi]], '--', color=peak_plot.get_color(), linewidth=1) for maxi in maxis]
     next(ax1[j]._get_lines.color_cycle)
     ax1[j].set_xlim(t[0], t[-1])
+    ax1[j].set_ylim(0, 0.5)
     ax1[j].set_ylabel("$U$ / V")
     ax1[j].legend(loc=4)
 
@@ -146,11 +112,10 @@ fig2, ax2 = plt.subplots(1, 1, figsize=plotsize)
 # Prepare variables: take average of both maxima
 t_max_both = t[np.array(maxis_both).T]
 t_max = np.zeros(len(t_max_both))
-t_std_dev = t_max * 0
 for i, t_max_pair in enumerate(t_max_both):
     t_max[i] = np.average(t_max_pair)
-    t_std_dev[i] = np.std(t_max_pair)
 # caculate the angles corresponding to the maxima, using sin(theta) = m lamb / K
+t_std_dev = np.array([0.01]*5 + [0.02]) # defined by hand
 m = np.arange(-3, 3) # order of maxima: in this case: -3 -- 2
 theta = np.arcsin(m * lamb / K)
 ax2.errorbar(t_max, theta, xerr=t_std_dev, fmt='k,', zorder=2.9) 
