@@ -1,6 +1,6 @@
 \section{Theory}
 \subsection{Diffraction}
-\paragraph{Principle of Huygens-Fresnel}
+\subsubsection{Principle of Huygens-Fresnel} 
 We will develop the theory of diffraction \cite{landau2} which will be useful in the further progress
 the theory. When start from geometrical optics, we notice that we use the approximation for the 
 wavelength to be infinitely small. Taking into account the finite value of wavelength, we arrive at the
@@ -18,7 +18,7 @@ wavelength this effects become stronger and stronger.
         we assume the light incoming from the left side is parallel and monochromatic.}
     \label{fig:beam}
 \end{figure}
-\paragraph{Frauenhofer Diffraction}
+\subsubsection{Frauenhofer Diffraction} 
 We will not look at the non-dynamic case, leaving out all the factors $e^{-i\omega t}$ which can be appended
 easily after if necessary. We start with a general wave incident from the left side, with value $g(f)$ at the
 surface of the aperture at a point $f$ (see figure \ref{fig:beam}). Then the wave at point $P$ due to the
@@ -45,7 +45,8 @@ now a aperture function $g(x)$ of an one dimensional opening, then this translat
 \end{equation}
 where the dependency of $P$ in $g(x)$ comes from the factor $R$.
 We have to think about Fourier transformations before we can continue our studies.
-\paragraph{Fourier Transformations}
+
+\subsubsection{Fourier Transformations}
 We used the notation  $\mathcal{F} \left[g(k)\right ]_P$ which will be introduced here:
 \begin{align}
 f(x) &= \int_{-\infty}^{\infty} F(k)\exp(i kx)\del k\\
@@ -66,7 +67,9 @@ The most important properties are:
    &\mbox{ (Wiener-Khinchin Theorem) }
 \end{align}
 Where in the last property $\bar{f}$ means the complex conjugation of $f$.
-\paragraph{Intensity distributions}An important insight from electrodynamics is that the intensity density I of a
+
+\subsubsection{Intensity distributions}
+An important insight from electrodynamics is that the intensity density I of a
 wave is proportional to the squared modulus of the complex wavefunction (We get the total intensity by
 integrating over all points $P$).
 Since this is enough for us to
@@ -105,7 +108,8 @@ Such that we have for the Intensity density (dropping factor 4, see figure~\ref{
         We plugged in $\lambda = 632.8$nm and $b = 1 \mu$m. The density is normed to one.}
     \label{fig:sinc1}
 \end{figure}
-\paragraph{diffraction gratings} 
+
+\subsubsection{diffraction gratings}
 Equation~\eqref{eq:sinc1} leads straightforward to the intensity density of
 the diffraction grating, using \eqref{eq:fourier}. We need to understand 
 that a diffraction grating is the result of convolution of a simple opening
@@ -137,6 +141,7 @@ this distance is equal to a multiple of the wavelength, we will have a maximum:
     \label{eq:N_lines_interference}
 \end{equation}
 
+\subsubsection{Approximation to aperture function}
 The relationship between intensity and aperture function can also be applied in the 
 opposite direction. Any periodic function $f(x)$ may be written as a Fourier series. 
 Choosing the orthogonal functions $\sin$ and $\cos$ as a basis, one obtains 
@@ -163,7 +168,8 @@ We can further normalize $g(x)$ by dividing through the sum of the coefficients:
     \label{eq:g_approx}
 \end{equation}
 
-
+\subsubsection{Resolution}
+\label{sec:resolution}
 Finally we define the resolution
 \begin{equation}
     a = \frac{\lambda}{\Delta \lambda}
@@ -171,22 +177,24 @@ Finally we define the resolution
 introducing $\Delta \lambda$, the minimal optical wavelength where separated maxima 
 are observed. One can deduce the relationship
 \begin{equation}
-    a = N \cdot m
+    a = N \cdot m_\mathrm{max}
     \label{eq:resolution}
 \end{equation}
 with the number of illuminated splits of the grating $N$ and the number of 
-visible maxima on the screen $m$.\cite{ver}
+visible maxima on the screen $m_\mathrm{max}$.\cite{ver}
 \clearpage
-\subsection{Acoustooptics}
+
+\subsection{Acousto-optics}
 \begin{SCfigure}
     \centering
     \caption{Illustration of the acousto-optic effect: The former transparent and homogeneous medium is
         excited by an acoustic wave (turquoise) which changes the dielectric constant. On the top you notice
-        the blue line which indicates an incident beam by an angle $\theta$. Obviously this change
-        of the refractive index is due to the dielectric constant is connected to diffractive phenomena like
-        gratings, but in a non-trivial way. The main point here is that the angle $\theta$ should be low enough
-        for the beam not to be scattered (this would lead to Bragg-like scattering) which is at the moment
-        not interesting for us. }
+        the blue line which indicates an incident beam by an angle $\theta$. 
+        This change of the refractive index is due to the dielectric constant is connected 
+        to diffractive phenomena like gratings, but in a non-trivial way. 
+        The main point here is that the angle $\theta$ should be small enough
+        for the beam not to be scattered (this would lead to Bragg-like scattering which is at the moment
+            not interesting for us). }
     \includegraphics[width=0.5\linewidth]{figures/ramannath1.png}
     \label{fig:ramannath1}
 \end{SCfigure}
@@ -203,21 +211,22 @@ as the characteristic angular spread of the diffracted light. Scattering cannot 
 \begin{equation}
     \delta \theta L < \Lambda.
 \end{equation}
-Which we can plug in into \eqref{eq:deltatheta} to get
+Combining the two equations, we get
 \begin{equation}
-    \frac{\lambda L}{\Lambda^2} < 1
+    \frac{\lambda L}{\Lambda^2} < 1 \, .
 \end{equation}
-Now we chose the density fluctuations to be 
+We chose the density fluctuations to be 
 \begin{equation}
-    \Delta \tilde{n}(z,t) = 2 \Delta n \sin(q z - \Omega t)
+    \Delta \tilde{n}(z,t) = 2 \Delta n \sin(q z - \Omega t) \, ,
 \end{equation}
-where we introduced the tilde refers to the time dependency, while $\Delta n$ denotes the timeindepend part.
-$\Omega$ refers to the frequency and $q$ to the spatial wave vector of the acoustic wave.
-The incident light can now be represented by (solution of onbounded laplace)
+where the tilde refers to time dependency and $\Delta n$ denotes the time independent part.
+$\Omega$ denotes the frequency and $q$ the spatial wave vector of the acoustic wave.
+The incident light can now be represented by 
 \begin{equation}
     \tilde{E}(r,t) = A e ^{i(kx - \omega t)} + A^{*}e ^{-i(kx - \omega t)}.
 \end{equation}
-Obviously passing through the interacting region $L$ the optical wave picks up a phase 
+which is a solution of unbounded Laplace equation. 
+Passing through the interacting region $L$ the optical wave picks up a phase 
 \begin{equation}
     \phi = \Delta \tilde{n}\frac{\omega}{c}L = \Delta n \frac{\omega}{c}L \sin (qz - \Omega t).
 \end{equation}
@@ -225,24 +234,38 @@ The final and critical step is to use the \textbf{Jacobi-Anger expansion}
 \begin{equation}
     e^{i\delta \sin y} = \sum_{l = -\infty}^{\infty} J_l(\delta)e^{ily} 
 \end{equation}
-where we used the Bessel function of first kind
+where the $J_l$ are the Bessel functions of first kind, defined by
 \begin{equation}
 J_\alpha(x) = \sum_{m=0}^\infty \frac{(-1)^m}{m! \, \Gamma(m+\alpha+1)} {\left(\frac{x}{2}\right)}^{2m+\alpha}.
 \end{equation}
-Plugging in the last two equations we can look at the electromagnetic wave after surpassing: 
+Plugging in the last two equations we can look at the electromagnetic wave after surpassing the 
+cell of length $L$:
 \begin{equation}
     \tilde{E}(r,t)=A \sum_{l = -\infty}^{\infty} J_l(\delta)e^{i
         \left [kx -\omega t + \delta \sin(qz - \Omega t) \right ]  } + \quad \text{complex conjugates}
 \end{equation}
-where we have defined
+with
 \begin{equation}
     \delta = 2\Delta n \omega L / c.
 \end{equation}
-The maxima of this pattern are analogous to the diffraction grating:
+Analogue to the diffraction grating, the maxima of this patters 
+are observed at angles
 \begin{equation}
-    \sin(\theta) = \frac{\lambda}{\Lambda} m \qquad m \in \mathbb{Z}
+    \sin(\theta) = \frac{\lambda}{\Lambda} m \qquad m \in \mathbb{Z} \, .
 \end{equation}
 And the intensity peaks are given by
 \begin{equation}
     I_l = |A|^2 J_l(\delta)^2
 \end{equation}
+For sound waves in fluids, the refractive index changes for small changes in density $\delta \rho$ as 
+\begin{equation}
+    \frac{\delta n }{n - 1} = \frac{\delta \rho}{\rho_0}
+\end{equation}
+with density $\rho$ and refractive index $n$ of the unpertubed medium. Since the intensity of the sound 
+wave $S$ for the piezoelectric actuator with applied voltage $U$ goes with $S \propto U^2$ and further 
+$S \propto (\rho / \rho_0)$~\cite{ver}, we get the relationship 
+\begin{equation}
+    I_l = |A|^2 J_l(\delta)^2
+\end{equation}
+for the intensity of the $l$th maximum.
+
