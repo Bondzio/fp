@@ -1,22 +1,24 @@
+\clearpage
 \subsection{Ultrasonic evaluation}
 \begin{figure}
+\centering
     \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=1.2\textwidth]{analysis/figures/raman_001}
+        \includegraphics[width=1.0\textwidth]{analysis/figures/raman_001}
         \caption{}
         \label{fig:raman_001}
-    \end{subfigure}\qquad
+    \end{subfigure}
     \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=1.2\textwidth]{analysis/figures/raman_007}
+        \includegraphics[width=1.0\textwidth]{analysis/figures/raman_007}
         \caption{}
         \label{fig:raman_007}
     \end{subfigure}
     \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=1.2\textwidth]{analysis/figures/raman_014}
+        \includegraphics[width=1.0\textwidth]{analysis/figures/raman_014}
         \caption{}
         \label{fig:raman_014}
     \end{subfigure}
     \begin{subfigure}[b]{\picwidth}
-        \includegraphics[width=1.2\textwidth]{analysis/figures/raman_020}
+        \includegraphics[width=1.0\textwidth]{analysis/figures/raman_020}
         \caption{}
         \label{fig:raman_020}
     \end{subfigure}
@@ -29,21 +31,23 @@
     \label{fig:besselfit_0}
 \end{figure}
 
-\begin{table}
-    \centering
-    \caption{covariance matrix}
- \begin{tabular}{|r|r|r|r|}
- \hline 
-\cellcolor[RGB]{204,204,255}&\cellcolor[RGB]{204,204,255}$\alpha$&\cellcolor[RGB]{204,204,240}$A$&\cellcolor[RGB]{204,204,225}$c$\\ \hline 
- \cellcolor[RGB]{204,204,255}$\alpha$&$0.000$ &$-0.000$ &$0.000$ \\ \hline
-\cellcolor[RGB]{204,204,240}$A$&$-0.000$ &$0.001$ &$-0.001$ \\ \hline
-\cellcolor[RGB]{204,204,225}$c$&$0.000$ &$-0.001$ &$0.002$ \\ \hline
-\end{tabular}
-\begin{align}
-    \Rightarrow \qquad
+
+\begin{align}\Rightarrow \qquad
     \alpha &=& 0.218 \pm 0.010 \\
     A &=& 0.91 \pm 0.04 \\
     c &=& 0.11 \pm 0.04 
 \end{align}
-\end{table}
 
+
+\begin{table}
+    \centering
+    \caption{covariance matrix}
+
+ \begin{tabular}{|r|r|r|r|}
+ \hline 
+\cellcolor{tabcolor}&\cellcolor{tabcolor}$\alpha$&\cellcolor{tabcolor}$A$&\cellcolor{tabcolor}$c$\\ \hline 
+ \cellcolor{tabcolor}$\alpha$&$0.00010$ &$-0.00029$ &$0.00037$ \\ \hline
+\cellcolor{tabcolor}$A$&$-0.00029$ &$0.00136$ &$-0.00135$ \\ \hline
+\cellcolor{tabcolor}$c$&$0.00037$ &$-0.00135$ &$0.00156$ \\ \hline
+\end{tabular}
+\end{table}
