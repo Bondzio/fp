@@ -57,9 +57,9 @@ rcParams['xtick.labelsize'] = fontsize_labels
 rcParams['ytick.labelsize'] = fontsize_labels
 
 plt.close("all")
-show_fig = True
-save_fig = False # see below
-save_coeff = False # do ONLY save, if scipy 0.14. is in use...
+show_fig = False
+save_fig = True # see below
+save_coeff = True # do ONLY save, if scipy 0.14. is in use...
 fig_dir = "../figures/"
 npy_dir = "./data_npy/"
 plotsize = (6.2, 3.83)  # width corresponds to \textwidth in latex document (ratio = golden ratio ;))
@@ -120,10 +120,6 @@ m = np.arange(-3, 3) # order of maxima: in this case: -3 -- 2
 theta = np.arcsin(m * lamb / K)
 ax2.errorbar(t_max, theta, xerr=t_std_dev, fmt='k,', zorder=2.9) 
 # linear fit
-"""
-p, cov = np.polyfit(t_max, theta, 1, cov=True)
-p_uc = uc.correlated_values(p, cov)
-"""
 # We want to include the errors of t_max...
 def t_func(theta, a, b):
     return a*theta + b
@@ -135,6 +131,7 @@ omega = 1 / p_uc[0]
 p_uc = np.array([omega, theta_0])
 p = un.nominal_values(p_uc)
 cov = uc.covariance_matrix(p_uc)
+
 # plotting the linear fit, including shading of errors
 data_fit = np.polyval(p, t)
 fit_plot, = ax2.plot(t, data_fit, alpha=1, zorder=2.1)
@@ -145,9 +142,10 @@ ax2.fill_between(t, data_fit_min , data_fit_max, facecolor=fit_plot.get_color(),
 
 # place a text box in upper right in axes coords, using eqnarray
 props = dict(boxstyle='round', facecolor='white', alpha=0.5)
-textstr += '\\begin{eqnarray*}\\theta(t) &=& \omega t + \\theta_0 \\\\ \
+textstr = '\\begin{eqnarray*}\\theta(t) &=& \omega t + \\theta_0 \\\\ \
         \omega      &=&%.4f \, \mathrm{ rad/s} \\\\  \
-        \\theta_0    &=&%.4f \, \mathrm{rad}\end{eqnarray*}'%(p[0], p[1])
+        \\theta_0    &=&%.4f \, \mathrm{rad}\
+        \end{eqnarray*}'%(p[0], p[1])
 ax2.text(0.1, 0.85, textstr, transform=ax2.transAxes, fontsize=fontsize_labels, va='top', bbox=props)
 
 ax2.set_xlim(t[0], t[-1])

@@ -1,4 +1,4 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Short Sectioned Assignment
 % LaTeX Template
 % Version 1.0 (5/5/12)
@@ -44,7 +44,6 @@ backend = bibtex
 \usepackage{amsmath,amsfonts,amsthm} % Math packages
 \usepackage{pgfplots}
 \usepackage{wrapfig}
-\usepackage{sidecap}
 \usepackage{color, colortbl}  
 %\usepackage[pass,showframe]{geometry} % just to show the margins
 %\usepackage{booktabs}
@@ -69,6 +68,10 @@ backend = bibtex
 \usepackage{epsfig}
 \usepackage{framed,color}
 \usepackage{placeins}   % FloatBarrier
+\usepackage{sidecap}
+%\usepackage{float}      % adding boxes around figures
+%\floatstyle{boxed}
+%\restylefloat{figure}
 \usepackage[usenames,dvipsnames]{pstricks}
 \usepackage{epsfig}
 \usepackage{tikz}
@@ -135,6 +138,8 @@ backend = bibtex
 %----------------------------------------------------------------------------------------
 \input{newcommands}
 \setcounter{page}{1}
+\input{intro}
+\clearpage
 \input{theory}
 \input{setup}
 \input{eval}
