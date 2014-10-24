@@ -71,8 +71,8 @@ rcParams['xtick.labelsize'] = fontsize_labels
 rcParams['ytick.labelsize'] = fontsize_labels
 
 plt.close("all")
-show_fig = True
-save_fig = False
+show_fig = False
+save_fig = True
 fig_dir = "../figures/"
 npy_dir = "./data_npy/"
 plotsize = (6.2, 3.83)  # width corresponds to \textwidth in latex document (ratio = golden ratio ;))
@@ -101,11 +101,11 @@ n_visible = np.array([10, 6, 10, 9, 6])         # visible maxima at maximal illu
 
 # write results into a tabular environment in file
 f = open(r"./gratings_K.tex", "w+")
-f2 = open(r"./gratings_resolution.tex", "w+")
 f.write("\t\\begin{tabular}{|p{3.82cm}|p{6.18cm}|p{3.82cm}|}\n")
 f.write("\t\t\hline\n")
 f.write("\t\t\\rowcolor{tabcolor}\n")
 f.write("\t\tGrating & Orders visible & $\overline{K}$ / ($\mu$m)  \\\\ \hline\n")
+f2 = open(r"./gratings_resolution.tex", "w+")
 f2.write("\t\\begin{tabular}{|p{2cm}|p{3.82cm}|p{3.82cm}|p{3.82cm}|}\n")
 f2.write("\t\t\hline\n")
 f2.write("\t\t\\rowcolor{tabcolor}\n")
@@ -150,7 +150,7 @@ for i in range(5):  # i+1 = nr of grating
     f.write("$ & $ {0:L} $ \\\\\n".format(K_mean * 10 ** 6)) 
     if i==0:
         np.save(npy_dir + "K_1.npy", K_mean.n)
-        np.save(npy_dir + "K_1_std_dev.npy", K_mean.n)
+        np.save(npy_dir + "K_1_std_dev.npy", K_mean.s)
     N = phi / K_mean                    # number of lines illuminated
     a = N * n_visible[i]                # resolution 
     f2.write("${0:L}$ & $ %i \pm %i $ \\\\\n".format(N)%(a.n, a.s)) 

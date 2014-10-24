@@ -145,8 +145,7 @@ ax2.fill_between(t, data_fit_min , data_fit_max, facecolor=fit_plot.get_color(),
 
 # place a text box in upper right in axes coords, using eqnarray
 props = dict(boxstyle='round', facecolor='white', alpha=0.5)
-textstr = '$\omega t + \\theta_0$ with\n$\omega=%.2f$ rad/ms\n$\\theta_0=%.2f$ rad'%(p[0], p[1])
-textstr = '\\begin{eqnarray*}\\theta(t) &=& \omega t + \\theta_0 \\\\ \
+textstr += '\\begin{eqnarray*}\\theta(t) &=& \omega t + \\theta_0 \\\\ \
         \omega      &=&%.4f \, \mathrm{ rad/s} \\\\  \
         \\theta_0    &=&%.4f \, \mathrm{rad}\end{eqnarray*}'%(p[0], p[1])
 ax2.text(0.1, 0.85, textstr, transform=ax2.transAxes, fontsize=fontsize_labels, va='top', bbox=props)

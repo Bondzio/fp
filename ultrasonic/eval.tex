@@ -267,6 +267,68 @@ directly visible, however.
 \subsection{Aperture function}
 In this section we calculate the aperture function of grating 1 from the intensity 
 of the maxima observed by approximating its Fourier series to the maximal 
-order visible, as described in the theory section. 
+order visible, as described in the theory section. The obtained data from the measurement 
+shows asymmetry in most cases. The plotted data can be seen in the appendix, 
+\ref{fig:aperture_positions_detail}. We chose position five for the further calculation, 
+because it allows to identify maxima up to the fourth order on both sides. 
+We obtained the intensities by taking the mean of each two values for one order. 
+The intensities are listed in the table below (\ref{tab:intensities}). 
+Using the intensities, we can calculate the aperture function. 
+The result is plotted in figure \ref{fig:aperture_function}. 
+The resulting approximation on the width of the slits is 
+\begin{equation}
+    b = (26.5 \pm 5.3)\, \mu\mathrm{m}
+\end{equation}
+where the error is approximated manually with $10\%$. The ratio between 
+lattice constant and width can thus be calculated to 
+\begin{equation}
+	\frac{b}{K} = \frac{ 26.5 \pm 5.3 }{ 125.7 \pm 5.0 } = 0.21 \pm 0.04  \, .
+\end{equation}
+Since there are no specifications on the nominal values of the gratings, we cannot 
+compare the obtained value of this ratio with other results. 
 
+
+\begin{table}[htdp]
+    \centering
+    \input{analysis/aperture_I}
+    \caption{
+        Intensities of the maxima in units of the oscilloscope for grating 1 at position 5. 
+        For the aperture function, 
+        these intensities are normalized. The zeroth maximum is simply the value obtained 
+        from the graph, as no mean is formed. 
+        }
+    \label{tab:intensities}
+\end{table}
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{\pltw}
+        \includegraphics[width=\textwidth]{figures/aperture_5a}
+        \caption{Position 1, scale for zeroth maximum}
+        \label{}
+    \end{subfigure}\quad
+    \begin{subfigure}[b]{\pltw}
+        \includegraphics[width=\textwidth]{figures/aperture_5b}
+        \caption{Position 1, scale for maxima with $m \neq 0$}
+        \label{}
+    \end{subfigure}
+    \caption{
+        Measured intensities for grating 1 for position 5. 
+        For the calculation of the aperture function, 
+        we take the mean value of both intensities of the same order. 
+        }
+    \label{fig:aperture_positions_detail}
+\end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{figures/aperture_function}
+    \caption{
+        Approximation of the aperture function, using its Fourier series up to the 
+        4th order. The shaded area indicates the full width at half maximum (fwhm) 
+        of the global maximum, which is taken as an approximation of the width of the 
+        slits. The error $s_b$ is approximated by hand with a relative error of $10\%$. 
+        indicated by the boxes with higher transparency. 
+        }
+    \label{fig:aperture_function}
+\end{figure}
 \FloatBarrier
+
