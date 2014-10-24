@@ -93,7 +93,7 @@ def plot_maxi(plot_all=False):
     indices = [[],[],[],[]]
     theta_ar = [] 
     for i in np.arange(20,0,-1):
-    #for i in [1]:
+    #for i in [7]:
         signal = np.load(npy_dir + "phase_%03d_ch_a.npy"%i) / I0
         t    = np.load(npy_dir + "phase_%03d_t.npy"%i) *10**3
         t = theta(t)
@@ -106,8 +106,12 @@ def plot_maxi(plot_all=False):
             maxis = np.append(maxis,[1150])
         if i in [6]:
             maxis = np.append(maxis,[968])
+            maxis = maxis[1:-3]
+        if i in [7]:
+            maxis = maxis[1:-1]
         if i in [5]:
             maxis = np.append(maxis,[1105])
+            maxis = maxis[2:-2]
         if i in [4]:
             maxis = maxis[3:-1]
             maxis = np.append(maxis,[1070])
@@ -115,6 +119,7 @@ def plot_maxi(plot_all=False):
             maxis = [1000, 1033, 1070]
         if i in [1]:
             maxis = [1033]
+        #np.save("./data_npy/raman_nath/maxi_%03d"%i,maxis)
         maxis = np.load( "./data_npy/raman_nath/maxi_%03d.npy"%i)
 
         lamb = 632.8e-9
@@ -134,6 +139,8 @@ def plot_maxi(plot_all=False):
         indices[0] += [i-1]
         print(i)
         # identify first maxima
+        dist1_1 = 1 
+        dist1_2 = 1
         if len(maxis) > 2:
 
             i1_1 = maxis[max_index -1]
@@ -154,6 +161,11 @@ def plot_maxi(plot_all=False):
             #dist1_1 = (t[i1_1] - theta1)
             #dist1_2 = (t[i1_2] + theta1)
             #theta_ar += [(t[i1_1]+t[i1_2])/2]
+
+        dist2_1 = 1 
+        dist2_2 = 1 
+
+
         if len(maxis) > 4: 
 
             i2_1 = maxis[max_index -2]
@@ -174,7 +186,11 @@ def plot_maxi(plot_all=False):
 
             #dist2_1 = (t[i2_1] - theta2)
             #dist2_2 = (t[i2_2] + theta2)
-       
+
+        dist3_1 = 1 
+        dist3_2 = 1 
+
+
         if len(maxis) > 6: 
             i3_1 = maxis[max_index -3]
             i3_2 = maxis[max_index +3]
@@ -203,26 +219,26 @@ def plot_maxi(plot_all=False):
             #[ax1.plot(t[maxi], signal[maxi], 'o', linewidth=1, c="#e74c3c") for k,maxi in enumerate(maxis)]
 
             # 0 maximum
-            ax1.scatter(t[i0],signal[i0],s = 500, marker= "*", label="0th maximum", c = '#e74c3c')
+            ax1.scatter(t[i0],signal[i0],s = 500, marker= "*", label="0th max.", c = '#e74c3c')
             if 1==1:
 
                 # 1 maxima
                 if np.abs(dist1_1) < 0.0004:
                     ax1.scatter(t[i1_1],signal[i1_1],s = 100, marker= "s",c='#3498db')
                 if np.abs(dist1_2) < 0.0004:
-                    ax1.scatter(t[i1_2],signal[i1_2],s = 100, marker= "s",c='#3498db', label="1th maxima")
+                    ax1.scatter(t[i1_2],signal[i1_2],s = 100, marker= "s",c='#3498db', label="1st max.")
 
                 # 2 maxima
                 if np.abs(dist2_1) < 0.0006:
                     ax1.scatter(t[i2_1],signal[i2_1],s = 100, marker= "o",c='#34495e')
                 if np.abs(dist2_2) < 0.0006:
-                    ax1.scatter(t[i2_2],signal[i2_2],s = 100, marker= "o",c="#34495e",label="2th maxima")
+                    ax1.scatter(t[i2_2],signal[i2_2],s = 100, marker= "o",c="#34495e",label="2nd max.")
                     
                 # 3 maxima
                 if np.abs(dist3_1) < 0.0006:
                     ax1.scatter(t[i3_1],signal[i3_1],s = 100, marker= "d",c='#10ce59')
                 if np.abs(dist3_2) < 0.0006:
-                    ax1.scatter(t[i3_2],signal[i3_2],s = 100, marker= "d",c="#10ce59",label="3th maxima")
+                    ax1.scatter(t[i3_2],signal[i3_2],s = 100, marker= "d",c="#10ce59",label="3rd max.")
 
 
             
@@ -236,9 +252,14 @@ def plot_maxi(plot_all=False):
             ax1.xaxis.set_tick_params(labelsize = 20)
             ax1.yaxis.set_tick_params(labelsize = 20)
 
-            plt.legend(fontsize = 12)
-            plt.close()
+            props = dict(boxstyle='round', facecolor='white', alpha=0.5)
+            textstr = '$U = %.1f$V'%(U[i-1])
+            ax1.text(0.05,0.95, textstr, transform=ax1.transAxes, fontsize=20, va='top', bbox=props)
+
+
+            plt.legend(fontsize = 14)
             make_fig(fig1,0,1,"raman_%03d"%i)
+            plt.close()
     for j in range(4):
     
         signals_ = np.array(signals[j][::-1])
@@ -252,10 +273,10 @@ def plot_maxi(plot_all=False):
         p_uc = uc.correlated_values(p, cov)
 
         f1 = open("coefficients_bessel%01d.tex"%j,"w")
-        st.la_coeff2(f1, p,cov, ["\\alpha","A","c"])
+        st.la_coeff2(f1, p,cov, ["\\alpha/ V^{-1}","A","c"])
         f1.close()
 
-        chi2 = np.sum(((func_j(U[indices_], *p) - signals_)/sigma)**2)/(len(indices_)-1)
+        chi2 = np.sum(((func_j(U[indices_], *p) - signals_)/sigma)**2)/(len(indices_)-3)
 
 
         U_fit = np.linspace(min(U),max(U),1000)
@@ -271,16 +292,16 @@ def plot_maxi(plot_all=False):
         data_fit_min = func_j(U_fit, p[0]+p_uc[0].s,p[1]+p_uc[1].s,p[2]+p_uc[2].s)
         data_fit_max = func_j(U_fit, p[0]-p_uc[0].s,p[1]-p_uc[1].s,p[2]-p_uc[2].s)
 
-        plt.fill_between(U_fit, data_fit_min , data_fit_max,facecolor="g", color="b", alpha=0.3 )
+        plt.fill_between(U_fit, data_fit_min , data_fit_max,facecolor="g", color="g", alpha=0.3 )
         #plt.title("%d"%j)
 
         props = dict(boxstyle='round', facecolor='white', alpha=0.5)
-        textstr = '$A + J_0^2(\\alpha \cdot U) + c$ \n$A=%.3f\pm%.3f$\n$\\alpha=(%.3f\pm%.3f)1/V$\n$c=%.3f\pm%.3f$\n$\chi^2/n_d = %.3f$'%(p[1],p_uc[1].s,p[0],p_uc[0].s,p[2],p_uc[2].s,chi2)
+        textstr = '$A \cdot J_%d^2(\\alpha \cdot U) + c$ \n$A=%.3f\pm%.3f$\n$\\alpha=(%.3f\pm%.3f)1/V$\n$c=%.3f\pm%.3f$\n$\chi^2/n_d = %.3f$'%(j,p[1],p_uc[1].s,p[0],p_uc[0].s,p[2],p_uc[2].s,chi2)
         pos = [(0.1, 0.4),(0.4,0.4),(0.6,0.4),(0.1,0.9)]
         ax.text(pos[j][0],pos[j][1], textstr, transform=ax.transAxes, fontsize=12, va='top', bbox=props)
         plt.xlabel("applied Voltage / V")
-        plt.ylabel("relative Intensity of I_0")
+        plt.ylabel("relative Intensity of I_%d"%j)
         plt.grid(True)
         make_fig(fig,0,1,"besselfit_%03d"%j)
 
-plot_maxi(False)
+plot_maxi(True)

@@ -1,6 +1,23 @@
 \clearpage
 \subsection{Ultrasonic evaluation}
-\begin{figure}
+As already stated we have measured the intensity distribution of the laser
+passing through a phase grating, in particular the phase grating created
+by ultrasonic waves passing through the medium. We evaluate these diffraction patterns
+by determining the position of the maxima and their intensities with an algorithm
+(see figure~\ref{fig:ultrasonic1}) by extremal analysis. The error of this analysis
+is given by the width of the respective peaks and the error of the oscillscope 
+\textit{Hameg HM1508-2} is given in the used resolution by
+\begin{equation}
+S_U = 3 \% \times 1\mathrm{V} = 0.03 \textrm{V}
+\end{equation}
+The conversion from time to angle was given in the previous section (see
+figure\ref{fig:calibrate_fit} for the conversion fit). In the following we 
+will give all information in the captions of the figures and tables, respectively.
+We will give the least square fits for the maxima from order zero to three and 
+their coefficients along with the covariance matrices.
+
+\begin{figure}[H]
+\label{fig:ultrasonic1}
 \centering
     \begin{subfigure}[b]{\picwidth}
         \includegraphics[width=1.0\textwidth]{analysis/figures/raman_001}
@@ -22,24 +39,32 @@
         \caption{}
         \label{fig:raman_020}
     \end{subfigure}
-    \caption{A subsection of the data from the ultrasonic experiment.}\label{fig:raman}
+    \caption{This figures constitute a selection of the available measurements in the ultrasonic experiment. We denoted the 
+    different orders by different symbols (see the respective legends). The maxima were estimated by an algorithm which seeks for local extrema
+    and evaluates them with a certain threshold. The threshold is determined by the minimal distance of maxima, estimated by the theoretical 
+    relationship $sin(\theta) = m \lambda / \Lambda$ (See the text for more explanations). The intensities are given by the measured Voltage,
+    normed by the zeroth Maximum at $U=0V$.}\label{fig:raman}
 \end{figure}
-\begin{figure}[htpb]
+\newpage
+\begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{analysis/figures/besselfit_000}
-    \caption{This is the fit of the maxima of zeroth order. The error is given by 3\% of the extent of the oscilloscope.}
+    \caption{The measurements and the least square fit with the maxima of order zero. 
+    The errorbars are given by 3\% of the extent of the oscilloscope,
+    while the light green surface is the upper and lower limit of the fitted function, given
+    by the covariance matrix of the coefficients. We fit the data with the function derived in the theoretical
+    section, but extent it by an factor $c$ in order to take into account an additional (constant) noise
+    influencing the photodiodes.\\
+    $\Rightarrow$ We notice the agreement of our measurements with the Raman Nath theory. Using the
+    coefficient $\alpha$ from the fit we will calculate the sonic wave length in the following section.}
     \label{fig:besselfit_000}
 \end{figure}
 \begin{SCfigure}
 \caption{
-BLABLABA
-BLABLABA
-BLABLABA
-BLABLABA
-BLABLABA
-BLABLABA
-BLABLABA
-BLABLABA
+The covariance matrix of the coefficients, calculated by the least square method. The off-diagonals are
+one order of magnitude less than the errors, except for the releation between $A$ and $c$, which accounts for the
+uncertainty of the estimated background. Keeping in mind that an higher background would lead to a smaller
+amplitude (given the same data) we notice that the absolute error of $A$ and $c$ is much higher than the error for $\alpha$.
 }
  \begin{tabular}{|r|r|r|r|}
  \hline 
@@ -53,27 +78,34 @@ BLABLABA
 \hline\end{tabular}
 \end{SCfigure}
 
-\clearpage
+\newpage
 
 \begin{figure}[htpb]
     \centering
-    \includegraphics[width=0.8\textwidth]{analysis/figures/besselfit_001}
-    \caption{This is the fit of the maxima of zeroth order. The error is given by 3\% of the extent of the oscilloscope.}
+    \includegraphics[width=1\textwidth]{analysis/figures/besselfit_001}
+    \caption{The measurements and the least square fit with the maxima of order zero, where
+    the maxima were calculated with $I = (I_{\mathrm{left}} +  I_{\mathrm{right}})/2$.
+    We do not want to repeat the considerations done before, see for figure~\ref{fig:besselfit_000}.
+    Additionally we notice that the method estimating the maxima is encumbered by the 
+    bad resolution of the peaks itself, such that they are not seperated as they should. 
+    Following from this we receive a huge systematic error, not being reflected in the
+    statistical errors resulting from the least squares fit. \\
+    $\Rightarrow$ The important characteristic value $\alpha$ disagrees with the result of the maxima of zeroth order, which
+    should in theory be the same. Noting that the $\chi^2$ test is lower then 1 (which would rather indicate that
+    the given errors are too small) we remark that the systematic errors have an huge impact on the result, reflecting
+    also in the disagreement within the paramters $A$ and $c$. 
+}
     \label{fig:besselfit_001}
 \end{figure}
 
 
 \begin{SCfigure}
 \caption{
-BLABLABALBALBAL
-BLABLABALBALBAL
-BLABLABALBALBAL
-BLABLABALBALBAL
-BLABLABALBALBAL
-BLABLABALBALBAL
-BLABLABALBALBAL
-BLABLABALBALBAL
-}
+As before only $A$ and $c$ are coupled, which is also visible in the
+bigger error. Since $\alpha$ is (according to the least squares fit)
+indepent of the others, the systematic error described before (see caption of figure~\ref{fig:besselfit_001}) 
+cannot depend on the Amplitude or a constant background noise alone, but has to be related to the increased curvature
+visible in an higer $\alpha$.}
  \begin{tabular}{|r|r|r|r|}
  \hline 
 \cellcolor{tabcolor}&\cellcolor{tabcolor}$\alpha$&\cellcolor{tabcolor}$A$&\cellcolor{tabcolor}$c$\\ \hline 
@@ -85,12 +117,15 @@ BLABLABALBALBAL
 \cellcolor{tabcolor}$c$&\multicolumn{3}{r|}{$0.25782 \pm 0.01709$ }\\ 
 \hline\end{tabular}
 \end{SCfigure}
-\clearpage
+\newpage
 \begin{figure}[htpb]
     \centering
-    \includegraphics[width=0.8\textwidth]{analysis/figures/besselfit_002}
-    \caption{This is the fit of the maxima of zeroth order. The error is given by 3\% of the extent of the oscilloscope.}
-    \label{fig:besselfit_001}
+    \includegraphics[width=1\textwidth]{analysis/figures/besselfit_002}
+    \caption{This is the fit of the maxima of second order. For
+    introductory remarks please see figure~\ref{fig:besselfit_000} and figure~\ref{fig:besselfit_001}.
+    
+    }
+    \label{fig:besselfit_002}
 \end{figure}
 
 \begin{SCfigure}
@@ -114,35 +149,5 @@ BLABLABALBLABLABLAB
 \cellcolor{tabcolor}$c$&\multicolumn{3}{r|}{$0.13956 \pm 0.01695$ }\\ 
 \hline
 \end{tabular}
-\end{SCfigure}
-\clearpage
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=0.8\textwidth]{analysis/figures/besselfit_003}
-    \caption{This is the fit of the maxima of zeroth order. The error is given by 3\% of the extent of the oscilloscope.}
-    \label{fig:besselfit_001}
-\end{figure}
-\begin{SCfigure}
-\caption{
-BLABLABLABLABLASBL
-BLABLABLABLABLASBL
-BLABLABLABLABLASBL
-BLABLABLABLABLASBL
-BLABLABLABLABLASBL
-BLABLABLABLABLASBL
-BLABLABLABLABLASBL
-}
-
- \begin{tabular}{|r|r|r|r|}
- \hline 
-\cellcolor{tabcolor}&\cellcolor{tabcolor}$\alpha$&\cellcolor{tabcolor}$A$&\cellcolor{tabcolor}$c$\\ \hline 
- \cellcolor{tabcolor}$\alpha$&$0.00353$ &$-0.00051$ &$-0.00032$ \\ 
-\cellcolor{tabcolor}$A$&$-0.00051$ &$0.01381$ &$-0.00112$ \\ 
-\cellcolor{tabcolor}$c$&$-0.00032$ &$-0.00112$ &$0.00020$ \\ \hline \hline
-\cellcolor{tabcolor}$\alpha$&\multicolumn{3}{r|}{$0.47838 \pm 0.05943$ }\\ 
-\cellcolor{tabcolor}$A$&\multicolumn{3}{r|}{$0.40198 \pm 0.11751$ }\\ 
-\cellcolor{tabcolor}$c$&\multicolumn{3}{r|}{$0.05726 \pm 0.01415$ }\\ 
-\hline\end{tabular}
-
 \end{SCfigure}
 
