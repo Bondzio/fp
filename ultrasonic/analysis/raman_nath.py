@@ -15,6 +15,8 @@ from matplotlib import rcParams
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 from mpl_toolkits.mplot3d import Axes3D
+
+
 import seaborn as sns
 
 import time
@@ -54,12 +56,36 @@ def plot_3d():
     fig = plt.figure()
     ax = fig.gca(projection='3d')
     U = np.load(npy_dir + "U.npy")
-    for i in np.arange(20,1,-1):
-        ch_a = np.load(npy_dir + "phase_%03d_ch_a.npy"%i)
-        t    = np.load(npy_dir + "phase_%03d_t.npy"%i)
-        ax.plot(t,t*0 + U[i-1],ch_a, c="%.3f"%(i/20))
+    
+    theta_coeff = np.load(npy_dir2 + "gauge_fit_coeff.npy")
+    theta_cov = np.load(npy_dir2 + "gauge_fit_cov.npy")
+    #theta_coeff_corr = uc.correlated_values(theta_coeff, theta_cov)
+    theta = lambda t: np.polyval([theta_coeff[0],0], t-0.516)
+    for j in [0]:
+        U_fit = np.load("U_fit%03d.npy"%(j))
+        data_fit = np.load("data_Fit%03d.npy"%(j))
+        ax.plot(U_fit*0, U_fit[::-1], data_fit)
+
+
+    for i in np.arange(20,1,-1)[::-1]:
+        ch_a = np.load(npy_dir + "phase_%03d_ch_a.npy"%i)/ 0.87821
+        t    = np.load(npy_dir + "phase_%03d_t.npy"%i)*10**3
+        t = (theta(t))[800:1250]
+        ch_a = ch_a[800:1250]
+        ax.plot(t,t*0 + U[21-i-1],ch_a, c="%.3f"%(i/40))
+        #ax.plot(t,t*0 + U[i-1],ch_a, c="%.3f"%(i/40))
+
+    
+    ax.xaxis.set_tick_params(labelsize = 40)
+    ax.yaxis.set_tick_params(labelsize = 40)
+    ax.zaxis.set_tick_params(labelsize = 40)
+
+    ax.set_ylabel(r"$U$ in V", fontsize = 40)
+    ax.set_xlabel(r"$\theta$ in rad",fontsize = 40)
 
     make_fig(fig,1,0,"3dplot")
+    
+plot_3d()
 
 def search_maxi(signal,t,neighbours=5, minimum=0.05, n_plateau=20):
     # get local maxima
@@ -96,6 +122,7 @@ def plot_maxi(plot_all=False):
     theta_ar = [] 
     for i in np.arange(20,0,-1):
     #for i in [7]:
+        print(I0)
         signal = np.load(npy_dir + "phase_%03d_ch_a.npy"%i) / I0
         t    = np.load(npy_dir + "phase_%03d_t.npy"%i) *10**3
         t = theta(t)
@@ -139,7 +166,7 @@ def plot_maxi(plot_all=False):
         used.add(i0)
         signals[0] += [signal[i0]]
         indices[0] += [i-1]
-        print(i)
+        #print(i)
         # identify first maxima
         dist1_1 = 1 
         dist1_2 = 1
@@ -295,6 +322,8 @@ def plot_maxi(plot_all=False):
             ax  = plt.subplot(111)
             plt.errorbar(U[indices_],signals_, yerr = sigma, fmt="x")
             plt.plot(U_fit,data_fit)
+            np.save("U_fit%03d"%j,U_fit)
+            np.save("data_Fit%03d"%j,data_fit)
 
             #error_on_fit = un.std_devs(func_0(U_fit, *p_uc))
             data_fit_min = func_j(U_fit, p[0]+p_uc[0].s,p[1]+p_uc[1].s,p[2]+p_uc[2].s)
@@ -326,4 +355,4 @@ def plot_maxi(plot_all=False):
     print(np.mean(SLambs))
 
 
-plot_maxi(False)
+plot_maxi(True)
