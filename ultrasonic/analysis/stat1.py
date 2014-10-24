@@ -78,23 +78,8 @@ def la_coeff2(f1, coeff, cov, var_names, additional_digits=0):
     prints coeffients and their covariance matrix to a .tex file
     """
     s = ""
-    s += r" \begin{tabular}{|"+"r|"*(len(var_names)+1)+"}\n \\hline \n"
-    s+= "\\tabcolor"
-    # \\cellcolor[RGB]{206,250,201}
-    for name_i,name in enumerate(var_names):
-        s += "&\\tabcolor$" + name  +"$"
-    s+= r"\\ \hline"+" \n "
-    for row_index, row in enumerate(cov):
-        str_row = "\\tabcolor$%s$&"%(var_names[row_index])
-        for entry in row:
-            digit = dig_val(entry) + additional_digits
-            var = round(entry, digit)
-            str_row += "$%.3f$ &"%entry
-        str_row = str_row[:-1] + r"\\ \hline"
-        s += str_row + "\n"
-    s += r"\end{tabular}"+"\n"
     s += r"\begin{align}"
-    s += r"\\ \Rightarrow \qquad"+"\n"
+    s += r"\Rightarrow \qquad"+"\n"
     for j, co in enumerate(coeff):
         str_co = "    " + var_names[j]
         var = uc.ufloat(coeff[j], np.sqrt(cov[j,j]))
@@ -103,6 +88,22 @@ def la_coeff2(f1, coeff, cov, var_names, additional_digits=0):
             str_co = str_co[:-2]
         s += str_co +"\n"
     s+= r"\end{align}"+"\n\n"
+
+    s += r" \begin{tabular}{|"+"r|"*(len(var_names)+1)+"}\n \\hline \n"
+    s+= "\\cellcolor{tabcolor}"
+    # \\cellcolor{tabcolor}
+    for name_i,name in enumerate(var_names):
+        s += "&\\cellcolor{tabcolor}$" + name  +"$"
+    s+= r"\\ \hline"+" \n "
+    for row_index, row in enumerate(cov):
+        str_row = "\\cellcolor{tabcolor}$%s$&"%(var_names[row_index])
+        for entry in row:
+            digit = dig_val(entry) + additional_digits
+            var = round(entry, digit)
+            str_row += "$%.5f$ &"%entry
+        str_row = str_row[:-1] + r"\\ \hline"
+        s += str_row + "\n"
+    s += r"\end{tabular}"+"\n"
     f1.write(s)
 
 
