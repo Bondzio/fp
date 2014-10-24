@@ -106,11 +106,12 @@ For this part, we set the lenses such that the beam would be widened and collima
 with the graph paper. The measured distances can be seen in the handwritten records, see appendix \ref{sec:records}.
 The small focal length of lens~3 ($f_3 = 300$ mm) made it impossible to focus the beam exactly onto diode~1. We 
 chose the closest position allowed by the setup, such the lens would not interfere with the second beam. 
+We were told not to change the positions of the diodes. 
 
 We measured the peaks with the amplitude grating two times, since we noticed a difference when turning the grating. 
 Both measurements are plotted in figure \ref{fig:calibrate_peaks}. 
 We searched for the times at the maxima numerically, taking the center value in case of a plateau. 
-The results are plotted as dotted lines, the numbers are given in table \ref{tab:gauge_peaks}. 
+The results are plotted as dotted lines. We relinquish the displaying of all numerical interim results. 
 The error was estimated somewhat bigger then the calculated standard deviation (in almost 
     all cases, $s_{\overline{t_\mathrm{max, calculated}}}  = 0.004$ ms), which has little meaning, 
 since we only took two measurements. The estimated errors are then further propagated for the fits. 
@@ -161,8 +162,8 @@ known lattice constant $K_\mathrm{gauge}$ of the gauge grating, we can perform a
 The result is plotted in figure \ref{fig:calibrate_fit}. The values and the corresponding 
 covariance matrix are: 
 \begin{align}
-	\omega &= 0.0663 \\
-	\theta_0 &= 0.0005 \\
+    \omega &= 0.0663 \, \mathrm{rad / s}\\
+    \theta_0 &= 0.0005 \, \mathrm{rad} \\
 	\mathrm{cov} &=
 	\begin{pmatrix}
 		2.0\mathrm{e}-07 &-6.1\mathrm{e}-09 \\
@@ -258,14 +259,25 @@ directly visible, however.
 
 \subsection{Aperture function}
 In this section we calculate the aperture function of grating 1 from the intensity 
-of the maxima observed by approximating its Fourier series to the maximal 
+of the maxima observed. This is done by approximating its Fourier series to the maximal 
 order visible, as described in the theory section. The obtained data from the measurement 
 shows asymmetry in most cases. The plotted data can be seen in the appendix, 
 \ref{fig:aperture_positions_detail}. We chose position five for the further calculation, 
 because it allows to identify maxima up to the fourth order on both sides. 
 We obtained the intensities by taking the mean of each two values for one order. 
-The intensities are listed in table \ref{tab:intensities} below. We 
-approximated the error by taking the errors of the oscilloscope. 
+The intensities are listed in table \ref{tab:intensities} below.
+The error on the channels of the oscilloscope 
+\textit{Hameg HM1508-2} in the used resolution is given by
+\begin{equation}
+    S_U = 3 \% \times 1\mathrm{V} = 0.03 \textrm{V}
+    \label{eq:error_osci}
+\end{equation}
+The affected data is usually the height of an absorption peak. It's
+error is than taken to be $S_U$ with the corresponding height. 
+Due to the dependency on the scale, we saved the data at two 
+scales for the forgoing analysis -- one for the peaks of 
+zeroth maximum, another for all higher orders, which in most cases
+are much lower. 
 \begin{table}[H]
     \centering
     \input{analysis/aperture_I}
