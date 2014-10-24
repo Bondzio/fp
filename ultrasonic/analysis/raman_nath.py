@@ -91,6 +91,8 @@ def plot_maxi(plot_all=False):
     I0 = max(signal)
     signals = [[],[],[],[]]
     indices = [[],[],[],[]]
+    Lambs = []
+    indices_Lambs = []
     theta_ar = [] 
     for i in np.arange(20,0,-1):
     #for i in [7]:
@@ -148,7 +150,12 @@ def plot_maxi(plot_all=False):
             signals[1] += [(signal[i1_1]+signal[i1_2])/2]
             indices[1] += [i-1]
             dist1_1 = 0 
-            dist1_2 = 0 
+            dist1_2 = 0
+            t_ = (np.abs(t[i1_1]) + np.abs(t[i1_2]))/2
+            t_ = uc.ufloat(t_,0.05*t_)
+            Lamb = 632.8e-9/un.sin(t_)*10**6
+            Lambs += [Lamb]
+            indices_Lambs += [i-1]
 
             #theta1 = theta_n(1) 
             #cap = list(set(maxis).difference(used))
@@ -258,50 +265,65 @@ def plot_maxi(plot_all=False):
 
 
             plt.legend(fontsize = 14)
-            make_fig(fig1,0,1,"raman_%03d"%i)
+            make_fig(fig1,0,0,"raman_%03d"%i)
             plt.close()
-    for j in range(4):
-    
-        signals_ = np.array(signals[j][::-1])
-        indices_ = np.array(indices[j][::-1])
-        sigma = (0.03 + signals_*0) / I0
-        p0 = [ 0.5, 1, 0.1]
-        func_j= lambda U__,alpha,A,c: func(U__, j, alpha, A, c)
+    if plot_all:
+        for j in range(4):
         
-        p,cov = curve_fit(func_j, U[indices_], signals_, p0 = p0, sigma = sigma, absolute_sigma = True)
-        p[0] = np.abs(p[0])
-        p_uc = uc.correlated_values(p, cov)
+            signals_ = np.array(signals[j][::-1])
+            indices_ = np.array(indices[j][::-1])
+            sigma = (0.03 + signals_*0) / I0
+            p0 = [ 0.5, 1, 0.1]
+            func_j= lambda U__,alpha,A,c: func(U__, j, alpha, A, c)
+            
+            p,cov = curve_fit(func_j, U[indices_], signals_, p0 = p0, sigma = sigma, absolute_sigma = True)
+            p[0] = np.abs(p[0])
+            p_uc = uc.correlated_values(p, cov)
 
-        f1 = open("coefficients_bessel%01d.tex"%j,"w")
-        st.la_coeff2(f1, p,cov, ["\\alpha/ V^{-1}","A","c"])
-        f1.close()
+            f1 = open("coefficients_bessel%01d.tex"%j,"w")
+            st.la_coeff2(f1, p,cov, ["\\alpha/ V^{-1}","A","c"])
+            f1.close()
 
-        chi2 = np.sum(((func_j(U[indices_], *p) - signals_)/sigma)**2)/(len(indices_)-3)
-
-
-        U_fit = np.linspace(min(U),max(U),1000)
-        data_fit = func_j(U_fit, *p)
+            chi2 = np.sum(((func_j(U[indices_], *p) - signals_)/sigma)**2)/(len(indices_)-3)
 
 
-        fig = plt.figure()
-        ax  = plt.subplot(111)
-        plt.errorbar(U[indices_],signals_, yerr = sigma, fmt="x")
-        plt.plot(U_fit,data_fit)
+            U_fit = np.linspace(min(U),max(U),1000)
+            data_fit = func_j(U_fit, *p)
 
-        #error_on_fit = un.std_devs(func_0(U_fit, *p_uc))
-        data_fit_min = func_j(U_fit, p[0]+p_uc[0].s,p[1]+p_uc[1].s,p[2]+p_uc[2].s)
-        data_fit_max = func_j(U_fit, p[0]-p_uc[0].s,p[1]-p_uc[1].s,p[2]-p_uc[2].s)
 
-        plt.fill_between(U_fit, data_fit_min , data_fit_max,facecolor="g", color="g", alpha=0.3 )
-        #plt.title("%d"%j)
+            fig = plt.figure()
+            ax  = plt.subplot(111)
+            plt.errorbar(U[indices_],signals_, yerr = sigma, fmt="x")
+            plt.plot(U_fit,data_fit)
 
-        props = dict(boxstyle='round', facecolor='white', alpha=0.5)
-        textstr = '$A \cdot J_%d^2(\\alpha \cdot U) + c$ \n$A=%.3f\pm%.3f$\n$\\alpha=(%.3f\pm%.3f)1/V$\n$c=%.3f\pm%.3f$\n$\chi^2/n_d = %.3f$'%(j,p[1],p_uc[1].s,p[0],p_uc[0].s,p[2],p_uc[2].s,chi2)
-        pos = [(0.1, 0.4),(0.4,0.4),(0.6,0.4),(0.1,0.9)]
-        ax.text(pos[j][0],pos[j][1], textstr, transform=ax.transAxes, fontsize=12, va='top', bbox=props)
-        plt.xlabel("applied Voltage / V")
-        plt.ylabel("relative Intensity of I_%d"%j)
-        plt.grid(True)
-        make_fig(fig,0,1,"besselfit_%03d"%j)
+            #error_on_fit = un.std_devs(func_0(U_fit, *p_uc))
+            data_fit_min = func_j(U_fit, p[0]+p_uc[0].s,p[1]+p_uc[1].s,p[2]+p_uc[2].s)
+            data_fit_max = func_j(U_fit, p[0]-p_uc[0].s,p[1]-p_uc[1].s,p[2]-p_uc[2].s)
 
-plot_maxi(True)
+            plt.fill_between(U_fit, data_fit_min , data_fit_max,facecolor="g", color="g", alpha=0.3 )
+            #plt.title("%d"%j)
+
+            props = dict(boxstyle='round', facecolor='white', alpha=0.5)
+            textstr = '$A \cdot J_%d^2(\\alpha \cdot U) + c$ \n$A=%.3f\pm%.3f$\n$\\alpha=(%.3f\pm%.3f)1/V$\n$c=%.3f\pm%.3f$\n$\chi^2/n_d = %.3f$'%(j,p[1],p_uc[1].s,p[0],p_uc[0].s,p[2],p_uc[2].s,chi2)
+            pos = [(0.1, 0.4),(0.4,0.4),(0.6,0.4),(0.1,0.9)]
+            ax.text(pos[j][0],pos[j][1], textstr, transform=ax.transAxes, fontsize=12, va='top', bbox=props)
+            plt.xlabel("applied Voltage / V")
+            plt.ylabel("relative Intensity of I_%d"%j)
+            plt.grid(True)
+            make_fig(fig,0,0,"besselfit_%03d"%j)
+
+    fig = plt.figure()
+    ax  = plt.subplot(111)
+    U_  = U[indices_Lambs]
+    SLambs = [k.s for k in Lambs]
+    Lambs  = [k.n for k in Lambs]
+
+    plt.errorbar(U_,Lambs, yerr =SLambs, fmt= "x")
+    plt.xlabel("Voltage / V")
+    plt.ylabel("$\Lambda$ in $\mu$m")
+    make_fig(fig,0,1,"soundspeed")
+    print(np.mean(Lambs))
+    print(np.mean(SLambs))
+
+
+plot_maxi(False)
