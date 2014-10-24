@@ -123,10 +123,7 @@ def plot_maxi(plot_all=False):
 
         tt = theta_n(4)
         ii = np.argmin(np.abs(t + tt))
-        print("ii",ii)
 
-        print(theta_n(4),"%.5f"%t[ii])
-        print(maxis)
         maxis = np.sort(maxis)
         used = set() 
         # identify zeroth maximum
@@ -245,19 +242,20 @@ def plot_maxi(plot_all=False):
     for j in range(4):
     
         signals_ = np.array(signals[j][::-1])
-        indices_ = np.array(indices[j])
+        indices_ = np.array(indices[j][::-1])
         sigma = (0.03 + signals_*0) / I0
-        print(len(sigma))
-        print(len(signals_))
         p0 = [ 0.5, 1, 0.1]
         func_j= lambda U__,alpha,A,c: func(U__, j, alpha, A, c)
         
         p,cov = curve_fit(func_j, U[indices_], signals_, p0 = p0, sigma = sigma, absolute_sigma = True)
+        p[0] = np.abs(p[0])
         p_uc = uc.correlated_values(p, cov)
 
-        f1 = open("coefficients_bessel%01d.tex"%j,"a")
+        f1 = open("coefficients_bessel%01d.tex"%j,"w")
         st.la_coeff2(f1, p,cov, ["\\alpha","A","c"])
         f1.close()
+
+        chi2 = np.sum(((func_j(U[indices_], *p) - signals_)/sigma)**2)/(len(indices_)-1)
 
 
         U_fit = np.linspace(min(U),max(U),1000)
@@ -270,18 +268,19 @@ def plot_maxi(plot_all=False):
         plt.plot(U_fit,data_fit)
 
         #error_on_fit = un.std_devs(func_0(U_fit, *p_uc))
-        #data_fit_min = data_fit - error_on_fit
-        #data_fit_max = data_fit + error_on_fit
+        data_fit_min = func_j(U_fit, p[0]+p_uc[0].s,p[1]+p_uc[1].s,p[2]+p_uc[2].s)
+        data_fit_max = func_j(U_fit, p[0]-p_uc[0].s,p[1]-p_uc[1].s,p[2]-p_uc[2].s)
 
-        #plt.fill_between(U_fit, data_fit_min , data_fit_max,facecolor="r", color="b", alpha=0.3 )
-        plt.title("%d"%j)
+        plt.fill_between(U_fit, data_fit_min , data_fit_max,facecolor="g", color="b", alpha=0.3 )
+        #plt.title("%d"%j)
 
         props = dict(boxstyle='round', facecolor='white', alpha=0.5)
-        textstr = '$A + J_0^2(\\alpha \cdot U) + c$ \n$A=%.3f\pm%.3f$\n$\\alpha=(%.3f\pm%.3f)1/V$\n$c=%.3f\pm%.3f$'%(p[1],p_uc[1].s,p[0],p_uc[0].s,p[2],p_uc[2].s)
-        ax.text(0.4,0.4, textstr, transform=ax.transAxes, fontsize=12, va='top', bbox=props)
+        textstr = '$A + J_0^2(\\alpha \cdot U) + c$ \n$A=%.3f\pm%.3f$\n$\\alpha=(%.3f\pm%.3f)1/V$\n$c=%.3f\pm%.3f$\n$\chi^2/n_d = %.3f$'%(p[1],p_uc[1].s,p[0],p_uc[0].s,p[2],p_uc[2].s,chi2)
+        pos = [(0.1, 0.4),(0.4,0.4),(0.6,0.4),(0.1,0.9)]
+        ax.text(pos[j][0],pos[j][1], textstr, transform=ax.transAxes, fontsize=12, va='top', bbox=props)
         plt.xlabel("applied Voltage / V")
         plt.ylabel("relative Intensity of I_0")
         plt.grid(True)
-        make_fig(fig,1,0,"besselfit_%03d"%j)
+        make_fig(fig,0,1,"besselfit_%03d"%j)
 
 plot_maxi(False)
