@@ -20,34 +20,36 @@ wavelength this effects become stronger and stronger.
 \end{figure}
 \subsubsection{Frauenhofer Diffraction} 
 We will not look at the non-dynamic case, leaving out all the factors $e^{-i\omega t}$ which can be appended
-easily after if necessary. We start with a general wave incident from the left side, with value $g(f)$ at the
+easily if necessary. We start with a general wave incident from the left side, with value $g(f)$ at the
 surface of the aperture at a point $f$ (see figure \ref{fig:beam}). Then the wave at point $P$ due to the
 out coming wave of $f$ will
-be proportional to $g(f)$, having lost
-energy due to the enlarged surface proportional to $R$ and gaining a phase as well $e^{ikR}$ as well; 
-the total wave at $P$ (which we denote with $\psi$) is thus the integral over the surface along d$f$: 
+be proportional to $g(f)$. The energy density is reduced due to the enlarged surface proportional to $R$ 
+and gaining a phase $e^{ikR}$ as well. 
+The total wave at $P$ (which we denote with $\psi$) is thus the integral over the surface along d$f$: 
 \begin{equation}
     \label{eq:int1}
     \psi_P \propto \int \frac{g(f) e^{ikR(f)}}{R(f)}\del f.
 \end{equation}
-The approximation is which can be successful applied is fairly simply: For $P$ far enough away, the distance
+The approximation which can be successful applied is fairly simply: For $P$ far enough away, the distance
 $R$ is nearly the same for all points on the surface $f$, such that $R$ is not dependent on $f$ anymore and
-we can pull it out of the integral
+we can pull it out of the integral, yielding
 \begin{equation}
     \label{eq:int1}
     \psi_P \propto \int u(f) e^{ikR}\del f.
 \end{equation}
-The deeper point of this fairly easy assumption is that for distance $R \Rightarrow \infty$ the wavefunction
-of an whatever shaped aperture is proportional to the Fourier Transform of the aperture. Lets assume
-now a aperture function $g(x)$ of an one dimensional opening, then this translates into
+The deeper point of this assumption is that for distance $R \Rightarrow \infty$ the wavefunction
+of an arbitrarily shaped aperture is proportional to the Fourier transform of the aperture.
+Let's assume an aperture function $g(x)$ of an one dimensional opening -- the dimension can be reduced 
+due to translational symmetry. Then this translates into
 \begin{equation}
     \psi_P \propto \mathcal{F} \left[g(k)\right ]_P
 \end{equation}
 where the dependency of $P$ in $g(x)$ comes from the factor $R$.
-We have to think about Fourier transformations before we can continue our studies.
+We have to think about Fourier transformations to continue our studies.
 
 \subsubsection{Fourier Transformations}
-We used the notation  $\mathcal{F} \left[g(k)\right ]_P$ which will be introduced here:
+We used the notation  $\mathcal{F} \left[g(k)\right ]_P$ for the Fourier transform 
+of $g(k)$ which will be introduced here:
 \begin{align}
 f(x) &= \int_{-\infty}^{\infty} F(k)\exp(i kx)\del k\\
 F(k) &= \mathcal{F}_x\left [f(x)\right ](k) =
@@ -66,22 +68,21 @@ The most important properties are:
    =  \int_{-\infty}^{\infty}\bar{f}(\tau)f(\tau + x) \del\tau 
    &\mbox{ (Wiener-Khinchin Theorem) }
 \end{align}
-Where in the last property $\bar{f}$ means the complex conjugation of $f$.
+where in the last property $\bar{f}$ means the complex conjugation of $f$.
 
 \subsubsection{Intensity distributions}
 An important insight from electrodynamics is that the intensity density I of a
-wave is proportional to the squared modulus of the complex wavefunction (We get the total intensity by
-integrating over all points $P$).
-Since this is enough for us to
-know, we arrive at
+wave is proportional to the squared modulus of the complex wavefunction. We get the total intensity by
+integrating over all points $P$.
+This is enough for us to know to arrive at
 \begin{equation}
     I_P \propto \psi_P^2 \propto \left ( \mathcal{F} \left[g(k)\right ]_P \right )^2 
 \end{equation}
-Now we can parametrize the Point $P$ in various scenarios. Let's assume a screen on the right side of
-figure~\ref{fig:beam} at an angle $\theta$. Obviously the Distance $R$ can be parametrized such that
-$R = x \sin \theta $, where $x$ is the horizontal distance (see figure~\ref{fig:beam2}).
-Coming from this it is now possible to calculate the intensity from various one-dimensional aperture
-functions
+Now we can parametrize the point $P$ in various scenarios. Let's assume a screen on the right side of
+figure~\ref{fig:beam} at an angle $\theta$. The distance $R$ can be parametrized such that
+$R = x \sin \theta $, where $x$ is the horizontal distance (see figure~\ref{fig:beam}).
+It is now possible to calculate the intensity from various one-dimensional aperture
+functions, for example a single window:
 \begin{align}
     \label{eq:g1}
     g(x) &= 
@@ -95,12 +96,13 @@ functions
     \frac{\sin ( k \frac{b}{2} \sin ( \theta ))}{k \frac{b}{2}  \sin(\theta)} 
     = \sinc(\beta(\theta)).
 \end{align}
-Where we defined $\beta(\theta) = \frac{kb \sin(\theta)}{2} $
-Such that we have for the Intensity density (dropping factor 4, see figure~\ref{fig:sinc1})
+We defined $\beta(\theta) = \frac{kb \sin(\theta)}{2}$.
+For the intensity, we get
 \begin{equation}
     \label{eq:sinc1}
     I(\theta) \propto \psi^2 \propto \sinc^2(\beta(\theta)).
 \end{equation}
+For exemplary values, this is plotted in figure~\ref{fig:sinc1}).
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/sinc1}
@@ -109,7 +111,7 @@ Such that we have for the Intensity density (dropping factor 4, see figure~\ref{
     \label{fig:sinc1}
 \end{figure}
 
-\subsubsection{diffraction gratings}
+\subsubsection{Diffraction gratings}
 Equation~\eqref{eq:sinc1} leads straightforward to the intensity density of
 the diffraction grating, using \eqref{eq:fourier}. We need to understand 
 that a diffraction grating is the result of convolution of a simple opening
@@ -154,7 +156,7 @@ this is further reduced to only even components, thus only the $\cos$ components
 \begin{equation}
     f(t)=\frac{a_{0}}{2}+\sum_{k=1}^{\infty} a_{k}\cos\left(kt\right)\, .
     \label{eq:fourier_series_even}
-\end{equation}
+\end{equation}za
 Taking the observed maxima of intensity $I_m$ of order $m$, we can 
 apply this correspondance to approximate the aperture function $g(x)$ 
 to the maximal order $m_\mathrm{max}$ observed:
@@ -164,7 +166,7 @@ to the maximal order $m_\mathrm{max}$ observed:
 \end{equation}
 We can further normalize $g(x)$ by dividing through the sum of the coefficients:
 \begin{equation}
-    g_\mathrm{normalized}(x)=\frac{g(x)}{\sum_{m=1}^{m_\mathrm{max}} \sqrt{I_m}}\, .
+    g_\mathrm{normalized}(x)=\frac{g(x)}{\sum_{m=0}^{m_\mathrm{max}} \sqrt{I_m}}\, .
     \label{eq:g_approx}
 \end{equation}
 

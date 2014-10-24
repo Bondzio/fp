@@ -154,10 +154,12 @@ for q1 in [plot_to_work_on]: #
                 g_x /= (np.sum(un.sqrt(I_nonzero)) + un.sqrt(I_zero))   # normalize
                 return g_x
             f = open(r"./aperture_I.tex", "w+")
-            f.write("\t\\begin{tabular}{|p{3.82cm}|p{3.82cm}|p{3.82cm}|p{3.82cm}|}\n")
+            f.write("\t\\begin{tabular}{|p{2.82cm}|p{2.82cm}|p{2.82cm}|p{2.82cm}|}\n")
             f.write("\t\t\hline\n")
             f.write("\t\t\\rowcolor{tabcolor}\n")
-            f.write("\t\tOrder $m$ & $I_\mathrm{left}$ / V & $I_\mathrm{right}$ / V & $\overline{I}$ / V  \\\\ \hline\n")
+            f.write("\t\tOrder $m$ & $I_\mathrm{left}$ / V \\
+                    & $I_\mathrm{right}$ / V \\
+                    & $\overline{I}$ / V  \\\\ \hline\n")
             f.write("\t\t$0$ & \t & \t& ${0:L}$ \\\\ \n".format(I_zero))
             for [m, I_l, I_r, I ] in np.column_stack((ms, I_nonzero_left, I_nonzero, Is)):                # orders m != 0
                 f.write("\t\t$%i$ & ${0:L}$ & ${1:L}$ & ${2:L}$ \\\\ \n".format(I_l, I_r, I)%m)
