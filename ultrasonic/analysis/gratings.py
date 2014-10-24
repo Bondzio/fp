@@ -71,8 +71,8 @@ rcParams['xtick.labelsize'] = fontsize_labels
 rcParams['ytick.labelsize'] = fontsize_labels
 
 plt.close("all")
-show_fig = False
-save_fig = True
+show_fig = True
+save_fig = False
 fig_dir = "../figures/"
 npy_dir = "./data_npy/"
 plotsize = (6.2, 3.83)  # width corresponds to \textwidth in latex document (ratio = golden ratio ;))
@@ -148,6 +148,9 @@ for i in range(5):  # i+1 = nr of grating
             f.write(", %i"%(m))
     K_mean = weighted_avg_and_std(np.array(Ks)) # calculate weighted mean and std_dev for K
     f.write("$ & $ {0:L} $ \\\\\n".format(K_mean * 10 ** 6)) 
+    if i==0:
+        np.save(npy_dir + "K_1.npy", K_mean.n)
+        np.save(npy_dir + "K_1_std_dev.npy", K_mean.n)
     N = phi / K_mean                    # number of lines illuminated
     a = N * n_visible[i]                # resolution 
     f2.write("${0:L}$ & $ %i \pm %i $ \\\\\n".format(N)%(a.n, a.s)) 

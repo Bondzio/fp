@@ -21,8 +21,8 @@ def osci_csv_npy(file_in, file_out):
 npy_dir = "./data_npy/"
 gauge = False
 gratings = False
-aperture = False 
-raman = True
+aperture = True
+raman = False
 
 if gauge:
     for q in "ab":
@@ -37,7 +37,7 @@ if gratings:
         osci_csv_npy(file_in, file_out)
 
 if aperture:
-    for q1 in ["1", "2", "3", "4", "5", "7", "8"]:
+    for q1 in ["1", "2", "3", "4", "5", "6", "7", "8"]:
         for q2 in ["a", "b"]:
             plot_suffix = q1 + q2 
             print(q1 + q2)
