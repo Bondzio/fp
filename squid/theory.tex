@@ -1,15 +1,75 @@
 \section{Theoretical Background}
-The Superconducte was discovered in 1911 by Heike Kamerlingh Onnes, while
-investigating the temperature dependence of electrical resistance.
-He noticed the disappereance of resistance of mercury below 4.2 K and
-after this discovery more materials were found to have this superconducting property.
-\ldots
-
-
-
-
-
-
+\label{sec:theory}
+As we have mentioned in the introduction, the phenomenon of quasi zero
+resistance in an material below a critical temperature is refered as superconductivity.
+But this is only one part of the hole picture, when we look at the various
+unintuitive properties of these materials. In order to build up an consistent argumentation,
+we will first phrase some general outcomings of statistical mechanics, and then proceed to the
+application of this theory.
+\subsection{Emergent quantum phenomenon}
+Considering temperatures low enough, such that the de Broglie wavelength $\lambda = \frac{h}{p}$ becomes comparable to the
+average distances between atoms, the macroscopic properties are determined by quantum effects.
+But even at higher temperatures, taking into account the quantum mechanical prescription is necessary:
+Following from this a surprising but deep result of early statistical mechanics is the \textbf{Bohr–van Leeuwen theorem}
+\footnote{The magnetism is always zero, since the minimization of free energy does not depend
+on the magnetic field, if the electrons are immobile. Only within the quantum mechanical prescription (including the spin and the
+pauli exclusion principle) non zero magnetization can exist.}:
+Applying statistical mechanics and classical mechanics consistently, diamagnetism, paramagnetism and ferromagnetism
+cannot not exist in static and isolated systems. Applying quantum mechanics, a non-zero magnetization 
+is possible, and if we look carefully, we notice that this is due to entropic forces
+dependent on the temperature: Below the Curie Temperature magnetization is nonzero, above it is zero
+(Without exterior field applied). In between, at the transition, we have a so called second-order phase
+transition: The suceptibility is divergent and the correlation length is infinite. Now, if we look
+at certain materials, we notice that below a certain temperature, a second order phase transition takes
+place such that the electric resistance is \textbf{exactly zero} and magnetic fields are expulsed: 
+Superconductivity is a phenomenon taking place in a \textbf{different phase} of the material.
+\paragraph{The Meißner-Ochsenfeld effect} is the expulsion of magnetic fields inside of an superconducter
+\footnote{The Meißner-Ochsenfeld effect was discovered 1933 by Walther Meißner and Robert Ochsenfeld. Analogously to the
+magnetization the phenomenon is not explainable through classical physics.}:
+The superconducter is hence not only ideal in the sence of zero resistance, but also with respect
+to diamagnetism. In order to explain the repulsion, it would be necessary to introduce the zero-resistance
+currents inside of the superconducter, which emerge in order to compensate the exterior magnetic field.
+\paragraph{Cooper effect} Following \cite{Landau}, we start with explaining superconductivity through
+cooper pairs: At the critical temperature a for electrons quite astonishing instability arises: Fermions lying 
+near the fermi surface in $p$-space tend to form bound states of pairs with the condition to have equal and
+opposite momenta and antiparallel spins. This is valid for any fermi gas, even if the attraction between the
+particles is vanishing small. The problem hereby is that the formalism to explain thermodynamical quantities 
+of an material through the fermi surface ceases to work, since the coupling of fermions results in bosonic quasi
+particles\footnote{J. Bardeen, L.N. Cooper and J.R. Schrieffer developed this idea 1957, for which
+they shared the Nobel Price 1972. Describing the new state of matter in terms of bosonic quasi-particles perturbatively 
+trough appropriate operator transformations was first given by N.N. Bogolyubov in 1958.}, 
+describing the effective state of matter. It is important to understand why the superconducting state 
+is different from the one above the critical temperature in terms of makroscopic behavior and conductivity:
+\begin{itemize}
+\item Through interactions with phonons of the neutral metal, the effective interaction between electrons becomes attractive
+\footnote{There is an intuitively explanation~\cite{cooper1956bound}: If we treat the electron in a metal
+as a free particle, the electron is repelled from other electrons through Coloumb interaction, while
+being attracted to the positive ions making up the rigid lattice of the metal. This disparity 
+brings the io closer to the electron and increases the positive potential in the lattice at that point, which again
+attracts electrons. Due to this indirect interaction, electrons are given the possibility to overcome the repulsion,
+when the conditions for low enough temperature and approriate ionic background meet.
+}. 
+\item Since the electrons can be described as a macroscopic fermi liquid, combined with the ionic background of the metal, 
+below the critical temperature this liquid enters the state of superfluidity. The properties of superconductivity can be 
+associated with the respective characteristics of superfluidity. For instance, the zero resistance is deeply connected 
+to the zero viscosity of a superfluid. The coupling of electrons to cooper pairs can arise at distances up to nano meters,
+which shows the macroscopic order of magnitude of this quantum effect.
+\item The bosonization of electrons to cooper pairs gives rise to the second order phase transition: Since 
+the pauli principle applies only to fermions, all cooper pairs can reside in the lowest energy level,
+which results in the zero resistance. 
+\end{itemize}   
+\paragraph{The superconductivity current} transfers no heat and involes
+ no dissipation of energy. This 
+so called supercurrents can even exist in thermodynamic equilibrium and
+is responsible for the Meißner-Ochsenfeld effect. These currents are very
+sensible with respect to outer disturbations: For temperature fluctuations
+which involve temperatures higher than the critical Temperature $T_C$, 
+or through too high external electro-magnetic fields, the supercurrent
+breaks down immediately. Let us now look at the vector potential $A$ of the 
+magnetic flow such that
+\begin{equation}
+\int \vec{A} \matrm{d} \vec{r}
+\end{equation} 
 \subsection{magnetic field}
 Following we can straightaway calculate the magnetic field using
 Biot-Savart law (see figure~\ref{fig:magnetic_field}):
@@ -43,9 +103,10 @@ radius is neglectable.
     \label{fig:magnetic_field}
 \end{figure}
 \section{Technical details}
+\label{sec:technics}
 In this section wo want to go into the devices which will be used during the
 conduction of the experiment.
-\subsection{The SQUID (Superconducting Quantum Interference Device} represents a magnetic field
+\paragraph{The SQUID (Superconducting Quantum Interference Device)} represents a magnetic field
 detector of great precision, using the already stated superconducting flux quantization and
 the josephson effect. We will use a RF-Squid, which operates with one single josephson junction
 \footnote{The first squid to be invented was a DC-Squid, having two josephson junctions in parallel. In 1962

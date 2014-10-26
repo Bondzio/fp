@@ -48,21 +48,27 @@ def val_str(x,Sx):
     return ("%."+str(dig)+"f \pm %."+str(dig)+"f")%(x,Sx)
 
 def magnetic():
+    d1 = uc.ufloat(26.5,0.5)
+    d2 = uc.ufloat(29.5,0.5)
+    #z = (un.sqrt((d1 - (d + d2))**2 +(d4-d5)**2 ))
+    #print((d1 - (d + d2)), (d4-d5) )
+
     R = [51.46,100.8,300.8,510.6,1000]
     U = [2.53, 2.67, 2.70, 2.70, 2.71]
     R = np.array([uc.ufloat(k,0.01*k) for k in R])
     r = uc.ufloat(2.0,0.25)
-    z = uc.ufloat(3.0,0.2)
+    z = uc.ufloat(3.0,0.5)
     U = np.array([uc.ufloat(k,0.01) for k in U])
     B = cc.mu_0 * U * r**2 / (2 * R * z**3)  *10**9
     p = np.pi * r**2 * U / R * 1000
     print("magnetic fields")
     for k in B:
-        print("%s"%val_str(k.n,k.s))
+        print("&$%s$"%val_str(k.n,k.s))
+        #print("%.1f \pm %.1f"%(k.n,k.s))
     print("p dipoles")
     for k in p:
         print("&$%.1f \pm %.1f$"%(k.n,k.s))
-
+magnetic()
 def plot_all():
     """
     Winter seclusion -
@@ -149,7 +155,9 @@ def B_res(plot,polarplot):
             plt.scatter(Bx,By, alpha = 0.5)
             plt.xlim(min(Bx),max(Bx))
             plt.ylim(min(By),max(By))
-            plt.show()
+            plt.xlabel("$B_x$ in nT")
+            plt.ylabel("$B_y$ in nT")
+            make_fig(fig,1,1,name="polar"+shortname)
 
 
 
@@ -167,11 +175,13 @@ def B_res(plot,polarplot):
             si = uc.ufloat(50,1)
 
             Bz = p_uc[0]  /si * F * 100
+
+
             z = uc.ufloat(3.0,0.2)/1000
             pp  = 2 *np.pi * Bz * z**3 / cc.mu_0 
             #print("&$%s$"%val_str(1000*p_uc[0].n,1000*p_uc[0].s))
             #print("&$%s$"%val_str(Bz.n,Bz.s))
-            print("&%s$"%val_str(pp.n,pp.s))
+            #print("&%s$"%val_str(pp.n,pp.s))
             
 
 
@@ -198,7 +208,6 @@ def B_res(plot,polarplot):
             plt.xlabel("time $t$",fontsize = 14)
             plt.ylabel("Amplitude $U$ in Volt", fontsize = 14)
             make_fig(fig,0,0,name="fit"+shortname)
-
 def B_squid(plot,polarplot):
     names  =  [ ("npy/5.%d_HM1508-2"%i,"5_%d"%i) for i in range(1,5+1)]
     #names  =  [ ("npy/5.2_HM1508-2","5.2")]
@@ -249,15 +258,19 @@ def B_squid(plot,polarplot):
             si = 50
             T_end = 6
 
-            Bx = (A[Ti:T_end*Ti] - A_mean)*np.cos(w * t[Ti:T_end*Ti])/si * F * 100
-            By = (A[Ti:T_end*Ti] - A_mean)*np.sin(w * t[Ti:T_end*Ti])/si * F * 100
+            Bx = (A[Ti:T_end*Ti] - A_mean)*np.cos(w * t[Ti:T_end*Ti])/si * F *100
+            By = (A[Ti:T_end*Ti] - A_mean)*np.sin(w * t[Ti:T_end*Ti])/si * F *100
             
             fig = plt.figure()
             ax  = plt.subplot(111)
             plt.scatter(Bx,By, alpha = 0.5)
             plt.xlim(min(Bx),max(Bx))
             plt.ylim(min(By),max(By))
-            plt.show()
+            plt.xlabel("$B_x$ in nT")
+            plt.ylabel("$B_y$ in nT")
+            make_fig(fig,1,1,name="polar"+shortname)
+
+
 
         if plot:
 
@@ -288,11 +301,12 @@ def B_squid(plot,polarplot):
             si = uc.ufloat(50,1)
 
             Bz = A0  /si * F * 100
-            z = uc.ufloat(3.0,0.2)/1000
+            z = uc.ufloat(3.0,0.2)/100
             pp  = 2 *np.pi * Bz * z**3 / cc.mu_0 
             #print("&$%s$"%val_str(A0.n,A0.s))
             #print("&$%s$"%val_str(Bz.n,Bz.s))
             #print("&$%s$"%val_str(pp.n,pp.s))
+            print("&$%.3f \pm %.3f$"%(pp.n,pp.s))
             
 
 
@@ -308,4 +322,5 @@ def B_squid(plot,polarplot):
             plt.xlim(min(t),max(t)/4)
             plt.legend(fontsize = 14, loc =2)
             make_fig(fig,0,0,name="fit"+shortname)
-B_squid(False,True)
+B_res(True,False)
+#B_squid(False,True)
