@@ -57,6 +57,11 @@ which shows the macroscopic order of magnitude of this quantum effect.
 \item The bosonization of electrons to cooper pairs gives rise to the second order phase transition: Since 
 the pauli principle applies only to fermions, all cooper pairs can reside in the lowest energy level,
 which results in the zero resistance. 
+\item The key ingredient of the phenomena is the correlation of \textbf{all} cooper pairs due to the pauli exclusion principle
+\footnote{The correlation originates from the phase transition, when the bosonization occurs.}:
+Breaking the bond of two electrons means changing the energy of all other cooper pairs at once. This is unlike a metal, where
+it is possible to add an arbitrary small amount of energy to each electron. Hence this results in a \textbf{energy band gap} for 
+single-particle excitation.
 \end{itemize}   
 \paragraph{The superconductivity current} transfers no heat and involes
  no dissipation of energy. This 
@@ -69,17 +74,50 @@ breaks down immediately.
 \subsection{Practical implications}
 Let us look at the particle wave function of the cooper pairs. Certain
 considerations\cite{Landau} lead to the conclusion that the cooper pairs
-have to share a common phase $\theta$:  
+have to share a common phase $\theta$ (this is connected to the band gap
+already mentioned):  
 \begin{equation}
 \Psi = \Psi_0 e^{i\theta}
+\end{equation}
+Further considerations, which cannot be completed here, 
+yield the fact that the phase $\theta$ can
+only be changed by multiples of $2\pi$:
+\begin{equation}
+\oint \vec{\nabla}\theta \mathrm{d} \vec{r}  = \Phi
 \end{equation}
 Let us now look at the vector potential $A$ of the 
 magnetic flux $\Phi$ such that 
 \begin{equation}
-\oint \vec{A} \mathrm{d} \vec{r}  = \Phi
+\oint \vec{A} \mathrm{d} \vec{r}  = \Phi \qquad 
+\Rightarrow \qquad |\Phi_B| = n \phi_0 = n \frac{\hbar}{2e}.
 \end{equation} 
-\subsection{magnetic field}
-Following we can straightaway calculate the magnetic field using
+Which was inserted here without derivation, but can be proven rigorously (see \cite{Landau}).
+\subsection{Josephson-junction}
+Since the wavefunction of the cooper pairs are correlated, the insertion of a junction
+will not lead to the ordinary quantum mechanical tunneling effect, but to an
+effect called josephson effect%
+\footnote{The josephson effect was predicted by Brian David Josephson in 1962, predicting
+the phenomenon mathematically and receiving the Nobel price in physics in 1973, since
+it had been confirmed experimentally by John Rowell and Philip Anderson (who received the
+nobel price his investigations into electronic strucutre of magnetic and disorderd systems). 
+}.
+Let us assume a super current flowing in a circle shaped
+super conductor. A thin insulating barrier is tunneled by the super current in such a way
+that we describe both superconducting ends with a seperate wave function. It can be shown
+that the actual amount of the supercurrent, if it can pass the barrier and is not breaking down,
+only depends on the phasedifference between the two wavefunctions\cite{ver}:
+\begin{equation}
+I \propto K \sin(\theta_2 - \theta_1)
+\end{equation}
+If we furthermore take into consideration the influence of an exterior magnetic field,
+the situation gets quite delicate. In particular we have the possibility of breakdown
+if the current exceeds a critical current $I_c$, if the exterior magnetic field $B_{ext}$ or
+the temperature is to high. Evidently, in order to exploit the josephson effect in the circular
+constructed super conducter, we need two junctions. Surprisingly, if we use DC current, we only
+need one, creating a superposition of different superflux layers.
+
+\subsection{Biot-Savart}
+We can straightaway calculate the magnetic field of a induction loop using
 Biot-Savart law (see figure~\ref{fig:magnetic_field}):
 We start with the law of Biot-Savart of a electric flow $I$ along the path $C$ which generates
 a magnetic field $B$ at position $r$:
@@ -114,13 +152,6 @@ radius is neglectable.
 \label{sec:technics}
 In this section wo want to go into the devices which will be used during the
 conduction of the experiment.
-\paragraph{The SQUID (Superconducting Quantum Interference Device)} represents a magnetic field
-detector of great precision, using the already stated superconducting flux quantization and
-the josephson effect. We will use a RF-Squid, which operates with one single josephson junction
-\footnote{The first squid to be invented was a DC-Squid, having two josephson junctions in parallel. In 1962
-the josephson effect was postulated by Brian David Josephson, and already 1963 the first josephson junction
-was implemented by Philip Anderson. One year later, in 1964 the DC SQUID was invented by Robert Jaklevic, John J. Lambe
-and James Mercereau.} through an AC current, where the Josephson junction in this case is a thin isolation.
 \subsection{Lock-in method}
 \paragraph{In order to supress}
 noise and frequencies from other processes, we use
@@ -141,3 +172,21 @@ the integral as inner product.\\
 Since we will not manipulate the parameters of the lock-in method in this
 experiment, we will not go into the technical details, which
 will also not be object of the analysis.
+\paragraph{The SQUID (Superconducting Quantum Interference Device)} represents a magnetic field
+detector of great precision, using the already stated superconducting flux quantization and
+the josephson effect. We will use a RF-Squid, which operates with one single josephson junction%
+\footnote{The first squid to be invented was a DC-Squid, having two Josephson junctions in parallel. In 1962
+the josephson effect was postulated by Brian David Josephson, and already 1963 the first josephson junction
+was implemented by Philip Anderson. One year later, in 1964 the DC SQUID was invented by Robert Jaklevic, John J. Lambe
+and James Mercereau.} through an AC current, where the Josephson junction in this case is a thin isolation. 
+See figure~\ref{fig:squid1} for a schematic picture of a SQUID, showing the josephson junction and 
+an induction loop creating the exterior magnetic field.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{figures/squid1}
+    \caption{Setup of a RF-SQUID system, consisting of a superconducting ring and a induction loop creating
+    an exterior magnetic field.}
+    \label{fig:squid1}
+\end{figure}
+
+
