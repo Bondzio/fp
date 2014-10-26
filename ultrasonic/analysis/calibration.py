@@ -57,9 +57,9 @@ rcParams['xtick.labelsize'] = fontsize_labels
 rcParams['ytick.labelsize'] = fontsize_labels
 
 plt.close("all")
-show_fig = False
-save_fig = True # see below
-save_coeff = True # do ONLY save, if scipy 0.14. is in use...
+show_fig = True
+save_fig = False # see below
+save_coeff = False # do ONLY save, if scipy 0.14. is in use...
 fig_dir = "../figures/"
 npy_dir = "./data_npy/"
 plotsize = (6.2, 3.83)  # width corresponds to \textwidth in latex document (ratio = golden ratio ;))
