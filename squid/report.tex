@@ -47,6 +47,7 @@ backend = biber
 \usepackage{pgfplots}
 \usepackage{wrapfig}
 \usepackage{sidecap}
+\usepackage{float}
 \usepackage{color, colortbl}  
 
 \usepackage{afterpage}
@@ -142,11 +143,15 @@ backend = biber
 %----------------------------------------------------------------------------------------
 \input{newcommands}
 \setcounter{page}{1}
+\input{introduction}
+\input{theory}
+\input{setup}
 \input{measurements}
+\input{conclusion}
 \clearpage
 
 \section{Bibliography}
 \printbibliography[heading=subbibintoc]
 \clearpage
-
+\input{appendix}
 \end{document}
