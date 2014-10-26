@@ -23,7 +23,7 @@ def dig_err(cov, i): # returns the significant digit of the error
     
 def dig_val(x):     # returns the last significant digit of a value (error convention...)
     digit = -int(floor(log10(abs(x))))    
-    if (x * 10**digit) < 3.5:
+    if (x * 10**digit) < 1.5:
         digit += 1
     return digit
 
