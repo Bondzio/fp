@@ -1,0 +1,26 @@
+\section{theory}
+\label{sec:theory}
+\subsection{Ionization detector}
+\label{subsec:detector}
+
+\subsection{plateaus}
+\label{subsec:plateaus}
+
+\subsection{Potassium}
+\label{subsec:potassium}
+The emission of $\beta$-rays is continuos due to the adsorption when
+passing through matter. Following \cite{ver} we will observe the following
+counting rate
+\begin{equation}
+n(m) = f_B \frac{\Omega}{4 \pi} A_s \frac{F \rho }{\mu}A \left (1 - \exp \left ( - \frac{\mu}{F \rho}m \right ) \right )
+\label{eq:potassium}
+\end{equation}
+Where we defined the following coefficients:
+\begin{itemize}
+\item[] $A_s = A/ m$... specific activity of the preperation  
+\item[] $\mu$ ... extinction coefficient  of the $\beta$ decay 
+\item[] $\Omega = 2 \pi$... solid angle
+\item[] $f_B\approx 1.29$ ... backscattering coefficient 
+\end{itemize}
+We will use a least squares optimization in order to estimate the coefficients for the equation.
+
