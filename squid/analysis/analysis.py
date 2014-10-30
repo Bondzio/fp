@@ -322,5 +322,5 @@ def B_squid(plot,polarplot):
             plt.xlim(min(t),max(t)/4)
             plt.legend(fontsize = 14, loc =2)
             make_fig(fig,0,0,name="fit"+shortname)
-B_res(True,False)
+#B_res(True,False)
 #B_squid(False,True)

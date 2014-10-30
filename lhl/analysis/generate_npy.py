@@ -23,17 +23,46 @@ def txt_npy(file_in, file_out):
 
 # generate npy files
 npy_dir = "./data_npy/"
-background = True
+background = False 
+background2 = False 
 uranium = False
+measurement2_2_1 = False 
+measurement2_2_2 = False
+background_overnight = False
+potassium = True
 
 if background:
-    file_in = "../data/background_overnight.txt"
+    file_in = "./data/background_overnight.txt"
     file_out = npy_dir + "background_"
     txt_npy(file_in, file_out)
 
 if uranium:
-    file_in = "../data/uran_measurement.txt"
+    file_in = "./data/uran_measurement.txt"
     file_out = npy_dir + "uranium_"
     txt_npy(file_in, file_out)
 
+if background2:
+    file_in = "./data/background_voltage2.txt"
+    file_out = npy_dir + "background2_"
+    txt_npy(file_in, file_out)
 
+if measurement2_2_1:
+    file_in = "./data/sm01.txt"
+    file_out = npy_dir + "measurement_2_2_1_"
+    txt_npy(file_in, file_out)
+
+if measurement2_2_2:
+    file_in = "./data/2.2.2_sm_1.txt"
+    file_out = npy_dir + "measurement_2_2_2_"
+    txt_npy(file_in, file_out)
+
+if background_overnight:
+    file_in = "./data/background_overnight.txt"
+    file_out = npy_dir + "measurement_2_3_"
+    txt_npy(file_in, file_out)
+
+if potassium:
+    for i in range(2,9+1):
+        file_in = "./data/2.3_Ka_%d.txt"%i
+        file_out = npy_dir + "measurement_2_4_%d_"%i
+        txt_npy(file_in, file_out)
