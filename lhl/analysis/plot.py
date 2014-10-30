@@ -179,6 +179,22 @@ def samarium_long(subtract=True):
     n_back, dt_back = background_long()
     print(n_sam - n_back[0], np.sqrt(n_sam/dt + n_back[0]/dt_back))
 
+def samarium_long2(subtract=True):
+    title = "measurement_2_2_3"
+    npy_files = npy_dir + title + "_"
+    # load samarium
+    t = np.load(npy_files + "t" + ".npy")
+    U = np.load(npy_files + "U" + ".npy")
+    n = np.load(npy_files + "n" + ".npy")
+    no = len(U)
+    dt = np.sum(t)
+
+    U_sam = average(U, no)
+    n_sam = average(n, no)
+    n_back, dt_back = background_long()
+    print(n_sam - n_back[0], np.sqrt(n_sam/dt + n_back[0]/dt_back))
+
+
 def potassium(subtract=True, fit = True):
     fig = plt.figure()
     ax  = plt.subplot(111)
@@ -269,4 +285,55 @@ def potassium(subtract=True, fit = True):
 
     make_fig(fig,1,1,"measurement_2_4")
 
-potassium() 
+#potassium() 
+
+from uncertainties.unumpy import sqrt as sq
+def masses():
+    p_nit = uc.ufloat( 0.75518 , 0.00001)
+    p_oxy = uc.ufloat( 0.23135 , 0.00001)
+    p_arg = uc.ufloat( 0.01288 , 0.00001)
+    m_nit = uc.ufloat(14.0067  , 0.0002)
+    m_oxy = uc.ufloat(15.9994  , 0.0003)
+    m_arg = uc.ufloat(39.948   , 0.001 )
+    m_sm2 = uc.ufloat(150.36, 0.01)
+    m_O3 =   uc.ufloat(16.000, 0.001)
+    p_sm2 = 2*m_sm2 / (2*m_sm2 + 3* m_O3)
+    p_O3 = 3*m_O3 / (2*m_sm2 + 3*m_O3)
+    m_air = (p_nit*sq(m_nit)+p_oxy*sq(m_oxy)+p_arg*sq(m_arg))
+
+    m_sm2o3 = (p_sm2*sq(m_sm2)+p_O3*sq(m_O3))
+
+    d_air = uc.ufloat(0.001184,0.0001)
+    d_sm2o3  = uc.ufloat(7.6,0.1)
+    #d_sm2o3  = uc.ufloat(8.35,0.1)
+
+    Ea = uc.ufloat(2.233, 0.001)
+    f  = uc.ufloat(0.56,0.01)
+    R_air  = Ea * f
+    #R_air = uc.ufloat(1.13,0.01)
+
+    R_sm2o3 = R_air * (d_air * m_sm2o3)/(d_sm2o3 * m_air) 
+
+    m_sm2o3_mol = uc.ufloat(348.72,0.01)
+
+    h_rel = uc.ufloat(0.1499, 0.0033)
+
+    zeta = np.log(2) * h_rel *co.N_A * d_sm2o3 * R_sm2o3 /(2*m_sm2o3_mol)
+    #zeta = uc.ufloat(3.62,0.1)*10**17
+
+    print(zeta)
+
+    F1 = uc.ufloat(2.58 , 0.05)
+    n1 = uc.ufloat(0.54  , 0.01) 
+
+    F2 = uc.ufloat(1.56 , 0.05)
+    n2 = uc.ufloat(0.18  , 0.007) 
+
+    print(np.pi * (F2/2)**2 /n2)
+    T12 = zeta * np.pi * (F2/2)**2 /n2 
+    print((T12/ 3600 / 24 / 365))
+
+
+
+#samarium_long2()
+masses()

@@ -28,8 +28,9 @@ background2 = False
 uranium = False
 measurement2_2_1 = False 
 measurement2_2_2 = False
+measurement2_2_3 = False
 background_overnight = False
-potassium = True
+potassium = False
 
 if background:
     file_in = "./data/background_overnight.txt"
@@ -56,6 +57,12 @@ if measurement2_2_2:
     file_out = npy_dir + "measurement_2_2_2_"
     txt_npy(file_in, file_out)
 
+if measurement2_2_3:
+    file_in = "./data/sm03.txt"
+    file_out = npy_dir + "measurement_2_2_3_"
+    txt_npy(file_in, file_out)
+
+
 if background_overnight:
     file_in = "./data/background_overnight.txt"
     file_out = npy_dir + "measurement_2_3_"
@@ -66,3 +73,4 @@ if potassium:
         file_in = "./data/2.3_Ka_%d.txt"%i
         file_out = npy_dir + "measurement_2_4_%d_"%i
         txt_npy(file_in, file_out)
+

@@ -66,19 +66,17 @@ The emission depends to a great deal on the surface of the emitting object.
 Following \cite{ver} the rate $n$ of samarium can be calculated with
 \begin{equation}
 n = A_v \frac{F}{4} R_{Sm_2O_3}
+\label{eq:range2}
 \end{equation}
 where we introduced the Activity per Volume $A_v = A/V$, the range $R_{Sm_2O_3}$ and the Surface area $F$.
 Since it is not always possible to conduct experiments for all possible incident particles and materials, we
 can estimate the range with the \textbf{Bragg-Kleemann rule} \cite{knoll2000radiation}, if we know
 the range for another material:
 \begin{equation}
-\frac{R_1}{R_0} = \frac{\rho_0 \sqrt{m_{A1}}}{\rho_1 \sqrt{m_{A0}}} \Leftrightarrow R_1 \rho_1 = C \sqrt{m_{A1}} \qquad \text{ with } C = \frac{\rho_0 R_0 }{\rho_1}
+    \frac{R_1}{R_0} = \frac{\rho_0 \sqrt{m_{eff,1}}}{\rho_1 \sqrt{m_{eff,0}}} 
+    \label{eq:range}
 \end{equation}
-where we have two materials and the respective radii $R$, densities $\rho$ and atomic weights $A$. Fortunatelly, the missing constant $C$ can
-be eliminated in further calculations, so we can drop the indices
-\begin{equation}
-R \rho = C \sqrt{m_{A}}.
-\end{equation}
+where we have two materials and the respective radii $R$, densities $\rho$ and atomic weights $A$. 
 The effective mass molar mass $m_A$ has to be concluded from the single weights of the atoms and the relative densities of these with
 \footnote{%
     We have to raise strong doubts about the academic integrity the source \cite{ver}, since no source for equation~\ref{eq:masses} was given.
@@ -110,8 +108,130 @@ The effective mass molar mass $m_A$ has to be concluded from the single weights 
     intermediate steps to arrive at \eqref{eq:masses}.
 } 
 \begin{equation}
-\sqrt{m_A} = \sum_i p_i \sqrt{m_{A,i}} .
+\sqrt{m_{eff}} = \sum_i p_i \sqrt{m_{A,i}} .
 \label{eq:masses}
 \end{equation}
+
 With this formula it is now possible to eliminate the constant $C$, given that we can find the effective mass density for another
-material. Air approximately consists of nitrogen, oxygen and argon: 
+material. For instance, air approximately consists of nitrogen, oxygen and argon: 
+\begin{equation}
+\sqrt{m_{\mathrm{eff,air}}} =p_{\mathrm{N}}\sqrt{m_{\mathrm{N}}} +p_{\mathrm{O}} \sqrt{m_{\mathrm{O}}} +p_{\mathrm{Ar}} \sqrt{m_{\mathrm{Ar}}}
+\end{equation}
+with the probabilites \cite{ver} and the atomic masses \cite{haynes} in table~\ref{tab:air}.
+\begin{table}
+\caption{Atomic fractions $p$ and the respective atomic masses $m$ for air.}
+\centering
+\begin{tabular}{ll}
+    \cellcolor{tabcolor} $p_{\mathrm{N}}$    &$0.75518 \pm 0.00001$ \\
+    \cellcolor{tabcolor} $p_{\mathrm{O}} $   &$0.23135 \pm 0.00001$\\
+    \cellcolor{tabcolor} $p_{\mathrm{Ar}}$   &$0.01288 \pm 0.00001$
+\end{tabular}
+\begin{tabular}{ll} 
+    \cellcolor{tabcolor} $m_{\mathrm{N}}  $ & $[14.0067 \pm 0.0002] u $ \\
+    \cellcolor{tabcolor} $m_{\mathrm{O}}  $ & $ [15.9994 \pm 0.0003] u$  \\
+    \cellcolor{tabcolor} $m_{\mathrm{Ar}} $ & $ [39.948 \quad \pm 0.001] u $
+\end{tabular}
+\label{tab:air}
+\end{table}
+As result we arrive at the effective mass  $m_{\mathrm{eff,air}} = [14.6926\pm0.0007]u$. \\
+we have to calculate the effective mass for samarium oxide $Sm_2O_3$ in order to conclude the range:
+\begin{equation}
+\sqrt{m_{\mathrm{eff,Sm_2O_3}}} =p_{\mathrm{Sm}}\sqrt{m_{\mathrm{Sm}}} +p_{\mathrm{O_3}} \sqrt{m_{\mathrm{O_3}}} 
+\end{equation}
+with the probabilites\footnote{%
+We calculated the probabilites with the approximation\cite{staatsexamen}, 
+that the relative probability is proportional
+to the number of atoms times the molecular mass: $p_{\mathrm{Sm_2}} = \frac{2 m_{Sm}}{2m_{Sm} + 3m_{O}}$ and
+$p_{\mathrm{O_3}} = \frac{3 m_{O_3}}{2m_{Sm} + 3m_{O}}$.
+}
+and masses \cite{haynes} in table~\ref{tab:sm2o3} we
+arrive at $m_{\mathrm{eff},Sm_2O_3}[123.763\pm0.009]u$.
+\begin{table}
+\centering
+\caption{Atomic fractions $p$ and the respective atomic masses $m$ for $Sm_2O_3$.}
+\begin{tabular}{ll}
+\begin{tabular}{ll}
+    \cellcolor{tabcolor}  $p_{\mathrm{Sm_2}}$       &$0.86235\pm0.00001$ \\
+     \cellcolor{tabcolor} $p_{\mathrm{O_3}} $   &$0.13764\pm0.00001$ \\
+\end{tabular}
+&
+\begin{tabular}{ll} 
+    \cellcolor{tabcolor} $m_{\mathrm{Sm}}  $ & $[150.36 \pm 0.01] u $ \\
+    \cellcolor{tabcolor} $m_{\mathrm{O}}  $ & $ [16.000\quad \pm 0.001] u$  \\
+\end{tabular}
+\end{tabular}
+\label{tab:sm2o3}
+\end{table}
+At this point we can use equation \eqref{eq:range}, by implying the densities\footnote{%
+These rely very sensitive on the pressure and Temperature, we used $T = 293^{\circ}K$ and $P = 101kPa$ 
+(standard conditions) in the further calculations}\footnote{%
+    The density of samarium(III)oxide is different to the
+    value given in wikipedia.org and wolframalpha.com, which is $\rho_{Sm_2O_3} = [7.6 \pm 0.1] \mathrm{g/cm}^3$,
+    because we used \cite{haynes}, which we consider to be a more reliable source, since the other
+    two sources rely to some extent upon an older version of \cite{haynes}.
+}\\
+$\rho_{air} = [0.001184 \pm 0.0001] \mathrm{g/cm}^3$ and
+$\rho_{Sm_2O_3} = [7.6 \pm 0.1] \mathrm{g/cm}^3$ \\ and the range of $\alpha$ rays in air
+$R_{\mathrm{air}} = [1.25\pm0.2]$cm (\footnote{%
+We used this value from \cite{ver}, because it was not possible to determine the value in a better
+fashion, because the range of $\alpha$ rays depends strongly on their energy, which ranges in the $\alpha$ decay
+from 2 - 10 MeV \cite{konya2012nuclear} (in our case, the energy is given by $E_\alpha = [2.233 \pm 0.001]MeV$
+\cite{staatsexamen}).
+Let us assume
+we want to determine the range in air, then the range depends on the interaction of the alpha particles with
+the orbital electrons of the molecules. The range of the particles is closely approximated
+by \cite{cember1996introduction}:
+\begin{equation}
+R_{\mathrm{air}} =
+\begin{cases}
+0.56 E_\alpha \qquad \text{ for } E_\alpha < 4 \mathrm{MeV} \\
+1.24 E_\alpha - 2.62 \qquad \text{ for } E_\alpha < 4 \mathrm{MeV} 
+\end{cases}
+\end{equation}
+As it can be seen the ranges vary greatly, depending on the energy. Plugging in $E_\alpha$ we get
+\begin{equation}
+R_{\mathrm{air}} = [1.250\pm0.022] \mathrm{cm}
+\end{equation}
+Which varies from the value given in \cite{staatsexamen}. Since there is no source given (again we
+emphasize the fact that this does not correspond to our idea of scientific integrity) we tend
+to trust our calculated value than the one given.
+}):
+\begin{equation}
+    R_{Sm_2O_3} =R_{\mathrm{air}} \frac{\rho_{\mathrm{air}\sqrt{m_{\mathrm{eff,Sm_2O_3}}}}}
+    {\rho_{\mathrm{Sm_2O_3}} \sqrt{m_{\mathrm{eff,air}}} } 
+    = [5.7 \pm 0.5] \mathrm{\mu m}
+\end{equation}
+This range seems to be very small compared to the range in air, but one has to consider the much higher density
+in $Sm_2O_3$ which contributes to a huge extent to the absorption. \\
+The next step is to consider the activity per volume using \eqref{eq:range2}
+\begin{equation}
+A_v = A \cdot V = A \cdot F \cdot d = \frac{4\cdot n \cdot d}{R_{Sm_2O_3} }.
+\end{equation}
+with the sample width $d$ and the surface $F$. From here the half life period directly follows with
+\begin{equation}
+T_{1/2} = \frac{\mathrm{log}(2)N}{A} = \frac{log(2) N R_{Sm_2O_3}F}{4 n \cdot V}.
+\label{eq:T12_sam}
+\end{equation}
+
+This expression only leaves to estimate the number of $^{147}Sm$ atoms $N$ with
+\begin{equation}
+    N = p_{\mathrm{^{147}Sm}} \cdot N_{\mathrm{Sm_2O_3}} 
+    \qquad \text{ with \cite{haynes} } p_{\mathrm{^{147}Sm}}= [0.1499\pm0.0033]
+\end{equation}
+(since for the radiation we only
+rely on the atoms which are decaying into neodym), hence
+\begin{equation}
+    N = 2 \cdot p_{\mathrm{^{147}Sm}} \cdot N_{\mathrm{Sm_2O_3}} 
+    = \frac{2 \cdot p_{\mathrm{^{147}Sm}} \cdot N_A m}{m_{\mathrm{Sm_2O_3, mol}}}
+    = \frac{2 \cdot p_{\mathrm{^{147}Sm}} \cdot N_A \rho_{\mathrm{Sm_2O_3}} V}{m_{\mathrm{Sm_2O_3, mol}}}
+    \label{eq:N}
+\end{equation}
+with $m_{\mathrm{Sm_2O_3, mol}} = 348.72 \mathrm{g/mol} $ \cite{haynes}. 
+Plugging \eqref{eq:N} into \eqref{eq:T12_sam} we arrive at
+\begin{equation}
+T_{1/2} = \frac{\mathrm{log}(2)p_{\mathrm{^{147}Sm}} 
+ N_A \rho_{\mathrm{Sm_2O_3}}R_{Sm_2O_3}F}{2m_{\mathrm{Sm_2O_3, mol}}n } = \zeta \frac{F}{n} 
+\label{eq:T12_sam}
+\end{equation}
+with $\zeta=[2.22\pm0.19]\cdot10^{22} \mathrm{counts \cdot cm^{-2}}$.
+
