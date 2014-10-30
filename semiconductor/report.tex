@@ -38,6 +38,7 @@
 \usepackage[utf8]{inputenc} 
 %\usepackage[ngerman]{babel}
 
+\usepackage{color, colortbl}  % \rowcolor 
 \usepackage{latexsym}
 \usepackage{textcomp}
 \usepackage[T1]{fontenc}
@@ -72,7 +73,9 @@
 \numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
 
 \setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
-\setcapindent{1cm} 
+\setcapindent{1cm}
+
+\DeclareGraphicsExtensions{.pdf, .png, .jpeg}
 
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
@@ -80,12 +83,6 @@
 
 \newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
 % commaneds for units & co.
-\newcommand{\cm}{\ \mathrm{cm^{-1}}}
-\newcommand{\nm}{\ \mathrm{nm}}
-\newcommand{\pltw}{0.9\textwidth}
-\newcommand{\mpltw}{0.68\textwidth}
-\newcommand{\picwidth}{0.8\textwidth}
-\newcommand{\unc}{0.3}  % uncertainty in nm
 
 \title{ 
 \normalfont \normalsize 
@@ -112,12 +109,13 @@
 %----------------------------------------------------------------------------------------
 %	PROBLEM 1
 %----------------------------------------------------------------------------------------
-
+\input{newcommands}
 
 %\input{intro}
 %\input{theory}
 \input{setup}
 \input{eval_band_gap}
+\input{eval_haynes_shockley}
 %\input{conclusion}
 \cleardoublepage
 
