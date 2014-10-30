@@ -99,11 +99,11 @@ At this point we conducted a series of measurements of the at the working point,
     \label{tab:mes1}
 \end{SCtable}
 \subsection{potassium}
+\label{subsec:potassium}
 Following from the uranium measurement we chose a working point of 3500V. The diameter 
 of the dish $\o$ was $\left [ 3.00 \pm 0.05 \right ]$ cm and the measured time 3820s $\approx$ 1 hour with
 $\Delta t = 460s$ for each weight, where we varied the weights from $0.51$ g up to $2.00$ g (see figure~\ref{fig:2_4_potassium} 
 for a visualization of the measured data).
-\label{subsec:potassium}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{analysis/figures/measurement_2_4}
@@ -120,15 +120,6 @@ equation \eqref{eq:potassium}
 \begin{equation*}
 n(m) = f_B \frac{\Omega}{4 \pi} A_s \frac{F \rho }{\mu}A \left (1 - \exp \left ( - \frac{\mu}{F \rho}m \right ) \right ).
 \end{equation*}
-we will use a least squares fit in order to fit the parameters with
-\begin{equation}
-n(m) = a ( 1 - e^{-bm})
-\end{equation}
-such that we can identify the parameters
-\begin{align}
-a &\equiv  f_B \frac{\Omega}{4 \pi} A_s \frac{F \rho }{\mu}A  \label{eq:a}\\ 
-b &\equiv \frac{\mu}{F \rho} \label{eq:b}
-\end{align}
 The least squared algorithm yielded the following result
 \begin{eqnarray}
     \mathrm{cov}(a,b) &=& 
@@ -138,20 +129,19 @@ The least squared algorithm yielded the following result
     \end{pmatrix}\\
  \Rightarrow \qquad
     a &=& \left [ 5.047 \pm 0.015 \right ] \text{counts} \cdot s^{-1} \\
-    b &=& \left [ 1.970 \pm 0.015 \right ] g^{-1}. 
+    b &=& \left [ 1.970 \pm 0.015 \right ] g^{-1} \\
+    \chi^2/\mathrm{dof} &=& 2.869 
 \end{eqnarray}
+The $\chi^2/dof$ is not 1, but it is not far away. Since the number of measurements is not impressively high, we
+can assume that the $\chi^2/dof$ is in an order of magnitude to accept the model (as its functionality is at this
+dimension also limited). The correlations are of the same order of magnitude as the errors, so we can conclude that
+the variables are rather strongly correlated.
 Since $a$ and $b$ are correlated, we have to use the correlation matrix for
-error propagation. For calculating the half life time, we progress as
-\begin{align}
-A_s = \lambda = m \tau ^{-1} \Leftrightarrow  T_{1/2} = \frac{m log(2)}{A_s}
-\label{eq:As}
-\end{align}
-Plugging in equation \eqref{eq:a}, \eqref{eq:As} and in the end \eqref{eq:b} we get to the final result
-\begin{equation}
-As = \frac{A}{m} =  \frac{4 \pi a \mu}{\Omega f_B F \rho} \Leftrightarrow T_{1/2} = \frac{\Omega f_B F \rho m \mathrm{log}(2)}{4 \pi a \mu} 
-= \frac{\Omega f_B m \mathrm{log}(2)}{4 \pi a b}
-\end{equation}
-Now we use $f_B=1.29$, $\Omega = 2 \pi$ and $m = x$ to get 
-\begin{equation}
-\end{equation}
+error propagation. We can use the convient formula \eqref{eq:pot_final} derived
+in the theory section in subsection~\ref{subsec:potassium}
+\begin{equation*}
+T_{1/2} = \frac{\eta}{a b} = [3.82\pm0.13]\cdot 10^{16} s = [1.21 \pm 0.04]\cdot 10^9 a
+\end{equation*}
+with $\eta = [3.80 \pm 0.06]\cdot 10^{17}$ counts/g, which we derived before.\\
+The literature value is $T_{1/2} = [1.248 \pm 0.003]\cdot10^9$a, which is within the range of our result. 
 

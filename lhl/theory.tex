@@ -22,5 +22,96 @@ Where we defined the following coefficients:
 \item[] $\Omega = 2 \pi$... solid angle
 \item[] $f_B\approx 1.29$ ... backscattering coefficient 
 \end{itemize}
-We will use a least squares optimization in order to estimate the coefficients for the equation.
-
+We will use a least squares optimization in order to estimate the coefficients for the equation:
+\begin{equation}
+n(m) = a ( 1 - e^{-bm})
+\end{equation}
+such that we can identify the parameters
+\begin{align}
+a &\equiv  f_B \frac{\Omega}{4 \pi} A_s \frac{F \rho }{\mu}A  \label{eq:a}\\ 
+b &\equiv \frac{\mu}{F \rho} \label{eq:b}
+\end{align}
+For calculating the half life time, we use $T_{1/2} = \frac{\mathrm{log}(2)}{\lambda}$. Unfortunatelly,
+we cannot use the $\lambda$ directly for the activity, since the activity does not resample the real activity, but
+the due to electron capture reduced activity. We can use the following estimation \cite{ver}:
+\begin{equation}
+\lambda = \lambda_{\beta} + \lambda_{EC} = \lambda_{\beta} + \frac{0.1072}{0.8928}\lambda_{\beta} = 1.12 \lambda_{\beta}
+\end{equation}
+which let us arrive at the following result
+\begin{align}
+A = N \lambda = 1.12 \cdot N\lambda_\beta= N \tau ^{-1} \Leftrightarrow  T_{1/2} = \frac{N \mathrm{log}(2)}{1.12 \cdot A}.
+\label{eq:As}
+\end{align}
+Additionally to that, we are using the specific Activity $A_s = A / m$ with the molar mass $m$. Since we are not using
+pure $^{40}\textrm{K}$ cores but KCl, we have to take the relative occurence of those in our sample into consideration by
+\begin{equation}
+N = \frac{h_{rel} m N_A}{m_{\mathrm{KCl}}}
+\end{equation}
+with the Number of $^{40}\textrm{K}$ cores, the relative mass ratio of $^{40}\textrm{K}$ in natural kalium $h_{rel} = 1.18 \cdot 10^{-4}$,
+the Avogadro constant $N_A$ and the molar mass $m_{\mathrm{KCl}}$ of KCl.
+Plugging in equation \eqref{eq:a}, \eqref{eq:As} and in the end \eqref{eq:b} we get to the final result (where the factor $m$ chancels)
+\begin{equation}
+A_s = \frac{A}{m} =  \frac{4 \pi a \mu}{\Omega f_B F \rho} \Leftrightarrow T_{1/2} = \frac{N \Omega f_B F \rho \mathrm{log}(2)}{1.12 \cdot 4 \pi m a \mu} 
+= \frac{N \Omega f_B \mathrm{log}(2)}{1.12 \cdot 4 \pi m a b} = \frac{N_A h_{rel}\Omega f_B \mathrm{log}(2)}{1.12 \cdot 4 \pi a b m_{\mathrm{KCl}}}
+\end{equation}
+At this point we use $f_B=1.29$, $\Omega = 2 \pi$ and $\eta = [3.80 \pm 0.06]\cdot 10^{17}$ counts/g (where estimated the errors of the constants to be of the 
+same order of magnitude as the last digit) to arrive at
+\begin{equation}
+T_{1/2} = \frac{\eta}{a b} 
+\label{eq:pot_final}
+\end{equation}
+\subsection{samarium}
+We will use the detection of $\alpha$ rays for estimating the half life period of samarium. 
+The emission depends to a great deal on the surface of the emitting object.
+Following \cite{ver} the rate $n$ of samarium can be calculated with
+\begin{equation}
+n = A_v \frac{F}{4} R_{Sm_2O_3}
+\end{equation}
+where we introduced the Activity per Volume $A_v = A/V$, the range $R_{Sm_2O_3}$ and the Surface area $F$.
+Since it is not always possible to conduct experiments for all possible incident particles and materials, we
+can estimate the range with the \textbf{Bragg-Kleemann rule} \cite{knoll2000radiation}, if we know
+the range for another material:
+\begin{equation}
+\frac{R_1}{R_0} = \frac{\rho_0 \sqrt{m_{A1}}}{\rho_1 \sqrt{m_{A0}}} \Leftrightarrow R_1 \rho_1 = C \sqrt{m_{A1}} \qquad \text{ with } C = \frac{\rho_0 R_0 }{\rho_1}
+\end{equation}
+where we have two materials and the respective radii $R$, densities $\rho$ and atomic weights $A$. Fortunatelly, the missing constant $C$ can
+be eliminated in further calculations, so we can drop the indices
+\begin{equation}
+R \rho = C \sqrt{m_{A}}.
+\end{equation}
+The effective mass molar mass $m_A$ has to be concluded from the single weights of the atoms and the relative densities of these with
+\footnote{%
+    We have to raise strong doubts about the academic integrity the source \cite{ver}, since no source for equation~\ref{eq:masses} was given.
+    Probably it was taken from \cite{staatsexamen}, but even there we cannot find any reference or source for the formula, which even more violates our
+    understanding about scientific practice: This formula is neither generally valid nor trivial. 
+    After some research we found it within the book \cite{knoll2000radiation}. The main argument is the following: A \textit{linear stopping power S} for
+    charged particles in a given absorber is defined by the differential energy loss for that particle within the material, divided by the corresponding
+    differential path length:
+    \begin{equation}
+    S = - \frac{\del E}{\del x} = \frac{4 \pi e^4 z^2}{m_e v^2} N B 
+    \end{equation}
+    where the last step is the famous, but classical derived Bethe formula with velocitiy $v$ and charge $z$ of the particle, Number density $N$ and atomic number $Z$
+    of the adsorber atoms and the electron rest mass $m_e$. The paramter $B$ is an expression obtained from integration, dependent on $v$ and average excitation and
+    ionization potential of the adsorber. Now we have to implied various assumptions:
+    \begin{itemize}
+    \item The stopping power per atom of compounds or mixtures is additive (known as \textbf{Bragg-Kleemann rule}).
+    \item The particle should be heavy and charged, like alpha particles, in order to interact with matter primarily through coulomb forces
+    between their charges
+    \item Interactions with nuclei can be neglected, since they happen only rearely and they are not significant in the response of radiation detectors.
+    \item The charged particle immediately interacts simultaneously with many electrons, depending on the proximity either to raise the respective electron to
+    a higher lying shell within the adsorber (\textit{excitation}) or remove the electron from the atom (\textit{ionization}).
+    \end{itemize}
+    Going from here the already mentioned \textbf{Bragg-Kleemann rule} can be stated as
+    \begin{equation}
+    \frac{1}{N_c}\left (\frac{\del E}{\del x} \right )_c = \sum_i P_i  \frac{1}{N_i}\left (\frac{\del E}{\del x} \right )_i.
+    \label{eq:masses2}
+    \end{equation}
+    with the atomic fraction $p_i$ of the ith component in the compound $c$. From equation \eqref{eq:masses2} is now possible with some
+    intermediate steps to arrive at \eqref{eq:masses}.
+} 
+\begin{equation}
+\sqrt{m_A} = \sum_i p_i \sqrt{m_{A,i}} .
+\label{eq:masses}
+\end{equation}
+With this formula it is now possible to eliminate the constant $C$, given that we can find the effective mass density for another
+material. Air approximately consists of nitrogen, oxygen and argon: 

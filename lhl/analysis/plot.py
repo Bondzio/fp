@@ -187,8 +187,9 @@ def potassium(subtract=True, fit = True):
     n_all = []
     U_all = []
     m_all = []
-    T_all = 0
+    T_all = []
     cp = sns.color_palette()
+    tt = 0
     for i in range(2,9+1):
         title =  "measurement_2_4_%d"%i
         npy_files = npy_dir + title + "_"
@@ -196,16 +197,18 @@ def potassium(subtract=True, fit = True):
         t = np.load(npy_files + "t" + ".npy")
         U = np.load(npy_files + "U" + ".npy")
         n = np.load(npy_files + "n" + ".npy")
-        T_all += np.sum(t)
+        T_all += [t]
         n_all += [n]
         U_all += [U]
         m_all += [weight[i-2]+n*0]
         n_mean = np.mean(n - n_back[1])
-        plt.errorbar(n*0+weight[i-2],n - n_back[1], alpha = 0.9, yerr =np.sqrt(n/np.sum(t) + n_back[1]/dt_back), c = cp[0])
+        
+        plt.errorbar(n*0+weight[i-2],n - n_back[1], alpha = 0.9, yerr =np.sqrt(n/t + n_back[1]/dt_back), c = cp[0], xerr =0.0001 ,fmt=".")
         #plt.errorbar(n*0+weight[i-2],n , alpha = 0.9, yerr =np.sqrt(n/np.sum(t)), c = cp[1])
     if fit == True:
         n_all = np.array(n_all).flatten()
         U_all = np.array(U_all).flatten()
+        T_all = np.array(T_all).flatten()
         m_all = np.array(m_all).flatten()
 
         def func(x, a,b):
@@ -213,44 +216,57 @@ def potassium(subtract=True, fit = True):
         # p0 is the initial guess for the fitting coefficients 
         p0 = [1,1]
 
-
-        print(T_all)
-
-        p, cov = curve_fit(func, m_all, n_all - n_back[1], p0=p0, sigma = np.sqrt(n_all/T_all + n_back[1]/dt_back), absolute_sigma = True)
+        y = n_all - n_back[1]
+        sigma = np.sqrt(n_all/T_all + n_back[1]/dt_back)
+        p, cov = curve_fit(func, m_all,y, p0=p0, sigma = sigma , absolute_sigma = True)
         p_uc = uc.correlated_values(p, cov)
+
+
+        chi2 = np.sum(((func(m_all,*p) - y) / sigma) ** 2 )/(len(m_all)-2)
+
+
         a = p_uc[0]
         b = p_uc[1] 
-        c = np.log(2) * co.N_A * 1.18 * 10**(-4) * 1.129 / (2* 74.551)
-        T12 =  c / (a * b)
-        print(T12 / 3600 / 354)
+        hrel  = uc.ufloat(1.18,0.01)
+        fB    = uc.ufloat(1.29,0.01)
+        EC    = uc.ufloat(1.120,0.01)
+        m_kcl = uc.ufloat(74.55,0.01)
+
+        eta = co.N_A * hrel*10**(-4) * fB * np.log(2) / (EC * 2 * m_kcl)
+        print(eta)
+        T12 =  eta / (a * b) 
+        #print("a = %.3f +- %.3f  / b = %.3f += %.3f and T12 = %.3e +- %.3e"%(a.n,a.s,b.n,b.s,T12.n,T12.s))
+        print(T12)
+        print(T12/ 3600 / 365.25 /24)
         
 
-        f1 = open("coefficients_2_4.tex","w")
-        st.la_coeff(f1, p,cov, ["a","b"])
-        f1.close()
+        #f1 = open("coefficients_2_4.tex","w")
+        #st.la_coeff(f1, p,cov, ["a","b"])
+        #f1.close()
 
-        m_fit = np.linspace(0.0,2,1000)
+        m_fit = np.linspace(0.0,2.1,1000)
         data_fit = func(m_fit, *p) 
+
         
 
         props = dict(boxstyle='round', facecolor='white', alpha=0.5,edgecolor = 'white')
-        textstr = '\\begin{eqnarray*} n(m) &=& a(1 - e^{-bm})\\\\  a&=&\left [ %.3f \pm %.3f \\right ] \mathrm{counts}\cdot s^{-1}\\\\   b&=& \left [ %.3f \pm %.3f\\right ]   g^{-1} \\end{eqnarray*}'%(p[0],p_uc[0].s,p[1],p_uc[1].s)
+        textstr = '\\begin{eqnarray*} n(m) &=& a(1 - e^{-bm})\\\\  a&=&\left [ %.3f \pm %.3f \\right ] \mathrm{counts}\cdot s^{-1}\\\\   b&=& \left [ %.3f \pm %.3f\\right ]   g^{-1} \\\\ \chi^2/\mathrm{dof}&=&%.3f \\end{eqnarray*}'%(p[0],p_uc[0].s,p[1],p_uc[1].s, chi2)
         #textstr = '\\begin{eqnarray*} %f  %f \\end{eqnarray*}'%(p[0],p[1])
-        print(textstr)
         ax.text(0.4,0.3, textstr, transform=ax.transAxes, fontsize=14, va='top', bbox=props)
-        plt.yscale("log")
+        #plt.yscale("log")
         plt.xlabel("mass $m$ / g") 
         plt.ylabel("$n(m)$ / counts$\cdot s^{-1}$")
 
 
         plt.plot(m_fit,data_fit, c = cp[1])
-        plt.ylim(0.9,11)
+        plt.ylim(00,6)
+        plt.xlim(00,2.1)
         error_on_fit = un.std_devs(func(m_fit, *p_uc))
         data_fit_min = data_fit - error_on_fit
         data_fit_max = data_fit + error_on_fit
 
-        #plt.fill_between(m_fit, data_fit_min , data_fit_max,facecolor="r", color="b", alpha=0.3 )
+        plt.fill_between(m_fit, data_fit_min , data_fit_max,facecolor="r", color="b", alpha=0.3 )
 
-    make_fig(fig,0,1,"measurement_2_4")
+    make_fig(fig,1,1,"measurement_2_4")
 
 potassium() 
