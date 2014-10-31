@@ -1,0 +1,145 @@
+\subsection{Semiconductor detectors}
+The measurement were done without any notable incidences, since 
+the entire setup is automatized. We saved four data sets:
+One for each combination of sample and detector. Due to time constraints, 
+the background was not recorded. 
+
+For each data set, we fitted gaussians according to the peaks expected:
+For the $\,^{57}$Co sample, we expected two peaks at the right end of a somewhat 
+broader distribution of counts with the left one (the 122.06 keV peak) being much higher
+then the second (136.47 keV). For the $\,^{241}$Am sample, we expect one peak of 59.5 keV 
+(thus roughly at half distance between zero and the $\,^{57}$Co peaks). 
+The raw data and fitting is displayed in the panels \ref{fig:detector_CdTe}, 
+\ref{fig:detector_Si}.
+The fit parameters are listed in the plots. We refrain from stating the entire covariance 
+matrices as all further calculations are done with one of the fitted parameters 
+each (with the exception of the correspondence energy--channel, which generates new 
+errors by linear fitting, loosing the information about correlation). 
+The cobalt sample was not very active%
+\footnote{an experience we already made during the experiment "short half lives"} 
+such that the peak especially for the Si detector had to be done with a very low 
+number of data. To be able to observe any signal at all, we rebinned the data 
+by using the mean of two successive bins for this data set. In order to have let 
+the algorithm converge, we entered initial guesses manually. An experimenting 
+with changing initial guesses showed show stability, though . This is not documented 
+since we consider the numerical stability of the used algorithms to be 
+out of scope. The result of the fitting is, however, very much dependent on the 
+range of channels selected to be fitted over. This range is indicated by
+the curves of the fits plotted in the above figures. In general, we chose 
+a longer range on the right side of each peak, as this side is 
+much less influenced by additional underlying distributions. 
+Physically, this observation corresponds to the losses during Compton 
+scattering or other escaped electrons. In these cases, 
+only a part of the entire energy of the initial photon stemming from the decay 
+is absorbed by the detector. It is clear that these processes do not influence 
+the right (higher energy) side of each peak, as long as overlapping with the next 
+peak does not occur. 
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{\pltw}
+        \includegraphics[width=1.0\linewidth]{figures/detector_Co_CdTe}
+        \caption{}
+        \label{fig:detector_Co_CdTe}
+    \end{subfigure}
+    \begin{subfigure}[b]{\pltw}
+        \includegraphics[width=1.0\linewidth]{figures/detector_Am_CdTe}
+        \caption{}
+        \label{fig:detector_Am_CdTe}
+    \end{subfigure}
+    \caption{
+        Raw data obtained with CdTe detector as well as gaussians fitted 
+        onto the expected peaks for the samples $^{57}$Co (\ref{fig:detector_Co_CdTe})
+        and $^{241}$Am (\ref{fig:detector_Am_CdTe})
+        }
+    \label{fig:detector_CdTe}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{\pltw}
+        \includegraphics[width=1.0\linewidth]{figures/detector_Co_Si}
+        \caption{}
+        \label{fig:detector_Co_Si}
+    \end{subfigure}
+    \begin{subfigure}[b]{\pltw}
+        \includegraphics[width=1.0\linewidth]{figures/detector_Am_Si}
+        \caption{}
+        \label{fig:detector_Am_Si}
+    \end{subfigure}
+    \caption{
+        Raw data obtained with CdTe detector as well as gaussians fitted 
+        onto the expected peaks for the samples $^{57}$Co (\ref{fig:detector_Co_CdTe})
+        and $^{241}$Am (\ref{fig:detector_Am_CdTe}). The data in the upper plot is rebinned 
+        in order to obtain a visible peak.
+        }
+    \label{fig:detector_Si}
+\end{figure}
+
+We take the obtained centers $\mu$ of the distributions to do the calibration, 
+i.~e. a linear fit of the form 
+\begin{equation}
+    E(\mu) = a \mu + E_0 \,
+\end{equation}
+in order to be able to associate an energy to each peak. The energies 
+are taken from the know peaks as described before. The used data is shown in table 
+\ref{tab:detector_peaks}, the linear interpolations are plotted in 
+figures \ref{fig:detector_calibration}. 
+
+\begin{table}[htdp]
+    \centering
+    \caption{
+        Peaks and corresponding energies for both semiconductors 
+        and both samples. The values are used int he linear fit 
+        in order to establish the relationship between channel 
+        and energy.
+        }
+    \input{analysis/detector_peaks}
+    \label{tab:detector_peaks}
+\end{table}
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{\pltw}
+        \includegraphics[width=1.0\linewidth]{figures/detector_calibration_CdTe}
+        \caption{}
+        \label{fig:detector_calibration_CdTe}
+    \end{subfigure}
+    \begin{subfigure}[b]{\pltw}
+        \includegraphics[width=1.0\linewidth]{figures/detector_calibration_Si}
+        \caption{}
+        \label{fig:detector_calibration_Si}
+    \end{subfigure}
+    \caption{
+        Linear interpolations for the two detectors. The upper plot 
+        corresponds to the CdTe detector, the lower one to the Si detector. 
+        $\chi^2$ values are omitted since thy do not yield any more information 
+        in the case of fitting three points. By eye, the agreement with the linear 
+        behavior is sufficiently fulfilled. 
+        }
+    \label{fig:detector_calibration}
+\end{figure}
+
+\begin{table}[htdp]
+    \centering
+    \caption{
+        Amplitudes $A$ obtained from the gaussian fits and 
+        resulting absorption ratio between CdTe and Si detector 
+        with the active areas $a_Si = 100\, \mathrm{mm^2}$ and 
+        $a_CdTe = 100\, \mathrm{mm^2}$.
+        }
+    \input{analysis/detector_ratio}
+    \label{tab:detector_ratio}
+\end{table}
+
+\begin{table}[htdp]
+    \centering
+    \caption{
+        Relative energy resolutions of CdTe (upper) and 
+        Si (lower) detector 
+        for the three observed peaks, calculated from the 
+        width of the fitted gaussians. 
+        }
+    \input{analysis/detector_RER}
+    \label{tab:detector_RER}
+\end{table}
+
