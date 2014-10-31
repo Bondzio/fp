@@ -1,4 +1,4 @@
-\section{theory}
+\section{Theory}
 \label{sec:theory}
 \paragraph{radioactivity} was discovered by Henri Becquerel and the outcome of his experiments
 were presented in 1896 at the conference of the French Academy (see \cite{konya2012nuclear} for the
@@ -13,11 +13,8 @@ the potassium uranyl sulfate to sunlight, wrapped it in black paper after and pl
 The result was the detection of X-rays. After repeating the experiment without sunlight, he observed the 
 same X-rays. He concluded that the blackening of the photographic plate was not caused by fluorescence
 induced by sunlight, but rather by an intrinsic property of the uranium salt, which was called Becquerel rays
-after. Rutherford distinguished between three types of radiation which 
-he called $\alpha$, $\beta$ and $\gamma$ rays
-by adsorption experiments in 1889. Later, in 1903, he found together with Soddy that the radioactive elements
-are undergoing spontaneous transformations from one chemical atom into another, while transformations
-are accompanied by the radiation.
+after. We will give an overview of the theory of radioactive phenomena in general and come back later
+to the scope of our experiment.
 \subsection{Short introduction to nuclear physics}
 \paragraph{In order to understand}
 the notions of radioactie decay and half life, we
@@ -66,6 +63,84 @@ $\Omega$ with the measure  $\mathcal{P}$:
 \end{equation}
 The half-life $t_{1/2}$ is obviously connected by $t_{1/2}= -\mathrm{log}(2)/ \lambda = - \tau \mathrm{log}(2)$.
 
+\subsection{Modes of radioactive decay}
+\paragraph{Radioactivity has been}
+experimentally observed since the end of the 19th century, 
+starting with the experiments of Henri Becquerel (1896) as already mentioned, when the atom was still seen 
+either within the 'plum pudding model', and later, after the experiments performed by 
+Rutherford et.~al. in 1911, a 'planetary model'. Rutherford coined the terms still in 
+use today to describe various types of radioactive decay, using the greek letters 
+$\alpha$, $\beta$ and $\gamma$. A more refined but not complete overview is 
+given by the following.~ \cite{martin2006nuclear}
+The mass and atomic numbers of the daughter nuclei ($A'$ and $Z'$, respectively) 
+is given in terms of $A$ and $Z$ corresponding to the parent nucleus. 
+\begin{description}
+    \item [Decay involving the emission of nuclei:] Changing both $A$ and $Z$.
+        \begin{itemize}
+            \item
+                \textbf{$\alpha$-decay:} a $~_2^4$He particle is emitted, the daughter nucleus 
+                has a mass number of $A' = A - 4$ and atomic number $Z' = Z - 2$. Example:
+                \begin{equation}
+                    \mathrm{~^{238}_{92}U}\rightarrow\mathrm{~^{234}_{90}Th} + \mathrm{~^{4}_{2}He} 
+                \end{equation}
+            \item
+                \textbf{Spontaneous fission:} parent nucleus breaks up into two daughter nuclei \emph{without}
+                external action. This only occurs in very heavy nuclei. $\mathrm{~^{238}_{92}U}$ can be
+                used as an example in this case, as well:
+                \begin{equation}
+                    \mathrm{~^{238}_{92}U}\rightarrow\mathrm{~^{145}_{57}La} + \mathrm{~^{90}_{35}Br} + 3n  \, .
+                \end{equation}
+                Instead of breaking into two parts of equal size, the most probable cases yield daughter 
+                nuclei differing by approximately 45 in mass number -- a question that remains to be solved 
+                until today.
+        \end{itemize}
+    \item [$\beta$ decay:]
+        This form of radioactive decay is observed in atoms of lower mass also. 
+        It conserves mass number $A$. Furthermore the $\beta$ decay is characterized by 
+        continuos spectrum of energies, since the energy will we redistributed according to
+        elastic scattering theory between the electron and the neutrino.
+        \begin{itemize}
+            \item
+                \textbf{$\beta^-$ decay:} conversion of a neutron into a proton with emission of electron and 
+                electron antineutrino, raising the atomic number $Z$ by one:
+                \begin{equation}
+                    {}^{1}_{0} \mathrm {n} \to {}^{1}_{1} \mathrm {p} + \mathrm{e}^{-} + \overline{\nu}_e 
+                \end{equation}
+            \item
+                \textbf{$\beta^+$ decay:} conversion of a proton into a neutron with emission of positron and 
+                electron neutrino, reducing the atomic number $Z$ by one:
+                \begin{equation}
+                    {}^{1}_{0} \mathrm {p} \to {}^{1}_{1} \mathrm {n} + \mathrm{e}^{+} + \nu_e 
+                \end{equation}
+            \item
+                \textbf{Electron capture (EC):} an electron of one of the inner orbitals is 'captured', transforming a proton 
+                into a neutron under emission of an electron neutrino
+                \begin{equation}
+                    {}^{1}_{0} \mathrm {p} + \mathrm{e}^{+} \to {}^{1}_{1} \mathrm {n} + \nu_e 
+                \end{equation}
+                In most cases, the electron stems from the K-orbital. The daugther nucleus is left in 
+                an unstable excited state, like in the case of the $^{40}$K used in the experiment. 
+                Figuratively, the hole in the lower shell produced by the $e^-$-capture is successively 
+                passed to the outer ones under emission of characteristic $\gamma$-rays. The
+                electron capture will also play a role in our experiment, therefore we will
+                have to modify the expression for the activity of the observed $\beta$ decay (see equation
+                \eqref{eq:EC} for the modification).
+
+        \end{itemize}
+    \item [Transition between states of the same nucleus:] 
+        A nucleus in an excited state decays into a state of 
+        lower energy without changing $A$ and $Z$.
+        \begin{itemize}
+            \item
+                \textbf{Isomeric transition:} The energy is transfrerred to a photon. This is the process to be observed 
+                in the experiment. 
+            \item
+                \textbf{Internal conversion:} Succession transfer of energy to an elctron of the outer orbital, 
+                which is then ejected. The resulting excited state is lowered by emission of characteristic 
+                x-rays or a so-called \emph{Auger electron}. 
+        \end{itemize}
+\end{description}
+
 
 
 \subsection{Ionization detector}
@@ -76,6 +151,8 @@ The half-life $t_{1/2}$ is obviously connected by $t_{1/2}= -\mathrm{log}(2)/ \l
 
 \subsection{Potassium}
 \label{subsec:potassium}
+Potassium was discovered in 1807 by Davy with the at that time new method of electrolysis. The metal
+is the seventh most abundant and makes up about 2.4\% by weight of the Earth's crust \cite{haynes}.
 The emission of $\beta$-rays is continuos due to the adsorption when
 passing through matter. Following \cite{ver} we will observe the following
 counting rate
@@ -104,6 +181,7 @@ we cannot use the $\lambda$ directly for the activity, since the activity does n
 the due to electron capture reduced activity. We can use the following estimation \cite{ver}:
 \begin{equation}
 \lambda = \lambda_{\beta} + \lambda_{EC} = \lambda_{\beta} + \frac{0.1072}{0.8928}\lambda_{\beta} = 1.12 \lambda_{\beta}
+\label{eq:EC}
 \end{equation}
 which let us arrive at the following result
 \begin{align}
@@ -130,6 +208,10 @@ T_{1/2} = \frac{\eta}{a b}
 \end{equation}
 \subsection{samarium}
 \label{subsec:samarium_theory}
+Samarium was discovered spectroscopically by its sharp absorption lines in 1879
+by Lecoq de Boisbaudran \cite{haynes}
+in the mineral samarskite, which is named in honor of a Russian minie offical, Colonel Samarski.
+Natural samarium isa mixture of seven isotopes, three of which are unstable but have long half-lives.
 We will use the detection of $\alpha$ rays for estimating the half life period of samarium. 
 The emission depends to a great deal on the surface of the emitting object.
 Following \cite{ver} the rate $n$ of samarium can be calculated with
