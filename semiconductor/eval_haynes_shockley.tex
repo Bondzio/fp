@@ -104,13 +104,31 @@ of the sample, does change all parameters considerably.
 
 
 \begin{figure}
-    \includegraphics[width=1.0\textwidth]{figures/haynes_shockley_mu_e_d}
+    \centering
+    \begin{subfigure}[b]{\pltw}
+        \includegraphics[width=1.0\textwidth]{figures/haynes_shockley_mu_e_d}
+        \caption{
+            Fitted straight line on centers of gaussians as calculated before. 
+            The linear behavior is see quite well, as indicated also by the 
+            $\chi^2$-test.
+            }
+        \label{fig:h_s_mu_e_d}
+    \end{subfigure}
+    \begin{subfigure}[b]{\pltw}
+        \includegraphics[width=1.0\textwidth]{figures/haynes_shockley_tau_d}
+        \caption{
+            Exponential fit through the amplitudes obtained by the gaussian fits 
+            in order to calculated the electron life time $\tau$. The $\chi^2$-test 
+            as well as the graphical impression shows that the errors obtained by the 
+            linear regression do not mirror the fluctuations obtained. It could 
+            further be the case that systematical errors have a large impact on the 
+            data. 
+            }
+        \label{fig:h_s_tau_d}
+    \end{subfigure}
     \caption{
-        Fitted straight line on centers of gaussians as calculated before. 
-        The linear behavior is see quite well, as indicated also by the 
-        $\chi^2$-test.
         }
-    \label{fig:h_s_mu_e_d}
+    \label{fig:h_s_mu_e_tau_d}
 \end{figure}
 
 With the velocity $v = \mu_n E$ calculated, we can transform 
@@ -133,19 +151,6 @@ of the sample~\cite{staatsexamen}, we expect the lattice defects to have
 a large effect especially on the recombination rate. Theoretically, 
 these effects are much harder to calculate -- experimentally, however, 
 it turns out that the defects drastically reduce the life time of free electrons. 
-
-\begin{figure}
-    \includegraphics[width=1.0\textwidth]{figures/haynes_shockley_tau_d}
-    \caption{
-        Exponential fit through the amplitudes obtained by the gaussian fits 
-        in order to calculated the electron life time $\tau$. The $\chi^2$-test 
-        as well as the graphical impression shows that the errors obtained by the 
-        linear regression do not mirror the fluctuations obtained. It could 
-        further be the case that systematical errors have a large impact on the 
-        data. 
-        }
-    \label{fig:h_s_tau_d}
-\end{figure}
 
 In the ultimate part of evaluating this measurement, the standard deviations in 
 time $\sigma_t$ are transferred to those in space $\sigma_x$ as described before. 
@@ -179,7 +184,7 @@ underestimation of errors by mere propagation.
 \end{figure}
 \FloatBarrier
 
-\subsubsection{Measuring at constant $U$}
+\subsubsection{Measuring at constant $d$}
 The procedure of this part of the experiment is roughly the same as before. 
 Instead of changing the distance, we change the applied acceleration voltage 
 $U_mathrm{acc}$, while $d$ remains constant at $d = (4.1 \pm 0.5)\,$mm. 
@@ -237,17 +242,6 @@ Here, the electron mobility is directly calculated with
 The value again lies notably below the accepted value. It does agree 
 with the value measured in the first experiment within three standard deviations, 
 which at least indicates the consistency of the results. 
-\begin{figure}
-    \includegraphics[width=1.0\textwidth]{figures/haynes_shockley_mu_e_U}
-    \caption{
-        Fitted straight line on centers of gaussians for constant $d$.  
-        The little number of data points does not allow for a good fit. 
-        Further, the errors obtained from fitting the gaussians do not
-        capture the real errors, which might further be due to 
-        fluctuations. This is also indicated by the $\chi^2$-test.
-        }
-    \label{fig:h_s_mu_e_d}
-\end{figure}
 We continue calculating the life time $\tau_n$, applying the 
 transformation of the amplitude $C' = C / (\mu_n E)$. The resulting 
 parameters together with the fit on the obtained data points is shown 
@@ -259,16 +253,33 @@ This parameter is in the same order of magnitude as the one obtained
 by the first measurement, but smaller and thus ever further away from 
 the literature value. The discussion done before applies here as well. 
 \begin{figure}
-    \includegraphics[width=1.0\textwidth]{figures/haynes_shockley_tau_U}
+    \centering
+    \begin{subfigure}[b]{\pltw}
+        \includegraphics[width=1.0\textwidth]{figures/haynes_shockley_mu_e_U}
+        \caption{
+            Fitted straight line on centers of gaussians for constant $d$.  
+            The little number of data points does not allow for a good fit. 
+            Further, the errors obtained from fitting the gaussians do not
+            capture the real errors, which might further be due to 
+            fluctuations. This is also indicated by the $\chi^2$-test.
+            }
+        \label{fig:h_s_mu_e_U}
+    \end{subfigure}
+    \begin{subfigure}[b]{\pltw}
+        \includegraphics[width=1.0\textwidth]{figures/haynes_shockley_tau_U}
+        \caption{
+            Exponential fit to calculate the life time of free electrons in germanium. 
+            The errors, stemming from the fit of gaussians on the original data, 
+            are much to small, since they do not capture global fluctuations induced 
+            by systematic errors. The resulting physical parameter $\tau_n$ should 
+            thus be interpreted with care, using it as an approximation of the 
+            order of magnitude. 
+            }
+        \label{fig:h_s_tau_U}
+    \end{subfigure}
     \caption{
-        Exponential fit to calculate the life time of free electrons in germanium. 
-        The errors, stemming from the fit of gaussians on the original data, 
-        are much to small, since they do not capture global fluctuations induced 
-        by systematic errors. The resulting physical parameter $\tau_n$ should 
-        thus be interpreted with care, using it as an approximation of the 
-        order of magnitude. 
         }
-    \label{fig:h_s_tau_U}
+    \label{fig:h_s_mu_e_tau_U}
 \end{figure}
 The third and last calculation of this part of the experiment is the fit over the 
 variances which are obtained analogously to the ones before by applying the 

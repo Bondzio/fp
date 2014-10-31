@@ -423,20 +423,12 @@ def calibration(detector_name, mu, s_mu):
     ax1.errorbar(mu, Es, xerr=s_mu, fmt='.', alpha=0.99, c=plot_fit.get_color()) # errors of t are not changed!
     ax1.set_xlabel("channel")
     ax1.set_ylabel("Energy / keV")
-    if detector_name == 'Si':
-        textstr = 'Results of linear fit:\n\
-                \\begin{eqnarray*}\
-                E(\mu)&=& a \mu + E_0 \\\\ \
-                a     &=& (%.4f \pm %.4f)\, \mathrm{keV / ch} \\\\ \
-                E_0   &=& (%.1f \pm %.1f)\, \mathrm{keV} \\\\ \
-                \end{eqnarray*}'%tuple(fit_both)
-    elif detector_name == 'CdTe':
-        textstr = 'Results of linear fit:\n\
-                \\begin{eqnarray*}\
-                E(\mu)&=& a \mu + E_0 \\\\ \
-                a     &=& (%.3f \pm %.3f)\, \mathrm{keV / ch} \\\\ \
-                E_0   &=& (%.1f \pm %.1f)\, \mathrm{keV} \\\\ \
-                \end{eqnarray*}'%tuple(fit_both)
+    textstr = 'Results of linear fit for %s'%detector_name + ":\n"
+    textstr += '\\begin{eqnarray*}\
+            E(\mu)&=& a \mu + E_0 \\\\ \
+            a     &=& (%.4f \pm %.4f)\, \mathrm{keV / ch} \\\\ \
+            E_0   &=& (%.1f \pm %.1f)\, \mathrm{keV} \\\\ \
+            \end{eqnarray*}'%tuple(fit_both)
     ax1.text(0.1, 0.95, textstr, transform=ax1.transAxes, va='top', bbox=props)
     if show_fig:
         fig1.show()
@@ -466,52 +458,17 @@ def peaks_to_tex():
     f.write("\t\t\\rowcolor{tabcolor}\n")
     f.write("\t\tPeak   & $E_\mathrm{peak}$ / keV & $\mathrm{\mu_{CdTe}}$ / Channel & $\mathrm{\mu_{Si}}$ / Channel\\\\ \n")
     f.write("\t\t\hline\n")
+    f.write('\t\t$%s$ & $%.1f$ & $%.1f \pm %.1f$ & $%.2f \pm %.2f$ \\\\ \n'
+            %(peaks[2], Es[2], mus_CdTe[2], s_mus_CdTe[2], mus_Si[2], s_mus_Si[2]))
     f.write('\t\t$%s$ & $%.2f$ & $%.1f \pm %.1f$ & $%.1f \pm %.1f$ \\\\ \n'
             %(peaks[0], Es[0], mus_CdTe[0], s_mus_CdTe[0], mus_Si[0], s_mus_Si[0]))
     f.write('\t\t$%s$ & $%.2f$ & $%.1f \pm %.1f$ & $%.0f \pm %.0f$ \\\\ \n'
             %(peaks[1], Es[1], mus_CdTe[1], s_mus_CdTe[1], mus_Si[1], s_mus_Si[1]))
-    f.write('\t\t$%s$ & $%.1f$ & $%.1f \pm %.1f$ & $%.2f \pm %.2f$ \\\\ \n'
-            %(peaks[2], Es[2], mus_CdTe[2], s_mus_CdTe[2], mus_Si[2], s_mus_Si[2]))
     f.write("\t\t\hline\n")
     f.write("\t\end{tabular}\n")
     f.close()
     return 0
 peaks_to_tex()
-
-# Calculation of absorption ratio
-a_CdTe = np.array([100]*3)  # active areas of CdTe detector
-a_Si = np.array([23]*3)     # active areas of Si detector
-P_corr = (As_corr[3:] / a_Si) / (As_corr[:3] / a_CdTe) # absorption ratio
-P = un.nominal_values(P_corr)
-s_P = un.std_devs(P_corr)
-P, s_P = err_round_s(P, s_P)
-As, s_As = err_round_s(As, s_As)
-As_CdTe = As[:3]
-s_As_CdTe = s_As[:3]
-As_Si = As[3:]
-s_As_Si = s_As[3:]
-
-def ratio_to_tex():
-    """
-    Writes absorption ratio to table (.tex file)
-    """
-    f = open("detector_ratio.tex", "w+")
-    f.write("\t\\begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}\n")
-    f.write("\t\t\hline\n")
-    f.write("\t\t\\rowcolor{tabcolor}\n")
-    f.write("\t\tPeak   & $A_\mathrm{CdTe}$ & $A_\mathrm{Si}$ & $P$\\\\ \n")
-    f.write("\t\t\hline\n")
-    f.write('\t\t$%s$ & $%.0f \pm %.0f$ & $%.0f \pm %.0f$ & $%.3f \pm %.3f$\\\\ \n'
-            %(peaks[0], As_CdTe[0], s_As_CdTe[0], As_Si[0], s_As_Si[0], P[0], s_P[0]))
-    f.write('\t\t$%s$ & $%.0f \pm %.0f$ & $%.0f \pm %.0f$ & $%.2f \pm %.2f$\\\\ \n'
-            %(peaks[1], As_CdTe[1], s_As_CdTe[1], As_Si[1], s_As_Si[1], P[1], s_P[1]))
-    f.write('\t\t$%s$ & $%.0f \pm %.0f$ & $%.0f \pm %.0f$ & $%.3f \pm %.3f$\\\\ \n'
-            %(peaks[2], As_CdTe[2], s_As_CdTe[2], As_Si[2], s_As_Si[2], P[2], s_P[2]))
-    f.write("\t\t\hline\n")
-    f.write("\t\end{tabular}\n")
-    f.close()
-    return 0
-ratio_to_tex()
 
 # Relative energy resolution
 # RER(E) = FWHM(E) / E = 2.35 \sigma(E) / E
@@ -533,26 +490,62 @@ def RER_to_tex():
     f.write("\t\tPeak   & $E_\mathrm{peak}$ / keV & $\sigma_\mathrm{CdTe}$ / Channel & \
             $\sigma_{E, \mathrm{CdTe}}$ /keV & $\mathrm{RER_{CdTe}}(E)$ \\\\ \n")
     f.write("\t\t\hline\n")
+    f.write('\t\t$%s$ & $%.1f$ & $%.1f \pm %.1f$ & $%.2f \pm %.2f$ & $%.3f \pm %.3f$\\\\ \n'
+            %(peaks[2], Es[2], sigmas[2], s_sigmas[2], sigmas_E[2], s_sigmas_E[2], RER[2], s_RER[2]))
     f.write('\t\t$%s$ & $%.2f$ & $%.1f \pm %.1f$ & $%.2f \pm %.2f$ & $%.4f \pm %.4f$\\\\ \n'
             %(peaks[0], Es[0], sigmas[0], s_sigmas[0], sigmas_E[0], s_sigmas_E[0], RER[0], s_RER[0]))
     f.write('\t\t$%s$ & $%.2f$ & $%.1f \pm %.1f$ & $%.1f \pm %.1f$ & $%.3f \pm %.3f$\\\\ \n'
             %(peaks[1], Es[1], sigmas[1], s_sigmas[1], sigmas_E[1], s_sigmas_E[1], RER[1], s_RER[1]))
-    f.write('\t\t$%s$ & $%.1f$ & $%.1f \pm %.1f$ & $%.2f \pm %.2f$ & $%.3f \pm %.3f$\\\\ \n'
-            %(peaks[2], Es[2], sigmas[2], s_sigmas[2], sigmas_E[2], s_sigmas_E[2], RER[2], s_RER[2]))
     f.write("\t\t\hline &&&&\\\\ \n")
     f.write("\t\t\hline\n")
     f.write("\t\t\\rowcolor{tabcolor}\n")
     f.write("\t\tPeak   & $E_\mathrm{peak}$ / keV & $\sigma_\mathrm{Si}$ / Channel & \
             $\sigma_{E, \mathrm{Si}}$ /keV & $\mathrm{RER_{Si}}(E)$ \\\\ \n")
     f.write("\t\t\hline\n")
-    f.write('\t\t$%s$ & $%.2f$ & $%.1f \pm %.1f$ & $%.2f \pm %.2f$ & $%.4f \pm %.4f$\\\\ \n'
-            %(peaks[0], Es[0], sigmas[0], s_sigmas[0], sigmas_E[0], s_sigmas_E[0], RER[0], s_RER[0]))
-    f.write('\t\t$%s$ & $%.2f$ & $%.1f \pm %.1f$ & $%.1f \pm %.1f$ & $%.3f \pm %.3f$\\\\ \n'
-            %(peaks[1], Es[1], sigmas[1], s_sigmas[1], sigmas_E[1], s_sigmas_E[1], RER[1], s_RER[1]))
     f.write('\t\t$%s$ & $%.1f$ & $%.1f \pm %.1f$ & $%.2f \pm %.2f$ & $%.3f \pm %.3f$\\\\ \n'
-            %(peaks[2], Es[2], sigmas[2], s_sigmas[2], sigmas_E[2], s_sigmas_E[2], RER[2], s_RER[2]))
+            %(peaks[2], Es[2], sigmas[5], s_sigmas[5], sigmas_E[5], s_sigmas_E[5], RER[5], s_RER[5]))
+    f.write('\t\t$%s$ & $%.2f$ & $%.1f \pm %.1f$ & $%.2f \pm %.2f$ & $%.4f \pm %.4f$\\\\ \n'
+            %(peaks[0], Es[0], sigmas[3], s_sigmas[3], sigmas_E[3], s_sigmas_E[3], RER[3], s_RER[3]))
+    f.write('\t\t$%s$ & $%.2f$ & $%.1f \pm %.1f$ & $%.1f \pm %.1f$ & $%.3f \pm %.3f$\\\\ \n'
+            %(peaks[1], Es[1], sigmas[4], s_sigmas[4], sigmas_E[4], s_sigmas_E[4], RER[4], s_RER[4]))
     f.write("\t\t\hline\n")
     f.write("\t\end{tabular}\n")
     f.close()
     return 0
 RER_to_tex()
+
+# Calculation of absorption ratio
+a_Si = np.array([100]*3)     # active areas of Si detector
+a_CdTe = np.array([23]*3)  # active areas of CdTe detector
+P_corr = (As_corr[3:] / a_Si) / (As_corr[:3] / a_CdTe) # absorption ratio
+P = un.nominal_values(P_corr)
+s_P = un.std_devs(P_corr)
+P, s_P = err_round_s(P, s_P)
+As, s_As = err_round_s(As, s_As)
+As_CdTe = As[:3]
+s_As_CdTe = s_As[:3]
+As_Si = As[3:]
+s_As_Si = s_As[3:]
+
+def ratio_to_tex():
+    """
+    Writes absorption ratio to table (.tex file)
+    """
+    f = open("detector_ratio.tex", "w+")
+    f.write("\t\\begin{tabular}{|p{2cm}|p{2.5cm}|p{3cm}|p{3cm}|p{3cm}|}\n")
+    f.write("\t\t\hline\n")
+    f.write("\t\t\\rowcolor{tabcolor}\n")
+    f.write("\t\tPeak & $E / \mathrm{keV} $  & $A_\mathrm{CdTe}$ & $A_\mathrm{Si}$ & $P(E)$\\\\ \n")
+    f.write("\t\t\hline\n")
+    f.write('\t\t$%s$ & $%.1f$ & $%.0f \pm %.0f$ & $%.0f \pm %.0f$ & $%.4f \pm %.4f$\\\\ \n'
+            %(peaks[2], Es[2], As_CdTe[2], s_As_CdTe[2], As_Si[2], s_As_Si[2], P[2], s_P[2]))
+    f.write('\t\t$%s$ & $%.2f$ & $%.0f \pm %.0f$ & $%.0f \pm %.0f$ & $%.4f \pm %.4f$\\\\ \n'
+            %(peaks[0], Es[0], As_CdTe[0], s_As_CdTe[0], As_Si[0], s_As_Si[0], P[0], s_P[0]))
+    f.write('\t\t$%s$ & $%.2f$ & $%.0f \pm %.0f$ & $%.0f \pm %.0f$ & $%.3f \pm %.3f$\\\\ \n'
+            %(peaks[1], Es[1], As_CdTe[1], s_As_CdTe[1], As_Si[1], s_As_Si[1], P[1], s_P[1]))
+    f.write("\t\t\hline\n")
+    f.write("\t\end{tabular}\n")
+    f.close()
+    return 0
+ratio_to_tex()
+

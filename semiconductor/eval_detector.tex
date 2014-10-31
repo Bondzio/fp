@@ -49,7 +49,9 @@ peak does not occur.
     \caption{
         Raw data obtained with CdTe detector as well as gaussians fitted 
         onto the expected peaks for the samples $^{57}$Co (\ref{fig:detector_Co_CdTe})
-        and $^{241}$Am (\ref{fig:detector_Am_CdTe})
+        and $^{241}$Am (\ref{fig:detector_Am_CdTe}). To maintain readability, the error bars 
+        are only plotted for every tenth data point. The error is estimated as usual 
+        with $\sqrt{N}$, the estimator for random variables following Poisson's distribution. 
         }
     \label{fig:detector_CdTe}
 \end{figure}
@@ -83,54 +85,36 @@ i.~e. a linear fit of the form
 in order to be able to associate an energy to each peak. The energies 
 are taken from the know peaks as described before. The used data is shown in table 
 \ref{tab:detector_peaks}, the linear interpolations are plotted in 
-figures \ref{fig:detector_calibration}. 
-
+figures \ref{fig:detector_calibration}, found in the appendix. We get a linear coefficients
+\begin{align}
+    a_\mathrm{CdTe}  &=  (0.1890 \pm 0.0011)\, \mathrm{\frac{keV}{ch}}\, \\
+    a_\mathrm{Si}  &=  (0.1964  \pm 0.0005)\, \mathrm{\frac{keV}{ch}} \, .
+\end{align}
 \begin{table}[htdp]
     \centering
     \caption{
         Peaks and corresponding energies for both semiconductors 
-        and both samples. The values are used int he linear fit 
+        and both samples. The values are used in the linear fit 
         in order to establish the relationship between channel 
         and energy.
         }
     \input{analysis/detector_peaks}
     \label{tab:detector_peaks}
 \end{table}
-
-\begin{figure}
-    \centering
-    \begin{subfigure}[b]{\pltw}
-        \includegraphics[width=1.0\linewidth]{figures/detector_calibration_CdTe}
-        \caption{}
-        \label{fig:detector_calibration_CdTe}
-    \end{subfigure}
-    \begin{subfigure}[b]{\pltw}
-        \includegraphics[width=1.0\linewidth]{figures/detector_calibration_Si}
-        \caption{}
-        \label{fig:detector_calibration_Si}
-    \end{subfigure}
-    \caption{
-        Linear interpolations for the two detectors. The upper plot 
-        corresponds to the CdTe detector, the lower one to the Si detector. 
-        $\chi^2$ values are omitted since thy do not yield any more information 
-        in the case of fitting three points. By eye, the agreement with the linear 
-        behavior is sufficiently fulfilled. 
-        }
-    \label{fig:detector_calibration}
-\end{figure}
-
-\begin{table}[htdp]
-    \centering
-    \caption{
-        Amplitudes $A$ obtained from the gaussian fits and 
-        resulting absorption ratio between CdTe and Si detector 
-        with the active areas $a_Si = 100\, \mathrm{mm^2}$ and 
-        $a_CdTe = 100\, \mathrm{mm^2}$.
-        }
-    \input{analysis/detector_ratio}
-    \label{tab:detector_ratio}
-\end{table}
-
+Using these coefficients, we can calculate the relative energy resolution 
+of the detectors. This is done applying the formulae discussed in the procedure 
+section, see equation \eqref{eq:RER}. The transformation of the standard deviation 
+and the resulting resolutions are displayed in table \ref{tab:detector_RER}. 
+It turns out that the relative resolution of both detectors lies in the same 
+order of magnitude, seeing notable difference only for the 136 keV $^{57}$Co peak.
+One has to keep in mind that this peak was especially subject to uncertainties 
+as the number of events was to small to do a realistic fit. Further, the Si 
+detector has a slightly higher resolution for all tested energies. 
+A yet more interesting result of this part of the analysis is, that 
+the width of the peaks does not change notably with the energy, 
+such that the relative resolution gets better with higher energies. 
+In this case, it is about twice as high for the Am peak compared to 
+that Co peak for both detectors. 
 \begin{table}[htdp]
     \centering
     \caption{
@@ -142,4 +126,40 @@ figures \ref{fig:detector_calibration}.
     \input{analysis/detector_RER}
     \label{tab:detector_RER}
 \end{table}
-
+The crucial part of this experiment lies in analyzing the qualities 
+of both semiconductors as detectors, which is quantitatively expressed 
+by the absorption probability: In many occasions one wants to now the 
+activity of a sample. In order to get reliable data, it is crucial to 
+register as many emitted photons as possible -- thus a higher absorption 
+coefficient indicates a better material for the according experiments. 
+We expect the CdTe semiconductor to show a much higher absorption rate 
+due to its higher mass density (which is a determining factor for the 
+    cross section). 
+\begin{table}[htdp]
+    \centering
+    \caption{
+        Amplitudes $A$ obtained from the gaussian fits and 
+        resulting absorption ratio between CdTe and Si detector 
+        with the active areas $a_{Si} = 100\, \mathrm{mm^2}$ and 
+        $a_{CdTe} = 23\, \mathrm{mm^2}$.
+        }
+    \input{analysis/detector_ratio}
+    \label{tab:detector_ratio}
+\end{table}
+The literature values~\cite{nist} for the energies under 
+examination are given by 
+\begin{align}
+    \frac{A_\mathrm{Si}}{A_\mathrm{CdTe}}(59 \,\mathrm{keV}) &= 1.40 \% \\
+    \frac{A_\mathrm{Si}}{A_\mathrm{CdTe}}(122 \,\mathrm{keV}) &= 1.83 \% \\
+    \frac{A_\mathrm{Si}}{A_\mathrm{CdTe}}(136 \,\mathrm{keV}) &= 2.00 \%
+\end{align}
+The order of magnitude is correct in all cases, although 
+errors obtained from propagation underestimate the 
+real errors -- due to the low number of data as well as systematic 
+errors introduced for example by the different losses. 
+The obtained values do not quite show the expected behavior 
+of rising absorption ratio for higher energies.
+However, 
+it is clear, that the CdTe has a much higher absorption coefficient and 
+can thus be considered to be the better detector in this kind of 
+experiment. 
