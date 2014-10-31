@@ -163,8 +163,8 @@ correspondences, as described in the theory section~\ref{eq:c_t_x}:
 
 \subsection{Semiconductor detectors}
 Here, the suitability of semiconductors as detectors for 
-ionizing rays is demonstrated on the basis of a silicon 
-and a cadmium telluride semiconductor. We will record 
+ionizing rays is demonstrated on the basis of a silicon (Si)
+and a cadmium telluride (CdTe) semiconductor. We will record 
 the spectra of $^{57}$Co and $^{241}$Am with both detectors 
 each. 
 The setup is shown in figure \ref{fig:setup_detector}.
@@ -188,32 +188,30 @@ which is saved on a computer.
     \label{fig:setup_detector}
 \end{figure}
 
-
-Eval
 For the evaluation, we measure each sample with the two detectors for 
 one hour each. The calibration of the histogram to actual energies is 
 done with the known peaks of $^{57}$Co at $122.06\,$keV and $136.47\,$keV 
 as well as the $59.5\,$keV peak of $^{241}$Am. The peaks are fitted on 
 gaussians of the form \eqref{eq:gaussian}, and the centers $x_c$ are 
 plotted over the corresponding energies $E$. The three points 
-are interpolated linearly. 
-The parameters obtained by the fit are used to compute
-the ratio of the absorption probabilities $\mathrm{Abs}(E)$ for each peak 
-as well as the relative energy resolution $\mathrm{RER}(E)$.
-The correspondence to the fit parameters are~\cite{ver}
-\begin{align}
-    \frac{\mathrm{Abs_{Si}}(E)}{\mathrm{Abs_{CdTe}}(E)}
-    &= \frac{A_\mathrm{Si}(E) / a_\mathrm{Si}}{A_\mathrm{CdTl}(E) / a_\mathrm{CdTl}} \\
+are interpolated linearly to establish the relationship between energy and channels.  
+The parameters obtained by the fit are used to compute 
+the relative energy resolution $\mathrm{RER}(E)$:
+\begin{equation}
     \begin{split}
         \mathrm{RER}(E) &= \frac{\mathrm{FWHM}(E)}{E} \\
-                        &= \frac{2 \sqrt{2 \ln 2} \sigma(E)}{E} \\
-                        &\approx \frac{2.35 \sigma(E)}{E} .
+                        &= \frac{2 \sqrt{2 \ln 2} \sigma_E}{E} \\
+                        &\approx \frac{2.35 \sigma_E}{E} .
     \end{split}    
-\end{align}
-The additional parameters are the active area $a$, in this case 
+\end{equation}
+The ratio of the absorption probabilities $\mathrm{Abs}(E)$ for each peak 
+are calculated from the amplitudes $A$ and the active areas $a_i$ with 
+\begin{equation}
+    \frac{\mathrm{Abs_{Si}}(E)}{\mathrm{Abs_{CdTe}}(E)}
+        = \frac{A_\mathrm{Si}(E) / a_\mathrm{Si}}{A_\mathrm{CdTl}(E) / a_\mathrm{CdTl}}
+\end{equation}
+where the $a_i$ are given by
 \begin{align}
     a_\mathrm{Si}   &= 100 \, \mathrm{mm^2} \\
-    a_\mathrm{CdTl} &= \,23 \, \mathrm{mm^2} \, ,
+    a_\mathrm{CdTl} &= \,23 \, \mathrm{mm^2} \, .
 \end{align}
-and the full width at half maximum $\mathrm{FWHM}$, which 
-is related to the standard deviation as indicated above. 
