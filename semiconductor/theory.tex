@@ -216,8 +216,7 @@ For our experiment it is relevant that silicium is an indirect semiconductor whi
     \caption{Band structure in solids}
     \label{fig:baender}
 \end{figure}
-
-\section{Interaction of photons with matter}
+\subsection{Interaction of photons with matter}
 We will exploit a particular effect only possible within the description of quantum mechanics, the
 photoelectric effect\footnote{Despite the fact that Heinrich Hertz discovered the 
 photoeletric effect already in 1887, it was not possible to explain it until Albert Einstein
@@ -231,13 +230,50 @@ Only when surpassing the bounding energy of the electron the photon will have an
 case the electron will be quasi free, leaving a hole behind, which in return will be refilled with
 an electron of a higher shell by emitting a photon (in principle also the creation of Auger electrons is
 possible, such that no photon is created). 
-
-
-
-
+\subsection{Electromobility}
+Because of the electron-hole production in semi conductors, with an applied current we can have 
+a \textbf{diffusion current}, which is caused in principle by the difussion of the charge carriers. In
+order to be able to explain the dynamic behavior of this current, we write down the
+\textbf{drift diffusion equation} with an applied exterior field
+\begin{align}
+    j/e =  \mu c(x) E(x) -  D_n \frac{\del c(x) }{\del x}  \\
+\end{align}
+with the result
 \begin{equation}
     c(t, x) = C \cdot \frac{1}{\sqrt{4 \pi D_n t}} 
     \cdot \exp\left( -\frac{\left( x - \mu_n E t \right)^2}{4 D_n t} \right)
     \label{eq:c_t_x}
 \end{equation}
+with the Diffusion coefficient $D_n = \mu kT /q $ and the electron mobility $\mu$.
+We conclude that the electrons diffuse like a self broadening gaussian, moving forward depending on 
+the applied field.
+
+\subsection{Electronic devices}
+\paragraph{The Single Channel Analyzer (SCA)} is the next instrument to process the signal detected. In general
+it refers to a electronic component creating a outputsignal only when the amplitude (of the input) happens to be
+between predefined constraints. Hence the SCA is a binary unit. We will use it amongst others for
+applying an energy window to the spectrum in order to indentify certain peaks with events. 
+\paragraph{Multi Channel Analyzer (MCA)} are used intensively for sorting a stream of voltage pulses
+into a histogram, integrating over a specific amount of time. The stored number of events versus pulse-height
+can be analyzed afterwards.
+\paragraph{Lock-in method}
+In order to suppress
+noise and frequencies from other processes, we use
+a frequently used method called ``lock-in amplification''. Depending on the
+setup it is possible to reduce the noise by a factor $10^6$. The method
+is based on the orthogonality relation of sinusoidal functions (which
+    can be seen easily differentiating the left with respect to $x$):
+\begin{equation}
+    \int \sin(a x) \sin(b x) dx =\frac{ b \sin(a x) \cos(b x)-a \cos(a x)
+        \sin(b x)}{a^2-b^2}
+\end{equation}
+If we let the integration go from $\infty$ to $-\infty$ we end up with:
+\begin{equation}
+    (a,b) := \int_{-\infty}^{\infty} \sin(a x) \sin(b x) dx = \delta(a - b)
+\end{equation}
+This stems from the sinusoidal functions forming a complete basis with
+the integral as inner product.\\
+Since we will not manipulate the parameters of the lock-in method in this
+experiment, we will not go into the technical details, which
+will also not be object of the analysis.
 
