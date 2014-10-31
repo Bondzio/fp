@@ -192,6 +192,8 @@ def samarium_long2(subtract=True):
     U_sam = average(U, no)
     n_sam = average(n, no)
     n_back, dt_back = background_long()
+    print(dt)
+    print(n_sam, np.sqrt(n_sam/dt))
     print(n_sam - n_back[0], np.sqrt(n_sam/dt + n_back[0]/dt_back))
 
 
@@ -310,9 +312,10 @@ def masses():
     Ea = uc.ufloat(2.233, 0.001)
     f  = uc.ufloat(0.56,0.01)
     R_air  = Ea * f
-    #R_air = uc.ufloat(1.13,0.01)
+    R_air = uc.ufloat(1.13,0.12)
 
     R_sm2o3 = R_air * (d_air * m_sm2o3)/(d_sm2o3 * m_air) 
+    print("R",R_sm2o3)
 
     m_sm2o3_mol = uc.ufloat(348.72,0.01)
 
@@ -323,14 +326,17 @@ def masses():
 
     print(zeta)
 
-    F1 = uc.ufloat(2.58 , 0.05)
+    F1 = uc.ufloat(2.68 , 0.05)
     n1 = uc.ufloat(0.54  , 0.01) 
 
     F2 = uc.ufloat(1.56 , 0.05)
-    n2 = uc.ufloat(0.18  , 0.007) 
+    n2 = uc.ufloat(0.189  , 0.007) 
 
-    print(np.pi * (F2/2)**2 /n2)
-    T12 = zeta * np.pi * (F2/2)**2 /n2 
+    T12_1 = zeta * np.pi * (F1/2)**2 /n1 
+    T12_2 = zeta * np.pi * (F2/2)**2 /n2
+    T12 = (T12_1 + T12_2)/2
+    print((T12_1/ 3600 / 24 / 365))
+    print((T12_2/ 3600 / 24 / 365))
     print((T12/ 3600 / 24 / 365))
 
 

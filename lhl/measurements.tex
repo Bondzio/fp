@@ -91,13 +91,38 @@ At this point we conducted a series of measurements of the at the working point,
     of signal and background $s_n = \sqrt{\frac{n_{sam.}}{t_{sam.}}+\frac{u_{back.}}{t_{back.}} }$, see see equation \eqref{eq:error_sam} for
     the derivation of the error.}
     \begin{tabular}{l l}
+        \textbf{Measurement 2.2.2} \\
         \rowcolor{tabcolor}$t$ & 4250 s \\ 
         Dish $\o$ & $\left [ 2.78 \pm 0.05 \right ]$ cm \\ 
         \rowcolor{tabcolor}$\bar{n}_{sam.}$ & $\left [ 0.55 \pm 0.01 \right ] $ counts $\cdot s^{-1}$ \\ 
-        $\bar{n} := \bar{n}_{sam.} - \bar{n}_{back.}$ & $\left [ 0.54 \pm 0.01 \right ] $ counts $\cdot s^{-1}$ \\ 
+    $\bar{n} := \bar{n}_{sam.} - \bar{n}_{back.}$ & $\left [ 0.54 \pm 0.01 \right ] $ counts $\cdot s^{-1}$ \\ \\
+        \textbf{Measurement 2.2.3} \\
+        \rowcolor{tabcolor}$t$ & 3600 s \\ 
+        Dish $\o$ & $\left [ 1.56 \pm 0.05 \right ]$ cm \\ 
+        \rowcolor{tabcolor}$\bar{n}_{sam.}$ & $\left [ 0.196 \pm 0.007 \right ] $ counts $\cdot s^{-1}$ \\ 
+        $\bar{n} := \bar{n}_{sam.} - \bar{n}_{back.}$ & $\left [ 0.189 \pm 0.007 \right ] $ counts $\cdot s^{-1}$ \\ 
     \end{tabular}
     \label{tab:mes1}
 \end{SCtable}
+At this point we can calculate the half life period of $^{147}Sm$ with equation \eqref{eq:T12_sam}
+\begin{equation*}
+T_{1/2} = \frac{\mathrm{log}(2)p_{\mathrm{^{147}Sm}} 
+ N_A \rho_{\mathrm{Sm_2O_3}}R_{Sm_2O_3}F}{2m_{\mathrm{Sm_2O_3, mol}}n } = \zeta \frac{F}{n} 
+\end{equation*}
+with $\zeta=[3.86\pm0.34]\cdot10^{22} \mathrm{counts \cdot cm^{-2}}$
+(see subsection~\ref{subsec:samarium_theory} of the theory part for the derivation). Finally we get the
+following results\footnote{%
+Using the $\Lambda CDM$ model \cite{Planck13}, 
+the age of the universe is estimated with about $[13.798\pm0.037]\cdot 10^9$
+which is about two orders of magnitude lower than our result. 
+}:
+\begin{align}
+T_{1/2} &= [1.15\pm0.17]10^{11}\mathrm{a} \qquad \text{\textbf{measurement 2.2.2}}\\ 
+T_{1/2} &= [1.12\pm0.17]10^{11}\mathrm{a} \qquad \text{\textbf{measurement 2.2.3}}\\
+\bar{T}_{1/2} &= [1.14\pm0.16]10^{11}\mathrm{a} \qquad \text{\textbf{both}}
+\end{align}
+which is less than one sigma bigger than the literature value $T_{1,2} =[1.06\pm0.2]\cdot10^{11} \mathrm{a}$.
+We consider the measurement hence to be reasonable as far as our result is agreeing very good with 
 \subsection{potassium}
 \label{subsec:potassium}
 Following from the uranium measurement we chose a working point of 3500V. The diameter 

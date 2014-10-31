@@ -1,5 +1,73 @@
 \section{theory}
 \label{sec:theory}
+\paragraph{radioactivity} was discovered by Henri Becquerel and the outcome of his experiments
+were presented in 1896 at the conference of the French Academy (see \cite{konya2012nuclear} for the
+following paragraph). 
+When studying 
+fluorescence he was following a family tradition, since already his father and his grandfather had been
+working in this field. At the very time before the discovery he was studying the florescent properties
+of potassium uranyl sulfate. Wilhelm Röntgen had shown that X-rays can be indicated by phosphorescent light
+emitted by the wall of a X-ray tube; following from there Henri was curious if the reverse process was also
+possible: Emission of X-rays through phosphorescent light. In order to examine this idea he exposed
+the potassium uranyl sulfate to sunlight, wrapped it in black paper after and placed it on a photograpic plate.
+The result was the detection of X-rays. After repeating the experiment without sunlight, he observed the 
+same X-rays. He concluded that the blackening of the photographic plate was not caused by fluorescence
+induced by sunlight, but rather by an intrinsic property of the uranium salt, which was called Becquerel rays
+after. Rutherford distinguished between three types of radiation which 
+he called $\alpha$, $\beta$ and $\gamma$ rays
+by adsorption experiments in 1889. Later, in 1903, he found together with Soddy that the radioactive elements
+are undergoing spontaneous transformations from one chemical atom into another, while transformations
+are accompanied by the radiation.
+\subsection{Short introduction to nuclear physics}
+\paragraph{In order to understand}
+the notions of radioactie decay and half life, we
+give a short introduction into nuclear physics following \cite{martin2006nuclear}
+In the following, let $Z$ be the atomic number, $N$ the number of neutrons and $A$ the number of nuclei, also
+called nucleon number. Thus, $A = Z + N$. The electric charge of the nucleus in the ground state is $+Z e$.
+It is common to describe the so called \emph{nuclides} with $_{Z}^{A}\textrm{Y}$.\\
+The forces binding the nuclei contribute to the total mass of an atom in terms of the 
+binding energy $\Delta E = \Delta M c^2$:
+\begin{equation}
+\Delta M = M_{tot.} - Z(M_p + M_e) - N M_n \, .
+\end{equation}
+We used the proton, electron and neutron masses $M_p$, $M_e$ and $M_n$ 
+(see figure~\ref{fig:bindingenergy}).
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/bindingenergy}
+    \caption{Binding energies for nuclei that are stable or long-lived \cite{Hooshyar}.}
+    \label{fig:bindingenergy}
+\end{figure}
+If we look at the distribution of stable nuclei we notice
+that they occur only in a very narrow band. All other nuclei are unstable and decay spontaneously.
+The decay is characerized by a \emph{decay constant} $\lambda$, which is related to the activity $\mathcal{A}$
+by 
+\begin{equation}\label{eq:decay}
+    \mathcal{A} = -\frac{\partial N}{\partial t} = \lambda N 
+\end{equation}
+where the activity $\mathcal{A}$ is typically given in Bequerel: $1 \textrm{Bq}= \textrm{decay}\cdot s^{-1}$.
+A solution to the differential equation \eqref{eq:decay} is
+\begin{equation}
+    \mathcal{A}(t) = \lambda N_0 \exp(-\lambda t) \, ,
+\end{equation}
+with the initial condition $N_0 := N(t=t_0)$. 
+The probability of an atom to decay within time $t$ is thus
+\begin{equation}
+    \mathcal{P}(t) = \int_{0}^{t}\lambda \exp(-\lambda t')\mathrm{d}t' = 1 -  \exp(-\lambda t)  \quad
+    \textrm{with} \quad \int_{0}^{\infty}\lambda \exp(-\lambda t')\mathrm{d}t' = 1 \, .
+\end{equation}
+The probability density is accordingly $f(t) = \lambda \exp(-\lambda t)$. 
+Hence, we can calculate the expectation value of a random variable $t$ within the probability space
+$\Omega$ with the measure  $\mathcal{P}$:
+\begin{equation}
+    \tau := E[t] = \int_{0}^{\infty} t \lambda \exp(-\lambda t) \mathrm{d}t 
+    =\lim_{t \rightarrow \infty}\left[ \frac{exp(-\lambda t) (1-\lambda t) - 1 }{\lambda} \right] 
+= \frac{1}{\lambda}
+\end{equation}
+The half-life $t_{1/2}$ is obviously connected by $t_{1/2}= -\mathrm{log}(2)/ \lambda = - \tau \mathrm{log}(2)$.
+
+
+
 \subsection{Ionization detector}
 \label{subsec:detector}
 
@@ -61,6 +129,7 @@ T_{1/2} = \frac{\eta}{a b}
 \label{eq:pot_final}
 \end{equation}
 \subsection{samarium}
+\label{subsec:samarium_theory}
 We will use the detection of $\alpha$ rays for estimating the half life period of samarium. 
 The emission depends to a great deal on the surface of the emitting object.
 Following \cite{ver} the rate $n$ of samarium can be calculated with
@@ -172,7 +241,7 @@ These rely very sensitive on the pressure and Temperature, we used $T = 293^{\ci
 }\\
 $\rho_{air} = [0.001184 \pm 0.0001] \mathrm{g/cm}^3$ and
 $\rho_{Sm_2O_3} = [7.6 \pm 0.1] \mathrm{g/cm}^3$ \\ and the range of $\alpha$ rays in air
-$R_{\mathrm{air}} = [1.25\pm0.2]$cm (\footnote{%
+$R_{\mathrm{air}} = [1.13\pm0.12]$cm (\footnote{%
 We used this value from \cite{ver}, because it was not possible to determine the value in a better
 fashion, because the range of $\alpha$ rays depends strongly on their energy, which ranges in the $\alpha$ decay
 from 2 - 10 MeV \cite{konya2012nuclear} (in our case, the energy is given by $E_\alpha = [2.233 \pm 0.001]MeV$
@@ -192,15 +261,23 @@ As it can be seen the ranges vary greatly, depending on the energy. Plugging in 
 \begin{equation}
 R_{\mathrm{air}} = [1.250\pm0.022] \mathrm{cm}
 \end{equation}
-Which varies from the value given in \cite{staatsexamen}. Since there is no source given (again we
-emphasize the fact that this does not correspond to our idea of scientific integrity) we tend
-to trust our calculated value than the one given.
+Which varies from the value given in \cite{staatsexamen}. However, we
+will take their value
+\begin{equation}
+R_{\mathrm{air}} = [1.13\pm0.12] \mathrm{cm}
+\end{equation}
+with a greater error in order to account for our previous calculation.
 }):
 \begin{equation}
     R_{Sm_2O_3} =R_{\mathrm{air}} \frac{\rho_{\mathrm{air}\sqrt{m_{\mathrm{eff,Sm_2O_3}}}}}
     {\rho_{\mathrm{Sm_2O_3}} \sqrt{m_{\mathrm{eff,air}}} } 
-    = [5.7 \pm 0.5] \mathrm{\mu m}
+    = [5.1 \pm 0.7] \mathrm{\mu m}
 \end{equation}
+
+
+
+
+
 This range seems to be very small compared to the range in air, but one has to consider the much higher density
 in $Sm_2O_3$ which contributes to a huge extent to the absorption. \\
 The next step is to consider the activity per volume using \eqref{eq:range2}
@@ -233,5 +310,5 @@ T_{1/2} = \frac{\mathrm{log}(2)p_{\mathrm{^{147}Sm}}
  N_A \rho_{\mathrm{Sm_2O_3}}R_{Sm_2O_3}F}{2m_{\mathrm{Sm_2O_3, mol}}n } = \zeta \frac{F}{n} 
 \label{eq:T12_sam}
 \end{equation}
-with $\zeta=[2.22\pm0.19]\cdot10^{22} \mathrm{counts \cdot cm^{-2}}$.
+with $\zeta=[3.5\pm0.5]\cdot10^{17} \mathrm{counts \cdot cm^{-2}}$.
 
