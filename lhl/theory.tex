@@ -1,8 +1,8 @@
 \section{Theory}
 \label{sec:theory}
 \paragraph{radioactivity} was discovered by Henri Becquerel and the outcome of his experiments
-were presented in 1896 at the conference of the French Academy (see \cite{konya2012nuclear} for the
-following paragraph). 
+were presented in 1896 at the conference of the French Academy (see \cite{konya2012nuclear} for 
+more detailed information about the following paragraph). 
 When studying 
 fluorescence he was following a family tradition, since already his father and his grandfather had been
 working in this field. At the very time before the discovery he was studying the florescent properties
@@ -140,20 +140,57 @@ is given in terms of $A$ and $Z$ corresponding to the parent nucleus.
                 x-rays or a so-called \emph{Auger electron}. 
         \end{itemize}
 \end{description}
+\subsection{Interaction of charged particles with matter}
+\label{subsec:interaction}
+
 
 
 
 \subsection{Ionization detector}
 \label{subsec:detector}
-
-\subsection{plateaus}
+The detection of charged particles can be realized with various different concepts, most of them based on
+the concept of the Photoelectric effect, Compton effect or, as in our case, ionization. Our detector is a
+kind of Geiger–Müller counter, which yields electric pulses proportional to the incident charged particles.
+We apply a electric field in order to attract positive ions created by interaction with the charged particles.
+A condensator reacts upon these pulses by a potential difference \cite{staatsexamen}. \\
+The change of potential at the condensator
+creates a flow, which can be tracked down with the electronic devices. By identifying pulses of a certain
+energy with single particles, we can count the single pulses. Since the ionization process is based upon the
+decomposition of molecules, we have provide a constant exchange of the gas to be ionized; we will use
+methane in our experiment, since it is cheap and effective enough for our purposes\cite{staatsexamen}. \\
+Our device can detect particles in all direction ($2\pi$ setup) and is hence cylindric.
+The detector is designed for specific domain; below and above this domain we will have nonlinear effects,
+which will be described in the following:
+\begin{enumerate}
+\item If the applied voltage is too low or zero, the potential difference at the condensator will be maximally
+exactly proportional to the effect of the charged particles, but there is no amplification. Therefore the
+signal will be too low for us to distinguish it from random noise or fluctuations. Below a certain 
+applied voltage we will not even create any ions, since we need to surpass at least (using the Bohr model) the
+binding energy of the electrons.
+\item In the regime above the first one each ionization which was created by a charged particle in the first part will be further
+amplified by the applied voltage, leading to a knock-on effect of ionization. Therefore the detected signal
+will be higher by orders of magnitude and therefore distinguishable from noise.
+\item Above the regime denoted as propotionality regime we enter a nonlinear domain. First, the finite 
+ionizability will lead to a saturation of any further amplification. After further increasing of the voltage
+the energy surplus can lead to a phase transition of the gas into plasma, which is dominated by strong
+fluctuations distorting the detected signal.
+\end{enumerate}
+As it turns out we will try to stay in the second regime, maximizing the signal. Furthermore we have to
+consider the different shapes of our signal depending on the applied voltage and the decay mode.
+\subsubsection{Plateaus}
 \label{subsec:plateaus}
-
+One of our first measurements will be the detection of both $\alpha$ and $\beta$ rays of a uranium preperation.
+An important point is that $\alpha$ particles are carrying much more energy than $\beta$ particles, and
+have thus a far higher capability to ionize the gas. Hence, we do need less amplification to detect $\alpha$
+particles than to detect $\beta$ particles. By applying the concepts about the regimes from the last 
+paragraph, we realize that there will be two \textit{plateaus}, depending on the required amplification of
+the particles in order to ionize the gas up to the second regime (see our measurements for a visualization
+of this rather abstract concept, subsection\ref{subsec:uranium}).
 \subsection{Potassium}
 \label{subsec:potassium}
 Potassium was discovered in 1807 by Davy with the at that time new method of electrolysis. The metal
 is the seventh most abundant and makes up about 2.4\% by weight of the Earth's crust \cite{haynes}.
-The emission of $\beta$-rays is continuos due to the adsorption when
+The emission of $\beta$-rays is continuos due to the absorption when
 passing through matter. Following \cite{ver} we will observe the following
 counting rate
 \begin{equation}
@@ -206,7 +243,7 @@ same order of magnitude as the last digit) to arrive at
 T_{1/2} = \frac{\eta}{a b} 
 \label{eq:pot_final}
 \end{equation}
-\subsection{samarium}
+\subsection{Samarium}
 \label{subsec:samarium_theory}
 Samarium was discovered spectroscopically by its sharp absorption lines in 1879
 by Lecoq de Boisbaudran \cite{haynes}

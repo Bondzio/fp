@@ -1,4 +1,47 @@
 \section{Measurements}
+\subsection{Techniques used for the evaluation}
+All calculations in the following are done with scripts written in 
+the \textit{python} programming language~\cite{python}, relaying in several 
+packages:
+\begin{itemize}
+    \item
+        \textit{matplotlib}~\cite{Hunter2007} for plotting,
+    \item
+        \textit{scipy}~\cite{scipy} for fitting, and 
+    \item
+        \textit{uncertainties}~\cite{uc} for error propagation.
+\end{itemize}
+The latter applies gaussian error propagation for correlated and uncorrelated variables. 
+We will thus not explicitly write down the formulas for the error propagation 
+for each quantity calculated but instead state the numerical result, only. 
+We will, however make a quick remark on the use of covariance matrices in 
+error propagation: Contrary to measured data, which in our case is usually 
+expected to be uncorrelated, all fitted data yields variables that in general correlate. 
+The propagation is then done as follows:
+Let's assume we have random
+variables $x_0,...,x_N$ which are correlated through the $N\times N$ Matrix $cov(x_i,x_j)$.
+For a scalar function $f(x_0,...,x_N) \rightarrow \mathbb{R}$, the variance is estimated (linearly) by:
+\begin{equation}
+Var[f] = \sigma^2 = \sum_{i,j} \frac{\partial f}{\partial x_i} \frac{\partial f}{\partial x_j} cov(x_i,x_j) \,.
+\end{equation} 
+If instead, $\mathbf{f}$ is a vector field in $m$ dimensions, namely 
+$\mathbf{f}(x_0,...,x_N) \rightarrow \mathbb{R}^m$, then the components of $\mathbf{f}$ 
+are further correlated. We can write down the relation between the covariance matrices $V$ and $U$ of 
+$\mathbf{x}$ and $\mathbf{f}$, respectively, in matrix relations:
+\begin{equation}
+    U = A V A^T
+\end{equation}
+where $A$ is the matrix defined by 
+\begin{equation}
+    A_{ij} = \left[ \frac{\partial f_i}{\partial x_j}\right]_{\mathbf{x} = \mathbf{\mu}}
+\end{equation}
+with expectation value $E[\mathbf{x}] = \mathbf{\mu}$.~\cite{cowan1998statistical}
+In order to facilitate notation, the covariance matrices will in general be notated without 
+specifying the units. If not specified explicitly, the units will correspond to those of the
+variables: If $x_i, x_j$ have the units $[x_i], [x_j]$, respectively, 
+then the entry of the covariance matrix has the unit $[x_i] \cdot [x_j]$. 
+
+
 \label{sec:measurements} 
 \subsection{Measurement 2.1: Uranium}
 \label{subsec:uranium}
