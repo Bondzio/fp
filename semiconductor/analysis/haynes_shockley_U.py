@@ -122,12 +122,10 @@ for k, (i, j) in enumerate(pairs): # 69
         fig1, ax1 = plt.subplots(1, 1)
         if not save_fig:
             fig1.suptitle("Haynes and Shockley, Pair: %i, %i"%(i, j))
-        plot_t, = ax1.plot(t, func(t, *p_s), '-', alpha=0.8)
-        plot_t, = ax1.plot(t, func(t, *p), '-', alpha=0.8)
-        plot_t, = ax1.plot(t, signal, '.', alpha=0.8, label=(r'original signal'))
-        plot_t, = ax1.plot(t, signal_s, '.', alpha=0.8, label=(r'smooth signal'))
-        next(ax1._get_lines.color_cycle)
-        ax1 = plt.gca()
+        ax1.plot(t, func(t, *p_s), '-', alpha=0.8)
+        ax1.plot(t, func(t, *p), '-', alpha=0.8)
+        ax1.plot(t, signal, '.', alpha=0.8, label=(r'original signal'))
+        ax1.plot(t, signal_s, '.', alpha=0.8, label=(r'smooth signal'))
         textstr = '\\begin{eqnarray*}\
                 U_\mathrm{acc} &=& (%.1f \pm 0.1)\, \mathrm{V} \\\\ \
                 c(t) &=& \\frac{A}{\sqrt{2\pi \sigma_t}} \
@@ -225,7 +223,6 @@ def plot_mobility():
     ax1.errorbar(t_c, y, xerr=s_t_c, yerr=s_y,   fmt='.', alpha=0.8)
     next(ax1._get_lines.color_cycle)
     ax1.plot(t_grid, mob_func(t_grid, *mob_fit), '-', alpha=0.8)
-    ax1 = plt.gca()
     textstr = 'Fit parameters for $e^-$ mobility $\mu_n$: \n\
             \\begin{eqnarray*}\\frac{d \, l}{U_\mathrm{acc}(t)} &=& \mu_n (t - t_0) \\\\ \
             \mu_n     &=& \,\,(%.2f \pm %.2f) \, \mathrm{mm^2 / (V \mu s)} \\\\  \
@@ -272,7 +269,6 @@ def plot_life_time():
     ax1.errorbar(t_c_tr, y_A, xerr=s_t_c, yerr=s_y_A, fmt='.', alpha=0.8) # errors of t are not changed!
     next(ax1._get_lines.color_cycle)
     ax1.plot(t_grid_tr, A_func(t_grid_tr, *A_fit), '-', alpha=0.8)
-    ax1 = plt.gca()
     textstr = 'Fit parameters for life time of $e^-$, $\\tau_n$: \n\
             \\begin{eqnarray*}\mu_n A(t_c) \\frac{U_\mathrm{acc}(t_c)}{l} &=& \\ C\' \exp(- t / \\tau_n) \\\\ \
             C\'       &=& \,\, (%i \pm %i) \, \mathrm{mV \cdot mm} \\\\  \
@@ -321,7 +317,6 @@ def plot_diffusion():
     ax1.errorbar(t_c_tr, var, xerr=s_t_c, yerr=s_var, fmt='.', alpha=0.8) # errors of t are not changed!
     next(ax1._get_lines.color_cycle)
     ax1.plot(t_grid_tr, var_func(t_grid_tr, *var_fit), '-', alpha=0.8)
-    ax1 = plt.gca()
     textstr = 'Fit parameters for $e^-$ diffusion const., $D_n$: \n\
             \\begin{eqnarray*}\sigma_x^2 &=& 2 D_n t\\\\ \
             D_n     &=& (%.3f \pm %.3f) \, \mathrm{mm^2 \, / \, \mu s} \\\\  \
@@ -341,9 +336,3 @@ def plot_diffusion():
 if do_plot_diffusion:
     plot_diffusion()
 
-"""
-# mobility mu_n
-U = uc.ufloat(49.6, 0.8)    # V, applied voltage
-E = U / l   # resulting electric field
-mu_n = mu_e / E
-"""

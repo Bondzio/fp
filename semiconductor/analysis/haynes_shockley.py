@@ -121,12 +121,10 @@ for k, (i, j) in enumerate(pairs): # 69
         fig1, ax1 = plt.subplots(1, 1)
         if not save_fig:
             fig1.suptitle("Haynes and Shockley, Pair: %i, %i"%(i, j))
-        plot_t, = ax1.plot(t, func(t, *p_s), '-', alpha=0.8)
-        plot_t, = ax1.plot(t, func(t, *p), '-', alpha=0.8)
-        plot_t, = ax1.plot(t, signal, '.', alpha=0.8, label=(r'original signal'))
-        plot_t, = ax1.plot(t, signal_s, '.', alpha=0.8, label=(r'smooth signal'))
-        next(ax1._get_lines.color_cycle)
-        ax1 = plt.gca()
+        ax1.plot(t, func(t, *p_s), '-', alpha=0.8)
+        ax1.plot(t, func(t, *p), '-', alpha=0.8)
+        ax1.plot(t, signal, '.', alpha=0.8, label=(r'original signal'))
+        ax1.plot(t, signal_s, '.', alpha=0.8, label=(r'smooth signal'))
         textstr = '\\begin{eqnarray*}\
                 d &=& (%.1f \pm 0.1)\, \mathrm{mm} \\\\ \
                 c(t) &=& \\frac{A}{\sqrt{2\pi \sigma_t}} \
@@ -228,7 +226,6 @@ def plot_mobility():
     ax1.errorbar(t_c, d, xerr=s_t_c, yerr=s_d,   fmt='.', alpha=0.8)
     next(ax1._get_lines.color_cycle)
     ax1.plot(t_grid, x_c_func(t_grid, *x_c_fit), '-', alpha=0.8)
-    ax1 = plt.gca()
     textstr = 'Fit parameters for $e^-$ mobility $\mu_n$: \n\
             \\begin{eqnarray*}x_c(t) &=& (\mu_n E)(t - t_0) \\\\ \
             (\mu_n E)     &=& \,\,(%.2f \pm %.2f) \, \mathrm{mm / \mu s} \\\\  \
@@ -259,13 +256,13 @@ def A_func(t, C, tau):
 def A_func_real(t, C, tau):
     return C /mu_e.n* np.exp(1) ** (- t / tau)
 p0 = [20, 4]
-A_fit, cov_A_fit = curve_fit(A_func, t_c_tr, A, p0=p0, sigma=s_A)
-A_corr = uc.correlated_values(A_fit, cov_A_fit)
-A_corr = np.array([A_corr[0] * mu_e, A_corr[1]])
+C_fit, cov_C_fit = curve_fit(A_func, t_c_tr, A, p0=p0, sigma=s_A)
+C_corr = uc.correlated_values(C_fit, cov_C_fit)
+A_corr = np.array([C_corr[0] * mu_e, C_corr[1]])
 A_fit = un.nominal_values(A_corr)
 s_A_fit = un.std_devs(A_corr)
 n_d = 3 # degrees of freedom: # fit parameter + 1
-chi2 = np.sum(((A_func(t_c_tr, *A_fit) - A) / s_A) ** 2 )
+chi2 = np.sum(((A_func(t_c_tr, *C_fit) - A) / s_A) ** 2 )
 
 def plot_life_time():
     """
@@ -277,10 +274,9 @@ def plot_life_time():
     ax1.errorbar(t_c_tr, A, xerr=s_t_c, yerr=s_A, fmt='.', alpha=0.8) # errors of t are not changed!
     next(ax1._get_lines.color_cycle)
     ax1.plot(t_grid_tr, A_func_real(t_grid_tr, *A_fit), '-', alpha=0.8)
-    ax1 = plt.gca()
     textstr = 'Fit parameters for life time of $e^-$, $\\tau_n$: \n\
             \\begin{eqnarray*}A(t) &=& \\frac{C}{\mu_n E} \exp(- t / \\tau_n) \\\\ \
-            C       &=& \,\, (%i \pm %i) \, \mathrm{mV \cdot mm} \\\\  \
+            C       &=& \,\, (%.0f \pm %.0f) \, \mathrm{mV \cdot mm} \\\\  \
             \\tau_n &=& (%.1f \pm %.1f) \, \mathrm{\mu s} \\\\ \
             \chi^2 / n_d &=& %.1f\
             \end{eqnarray*}'%(A_fit[0], s_A_fit[0], A_fit[1], s_A_fit[1], chi2 / n_d)
@@ -326,7 +322,6 @@ def plot_diffusion():
     ax1.errorbar(t_c_tr, var, xerr=s_t_c, yerr=s_var, fmt='.', alpha=0.8) # errors of t are not changed!
     next(ax1._get_lines.color_cycle)
     ax1.plot(t_grid_tr, var_func(t_grid_tr, *var_fit), '-', alpha=0.8)
-    ax1 = plt.gca()
     textstr = 'Fit parameters for $e^-$ diffusion const., $D_n$: \n\
             \\begin{eqnarray*}\sigma_x^2 &=& 2 D_n t\\\\ \
             D_n     &=& (%.3f \pm %.3f) \, \mathrm{mm^2 \, / \, \mu s} \\\\  \
