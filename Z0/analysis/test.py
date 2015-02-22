@@ -1,11 +1,35 @@
-from ROOT import TF2, TH1D
-from root_numpy import random_sample
+from rootpy.tree import Tree, TreeModel, FloatCol, IntCol
+from rootpy.io import root_open
+from random import gauss
 
-# Sample a ROOT function
-func = TF2('func', 'sin(x)*sin(y)/(x*y)')
-arr = random_sample(func, 1E6)
 
-# Sample a ROOT histogram
-hist = TH1D('hist', 'hist', 10, -3, 3)
-hist.FillRandom('gauss')
-arr = random_sample(hist, 1E6)
+f = root_open("test.root", "recreate")
+
+
+# define the model
+class Event(TreeModel):
+    x = FloatCol()
+    y = FloatCol()
+    z = FloatCol()
+    i = IntCol()
+
+tree = Tree("test", model=Event)
+
+# fill the tree
+for i in xrange(100):
+    tree.x = gauss(.5, 1.)
+    tree.y = gauss(.3, 2.)
+    tree.z = gauss(13., 42.)
+    tree.i = i
+    tree.fill()
+tree.write()
+
+# convert tree into a numpy record array
+from root_numpy import tree2rec
+array = tree2rec(tree)
+print array
+print array.x
+print array.i
+print tree.to_array()
+
+f.close()
