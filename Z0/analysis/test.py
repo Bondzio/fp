@@ -1,35 +1,27 @@
-from rootpy.tree import Tree, TreeModel, FloatCol, IntCol
-from rootpy.io import root_open
-from random import gauss
+from matplotlib import pyplot as plt
+from rootpy.plotting import root2matplotlib as rplt
+from rootpy.plotting import Hist2D
+import numpy as np
 
+a = Hist2D(100, -3, 3, 100, 0, 6)
+a.fill_array(np.random.multivariate_normal(
+    mean=(0, 3),
+    cov=np.arange(4).reshape(2, 2),
+    size=(1E6,)))
 
-f = root_open("test.root", "recreate")
+fig, (ax1, ax2, ax3) = plt.subplots(nrows=1, ncols=3, figsize=(15, 5))
 
+ax1.set_title('hist2d')
+rplt.hist2d(a, axes=ax1)
 
-# define the model
-class Event(TreeModel):
-    x = FloatCol()
-    y = FloatCol()
-    z = FloatCol()
-    i = IntCol()
+ax2.set_title('imshow')
+im = rplt.imshow(a, axes=ax2)
 
-tree = Tree("test", model=Event)
+ax3.set_title('contour')
+rplt.contour(a, axes=ax3)
 
-# fill the tree
-for i in xrange(100):
-    tree.x = gauss(.5, 1.)
-    tree.y = gauss(.3, 2.)
-    tree.z = gauss(13., 42.)
-    tree.i = i
-    tree.fill()
-tree.write()
+fig.subplots_adjust(right=0.8)
+cbar_ax = fig.add_axes([0.85, 0.15, 0.05, 0.7])
+fig.colorbar(im, cax=cbar_ax)
 
-# convert tree into a numpy record array
-from root_numpy import tree2rec
-array = tree2rec(tree)
-print array
-print array.x
-print array.i
-print tree.to_array()
-
-f.close()
+plt.show()
