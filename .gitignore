@@ -82,3 +82,4 @@ docs/_build/
 # Pratikum
 Protokoll.pdf
 report.pdf
+.ipynb_checkpoints/
