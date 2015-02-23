@@ -1,0 +1,121 @@
+\begin{flushleft}
+\end{flushleft}\clearpage
+\section{Auswertung}
+\subsection{Aufgabe 1 - Justierung des SQUID}
+Die Justierung des SQUID wurde wie oben beschrieben vorgenommen und der Arbeitspunkt wurde passend gewählt. Für die Einstellungen erhielten wir folgende Parameter:\\
+\begin{center}
+\begin{tabular}{rcll}
+VCA & = & 1342 & Amplitude des Schwingkreises \\
+VCO & = & 1431 & Frequenz des Schwingkreises \\
+Offset & = & 1612 & Offset zum Verschieben des Signals \\
+\end{tabular}
+\end{center}
+~\\
+Integr.C, d.h. die Kapazität des Kondensators, und FB-R, also der Widerstandswert des Schwingkreis-Widerstands, wurde der jeweiligen Messung angepasst.
+\clearpage
+\subsection{Aufgabe 2 - Dipolmomente/Feldstärken der Leiterschleife}
+\subsubsection{Berechnete Werte}
+Der Radius der stromdurchflossenen Leiterschleife mit dem Durchmesser $d=(4,2\pm0,1)mm$ beträgt:
+\[ r=\frac{d}{2}=(2,10\pm0,05)mm \]
+Das Dipolmoment kann man wie folgt berechnen:
+\[ p_{m}=AI=\pi r^2 \frac{U}{R} \]
+mit dem Fehler:
+\[ s_{p_m}=\sqrt{\left(\frac{\partial p_m}{\partial r}\right)^2 s_r^2+\left(\frac{\partial p_m}{\partial U}\right)^2 s_U^2+\left(\frac{\partial p_m}{\partial R}\right)^2 s_R^2~}\]
+\[ =p_m\sqrt{4\frac{s_r^2}{r^2}+\frac{s_U^2}{U^2}+\frac{s_R^2}{R^2}} ~~~~~~~~~~~~~~~~~~~~~~~\]
+Mit dem Dipolmoment kann die magnetische Flussdichte berechnet werden:
+\[ B_z=\frac{\mu_0}{2\pi}\frac{p_m}{z^3} \]
+mit einem Fehler
+\[ s_{B_z}=B_z\sqrt{\frac{s_p^2}{p^2}+9 \frac{s_z^2}{z^2}~} .\]
+Die Distanz zwischen dem SQUID und der Leiterschleife beträgt $z=(3,3\pm0,3)cm$.
+Die berechneten Werte sind in der folgenden Tabelle \ref{tab:belei} aufgeführt, die Werte der Widerstände werden aus der Versuchsanleitung entnommen, die Werte für die Spannung wurden während der Versuchsdurchführung zum jeweiligen Widerstand gemessen.\\
+\begin{table}[h]
+\begin{tabular}{c|c|c|c|c|c|c|c|c}\hline
+Nr & $R$ in $\Omega$ & $s_R$ in $\Omega$ & $U$ in $V$ & $s_U$ in $V$ & $p_m$ in $C\cdot nm$ & $s_{p_m}$ in $C \cdot nm$ & $B_z$ in $nT$ & $s_{B_Z}$ in $nT$ \\ \hline
+R1 & 51,47 & 0,05 & 2,32 & 0,06 & 590 & 30 & 3,3 & 0,9\\
+R2 & 100,8 & 0,1 & 2,22 & 0,05 & 305 & 16 & 1,7 & 0,5\\
+R3 & 300,8 & 0,3 & 2,30 & 0,06 & 106 & 6 & 0,59 & 0,16\\
+R4 & 510,6 & 0,3 & 2,33 & 0,06 & 63 & 3 & 0,4 & 0,1\\
+R5 & 1000 & 1 & 2,35 & 0,06 & 32,6 & 1,7 & 0,18 & 0,05 \\ \hline
+\end{tabular}
+\caption{Berechnete Werte zur Leiterschleife.}
+\label{tab:belei}
+\end{table}\\~
+\clearpage
+\subsubsection{Mit SQUID gemessene Werte}
+Zunächst müssen die erhaltenen Spannungsverläufe mit einer Sinusfunktion der Form 
+\[f(x)=a+b\cdot\sin(cx+d)\]
+gefittet werden. Dabei steht $a$ für den Offset der Funktion, $\left|b\right|$ für die Amplitude, $c=\omega$ für die Kreisfrequenz und $d$ für die Phase der Funktion. $x$ gibt die Zeit an, $f(x)$ die Spannung. Die Fits sind im Anhang zu finden. \\
+Für die maximale Spannungsdifferenz gilt: 
+\[\Delta U=2\left|b\right|.\]
+Nach Erhalt dieser Größe kann das Magnetfeld mit der Formel 
+\[B_{z}=F\cdot\frac{\Delta U}{s_{i}}=2F\frac{\left|b\right|}{s_{i}}\]
+berechnet werden. $F=9,3 nT/\Phi_{0}$ ist dabei wie der vom eingestellten Widerstandswert des Feedback-Resistors (FB-R) abhängige Wert $s_{i}$ [ver] zu entnehmen. In dieser Messreihe galt $s_{i}=1,9 V/\Phi_{0}$. Der Fehler auf das errechnete B-Feld ergab sich somit mithilfe der Gauss'schen Fehlerfortpflanzung zu 
+\[s_{B_{z}}=B_{z}\cdot\left|\frac{s_{b}}{b}\right|=B_{z}\cdot\frac{s_{\Delta U}}{\Delta U}.\]
+Um das Dipolmoment $p_{m}$ zu bestimmen, wird wieder der bereits verwendete Zusammenhang $B_{z}=\frac{\mu_{0}}{2\pi}\cdot{p_{m}}{z^{3}}$ und stellt diesen nach $p_{m}$ um:
+\[p_{m}=\frac{2\pi\cdot B_{z}z^{3}}{\mu_{0}}.\]
+Der Fehler auf diesen Wert wird mithilfe Gauss'scher Fehlerfortpflanzung zu 
+\[s_{p_{m}}=p_{m}\sqrt{\left(\frac{s_{B_{z}}}{B_{z}}\right)^{2}+9\left(\frac{s_{z}}{z}\right)^{2}}\]
+berechnet. Die erhaltenen Ergebnisse werden in folgender Tabelle zusammengefasst:
+\begin{table}[h]
+\caption{}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Nr & $\Delta U$ in V & $p_{m}$ in C*nm & $B_{z}$ in nT \\ \hline 
+R1 & $0,972\pm0,006$ & $900\pm200$ & $4,76\pm0,03$ \\ 
+R2 & $0,5066\pm0,0016$ & $450\pm120$ & $2,480\pm0,008$ \\ 
+R3 & $0,0927\pm0,0012$ & $80\pm20$ & $0,454\pm0,006$ \\ 
+R4 & $0,0593\pm0,0012$ & $52\pm14$ & $0,290\pm0,006$ \\ 
+R5 & $0,0258\pm0,0012$ & $23\pm6$ & $0,126\pm0,006$ \\ \hline
+\end{tabular}
+\end{center}
+\label{}
+\end{table}
+\clearpage
+\subsubsection{Vergleich}
+Um nun etwas über die mithilfe des SQUID bestimmten Werte aussagen zu können, werden diese mit den auf theoretischem Wege berechneten Werten verglichen.
+\begin{table}[htbp]
+\caption{}
+\begin{center}
+\begin{tabular}{|l|p{3.5cm}|p{3.5cm}|p{3.5cm}|p{3.5cm}|}
+\hline
+Nr & $p_{m}$ in C*nm mit SQUID & $p_{m}$ in C*nm theoretisch & $B_{z}$ in nT mit SQUID & $B_{z}$ in nT theoretisch \\ \hline
+R1 & $900\pm200$ & $590\pm30$ & $4,76\pm0,03$ & $3,3\pm0,9$ \\ 
+R2 & $450\pm120$ & $305\pm16$ & $2,480\pm0,008$ & $1,7\pm0,5$ \\ 
+R3 & $80\pm20$ & $106\pm6$ & $0,454\pm0,006$ & $0,59\pm0,16$ \\ 
+R4 & $52\pm14$ & $63\pm3$ & $0,290\pm0,006$ & $0,4\pm0,1$ \\ 
+R5 & $23\pm6$ & $32,6\pm1,7$ & $0,126\pm0,006$ & $0,18\pm0,05$ \\ \hline
+\end{tabular}
+\end{center}
+\label{}
+\end{table}
+~\\
+Alle Ergebnisse der Messungen entsprechen sich innerhalb einer bis zwei Standardabweichungen. Dies ist ein gutes Ergebnis, vor allem in Anbetracht der Tatsache, dass es zu erheblichen Problemen bei der Messung kam. Dies legt den Schluss nahe, dass der SQUID-Sensor an sich in Ordnung war und gute Ergebnisse lieferte, wenn Signale übermittelt wurden. Das Problem ist wohl in der Übertragung des Signals zu suchen.\\
+Dennoch ist ein Vorteil des SQUIDs hier sofort zu sehen: Das Magnetfeld $B_{z}$ wird sehr genau vermessen. Der Fehler ist äußerst klein im Vergleich zum theoretisch bestimmten Wert, was daran liegt, dass bei letzterem über $p_{m}$ der ziemlich große Fehler der Leiterschleifen-Radius-Messung vierfach und der Fehler des nicht allzu genau bestimmbaren Abstandes zwischen Probe und Sensor, $z$, neunfach eingeht. \\
+Bei dem SQUID dagegen ergibt sich der große Fehler für $p_{m}$ hauptsächlich durch den neunfach eingehenden Fehler von $z$. Das B-Feld kann sehr genau bestimmt werden.
+\subsection{Aufgabe 3 - Dipolmoment/Feldstärke des Magnetospans}
+Die Berechnung des B-Feldes und des Dipolmoments erfolgt analog zu der Bestimmung dieser Werte für die unterschiedlichen Widerstände.\\
+Wie bereits im Kapitel 'Durchführung' erwähnt, konnte dieser Teil des Versuchs ausschließlich mit dem Magnetospan durchgeführt werden, da für alle anderen Proben kein Signal entstand (auch für den Magnetospan konnte nur nach zahlreichen Neueinstellungen und Wiederholungen ein Signal beobachtet werden). \\
+Aufgrund anderer Einstellungen für den Widerstandswert des FB-R (s. Aufzeichnungen im Anhang) betrug die Sensitivität $s_{i}=0,12 V/\Phi_{0}$.\\
+Die Messung wurde ausgewertet, wobei wir folgende Ergebnisse erhielten:
+\begin{table}[htbp]
+\caption{}
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Probe & $\Delta U$ in V & $p_{m}$ in C*nm & $B_{z}$ in nT \\ \hline
+Magnetospan & $3,703\pm0,007$ & $52000\pm14000$ & $287,0\pm0,6$ \\ \hline
+\end{tabular}
+\end{center}
+\label{}
+\end{table}
+~\\
+Dabei ist zu bemerken, dass sich die entstandene Kurve sehr gut durch einen Sinus-Fit beschreiben lässt: Das korrigierte Bestimmtheitsmaß ('Adjusted $R^{2}$) des Fits beträgt 0,99215 (s. Anhang). Für eine perfekte Übereinstimmung zwischen Fit und Werten ergibt sich der Wert 1. Dies und die Tatsache, das ansonsten keine Signale zu beobachten waren, verstärkt den bereits geäußerten Verdacht, dass das Problem die Übertragung und nicht der Sensor selbst war.
+\clearpage
+\subsection{Aufgabe 4 - Polarplots}
+Um veranschaulichen zu können, inwiefern das Magnetfeld der Leiterschleife und des Magnetospans einem Dipolfeld entspricht, wurden Polarplots gezeichnet: Dabei wurde die mithilfe des SQUID gemessene Spannung, welche proportional zum Magnetfeld der Proben ist, in Abhängigkeit des Drehwinkels aufgetragen. Die einzelnen Koordinaten x und y berechnen sich dabei folgendermaßen:
+\[x_{i}=\left|U_{i}-\overline{U}\right|cos(\omega t_{i}),\]
+\[y_{i}=\left|U_{i}-\overline{U}\right|sin(\omega t_{i}),\]
+wobei $\overline{U}=\frac{1}{N}\sum_{i=1}^{N}U_{i}$.\\
+Es wurden jeweils, da wir mehr als eine Periode aufgenommen hatten, zwei aufeinanderfolgende Minima der Funktion gesucht, um eine Periode für das Auftragen zu bekommen. Aus den Spannungsdaten in dieser Periode konnte deren Mittelwert $\overline{U}$ bestimmt werden. Die Kreisfrequenz $\omega$ wurde aus den Fits herausgelesen (Parameter $c$), wobei sie immer in einer ähnlichen Größenordnung war, da es sich bei ihr um die Drehfrequenz des antreibenden Motors handelt. Dennoch haben wir für jede Messreihe den jeweiligen Parameter $c$ benutzt, um ein genaueres Ergebnis zu erhalten, da kleine Veränderung in der Motordrehfrequenz möglich waren. \\
+Die Plots sind dem Anhang zu entnehmen: Bei den Widerständen $R1$ und $R2$ bzw. dem Magnetospan ist die Dipolcharakteristik des Feldes gut zu erkennen. Bei den Widerständen $R3$ bis $R5$ war das Magnetfeld sehr schwach, wodurch das Untergrundrauschen den Polarplot beeinflusst.

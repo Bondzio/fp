@@ -1,0 +1,3 @@
+git commit -am 'finished, i closed #5'
+
+git 

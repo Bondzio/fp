@@ -1,0 +1,273 @@
+\section{Theory}
+\subsection{Diffraction}
+\subsubsection{Principle of Huygens-Fresnel} 
+We will develop the theory of diffraction \cite{landau2} which will be useful in the further progress
+the theory. When start from geometrical optics, we notice that we use the approximation for the 
+wavelength to be infinitely small. Taking into account the finite value of wavelength, we arrive at the
+main concept of diffraction phenomena. Let's assume for an instance that the path of the light is limited by
+opaque objects like an opening smaller than the beam of the light - then geometrical optics would predict 
+total separation between shadow and light after the opening. But with finite wavelengths, this separation
+is nullified by a complicated geometric intensity distribution fringing the areas of light,
+depending on the shape and size of the opening. Clearly the smaller the openings are compared to the
+wavelength this effects become stronger and stronger.
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{figures/beam}
+    \caption{Sketch for the calculation of the intensity distribution Later. the Point $P$ denotes a distant
+        point where we want to propagate the wave to, while $df$ at the surface of the aperture. For now 
+        we assume the light incoming from the left side is parallel and monochromatic.}
+    \label{fig:beam}
+\end{figure}
+\subsubsection{Frauenhofer Diffraction} 
+We will not look at the non-dynamic case, leaving out all the factors $e^{-i\omega t}$ which can be appended
+easily if necessary. We start with a general wave incident from the left side, with value $g(f)$ at the
+surface of the aperture at a point $f$ (see figure \ref{fig:beam}). Then the wave at point $P$ due to the
+out coming wave of $f$ will
+be proportional to $g(f)$. The energy density is reduced due to the enlarged surface proportional to $R$ 
+and gaining a phase $e^{ikR}$ as well. 
+The total wave at $P$ (which we denote with $\psi$) is thus the integral over the surface along d$f$: 
+\begin{equation}
+    \label{eq:int1}
+    \psi_P \propto \int \frac{g(f) e^{ikR(f)}}{R(f)}\del f.
+\end{equation}
+The approximation which can be successful applied is fairly simply: For $P$ far enough away, the distance
+$R$ is nearly the same for all points on the surface $f$, such that $R$ is not dependent on $f$ anymore and
+we can pull it out of the integral, yielding
+\begin{equation}
+    \label{eq:int1}
+    \psi_P \propto \int u(f) e^{ikR}\del f.
+\end{equation}
+The deeper point of this assumption is that for distance $R \Rightarrow \infty$ the wavefunction
+of an arbitrarily shaped aperture is proportional to the Fourier transform of the aperture.
+Let's assume an aperture function $g(x)$ of an one dimensional opening -- the dimension can be reduced 
+due to translational symmetry. Then this translates into
+\begin{equation}
+    \psi_P \propto \mathcal{F} \left[g(k)\right ]_P
+\end{equation}
+where the dependency of $P$ in $g(x)$ comes from the factor $R$.
+We have to think about Fourier transformations to continue our studies.
+
+\subsubsection{Fourier Transformations}
+We used the notation  $\mathcal{F} \left[g(k)\right ]_P$ for the Fourier transform 
+of $g(k)$ which will be introduced here:
+\begin{align}
+f(x) &= \int_{-\infty}^{\infty} F(k)\exp(i kx)\del k\\
+F(k) &= \mathcal{F}_x\left [f(x)\right ](k) =
+\int_{-\infty}^{\infty} f(k)\exp(-i kx) \del x
+\end{align}
+The most important properties are:
+\begin{align}
+    \label{eq:fourier}
+&\mathcal{F}\left [a f(x) + b g(x)\right ]
+    = a F(k) + b G(k) 
+    &\mbox{ (Linearity) }\\
+&\mathcal{F}\left [f(x) * g(x)\right ](k)
+    = \mathcal{F}\left [f(x)\right ]\mathcal{F}\left [g(x)\right ]
+    \! &\mbox{ (Convolution) }\\
+&\mathcal{F}_k\left [\left | F(k) \right |^2\right ](x)
+   =  \int_{-\infty}^{\infty}\bar{f}(\tau)f(\tau + x) \del\tau 
+   &\mbox{ (Wiener-Khinchin Theorem) }
+\end{align}
+where in the last property $\bar{f}$ means the complex conjugation of $f$.
+
+\subsubsection{Intensity distributions}
+An important insight from electrodynamics is that the intensity density I of a
+wave is proportional to the squared modulus of the complex wavefunction. We get the total intensity by
+integrating over all points $P$.
+This is enough for us to know to arrive at
+\begin{equation}
+    I_P \propto \psi_P^2 \propto \left ( \mathcal{F} \left[g(k)\right ]_P \right )^2 
+\end{equation}
+Now we can parametrize the point $P$ in various scenarios. Let's assume a screen on the right side of
+figure~\ref{fig:beam} at an angle $\theta$. The distance $R$ can be parametrized such that
+$R = x \sin \theta $, where $x$ is the horizontal distance (see figure~\ref{fig:beam}).
+It is now possible to calculate the intensity from various one-dimensional aperture
+functions, for example a single window:
+\begin{align}
+    \label{eq:g1}
+    g(x) &= 
+    \begin{cases}
+        1 & \text{if } |x| \leq b/2 \\ 
+        0 & \text{other }
+    \end{cases} \\
+    \Rightarrow \psi(\theta) \propto
+    \int_{-b/2}^{b/2} \exp ^{-i k x \sin(\theta)} \del x
+    &= \frac{2\sin ( k \frac{b}{2} \sin ( \theta ))}{k \sin(\theta)} \propto
+    \frac{\sin ( k \frac{b}{2} \sin ( \theta ))}{k \frac{b}{2}  \sin(\theta)} 
+    = \sinc(\beta(\theta)).
+\end{align}
+We defined $\beta(\theta) = \frac{kb \sin(\theta)}{2}$.
+For the intensity, we get
+\begin{equation}
+    \label{eq:sinc1}
+    I(\theta) \propto \psi^2 \propto \sinc^2(\beta(\theta)).
+\end{equation}
+For exemplary values, this is plotted in figure~\ref{fig:sinc1}).
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/sinc1}
+    \caption{This is the theoretic intensity distribution following equation~\eqref{eq:sinc1}. 
+        We plugged in $\lambda = 632.8$nm and $b = 1 \mu$m. The density is normed to one.}
+    \label{fig:sinc1}
+\end{figure}
+
+\subsubsection{Diffraction gratings}
+Equation~\eqref{eq:sinc1} leads straightforward to the intensity density of
+the diffraction grating, using \eqref{eq:fourier}. We need to understand 
+that a diffraction grating is the result of convolution of a simple opening
+(using the $\Theta$ function which is one for $x>0$ and zero otherwise)
+\begin{align}
+    \label{eq:multisplit}
+    g_b(x) &= \Theta(x - \frac{b}{2}) - \Theta( \frac{b}{2} - x ) \qquad
+           &\text{Single split} \\ 
+   g(x)   &:= \sum_{n=0}^{N-1} g_b(x-nK) 
+         \qquad &\text{Multi split with spacing } K
+\end{align}
+Calculating straightforward we would have:
+\begin{equation}
+    \psi(\theta) = \sum_{n = 0}^{N-1}  \int^{n \cdot K + b}_{n \cdot K} e^{i k x sin(\theta)} \del x
+\end{equation}
+which simplifies (after some none trivial steps):
+\begin{equation}
+    I(\theta) \propto \psi(\theta)^2 \propto \sinc(\beta)^2 \left (\frac{\sin(N\gamma)}{N \sin(\gamma)}\right )^2
+\end{equation}
+with
+\begin{equation}
+    \beta = \frac{k}{2}b \sin(\theta) \quad \text{and} \quad \gamma = k\cdot K \sin(\theta).
+\end{equation}
+$K \sin (\theta)$ is the difference in path length for the two corresponding light beams, 
+starting at the two points of distance $K$. Every time
+this distance is equal to a multiple of the wavelength, we will have a maximum:
+\begin{equation}
+    m \lambda = K \sin(\theta) \quad \text{ with }m \in \mathbb{Z}
+    \label{eq:N_lines_interference}
+\end{equation}
+
+\subsubsection{Approximation to aperture function}
+The relationship between intensity and aperture function can also be applied in the 
+opposite direction. Any periodic function $f(x)$ may be written as a Fourier series. 
+Choosing the orthogonal functions $\sin$ and $\cos$ as a basis, one obtains 
+\begin{equation}
+    f(t)=\frac{a_{0}}{2}+\sum_{k=1}^{\infty}\left(a_{k}\cos\left(kt\right)+b_{k}\sin\left(kt\right)\right)
+    \label{eq:fourier_series}
+\end{equation}
+with real coefficients $a_k$ and $b_k$. For even functions $f$ with $f(x) = f(-x)$ 
+this is further reduced to only even components, thus only the $\cos$ components:
+\begin{equation}
+    f(t)=\frac{a_{0}}{2}+\sum_{k=1}^{\infty} a_{k}\cos\left(kt\right)\, .
+    \label{eq:fourier_series_even}
+\end{equation}za
+Taking the observed maxima of intensity $I_m$ of order $m$, we can 
+apply this correspondance to approximate the aperture function $g(x)$ 
+to the maximal order $m_\mathrm{max}$ observed:
+\begin{equation}
+    g(x)=\frac{\sqrt{I_{0}}}{2}+\sum_{m=1}^{m_\mathrm{max}} \sqrt{I_m}\cos\left(2 \pi m \frac{x}{K}\right)\, .
+    \label{eq:g_approx}
+\end{equation}
+We can further normalize $g(x)$ by dividing through the sum of the coefficients:
+\begin{equation}
+    g_\mathrm{normalized}(x)=\frac{g(x)}{\sum_{m=0}^{m_\mathrm{max}} \sqrt{I_m}}\, .
+    \label{eq:g_approx}
+\end{equation}
+
+\subsubsection{Resolution}
+\label{sec:resolution}
+Finally we define the resolution
+\begin{equation}
+    a = \frac{\lambda}{\Delta \lambda}
+\end{equation}
+introducing $\Delta \lambda$, the minimal optical wavelength where separated maxima 
+are observed. One can deduce the relationship
+\begin{equation}
+    a = N \cdot m_\mathrm{max}
+    \label{eq:resolution}
+\end{equation}
+with the number of illuminated splits of the grating $N$ and the number of 
+visible maxima on the screen $m_\mathrm{max}$.\cite{ver}
+\FloatBarrier
+
+\subsection{Acousto-optics}
+\begin{SCfigure}
+    \centering
+    \caption{Illustration of the acousto-optic effect: The former transparent and homogeneous medium is
+        excited by an acoustic wave (turquoise) which changes the dielectric constant. On the top you notice
+        the blue line which indicates an incident beam by an angle $\theta$. 
+        This change of the refractive index is due to the dielectric constant is connected 
+        to diffractive phenomena like gratings, but in a non-trivial way. 
+        The main point here is that the angle $\theta$ should be small enough
+        for the beam not to be scattered (this would lead to Bragg-like scattering which is at the moment
+            not interesting for us). }
+    \includegraphics[width=0.5\linewidth]{figures/ramannath1.png}
+    \label{fig:ramannath1}
+\end{SCfigure}
+Considering a density variation in a material due to an acoustic wave, the dielectric constant is will
+change respectively (following \cite{boyd2003nonlinear} closely). 
+Incident optical waves are diffracted or scattered, depending on the spatial curvature
+of the dielectric constant (see figure~\ref{fig:ramannath1}). The condition for scattering not to occur can
+be estimated: Using the acoustic wavelength $\Lambda$ and the optic wavelength $\lambda$ we introduce 
+\begin{equation}
+    \label{eq:deltatheta}
+    \delta \theta = \frac{\lambda}{\Lambda}
+\end{equation}
+as the characteristic angular spread of the diffracted light. Scattering cannot occur, when 
+\begin{equation}
+    \delta \theta L < \Lambda.
+\end{equation}
+Combining the two equations, we get
+\begin{equation}
+    \frac{\lambda L}{\Lambda^2} < 1 \, .
+\end{equation}
+We chose the density fluctuations to be 
+\begin{equation}
+    \Delta \tilde{n}(z,t) = 2 \Delta n \sin(q z - \Omega t) \, ,
+\end{equation}
+where the tilde refers to time dependency and $\Delta n$ denotes the time independent part.
+$\Omega$ denotes the frequency and $q$ the spatial wave vector of the acoustic wave.
+The incident light can now be represented by 
+\begin{equation}
+    \tilde{E}(r,t) = A e ^{i(kx - \omega t)} + A^{*}e ^{-i(kx - \omega t)}.
+\end{equation}
+which is a solution of unbounded Laplace equation. 
+Passing through the interacting region $L$ the optical wave picks up a phase 
+\begin{equation}
+    \phi = \Delta \tilde{n}\frac{\omega}{c}L = \Delta n \frac{\omega}{c}L \sin (qz - \Omega t).
+\end{equation}
+The final and critical step is to use the \textbf{Jacobi-Anger expansion}
+\begin{equation}
+    e^{i\delta \sin y} = \sum_{l = -\infty}^{\infty} J_l(\delta)e^{ily} 
+\end{equation}
+where the $J_l$ are the Bessel functions of first kind, defined by
+\begin{equation}
+J_\alpha(x) = \sum_{m=0}^\infty \frac{(-1)^m}{m! \, \Gamma(m+\alpha+1)} {\left(\frac{x}{2}\right)}^{2m+\alpha}.
+\end{equation}
+Plugging in the last two equations we can look at the electromagnetic wave after surpassing the 
+cell of length $L$:
+\begin{equation}
+    \tilde{E}(r,t)=A \sum_{l = -\infty}^{\infty} J_l(\delta)e^{i
+        \left [kx -\omega t + \delta \sin(qz - \Omega t) \right ]  } + \quad \text{complex conjugates}
+\end{equation}
+with
+\begin{equation}
+    \delta = 2\Delta n \omega L / c.
+\end{equation}
+Analogue to the diffraction grating, the maxima of this patters 
+are observed at angles
+\begin{equation}
+    \sin(\theta) = \frac{\lambda}{\Lambda} m \qquad m \in \mathbb{Z} \, .
+\end{equation}
+And the intensity peaks are given by
+\begin{equation}
+    I_l = |A|^2 J_l(\delta)^2
+\end{equation}
+For sound waves in fluids, the refractive index changes for small changes in density $\delta \rho$ as 
+\begin{equation}
+    \frac{\delta n }{n - 1} = \frac{\delta \rho}{\rho_0}
+\end{equation}
+with density $\rho$ and refractive index $n$ of the unpertubed medium. Since the intensity of the sound 
+wave $S$ for the piezoelectric actuator with applied voltage $U$ goes with $S \propto U^2$ and further 
+$S \propto (\rho / \rho_0)$~\cite{ver}, we get the relationship 
+\begin{equation}
+    I_l = |A|^2 J_l(\delta)^2
+\end{equation}
+for the intensity of the $l$th maximum.
+

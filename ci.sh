@@ -1,0 +1,8 @@
+ghi open -m "Theory (Nuclear Spin)"
+ghi open -m "Measurements (Nuclear Spin)"
+ghi open -m "Analysis (Nuclear Spin)"
+ghi open -m "Conclusion (Nuclear Spin)"
+ghi open -m "Theory (Ultrasonic)"
+ghi open -m "Measurements (Ultrasonic)"
+ghi open -m "Analysis (Ultrasonic)"
+ghi open -m "Conclusion (Ultrasonic)"
