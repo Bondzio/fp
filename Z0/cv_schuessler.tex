@@ -1,0 +1,183 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Stylish Curriculum Vitae
+% LaTeX Template
+% Version 1.0 (18/7/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Stefano (http://stefano.italians.nl/)
+%
+% IMPORTANT: THIS TEMPLATE NEEDS TO BE COMPILED WITH XeLaTeX
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+% The main font used in this template, Adobe Garamond Pro, does not 
+% come with Windows by default. You will need to download it in
+% order to get an output as in the preview PDF. Otherwise, change this 
+% font to one that does come with Windows or comment out the font line 
+% to use the default LaTeX font.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper, oneside, final]{scrartcl} % Paper options using the scrartcl class
+
+\usepackage{scrpage2} % Provides headers and footers configuration
+\usepackage{titlesec} % Allows creating custom \section's
+\usepackage{marvosym} % Allows the use of symbols
+\usepackage{tabularx,colortbl} % Advanced table configurations
+\usepackage{fontspec} % Allows font customization
+\usepackage[utf8]{inputenc}   %Umlaute erm{\"o}glichen
+\usepackage[ngerman]{babel}
+
+\defaultfontfeatures{Mapping=tex-text}
+%\setmainfont{Adobe Garamond Pro} % Main document font
+
+\titleformat{\section}{\large\scshape\raggedright}{}{0em}{}[\titlerule] % Section formatting
+
+\pagestyle{scrheadings} % Print the headers and footers on all pages
+
+\addtolength{\voffset}{-0.5in} % Adjust the vertical offset - less whitespace at the top of the page
+\addtolength{\textheight}{3cm} % Adjust the text height - less whitespace at the bottom of the page
+
+\newcommand{\gray}{\rowcolor[gray]{.90}} % Custom highlighting for the work experience and education sections
+
+%----------------------------------------------------------------------------------------
+% ÊFOOTER SECTION
+%----------------------------------------------------------------------------------------
+
+\renewcommand{\headfont}{\normalfont\rmfamily\scshape} % Font settings for footer
+
+\cofoot{
+\addfontfeature{LetterSpace=20.0}\fontsize{13.5}{17}\selectfont % Letter spacing and font size
+
+Schwarzwaldstr.19{\large\textperiodcentered}79117 Freiburg {\large\textperiodcentered} Germany\\ % Your mailing address
+{\Large\Letter} f.schuessler@posteo.de \ {\Large\Telefon}(+49)17697506219 % Your email address and phone number
+}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\begin{center} % Center everything in the document
+
+%----------------------------------------------------------------------------------------
+% ÊHEADER SECTION
+%----------------------------------------------------------------------------------------
+
+{\addfontfeature{LetterSpace=20.0}\fontsize{24}{24}\selectfont\scshape Friedrich Schuessler\\
+\vspace{0.2cm} % Extra whitespace after the large name at the top
+\fontsize{14}{2}\selectfont\scshape born 08/02/1991 in Zeven, Germany
+    } % Your name at the top
+
+
+%\vspace{0.4cm} % Extra whitespace after the large name at the top
+
+%----------------------------------------------------------------------------------------
+%	OBJECTIVE
+%----------------------------------------------------------------------------------------
+
+\section{Description}
+Undergraduate student of physics (Bachelor of Science). No research area fixed yet - strongest 
+interest in theoretical physics, such as classical complex systems and climate and neuro science.
+%----------------------------------------------------------------------------------------
+%	EDUCATION
+%----------------------------------------------------------------------------------------
+
+\section{Education}
+
+\begin{tabularx}{0.97\linewidth}{>{\raggedleft\scshape}p{2cm}X}
+\gray Degree & \textbf{Abitur (final grade: 1.1)}\\
+\gray Period & \textbf{2007 - 2010}\\
+\gray School & \textbf{Cambridge High School} \hfill Cambridge, WI, USA (2007 -- 2008)\\
+\gray School & \textbf{Kooperative Gesamtschule} \hfill Tarmstedt, GERMANY (2008 -- 2010)\\
+%& Extra information about degree
+\end{tabularx}
+
+\vspace{12pt}
+
+\begin{tabularx}{0.97\linewidth}{>{\raggedleft\scshape}p{2cm}X}
+\gray Degree & \textbf{Bachelor of Science in Physics}\\
+\gray Period & \textbf{October 2011 - *}\\
+\gray University & \textbf{Albert-Ludwigs-University} \hfill Freiburg, GERMANY\\
+\gray Erasmus & \textbf{October 2013 - July 2014}\\
+\gray University & \textbf{Università degli studi "Tor Vergata"} \hfill Roma, ITALIA\\
+%& Extra information about degree
+\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+%	VOLUNTARY WORK
+%----------------------------------------------------------------------------------------
+
+\section{Voluntary work}
+
+\begin{tabularx}{0.97\linewidth}{>{\raggedleft\scshape}p{2cm}X}
+\gray Period & \textbf{September 2010 - August 2011}\\
+\gray Name & \textbf{"weltwearts"\ program of the Federal Ministry for Economic Cooperation 
+    and Development (BMZ): work in the field of environmental education in the Dominican Republic 
+    (reforestation, waste management, etc.)}\\
+%& Extra information about degree
+\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+%	SKILLS
+%----------------------------------------------------------------------------------------
+
+\section{Skills}
+
+\begin{tabular}{ @{} >{\bfseries}l @{\hspace{3ex}} l }
+Languages & German (native), English (fluent), \\
+          &Italian, Spanish (both advanced)\\
+Computer Languages & Python, C, FORTRAN, Mathematica, Matlab\\
+\end{tabular}
+
+%----------------------------------------------------------------------------------------
+%	INTERESTS
+%----------------------------------------------------------------------------------------
+
+\section{Interests}
+
+\begin{description}
+    \item[Music]
+        \begin{itemize}
+            \item playing piano and organ (various participations in the 
+                    competition "Jugend Musiziert"\, e.~g. on national level piano solo 2005)
+            \item choir (e.~g. 2013 -- 2014 Coro DeCanter, Frascati, Italy, with participation in the 
+                    int. competition Certament Coral a Cocentaina, Spain, 2014)
+        \end{itemize}
+    \item[Other]
+        \begin{itemize}
+            \item participation in two Model United Nations (MUN) as delegate 
+                (Dresden, Istanbul, both 2013) \\
+            \item active in the group "WinD"\ of former volunteers of the "weltwaerts"\ program, 
+                working in the area of education for democratic citizenship (international) \\
+        \end{itemize}
+\end{description}
+%----------------------------------------------------------------------------------------
+
+\end{center}
+
+%----------------------------------------------------------------------------------------
+%	WORK EXPERIENCE
+%----------------------------------------------------------------------------------------
+
+%\section{Education/ experience}
+
+%\begin{tabularx}{0.97\linewidth}{>{\raggedleft\scshape}p{2cm}X}
+%\gray Period & \textbf{October 2013 - August 2014}\\
+%\gray Institute & \textbf{Università degli Studi dell'Insubria} \hfill Como, ITALIA\\
+%\gray Group & \textbf{Italo Guarneri- Center for Nonlinear and Complex Systems}\\
+%\gray Name & \textbf{Simulation and theoretical Investigation of the modified standard map using Parallel Computing.}
+%\end{tabularx}
+%\vspace{12pt}
+
+%----------------------------------------------------------------------------------------
+%	EDUCATION
+%----------------------------------------------------------------------------------------
+
+%\section{Scholarships/ awards}
+
+\end{document}
