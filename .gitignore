@@ -84,4 +84,5 @@ Protokoll.pdf
 report.pdf
 
 # ipython notebook
-.ipynb_checkpoints/
+*.ipynb_checkpoints/
+*.ipynb
