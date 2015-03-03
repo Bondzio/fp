@@ -2,28 +2,15 @@
 import numpy as np
 import pickle
 from numpy.linalg import inv as inverse
-import matplotlib.pyplot as plt
-from matplotlib import rcParams
-import seaborn as sns
 import sympy as sy
-import prettyplotlib as ppl
 
 from scipy.optimize import curve_fit
+from scipy.optimize import leastsq
+
+import uncertainties as uc
+import uncertainties.unumpy as un
 
 
-sns.set_style(style='white')
-fontsize_labels = 22    # size used in latex document
-rcParams['font.family'] = 'serif'
-rcParams['font.serif'] = ['Computer Modern Roman']
-rcParams['text.usetex'] = True
-rcParams['figure.autolayout'] = True
-rcParams['font.size'] = fontsize_labels
-rcParams['axes.labelsize'] = fontsize_labels
-rcParams['xtick.labelsize'] = fontsize_labels
-rcParams['ytick.labelsize'] = fontsize_labels
-rcParams['legend.fontsize'] = fontsize_labels
-rcParams['axes.titlesize'] = fontsize_labels
-rcParams['figure.figsize'] = (3*6.2, 3*3.83)  # in inches; width corresponds to \textwidth in latex document (golden ratio)
 
 bcolors = [
     '\033[95m',
@@ -49,7 +36,8 @@ lumi   = {}
 for q in range(7):
     E = float(lumidata.split()[9+q*5])
     mean_E += [E]
-    lumi[E]   = float(lumidata.split()[10+q*5])
+    lumi[E] = uc.ufloat(float(lumidata.split()[10+q*5]),float(lumidata.split()[13+q*5]))
+
 pl(lumidata,1)
 all_data_sorted = {}
 
@@ -158,9 +146,49 @@ def calc_all(data, E_now):
     return N_all_corrected / lumi[E_now]
 
 E_now = 91.22430
-crosssection = {}
+crosssections = {}
 
 for E_now in mean_E:
-    crosssection[E_now] = calc_all(all_data_sorted[E_now], E_now)
+    crosssections[E_now] = calc_all(all_data_sorted[E_now], E_now)
 
-pickle.dump(crosssection, open("crosssection.p","wb"))
+pickle.dump(crosssections, open("crosssection.p","wb"))
+
+E = (np.array(4*list(crosssections.keys())).reshape(4,7).swapaxes(0,1))
+cross_total = un.nominal_values(list(crosssections.values()))
+cross_total_error = un.std_devs(list(crosssections.values()))
+
+def Breit_Wigner(s,p):
+    gamma_e, gamma_m,gamma_t,gamma_h,gamma_Z,Mz = p
+    gamma_f = np.array([gamma_e,gamma_m,gamma_t,gamma_h])
+    return 12*np.pi / Mz**2 * (gamma_e*gamma_f*s)/((s - Mz**2)**2 +(s*gamma_Z/Mz)**2)
+
+p0 = [80,80,80,1600,2.4,90]
+def residuals(p,error):
+    weights = 1 / error
+    return (weights*(cross_total - Breit_Wigner(E**2,p))).flatten()
+
+pl("Now fitting the crosssections.\n------------\n",0)
+
+p,cov,infodict,mesg,ier = leastsq(residuals,p0,args=cross_total_error,full_output=True)
+len_data = len(residuals(p))
+chi_sq = (residuals(p)**2).sum()/(len_data-len(p))
+p_uc = uc.correlated_values(p, cov)
+keys = ["gamma_e", "gamma_m","gamma_t","gamma_h","gamma_Z","Mz      "]
+params = dict(zip(keys,p_uc))
+gamma_e, gamma_m,gamma_t,gamma_h,gamma_Z,Mz = p_uc
+for k in params:
+    print(k,"\t",params[k])
+
+## Leptonuniversality
+
+V_mu = gamma_m / gamma_e
+print("gamma_m / gamma_e",V_mu)
+
+V_tau = gamma_t / gamma_e
+
+print("gamma_t/gamma_e",V_tau)
+
+## Number of Neutrino families
+
+gamma_nu = 1000*gamma_Z - gamma_e - gamma_m - gamma_t - gamma_h
+print("Number of neutrino families",gamma_nu/(3*250))
