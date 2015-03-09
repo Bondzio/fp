@@ -48,7 +48,7 @@ def osci_tka_npy(file_in, file_out):
 
     return 0
 
-# generate npy files
+# generate npy file
 npy_dir = "./data_npy/"
 
 """
@@ -58,14 +58,17 @@ file_out1 = npy_dir + "001_ch_a"
 file_out2 = npy_dir + "001_ch_b"
 osci_csv_npy(file1, file_out1)
 osci_csv_npy(file2, file_out2)
-
-file1 = "./data_txt/ps_22na_01.txt"
-file_out1 = npy_dir + "ps_22na_01"
-osci_txt_npy(file1, file_out1)
 """
 
+txt_str = 'ps_background_01'
+file1 = './data_txt/' + txt_str + '.txt'
+file_out1 = npy_dir + txt_str
+osci_txt_npy(file1, file_out1)
+
+"""
 file1 = "./data_tka/na_137cs_01.TKA"
 file_out1 = npy_dir + "na_137_01"
 osci_tka_npy(file1, file_out1)
 
+"""
 
