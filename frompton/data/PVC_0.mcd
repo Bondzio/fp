@@ -1,0 +1,50 @@
+REPORT-FILE from 02/25/2014 09:36:49.562 - 10:08:09.812  written 02/25/2014 10:09:12
+REALTIME: 1880.272    
+TOTALSUM: 4589        
+ROISUM: 4589        
+MAXVAL: 71          
+LIVETIME: 1880.266    
+cmline0=02/25/2014 09:36:49.562 - 10:08:09.812 
+range=1024
+prena=2
+mcsmode=4
+roimin=0
+roimax=1024
+rtpreset=10.000      
+ltpreset=1800.000    
+evpreset=0           
+swpreset=1           
+rampmode=0
+rampstart=1024
+rampstep=1
+rampbin=1
+ramplen=1024
+qdacuse=0
+qdac=2048
+dac1use=0
+dac1val=0
+impsel=f
+thrstart=1716
+thr1=1716
+thr2=1716
+thrclk=2482
+diguse=8
+digval=0
+cycles=128
+sequences=1
+mempart=0
+dwelltime=3
+dwellunit=0
+syncout=909
+histlen=0
+autoinc=0 
+;datname=C:\Dokumente und Einstellungen\Student\Desktop\IsabelleFrank\PVC_0.mcd
+savedata=0
+fmt=txt
+smoothpts=5 
+caluse=0 
+caloff=0.000000
+calfact=8.000000
+calfact2=0
+calfact3=0
+calunit=keV

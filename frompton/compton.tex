@@ -1,0 +1,55 @@
+\documentclass{article}
+\usepackage[en, boldvec]{lesel}
+\usepackage{amsmath}
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{pdfpages}
+\usepackage{subfigure} 
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{placeins}
+\input{pyexp}
+\onehalfspacing
+
+\newcommand{\person}[1]{\textsc{#1}}
+\newcommand{\compton}{\person{Compton} }
+
+\begin{document}
+%\nocite{*}
+
+\authorOne{Isabelle Schmager}
+\authorTwo{Frank Sauerburger}
+\coverTop{Fortgeschrittenen-Praktikum II\\Albert-Ludwigs-Universität Freiburg}
+\coverSuper{Report}
+\date{24. - 28. February 2014}
+\mycover{Compton Scattering}
+
+\noindent isabelle@schmager.com\\
+frank@sauerburger.net\\~\\
+Tutor: Phuong Dang \cleardoublepage
+
+\tableofcontents
+\clearpage
+\newpage
+
+
+\input{introduction}
+\clearpage
+\input{theory}
+
+\clearpage
+\input{setup}
+\clearpage
+\input{analysis}
+\clearpage
+\input{conclusion}
+\clearpage
+\input{appendix}
+\clearpage
+
+\bibliographystyle{IEEEtran}
+\bibliography{compton}
+\addcontentsline{toc}{section}{References}
+
+\end{document}
