@@ -1,0 +1,27 @@
+\section{Conclusion}
+
+In \ref{sss:calib} we did an energy calibration for both scintillators. Our
+results are
+\begin{align}
+  E_{\mathrm{NaI}}(C) = \pyexp{calib_naj_a} + \pyexp{calib_naj_b} \cdot C.
+\end{align}
+and
+\begin{align}
+  E_{\mathrm{PVC}}(C) = \pyexp{calib_pvc_a} + \pyexp{calib_pvc_b} \cdot C.
+\end{align}
+
+Our first task was to verify the conservation of energy for \compton
+scattering. Figure \ref{fig:conserv} shows that we could verify the
+conservation of energy in our experiment. The energy of the scattered photon
+can therefore be calculated with
+\begin{align}
+  E'_\gamma = \frac{E_\gamma}{1 - \frac{E_\gamma}{m_e} (1-\cos \theta)}
+\end{align}
+where $E_\gamma$ is the energy of the primary photon.
+
+Our last task was to calculate the differential cross section and compare it
+to the \kleinn{} formula. Figure \ref{fig:cross} shows the result. We did
+show that the differential cross section is in the correct order of
+magnitude, but due to the larger standard deviations we can neither verify
+nor disproof the \kleinn{} formula.
+
