@@ -34,51 +34,41 @@ if not save_fig:
 fig_dir = "../figures/"
 npy_dir = "./data_npy/"
 
-def klein_nishina_float(x, a, C):
-    """
-    Insert photon and electron energy in m_e, constant C (in barn)
-    Takes only floats!
-    """
-    x_max = 2 * a**2 / (1 + 2 * a)                     # maximal electron energy
-    if x > x_max:
-        dsdE = 0
-    else:
-        dsdE =  C / a**2 * \
-                (x**2 / (a * (a - x))**2 + ((x - 1)**2 - 1) / (a * (a - x)) + 2) 
-    return(dsdE)
 
-def klein_nishina(x, a, C):
+def klein_nishina_array(x, a, C, scale):
     """
     Insert photon and electron energy in m_e, constant C (in barn)
     Takes only np.arrays!
     """
     x_max = 2 * a**2 / (1 + 2 * a)                     # maximal electron energy
+    y = x / scale
     dsdE =  C / a**2 * \
-            (x**2 / (a * (a - x))**2 + ((x - 1)**2 - 1) / (a * (a - x)) + 2) *\
-            (x <= x_max)                                     # in barn / keV
+            (y**2 / (a * (a - y))**2 + ((y - 1)**2 - 1) / (a * (a - y)) + 2) *\
+            (y <= x_max)                                     # in barn / keV
     dsdE[np.isnan(dsdE)] = 0
     return(dsdE)
 
-def klein_nishina_float(x, a, C):
-    """
+def klein_nishina_float(x, a, C, scale):
+    '''
     Insert photon and electron energy in m_e, constant C (in barn)
     Takes only floats!
-    """
+    '''
     x_max = 2 * a**2 / (1 + 2 * a)                     # maximal electron energy
-    if x > x_max:
+    y = x / scale
+    if y > x_max:
         dsdE = 0
     else:
         dsdE =  C / a**2 * \
-                (x**2 / (a * (a - x))**2 + ((x - 1)**2 - 1) / (a * (a - x)) + 2) 
+                (y**2 / (a * (a - y))**2 + ((y - 1)**2 - 1) / (a * (a - y)) + 2) 
     return(dsdE)
 
 def gauss0(x, sigma):
     return  1 / (np.sqrt(2 * np.pi) * sigma) * np.exp(-x**2 / (2. * sigma**2))
 
-def conv_kn_gauss(x, a, C, sigma):
-    kn_gauss = lambda y, x, a, C, sigma: klein_nishina_float(x - y, a, C) * gauss0(y, sigma)
+def conv_kn_gauss(x, a, C, scale, sigma):
+    kn_gauss = lambda y, x, a, C, sigma: klein_nishina_float(x - y, a, C, scale) * gauss0(y, sigma)
     if type(x) == float:
-        conv = quad(kn_gauss, -2*a, 2*a, args=(x, a, C, sigma))[0]
+        conv = quad(kn_gauss, -np.inf, np.inf, args=(x, a, C, sigma))[0]
     else:
         conv = np.array([quad(kn_gauss, -np.inf, np.inf, args=(x_i, a, C, sigma))[0] for x_i in x])
     return conv
@@ -100,26 +90,26 @@ C = kn_max * a**2 / (2 * (x_max + 1))
 
 
 # Parameters of convolution
-sigma  = 0.05
-mu = x_max / 2
-x0 = 2 * a
+scale = 0.1
+sigma  = 0.2 / scale
+x0 = 2 * a / scale
 n_x = 1000
 x = np.linspace(-x0, x0, n_x)
 
-kn = klein_nishina(x, a, C)
+kn = klein_nishina_array(x, a, C, scale)
 g = gauss0(x, sigma)
-smeared_kn = np.convolve(klein_nishina(x, a, C), gauss0(x, sigma), 'same') * 2 * x0 / n_x
-conv = conv_kn_gauss(x, a, C, sigma)
+smeared_kn = np.convolve(klein_nishina_array(x, a, C, scale), gauss0(x, sigma), 'same') * 2 * x0 / n_x
+conv = conv_kn_gauss(x, a, C, scale, sigma)
 
 #Plotting
 fig1, ax1 = plt.subplots(1, 1)
 if not save_fig:
     fig1.suptitle("Klein-Nishina formula")
-ax1.plot(x, klein_nishina(x, a, C), '-', alpha=0.8, label=('Klein-Nishina'))
-ax1.plot(x_max, klein_nishina_float(x_max, a, C), 'o', alpha=0.8, label=('max'))
+ax1.plot(x, klein_nishina_array(x, a, C, scale), '-', alpha=0.8, label=('Klein-Nishina'))
+ax1.plot(x_max, klein_nishina_float(x_max, a, C, scale), 'o', alpha=0.8, label=('max'))
 ax1.plot(x, conv, '-', alpha=0.8, label=('Convolution(quad)'))
 ax1.plot(x, smeared_kn, '-', alpha=0.8, label=('Convolution(numerical)'))
-ax1.set_xlim(0, 2 * a)
+ax1.set_xlim(0, 2 * a / scale)
 #ax1.set_ylim(0, 0.000014)
 #ax1.set_ylim(0, 1)
 ax1.set_xlabel("$E_e$ / keV")

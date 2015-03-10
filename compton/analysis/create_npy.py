@@ -60,7 +60,7 @@ osci_csv_npy(file1, file_out1)
 osci_csv_npy(file2, file_out2)
 """
 
-txt_str = 'ps_background_01'
+txt_str = 'ps_137cs_03'
 file1 = './data_txt/' + txt_str + '.txt'
 file_out1 = npy_dir + txt_str
 osci_txt_npy(file1, file_out1)

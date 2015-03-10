@@ -13,6 +13,14 @@ import scipy.constants as co
 #import uncertainties.unumpy as un
 from scipy.signal import argrelextrema as ext
 import seaborn as sns
+import sys
+
+"""
+if len(sys.argv) == 2:
+    choose_sample = sys.argv[1]
+else:
+    choose_sample = '1'
+""" 
 
 fontsize_labels = 22    # size used in latex document
 rcParams['font.family'] = 'serif'
@@ -33,68 +41,41 @@ if not save_fig:
     rcParams['figure.figsize'] = (15, 8)  # in inches; width corresponds to \textwidth in latex document (golden ratio)
 fig_dir = "../figures/"
 npy_dir = "./data_npy/"
+file_name = "histo_ps_both"
 
-# Background
-#### 22Na sample ####
+#### Background ####
 file_in = npy_dir + "ps_background_01" + '.npy'
-x_background, y_background = np.load(file_in)
+x_bg, y_bg = np.load(file_in)
+t_bg = 234116.126  # Real time
+rate_bg = y_bg / t_bg
 
+#### 22Na sample ####
+na_sample = '$^{22}\mathrm{Na}$'
+file_in = npy_dir + "ps_22na_04" + '.npy'
+x_na, y_na = np.load(file_in)
+t_na = 72000.000   
+rate_na = y_na / t_na
+rate_na = rate_na - rate_bg
 
+#### 137Cs sample ####
+cs_sample = '$^{137}\mathrm{Cs}$'
+file_in = npy_dir + "ps_137cs_03" + '.npy'
+x_cs, y_cs = np.load(file_in)
+t_cs = 4861.948    
+rate_cs = y_cs / t_cs
+rate_cs = rate_cs - rate_bg
 
 # Plotting
 fig1, ax1 = plt.subplots(1, 1)
 if not save_fig:
-    fig1.suptitle("Histogram PS: Background")
-ax1.semilogy(x, y, '.', alpha=0.8, label=('measured counts'))
-props = dict(boxstyle='round', facecolor='white', alpha=0.5)
-#ax1.set_xlim(, )
-#ax1.set_ylim(0, 3)
+    fig1.suptitle("Histogram PS, both samples")
+ax1.semilogy(x_na, rate_na, '.', alpha=0.8, label=(na_sample))
+ax1.semilogy(x_cs, rate_cs, '.', alpha=0.8, label=(cs_sample))
 ax1.set_xlabel("Channel")
 ax1.set_ylabel("Counts")
 ax1.legend(loc=1)
 if show_fig:
     fig1.show()
 if save_fig:
-    file_name = "histo_ps_background"
     fig1.savefig(fig_dir + file_name + ".pdf")
     fig1.savefig(fig_dir + file_name + ".png")
-
-
-
-#choose_sample = input('choose sample: 1: 22Na, 2: 137Cs\n')
-choose_sample = '2'
-if choose_sample == '1':
-    #### 22Na sample ####
-    sample_name = '$^{22}\mathrm{Na}$'
-    file_in = npy_dir + "ps_22na_04" + '.npy'
-    x, y = np.load(file_in)
-
-    # Define range to be fitted
-    x_min = 4000    # lower bound
-    x_max = 8000    # upper bound
-    x_fit = x[(x > x_min) * (x < x_max)]
-    y_fit = y[(x > x_min) * (x < x_max)]
-
-    # p0 is the initial guess for the fitting coefficients (A, mu and sigma above)
-
-    # Plotting
-    fig1, ax1 = plt.subplots(1, 1)
-    if not save_fig:
-        fig1.suptitle("Histogram PS, Sample: " + sample_name)
-    ax1.semilogy(x, y, '.', alpha=0.8, label=('measured counts'))
-    props = dict(boxstyle='round', facecolor='white', alpha=0.5)
-    textstr = 'Sample: ' + sample_name
-    ax1.text(0.1, 0.95, textstr, transform=ax1.transAxes, va='top', bbox=props)
-    #ax1.set_xlim(, )
-    #ax1.set_ylim(0, 3)
-    ax1.set_xlabel("Channel")
-    ax1.set_ylabel("Counts")
-    ax1.legend(loc=1)
-    if show_fig:
-        fig1.show()
-    if save_fig:
-        file_name = "histo_ps_22na"
-        fig1.savefig(fig_dir + file_name + ".pdf")
-        fig1.savefig(fig_dir + file_name + ".png")
-else:
-    print('failed to provide the correct input')
