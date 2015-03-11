@@ -1,0 +1,50 @@
+REPORT-FILE from 03/03/2015 11:32:02.703 - 17:28:38.937  written 03/03/2015 17:28:51
+REALTIME: 21396.590   
+TOTALSUM: 4767801     
+ROISUM: 4767801     
+MAXVAL: 98320       
+LIVETIME: 21386.496   
+cmline0=03/03/2015 11:32:02.703 - 17:28:38.937 
+range=1024
+prena=0
+mcsmode=4
+roimin=0
+roimax=1024
+rtpreset=72000.000   
+ltpreset=3600.000    
+evpreset=0           
+swpreset=1           
+rampmode=0
+rampstart=1024
+rampstep=1
+rampbin=1
+ramplen=1024
+qdacuse=0
+qdac=2048
+dac1use=0
+dac1val=0
+impsel=f
+thrstart=1716
+thr1=1716
+thr2=1716
+thrclk=2482
+diguse=8
+digval=0
+cycles=128
+sequences=1
+mempart=0
+dwelltime=3
+dwellunit=0
+syncout=909
+histlen=0
+autoinc=0 
+;datname=C:\Dokumente und Einstellungen\Student\Eigene Dateien\schuessler_karle\ps_137cs_04.mcd
+savedata=0
+fmt=txt
+smoothpts=5 
+caluse=0 
+caloff=0.000000
+calfact=8.000000
+calfact2=0
+calfact3=0
+calunit=xt
