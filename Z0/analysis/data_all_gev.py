@@ -43,11 +43,18 @@ f.close()
 mean_E = []
 lumi   = {}
 
+
+# Strahlungskorrekturwerte
+kappa  = {}
+kappa_h = [2.0,4.3,7.7,10.8,4.7,-0.2,-1.6]
+kappa_l = [0.09,0.2,0.36,0.52,0.22,-0.01,-0.08]
+
+
 for q in range(7):
     E = float(lumidata.split()[9+q*5])
     mean_E += [E]
-    lumi[E] = uc.ufloat(float(lumidata.split()[10+q*5]),float(lumidata.split()[13+q*5]))
-
+    lumi[E] = uc.ufloat(float(lumidata.split()[10+q*5]),float(lumidata.split()[13+q*5])) / (2.57*10**(-6))
+    kappa[E] = np.array([kappa_l[q]]*3 +  [kappa_h[q]])* (2.57*10**(-6))
 pl(lumidata,1)
 all_data_sorted = {}
 
@@ -90,12 +97,12 @@ def calc_all(data, E_now):
     pl("with montecarlo efficiency matrix\n ",2)
     N_all_corrected = np.array(np.dot(C_eff_inv,N_all)).reshape(4)
     pl("particle numbers:",3)
-    for k in range(4):
-        pl("Uncorrected vs corrected number of %s"%(chars[k]),6)
-        print("%.f ± %.f "%(N_all[k].n,N_all[k].s))
-        print("%.f ± %.f "%(N_all_corrected[k].n,N_all_corrected[k].s))
+    #for k in range(4):
+    #    pl("Uncorrected vs corrected number of %s"%(chars[k]),6)
+    #    print("%.f ± %.f "%(N_all[k].n,N_all[k].s))
+    #    print("%.f ± %.f "%(N_all_corrected[k].n,N_all_corrected[k].s))
 
-    return N_all_corrected / lumi[E_now]
+    return N_all_corrected / lumi[E_now] + kappa[E_now]
 
 
 E_now = 91.22430

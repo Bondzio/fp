@@ -134,12 +134,15 @@ def classify(u, key):
         
         pl("We did not classify %d particles = %.3f%%\n"%(sum(rest),100*sum(rest)/len(u)),4)
 
-
+        
     ff = [u[c_ee],u[c_mm],u[c_tt],u[c_qq]]
 
     return ff 
 
 def cut(u, key):
+
+    #u = u[(u["cos_thru"]>costhrumin)\
+    #        *(u["cos_thru"]<costhrumax)]
 
     u = u[(u["Pcharged"]!=0)]
     ff = classify(u,key)
