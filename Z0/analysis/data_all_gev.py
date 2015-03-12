@@ -65,14 +65,14 @@ for E in mean_E:
 pl("We will now calculate everything for each energy.\n",2) 
 
 from cut import get_c_eff
-from cut import cut
+from cut import classify
 
 always_recalculate = True
 
 if os.path.isfile("data/cuts/%s.p"%cut_type) and always_recalculate == False:
     C_eff = pickle.load(open("data/cuts/%s.p"%cut_type,"rb"))
 else:
-    C_eff = get_c_eff(cut_type) 
+    C_eff = get_c_eff(cut_type,True,True) 
 
 C_eff_inv= C_eff.I
 
@@ -91,7 +91,7 @@ def calc_all(data, E_now):
     
     # We impose for now that there are no intersections 
 
-    N_all = cut(data,cut_type)
+    N_all = classify(data,cut_type)
 
     pl("Correction with respect to the cuts ",2)
     pl("with montecarlo efficiency matrix\n ",2)
@@ -111,7 +111,7 @@ crosssections = {}
 for E_now in mean_E:
     crosssections[E_now] = calc_all(all_data_sorted[E_now], E_now)
 
-pickle.dump(crosssections, open("crosssection.p","wb"))
+pickle.dump(crosssections, open("data/crosssection.p","wb"))
 
 E = (np.array(4*list(crosssections.keys())).reshape(4,7).swapaxes(0,1))
 cross_total = un.nominal_values(list(crosssections.values()))

@@ -4,6 +4,8 @@ from scipy.optimize import curve_fit
 from sklearn import neighbors
 
 import pickle
+import os
+
 import uncertainties as uc
 import uncertainties.unumpy as un
 import matplotlib.pyplot as plt
@@ -28,6 +30,8 @@ costhetamax = 0.9
 costhrumin = -0.9
 costhrumax = 0.9
 
+def get_N(n):
+    return un.uarray(n,np.sqrt(n))
 
 def cut(u, key):
 
@@ -168,15 +172,13 @@ def remove_t(u):
             p_uc = uc.correlated_values(p,cov)
             A,B = p_uc
 
-
-            # Indefinite Integral of s 
-            F = lambda x: 0.25*(6*x + np.sin(2*x))
-
-            thetamin =  np.arccos(costhetamin)
-            thetamax =  np.arccos(costhetamax)
-        
+            x0 = costhetamin
+            x1 = costhetamax
+            al = x1 - x0 + (x1**3 - x0**3)/3
+            be = 1/(x1-1) - 1/(x0-1)
+            sigma = A*al / (A*al - B*be)*0.5
+            
             # Definite Integral of s 
-            sigma = -A*(F(thetamax)-F(thetamin))
             if sigma.n > 1 or sigma.s >1:
                 raise Exception("fit failed")
             pl("%.f ± %.f %% of the electrons are in s channel\n"%((100*sigma).n,(100*sigma).s),0)
@@ -191,16 +193,14 @@ def remove_t(u):
 
 def classify(u, cut_type):
 
-    #u = u[(u["cos_thru"]>costhrumin)\
-    #        *(u["cos_thru"]<costhrumax)]
-
     if cut_type[0:3] == "sup":
+        all_ff = []
         for ele in u:
             all_ff  += [[ele["Pcharged"],ele["Ncharged"],ele["Pcharged"],ele["E_ecal"],ele["E_hcal"]]]
         all_ff  = np.array(all_ff)
 
-        if os.path.isfile("data/classifier/%s.p"%cut_type):
-            classifier = pickle.load( open("data/classifiers/%s.p"%(cut_type[4:],"rb")))
+        if os.path.isfile("./data/classifiers/%s.p"%(cut_type[4:])):
+            classifier = pickle.load( open("data/classifiers/%s.p"%(cut_type[4:]),"rb"))
         else:
             raise Exception("Classifier not trained!!!")
 
@@ -211,11 +211,10 @@ def classify(u, cut_type):
     N0 = remove_t(u[pred == 1])
 
     # We have to include the error of the fitting, thats why this little hack
-    N_ = [len(pred == k) for k in range(2,5)]
-    return [N0] + [uc.ufloat(k, np.sqrt(k)) for k in N_] 
+    return np.array([N0] + [get_N(sum(pred == k)) for k in range(2,5)] )
 
 
-def get_c_eff(cut_type,check_true = False):
+def get_c_eff(cut_type,check_true = False,remake_choice = False):
 
     pl("\n Creating new efficiency matrix",1)
     ee = np.load("data/ee.npy")
@@ -224,25 +223,39 @@ def get_c_eff(cut_type,check_true = False):
     qq = np.load("data/qq.npy")
 
     ff = [ee,mm,tt,qq]
-
-    if os.path.isfile("data/choice.npy"): 
-        choice = np.load("data/choice.npy")
-        antichoice = np.load("data/antichoice.npy")
-    else:
-        choice = np.random.choice(len(all_ff_normed),40000)
-        antichoice = np.array(list(set(range(len(all_ff_normed))).difference(set(choice))),dtype = np.int)
-        np.save("data/choice",choice)
-        np.save("data/antichoice",antichoice)
-
-    ff_test = [ee[antichoice],mm[antichoice],tt[antichoice],qq[antichoice]]
-    # Removing bulk 
-    #for k in range(4):
-    #    ff[k] = ff[k][(ff[k]["cos_thru"]>costhrumin)\
-    #        *(ff[k]["cos_thru"]<costhrumax)]
     #ff[0] = ff[0][(ff[0]["cos_thet"]>costhetamin)\
     #    *(ff[0]["cos_thet"]<costhetamax) * (ff[0]["Pcharged"]!=0)]
 
 
+
+
+    mask = {}
+
+    p_test = 0.25
+    pl("\n Choosing %.1f%% of the data for testing..."%(100*p_test),1)
+
+    if os.path.isfile("data/choice_0.npy") and remake_choice==False: 
+        for ui in range(4):
+            choice = np.load("data/choice/choice_%d.npy"%ui)
+            mask_ = np.array([False]*len(u)) 
+            mask_[choice]= True
+            mask[ui] = mask_ 
+    else:
+        for ui,u in enumerate(ff):
+            choice = np.random.randint(0,len(u),round(p_test*len(u)))
+            np.save("data/choice/choice_%d"%ui,choice)
+            mask_ = np.array([False]*len(u)) 
+            mask_[choice]= True
+            mask[ui] = mask_
+    # We take only 25 % for testing!
+    ff_test = [ff[0][mask[0]],ff[1][mask[1]],ff[2][mask[2]],ff[3][mask[3]]]
+
+    pl("Now coming to the classifying...",2)
+    # Removing bulk 
+    #for k in range(4):
+    #    ff[k] = ff[k][(ff[k]["cos_thru"]>costhrumin)\
+    #        *(ff[k]["cos_thru"]<costhrumax)]
+    
     # Branching Ratios from Particle Data Booklet 2015
 
     N_all_mat = un.umatrix(np.zeros([4,4]),np.zeros([4,4]))
@@ -255,28 +268,21 @@ def get_c_eff(cut_type,check_true = False):
 
     br/=np.sum(br)
 
-    N_monte = N([len(k) for k in ff_test])
+    N_monte =  np.array([remove_t(ff_test[0])] + [get_N(len(ff_test[k])) for k in range(1,4)] )
     br_monte = N_monte / np.sum(N_monte)
 
     ratio = br  / br_monte
-
-    C_eff = np.zeros([4,4])
 
     if cut_type[0:3] == "sup":
 
         targets = []
         all_ff  = []
-        for target in range(1,5):
-            for ele in ff[target]:
+        for target in range(4):
+            for ele in ff[target][~mask[target]]:
                 all_ff  += [[ele["Pcharged"],ele["Ncharged"],ele["Pcharged"],ele["E_ecal"],ele["E_hcal"]]]
-                targets += [target]
-        targets = np.array(targets)
-        all_ff  = np.array(all_ff)
-        
-        test_data    = all_ff_normed[choice]
-        test_targets = targets[choice]
-        learn_data   = all_ff_normed[antichoice]
-        learn_targets = targets[antichoice]
+                targets += [target+1]
+        learn_targets = np.array(targets)
+        learn_data  = np.array(all_ff)
 
         if cut_type == "sup_knn":
             classifier = neighbors.KNeighborsClassifier()
@@ -285,7 +291,7 @@ def get_c_eff(cut_type,check_true = False):
 
         pl("Now supervising the learner...",2)
         classifier.fit(learn_data,learn_targets)
-        pickle.dump(classifier, open("data/classifiers/%s.p"%(cut_type[4:],"wb")))
+        pickle.dump(classifier, open("data/classifiers/%s.p"%(cut_type[4:]),"wb"))
 
     for u_i,u in enumerate(ff_test):
         pl("\nnow looking for %s, total: %d"%(chars[u_i],len(u)),4)
@@ -294,6 +300,15 @@ def get_c_eff(cut_type,check_true = False):
         C_eff[u_i,:] = N_found / N_monte[u_i]
 
     C_eff = np.swapaxes(C_eff,0,1)
+
+    Cn = un.nominal_values(C_eff)
+    Cs = un.std_devs(C_eff)
+
+    for row in range(4):
+        s = ""
+        for line in range(4):
+            s +="%.3f ± %.3f \t"%(Cn[row,line],Cs[row,line])
+        pl(s,3)
     pickle.dump(C_eff, open("data/cuts/%s.p"%cut_type,"wb"))
 
     if check_true == True:
