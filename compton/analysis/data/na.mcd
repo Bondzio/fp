@@ -1,0 +1,50 @@
+REPORT-FILE from 02/24/2015 15:40:20.140  written 02/24/2015 15:44:58
+REALTIME: 278.349     
+TOTALSUM: 172020      
+ROISUM: 172020      
+MAXVAL: 3355        
+LIVETIME: 277.379     
+cmline0=02/24/2015 15:40:20.140 
+range=8192
+prena=1
+mcsmode=4
+roimin=0
+roimax=8192
+rtpreset=72000.000   
+ltpreset=3600.000    
+evpreset=0           
+swpreset=1           
+rampmode=0
+rampstart=1024
+rampstep=1
+rampbin=1
+ramplen=1024
+qdacuse=0
+qdac=2048
+dac1use=0
+dac1val=0
+impsel=f
+thrstart=1716
+thr1=1716
+thr2=1716
+thrclk=2482
+diguse=8
+digval=0
+cycles=128
+sequences=1
+mempart=0
+dwelltime=3
+dwellunit=0
+syncout=909
+histlen=0
+autoinc=0 
+;datname=C:\Dokumente und Einstellungen\Student\Eigene Dateien\schuessler_karle\na.mcd
+savedata=0
+fmt=txt
+smoothpts=5 
+caluse=0 
+caloff=0.000000
+calfact=1.000000
+calfact2=0
+calfact3=0
+calunit=keV

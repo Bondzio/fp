@@ -12,7 +12,16 @@ import scipy.constants as co
 #import uncertainties as uc
 #import uncertainties.unumpy as un
 from scipy.signal import argrelextrema as ext
+from scipy.signal import savgol_filter as sav
 import seaborn as sns
+from scipy.special import erfc
+from scipy.integrate import quad
+import sys
+
+if len(sys.argv) == 2:
+    choose_sample = sys.argv[1]
+else:
+    choose_sample = input('choose sample: 1: 22Na, 2: 137Cs\n')
 
 fontsize_labels = 22    # size used in latex document
 rcParams['font.family'] = 'serif'
@@ -34,31 +43,6 @@ if not save_fig:
 fig_dir = "../figures/"
 npy_dir = "./data_npy/"
 
-# Klein-Nishina formula to be fitted
-def klein_nishina_float(x, a, C):
-    """
-    Insert photon and electron energy in m_e, constant C (in barn)
-    Takes only floats!
-    """
-    x_max = 2 * a**2 / (1 + 2 * a)                     # maximal electron energy
-    if x > x_max:
-        dsdE = 0
-    else:
-        dsdE =  C / a**2 * \
-                (x**2 / (a * (a - x))**2 + ((x - 1)**2 - 1) / (a * (a - x)) + 2) 
-    return(dsdE)
-
-def gauss0(x, sigma):
-    return  1 / (np.sqrt(2 * np.pi) * sigma) * np.exp(-x**2 / (2. * sigma**2))
-
-def conv_kn_gauss(x, a, C, sigma):
-    kn_gauss = lambda y, x, a, C, sigma: klein_nishina_float(x - y, a, C) * gauss0(y, sigma)
-    if type(x) == float:
-        conv = quad(kn_gauss, -2*a, 2*a, args=(x, a, C, sigma))[0]
-    else:
-        conv = np.array([quad(kn_gauss, -np.inf, np.inf, args=(x_i, a, C, sigma))[0] for x_i in x])
-    return conv
-
 # Peak: only offset
 # Define model function to be used to fit to the data above:
 def gauss(x, *p):
@@ -72,18 +56,22 @@ def gauss_plus_exp(x, *p):
     return  A * np.exp(-(x - mu)**2 / (2. * sigma**2)) + offset + \
             C * np.exp(lamb * (x - x_min))
 
-
-
-
-
+# Compton edge: crude approximation of klein nishina by convolving step function and gaussian
+def conv_analytical(x, x_max, sigma, A, offset):
+    '''
+    analytical solution of convolution of step and gauss
+    '''
+    return A / 2 * erfc((x - x_max) / (np.sqrt(2) * sigma))  + offset
 
 ###########################################################3
-choose_sample = input('choose sample: 1: 22Na, 2: 137Cs\n')
 if choose_sample == '1':
     #### 22Na sample ####
     file_in = npy_dir + "na_22na_02" + '.npy'
     y = np.load(file_in)
     x = np.arange(len(y))
+    
+    # Filter data
+    y_filtered = sav(y, 301, 4)
 
     # Gaussian fits
     # Two peaks: 511 keV and 1277 keV (22Na)
@@ -117,31 +105,43 @@ if choose_sample == '1':
 
     ###### COMPTON EDGE 2 #################
     # Define range to be fitted
-    x_min = 1300    # lower bound
-    x_max = 5300    # upper bound
+    x_min = 11290    # lower bound
+    x_max = 13150    # upper bound
     x_fit3 = x[(x > x_min) * (x < x_max)]
     y_fit3 = y[(x > x_min) * (x < x_max)]
 
     # p0 is the initial guess for the fitting coefficients
-    # p = [a, C, sigma_smear]
-    a = coeff[0]
-    x_max = 2 * a**2 / (1 + 2 * a)                     # maximal electron energy
-    kn_max = 200
-    C = kn_max * a**2 / (2 * (x_max + 1))
-    p0 = [a, C, 500]
-    coeff3, var_matrix3 = curve_fit(gauss, x_fit3, y_fit3, p0=p0)
-    hist_fit3 = gauss(x_fit3, *coeff3)
+    # p = [x_max, A, sigma, offset]
+    p0 = [12000, 6, 300, 5]
+    coeff3, var_matrix3 = curve_fit(conv_analytical, x_fit3, y_fit3, p0=p0)
+    hist_fit3 = conv_analytical(x_fit3, *coeff3)
+    x_max = coeff3[0]
+    
+    """
+    x_max  = 3500
+    A = 130
+    sigma = 1000
 
+    x_max  = 12000
+    A = 6
+    sigma = 300
+    offset = 5
+
+    hist_fit3 = conv_analytical(x, x_max, sigma, A) + offset
+    """
     # Plotting
     fig1, ax1 = plt.subplots(1, 1)
     sample_name = '$^{22}\mathrm{Na}$'
     if not save_fig:
         fig1.suptitle("Histogram NaI, Sample: " + sample_name)
     ax1.plot(x, y, '.', alpha=0.8, label=('measured counts'))
-    next(ax1._get_lines.color_cycle)
-    ax1.plot(x_fit, hist_fit, label='511 keV peak')
-    next(ax1._get_lines.color_cycle)
-    ax1.plot(x_fit2, hist_fit2, label='1277 keV peak')
+    ax1.plot(x, y_filtered, '-', alpha=0.8, label=('filtered data'))
+    #next(ax1._get_lines.color_cycle)
+    #ax1.plot(x_fit, hist_fit, label='511 keV peak')
+    #next(ax1._get_lines.color_cycle)
+    #ax1.plot(x_fit2, hist_fit2, label='1277 keV peak')
+    ax1.plot(x_fit3, hist_fit3, label='compton edge fit')
+    ax1.plot([x_max] * 2, [0, 200], '-', label='341 keV compton edge')
     props = dict(boxstyle='round', facecolor='white', alpha=0.5)
     textstr = 'Sample: ' + sample_name
     ax1.text(0.1, 0.95, textstr, transform=ax1.transAxes, va='top', bbox=props)
