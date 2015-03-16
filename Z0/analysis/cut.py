@@ -176,7 +176,7 @@ def remove_t(u):
             x1 = costhetamax
             al = x1 - x0 + (x1**3 - x0**3)/3
             be = 1/(x1-1) - 1/(x0-1)
-            sigma = A*al / (A*al - B*be)*0.5
+            sigma = A*al / (A*al - B*be)*0.50
             
             # Definite Integral of s 
             if sigma.n > 1 or sigma.s >1:

@@ -23,7 +23,7 @@
 % Biblatex
 
 \usepackage[
-style=nature,    % Zitierstil
+style=nature,              % Zitierstil
 isbn=false,                % ISBN nicht anzeigen, gleiches geht mit nahezu allen anderen Feldern
 pagetracker=true,          % ebd. bei wiederholten Angaben (false=ausgeschaltet, page=Seite, spread=Doppelseite, true=automatisch)
 maxbibnames=50,            % maximale Namen, die im Literaturverzeichnis angezeigt werden (ich wollte alle)
@@ -33,7 +33,7 @@ block=space,               % kleiner horizontaler Platz zwischen den Feldern
 backref=false,              % Seiten anzeigen, auf denen die Referenz vorkommt
 backrefstyle=three+,       % fasst Seiten zusammen, z.B. S. 2f, 6ff, 7-10
 date=short,                % Datumsformat
-backend = bibtex
+backend = biber
 ]{biblatex}
 \setlength{\bibitemsep}{1em}     % Abstand zwischen den Literaturangaben
 \setlength{\bibhang}{2em}        % Einzug nach jeweils erster Zeile
@@ -139,15 +139,15 @@ backend = bibtex
 %----------------------------------------------------------------------------------------
 \input{newcommands}
 \setcounter{page}{1}
+blablabla
+\cite{python}
 \input{intro}
 \input{theory}
 
 \clearpage
 
 \section{Bibliography}
-\printbibliography[heading=subbibintoc,type=article,title={Articles}]
-\printbibliography[heading=subbibintoc,type=book,title={Books}]
-\printbibliography[heading=subbibintoc,type=misc,title={Other}]
+\printbibliography[heading=subbibintoc]
 \clearpage
 
 \end{document}
