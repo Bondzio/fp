@@ -39,9 +39,10 @@ backend = biber
 \setlength{\bibitemsep}{1em}     % Abstand zwischen den Literaturangaben
 \setlength{\bibhang}{2em}        % Einzug nach jeweils erster Zeile
 \bibliography{report}  % Bibtex-Datei wird schon in der Preambel eingebunden
-
+\usepackage{cmbright}
 \usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
-\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+%\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+
 \usepackage{amsmath,amsfonts,amsthm} % Math packages
 \usepackage{pgfplots}
 \usepackage{wrapfig}
@@ -153,15 +154,12 @@ backend = biber
 %----------------------------------------------------------------------------------------
 \input{newcommands}
 \setcounter{page}{1}
-blablabla
-undsinn
-est test test
-taltalta
 \cite{python}
 
 
 \input{intro}
 \input{theory}
+\input{setup}
 
 \clearpage
 
