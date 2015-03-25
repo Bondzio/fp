@@ -1,0 +1,527 @@
+Changes from version 2.0-1 to version 2.1-0 (2011-10-07)
+_____________________________________________________
+
+o New features
+
+    * Add a keyboard short-cut for LaTeX Preview:
+      use Alt - Right Arrow to do a quick Preview.
+
+o Bug fixes
+
+    * Problems with vertex size in edit panel.
+
+    * Previews and exports do not work when JaxoDraw is started
+      from a directory without write permission.
+
+    * Latex export gives a MissingResourceException when exporting to a directory where
+      the user does not have write permission.
+
+    * EPS bounding box depends on the size of the JaxoDraw window.
+
+    * Dashed Beziers are not imported from latex if the new form with options is used.
+
+o Other changes
+
+    * Move the code base to java 5.
+      The prerequisite to compile/execute the program is now jdk/jre 5.
+
+
+                **********
+
+
+Changes from version 2.0-0 to version 2.0-1 (26.7.2009)
+_____________________________________________________
+
+o Bug fixes
+
+    * Zigzag lines always had arrows.
+
+    * Latex import failed if a text contained a '$' inside an mbox.
+
+    * Grey scales didn't work in full color mode.
+
+o Other changes
+
+    * Clarified licensing situation. JaxoDraw is distributed under GPL,
+      axodraw4j.sty/axodraw2.sty is distributed under LPPL.
+      Removed the FORM license from the distribution.
+
+
+                **********
+
+
+Changes from version 1.3-2 to version 2.0-0 (20.11.2008)
+_____________________________________________________
+
+o New features
+
+    * Added a plugin infrastructure. Users can write plugins for custom
+      import/export formats that can be installed independently and will
+      be recognized by new versions of JaxoDraw.
+
+    * Log records are now written to a rotating sequence of files
+      in a default log directory.
+
+    * Added Bezier curves as drawing style. Beziers can be drawn for all
+      particle modes, including gluons and photons.
+
+    * New edit mode 'Select' that allows to perform the actions of the
+      faint-box popup menu on an arbitrary set of objects.
+      Replace the Group button by a Replace button.
+
+    * Editing objects from the edit panel now has an immediate effect on the
+      object so that editing operations can be previewed on the fly.
+
+    * The command line option "-nosplash" can now be used in order not to
+      show the splash window on startup.
+
+    * The command line option "--convert" can now be used to convert a number
+      of <strong>JaxoDraw</strong> xml files to axodraw4j tex files
+      (and vice versa) without the need of bringing up the user interface.
+
+    * Objects with fill color can now be optionally unfilled (only drawing
+      their boundary). Jaxodraw now understands the axodraw commands
+      \Etri, \EBox and \Oval.
+
+    * Make the symmetry of a photon arc configurable.
+
+    * Photon and gluon arcs are now painted during resizing.
+
+    * Multiple files can be specified on the command line and will be
+      opened in multiple tabs.
+
+    * Groups are now rescaled by dragging, like all other objects.
+
+    * Added multiple undo/redo functionalities.
+
+    * Added scroll bars to the canvas panel.
+
+    * Right click and drag on the Canvas will show the faint box which
+      can be used to enclose objects. On release, you will be presented a menu
+      for which you can choose several operations to be applied to the current
+      selection.
+
+    * A double click with the right mouse button brings up
+      the edit panel for the nearest object.
+
+o Bug fixes
+
+    * Fixed the bug that made JaxoDraw hang if
+      axodraw.sty was not installed or not found.
+
+    * The arrow of dashed objects (ghosts and scalars) was also drawn dashed,
+      and the bounding box of objects was not correct when the line width was
+      too large.
+
+    * Popup menus now update their look-and-feel.
+
+    * Prevent various dialogs from going into the background and blocking
+      the main window.
+
+    * Various fixes to language bundles.
+
+    * Fixed the bug for which the PS text edit panel font size selector
+      was too small and overwritten by the font name selector.
+
+    * Fixed the bug for which drawing an arc by dragging its last point would
+      show only its visual aid and not the arc object itself.
+
+    * Fixed the bug which caused some erractical behavior of groups
+      when moved in snapping mode.
+
+    * Various LaTeX import fixes.
+
+    * Fixed the bug which caused the 'out of memory' exception
+      when opening a number of tabs above a certain threshold.
+
+    * File operations (Open, Save, Import, ...) now work
+      on Windows if the path to the file contains white spaces.
+
+    * Fixed the bug that resizing a triangular vertex from the point that
+      was last clicked when it was drawn didn't work.
+
+    * Fixed the bug that when setting the alignment property of a
+      latex text to cc (center-center) and the rotation angle to a
+      non-zero value, the resulting latex file could not be compiled.
+
+o Structural changes
+
+    * JaxoDraw now uses its own version of the axodraw style file,
+      called axodraw4j.sty. This style file has to be installed separately.
+
+    * The preferences are not stored in a file .Jaxorc anymore,
+      the standard Java Preferences API is used instead.
+      A folder .jaxodraw in the user home directory is used
+      to store installation data, plugins and user guide.
+
+    * The drawing of photons and gluons has been adjusted to use the same
+      algorithms as the postscript code in the axodraw style file.
+      Different output formats are entirely consistent now, however
+      some strange effects happen for special configurations,
+      e.g. gluon loops with very small radii.
+
+    * The jre binary distributions have been removed, users should properly
+      install a Java Runtime Environment on their systems.
+
+    * SVG support has been removed from the core program, it is now
+      available as a separate plugin.
+
+    * The directory layout and package structure has changed.
+
+    * The "Copy" mode has been renamed to "Duplicate" to avoid confusion
+      with the usual clipboard "Copy" action.
+
+    * Several key strokes have been set to more "standard" combinations.
+      These include: Copy (Ctrl + C), Paste (Ctrl + V), Cut (Ctrl + X),
+      Save (Ctrl + S), Save As (Ctrl + Shift + S), Import (Ctrl + R),
+      Export (Ctrl + Shift + R).
+
+o Incompatibilities
+
+    * Due to extensive refactoring, JaxoDraw-2.0 is not compatible
+      with any earlier version of the program. Note in particular that
+      xml files that were generated with earlier versions will generally
+      not be imported.
+
+                **********
+
+
+Changes from version 1.3-1 to version 1.3-2 (24.3.2006)
+_____________________________________________________
+
+o New features
+
+    * Make the Mac OS X README file available from the Help menu (Mac only).
+
+o Bug fixes
+
+    * Arc drawing bugs:
+      - The faint box is not drawn when you are in Arc mode.
+      - If you are in Arc mode, arcs and right/center click +
+        dragging 2 times + left click you will get an arc on the Canvas.
+
+    * Fixed the bug that text edit panels didn't have focus.
+
+    * Fixed the bug that the fill color was not preserved after
+      editing a fill object.
+
+    * Fixed a bug with the rendering of double lines.
+
+    * Fixed the bug that editing a postscript text did not
+      work in a saved and re-opened graph.
+
+
+                **********
+
+
+Changes from version 1.3-0 to version 1.3-1 (29.6.2005)
+_____________________________________________________
+
+o Bug fixes
+
+    * Fixed the bug that editing the coordinates of a line object was broken
+      in the 1.3-0 release.
+
+    * Fixed a bug with the local install on Linux using the ant script.
+
+
+                **********
+
+
+Changes from version 1.2-0 to version 1.3-0 (20.6.2005)
+_____________________________________________________
+
+o New features
+
+    * Rewrote the export dialog for key-friendlyness: tab key toggles between
+      items, space selects, escape cancels. In the export formats combobox you
+      can choose an entry by pressing its first character or go up and down
+      with the arrow keys.
+
+    * new export formats JPG and PNG
+
+    * SVG export and preview using batik (optional)
+
+    * New vertex type diamond
+
+    * LaTeX text rotation implemented through pstricks
+
+    * Added default return mode
+
+    * Added a dynamic zoom
+
+    * Rotation of Postscript texts
+
+    * Added a contrib/ directory to the source distribution
+      that contains relevant/useful stuff contributed by other people.
+      For now there is just a command line interface for transforming
+      JaxoDraw xml files to latex (thanks to Thomas Reiter).
+
+o Bug fixes
+
+    * Fixed the bug that arcs were messed up when re-opening saved files.
+
+    * Fixed the bug that dragging arcs caused strange behavior.
+
+    * Fixed the bug that small arcs were not drawn.
+
+    * Fixed the bug that photon and gluon arcs are not correctly
+      exported to LaTeX.
+
+    * Fixed the bug that JaxoDraw crashed if certain fonts were installed.
+
+    * Fixed the bug that the preferences panel did not come up
+      when using Java 5.0.
+
+    * Fixed the bug that putting the text string in a PS edit panel
+      to an empty string resulted in an exception.
+
+o Code clean ups
+
+    * Reviewed the whole code to comply with standard Java naming conventions.
+      Now, a compilation with version 1.22 of IBM's jikes compiler does not
+      give any warning messages even with the +P (pedantic) switch.
+
+    * New JaxoSplashWindow; restructured JaxoAxodraw;
+      objectList and packageList in SaveGraph are now ArrayLists, not Vectors;
+      new JaxoVertex class that is superclass for all vertices (except T5);
+      restructured the export classes: renamed JaxoExport to JaxoExportPanel
+      and JaxoExport is an abstract superclass for the other export classes;
+      restructured all loop objects;
+
+o Structural changes
+
+    * New directory structure, all source files and resources are now in src/,
+      all the resources have to be copied over at compile time.
+
+    * Ant script changes: you will need the latest ant-1.6.2 from JPackage,
+      and also the ant-nodeps, ant-jsch, ant-trax, xerces-j2, xml-commons,
+      xml-commons-apis and xml-commons-resolver rpms.
+      The generated jar file now contains the version number.
+      You do not have to be root anymore to run the 'install'
+      target (an ordinary user can install to his home directory).
+
+    * Rewrote jaxodraw.spec: the rpms now conform to the standarts of the
+      JPackage project (http://www.jpackage.org/), the jpackage-utils rpm
+      is a build- and runtime requirement. Replaced the jaxodraw-source rpm
+      by the .src.rpm and renamed jaxodraw-manual to jaxodraw-userGuide.
+
+
+                **********
+
+
+Changes from version 1.1-0 to version 1.2-0 (21.7.2004)
+_____________________________________________________
+
+o New features
+
+    * Arcs are now three-point objects: to draw them you will have to
+      click thrice on the canvas. Also triangular vertices are now drawn
+      like that.
+
+    * Introduced a hexagonal grid. Each canvas tab can now have
+      both its own grid type as well as its own grid size.
+
+    * Introduced the WatchFile mode.
+
+    * Introduced radio buttons in the vertex menus to indicate the currently
+      active Vertex mode.
+
+    * Introduced more preferences that can be set by the user.
+
+    * The Preferences panel has been restructured for a clearer layout.
+
+    * The use of colors is now fully consistent with axodraw (when the filling
+      color of a box/blob is a grayscale, the line color has to be black).
+
+    * PSText now can display curly brackets like in LaTeX: \{ and \}
+
+    * Many more fonts are now available in PSText mode because we do not filter
+      out fonts anymore that cannot display greek characters (however, see the
+      corresponding entry in the BUGS file). This was done to work around a bug
+      in Apple's Java implementation for MacOSX (see below), where the default
+      font "Default" was incorrectly reported as not being able to display
+      greek characters.
+
+    * Several MacOSX specific enhancements, eg. menu key short cuts,
+      key short cuts for middle and right mouse button, a preference for
+      the latex and dvips path, which allows internal latex compilation, etc.
+
+    * Added "Java Runtime Version" under "System Info" (important to distinguish
+      different Java implementations on MacOSX).
+
+
+o Bug fixes
+
+    * Fixed the bug that the color of a group could not be changed directly
+      through the color button.
+
+    * Fixed the bug that after editing a group with LaTeX labels,
+      the size of the latter was always set to "tiny".
+
+    * Fixed the bug that when the grid was switched on and the canvas
+      contained objects at an arbitrary position, if the latter were moved
+      they would get shifted by the grid size and not anchored to grid points.
+
+    * Fixed the bug that closing curly brackets did not display in PSText mode.
+
+    * MacOSX only: fixed the bug that editing a PSText object gave an
+      exception. This is really due to a bug in Apple's Java implementation:
+      the default font "Default" is incorrectly reported as not being able to
+      display greek characters. The same bug also prevented the Preferences
+      panel from popping up.
+
+
+o Code clean ups
+
+    * Reviewed the whole code to comply with standard Java naming conventions.
+      Now, a compilation with version 1.21 of IBM's jikes compiler does not
+      give any warning messages even with the +P (pedantic) switch.
+
+
+o Structural changes
+
+    * The preferences class has been fully restructered: split it into
+      JaxoPrefs.java and JaxoPrefsPanel.java. The preferences have been moved
+      from JaxoDraw.java into JaxoPrefs.java and they all have
+      getter/setter methods now.
+
+    * Privatized all non-static, non-final variables, in particular in
+      the JaxoObject, JaxoPrefs and JaxoMainPanel classes.
+
+    * Rewrote jaxodraw.spec: a j2sdk > 1.4.1 rpm is now required for
+      installation (use --force if Java is installed but not with rpm), and
+      there are several sub-packages built: jaxodraw-source, jaxodraw-javadoc,
+      and jaxodraw-manual.
+
+    * Included a MacOSX sub-directory that mimics the structure of a Mac
+      Application bundle.
+
+
+                **********
+
+
+Changes from version 1.0-1 to version 1.1 (1.3.2004)
+_____________________________________________________
+
+o New features
+
+    * Internationalized JaxoDraw. For now there are english, german, french,
+      spanish and italian translations. Added an entry in the Options Menu that
+      allows to change the language at run-time.
+
+    * Implemented sub- and superscripts for Postscript Text.
+
+    * Added the possibility to include custom Latex packages.
+
+    * Added a pop-up menu to the vertex button (added also a triangle vertex).
+
+    * Allow for import of existing Latex files.
+
+    * Implemented 'tabbed' graphs, i.e., work with several graphs at a time.
+
+    * Implemented 'grouping', i.e., the user may group objects together
+      to edit/move/copy them in one go.
+
+    * Added Language and Amplitude to the Preferences dialog.
+
+    * Implemented the possibility of drawing all particle objects with a
+      double line (the separation between the lines can be chosen).
+
+    * The text of a Latex text object is indicated in a pop-up menu on top of
+      the canvas when the "TeX" icon is rolled over.
+
+    * Added JSpinners to the number fields in all the edit panels, so they may
+      be edited with the mouse only.
+
+    * Added a list of recently opened files to the File menu.
+
+    * Added an extra handle to line objects (in the middle of them), for an
+      easier selection of end-attached lines.
+
+    * The current file flag in the status bar is now a current direcory flag
+      (the current file is given by the name of the tab). If the path is too
+      long then it is cut off to fit in the flag panel.
+
+
+o Bug fixes
+
+    * Fixed the bug that choosing the color of a LaTeX label did not
+      affect the final LaTeX output.
+
+    * Fixed the bug that caused a copied arrowed line to always
+      flip the arrow direction
+
+    * Fixed the bug that when a LaTeX text file was previewed with the
+      Java - internal previewer (i.e. without having set a custom previewer
+      in the preferences), the page could not be scrolled.
+
+
+o Code clean ups
+
+    * Reviewed the whole code to comply with standard Java naming conventions.
+      Now, a compilation with version 1.19 of IBM's jikes compiler does not
+      give any warning messages even with the +P (pedantic) switch.
+
+    * The source code has been formatted with version 1.15-3 of Artistic Style
+      (http://astyle.sourceforge.net/) with the --style=java option.
+
+
+o Structural changes
+
+    * Split the Text class into LatexText and PSText.
+
+    * Introduced the Ant script build.xml to allow for a
+      platform-independent build process (see: http://ant.apache.org/).
+      Type "ant -projecthelp" for a list of possible options.
+      The build.properties file contains user-definable settings.
+
+    * Removed the following bash scripts in favor of the ant script:
+      clean.bsh, compile.bsh, doc.bsh, install.bsh and uninstall.bsh.
+      Removed jaxodraw.bsh and only kept the runme.bsh script
+      which is necessary for installation on Linux. Moved the files
+      jaxodraw.spec and runme.bsh into a subdirectory Linux/.
+
+    * Rewrote jaxodraw.spec: it is not necessary anymore to be root for
+      building an rpm. The rpm will be found in /usr/src/redhat/RPMS/noarch/
+      and is called jaxodraw-1.1-0.noarch.rpm. It requires an
+      rpm for axodraw which is available from our website.
+
+
+o Incompatibilities
+
+    * Due to the restructuring of the Text class, xml files generated
+      with JaxoDraw-1.0-1 or earlier that contain LaTeX labels cannot
+      be read by JaxoDraw-1.1-0. A workaround is to export them as tex
+      files from JaxoDraw-1.0-1 and then import them in JaxoDraw-1.1-0.
+
+
+                **********
+
+
+Changes from version 1.0 to version 1.0-1 (16.9.2003)
+_____________________________________________________
+
+
+* Fixed the Bug that the Antialias and LooknFeel preferences were not
+  saved on a permanent basis.
+
+* Fixed the Bug that the LooknFeel and GridSize were not applied to the
+  current session when the OK button was pressed in the Preferences menu.
+
+* Fixed the Bug that did not allow to get the dot back as a vertex, once
+  a different vertex type was chosen.
+
+* Fixed the Bug that a file created via LaTeX - EPS was always put into
+  the directory JaxoDraw was started from and not the directory chosen
+  by the user.
+
+* Fixed the Bug that JaxoDraw created LaTeX files using the user's
+  current locale instead of a fixed one. This resulted in some locales
+  (the german one, in particular) that a comma (,) appeared instead of a
+  point (.) as a decimal separator in all floating numbers created by
+  JaxoDraw. Strangely, the LaTeX compilation does not complain about
+  this, but the resulting postscript file is corrupted.
+
+* Fixed the bug that when the user creates by mistake a zero size object
+  the resulting postscript file was corrupted.

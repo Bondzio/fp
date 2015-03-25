@@ -33,6 +33,7 @@ block=space,               % kleiner horizontaler Platz zwischen den Feldern
 backref=false,              % Seiten anzeigen, auf denen die Referenz vorkommt
 backrefstyle=three+,       % fasst Seiten zusammen, z.B. S. 2f, 6ff, 7-10
 date=short,                % Datumsformat
+hyperref=true,
 backend = biber
 ]{biblatex}
 \setlength{\bibitemsep}{1em}     % Abstand zwischen den Literaturangaben
@@ -45,6 +46,7 @@ backend = biber
 \usepackage{pgfplots}
 \usepackage{wrapfig}
 \usepackage{color, colortbl}  
+
 %\usepackage[pass,showframe]{geometry} % just to show the margins
 %\usepackage{booktabs}
 %\usepackage{minted}
@@ -52,8 +54,13 @@ backend = biber
 % Bibliographie auf deutsch
 %\usepackage{harvard}
 %\renewcommand{\harvardand}{und} 
-\usepackage{caption}
-\usepackage{xcolor}
+%\usepackage{caption}
+%\usepackage[usenames,dvipsnames]{xcolor}
+\definecolor{gray1}{gray}{0.2}
+\usepackage[font={color=gray1},figurename=Fig.,labelfont={color=blue}]{caption}
+
+\usepackage{titlesec}
+
 \usepackage[utf8]{inputenc} 
 %\usepackage[ngerman]{babel}
 
@@ -78,14 +85,23 @@ backend = biber
 \usepackage{tikz}
 \usepackage{sectsty} % Allows customizing section commands
 \usepackage{hyperref}
-\allsectionsfont{\normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\hypersetup{
+     colorlinks   = true,
+     citecolor    = gray,
+     linkcolor    = blue
+}
+
+\allsectionsfont{ \color{gray1} \normalfont\scshape} % Make all sections centered, the default font and small caps
 
 \usepackage{fancyhdr} % Custom headers and footers
 \pagestyle{fancy} % Makes all pages in the document conform to the custom headers and footers
+
 \renewcommand{\headrulewidth}{0.0pt} % Remove header underlines
 \renewcommand{\footrulewidth}{0pt} % Remove footer underlines
 
-\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+
 \numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
 \numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
 \numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
@@ -112,12 +128,12 @@ backend = biber
 %--------------------------------------------------------------------------------------------
 % New Commands
 %--------------------------------------------------------------------------------------------
-\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+\newcommand{\horrule}[1]{\color{gray1}\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
 
 
 \begin{document}
 
-\blendcolors*{!83}\color{black}
+\color{gray1}
 \maketitle
 \begin{center}
  \includegraphics[width=0.6\linewidth]{figures/unifreiburg}
