@@ -86,7 +86,58 @@ the specific partial decay widths, which are dependent on the respective charge 
     \Gamma_f = \frac{G_F M_Z^3}{24 \sqrt{2} \pi} \left[ 1 + (1 - 4 |Q_f| \sin^2 \theta_W )^2 \right]
 \end{equation}
 The angle $\theta_W$ arising here is coming from the electro-weak unification.
+\subsection{Strong Interaction}
+\label{sub:bhabha_scattering}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/hadrons}
+    \caption{This is process is the so called \textit{fragmentation}, in which a initial quark antiquark pair disolves into
+further quark anti quark pairs ($\rightarrow$ Quark confinement), absorbing the initial kinetic energy into mass. This will
+continue until the momentum of individual quarks is small enough for going into bound states. Most often we will see two
+jets, going into different directions. At very high energies, such as in our experiment, there is the possibility that
+also non-virtual gluons will be created, resulting into more than two jets.}
+    \label{fig:hadrons}
+\end{figure}
+
+\subsection{Bhabha scattering}
+\label{sub:bhabha}
+The process $e^+e^-\rightarrow e^+ e^-$ is called \textit{Bhabha scattering} and should be analyzed separately, since its
+contribution play an important role in the further progress of the analysis. The reason for the difficulty in this process
+is the occurrence of additional Feynman diagrams to be evaluated. If we separate the different contributions in specific  
+channels with respect to the mandelstam variables\footnote{These lorentz-invariant variables are defined by 
+\begin{align*}
+s=(p_1+p_2)^2=(p_3+p_4)^2 \\
+t=(p_1-p_3)^2=(p_2-p_4)^2 \\
+u=(p_1-p_4)^2=(p_2-p_3)^2
+\end{align*}
+with the momenta $p_1$,$p_2$ of incoming and $p_3$ , $p_4$ of outgoing particles.
+}, 
+then we notice that we get additional contributions in the
+t-channel, while in the processes treated until now only the s-channel contributed (see figure~\ref{fig:bhabha} for the
+Feynman diagrams of the t-channel). The contributions for the $Z^0$ gauge boson only arise from the s-channel. Hence, if we
+want to analyze the cross section of the s-channel, we need to subtract the t-channel. They differ with respect to the
+angle $\theta$ between incoming and outgoing particles (at the peak $E=91GeV$):
+\begin{align} 
+  \mathrm{t-channel:}\quad    &\frac{d\sigma}{d\Omega} \sim \frac{(1+\cos\theta)^2}{(1-\cos \theta)^2}\\
+  \mathrm{s-channel:}\quad    &\frac{d\sigma}{d\Omega} \sim (1+\cos^2\theta)
+\end{align}
+In the evaluation of the data we will take care to subtract the t-channel, in order to get the right result.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.6\linewidth]{figures/bhabha}
+    \caption{T-channel of \textit{Bhabha scattering} $e^+e^-\rightarrow e^+ e^-$.}
+    \label{fig:bhabha}
+\end{figure}
+
 \subsection{Cross sections and luminosity}
+In the experiment, we will not be able to measure the cross section directly. We will arrive at this quantity by using our
+counting the number of particles and inferring our knowledge about the collider (focus of the beam, orbital frequency). This
+knowledge is condensed in the Quantity $\mathcal{L}$, the \textit{luminosity}, which we have to integrate over the collision:
+\begin{equation}
+    \sigma = \frac{N}{\int \mathcal{L} dt}
+\end{equation}
+The $\int \mathcal{L} dt$ is called \textit{integrated luminosity}. 
 \subsection{Forward-backward asymmetry}
 \subsection{Higher order corrections}
 \subsection{Particle-matter interaction}
