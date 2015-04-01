@@ -1,21 +1,63 @@
+# -*- coding: utf-8 -*-
 import re
 import numpy as np
-directory = "./data/"
-file_list = ["mono_white_full_01", "mono_hg","mono_slit_100", "mono_slit_150","mono_slit_200","mono_slit_25", \
-      "mono_slit_25_02","mono_slit_40", "mono_slit_50","mono_slit_75","mono_white_pol0","mono_cs2"]
-for filename in file_list:
-    print(filename)
-    f = open(directory + filename+ ".dig")
-    text = f.read()
-    f.close()
-    lines = text.split("\n")[1:]
-    lamb = []
-    count = []
-    for u in lines[0:-1]:
-        print(u)
-        x,y = (re.sub(",",".",u)).split("\t")
-        lamb += [float(x)]
-        count += [float(y)]
-    np.save("./npy/"+filename+"_lamb", np.array(lamb))
-    np.save("./npy/"+filename+"_count", np.array(count))
+import os
 
+def is_int(s):
+    try:
+        int(s)
+        return True
+    except ValueError:
+        return False
+directory = "./data/"
+
+# Mono
+for filename in os.listdir(directory):
+    if filename.endswith(".dig"):
+        print(filename)
+        f = open(directory + filename)
+        text = f.read()
+        f.close()
+        lines = text.split("\n")[1:]
+        lamb = []
+        count = []
+        for u in lines[0:-1]:
+            x,y = (re.sub(",",".",u)).split("\t")
+            lamb += [float(x)]
+            count += [float(y)]
+        np.save("./npy/"+filename[0:-4]+"_lamb", np.array(lamb))
+        np.save("./npy/"+filename[0:-4]+"_count", np.array(count))
+
+# CCD
+for filename in os.listdir(directory):
+    if filename.endswith(".txt"):
+        print(filename)
+        f = open(directory + filename, encoding = 'cp1252')
+        x = f.read()
+        f.close()
+        lines = x.split("\n")
+
+        int_time = 0 
+        q = lines[8]
+        for t in q.split():
+            if is_int(t):
+                int_time = int(t)
+        avg = 0
+        q = lines[9]
+        for t in q.split():
+            if is_int(t):
+                avg = int(t)
+        data = lines[17:-2]
+
+        lamb = []
+        count = []
+
+        for t in data:
+            x,y = (re.sub(",",".",u)).split("\t")
+            lamb += [float(x)]
+            count += [float(y)]
+        np.save("./npy/"+filename[0:-4]+"_lamb", np.array(lamb))
+        np.save("./npy/"+filename[0:-4]+"_count", np.array(count))
+
+
+        
