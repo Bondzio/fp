@@ -1,0 +1,47 @@
+Known Bugs and Limitations in JaxoDraw - 2.1-0
+----------------------------------------------
+
+For a latest list, see
+http://jaxodraw.sourceforge.net/issue-tracking.html
+
+* When using IBM's Runtime Environment, the program may be executed
+  and works fine for most parts but presents some peculiarities: the
+  layout of pop up windows is not always the same and XML output
+  serializes the bounding boxes of objects that are explicitly marked as
+  transient in the source code. This has been reported to us for version
+  number 1.4.1 of IBM's SDK. For us, this appears to be an
+  incompatibility between SUN's and IBM's Runtime Environments.
+  On the other hand, the program compiles fine with IBM's jikes
+  compiler (tested with version 1.19 and 1.22).
+
+* Some swing internal components do not allow full internationalization
+  (see: http://www.progdoc.de/papers/intSwing/intswing/intswing.html).
+  This is Java bug #4195173.
+  For JaxoDraw, this effects only some text fields in the FileChooser,
+  ColorChooser and Print dialogs, where the text will always be given in
+  english.
+
+* If a LaTeX text object is present at the edge of a graph then the bounding box
+  of a "LaTeX -> EPS" export is most probably not correct. This manifests itself
+  by a "broken" text, ie, a thin white line is crossing the text. Basically,
+  there is no way for us to estimate the extension of a text after latex
+  compilation, so the only workaround is to adjust the bounding box by hand.
+
+* When drawing a line or loop and releasing the mouse outside the drawing
+  area, the object will still be drawn correctly. However, the same does
+  not work for arcs and beziers: clicking once outside the drawing area
+  will make the object disappear. This is a fundamental Java limitation
+  and cannot be fixed in general.
+
+* On windows, plugins cannot be un-installed from the Plugin Manager.
+  They get removed from the current session but remain in the plugin
+  cache, so next time JaxoDraw is started they get loaded again.
+  The plugin jar  has to be removed manually from the plugin
+  installation folder to uninstall the plugin permanently.
+
+* Running JaxoDraw-2.0-0 on a 64bit java installation, the program first
+  executes fine and works for most parts, but trying to draw a gluon line
+  gives a crash dump. This is evidently a bug in the java virtual
+  machine 64bit version, so there is nothing we can do about it. The only
+  workaround is to install a 32bit version and use this to run JaxoDraw.
+  See bug #2561249 for more details.

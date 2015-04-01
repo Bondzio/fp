@@ -1,0 +1,62 @@
+Developers TODO list:
+=====================
+
+The list is divided into the following sections:
+
+  o  Bugs: Known bugs that should be solved
+  o  Wish list: Requested features and changes
+  o  Optimization: Suggested code optimizations
+  o  Documentation: Is probably always out of date
+
+
+Bugs
+----
+see BUGS
+
+
+Wish list
+---------
+
+* Other export formats: tiff, bmp, gif
+* Show gluons with two colors ?
+* get axodraw2 released and incorporate it
+* Preferences/Startup:
+  - Allow preferences to be saved automatically on exit
+  - Allowed startup without reading preferences
+  - Allowed startup with opening all the files that were open when last quit
+* Handle painting could be customizable
+
+Optimization
+------------
+
+* Code Optimization:
+
+    - pull out the MouseListener and MouseMotionListener methods
+      from the canvas into a separate class, extending MouseInputAdapter
+    - make JaxoCanvas a Component or a Canvas
+    - Unify open/import/save/export error handling (Christian)
+    - Cleanup JaxoPrefsPanel, e.g. a lot of duplicate code with JaxoGridBar
+      (Christian)
+
+* Interface Optimization:
+
+    - Improve JSpinners in edit panels (Christian: rfe 1645880, bug 1657841,
+      locale vs. number formatting problems, rounding problems)
+    - Put canvas background into the preferences panel (Christian)
+    - Make default fill color, isFilled, snappingToGrid
+      configurable (Christian: rfe 1749368)
+    - Something is still fishy with the recent files list (Christian)
+    - Clarify which (grid) properties are tab-local (and not affected by
+      changing the preferences).
+
+
+Documentation
+-------------
+
+* Javadoc: The javadoc comments in the code should be reviewed
+
+* FAQ: The FAQ can always be updated
+
+* User guide: Should be updated
+
+
