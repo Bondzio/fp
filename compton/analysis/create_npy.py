@@ -1,5 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import sys
+
 
 def osci_csv_npy(file_in, file_out):
     """
@@ -61,16 +63,20 @@ osci_csv_npy(file1, file_out1)
 osci_csv_npy(file2, file_out2)
 """
 
-txt_str = 'coin_ps_random'
-file1 = data_dir + txt_str + '.txt'
-file_out1 = npy_dir + txt_str
-osci_txt_npy(file1, file_out1)
+if len(sys.argv) == 3:
+    if sys.argv[1] == 'ps':
+        txt_str = sys.argv[1] + '_' + sys.argv[2]
+        file1 = data_dir + txt_str + '.txt'
+        file_out1 = npy_dir + txt_str
+        osci_txt_npy(file1, file_out1)
+    elif sys.argv[1] == 'na':
+        txt_str = sys.argv[1] + '_' + sys.argv[2]
+        file1 = data_dir + txt_str + '.TKA'
+        file_out1 = npy_dir + txt_str
+        osci_tka_npy(file1, file_out1)
+    else:
+        print('wrong input; type ps/na angle')
+else:
+    print('wrong input; type ps/na angle')
 
-"""
-tka_str = 'coin_na_30'
-file1 = data_dir + tka_str + '.TKA'
-file_out1 = npy_dir + tka_str
-osci_tka_npy(file1, file_out1)
-
-"""
 

@@ -1,0 +1,50 @@
+REPORT-FILE from 02/28/2015 16:59:04.500 - 10:00:56.984  written 03/03/2015 10:01:16
+REALTIME: 234116.126  
+TOTALSUM: 1354736     
+ROISUM: 1354736     
+MAXVAL: 67180       
+LIVETIME: 234114.101  
+cmline0=02/28/2015 16:59:04.500 - 10:00:56.984 
+range=1024
+prena=0
+mcsmode=4
+roimin=0
+roimax=1024
+rtpreset=72000.000   
+ltpreset=3600.000    
+evpreset=0           
+swpreset=1           
+rampmode=0
+rampstart=1024
+rampstep=1
+rampbin=1
+ramplen=1024
+qdacuse=0
+qdac=2048
+dac1use=0
+dac1val=0
+impsel=f
+thrstart=1716
+thr1=1716
+thr2=1716
+thrclk=2482
+diguse=8
+digval=0
+cycles=128
+sequences=1
+mempart=0
+dwelltime=3
+dwellunit=0
+syncout=909
+histlen=0
+autoinc=0 
+;datname=C:\Dokumente und Einstellungen\Student\Eigene Dateien\schuessler_karle\ps_background_01.mcd
+savedata=0
+fmt=txt
+smoothpts=5 
+caluse=0 
+caloff=0.000000
+calfact=8.000000
+calfact2=0
+calfact3=0
+calunit=xt

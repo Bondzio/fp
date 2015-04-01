@@ -1,17 +1,17 @@
-REPORT-FILE from 03/05/2015 13:37:43.187 - 14:37:43.546  written 03/05/2015 14:43:32
-REALTIME: 3600.012    
-TOTALSUM: 2901        
-ROISUM: 2901        
-MAXVAL: 73          
-LIVETIME: 3600.000    
-cmline0=03/05/2015 13:37:43.187 - 14:37:43.546 
+REPORT-FILE from 03/07/2015 11:13:34.828 - 11:43:35.187  written 03/07/2015 11:49:38
+REALTIME: 1800.011    
+TOTALSUM: 3580        
+ROISUM: 3580        
+MAXVAL: 56          
+LIVETIME: 1800.000    
+cmline0=03/07/2015 11:13:34.828 - 11:43:35.187 
 range=1024
 prena=2
 mcsmode=4
 roimin=0
 roimax=1024
 rtpreset=3600.000    
-ltpreset=3600.000    
+ltpreset=1800.000    
 evpreset=0           
 swpreset=1           
 rampmode=0
