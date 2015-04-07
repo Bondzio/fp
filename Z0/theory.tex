@@ -85,11 +85,15 @@ partial decay widths $\Gamma_f$. As one is to accept this formulas arising from 
 that these are only first-order processes, and as to far to be considered as approximations. Furthermore we can write down
 the specific partial decay widths, which are dependent on the respective charge $Q_f$ of the fermion:
 \begin{equation}
+    \label{eq:gamma_f}
     \Gamma_f = \frac{G_F M_Z^3}{24 \sqrt{2} \pi} \left[ 1 + (1 - 4 |Q_f| \sin^2 \theta_W )^2 \right]
 \end{equation}
 The angle $\theta_W$ arising here is coming from the electro-weak unification.
 \subsection{Strong Interaction}
-\label{sub:bhabha_scattering}
+\label{sub:strong}
+As the overwhelming proportion of the particles observed will be hadronic and hence of quark origin, we need to have a short
+look at the strong interaction responsible for the branching ratio (see figure~\ref{fig:hadrons} for an example of one 
+Feynman diagram).
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/hadrons}
@@ -137,9 +141,27 @@ In the experiment, we will not be able to measure the cross section directly. We
 counting the number of particles and inferring our knowledge about the collider (focus of the beam, orbital frequency). This
 knowledge is condensed in the Quantity $\mathcal{L}$, the \textit{luminosity}, which we have to integrate over the collision:
 \begin{equation}
-    \sigma = \frac{N}{\int \mathcal{L} dt}
+    \sigma = \frac{N}{\int \mathcal{L} dt} + \kappa
 \end{equation}
-The $\int \mathcal{L} dt$ is called \textit{integrated luminosity}. 
+The $\int \mathcal{L} dt$ is called \textit{integrated luminosity} and $\kappa$ is the radiation correction coming from the
+specifications of the collider.
+\subsection{Cross-sections}
+\label{sub:cross_sections}
+In order to bring order into the rather theoretical description until now, we will list all decay widths by \eqref{eq:gamma_f}:
+\begin{equation*}
+    \Gamma_f = \frac{\sqrt{2} G_f M_Z^3 N_c^f}{12 \pi} \left[ (I_3^f)^2 + (I_3^f - 2 Q_f \sin^2 \theta_W )^2 \right]
+\end{equation*}
+where we can use the following values for the isospin and the charge:
+\begin{table}[htpb]
+    \centering
+    \caption{caption}
+    \label{tab:label}
+    \begin{tabular}{l|l|l|l}
+        $e^-,\mu^- \tau^-$ & 1   &1   & 1  \\
+        $e^-,\mu^- \tau^-$ & 1   &1   & 1  
+    \end{tabular}
+\end{table}
+%todo
 
 \subsection{Lepton universality}
 \label{sub:lepton_universality}
@@ -160,5 +182,9 @@ The $\int \mathcal{L} dt$ is called \textit{integrated luminosity}.
 -> number of particles: neutrino generations: $2.99 \pm 0.06$. 
 standard model uses empirical input: CKM matrix, Weinberg angle
 look!\cite{pdg} test
+\subsection{Monte Carlo simulation}
+\label{sub:monte_carlo_simulation}
+%todo
+
 
 

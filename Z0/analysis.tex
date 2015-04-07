@@ -52,11 +52,6 @@ hadron calorimeter (which we will denote as $E_{\mathrm{hcal}}$).
    the energy carried by incident hadrons is passed to additional secondaries. }
 \label{fig:qq}
 \end{figure}
-%TODO
-1. More particles, such as photon
-2. Experimental setup precise 
-we will do that later.
-
 
 \clearpage
 \subsection{Techniques used for the evaluation}
@@ -101,6 +96,7 @@ specifying the units. If not specified explicitly, the units will correspond to 
 variables: If $x_i, x_j$ have the units $[x_i], [x_j]$, respectively, 
 then the entry of the covariance matrix has the unit $[x_i] \cdot [x_j]$. 
 
+\clearpage
 
 \subsection{Machine learning for classification}
 As it is shown in section~\ref{sub:montecarlo} on page \pageref{sub:montecarlo} 
@@ -150,36 +146,56 @@ place, please refer to the appendix.
 
 \clearpage
 \subsection{Monte Carlo data}
+
 \label{sub:montecarlo}
+In order to get an intuition about the distributions governing the different particle species with respect to the measured
+variables, we use Monte Carlo generated data (see \ref{sub:monte_carlo_simulation} for a short introduction into Monte Carlo
+simulation). What is clearly visible in figure \ref{fig:cos_figs}, \ref{fig:monte1} and \ref{fig:monte2} is that the
+different particle species are not separable in terms of the single variables completely. This is why we use a 
+\textit{non parametric} method in order to classify the particle species, since the hyper surfaces separating the distributions
+might be of a non trivial geometric shape, possibly including highly non linear parametrizations. Furthermore, you will notice
+that the probabilistic behavior is not linear as well as the true shape of the distributions can only be seen when plotted
+against a logarithmic scale, as we are doing.
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/cos_figs}
+    \caption{Distribution of the Monte Carlo data (with correct branching ratios) 
+    with respect to the $\cos(\theta)$ and $\cos(\mathrm{thru})$. You can
+    notice some details here, for instance that $\cos(\theta)$ is not defined properly for hadrons. Later, when classifying
+    real data, this is not as clear as here and we need to exclude not well defined variables from the classification process.
+    Another obvious observation is the absence of the t-channel in particle species other than electrons. This simplifies 
+    the classification process enormously, since the chronological 
+order of removing the t-channel is not crucial to the particle numbers.}
+    \label{fig:cos_figs}
+\end{figure}
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{figures/N_p_c}
-    \label{fig:monte1}
     \caption{Probabilities of Monte Carlo data (with correct branching ratios). 
         In order to grasp the non trivial intersection behavior of the particle species, we plotted the figures here
     in log scale with respect to the probability. The particle numbers in figure (a) shows the 
 intersection from one up to seven trajectories. The non zero probability of having more than ten trajectories in the hadronic
 branch exists until $N_c = 55$, where the probability drops to zero. }
+\label{fig:monte1}
     \includegraphics[width=1.0\linewidth]{figures/E_cal}
     \caption{As in the figure above, but with different variables. Notice the separation between electrons
     and muons in (a), but the intersection of tauons in all regimes.}
 \label{fig:monte2}
 \end{figure}
 
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{figures/cos_figs}
-    \caption{Distribution of the Monte Carlo data with respect to the $\cos(\theta)$ and $\cos(\mathrm{thru})$. You can
-    notice some details here, for instance that $\cos(\theta)$ is not defined properly for hadrons. Later, when classifying
-    real data, this is not as clear as here and we need to exclude not well defined variables from the classification process.
-    Another obvious observation is the absence of the t-channel in particle species other than electrons. This simplifies 
-    the classification process enormously, since the order of removing the t-channel is not crucial to the particle numbers.}
-    \label{fig:cos_figs}
-\end{figure}
-\subsubsection{Fitting Ts Channel}
+\clearpage
+\subsubsection{Fitting t/s-channel}
 \label{ssub:FittingTsChannel}
-
+In section \ref{sub:bhabha} we did already explain that the t-channel of the electronic decay does not correspond
+to the cross-section of the process we are interested in and hence we need to remove it.  The equation governing 
+the $\cos(\theta)$ distribution of electrons look as following
+\begin{equation*}
+\sigma_{ee} = A(1 + \cos^2\theta) + B(1 - \cos\theta)^{-2}.
+\end{equation*}
+When we fit now this function to the real data, we can remove the s-channel easily, as seen in figure \ref{fig:tschannel}.
+When applying this fit to the real data, the proportion of the t-channel will strongly depend on the respective center of
+mass energy. For low energies, it will constitute nearly as much as 90\% of the t/s-channel.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{figures/tschannel}
@@ -189,14 +205,32 @@ branch exists until $N_c = 55$, where the probability drops to zero. }
     apply this fit to all real data.}
     \label{fig:tschannel}
 \end{figure}
+\clearpage
 
 \subsubsection{Efficiency matrix}
 \label{ssub:Efficiencymatrix}
 
+The first step in making sense out of the real data is to assign single events to a specific decay branch, otherwise
+we cannot compare the different distributions. The problem is that wrong assignments will lead to wrong contributions 
+in the final cross-section; therefore a good strategy is to test the classification algorithm with Monte Carlo data and 
+quantify its efficiency, furthermore we can correct the systematic error contribution of the algorithm after. First we 
+divide the Monte Carlo data in a training sample (75\% of the data) and a test sample (25\% of the data) in order to avoid
+self inconsistent testing.  At this point we tried different algorithms. The efficiency of the algorithms based on the training
+data is shown in table \ref{tab:eff1} (where we used physical intuition to separate the particle species) and in table
+\ref{tab:eff1} (where we used the machine learning technique \textbf{k-nearest neighbors algorithm}). As these tables indicate,
+the machine learning technique was far more successful with respect to efficiency, hence we used this one for the further 
+calculations. \\
+The efficiency matrices show, which (true) particles were classified erroneously into which species. The correction
+of the real data later will be done with the inverse of this matrix:
+\begin{equation}
+    N_{\mathrm{True}} = N_{ \mathrm{observed}} \cdot M_{\mathrm{eff}}^{-1}
+\end{equation}
+
+
 \begin{table}[htpb]
     \centering
+    \caption[caption]{Efficiency matrix $M_{\mathrm{eff}}$ with \textbf{physical intuition}\footnotemark.}
     \label{tab:eff1}
-    \caption[caption]{Efficiency matrix with \textbf{physical intuition}\footnotemark.}
 \begin{tabular}{l| l| l| l |l}
 \rowcolor{LightCyan} & Electrons & muons & Tauons & Hadrons \\ 
     \cellcolor{LightCyan} Electrons & $\mathbf{0.9571 \pm 0.1722}$ & $0.0000 \pm 0.0000$ & $0.0087 \pm 0.0013$ & $0.0050 \pm 0.0005$ \\ 
@@ -218,8 +252,8 @@ a visualization of the distributions see figure \ref{fig:monte1} and \ref{fig:mo
 }
 \begin{table}[htpb]
     \centering
+    \caption{Efficiency matrix $M_{\mathrm{eff}}$ with \textbf{k-nearest neighbors algorithm}}
     \label{tab:eff2}
-    \caption{Efficiency matrix with \textbf{k-nearest neighbors algorithm}}
 \begin{tabular}{l| l| l| l |l}
 \rowcolor{LightCyan} & Electrons & Muons & Tauons & Hadrons \\ 
     \cellcolor{LightCyan} Electrons & $\mathbf{0.9967 \pm 0.1931}$ & $0.0001 \pm 0.0001$ & $0.0026 \pm 0.0013$ & $0.0004 \pm 0.0001$ \\ 
