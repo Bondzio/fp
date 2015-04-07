@@ -71,7 +71,7 @@ packages:
     \item
         \textit{uncertainties}~\cite{uc} for error propagation.
 \end{itemize}
-The latter applies gaussian error propagation for correlated and uncorrelated variables. 
+The latter applies Gaussian error propagation for correlated and uncorrelated variables. 
 We will thus not explicitly write down the formulas for the error propagation 
 for each quantity calculated but instead state the numerical result, only. 
 We will, however make a quick remark on the use of covariance matrices in 
@@ -148,7 +148,7 @@ place, please refer to the appendix.
     refer to \cite{masteringscikit}.}
 \label{fig:kneigbors}
 \end{figure}
-
+\clearpage
 \subsection{Monte Carlo data}
 \label{sub:montecarlo}
 
@@ -167,13 +167,63 @@ place, please refer to the appendix.
     \caption{bla blupp}
     \label{fig:cos_figs}
 \end{figure}
+\newpage
 \subsubsection{Fitting Ts Channel}
-\label{ssub:Fitting Ts Channel}
+\label{ssub:FittingTsChannel}
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{figures/tschannel}
     \caption{bla blupp}
     \label{fig:tschannel}
+\end{figure}
+
+\subsubsection{Efficiency matrix}
+\label{ssub:Efficiencymatrix}
+
+\begin{table}[htpb]
+    \centering
+    \label{tab:eff1}
+    \caption{Efficiency matrix with \textbf{physical intuition}}
+\begin{tabular}{l| l| l| l |l}
+\rowcolor{LightCyan} & Electrons & muons & Tauons & Hadrons \\ 
+    \cellcolor{LightCyan} Electrons & $\mathbf{0.9571 \pm 0.1722}$ & $0.0000 \pm 0.0000$ & $0.0087 \pm 0.0013$ & $0.0050 \pm 0.0005$ \\ 
+    \cellcolor{LightCyan} Muons & $0.0000 \pm 0.0000$ & $\mathbf{0.9285 \pm 0.0093}$ & $0.0530 \pm 0.0018$ & $0.0010 \pm 0.0002$ \\ 
+    \cellcolor{LightCyan} Tauons & $0.1628 \pm 0.0217$ & $0.0637 \pm 0.0018$ & $\mathbf{0.9247 \pm 0.0101}$ & $0.0294 \pm 0.0012$ \\ 
+    \cellcolor{LightCyan} Hadrons & $0.0000 \pm 0.0000$ & $0.0000 \pm 0.0000$ & $0.0018 \pm 0.0003$ & $\mathbf{0.9508 \pm 0.0092}$ \\
+\end{tabular}
+\end{table}
+
+\begin{table}[htpb]
+    \centering
+    \label{tab:eff2}
+    \caption{Efficiency matrix with \textbf{k-nearest neighbors algorithm}}
+\begin{tabular}{l| l| l| l |l}
+\rowcolor{LightCyan} & Electrons & Muons & Tauons & Hadrons \\ 
+    \cellcolor{LightCyan} Electrons & $\mathbf{0.9967 \pm 0.1931}$ & $0.0001 \pm 0.0001$ & $0.0026 \pm 0.0013$ & $0.0004 \pm 0.0001$ \\ 
+    \cellcolor{LightCyan} Muons & $0.0000 \pm 0.0000$ & $\mathbf{0.9850 \pm 0.0097}$ & $0.0136 \pm 0.0009$ & $0.0001 \pm 0.0001$ \\ 
+    \cellcolor{LightCyan} Tauons & $0.0181 \pm 0.0030$ & $0.0147 \pm 0.0008$ & $\mathbf{0.9717 \pm 0.0104}$ & $0.0031 \pm 0.0004$ \\ 
+    \cellcolor{LightCyan} Hadrons & $0.0024 \pm 0.0007$ & $0.0001 \pm 0.0001$ & $0.0056 \pm 0.0006$ & $\mathbf{0.9964 \pm 0.0096}$ \\
+\end{tabular}
+\end{table}
+\clearpage
+\newpage
+\subsection{Opal data}
+\label{sub:opal_data}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/crosssections}
+    \caption{Cross-sections (Please note that muons and tauons are not visible due to their overlay with the electrons,
+    see figure\ref{fig:crosssections2} for figure without hadrons)}
+    \label{fig:crosssections}
+\end{figure}
+
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/crosssections2}
+    \caption{Cross-sections.}
+    \label{fig:crosssections2}
 \end{figure}
 
