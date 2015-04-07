@@ -61,7 +61,7 @@ def la_coeff(f1, coeff, cov, var_names, additional_digits=0):
     """
     prints coeffients and their covariance matrix to a .tex file
     """
-    f1.write(r"\begin{align}" + "\n")
+    f.write(r"\begin{align}" + "\n")
 
     for j, co in enumerate(coeff):
         str_co = "    " + var_names[j]
