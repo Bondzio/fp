@@ -65,7 +65,7 @@ for i,weights in enumerate(['uniform']):
     ax.scatter(X[:, 0], X[:, 1], c=y, cmap=cmap_bold, alpha = 0.8, s = 30)
     ax.set_xlim(xx.min(), xx.max())
     ax.set_ylim(yy.min(), yy.max())
-    ax.set_title("Classification Weights = '%s'"% (weights), y=1.02)
+    ax.set_title("Classification of sample data", y=1.02)
 plt.savefig("../../figures/kneigbors.pdf")
 plt.show()
 
