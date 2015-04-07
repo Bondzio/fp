@@ -53,7 +53,7 @@ for filename in os.listdir(directory):
         count = []
 
         for t in data:
-            x,y = (re.sub(",",".",u)).split("\t")
+            x,y = (re.sub(",",".",t)).split("\t")
             lamb += [float(x)]
             count += [float(y)]
         np.save("./npy/"+filename[0:-4]+"_lamb", np.array(lamb))
