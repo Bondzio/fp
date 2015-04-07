@@ -227,3 +227,66 @@ place, please refer to the appendix.
     \label{fig:crosssections2}
 \end{figure}
 
+\begin{table}[htpb]
+    \centering
+    \caption{End result}
+\label{tab:results}
+    \begin{tabular}{l l l}
+ \rowcolor{LightCyan} & Our result & Literature value \\
+ \cellcolor{LightCyan}$\Gamma_e$ / GeV &   $ 0.084\pm0.004   $ & $0.08391 \pm 0.00012 $\\
+ \cellcolor{LightCyan}$\Gamma_\mu$ / GeV&   $ 0.084\pm0.004 $ & $0.08399 \pm 0.00018 $\\
+ \cellcolor{LightCyan}$\Gamma_\tau$ / GeV&   $ 0.084\pm0.004   $ & $0.08408 \pm 0.00022 $\\
+ \cellcolor{LightCyan}$\Gamma_h$ / GeV&   $ 1.78\pm0.90     $ & $1.7444\pm0.002      $\\
+ \cellcolor{LightCyan}$\Gamma_Z$ / GeV&   $ 2.558\pm0.020   $ & $2.4952\pm0.0023     $\\
+ \cellcolor{LightCyan}$M_Z    $ / GeV /$c^2$&   $ 91.186\pm0.008  $ & $91.187\pm0.0021     $\\
+    \end{tabular}
+\end{table}
+
+\begin{table}[htpb]
+    \centering
+    \caption{Correlation matrix of parameter. Note the high correlation between the leptons and between $M_Z$ and $\Gamma_Z$.}
+    \label{tab:covmat}
+
+\begin{tabular}{l| l| l| l |l | l|l}
+\rowcolor{LightCyan} & $\Gamma_e$ & $\Gamma_\mu$ & $\Gamma_\tau$ & $\Gamma_h$ &$\Gamma_Z$ & $M_Z$ \\ 
+\cellcolor{LightCyan} $\Gamma_e$ & $1.00000$ & $-0.99858$ & $-0.99856$ & $-0.99905$ & $-0.13433$ & $-0.15716$ \\ 
+\cellcolor{LightCyan} $\Gamma_\mu$ & $-0.99858$ & $1.00000$ & $0.99999$ & $0.99995$ & $0.18680$ & $0.18144$ \\ 
+\cellcolor{LightCyan} $\Gamma_\tau$ & $-0.99856$ & $0.99999$ & $1.00000$ & $0.99994$ & $0.18711$ & $0.18120$ \\ 
+\cellcolor{LightCyan} $\Gamma_h$ & $-0.99905$ & $0.99995$ & $0.99994$ & $1.00000$ & $0.17727$ & $0.17895$ \\ 
+\cellcolor{LightCyan} $\Gamma_Z$ & $-0.13433$ & $0.18680$ & $0.18711$ & $0.17727$ & $1.00000$ & $0.48489$ \\ 
+\cellcolor{LightCyan} $M_Z$ & $-0.15716$ & $0.18144$ & $0.18120$ & $0.17895$ & $0.48489$ & $1.00000$ \\ 
+\end{tabular}
+
+
+
+\end{table}
+
+\paragraph{lepton universality}
+\label{par:lepton_universality}
+
+
+\label{ssub:leptonun}
+\begin{align}
+    V_\mu = \frac{\Gamma_\mu}{\Gamma_e} = 0.99 \pm 0.1 \\ 
+    V_\tau = \frac{\Gamma_\tau}{\Gamma_e} = 1.00 \pm 0.1 \\
+\end{align}
+
+\paragraph{number of neutrino generations}
+\label{par:number_of_neutrino_generations}
+\begin{align*}
+    \label{eq:gen}
+    \Gamma_\nu = \Gamma_Z - \Gamma_e - \Gamma_\mu - \Gamma_\tau - \Gamma_h \\ 
+    \Gamma_{\nu, \mathrm{theo}} = 0.165 \pm 0.001 \mathrm{GeV} \\ 
+    \Rightarrow \frac{\Gamma_\nu}{\Gamma_{nu, \mathrm{theo}}}  = 3.2 \pm 0.6
+\end{align*}
+
+\paragraph{Muon asymmetry}
+\label{par:assymetry}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/assymetry}
+    \caption{bla blupp}
+    \label{fig:assymetry}
+\end{figure}
+

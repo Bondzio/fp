@@ -105,7 +105,6 @@ def calc_all(data, E_now):
     return N_all_corrected / lumi[E_now] + kappa[E_now]
 
 
-E_now = 91.22430
 crosssections = {}
 
 for E_now in mean_E:
