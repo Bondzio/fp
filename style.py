@@ -9,15 +9,20 @@ from scipy.optimize import curve_fit
 sns.set(style='ticks', palette='Set2') 
 sns.despine()
 
-fontsize_labels = 22    # size used in latex document
-rcParams['font.family'] = 'serif'
-rcParams['font.serif'] = ['Computer Modern Roman']
+fontsize_labels = 26    # size used in latex document
+rcParams['text.latex.preamble'] = [r'\usepackage[cmbright]{sfmath}']
+rcParams['font.family']= 'sans-serif'
+rcParams['font.sans-serif']= 'cmbright'
+rcParams['font.weight'] = "light"
+
 rcParams['text.usetex'] = True
+
 rcParams['figure.autolayout'] = True
 rcParams['font.size'] = fontsize_labels
-rcParams['ax.labelsize'] = fontsize_labels
+rcParams['axes.labelsize'] = fontsize_labels
 rcParams['xtick.labelsize'] = fontsize_labels
 rcParams['ytick.labelsize'] = fontsize_labels
 rcParams['legend.fontsize'] = fontsize_labels
 rcParams['axes.titlesize'] = fontsize_labels
-rcParams['figure.figsize'] = (3*6.2, 3*3.83)  
+xfactor = 2
+rcParams['figure.figsize'] = (xfactor*6.2, xfactor*3.83)  

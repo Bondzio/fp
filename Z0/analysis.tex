@@ -59,7 +59,171 @@ we will do that later.
 
 
 \clearpage
-\newpage
-\subsection{Monte Carlo data}
+\subsection{Techniques used for the evaluation}
+All calculations in this section are done with scripts written in 
+the \textit{python} programming language~\cite{python}, relaying in several 
+packages:
+\begin{itemize}
+    \item
+        \textit{matplotlib}~\cite{Hunter2007} for plotting,
+    \item
+        \textit{scipy}~\cite{scipy} for fitting, and 
+    \item
+        \textit{uncertainties}~\cite{uc} for error propagation.
+\end{itemize}
+The latter applies Gaussian error propagation for correlated and uncorrelated variables. 
+We will thus not explicitly write down the formulas for the error propagation 
+for each quantity calculated but instead state the numerical result, only. 
+We will, however make a quick remark on the use of covariance matrices in 
+error propagation: Contrary to measured data, which in our case is usually 
+expected to be uncorrelated, all fitted data yields variables that in general correlate. 
+The propagation is then done as follows:
+Let's assume we have random
+variables $x_0,...,x_N$ which are correlated through the $N\times N$ Matrix $cov(x_i,x_j)$.
+For a scalar function $f(x_0,...,x_N) \rightarrow \mathbb{R}$, the variance is estimated (linearly) by:
+\begin{equation}
+Var[f] = \sigma^2 = \sum_{i,j} \frac{\partial f}{\partial x_i} \frac{\partial f}{\partial x_j} cov(x_i,x_j) \,.
+\end{equation} 
+If instead, $\mathbf{f}$ is a vector field in $m$ dimensions, namely 
+$\mathbf{f}(x_0,...,x_N) \rightarrow \mathbb{R}^m$, then the components of $\mathbf{f}$ 
+are further correlated. We can write down the relation between the covariance matrices $V$ and $U$ of 
+$\mathbf{x}$ and $\mathbf{f}$, respectively, in matrix relations:
+\begin{equation}
+    U = A V A^T
+\end{equation}
+where $A$ is the matrix defined by 
+\begin{equation}
+    A_{ij} = \left[ \frac{\partial f_i}{\partial x_j}\right]_{\mathbf{x} = \mu}
+\end{equation}
+with expectation value $E[\mathbf{x}] = \mu$.~\cite{cowan1998statistical}
+In order to facilitate notation, the covariance matrices will in general be notated without 
+specifying the units. If not specified explicitly, the units will correspond to those of the
+variables: If $x_i, x_j$ have the units $[x_i], [x_j]$, respectively, 
+then the entry of the covariance matrix has the unit $[x_i] \cdot [x_j]$. 
 
+
+\newpage
+\section{Machine learning for classification}
+As it is shown in section~\ref{sub:montecarlo} on page \pageref{sub:montecarlo} 
+the different distributions of the respective particles intersect in terms of different
+variables. As you might guess, the task to differentiate between particle types in the 
+data is a highly non-trivial task. Therefore we searched for various techniques in order
+to improve the classification of the particle species. 
+As mentioned before, the analysis is done within the python
+ecosystem. In particular, for the machine learning algorithms we use the library 
+\textbf{scikit-learn}~\cite{scikit-learn}. 
+The technique which we will present
+here is used for our evaluation and turned out to be the best solution for our problem.
+It is a machine learning technique called \textbf{k-nearest neighbors algorithm} and
+is widely used in pattern recognition, because it is a non-parametric\footnote{
+We rely on non-parametric statistics because we do not know the distributions governing
+the probability of the variables of the particle species. 
+The main difference in the method is that for a parametric model
+the number of parameters is fixed, while in non-parametric techniques this number is 
+neither fixed nor independent of the training data. This is often successful when the boundary is 
+more of an irregular type.
+}method which can
+be implemented easily. We will not go into the implementation of the algorithm with respect to our physical problem at this
+place, please refer to the appendix.
+\begin{SCfigure}
+    \centering
+    \caption{The \textbf{k-nearest neighbors algorithm} works as following: 
+        The algorithm stores all instances of the training data and their respective
+    classification \textit{(colored bubbles)}. When classifying a new instance \textit{(bubble with question mark)}, the 
+    predictor counts how many nearest neighbors of the unknown instance are of a specific type, the point is assigned, 
+    depending on the parameter \textbf{k}, the class of the majority. In the beginning, when only the learning set is available,
+    the parameter \textbf{k} is chosen such that the error of second order is minimized. In general, a larger \textbf{k} will
+    limit the effects of stochastic noise but this will make the classification boundaries fuzzier.}
+    \includegraphics[width=0.5\linewidth]{figures/knn_schema}
+\label{fig:knn_schema}
+\end{SCfigure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1\linewidth]{figures/kneigbors}
+    \caption{Example taken from documentary of \textbf{scikit-learn}\cite{scikit-learn}, the library we are using. Here you can
+    see plotted the learning data \textit{colored dots} and the prediction for homogeneous distributed test data
+(\textit{colored surface}). The data is the commonly taken \textit{Iris flower data set} \cite{frank1968numerical}, which
+    is often used in order to benchmark a supervised learning algorithm. For a detailed examples of \textbf{scikit learn}
+    refer to \cite{masteringscikit}.}
+\label{fig:kneigbors}
+\end{figure}
+\clearpage
+\subsection{Monte Carlo data}
+\label{sub:montecarlo}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/N_p_c}
+    \caption{bla}
+    \includegraphics[width=1.0\linewidth]{figures/E_cal}
+    \caption{bla}
+\label{fig:monte1}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/cos_figs}
+    \caption{bla blupp}
+    \label{fig:cos_figs}
+\end{figure}
+\newpage
+\subsubsection{Fitting Ts Channel}
+\label{ssub:FittingTsChannel}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/tschannel}
+    \caption{bla blupp}
+    \label{fig:tschannel}
+\end{figure}
+
+\subsubsection{Efficiency matrix}
+\label{ssub:Efficiencymatrix}
+
+\begin{table}[htpb]
+    \centering
+    \label{tab:eff1}
+    \caption{Efficiency matrix with \textbf{physical intuition}}
+\begin{tabular}{l| l| l| l |l}
+\rowcolor{LightCyan} & Electrons & muons & Tauons & Hadrons \\ 
+    \cellcolor{LightCyan} Electrons & $\mathbf{0.9571 \pm 0.1722}$ & $0.0000 \pm 0.0000$ & $0.0087 \pm 0.0013$ & $0.0050 \pm 0.0005$ \\ 
+    \cellcolor{LightCyan} Muons & $0.0000 \pm 0.0000$ & $\mathbf{0.9285 \pm 0.0093}$ & $0.0530 \pm 0.0018$ & $0.0010 \pm 0.0002$ \\ 
+    \cellcolor{LightCyan} Tauons & $0.1628 \pm 0.0217$ & $0.0637 \pm 0.0018$ & $\mathbf{0.9247 \pm 0.0101}$ & $0.0294 \pm 0.0012$ \\ 
+    \cellcolor{LightCyan} Hadrons & $0.0000 \pm 0.0000$ & $0.0000 \pm 0.0000$ & $0.0018 \pm 0.0003$ & $\mathbf{0.9508 \pm 0.0092}$ \\
+\end{tabular}
+\end{table}
+
+\begin{table}[htpb]
+    \centering
+    \label{tab:eff2}
+    \caption{Efficiency matrix with \textbf{k-nearest neighbors algorithm}}
+\begin{tabular}{l| l| l| l |l}
+\rowcolor{LightCyan} & Electrons & Muons & Tauons & Hadrons \\ 
+    \cellcolor{LightCyan} Electrons & $\mathbf{0.9967 \pm 0.1931}$ & $0.0001 \pm 0.0001$ & $0.0026 \pm 0.0013$ & $0.0004 \pm 0.0001$ \\ 
+    \cellcolor{LightCyan} Muons & $0.0000 \pm 0.0000$ & $\mathbf{0.9850 \pm 0.0097}$ & $0.0136 \pm 0.0009$ & $0.0001 \pm 0.0001$ \\ 
+    \cellcolor{LightCyan} Tauons & $0.0181 \pm 0.0030$ & $0.0147 \pm 0.0008$ & $\mathbf{0.9717 \pm 0.0104}$ & $0.0031 \pm 0.0004$ \\ 
+    \cellcolor{LightCyan} Hadrons & $0.0024 \pm 0.0007$ & $0.0001 \pm 0.0001$ & $0.0056 \pm 0.0006$ & $\mathbf{0.9964 \pm 0.0096}$ \\
+\end{tabular}
+\end{table}
+\clearpage
+\newpage
+\subsection{Opal data}
+\label{sub:opal_data}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/crosssections}
+    \caption{Cross-sections (Please note that muons and tauons are not visible due to their overlay with the electrons,
+    see figure\ref{fig:crosssections2} for figure without hadrons)}
+    \label{fig:crosssections}
+\end{figure}
+
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/crosssections2}
+    \caption{Cross-sections.}
+    \label{fig:crosssections2}
+\end{figure}
 

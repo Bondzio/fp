@@ -176,7 +176,7 @@ def remove_t(u):
             x1 = costhetamax
             al = x1 - x0 + (x1**3 - x0**3)/3
             be = 1/(x1-1) - 1/(x0-1)
-            sigma = A*al / (A*al - B*be)*0.50
+            sigma = A*al / (A*al - B*be)*0.482
             
             # Definite Integral of s 
             if sigma.n > 1 or sigma.s >1:
@@ -196,7 +196,7 @@ def classify(u, cut_type):
     if cut_type[0:3] == "sup":
         all_ff = []
         for ele in u:
-            all_ff  += [[ele["Pcharged"],ele["Ncharged"],ele["Pcharged"],ele["E_ecal"],ele["E_hcal"]]]
+            all_ff  += [[ele["Ncharged"],ele["Pcharged"],ele["E_ecal"],ele["E_hcal"]]]
         all_ff  = np.array(all_ff)
 
         if os.path.isfile("./data/classifiers/%s.p"%(cut_type[4:])):
@@ -279,7 +279,7 @@ def get_c_eff(cut_type,check_true = False,remake_choice = False):
         all_ff  = []
         for target in range(4):
             for ele in ff[target][~mask[target]]:
-                all_ff  += [[ele["Pcharged"],ele["Ncharged"],ele["Pcharged"],ele["E_ecal"],ele["E_hcal"]]]
+                all_ff  += [[ele["Ncharged"],ele["Pcharged"],ele["E_ecal"],ele["E_hcal"]]]
                 targets += [target+1]
         learn_targets = np.array(targets)
         learn_data  = np.array(all_ff)
