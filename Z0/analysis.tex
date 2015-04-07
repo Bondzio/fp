@@ -102,7 +102,6 @@ variables: If $x_i, x_j$ have the units $[x_i], [x_j]$, respectively,
 then the entry of the covariance matrix has the unit $[x_i] \cdot [x_j]$. 
 
 
-\newpage
 \subsection{Machine learning for classification}
 As it is shown in section~\ref{sub:montecarlo} on page \pageref{sub:montecarlo} 
 the different distributions of the respective particles intersect in terms of different
@@ -148,6 +147,7 @@ place, please refer to the appendix.
     refer to \cite{masteringscikit}.}
 \label{fig:kneigbors}
 \end{figure}
+
 \clearpage
 \subsection{Monte Carlo data}
 \label{sub:montecarlo}
@@ -155,26 +155,38 @@ place, please refer to the appendix.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{figures/N_p_c}
-    \caption{bla}
+    \label{fig:monte1}
+    \caption{Probabilities of Monte Carlo data (with correct branching ratios). 
+        In order to grasp the non trivial intersection behavior of the particle species, we plotted the figures here
+    in log scale with respect to the probability. The particle numbers in figure (a) shows the 
+intersection from one up to seven trajectories. The non zero probability of having more than ten trajectories in the hadronic
+branch exists until $N_c = 55$, where the probability drops to zero. }
     \includegraphics[width=1.0\linewidth]{figures/E_cal}
-    \caption{bla}
-\label{fig:monte1}
+    \caption{As in the figure above, but with different variables. Notice the separation between electrons
+    and muons in (a), but the intersection of tauons in all regimes.}
+\label{fig:monte2}
 \end{figure}
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{figures/cos_figs}
-    \caption{bla blupp}
+    \caption{Distribution of the Monte Carlo data with respect to the $\cos(\theta)$ and $\cos(\mathrm{thru})$. You can
+    notice some details here, for instance that $\cos(\theta)$ is not defined properly for hadrons. Later, when classifying
+    real data, this is not as clear as here and we need to exclude not well defined variables from the classification process.
+    Another obvious observation is the absence of the t-channel in particle species other than electrons. This simplifies 
+    the classification process enormously, since the order of removing the t-channel is not crucial to the particle numbers.}
     \label{fig:cos_figs}
 \end{figure}
-\newpage
 \subsubsection{Fitting Ts Channel}
 \label{ssub:FittingTsChannel}
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{figures/tschannel}
-    \caption{bla blupp}
+    \caption{Removing the t-channel from the electron data: As it was investigated before,
+    we apply a fit of the data in order to be able to subtract the t-channel. What remain are
+    the electrons in the s-channel. This figure is an illustration of the method with Monte Carlo data, later we will
+    apply this fit to all real data.}
     \label{fig:tschannel}
 \end{figure}
 
@@ -184,7 +196,7 @@ place, please refer to the appendix.
 \begin{table}[htpb]
     \centering
     \label{tab:eff1}
-    \caption{Efficiency matrix with \textbf{physical intuition}}
+    \caption[caption]{Efficiency matrix with \textbf{physical intuition}\footnotemark.}
 \begin{tabular}{l| l| l| l |l}
 \rowcolor{LightCyan} & Electrons & muons & Tauons & Hadrons \\ 
     \cellcolor{LightCyan} Electrons & $\mathbf{0.9571 \pm 0.1722}$ & $0.0000 \pm 0.0000$ & $0.0087 \pm 0.0013$ & $0.0050 \pm 0.0005$ \\ 
@@ -193,7 +205,17 @@ place, please refer to the appendix.
     \cellcolor{LightCyan} Hadrons & $0.0000 \pm 0.0000$ & $0.0000 \pm 0.0000$ & $0.0018 \pm 0.0003$ & $\mathbf{0.9508 \pm 0.0092}$ \\
 \end{tabular}
 \end{table}
-
+\footnotetext{We tried the following setup here:\\
+\begin{tabular}{l| l| l | l }
+    Electrons & $60<E_{\mathrm{cal}}<120 $ & $40 < P_{\mathrm{charged}} < 100 $ &$0 <N_{\mathrm{charged} }< 10$ \\ 
+    Muons & $0 <E_{\mathrm{cal}}<40 $ &$60 < P_{\mathrm{charged}} < 120 $ & $0 <N_{\mathrm{charged} }< 10$\\ 
+    Tauons & $0<E_{\mathrm{cal}}<100 $ &$ 0  < P_{\mathrm{charged}} < 100 $& $0 <N_{\mathrm{charged} }< 40$\\ 
+    Hadrons & $20<E_{\mathrm{cal}}<100 $ & $0  < P_{\mathrm{charged}} < 100 $& $ 10 <N_{\mathrm{charged} }$
+\end{tabular}\\
+As we do not use this cut method in the further analysis, we will not comment on the choice of parameters here anymore, for 
+a visualization of the distributions see figure \ref{fig:monte1} and \ref{fig:monte2}. 
+% There is not much space for the table, but vspace is not working here, I have no idea how to fix this.
+}
 \begin{table}[htpb]
     \centering
     \label{tab:eff2}
@@ -206,7 +228,7 @@ place, please refer to the appendix.
     \cellcolor{LightCyan} Hadrons & $0.0024 \pm 0.0007$ & $0.0001 \pm 0.0001$ & $0.0056 \pm 0.0006$ & $\mathbf{0.9964 \pm 0.0096}$ \\
 \end{tabular}
 \end{table}
-\newpage
+\clearpage
 \subsection{Opal data: Fitting to Breit-Wigner distributions}
 \label{sub:opal_data}
 Cross-section is calculated with
