@@ -143,8 +143,8 @@ knowledge is condensed in the Quantity $\mathcal{L}$, the \textit{luminosity}, w
 \begin{equation}
     \sigma = \frac{N}{\int \mathcal{L} dt} + \kappa
 \end{equation}
-The $\int \mathcal{L} dt$ is called \textit{integrated luminosity} and $\kappa$ is the radiation correction coming from the
-specifications of the collider.
+The $\int \mathcal{L} dt$ is called \textit{integrated luminosity} and $\kappa$ is the radiation correction coming from 
+considering higher order photonic corrections, see section~\ref{ssub:Corrections_of_higher_order}.
 \subsection{Cross-sections}
 \label{sub:cross_sections}
 In order to bring order into the rather theoretical description until now, we will list all decay widths by \eqref{eq:gamma_f},
@@ -233,8 +233,72 @@ later (see \cite{ver} for their formulation). Hence the asymmetry \eqref{eq:asym
         \left[ \frac{F_1(s)}{3} \cos^3 \theta + F_2(s) \cos^2\theta \right] + \mathrm{const}. \\
     \Rightarrow A_{FB}^f &= \frac{3 F_2}{4 F_1}
     \end{align*}
-The asymmetry is the result of interference between the involved interactions. 
+The asymmetry is the result of interference between the involved interactions. There are several issues, but the interesting
+part is happening for leptons at the peak, where the asymmetry yields information about the electro weak mixing angle $\theta_W$:
+\begin{equation}
+    A_{FB}^{l,peak} \approx 3 \frac{G_V^l}{G_A^l}^2 = 3 ( 1 - 4 \sin^2 \theta_W ) ^2
+\end{equation}
+Which is a very important result, because we can verify the prediction of the electro weak unification with this measurement.
+\subsubsection{Corrections of higher order}
+\label{ssub:Corrections_of_higher_order}
+Until now we have only looked into the Born Approximation, e.g.\ first order corrections. Possible higher orders can arise
+from photonic or QCD corrections; the cross-section has to modified accordingly. See figure~\ref{fig:photonic} for
+photonic corrections, figure~\ref{fig:photonic2} for virtual photonic corrections and figure~\ref{fig:QCD_corr} for QCD
+corrections.
 
+\begin{figure}[htpb]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/corr1}
+  \caption{Initial state radiation}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/corr2}
+  \caption{Final state radiation}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Photonic corrections to the first order processes. Since the center of mass energy $\sqrt{s}$ is decreased 
+by a certain amount through the radiation of photons, we can simply correct $\sqrt{s}$ by a factor $\kappa(s)$. }
+\label{fig:photonic}
+\end{figure}
+
+\begin{figure}[htpb]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/corr3}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/corr4}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Corrections to the first order processes due to virtual radiation corrections. Those are in the end responsible
+for the \textit{running} coupling constant in QED.}
+\label{fig:photonic2}
+\end{figure}
+
+\begin{figure}[htpb]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/QCD1}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/QCD2}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Corrections to the first order processes due to QCD corrections.}
+\label{fig:QCD_corr}
+\end{figure}
+
+\clearpage
 \subsection{Monte Carlo simulation}
 \label{sub:monte_carlo_simulation}
 %todo
