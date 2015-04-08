@@ -156,11 +156,36 @@ The electroweak force is split into the part of vector and axialvector coupling.
        g_A^f &= I_3^f \\
 \Rightarrow \Gamma_f &= \frac{\sqrt{2} G_f M_Z^3 N_c^f}{12 \pi} \left[ (I_3^f - 2 Q_f \sin^2 \theta_W)^2 + (I_3^f)^2  \right] 
 \end{align*}
-Where we have used the following constants:
+Where we have used the following constants~\cite{pdg} (The last digit in brackets denotes to the uncertainty):
 \begin{align*}
-    \label{eq:consts}
-    N_c^f \cdots \mathrm{ colorfactor  } 
+\label{eq:consts}
+    N_c^f &= \text{color factor, one for leptons, three for quarks}  \\
+    G_F &= 1.66387(6) \cdot 10^{-5} \mathrm{GeV^{-2}} \text{ Fermi coupling constant} \\
+    M_Z &= 91.1876(21) \mathrm{GeV /c^{2}} \quad \mathrm{Z^0 \: boson \: mass} \\
+    Q_f &= \text{ Electric charge in units of elementary charges}
 \end{align*}
+Using this formula, we arrive at the following decay widths:
+
+\begin{align*}
+    \Gamma_e = \Gamma_\mu = \Gamma_\tau &= 83.4 \: \mathrm{MeV}   \\
+    \Gamma_{\nu_e} = \Gamma_{\nu_\mu} = \Gamma_{\nu_\tau} &= 166 \: \mathrm{MeV}  \\
+    \Gamma_u = \Gamma_c &= 297 \: \mathrm{MeV} \\
+    \Gamma_d = \Gamma_s = \Gamma_b &= 383 \: \mathrm{MeV} 
+\end{align*}
+Summing those up we arrive at the species dependent widths:
+\begin{align*}
+    \Gamma_{\mathrm{charged \: leptons}} = \Gamma_e + \Gamma_\mu + \Gamma_\tau &= 250\: \mathrm{MeV} \\
+    \Gamma_{\mathrm{neutral \: leptons}} = \Gamma_{\nu_e} + \Gamma_{\nu_\mu} + \Gamma_{\nu_\tau} &= 498 \: \mathrm{MeV} \\
+    \Gamma_{\mathrm{hadrons}} = \Gamma_u + \Gamma_d + \Gamma_b + \Gamma_c + \Gamma_s &= 1742\: \mathrm{MeV} 
+\end{align*}
+Hence we arrive for the theoretical width of the $\mathrm{Z^0}$ boson:
+\begin{equation*}
+    \Gamma_Z = \Gamma_{\mathrm{charged \: leptons}} + \Gamma_{\mathrm{neutral \: leptons}}  + \Gamma_{\mathrm{hadrons}} = 2489 \: \mathrm{MeV}
+\end{equation*}
+Since the cross-section take the form \eqref{eq:breitwigner}, we can calculate the maximum with
+\begin{equation*}
+    \sigma_f^{\mathrm{peak}} = \frac{12\pi \Gamma_e \Gamma_f \Gamma_e}{M_Z^2 \Gamma_Z^2}
+\end{equation*}
 
 \subsection{Lepton universality}
 \label{sub:lepton_universality}
