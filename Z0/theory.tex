@@ -147,21 +147,20 @@ The $\int \mathcal{L} dt$ is called \textit{integrated luminosity} and $\kappa$ 
 specifications of the collider.
 \subsection{Cross-sections}
 \label{sub:cross_sections}
-In order to bring order into the rather theoretical description until now, we will list all decay widths by \eqref{eq:gamma_f}:
-\begin{equation*}
-    \Gamma_f = \frac{\sqrt{2} G_f M_Z^3 N_c^f}{12 \pi} \left[ (I_3^f)^2 + (I_3^f - 2 Q_f \sin^2 \theta_W )^2 \right]
-\end{equation*}
-where we can use the following values for the isospin and the charge:
-\begin{table}[htpb]
-    \centering
-    \caption{caption}
-    \label{tab:label}
-    \begin{tabular}{l|l|l|l}
-        $e^-,\mu^- \tau^-$ & 1   &1   & 1  \\
-        $e^-,\mu^- \tau^-$ & 1   &1   & 1  
-    \end{tabular}
-\end{table}
-%todo
+In order to bring order into the rather theoretical description until now, we will list all decay widths by \eqref{eq:gamma_f},
+following~\cite{ver}.
+The electroweak force is split into the part of vector and axialvector coupling. 
+\begin{align*}
+    \Gamma_f &= \frac{\sqrt{2} G_f M_Z^3 N_c^f}{12 \pi} \left[ g_V^{f2} + g_A^{f2} \right] \\
+       g_V^f &= I_3^f - 2 Q_f \sin^2 \theta_W \\
+       g_A^f &= I_3^f \\
+\Rightarrow \Gamma_f &= \frac{\sqrt{2} G_f M_Z^3 N_c^f}{12 \pi} \left[ (I_3^f - 2 Q_f \sin^2 \theta_W)^2 + (I_3^f)^2  \right] 
+\end{align*}
+Where we have used the following constants:
+\begin{align*}
+    \label{eq:consts}
+    N_c^f \cdots \mathrm{ colorfactor  } 
+\end{align*}
 
 \subsection{Lepton universality}
 \label{sub:lepton_universality}
