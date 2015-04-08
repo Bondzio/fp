@@ -244,8 +244,13 @@ Which is a very important result, because we can verify the prediction of the el
 Until now we have only looked into the Born Approximation, e.g.\ first order corrections. Possible higher orders can arise
 from photonic or QCD corrections; the cross-section has to modified accordingly. See figure~\ref{fig:photonic} for
 photonic corrections, figure~\ref{fig:photonic2} for virtual photonic corrections and figure~\ref{fig:QCD_corr} for QCD
-corrections.
-
+corrections. We have to include these corrections in the calculation of the cross-section~\cite{ver}:
+    \begin{align*}
+        \label{eq:qcd_corr}
+        N_c^f = 1 \: \text{for leptons}, 3(1 + \delta_{QCD}) \: \text{for quarks}\\
+        \text{with } \delta_{QCD} = 1.05 \frac{\alpha_S(M_Z)}{\pi} \: \text{and} \: \alpha_S(M_Z) = 0.12 
+    \end{align*}
+which fixes the correction for these orders ad hoc.
 \begin{figure}[htpb]
 \centering
 \begin{subfigure}{.5\textwidth}
@@ -278,7 +283,8 @@ by a certain amount through the radiation of photons, we can simply correct $\sq
   \label{fig:sub2}
 \end{subfigure}
 \caption{Corrections to the first order processes due to virtual radiation corrections. Those are in the end responsible
-for the \textit{running} coupling constant in QED.}
+for the \textit{running} coupling constant in QED. Those are characterized by the same initial and final state, hence we
+do not need to include them necessarily into the effective cross-section.}
 \label{fig:photonic2}
 \end{figure}
 
@@ -294,13 +300,22 @@ for the \textit{running} coupling constant in QED.}
   \includegraphics[width=1.0\linewidth]{figures/QCD2}
   \label{fig:sub2}
 \end{subfigure}
-\caption{Corrections to the first order processes due to QCD corrections.}
+\caption{Corrections to the first order processes due to QCD corrections. Those will give an additional factor
+(see text).}
 \label{fig:QCD_corr}
 \end{figure}
 
-\clearpage
-\subsection{Monte Carlo simulation}
+\subsubsection{Monte Carlo simulation}
 \label{sub:monte_carlo_simulation}
-%todo
+In order to work with the data, we need to separate the different particle species. One possibility to estimate the 
+possible imperfection of the selection mechanism is to simulate the data with correct branching ratios. Applying the 
+classification to the data yields a acceptance ratio matrix. Knowing this matrix, we can correct the particle numbers
+by the inverse of the matrix. \\
+The simulation by Monte Carlo is done by creating all possible fermion-antifermion pairs and their further decay into
+probable decay partners (for quarks this leads to hadronization). By creating many events, we can recover realistic 
+probability distributions of the processes. However, this does not match the detector environment, since there are experimental
+specifications and background noise; these has to be included as well. We will not go further into the simulation, since this
+is out of the scope of the introduction here. 
+
 
 
