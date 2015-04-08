@@ -48,6 +48,9 @@ backend = biber
 \usepackage{wrapfig}
 \usepackage{color, colortbl}  
 
+
+\usepackage{minted}
+
 %\usepackage[pass,showframe]{geometry} % just to show the margins
 %\usepackage{booktabs}
 %\usepackage{minted}
@@ -172,7 +175,9 @@ backend = biber
 \newpage
 \input{conclusion}
 \clearpage
+\input{appendix_sourcecode.tex}
 
+\clearpage
 \section{Bibliography}
 \printbibliography[heading=subbibintoc]
 \clearpage
