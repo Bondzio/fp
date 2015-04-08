@@ -6,12 +6,6 @@ of the largest accelerator ever constructed with a circumference of 27 kilometre
 to energies from $\sqrt{s} = 88$ GeV up to $\sqrt{s} = 94$ GeV in order to examine the gauge bosons of the weak interaction. 
 The Experiments \textbf{OPAL}, \textbf{DELPHI}, \textbf{ALEPH} and \textbf{L3} were conducted to measure the electron positron
 collisions, but we will only look at \textbf{OPAL}. 
-We will give a detailed description in the next
-subsection below.
-
-
-\subsection{\textbf{OPAL}: The Hunt for $Z^0$}
-\label{sub:OPAL}
 Its abbreviation stands for  "\textbf{O}mni \textbf{P}urpose \textbf{A}pparatus at \textbf{L}EP", which states that the
 detector servers multiples ends. The measurements can be used to tackle different issues. The experiment started in
 1989 and data was taken until the year 2000. The collaboration consisted of 200 physicists from 34 institutes.
@@ -35,7 +29,24 @@ The main ingredients of the experiment are the following:
 \end{itemize}
 As it should be clear by now, the magnitude of the detector is due to the need to measure the particle momenta and energies
 precisely enough, as this is the only possibility to distinguish them from each other. Due to the high energies of some showers
-they need up to one meter depth of iron to be absorbed. 
+they need up to one meter depth of iron to be absorbed. The variables which we will use later in the analysis are summed up
+in table~\ref{tab:vars}.
+\begin{table}[htpb]
+    \centering
+    \caption{Table of variables}
+    \label{tab:vars}
+    \begin{tabular}{l|l}
+  \rowcolor{LightCyan} Name & meaning \\ 
+    $N_{\mathrm{charged} }$ & Number of charged trajectories \\
+    $P_{\mathrm{charged} }$ & Total momentum of charged trajectories \\
+    $E_{\mathrm{ecal}}$ & Energy stored in electronic calorimeter \\
+    $E_{\mathrm{hcal}}$ & Energy stored in hadronic calorimeter \\
+    $E_{\mathrm{lep}}$ & Total energy (center of mass energy) \\
+    $\cos\theta$ & scattering angle of single trajectories \\
+    $\cos\mathrm{thru} $ & Spread of the jet (merely hadrons)\\
+    \end{tabular}
+\end{table}
+
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{figures/opal}

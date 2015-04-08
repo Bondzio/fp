@@ -1,18 +1,23 @@
 import numpy as np
+
+# This is our fitting routine, works with minimizing least squares
 from scipy.optimize import curve_fit
 
+# Machine learning algorithm: knn
 from sklearn import neighbors
 
+# loading/ saving
 import pickle
 import os
-
-import uncertainties as uc
-import uncertainties.unumpy as un
-import matplotlib.pyplot as plt
 import sys
 
-chars=["Electrons","Muons","Taons","Hadrons"]
+# uncertainty package
+import uncertainties as uc
+import uncertainties.unumpy as un
 
+chars=["Electrons","Muons","Tauons","Hadrons"]
+
+# For nice colors in the shell
 bcolors = [
     '\033[95m',
     '\033[94m',
@@ -23,16 +28,20 @@ bcolors = [
     '\033[4m',
     '\033[0m']
 
+# overloaded print command
 pl= lambda s,i: print(bcolors[i] + s + bcolors[-1])
 
+# Our restriction in terms of theta and thru
 costhetamin = -0.9
 costhetamax = 0.9
 costhrumin = -0.9
 costhrumax = 0.9
 
+# Poisson errors to N
 def get_N(n):
     return un.uarray(n,np.sqrt(n))
 
+# This is the cut routine following physical intuition
 def cut(u, key):
 
     targets = np.zeros(len(u)) 
@@ -61,7 +70,7 @@ def cut(u, key):
         rest = np.invert(c_qq)*rest
         pl("found %d hadrons \t= %.3f %%"%(sum(c_qq),100*sum(c_qq)/len(u)),5)
         
-        # Taons 
+        # tauons 
         c_tt = rest * (u["Ncharged"] >= 0)*(u["Ncharged"] <= 40)\
                     * (u["E_ecal"] >= 0)*(u["E_ecal"] <= 100)\
                     * (u["Pcharged"] >= 0)*(u["Pcharged"] <= 100)
@@ -91,7 +100,7 @@ def cut(u, key):
         rest = np.invert(c_mm)*rest
         pl("found %d muons \t= %.3f %%"%(sum(c_mm),100*sum(c_mm)/len(u)),5)
 
-        # Taons 
+        # tauons 
         c_tt = rest * (u["Ncharged"] >= 0)*(u["Ncharged"] <= 10)\
                     * (u["E_ecal"] >= 0)*(u["E_ecal"] <= 100)\
                     * (u["Pcharged"] >= 0)*(u["Pcharged"] <= 100)
@@ -123,7 +132,7 @@ def cut(u, key):
         rest = np.invert(c_mm)*rest
         pl("found %d muons \t= %.3f %%"%(sum(c_mm),100*sum(c_mm)/len(u)),5)
 
-        # Taons 
+        # tauons 
         c_tt = rest * (u["Ncharged"] <= 7)*(u["Ncharged"] <= 10)\
                     * (u["E_ecal"] >= 0)*(u["E_ecal"] <= 70)\
                     * (u["Pcharged"] >= 0)*(u["Pcharged"] <= 70)
@@ -146,6 +155,8 @@ def cut(u, key):
 
     return targets 
 
+
+# Remove the t-channel from t/s-channel
 def remove_t(u):
 
     ## Cut the s and t channel
@@ -167,7 +178,6 @@ def remove_t(u):
 
         N_ee, cos_thet = np.histogram(u["cos_thet"],250, density=True)
         try:
-            #sigma = np.sqrt(N_ee), absolute_sigma = True 
             p, cov = curve_fit(ts_channel, cos_thet[1:], N_ee, p0=[A,B],sigma = np.sqrt(N_ee+1), absolute_sigma = True)
             p_uc = uc.correlated_values(p,cov)
             A,B = p_uc
@@ -176,7 +186,8 @@ def remove_t(u):
             x1 = costhetamax
             al = x1 - x0 + (x1**3 - x0**3)/3
             be = 1/(x1-1) - 1/(x0-1)
-            sigma = A*al / (A*al - B*be)*0.482
+            sigma = A*al / (A*al - B*be)
+            #0.482
             
             # Definite Integral of s 
             if sigma.n > 1 or sigma.s >1:
@@ -191,8 +202,9 @@ def remove_t(u):
             x = input()
     return N0
 
+# This is the main classification routine
 def classify(u, cut_type):
-
+    # if machine learning is active, there will be sup_...
     if cut_type[0:3] == "sup":
         all_ff = []
         for ele in u:
@@ -206,6 +218,7 @@ def classify(u, cut_type):
 
         pred = classifier.predict(all_ff) 
     else:
+        # no machine learning: normal cuts
         pred = cut(u,cut_type)
         
     N0 = remove_t(u[pred == 1])
@@ -213,7 +226,7 @@ def classify(u, cut_type):
     # We have to include the error of the fitting, thats why this little hack
     return np.array([N0] + [get_N(sum(pred == k)) for k in range(2,5)] )
 
-
+# Calculate the efficiency matrix
 def get_c_eff(cut_type,check_true = False,remake_choice = False):
 
     pl("\n Creating new efficiency matrix",1)
@@ -223,17 +236,13 @@ def get_c_eff(cut_type,check_true = False,remake_choice = False):
     qq = np.load("data/qq.npy")
 
     ff = [ee,mm,tt,qq]
-    #ff[0] = ff[0][(ff[0]["cos_thet"]>costhetamin)\
-    #    *(ff[0]["cos_thet"]<costhetamax) * (ff[0]["Pcharged"]!=0)]
-
-
-
-
     mask = {}
-
+    # Only 25% of the data will be chosen for testing, rest for learning
     p_test = 0.25
     pl("\n Choosing %.1f%% of the data for testing..."%(100*p_test),1)
 
+    # We should remember which data we chose for learning, so can
+    # use the other data for testing 
     if os.path.isfile("data/choice_0.npy") and remake_choice==False: 
         for ui in range(4):
             choice = np.load("data/choice/choice_%d.npy"%ui)
@@ -247,20 +256,15 @@ def get_c_eff(cut_type,check_true = False,remake_choice = False):
             mask_ = np.array([False]*len(u)) 
             mask_[choice]= True
             mask[ui] = mask_
-    # We take only 25 % for testing!
+
     ff_test = [ff[0][mask[0]],ff[1][mask[1]],ff[2][mask[2]],ff[3][mask[3]]]
 
     pl("Now coming to the classifying...",2)
-    # Removing bulk 
-    #for k in range(4):
-    #    ff[k] = ff[k][(ff[k]["cos_thru"]>costhrumin)\
-    #        *(ff[k]["cos_thru"]<costhrumax)]
-    
-    # Branching Ratios from Particle Data Booklet 2015
 
     N_all_mat = un.umatrix(np.zeros([4,4]),np.zeros([4,4]))
     C_eff = un.umatrix(np.zeros([4,4]),np.zeros([4,4]))
-
+    
+    # These branching ratios are from the particle data booklet
     br   = [ 3.363, 3.366, 3.370, 69.91]
     br_s = [ 0.004, 0.007, 0.008, 0.06] 
 
@@ -272,11 +276,13 @@ def get_c_eff(cut_type,check_true = False,remake_choice = False):
     br_monte = N_monte / np.sum(N_monte)
 
     ratio = br  / br_monte
-
+    
+    # Here the learning takes place!
     if cut_type[0:3] == "sup":
 
         targets = []
         all_ff  = []
+        # We need correct data format
         for target in range(4):
             for ele in ff[target][~mask[target]]:
                 all_ff  += [[ele["Ncharged"],ele["Pcharged"],ele["E_ecal"],ele["E_hcal"]]]
@@ -299,22 +305,28 @@ def get_c_eff(cut_type,check_true = False,remake_choice = False):
         N_all_mat[u_i,:] = N_found* ratio[u_i]
         C_eff[u_i,:] = N_found / N_monte[u_i]
 
+    # OK, this is our efficiency matrix!
     C_eff = np.swapaxes(C_eff,0,1)
 
     Cn = un.nominal_values(C_eff)
     Cs = un.std_devs(C_eff)
 
+    # Here we save the matrix 
+    #(Using pickle because its a matrix with uncertainties). 
     for row in range(4):
         s = ""
         for line in range(4):
             s +="%.3f ± %.3f \t"%(Cn[row,line],Cs[row,line])
         pl(s,3)
     pickle.dump(C_eff, open("data/cuts/%s.p"%cut_type,"wb"))
-
+    
+    # Here we can check again if the efficiency matrix works as supposed to do.
     if check_true == True:
         N_all = np.array(np.sum(N_all_mat,0)).reshape(4)
         N_all_corrected = np.array(np.dot(C_eff.I,N_all)).reshape(4)
-        pl("Now we check whether the efficiency \n matrix does what it is supposed to do. \n Notice how the error gets smaller,\n because we tracked the correlation between \n the efficiency matrix and the numbers.",2)
+        pl("Now we check whether the efficiency \n matrix does what it is supposed to do.\
+        \n Notice how the error gets smaller,\n because we tracked the correlation between\
+        \n the efficiency matrix and the numbers.",2)
         for k in range(4):
             pl("Uncorrected vs corrected number of %s"%(chars[k]),6)
             print("%.f ± %.f "%(N_all[k].n,N_all[k].s))
