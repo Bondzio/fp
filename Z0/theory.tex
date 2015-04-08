@@ -196,27 +196,45 @@ Our calculations yield
     \end{align*}
  One might ask, how much the width of the $\mathrm{Z^0}$ boson would change if there was another fermion pair:
  \begin{equation*}
- \Gamma_{Z, \mathrm{new}} = 2655 \: \mathrm{MeV} \Rightarrow +7\% \text{ larger}
+ \Gamma_{Z, \mathrm{new}} = 2655 \: \mathrm{MeV} \Rightarrow +7\% \: \text{larger}
  \end{equation*}
-\subsection{Lepton universality}
+\subsubsection{Lepton universality}
 \label{sub:lepton_universality}
-%todo
+As we already found in the section before, the decay widths of the leptons are identical in our model. The reason for this
+\textbf{lepton universality} lies in the flavour independence of the theory, e.g.\ the gauge bosons (interactions are the same).
+This theoretical prediction was confirmed at various experiments, including \textbf{LEP}.
 
-\subsection{Number of neutrino generations}
+\subsubsection{Number of neutrino generations}
 \label{sub:number_of_neutrino_generations}
-%todo
+Until here we also assumed a definite number of three neutrino generations, originating from the close connection to the
+lepton family, but this is not a trivial connection. Hence we can use this experiment as well to check if there were not
+more than three neutrino generations (which would yield to inconsistencies in the standard model and the need for an theoretical
+adjustment). As it turns out the number of neutrino generations predicted by the standard model is confirmed within all 
+experimental data.
 
-
-
-\subsection{Forward backward asymmetry}
+\subsubsection{Forward backward asymmetry}
 \label{sub:forward_backward_asymmetry}
-%todo 
+The asymmetry is defined to be
+\begin{equation}
+    \label{eq:asymmetry}
+    A^f_{FB} = \frac{\int_0^1 \frac{d\sigma}{d\cos \theta}d\cos \theta - \int_{-1}^0 \frac{d\sigma}{d\cos \theta}d\cos \theta
+        }{\int_0^1 \frac{d\sigma}{d\cos \theta}d\cos \theta 
+    + \int_{-1}^0 \frac{d\sigma}{d\cos \theta}d\cos \theta}.
+\end{equation}
+The differential cross-section $\frac{d\sigma}{d\cos \theta}$ can be calculated with the \textsc{Born} approximation
+\begin{equation}
+    \frac{d\sigma}{d\cos \theta} = \frac{\pi \alpha^2 N_c^f}{2s} \left[ F_1(s) (1 + \cos^2 \theta) + 2 F_2(s) \cos\theta \right].
+\end{equation}
+The functions $F_1(s)$ and $F_2(s)$ can be calculated exactly, but they will not be shown here, as we will not need them
+later (see \cite{ver} for their formulation). Hence the asymmetry \eqref{eq:asymmetry} yields the following result:
+    \begin{align*}
+        \label{eq:afb}
+        \int \frac{d\sigma}{d\cos \theta}d\cos \theta &= \frac{\pi \alpha^2 N_c^f}{2s} 
+        \left[ \frac{F_1(s)}{3} \cos^3 \theta + F_2(s) \cos^2\theta \right] + \mathrm{const}. \\
+    \Rightarrow A_{FB}^f &= \frac{3 F_2}{4 F_1}
+    \end{align*}
+The asymmetry is the result of interference between the involved interactions. 
 
-\subsection{Higher order corrections}
-\subsection{Particle-matter interaction}
--> number of particles: neutrino generations: $2.99 \pm 0.06$. 
-standard model uses empirical input: CKM matrix, Weinberg angle
-look!\cite{pdg} test
 \subsection{Monte Carlo simulation}
 \label{sub:monte_carlo_simulation}
 %todo
