@@ -1,4 +1,162 @@
 \section{Theoretical introduction}
+Light interacting with matter is still one of the most important aspects of physics, including
+absorption, emission, but also scattering. In this report we will guide our attention to one
+particular form of light interaction: \textit{Raman scattering}, which is widely used in spectroscopy
+in many different areas, from applied chemistry to aerospace engineering. We will illustrate the 
+basic functionalism through a series of simple experiments.
+
+\subsection{Classical description}
+\label{sub:classical_description}
+
+\subsubsection{Oscillation of molecules}
+\label{ssub:Oscillation_of_molecules}
+Let us first investigate~\cite{landau1997mechanik} the classical oscillation of molecules, their normal modes and how a classical 
+electric field interacts with them. When talking about a system of particles interacting with each other, not all degrees
+of freedom will be oscillatory behavior. In general for a n-atomic molecule 
+the dimension of the oscillation will be $3n - 6$ and $3n -5$ for a linear molecule (lying on a line), since three for
+translation and three rotation of the whole molecule are subtracted. Now let us remove these 6 (5) dimensions from the
+equation of motion and transform into the rotation and move less center of mass system:
+\begin{equation}
+    \sum_a m_a r_a = \mathrm{const} \equiv \sum_a m_a r_{a,0}.
+\end{equation}
+Using new coordinates, we express this condition as
+\begin{equation}
+    \sum_a m_a x_a = 0.
+\end{equation}
+This conditions out coordinates with respect to translation, now we need to find a constraint
+to remove the rotations. Let us look at the angular momentum $\mu$: 
+\begin{equation}
+    \mu = \sum_a m_a r_a \times v_a \approx \sum_a m_a r_{a 0} \times \dot{x}_a = \frac{\partial}{\partial t}
+    \sum_a m_a r_{a 0} \times u_a
+\end{equation}
+where we only look at small deviations $r_a = r_{a0} + x_a$. We can let it vanish if we demand
+\begin{equation}
+    \sum_a m_a r_{a0} \times x_a = 0.
+\end{equation}
+Remember that $u$ characterizes the inherent oscillations out of center of mass. Let us now
+look at the energy of the molecule. Let a potential energy $U$ lead to the oscillation around zero,
+then we can approximate it as a quadratic form with coefficients $k_{ik}$ (a generalized, coupled
+harmonic oscillator):
+\begin{equation}
+    U = \frac{1}{2} \sum_{i,k} k_{ik} x_i x_k
+\end{equation}
+Hence the total energy becomes:
+\begin{equation}
+    E = \frac{1}{2} \sum_{i,k} m_{ik} \dot{x}_i\dot{x}_k + \frac{1}{2} \sum_{i,k} k_{ik} x_i x_k   
+\end{equation}
+with a linear transformation we can go into the uncoupled \textit{normal coordinates} $q$:
+\begin{equation}
+    E = \frac{1}{2} \sum_{i,a} \dot{q}^2_{ai} + \frac{1}{2} \sum_a \omega_a^2 \sum_i q^2_{a,i} 
+\end{equation}
+Where as before $a$ goes over the different modes and $i$ over the spatial dimensions.
+Let us go back to the coordinates $x$ and look at the solution of the classical equation
+of motion. The Lagrange function reads
+\begin{equation}
+    L = \frac{1}{2} \sum_{i,k} (m_{ik} \dot{x}_i\dot{x}_k -  k_{ik} x_i x_k   )
+\end{equation}
+The partial derivatives become 
+\begin{equation}
+    \frac{\partial L}{\partial \dot{x}_i} = \sum_k m_{ik} \dot{x}_k , \quad 
+    \frac{\partial L}{\partial x_i} = - \sum_k k_{ik} x_k.
+\end{equation}
+The \textit{Euler Lagrange} equation is then 
+\begin{equation}
+    \label{eq:el}
+    \sum_k (m_{ik} \ddot{x_k} + k_{ik} x_k) = 0 
+\end{equation}
+This is a linear matrix differential equation which can be solved in terms of exponentials
+\begin{equation}
+    x_k = A_k \exp(i\omega t).
+\end{equation}
+so~\eqref{eq:el} becomes 
+\begin{equation}
+    \sum_k \left( -\omega^2 m_{ik} + k_{ik} \right)A_k = 0
+\end{equation}
+which finally give rise to the eigen frequencies $\omega$
+\begin{equation}
+    |k_{ik} - \omega^2 m_{ik}| = 0. 
+\end{equation}
+Fortunately, it is not necessary to calculate those in every case, since
+molecules are often governed by easy symmetries. The task simplifies to
+find the respective symmetry group and its irreducible representations~\cite{landau1977quantum}. 
+
+
+\subsubsection{Electric fields and dipoles}
+\label{ssub:Electricfieldsanddipoles}
+Let us examine classical electromagnetic waves. The solution to the homogeneous
+wave equation in cylindrical coordinates reads
+\begin{equation}
+    E(x,t) = |E| \textrm{Re} \left[ \begin{pmatrix}
+            \cos(\theta)\exp(i \alpha_x)\\ 
+            \sin(\theta)\exp(i \alpha_y)
+    \end{pmatrix}\exp(i(kz - \omega t))  \right].
+\end{equation}
+The phases $\alpha_x$ and $\alpha_y$ characterize the polarization. If the polarization
+is linear, the condition is
+\begin{equation}
+    \alpha_x = \alpha_y 
+\end{equation}
+The radiation field $E$ of a dipole
+can be described with the dipole moment $\mu$ and in terms of the electric potential $\phi$
+\begin{equation}
+\phi \approx \frac{\mathbold{\mu}\cdot \mathbold{R}}{4\pi\epsilon_0 R^3} \Rightarrow E = - \nabla \phi 
+= \frac{3 \mathbold{(\mu \cdot n) n - \mu}}{4 \pi \epsilon_9 R^3}.
+\end{equation}
+with the unit vector $\textbf{n} = \frac{\textbf{R}}{R}$. We can use this knowledge now for 
+generalization.
+Beginning with a Hertzian dipole~\cite{koningstein1972introduction}, the total intensity
+per second can be expressed in terms of the radiation field of the dipole 
+\begin{equation}
+    \label{eq:hertz}
+   I = \frac{2}{3 c^2} \left \langle \frac{\mathrm{d}^2}{\mathrm{d} t^2}  \mu \right \rangle_t.
+\end{equation}
+Where the brackets denote to the time average and $\mu$ is the electric dipole moment. Let us assume,
+we induce a dipole by an incoming electric field (for instance a vibrating molecule)
+Then the dipole can in general be written in terms of the electric field $E$ with
+\begin{equation}
+    \mu_i = \sum^{3}_{j=1} \alpha_{ij} E_j(t) \equiv \alpha_{ij} E^j 
+\end{equation}
+with the polarization tensor $\alpha$.
+Let us assume now a incoming plain wave 
+\begin{equation}
+    E_j = E^0_j \cos(\omega_L t).
+\end{equation}
+For an isotropic molecule this is an scalar and we get
+for the intensity by~\eqref{eq:hertz}:
+\begin{equation}
+    I = \frac{16 \pi^4 c}{3 \lambda_0^4} \alpha ^3 E_0 ^2
+\end{equation}
+with $\lambda_0 = c/ 2\pi \omega_L$. Transforming into normal coordinates $q(t)$ we can write down the polarization tensor
+in a Taylor expansion around zero\cite{ver}:
+\begin{equation}
+    \alpha = \alpha_0 + \frac{\partial\alpha}{\partial q}q(t) + \cdots \approx \alpha_0 + \alpha' q_0 \cos(\omega_M t).
+\end{equation}
+Where we approximated the vibration of the isotropic molecule by a frequency $\omega_M$.
+The dipole moment then becomes
+\begin{align}
+    \mu &= \alpha_0 E^0 \cos(\omega_L t) + \alpha' E^0 \cos(\omega_L t) \cos(\omega_M t) \\
+        &= \underbrace{\alpha_0 E^0 \cos(\omega_L t) }_{\text{Rayleigh}}
+    + \underbrace{\alpha '\cos((\omega_L + \omega_M)t ) }_{\text{Anti-Stokes}}
+    + \underbrace{\alpha ' E^0\cos((\omega_M - \omega_L)t)}_{\text{Stokes}}
+\end{align}
+With the emission of a \textit{Rayleigh} line and two \textit{Raman} lines (\textit{Stokes} and \textit{Anti-Stokes}).
+If we were to continue the Taylor expansion
+\begin{equation}
+    \alpha = \alpha_0 + \frac{\partial\alpha}{\partial q}q(t) + \frac{\partial^2\alpha}{\partial q^2}q^2(t) + \cdots
+\end{equation}
+We would get higher harmonics of the Raman lines, for instance $\omega_M \pm 2\omega_L, \omega_M \pm 3\omega_L$ and so
+forth with less intensity at each order. 
+Which is clear by now is the dependence of Raman lines of the
+derivatives $\frac{\partial\alpha}{\partial q}q(t) + \frac{\partial^2\alpha}{\partial q^2}q^2(t) + \cdots$, so if 
+the first one is zero
+\begin{equation}
+    \frac{\partial\alpha}{\partial q} = 0
+\end{equation}
+we will have no first order Raman lines, this is called \textbf{Raman inactive}, while the former is called
+\textbf{Raman active}.  
+
+
+
 \subsection{Depolarization}
 
 siehe Raman buch s.129
