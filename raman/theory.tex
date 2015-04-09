@@ -68,7 +68,7 @@ This is a linear matrix differential equation which can be solved in terms of ex
 \begin{equation}
     x_k = A_k \exp(i\omega t).
 \end{equation}
-so~\eqref{eq:el} becomes 
+so~\eqref{eq:el} becomes
 \begin{equation}
     \sum_k \left( -\omega^2 m_{ik} + k_{ik} \right)A_k = 0
 \end{equation}
@@ -111,12 +111,17 @@ per second can be expressed in terms of the radiation field of the dipole
    I = \frac{2}{3 c^2} \left \langle \frac{\mathrm{d}^2}{\mathrm{d} t^2}  \mu \right \rangle_t.
 \end{equation}
 Where the brackets denote to the time average and $\mu$ is the electric dipole moment. Let us assume,
-we induce a dipole by an incoming electric field (for instance a vibrating molecule)
+we induce a dipole by an incoming electric field (for instance a vibrating molecule).
 Then the dipole can in general be written in terms of the electric field $E$ with
 \begin{equation}
+    \label{eq:mu}
     \mu_i = \sum^{3}_{j=1} \alpha_{ij} E_j(t) \equiv \alpha_{ij} E^j 
 \end{equation}
-with the polarization tensor $\alpha$.
+with the polarization tensor $\alpha$, which describes the polarizability of the molecule.
+It has to be a tensor, because otherwise the description would not be as general as possible.
+Consider for instance the case of scalar $\alpha$, then the orientation of the molecule
+would not have any effect on the polarizability, which is not true in most of the cases (only
+if the molecule is isotropic).
 Let us assume now a incoming plain wave 
 \begin{equation}
     E_j = E^0_j \cos(\omega_L t).
@@ -124,6 +129,7 @@ Let us assume now a incoming plain wave
 For an isotropic molecule this is an scalar and we get
 for the intensity by~\eqref{eq:hertz}:
 \begin{equation}
+    \label{eq:I}
     I = \frac{16 \pi^4 c}{3 \lambda_0^4} \alpha ^3 E_0 ^2
 \end{equation}
 with $\lambda_0 = c/ 2\pi \omega_L$. Transforming into normal coordinates $q(t)$ we can write down the polarization tensor
@@ -132,14 +138,21 @@ in a Taylor expansion around zero\cite{ver}:
     \alpha = \alpha_0 + \frac{\partial\alpha}{\partial q}q(t) + \cdots \approx \alpha_0 + \alpha' q_0 \cos(\omega_M t).
 \end{equation}
 Where we approximated the vibration of the isotropic molecule by a frequency $\omega_M$.
-The dipole moment then becomes
+The dipole moment then becomes\footnote{Where we used the trigonometric relation
+\begin{equation*}
+    \cos\alpha \cos\beta = \frac{1}{2}\left( \cos(\alpha +\beta) + \cos(\alpha -\beta) \right)
+\end{equation*}
+}
+
 \begin{align}
     \mu &= \alpha_0 E^0 \cos(\omega_L t) + \alpha' E^0 \cos(\omega_L t) \cos(\omega_M t) \\
-        &= \underbrace{\alpha_0 E^0 \cos(\omega_L t) }_{\text{Rayleigh}}
-    + \underbrace{\alpha '\cos((\omega_L + \omega_M)t ) }_{\text{Anti-Stokes}}
-    + \underbrace{\alpha ' E^0\cos((\omega_M - \omega_L)t)}_{\text{Stokes}}
+        &= \alpha_0 E^0 \underbrace{\cos(\omega_L t) }_{\text{Rayleigh}}
+    + \alpha' E^0( \underbrace{\cos((\omega_L + \omega_M)t ) }_{\text{Anti-Stokes}}
+    + \underbrace{\cos((\omega_M - \omega_L)t)}_{\text{Stokes}} ) 
 \end{align}
 With the emission of a \textit{Rayleigh} line and two \textit{Raman} lines (\textit{Stokes} and \textit{Anti-Stokes}).
+We notice that in the classical picture here the intensity of the emitted light would be identical for both lines, which
+turns out to be wrong. To explain this inequality we will need to infer quantum mechanics and statistical physics.
 If we were to continue the Taylor expansion
 \begin{equation}
     \alpha = \alpha_0 + \frac{\partial\alpha}{\partial q}q(t) + \frac{\partial^2\alpha}{\partial q^2}q^2(t) + \cdots
@@ -153,10 +166,32 @@ the first one is zero
     \frac{\partial\alpha}{\partial q} = 0
 \end{equation}
 we will have no first order Raman lines, this is called \textbf{Raman inactive}, while the former is called
-\textbf{Raman active}.  
-
-
-
+\textbf{Raman active}. Let us come back to the polarizability. Analogous to~\eqref{eq:I} the intensity of a fixed
+dipole can be expressed as 
+\begin{equation}
+    I = \frac{\omega^4 \mu^2}{32\pi^2 \epsilon_0 c^3}.
+\end{equation}
+If the detector is fixed in x-direction, the light is polarized in z- and y-direction\cite{wiss}
+\begin{equation}
+    I_{z+y} = \frac{\omega^4}{32\pi^2 \epsilon_0 c^3}(\mu_z^2 + \mu_y^2)
+\end{equation}
+Where the $\mu_y$ and $\mu_z$ are evaluated with respect to~\eqref{eq:mu}. In general we cannot consider 
+the orientation of the molecules, hence we need to look at coordinate transformation invariants of
+the polarization tensor. One straightforward invariant is the trace: 
+\begin{equation}
+    \mathrm{Tr}( T^{-1}\alpha T) = \mathrm{Tr}(\alpha)
+\end{equation}
+If we look at the tensor as an ellipsoid, the trace can be seen as the mean radius: 
+\begin{equation}
+    \text{mean radius: } \frac{1}{3}\mathrm{Tr}(\alpha) = \frac{1}{3}(\alpha_{xx} +\alpha_{yy}+ \alpha_{zz})
+\end{equation}
+Another invariant is
+the anisotropy:
+\begin{equation}
+    \gamma = \frac{1}{2} \left( (\alpha_{xx} - \alpha_{yy})^2 + (\alpha_{yy} - \alpha_{zz})^2 (\alpha_{zz} - \alpha_{xx})^2
+        + 6(\alpha_{xy} + \alpha_{yz} + \alpha_{zx}) 
+    \right)
+\end{equation}
 \subsection{Depolarization}
 
 siehe Raman buch s.129
