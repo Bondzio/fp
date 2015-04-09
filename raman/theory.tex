@@ -83,8 +83,27 @@ find the respective symmetry group and its irreducible representations~\cite{lan
 
 \subsubsection{Electric fields and dipoles}
 \label{ssub:Electricfieldsanddipoles}
-
-We first introduce the classical concept of \textit{Rayleigh scattering}.
+Let us examine classical electromagnetic waves. The solution to the homogeneous
+wave equation in cylindrical coordinates reads
+\begin{equation}
+    E(x,t) = |E| \textrm{Re} \left[ \begin{pmatrix}
+            \cos(\theta)\exp(i \alpha_x)\\ 
+            \sin(\theta)\exp(i \alpha_y)
+    \end{pmatrix}\exp(i(kz - \omega t))  \right].
+\end{equation}
+The phases $\alpha_x$ and $\alpha_y$ characterize the polarization. If the polarization
+is linear, the condition is
+\begin{equation}
+    \alpha_x = \alpha_y = \alpha.
+\end{equation}
+The radiation field $E$ of a dipole
+can be described with the dipole moment $M$ and in terms of the electric potential $\phi$
+\begin{equation}
+\phi \approx \frac{\textbf{M}\cdot \mathbf{R}}{4\pi\epsilon_0 R^3} \Rightarrow E = - \nabla \phi 
+= \frac{3 \mathbf{(M \cdot n) n - M}}{4 \pi \epsilon_9 R^3}.
+\end{equation}
+with the unit vector $\textbf{n} = \frac{\textbf{R}}{R}$. We can use this knowledge now for 
+generalization.
 Beginning with a Hertzian dipole~\cite{koningstein1972introduction}, the total intensity
 per second can be expressed in terms of the radiation field of the dipole 
 \begin{equation}
