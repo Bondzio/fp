@@ -24,9 +24,9 @@ Using new coordinates, we express this condition as
     \sum_a m_a x_a = 0.
 \end{equation}
 This conditions out coordinates with respect to translation, now we need to find a constraint
-to remove the rotations. Let us look at the angular momentum $M$: 
+to remove the rotations. Let us look at the angular momentum $\mu$: 
 \begin{equation}
-    M = \sum_a m_a r_a \times v_a \approx \sum_a m_a r_{a 0} \times \dot{x}_a = \frac{\partial}{\partial t}
+    \mu = \sum_a m_a r_a \times v_a \approx \sum_a m_a r_{a 0} \times \dot{x}_a = \frac{\partial}{\partial t}
     \sum_a m_a r_{a 0} \times u_a
 \end{equation}
 where we only look at small deviations $r_a = r_{a0} + x_a$. We can let it vanish if we demand
@@ -94,13 +94,13 @@ wave equation in cylindrical coordinates reads
 The phases $\alpha_x$ and $\alpha_y$ characterize the polarization. If the polarization
 is linear, the condition is
 \begin{equation}
-    \alpha_x = \alpha_y = \alpha.
+    \alpha_x = \alpha_y 
 \end{equation}
 The radiation field $E$ of a dipole
-can be described with the dipole moment $M$ and in terms of the electric potential $\phi$
+can be described with the dipole moment $\mu$ and in terms of the electric potential $\phi$
 \begin{equation}
-\phi \approx \frac{\textbf{M}\cdot \mathbf{R}}{4\pi\epsilon_0 R^3} \Rightarrow E = - \nabla \phi 
-= \frac{3 \mathbf{(M \cdot n) n - M}}{4 \pi \epsilon_9 R^3}.
+\phi \approx \frac{\mathbold{\mu}\cdot \mathbold{R}}{4\pi\epsilon_0 R^3} \Rightarrow E = - \nabla \phi 
+= \frac{3 \mathbold{(\mu \cdot n) n - \mu}}{4 \pi \epsilon_9 R^3}.
 \end{equation}
 with the unit vector $\textbf{n} = \frac{\textbf{R}}{R}$. We can use this knowledge now for 
 generalization.
@@ -108,13 +108,13 @@ Beginning with a Hertzian dipole~\cite{koningstein1972introduction}, the total i
 per second can be expressed in terms of the radiation field of the dipole 
 \begin{equation}
     \label{eq:hertz}
-   I = \frac{2}{3 c^2} \left \langle \frac{\mathrm{d}^2}{\mathrm{d} t^2}  M \right \rangle_t.
+   I = \frac{2}{3 c^2} \left \langle \frac{\mathrm{d}^2}{\mathrm{d} t^2}  \mu \right \rangle_t.
 \end{equation}
-Where the brackets denote to the time average and $M$ is the electric dipole moment. Let us assume,
+Where the brackets denote to the time average and $\mu$ is the electric dipole moment. Let us assume,
 we induce a dipole by an incoming electric field (for instance a vibrating molecule)
 Then the dipole can in general be written in terms of the electric field $E$ with
 \begin{equation}
-    M_i = \sum^{3}_{j=1} \alpha_{ij} E_j(t) \equiv {(\alpha E )}_i
+    \mu_i = \sum^{3}_{j=1} \alpha_{ij} E_j(t) \equiv \alpha_{ij} E^j 
 \end{equation}
 with the polarization tensor $\alpha$.
 Let us assume now a incoming plain wave 
@@ -126,7 +126,7 @@ for the intensity by~\eqref{eq:hertz}:
 \begin{equation}
     I = \frac{16 \pi^4 c}{3 \lambda_0^4} \alpha ^3 E_0 ^2
 \end{equation}
-with $\lambda_0 = c/ 2\pi \omega_0$. Transforming into normal coordinates $q(t)$ we can write down the polarization tensor
+with $\lambda_0 = c/ 2\pi \omega_L$. Transforming into normal coordinates $q(t)$ we can write down the polarization tensor
 in a Taylor expansion around zero\cite{ver}:
 \begin{equation}
     \alpha = \alpha_0 + \frac{\partial\alpha}{\partial q}q(t) + \cdots \approx \alpha_0 + \alpha' q_0 \cos(\omega_M t).
@@ -134,9 +134,26 @@ in a Taylor expansion around zero\cite{ver}:
 Where we approximated the vibration of the isotropic molecule by a frequency $\omega_M$.
 The dipole moment then becomes
 \begin{align}
-    M &= \alpha_0 E^0 \cos(\omega_L t) + \alpha' E^0 \cos(\omega_L t) \cos(\omega_M t) \\
-      &= \alpha_0 E^0 \cos(\omega_L t) + \alpha ' ((\omega_L + \omega_M)t ) + \alpha ' E^0 ((\omega_M - \omega_L)t) 
+    \mu &= \alpha_0 E^0 \cos(\omega_L t) + \alpha' E^0 \cos(\omega_L t) \cos(\omega_M t) \\
+        &= \underbrace{\alpha_0 E^0 \cos(\omega_L t) }_{\text{Rayleigh}}
+    + \underbrace{\alpha '\cos((\omega_L + \omega_M)t ) }_{\text{Anti-Stokes}}
+    + \underbrace{\alpha ' E^0\cos((\omega_M - \omega_L)t)}_{\text{Stokes}}
 \end{align}
+With the emission of a \textit{Rayleigh} line and two \textit{Raman} lines (\textit{Stokes} and \textit{Anti-Stokes}).
+If we were to continue the Taylor expansion
+\begin{equation}
+    \alpha = \alpha_0 + \frac{\partial\alpha}{\partial q}q(t) + \frac{\partial^2\alpha}{\partial q^2}q^2(t) + \cdots
+\end{equation}
+We would get higher harmonics of the Raman lines, for instance $\omega_M \pm 2\omega_L, \omega_M \pm 3\omega_L$ and so
+forth with less intensity at each order. 
+Which is clear by now is the dependence of Raman lines of the
+derivatives $\frac{\partial\alpha}{\partial q}q(t) + \frac{\partial^2\alpha}{\partial q^2}q^2(t) + \cdots$, so if 
+the first one is zero
+\begin{equation}
+    \frac{\partial\alpha}{\partial q} = 0
+\end{equation}
+we will have no first order Raman lines, this is called \textbf{Raman inactive}, while the former is called
+\textbf{Raman active}.  
 
 
 
