@@ -166,7 +166,11 @@ the first one is zero
     \frac{\partial\alpha}{\partial q} = 0
 \end{equation}
 we will have no first order Raman lines, this is called \textbf{Raman inactive}, while the former is called
-\textbf{Raman active}. Let us come back to the polarizability. Analogous to~\eqref{eq:I} the intensity of a fixed
+\textbf{Raman active}. 
+\subsubsection{Depolarization}
+\label{ssub:Depolarization}
+
+Let us come back to the polarizability. Analogous to~\eqref{eq:I} the intensity of a fixed
 dipole can be expressed as 
 \begin{equation}
     I = \frac{\omega^4 \mu^2}{32\pi^2 \epsilon_0 c^3}.
@@ -183,15 +187,84 @@ the polarization tensor. One straightforward invariant is the trace:
 \end{equation}
 If we look at the tensor as an ellipsoid, the trace can be seen as the mean radius: 
 \begin{equation}
-    \text{mean radius: } \frac{1}{3}\mathrm{Tr}(\alpha) = \frac{1}{3}(\alpha_{xx} +\alpha_{yy}+ \alpha_{zz})
+    \text{mean radius $\bar{\alpha}$: } \frac{1}{3}\mathrm{Tr}(\alpha) = \frac{1}{3}(\alpha_{xx} +\alpha_{yy}+ \alpha_{zz})
 \end{equation}
 Another invariant is
 the anisotropy:
 \begin{equation}
-    \gamma = \frac{1}{2} \left( (\alpha_{xx} - \alpha_{yy})^2 + (\alpha_{yy} - \alpha_{zz})^2 (\alpha_{zz} - \alpha_{xx})^2
+    \gamma = \frac{1}{2} \left( (\alpha_{xx} - \alpha_{yy})^2 + (\alpha_{yy} - \alpha_{zz})^2 + (\alpha_{zz} - \alpha_{xx})^2
         + 6(\alpha_{xy} + \alpha_{yz} + \alpha_{zx}) 
-    \right)
+    \right).
 \end{equation}
-\subsection{Depolarization}
+So if we want to examine the components the intensity, it can be shown~\cite{koningstein1972introduction} that 
+\begin{align}
+    I_{z} &= \frac{\omega^4}{32\pi^2 \epsilon_0 c^3} \left( \bar{\alpha}^2 + \frac{4}{45}\gamma^2 \right) E_z^2 \\
+    I_{y} &= \frac{\omega^4}{32\pi^2 \epsilon_0 c^3} \left( \frac{1}{15}\gamma^2 \right) E_z^2 \\
+\Rightarrow  I_{x+y} &= \frac{\omega^4}{32\pi^2 \epsilon_0 c^3} \left( \bar{\alpha}^2 + \frac{7}{45}\gamma^2 \right) E_z^2.
+\end{align}
+Hence the depolarization becomes:
+\begin{equation}
+    \rho_z =  \frac{I_z}{I_y} = \frac{3\gamma^2}{45\bar{\alpha}^2 + 4\gamma^2} 
+\end{equation}
+This is only valid for a linear in the z-direction polarized laser. For other configurations the 
+depolarization depends strongly on the polarization direction of the laser.
+%todo siehe Raman buch s.129
+\subsection{Quantum mechanical treatment}
+\label{sub:quantum_mechanical_treatment}
+The most general treatment of the Raman effect involves scattering theory, such that we look at the incoming 
+photon as a source of time-dependent perturbation on the energy levels of the molecule. Radiation emitted or absorbed is 
+a result of the system making a downward or upward transition between two discrete energy levels; The virtual states only
+exist as resonances, because they are a time dependent phenomenon and cannot be reduced to the stationary solution of 
+the Schrödinger equation. However, we can treat them as discrete energy levels as long as they exist and calculate the
+transition element. The transition moment could be defined as
+\begin{equation}
+    M_{fi} = \langle \psi_f | \hat{\mu} | \psi_i \rangle 
+\end{equation}
+with the initial and final states and the dipole moment operator\footnote{Note that this is a vector operator. This 
+important, because it inherits the information about the polarization of the transition, depending on the phase factors
+associated with the two states.}
+$\hat{\mu}$, which takes the same
+form as~\eqref{eq:mu}. Hence, we can write this the matrix element of $\hat{\mu}$ by
+\begin{equation}
+    \label{eq:muhat}
+    \mu_{fi} = \langle \psi_f | \hat{\alpha_{kl}} | \psi_i \rangle E^k.
+\end{equation}
+The transition dipole moment can be used to investigate the selection rules of transitions under electric
+dipole interaction, as it is the case when interfering with a classical field. Let us look at the Hamiltonian
+to understand the type of interaction:
+\begin{equation}
+    H = \frac{p^2}{2M} + e\phi(x) - \frac{e}{mc}[A \cdot p]
+\end{equation}
+with the classical fields $A$ and $\phi$. The dipole approximation uses now the fact, that
+the wavelength of the classical field is far longer than the molecular dimension~\cite{sakurai2011modern}.
+For a transition to happen, the transition dipole moment has to be nonzero; such transitions occur between
+even and odd orbitals (otherwise the integral in~\eqref{eq:muhat} gets zero). Now look at figure~\ref{fig:qm_states}
+which shows the different effects: Rayleigh scattering is essentially the main event, while the two other 
+lines involve another frequency (which is most commonly for molecules a vibrational state). 
+\begin{figure}[htpb]
+\centering
+    \includegraphics[width=0.6\linewidth]{figures/qm_states.eps}
+    \caption{In the quantum mechanical description we look at the Raman emission in terms of virtual energy states.
+    The different lines, Stokes and Anti-Stokes, are realized by different processes.}
+\label{fig:qm_states}
+\end{figure}
+In order to explain
+the different intensities, we need to leave the purely Quantum mechanical treatment and include the many-body
+statistical behavior of the states. A good approximation yields the Boltzmann distribution
+\begin{equation}
+    \frac{N_e}{N_a} = \exp\left (\frac{E_a - E_e}{k_B T}\right ).
+\end{equation}
+With the ground state $N_a$ and the first vibrational state $N_e$. This explains why the Anti-Stokes line
+is of lower intensity as the Stokes line. A better approach includes the matrix element of the polarization tensor and
+the degeneracy of the states~\cite{ver}. The result is 
+\begin{equation}
+    \frac{I_{\mathrm{Stokes}}}{I_{\mathrm{Anti-Stokes} }} = \frac{(\nu_o - \Delta \nu)^4}{(\nu_o + \Delta \nu)^4} 
+    \exp \left( \frac{h\Delta \nu}{k_BT} \right)
+\end{equation}
+with the frequency difference 
+\begin{equation}
+\Delta \nu = \frac{\omega_\mathrm{S} - \omega_{\mathrm{AS}}}{2\pi c} 
+\end{equation}
+between Stokes and Anti-Stokes.
 
-siehe Raman buch s.129
+
