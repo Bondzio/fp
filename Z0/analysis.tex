@@ -1,21 +1,22 @@
 \section{Analysis}
-First we will characterize some events by their signature. Unfortunately, this is not sufficient to classify all events
-properly from each other, so in the next part we will conduct a serious analysis of the spatial distribution with respect to
-the variables measured by the detector. 
+We will start with characterizing some events by their visualized signature. Unfortunately, this is not sufficient to classify all events
+properly, so in the next part we will conduct a more sophisticated analysis looking at the distribution of various variables 
+measured by the detector. 
+
 \subsection{Signatures of detected particles: Descriptive treatment}
-On the next pages figures~\ref{fig:ee},~\ref{fig:mm},~\ref{fig:tt} and~\ref{fig:qq} show
-a typical event each of the respective particle. We will not use these figures any
-further, but they will give an impression how typical events look like.
+On the next pages, figures~\ref{fig:ee},~\ref{fig:mm},~\ref{fig:tt} and~\ref{fig:qq} each show
+a typical event corresponding to one particle. Although we will not use these figures any
+further, they give an impression of what typical events look like.
 The red curves indicate the data of the tracking detector, visualizing the trajectories
 in the inner area. Pink squares indicate where the electron calorimeter measured energies
-(which we will denote as $E_{\mathrm{ecal}}$)
-with the blue squares showing their momentum. Green squares indicate the energy of the
-hadron calorimeter (which we will denote as $E_{\mathrm{hcal}}$).
+(denoted as $E_{\mathrm{ecal}}$)
+with the blue squares showing their momentum. Green squares indicate the energy deposited in the
+hadron calorimeter (called $E_{\mathrm{hcal}}$).
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/ee_02.png}
-    \caption{Example for typical event of a decay into electrons. The characteristic feature of the decay into electrons is
+    \caption{Example for typical event of a decay into two electrons. The characteristic feature of the decay into electrons is
     the very little number of trajectories and most of the energy submitted to first calorimeter (in the inner circle).}
 \label{fig:ee}
 \end{figure}
@@ -23,8 +24,8 @@ hadron calorimeter (which we will denote as $E_{\mathrm{hcal}}$).
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/mm_02.png}
-    \caption{Example for typical event of a decay into muons. As muons cannot be bound by the detector most of the time,
-        a little amount of energy is absorbed by the first calorimeter. The muon detector far outside of this pictures (which
+    \caption{Example for typical muon-muon decay. Due to the small interaction probability, 
+        only little amounts of energy are absorbed by the first calorimeter. The muon detector lies outside of this pictures (which
     is indicated by the turquoise arrows). }
 \label{fig:mm}
 \end{figure}
@@ -32,23 +33,23 @@ hadron calorimeter (which we will denote as $E_{\mathrm{hcal}}$).
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/tt_02.png}
-    \caption{Example for typical event of a decay into tauons. As the particles are not
+    \caption{Example for typical event of a decay into two tauons. As the particles are not
         stopped in the first calorimeter, the probability of being electrons decreases
-        significantly (this is not totally true as we will see later). Furthermore,
+        significantly (although this statement oversimplifies the reality, as we will see later). Furthermore,
         there is one particle escaping to the muon detector, but not two in opposite
         directions, as we would expect for muons. There are also no hadron showers
-        as characteristic for the quark branch. Hence we conclude this to be a taon event. }
+        as it would be characteristic for the quark branch. }
 \label{fig:tt}
 \end{figure}
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/qq_02.png}
-    \caption{Example for typical event of a decay into hadrons. As indicated in figure~\ref{fig:tt} hadronic shower are 
+    \caption{Example for typical hadronic decay. As indicated in figure~\ref{fig:tt}, hadronic showers are 
    a signature for quarks, originating from the \textbf{strong confinement}. 
    As bound states of quarks can only be found at low enough
-   momentum, we observe a large creation of hadronic particles being
-   measured in both of the calorimeter. More than half of
+   momentum, we observe the creation of a large number of hadrons, being
+   measured in both calorimeters. More than half of
    the energy carried by incident hadrons is passed to additional secondaries. }
 \label{fig:qq}
 \end{figure}
@@ -99,36 +100,33 @@ then the entry of the covariance matrix has the unit $[x_i] \cdot [x_j]$.
 \clearpage
 
 \subsection{Machine learning for classification}
-As it is shown in section~\ref{sub:montecarlo} on page \pageref{sub:montecarlo} 
-the different distributions of the respective particles intersect in terms of different
-variables. As you might guess, the task to differentiate between particle types in the 
-data is a highly non-trivial task. Therefore we searched for various techniques in order
-to improve the classification of the particle species. 
+As it is shown in section~\ref{sub:montecarlo},
+the distributions of the different particles intersect in terms of different
+variables. This makes the task of differentiating between particle types in the 
+data a highly non-trivial one. We therefore searched for various techniques in order
+to improve the classification of the particle species, seeking success using, inter alia, machine learning. 
 As mentioned before, the analysis is done within the python
 ecosystem. In particular, for the machine learning algorithms we use the library 
 \textbf{scikit-learn}~\cite{scikit-learn}. 
 The technique which we will present
 here is used for our evaluation and turned out to be the best solution for our problem.
-It is a machine learning technique called \textbf{k-nearest neighbors algorithm} and
-is widely used in pattern recognition, because it is a non-parametric\footnote{
-We rely on non-parametric statistics because we do not know the distributions governing
-the probability of the variables of the particle species. 
-The main difference in the method is that for a parametric model
-the number of parameters is fixed, while in non-parametric techniques this number is 
-neither fixed nor independent of the training data. This is often successful when the boundary is 
-more of an irregular type.
-}method which can
-be implemented easily. We will not go into the implementation of the algorithm with respect to our physical problem at this
-place, please refer to the appendix.
+It is called \textbf{k-nearest neighbors algorithm} and
+widely used in pattern recognition, because it is a non-parametric method\footnote{
+We rely on non-parametric statistics because we do not know the probability distributions 
+in the variables for the different particle species.
+The number of parameters used in non-parametric techniques depends on the applied training set. 
+This is unlike in parametric methods, where this number is fixed. This is often successful when the boundary is rather irregular.} 
+which can be implemented easily. For details on the implementation, please refer to the appendix~\ref{sub:cut.py}.
 \begin{SCfigure}
     \centering
-    \caption{The \textbf{k-nearest neighbors algorithm} works as following: 
+    \caption{The \textbf{k-nearest neighbors algorithm} works as follows: 
         The algorithm stores all instances of the training data and their respective
     classification \textit{(colored bubbles)}. When classifying a new instance \textit{(bubble with question mark)}, the 
-    predictor counts how many nearest neighbors of the unknown instance are of a specific type, the point is assigned, 
-    depending on the parameter \textbf{k}, the class of the majority. In the beginning, when only the learning set is available,
+    predictor counts how many nearest neighbors of the unknown instance are of a specific type. 
+    Depending on the parameter \textbf{k}, the point is assigned the class of the majority. 
+    In the beginning, when only the learning set is available,
     the parameter \textbf{k} is chosen such that the error of second order is minimized. In general, a larger \textbf{k} will
-    limit the effects of stochastic noise but this will make the classification boundaries fuzzier.}
+    limit the effects of stochastic noise but make the classification boundaries fuzzier.}
     \includegraphics[width=0.5\linewidth]{figures/knn_schema}
 \label{fig:knn_schema}
 \end{SCfigure}
@@ -136,10 +134,10 @@ place, please refer to the appendix.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1\linewidth]{figures/kneigbors}
-    \caption{Example taken from documentary of \textbf{scikit-learn}\cite{scikit-learn}, the library we are using. Here you can
-    see plotted the learning data \textit{colored dots} and the prediction for homogeneous distributed test data
-(\textit{colored surface}). The data is the commonly taken \textit{Iris flower data set} \cite{frank1968numerical}, which
-    is often used in order to benchmark a supervised learning algorithm. For a detailed examples of \textbf{scikit learn}
+    \caption{Example taken from documentary of \textbf{scikit-learn}\cite{scikit-learn}, the library we are using. One x can
+    see the learning data \textit{colored dots} and the prediction for homogeneously distributed test data
+    (\textit{colored surface}) plotted. The data is the \textit{Iris flower data set} \cite{frank1968numerical}, commonly used 
+    in order to benchmark a supervised learning algorithm. For a detailed examples of \textbf{scikit learn}
     refer to \cite{masteringscikit}.}
 \label{fig:kneigbors}
 \end{figure}
@@ -149,60 +147,59 @@ place, please refer to the appendix.
 
 \label{sub:montecarlo}
 In order to get an intuition about the distributions governing the different particle species with respect to the measured
-variables, we use Monte Carlo generated data (see \ref{sub:monte_carlo_simulation} for a short introduction into Monte Carlo
-simulation). What is clearly visible in figure \ref{fig:cos_figs}, \ref{fig:monte1} and \ref{fig:monte2} is that the
+variables, we use Monte Carlo generated data. 
+What is clearly visible in figure \ref{fig:cos_figs}, \ref{fig:monte1} and \ref{fig:monte2} is that the
 different particle species are not separable in terms of the single variables completely. This is why we use a 
-\textit{non parametric} method in order to classify the particle species, since the hyper surfaces separating the distributions
-might be of a non trivial geometric shape, possibly including highly non linear parametrizations. Furthermore, you will notice
-that the probabilistic behavior is not linear as well as the true shape of the distributions can only be seen when plotted
-against a logarithmic scale, as we are doing.
+\textit{non parametric} method in order to classify the particle species, since the hypersurfaces separating the distributions
+might be of a non trivial geometric shape, possibly including highly non linear parametrization. 
+Furthermore, the probability distribution are not linear in the respective variables and can be visualized best on a logarithmic 
+scale.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{figures/cos_figs}
     \caption{Distribution of the Monte Carlo data (with correct branching ratios) 
-    with respect to the $\cos(\theta)$ and $\cos(\mathrm{thru})$. You can
-    notice some details here, for instance that $\cos(\theta)$ is not defined properly for hadrons. Later, when classifying
-    real data, this is not as clear as here and we need to exclude not well defined variables from the classification process.
-    Another obvious observation is the absence of the t-channel in particle species other than electrons. This simplifies 
-    the classification process enormously, since the chronological 
-order of removing the t-channel is not crucial to the particle numbers.}
+    with respect to the $\cos(\theta)$ and $\cos(\mathrm{thru})$. Note that $\cos(\theta)$ is not defined properly
+    for hadrons. Later, when classifying
+    real data, this is not as clear as it is here, forcing us to exclude not well defined variables from the classification process.
+    Another observation is the absence of the t-channel in particle species other than electrons. This simplifies 
+    the classification process enormously, because in this case the chronological 
+    order of removing the t-channel is not as crucial to the particle numbers.}
     \label{fig:cos_figs}
 \end{figure}
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{figures/N_p_c}
-    \caption{Probabilities of Monte Carlo data (with correct branching ratios). 
-        In order to grasp the non trivial intersection behavior of the particle species, we plotted the figures here
-    in log scale with respect to the probability. The particle numbers in figure (a) shows the 
-intersection from one up to seven trajectories. The non zero probability of having more than ten trajectories in the hadronic
-branch exists until $N_c = 55$, where the probability drops to zero. }
-\label{fig:monte1}
+    \caption{Distributions of Monte Carlo data (with correct branching ratios)
+        over (a) the number of measured trajectories $N_c$ and (b) the total charged
+        momentum $p_c$.Note the logarithmic scale. 
+        For $N_c$, overlap exists from one to seven trajectories. The hadron's distribution 
+        continues with non-zero probability up to $N_c = 55$ (not shown). }
+    \label{fig:monte1}
     \includegraphics[width=1.0\linewidth]{figures/E_cal}
-    \caption{As in the figure above, but with different variables. Notice the separation between electrons
-    and muons in (a), but the intersection of tauons in all regimes.}
+    \caption{As in the figure above, but in in the variables $E_{ecal}$ and $E_{hcal}$ 
+        (energy deposit in electron and hadron calorimeter, respectively). Notice the separation between electrons
+    and muons in (a), but the overlap with tauons in all regimes.}
 \label{fig:monte2}
 \end{figure}
 
 \clearpage
 \subsubsection{Fitting t/s-channel}
 \label{ssub:FittingTsChannel}
-In section \ref{sub:bhabha} we did already explain that the t-channel of the electronic decay does not correspond
-to the cross-section of the process we are interested in and hence we need to remove it.  The equation governing 
-the $\cos(\theta)$ distribution of electrons look as following
+In section \ref{sub:bhabha} we explain that the t-channel of the electronic decay does not correspond
+to the cross section of the process we are interested in. Hence we need to remove it.  The equation governing 
+the $\cos(\theta)$ distribution of electrons looks as following
 \begin{equation*}
 \sigma_{ee} = A(1 + \cos^2\theta) + B(1 - \cos\theta)^{-2}.
 \end{equation*}
-When we fit now this function to the real data, we can remove the s-channel easily, as seen in figure \ref{fig:tschannel}.
-When applying this fit to the real data, the proportion of the t-channel will strongly depend on the respective center of
-mass energy. For low energies, it will constitute nearly as much as 90\% of the t/s-channel.
+Fitting this function to the real data, we can remove the s-channel easily, as seen in figure \ref{fig:tschannel}.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{figures/tschannel}
-    \caption{Removing the t-channel from the electron data: As it was investigated before,
-    we apply a fit of the data in order to be able to subtract the t-channel. What remain are
-    the electrons in the s-channel. This figure is an illustration of the method with Monte Carlo data, later we will
-    apply this fit to all real data.}
+    \caption{Removing the t-channel from the electron data. 
+        We apply a fit of the data in order to be able to subtract the t-channel. What remain are
+    the electrons in the s-channel. This figure is an illustration of the method using Monte Carlo data. It is
+    applied to real data later on.}
     \label{fig:tschannel}
 \end{figure}
 \clearpage
@@ -210,19 +207,20 @@ mass energy. For low energies, it will constitute nearly as much as 90\% of the 
 \subsubsection{Efficiency matrix}
 \label{ssub:Efficiencymatrix}
 
-The first step in making sense out of the real data is to assign single events to a specific decay branch, otherwise
-we cannot compare the different distributions. The problem is that wrong assignments will lead to wrong contributions 
-in the final cross-section; therefore a good strategy is to test the classification algorithm with Monte Carlo data and 
-quantify its efficiency, furthermore we can correct the systematic error contribution of the algorithm after. First we 
-divide the Monte Carlo data in a training sample (75\% of the data) and a test sample (25\% of the data) in order to avoid
-self inconsistent testing.  At this point we tried different algorithms. The efficiency of the algorithms based on the training
+The first step in classifying the real data is to assign single events to a specific decay branch in order to
+compare the different distributions. The problem is that wrong assignments will lead to wrong contributions 
+in the final cross-section. Therefore a good strategy is to test the classification algorithm with Monte Carlo data and 
+quantify its efficiency. We correct the systematic error contribution of the algorithm afterwards. First we 
+divide the Monte Carlo data in a training sample (75\% of the data) and a test sample (25\% of the data) to avoid
+inconsistent testing.  At this point we tried different algorithms. The efficiency of the algorithms based on the training
 data is shown in table \ref{tab:eff1} (where we used physical intuition to separate the particle species) and in table
-\ref{tab:eff1} (where we used the machine learning technique \textbf{k-nearest neighbors algorithm}). As these tables indicate,
-the machine learning technique was far more successful with respect to efficiency, hence we used this one for the further 
+\ref{tab:eff2} (where we used the machine learning technique \textit{k-nearest neighbors algorithm}). As these tables indicate,
+the machine learning technique was far more successful with respect to efficiency, so we used this one for the further 
 calculations. \\
-The efficiency matrices show, which (true) particles were classified erroneously into which species. The correction
-of the real data later will be done with the inverse of this matrix:
+The efficiency matrices show, which (true) particles were classified falsely into which species. The correction
+of the real data is done with the inverse of this matrix:
 \begin{equation}
+    \label{eq:eff_inverse}
     N_{\mathrm{True}} = N_{ \mathrm{observed}} \cdot M_{\mathrm{eff}}^{-1}
 \end{equation}
 
@@ -263,40 +261,70 @@ a visualization of the distributions see figure \ref{fig:monte1} and \ref{fig:mo
 \end{tabular}
 \end{table}
 \clearpage
-\subsection{Opal data: Fitting to Breit-Wigner distributions}
+\subsection{OPAL data}
 \label{sub:opal_data}
-Cross-section is calculated with
+The data used in this experiment is a set of some 123456 events, identified by 
+values of variables measured by the OPAL detector. The variables we use in our 
+analysis are summed summed up in table~\ref{tab:vars}. To assign a particle species 
+to each event, we used to machine learning algorithm previously trained and analyzed 
+on the Monte Carlo data. The events identified as electrons then undergo the procedure 
+of removing the t-channel share, as described in section \ref{ssub:FittingTsChannel}.
+The fitting is done separately for different beam energies $E_mathrm{lep}$, because 
+the proportion of the t-channel strongly depends on this variable. 
+For low energies, it constitutes as much as 90\% of the t/s-channel.
+The results of this procedure are summarized in table BLABLABLA. 
+Finally the obtained numbers of events in each category and for each beam energy 
+are then rescaled by the inverse efficiency matrix, see equation~\eqref{eq:eff_inverse}.
+\begin{table}[htpb]
+    \centering
+    \caption{Table of variables used in analysis}
+    \label{tab:vars}
+    \begin{tabular}{l|l}
+  \rowcolor{LightCyan} Name & Meaning \\ 
+    $N_{\mathrm{charged} }$ & Number of charged trajectories \\
+    $P_{\mathrm{charged} }$ & Total momentum of charged trajectories \\
+    $E_{\mathrm{ecal}}$ & Energy stored in electronic calorimeter \\
+    $E_{\mathrm{hcal}}$ & Energy stored in hadronic calorimeter \\
+    $E_{\mathrm{lep}}$ & Total energy (center of mass energy) \\
+    $\cos\theta$ & Scattering angle of single trajectories \\
+    $\cos\mathrm{thru} $ & Spread of the jet (merely hadrons)\\
+    \end{tabular}
+\end{table}
+
+We continue by calculating the cross section of a particle species with $N$ counted events by applying  
 \begin{equation}
     \sigma(E) = \frac{N}{L(E)} + \kappa(E)
 \end{equation}
-with luminosity $L$ and radiation correction $\kappa$, both taken at a specific energy $E$, dependent on the collider
-and estimated by its specification. We do not go into their calculation, but rather assume as given.
-\paragraph{\textbf{Properties of the $\mathrm{Z^0}$ boson}}
+with luminosity $L$ and radiation correction $\kappa$. Both quantities are given for a specific energies $E_\mathrm{lep}$. 
+They are estimates incorporating the collider with its specifications.
+\paragraph{\textbf{Properties of the $\mathrm{Z^0}$ boson:}}
 \label{par:Z0}
 The $\mathrm{Z^0}$ boson will trigger a Breit-Wigner distribution
-with a peak at its mass, as seen in section \ref{sub:qft}, in particular
-\eqref{eq:breitwigner}, which we will state again here:
+with a peak at its mass, as derived in section \ref{sub:qft}. In particular the equation 
+\eqref{eq:breitwigner} is restated:
 \begin{equation*}
     \sigma_f = \frac{1}{M_Z^2} \frac{12\pi s \Gamma_i \Gamma_f }{(s- M_Z^2)^2 + M_Z^2 \Gamma_Z^2}
 \end{equation*}
-Fitting the data to this curve (see figure \ref{fig:crosssections}, \ref{fig:crosssections2} and \ref{fig:crosssections_h}) we
-find the decay width and mass of $\mathrm{Z^0}$, see table \ref{fig:crosssections} for the results. (\textbf{Technical note:} We 
-fitted all four distributions at once, since they have shared parameter. Calculating the mean out of single fits would
-yield a wrong result, especially with respect to the correlation of the parameters with each other). 
-As seen in the already mentioned table, our results exhibit a very good agreement with the literature
-values, except the width of the $\mathrm{Z^0}$ boson, which is slightly too high. The correlation between the different parameter are 
-given in table \ref{tab:covmat}. They correspond to what one would intuitively from the applied fit: Fermionic decay
-widths are correlated strongly with each other and $M_Z$ with $\Gamma_Z$.
+Fitting the data to this curve, we find the decay widths and mass of $\mathrm{Z^0}$. 
+We fitted all four distributions simultaneously because they have share the parameters $\Gamma_e, \Gamma_Z$ and $M_Z$. 
+Calculating the mean of separate fits would yield a wrong result, especially for the correlation between the parameters. 
+The fits are visualized in figure \ref{fig:crosssections} for all 
+four species and further only for leptons (fig. \ref{fig:crosssections2}) and hadrons (fig. \ref{fig:crosssections_h})
+for a more detailed account. Numerical results are displayed in table \ref{tab:results}.
+We observe that our results exhibit a very good agreement with the literature
+values, except for the width of the $\mathrm{Z^0}$ boson, which is slightly too high. 
+The correlation between the different parameters are 
+given in table \ref{tab:covmat}. They correspond to what one would intuitively expect from the applied fit: Fermionic decay
+widths are correlated strongly with each other, and similarly $M_Z$ with $\Gamma_Z$.
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{figures/crosssections}
-    \caption{Cross-sections of all particle species. Please note that muons and tauons
-        are not visible due to their overlay with the electrons. 
-        Supplementary remarks considering the single 
-    distributions are performed in enlargements of this plot, see figure \ref{fig:crosssections2} for the figure without hadrons
-    and figure \ref{fig:crosssections_h} for hadrons only. As noted earlier, we 
-fitted all four distributions at once, since they have shared parameter. 
+    \caption{Cross-sections of all particle species. Note that measurement points for 
+        muons and tauons are not visible when overlapping with those for electrons. 
+        For a more detail picture, see figure \ref{fig:crosssections2} with leptons only
+    and figure \ref{fig:crosssections_h} for hadrons only. 
+    All four distributions are fitted at once, since they share parameters. 
     }
     \label{fig:crosssections}
 \end{figure}
@@ -305,20 +333,22 @@ fitted all four distributions at once, since they have shared parameter.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{figures/crosssections2}
-    \caption{Cross-sections of leptonic particles. For the plot with all particles see figure \ref{fig:crosssections}.
-        Supplementary remarks: The high error of the electrons is due to the removal of the t-channel, because at this point
-    the error for the cross-section becomes larger.}
+    \caption{Cross-sections of leptonic particles on a linear scale. 
+        The high error of the electrons is due to the removal of the t-channel which introduces 
+        a larger error on the cross sections. 
+        For the plot with all particles see figure \ref{fig:crosssections}.
+    }
     \label{fig:crosssections2}
     \includegraphics[width=1.0\linewidth]{figures/crosssections_h}
     \caption{Cross-sections of hadrons. Note the different scale in comparison to figure \ref{fig:crosssections2}.
-    The value of $\chi^2/\mathrm{dof}$ bigger than one points at the systematic underestimation
+    The value of $\chi^2/\mathrm{dof}$ bigger than one points at either an underestimation
     of uncertainties or their non-Gaussian behavior due to other systematic errors.}
     \label{fig:crosssections_h}
 \end{figure}
 
 \begin{table}[htpb]
     \centering
-    \caption{End result}
+\caption{Results: Partial decay width, width and mass of Z0}
 \label{tab:results}
     \begin{tabular}{l l l}
  \rowcolor{LightCyan} & Our result & Literature value \\
@@ -333,7 +363,8 @@ fitted all four distributions at once, since they have shared parameter.
 
 \begin{table}[htpb]
     \centering
-    \caption{Correlation matrix of parameter. Note the high correlation between the lepton widths and between $M_Z$ and $\Gamma_Z$.}
+    \caption{Correlation matrix for decay widths and Z0 mass 
+        Note the high correlation between the lepton widths and between $M_Z$ and $\Gamma_Z$, respectively.}
     \label{tab:covmat}
 \begin{tabular}{l| r| r| r |r | r|r}
 \rowcolor{LightCyan} & $\Gamma_e$ & $\Gamma_\mu$ & $\Gamma_\tau$ & $\Gamma_h$ &$\Gamma_Z$ & $M_Z$ \\ 
@@ -349,19 +380,19 @@ fitted all four distributions at once, since they have shared parameter.
 
 \end{table}
 \paragraph{\textbf{Lepton universality:}} 
-\label{par:lepton_universality} In the theory section we calculated the decay widths of the various
-particle species and found in section \ref{sub:lepton_universality} that leptons exhibit a nearly identical
-decay width. Having the experimental data, we want to check this behavior here: 
+\label{par:lepton_universality} In the theory section (\ref{sub:lepton_universality}) we calculated the decay widths of the various
+particle species and found that leptons exhibit a nearly identical
+decay width. At this point we use the experimental data to verify this behavior: 
 \label{ssub:leptonun}
 \begin{align}
     V_\mu = \frac{\Gamma_\mu}{\Gamma_e} = 0.99 \pm 0.1 \\ 
     V_\tau = \frac{\Gamma_\tau}{\Gamma_e} = 1.00 \pm 0.1 
 \end{align}
-Clearly the \textbf{lepton universality} is confirmed within the estimated uncertainties.
+Clearly lepton universality is confirmed within the estimated uncertainties.
 
 \paragraph{\textbf{Number of neutrino generations:}}
 \label{par:number_of_neutrino_generations}
-As it was derived in section \ref{sub:number_of_neutrino_generations} the theory predicts three different neutrino generations.
+As derived in section \ref{sub:number_of_neutrino_generations}, the theory predicts three different neutrino generations.
 Let us now look at our experimental data:
 \begin{align}
     \label{eq:gen}
@@ -369,7 +400,8 @@ Let us now look at our experimental data:
     \Gamma_{\nu, \mathrm{theo}} = 0.165 \pm 0.001 \mathrm{GeV} \\ 
     \Rightarrow \frac{\Gamma_\nu}{\Gamma_{nu, \mathrm{theo}}}  = 3.2 \pm 0.6
 \end{align}
-Within the standard deviation this is correct, but we arrive at a relatively high error. This is due to the
+Thus, the neutrino generation number is confirmed within the standard deviation, 
+although we arrive at a relatively high error. This is due to the
 correlation of $\Gamma_Z$ and the widths of the fermions and seems reasonable. As we found before, the value for
 $\Gamma_Z$ is slightly too high. Plugging in the literature value for $\Gamma_Z$, we would arrive at
 \begin{align}
@@ -377,21 +409,23 @@ $\Gamma_Z$ is slightly too high. Plugging in the literature value for $\Gamma_Z$
 \end{align}
 which confirms our suspicion. However, this does not alter the result of having three generations.
 
-\paragraph{\textbf{Muon asymmetry:}}
+\paragraph{\textbf{Muon forward-backward asymmetry:}}
 \label{par:assymetry}
-As elaborated in section~\ref{sub:forward_backward_asymmetry} on page~\pageref{sub:forward_backward_asymmetry},
-we can fit the experimental data of the muonic distribution at the peak with respect to $\cos\theta$ to the following function
-(see figure~\ref{fig:assymetry} for the fitting):
+As elaborated in section~\ref{sub:forward_backward_asymmetry},
+we can fit the experimental data of the muonic distribution over $\cos\theta$ at the peak of resonance to the following function
+(see figure~\ref{fig:asymmetry} for the fitting):
 \begin{equation}
-P(\cos\theta) \propto F_1 ( 1+ \cos^2\theta) + 2 F_2 \cos\theta
+    P(\cos\theta) \propto F_1 ( 1+ \cos^2\theta) + 2 F_2 \cos\theta \, .
 \end{equation}
-with which we can calculate the asymmetry\footnote{In our calculations we lost the minus sign without being
+with which we can calculate the forward-backward asymmetry%
+\footnote{In our calculations we lost the minus sign without being
     able to recover it. Since a negative
-asymmetry is physically not conceivable, we added the plus sign in order to fix further calculations.} to be
+asymmetry is physically not conceivable, we added the plus sign in order to fix further calculations.}
+to be
 \begin{equation}
     A_{FB} = \frac{3 F_2}{4 F_1} = +0.01790 \pm 0.21817.
 \end{equation}
-Hence the Weinberg angle $\theta_W$ follows
+The Weinberg angle $\theta_W$ follows with
 \begin{equation}
     \sin^2 \theta_W = \frac{1}{4} \left( 1 - \sqrt{ \frac{A_{FB}}{3}} \right)  = 0.23069 \pm 0.11769
 \end{equation}
@@ -407,6 +441,6 @@ one standard deviation.
     $\sqrt{N}$, being a rather bad approximation here; this is why the $\chi^2 / \mathrm{dof}$ is much lower than one.
     Fortunately, the error is reflected in the error of the fit and will be included in further calculations.
 }
-    \label{fig:assymetry}
+    \label{fig:asymmetry}
 \end{figure}
 
