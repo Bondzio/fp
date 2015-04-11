@@ -147,7 +147,10 @@ which can be implemented easily. For details on the implementation, please refer
 
 \label{sub:montecarlo}
 In order to get an intuition about the distributions governing the different particle species with respect to the measured
-variables, we use Monte Carlo generated data. 
+variables, we use Monte Carlo generated data. These do not come in the correct branching ratios. For the following histograms 
+as well as the analysis of our algorithm, we rescale the corresponding numbers of events to match branching ration given 
+in the literature, ~\cite{pdg}. Furthermore, our preparation with the simulated data is limited by the fact that these are 
+only available for one energy each, all close to 91.2 GeV.  
 What is clearly visible in figure \ref{fig:cos_figs}, \ref{fig:monte1} and \ref{fig:monte2} is that the
 different particle species are not separable in terms of the single variables completely. This is why we use a 
 \textit{non parametric} method in order to classify the particle species, since the hypersurfaces separating the distributions
@@ -263,8 +266,10 @@ a visualization of the distributions see figure \ref{fig:monte1} and \ref{fig:mo
 \clearpage
 \subsection{OPAL data}
 \label{sub:opal_data}
-The data used in this experiment is a set of some 123456 events, identified by 
-values of variables measured by the OPAL detector. The variables we use in our 
+The data used in this experiment is a set of 141144 events of seven different runs of 
+the LEP accelerator. The corresponding center of mass energies and number of events are listed in 
+table~\ref{tab:event_data}. Each event is characterized by values of variables measured 
+by the OPAL detector. The variables we use in our 
 analysis are summed summed up in table~\ref{tab:vars}. To assign a particle species 
 to each event, we used to machine learning algorithm previously trained and analyzed 
 on the Monte Carlo data. The events identified as electrons then undergo the procedure 
@@ -275,6 +280,25 @@ For low energies, it constitutes as much as 90\% of the t/s-channel.
 The results of this procedure are summarized in table BLABLABLA. 
 Finally the obtained numbers of events in each category and for each beam energy 
 are then rescaled by the inverse efficiency matrix, see equation~\eqref{eq:eff_inverse}.
+
+\begin{table}[htpb]
+    \centering
+    \caption{OPAL data from seven different runs. For each run, there are $N_\mathrm{run}$ events with a mean center of mass 
+        energy $\overline{\sqrt{s}}$, where $\sqrt{s} = 2 E_\mathrm{lep}$. The standard deviation of 
+    $\sqrt{s}$ indicates the low differences of beam energy within one run. }
+    \label{tab:event_data}
+    \begin{tabular}{l l c c}
+        \rowcolor{LightCyan}Run & $N_\mathrm{run}$ & $\overline{\sqrt{s}}$ / GeV & std\_dev($\overline{\sqrt{s}}$) / GeV \\
+        \cellcolor{LightCyan}$1$& 4332 & 88.483 & 0.009   \\
+        \cellcolor{LightCyan}$2$& 9747 & 89.476 & 0.020   \\
+        \cellcolor{LightCyan}$3$& 11507 & 90.234 & 0.013   \\
+        \cellcolor{LightCyan}$4$& 82009 & 91.167 & 0.059   \\
+        \cellcolor{LightCyan}$5$& 16043 & 91.988 & 0.022   \\
+        \cellcolor{LightCyan}$6$& 8065 & 92.971 & 0.008   \\
+        \cellcolor{LightCyan}$7$& 9441 & 93.729 & 0.013   \\
+    \end{tabular}
+\end{table}
+
 \begin{table}[htpb]
     \centering
     \caption{Table of variables used in analysis}
@@ -292,20 +316,6 @@ are then rescaled by the inverse efficiency matrix, see equation~\eqref{eq:eff_i
 \end{table}
 
 
-\begin{table}[htpb]
-    \centering
-\caption{}
-\label{tab:results}
-    \begin{tabular}{l l l}
- \rowcolor{LightCyan} & Our result & Literature value \\
- \cellcolor{LightCyan}$\Gamma_e$ / GeV &   $ 0.084\pm0.004   $ & $0.08391 \pm 0.00012 $\\
- \cellcolor{LightCyan}$\Gamma_\mu$ / GeV&   $ 0.084\pm0.004 $ & $0.08399 \pm 0.00018 $\\
- \cellcolor{LightCyan}$\Gamma_\tau$ / GeV&   $ 0.084\pm0.004   $ & $0.08408 \pm 0.00022 $\\
- \cellcolor{LightCyan}$\Gamma_h$ / GeV&   $ 1.78\pm0.90     $ & $1.7444\pm0.002      $\\
- \cellcolor{LightCyan}$\Gamma_Z$ / GeV&   $ 2.558\pm0.020   $ & $2.4952\pm0.0023     $\\
- \cellcolor{LightCyan}$M_Z    $ / GeV /$c^2$&   $ 91.186\pm0.008  $ & $91.187\pm0.0021     $\\
-    \end{tabular}
-\end{table}
 
 
 
