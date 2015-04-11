@@ -269,7 +269,7 @@ analysis are summed summed up in table~\ref{tab:vars}. To assign a particle spec
 to each event, we used to machine learning algorithm previously trained and analyzed 
 on the Monte Carlo data. The events identified as electrons then undergo the procedure 
 of removing the t-channel share, as described in section \ref{ssub:FittingTsChannel}.
-The fitting is done separately for different beam energies $E_mathrm{lep}$, because 
+The fitting is done separately for different beam energies $E_\mathrm{lep}$, because 
 the proportion of the t-channel strongly depends on this variable. 
 For low energies, it constitutes as much as 90\% of the t/s-channel.
 The results of this procedure are summarized in table BLABLABLA. 
@@ -290,6 +290,25 @@ are then rescaled by the inverse efficiency matrix, see equation~\eqref{eq:eff_i
     $\cos\mathrm{thru} $ & Spread of the jet (merely hadrons)\\
     \end{tabular}
 \end{table}
+
+
+\begin{table}[htpb]
+    \centering
+\caption{}
+\label{tab:results}
+    \begin{tabular}{l l l}
+ \rowcolor{LightCyan} & Our result & Literature value \\
+ \cellcolor{LightCyan}$\Gamma_e$ / GeV &   $ 0.084\pm0.004   $ & $0.08391 \pm 0.00012 $\\
+ \cellcolor{LightCyan}$\Gamma_\mu$ / GeV&   $ 0.084\pm0.004 $ & $0.08399 \pm 0.00018 $\\
+ \cellcolor{LightCyan}$\Gamma_\tau$ / GeV&   $ 0.084\pm0.004   $ & $0.08408 \pm 0.00022 $\\
+ \cellcolor{LightCyan}$\Gamma_h$ / GeV&   $ 1.78\pm0.90     $ & $1.7444\pm0.002      $\\
+ \cellcolor{LightCyan}$\Gamma_Z$ / GeV&   $ 2.558\pm0.020   $ & $2.4952\pm0.0023     $\\
+ \cellcolor{LightCyan}$M_Z    $ / GeV /$c^2$&   $ 91.186\pm0.008  $ & $91.187\pm0.0021     $\\
+    \end{tabular}
+\end{table}
+
+
+
 
 We continue by calculating the cross section of a particle species with $N$ counted events by applying  
 \begin{equation}
@@ -436,10 +455,11 @@ one standard deviation.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{figures/assymetry}
-    \caption{Muon asymmetry at peak. As before, the area is the error of the fit, which is in this case much larger than in
+    \caption{Muon forward-backward asymmetry at peak. As before, 
+        the area is the error of the fit, which is in this case much larger than in
     the other fits. The reason for this is the rather huge fluctuation of the data, which is not reflected in the error 
     $\sqrt{N}$, being a rather bad approximation here; this is why the $\chi^2 / \mathrm{dof}$ is much lower than one.
-    Fortunately, the error is reflected in the error of the fit and will be included in further calculations.
+    Further calculations, however, are based on the large errors induced by the fluctuations.
 }
     \label{fig:asymmetry}
 \end{figure}
