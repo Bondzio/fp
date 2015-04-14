@@ -9,6 +9,17 @@ from scipy.optimize import curve_fit
 sns.set(style='ticks', palette='Set2') 
 sns.despine()
 
+# These are the colors. Notice how this is programmed:
+# You initialize your colors by 
+# colorset = palette()
+# then you can cycle through the colors:
+# color = next(colorset)
+# if you want your set to be reset, just create
+# a new palette() instance! this way the colors do not interfere.
+
+colors = ["windows blue", "amber", "pale red", "faded green", "dusty purple"]   
+palette = lambda: itertools.cycle(sns.xkcd_palette(colors) )
+
 fontsize_labels = 26    # size used in latex document
 rcParams['text.latex.preamble'] = [r'\usepackage[cmbright]{sfmath}']
 rcParams['font.family']= 'sans-serif'
