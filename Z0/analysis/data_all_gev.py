@@ -105,18 +105,22 @@ def calc_all(data, E_now):
 
     N_all = classify(data,cut_type)
 
+    text = ""
+
     pl("Correction with respect to the cuts ",2)
     pl("with montecarlo efficiency matrix\n ",2)
     N_all_corrected = np.array(np.dot(C_eff_inv,N_all)).reshape(4)
     pl("particle numbers:",3)
 
-    return N_all_corrected / lumi[E_now] + kappa[E_now]
+    return N_all_corrected / lumi[E_now] + kappa[E_now] , text
 
 
 crosssections = {}
 
+all_text = ""
 for E_now in mean_E:
-    crosssections[E_now] = calc_all(all_data_sorted[E_now], E_now)
+    crosssections[E_now], text = calc_all(all_data_sorted[E_now], E_now)
+
 
 pickle.dump(crosssections, open("data/crosssection.p","wb"))
 
