@@ -1,0 +1,183 @@
+cut type is |sup_knn|, press any KEY to continue ...
+[95mLoading data ...[0m
+[94m  mean energy       lumi          +- stat        +- sys         +- all
+   88.47939       463.9790       2.902361       3.104100       4.249604    
+   89.46793       667.5236       3.521166       4.471900       5.691792    
+   90.22266       486.7641       3.033955       3.261500       4.454466    
+   91.22430       2246.568       6.603405       15.04780       16.43293    
+   91.96648       535.9080       3.265110       3.585300       4.849260    
+   92.96465       450.6000       3.027953       3.020000       4.276552    
+   93.71712       709.6980       3.819882       4.762000       6.104764    
+[0m
+[92mWe will now calculate everything for each energy.
+[0m
+
+ Creating new efficiency matrix
+
+ Choosing 25.0% of the data for testing...
+Now coming to the classifying...
+Removing the t channel now.
+
+34 ± 4 % of the electrons are in s channel
+
+Change from 20767 ± 144 to 6986 ± 912 electrons. 
+
+Now supervising the learner...
+
+now looking for Electrons, total: 20767
+Removing the t channel now.
+
+34 ± 4 % of the electrons are in s channel
+
+Change from 20651 ± 144 to 6958 ± 907 electrons. 
+
+
+now looking for Muons, total: 20911
+
+now looking for Tauons, total: 17543
+Removing the t channel now.
+
+42 ± 10 % of the electrons are in s channel
+
+Change from 137 ± 12 to 58 ± 14 electrons. 
+
+
+now looking for Hadrons, total: 21838
+0.996 ± 0.184 	0.000 ± 0.000 	0.003 ± 0.001 	0.000 ± 0.000 	
+0.000 ± 0.000 	0.986 ± 0.010 	0.013 ± 0.001 	0.000 ± 0.000 	
+0.015 ± 0.002 	0.013 ± 0.001 	0.973 ± 0.010 	0.004 ± 0.000 	
+0.001 ± 0.000 	0.000 ± 0.000 	0.006 ± 0.001 	0.996 ± 0.010 	
+Now we check whether the efficiency 
+ matrix does what it is supposed to do.        
+ Notice how the error gets smaller,
+ because we tracked the correlation between        
+ the efficiency matrix and the numbers.
+Uncorrected vs corrected number of Electrons
+2837 ± 493 
+2828 ± 40 
+Uncorrected vs corrected number of Muons
+2840 ± 47 
+2830 ± 40 
+Uncorrected vs corrected number of Tauons
+3054 ± 52 
+2834 ± 40 
+Uncorrected vs corrected number of Hadrons
+58569 ± 942 
+58786 ± 825 
+[95mOperating at 88.479 GeV now.
+------------
+[0m
+[92mCuts: Classifying the charged particles
+[0m
+Removing the t channel now.
+
+7 ± 8 % of the electrons are in s channel
+
+Change from 1580 ± 40 to 105 ± 121 electrons. 
+
+[92mCorrection with respect to the cuts [0m
+[92mwith montecarlo efficiency matrix
+ [0m
+[93mparticle numbers:[0m
+[95mOperating at 89.468 GeV now.
+------------
+[0m
+[92mCuts: Classifying the charged particles
+[0m
+Removing the t channel now.
+
+18 ± 6 % of the electrons are in s channel
+
+Change from 2421 ± 49 to 431 ± 153 electrons. 
+
+[92mCorrection with respect to the cuts [0m
+[92mwith montecarlo efficiency matrix
+ [0m
+[93mparticle numbers:[0m
+[95mOperating at 90.223 GeV now.
+------------
+[0m
+[92mCuts: Classifying the charged particles
+[0m
+Removing the t channel now.
+
+25 ± 6 % of the electrons are in s channel
+
+Change from 1863 ± 43 to 460 ± 106 electrons. 
+
+[92mCorrection with respect to the cuts [0m
+[92mwith montecarlo efficiency matrix
+ [0m
+[93mparticle numbers:[0m
+[95mOperating at 91.224 GeV now.
+------------
+[0m
+[92mCuts: Classifying the charged particles
+[0m
+Removing the t channel now.
+
+35 ± 4 % of the electrons are in s channel
+
+Change from 8917 ± 94 to 3130 ± 387 electrons. 
+
+[92mCorrection with respect to the cuts [0m
+[92mwith montecarlo efficiency matrix
+ [0m
+[93mparticle numbers:[0m
+[95mOperating at 91.966 GeV now.
+------------
+[0m
+[92mCuts: Classifying the charged particles
+[0m
+Removing the t channel now.
+
+32 ± 5 % of the electrons are in s channel
+
+Change from 1816 ± 43 to 589 ± 94 electrons. 
+
+[92mCorrection with respect to the cuts [0m
+[92mwith montecarlo efficiency matrix
+ [0m
+[93mparticle numbers:[0m
+[95mOperating at 92.965 GeV now.
+------------
+[0m
+[92mCuts: Classifying the charged particles
+[0m
+Removing the t channel now.
+
+23 ± 7 % of the electrons are in s channel
+
+Change from 1177 ± 34 to 268 ± 78 electrons. 
+
+[92mCorrection with respect to the cuts [0m
+[92mwith montecarlo efficiency matrix
+ [0m
+[93mparticle numbers:[0m
+[95mOperating at 93.717 GeV now.
+------------
+[0m
+[92mCuts: Classifying the charged particles
+[0m
+Removing the t channel now.
+
+18 ± 7 % of the electrons are in s channel
+
+Change from 1789 ± 42 to 327 ± 121 electrons. 
+
+[92mCorrection with respect to the cuts [0m
+[92mwith montecarlo efficiency matrix
+ [0m
+[93mparticle numbers:[0m
+[95mNow fitting the crosssections.
+------------
+[0m
+gamma_t 	 0.083+/-0.004
+gamma_m 	 0.084+/-0.004
+gamma_Z 	 2.557+/-0.020
+gamma_e 	 0.084+/-0.004
+gamma_h 	 1.77+/-0.09
+Mz       	 91.185+/-0.008
+gamma_m / gamma_e 0.99+/-0.10
+gamma_t/gamma_e 0.99+/-0.10
+Number of neutrino families 3.407+/-0.027

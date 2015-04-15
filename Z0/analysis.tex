@@ -149,7 +149,14 @@ which can be implemented easily. For details on the implementation, please refer
 In order to get an intuition about the distributions governing the different particle species with respect to the measured
 variables, we use Monte Carlo generated data. These do not come in the correct branching ratios. For the following histograms 
 as well as the analysis of our algorithm, we rescale the corresponding numbers of events to match branching ration given 
-in the literature, ~\cite{pdg}. Furthermore, our preparation with the simulated data is limited by the fact that these are 
+in the literature~\cite{pdg}
+\begin{align*}
+    \Gamma_e/\Gamma &= [3.363 \pm 0.004] \: \% ,
+    \Gamma_\mu/\Gamma = [3.366\pm 0.007] \: \% ,\\
+    \Gamma_\tau / \Gamma &= [3.370 \pm 0.008]\: \% ,
+    \Gamma_h / \Gamma = [69.91 \pm 0.06]\: \%.
+\end{align*}
+Furthermore, our preparation with the simulated data is limited by the fact that these are 
 only available for one energy each, all close to 91.2 GeV.  
 What is clearly visible in figure \ref{fig:cos_figs}, \ref{fig:monte1} and \ref{fig:monte2} is that the
 different particle species are not separable in terms of the single variables completely. This is why we use a 
@@ -206,13 +213,12 @@ Fitting this function to the real data, we can remove the s-channel easily, as s
     \label{fig:tschannel}
 \end{figure}
 \clearpage
-
 \subsubsection{Efficiency matrix}
 \label{ssub:Efficiencymatrix}
 
 The first step in classifying the real data is to assign single events to a specific decay branch in order to
 compare the different distributions. The problem is that wrong assignments will lead to wrong contributions 
-in the final cross-section. Therefore a good strategy is to test the classification algorithm with Monte Carlo data and 
+in the final cross section. Therefore a good strategy is to test the classification algorithm with Monte Carlo data and 
 quantify its efficiency. We correct the systematic error contribution of the algorithm afterwards. First we 
 divide the Monte Carlo data in a training sample (75\% of the data) and a test sample (25\% of the data) to avoid
 inconsistent testing.  At this point we tried different algorithms. The efficiency of the algorithms based on the training
@@ -263,6 +269,17 @@ a visualization of the distributions see figure \ref{fig:monte1} and \ref{fig:mo
     \cellcolor{LightCyan} Hadrons & $0.0024 \pm 0.0007$ & $0.0001 \pm 0.0001$ & $0.0056 \pm 0.0006$ & $\mathbf{0.9964 \pm 0.0096}$ \\
 \end{tabular}
 \end{table}
+\subsubsection{Algorithm}
+We will explain in short the steps of the algorithm, which can be found in detail in the appendix.
+\begin{enumerate}
+    \item Applying supervised learning to 75\% of the Monte Carlo data to create a classifier.
+    \item Classify the remaining 25 \%, removing t-channel, creating efficiency matrix.
+    \item For every run: Classify particles, remove t-channel, correct with efficiency matrix.
+    \item Calculate cross section with integrated luminosity and radiation correction. 
+    \item Fit Breit Wigner curves (all at once) to cross sections.  
+\end{enumerate}
+From the information we get until here we can calculate the remaining parameters.
+
 \clearpage
 \subsection{OPAL data}
 \label{sub:opal_data}
@@ -273,11 +290,11 @@ by the OPAL detector. The variables we use in our
 analysis are summed summed up in table~\ref{tab:vars}. To assign a particle species 
 to each event, we used to machine learning algorithm previously trained and analyzed 
 on the Monte Carlo data. The events identified as electrons then undergo the procedure 
-of removing the t-channel share, as described in section \ref{ssub:FittingTsChannel}.
+of removing the t-channel share, as described in section~\ref{ssub:FittingTsChannel}.
 The fitting is done separately for different beam energies $E_\mathrm{lep}$, because 
 the proportion of the t-channel strongly depends on this variable. 
 For low energies, it constitutes as much as 90\% of the t/s-channel.
-The results of this procedure are summarized in table BLABLABLA. 
+The results of this procedure are summarized in table~\ref{tab:table_ts}.
 Finally the obtained numbers of events in each category and for each beam energy 
 are then rescaled by the inverse efficiency matrix, see equation~\eqref{eq:eff_inverse}.
 
@@ -301,6 +318,24 @@ are then rescaled by the inverse efficiency matrix, see equation~\eqref{eq:eff_i
 
 \begin{table}[htpb]
     \centering
+    \caption{Correction of t/s channel: The second row gives the proportion of electrons in the t-channel,
+    the third row gives the total number of electrons (t/s-channel).}
+    \label{tab:table_ts}
+    \begin{tabular}{l|l|l}
+        \rowcolor{LightCyan} $\overline{\sqrt{s}}$ / GeV & Percent \% & number of electrons \\
+        $88$ & $7  \pm  8$  & $1581 \pm 40$ \\
+        $89$ & $18 \pm  6$  & $2428 \pm 49$ \\
+        $90$ & $25 \pm  6$  & $1864 \pm 43$ \\
+        $91$ & $35 \pm  4$  & $8929 \pm 94$ \\
+        $92$ & $32 \pm  5$  & $1822 \pm 43$ \\
+        $93$ & $23 \pm  7$  & $1178 \pm 34$ \\
+        $94$ & $18 \pm  7$  & $1789 \pm 42$ 
+    \end{tabular}
+\end{table}
+
+
+\begin{table}[htpb]
+    \centering
     \caption{Table of variables used in analysis}
     \label{tab:vars}
     \begin{tabular}{l|l}
@@ -314,11 +349,6 @@ are then rescaled by the inverse efficiency matrix, see equation~\eqref{eq:eff_i
     $\cos\mathrm{thru} $ & Spread of the jet (merely hadrons)\\
     \end{tabular}
 \end{table}
-
-
-
-
-
 
 We continue by calculating the cross section of a particle species with $N$ counted events by applying  
 \begin{equation}

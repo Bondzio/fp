@@ -158,7 +158,7 @@ def cut(u, key):
 
 # Remove the t-channel from t/s-channel
 def remove_t(u):
-
+    s = ""
     ## Cut the s and t channel
     N0 = uc.ufloat(len(u),np.sqrt(len(u)))
 
@@ -186,15 +186,15 @@ def remove_t(u):
             x1 = costhetamax
             al = x1 - x0 + (x1**3 - x0**3)/3
             be = 1/(x1-1) - 1/(x0-1)
-            sigma = A*al / (A*al - B*be)
-            #0.482
+            sigma = A*al / (A*al - B*be) 
             
             # Definite Integral of s 
             if sigma.n > 1 or sigma.s >1:
                 raise Exception("fit failed")
             pl("%.f ± %.f %% of the electrons are in s channel\n"%((100*sigma).n,(100*sigma).s),0)
             pl("Change from %.f ± %.f to %.f ± %.f electrons. \n"%(N0.n,N0.s,(N0*sigma).n,(N0*sigma).s),0)
-            
+
+                        
             N0 *= sigma
         except:
             pl("Removing t-channel failed. ",4)
@@ -202,6 +202,7 @@ def remove_t(u):
             x = input()
     return N0
 
+# 0.482
 # This is the main classification routine
 def classify(u, cut_type):
     # if machine learning is active, there will be sup_...
@@ -333,4 +334,3 @@ def get_c_eff(cut_type,check_true = False,remake_choice = False):
             print("%.f ± %.f "%(N_all_corrected[k].n,N_all_corrected[k].s))
 
     return C_eff
-
