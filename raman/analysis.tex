@@ -255,7 +255,7 @@ The course of the calibration goes analogously with the previous one. The result
 \ref{fig:ccd_calibration_hg}. The measurement time was 5 $\mu$s, we averaged 1000 measurements. 
 The fit results and their literature counterparts are shown in table \ref{tab:mono_calibration}.  
 For a more thorough analysis, we apply a linear regression on the measured peaks. The result is shown in 
-figure \ref{fig:calibration_fit}. Quite visibly, the calibration of the CCD spectrometer is correct. 
+figure \ref{fig:ccd_calibration_fit}. Quite visibly, the calibration of the CCD spectrometer is correct. 
 In the following sections, we will apply the linear function to the wavelength at the center of each peak before. 
 This will also result in an error on the wavelength: In the range in question (400 to 600 nm), this error is 
 0.3 to 0.5 nm. 
@@ -300,7 +300,7 @@ measurements. In figure \ref{fig:ccd_correction} we display a correction factor 
 measurements. We take the measurement at $45^\circ$ as a reference value and rescale the measurements with
 vertical and horizontal polarization to this value at each wavelength $\lambda$. In order to minimize the 
 effects of noise, we applied a Savitzky-Golay filter with a width of 301 points and a fourth degree polynomial
-to the data (see \cite{numpy} for reference). This filtered correction factor is applied one the data in the 
+to the data (see \cite{scipy} for reference). This filtered correction factor is applied on the data in the 
 upcoming analysis. 
 
 \begin{figure}[htpb]
@@ -374,7 +374,7 @@ substance within the sample inducing this Raman peak. There could further be oth
 (unlikely) missing data in our source. 
 
 The chloroform measurement without $\lambda / 2$ plate yielded a number of visible peaks: One can observe 
-four Stokes peaks and three Anti-Stokes peaks, refer to figure \ref{fig:chcl3_spectra}. This is expected
+four Stokes peaks and three Anti-Stokes peaks, refer to figure \ref{fig:ccd_chcl3_spectra}. This is expected
 as the molecule has more degrees of freedom than the linear CS$_2$ molecule. Fit results and literature 
 values are shown in table \ref{tab:ccd_chcl3_peaks}. The peaks at 366 and 1220 $\text{ cm}^{-1} $ are
 found within the standard deviation, the peaks at 680 and 774 are either met or measured with a lower wavenumber
@@ -445,7 +445,7 @@ would require a closer investigation of the used equipment.
 The spectrum of carbon tetrachloride is analyzed more thoroughly in order to measure its depolarization. We used 
 the notch filter and the $\lambda / 2$ plate. The laser current was left at 1.50 A. The polarization filter was 
 used in two perpendicular positions, vertical and horizontal. Measurement time was set to 20 s, averaging over 
-ten measurements. The resulting plot is shown in figure \ref{fig:ccl4_spectra} for both polarizations, fit results 
+ten measurements. The resulting plot is shown in figure \ref{fig:ccd_ccl4_spectra} for both polarizations, fit results 
 and peaks are listed in table \ref{tab:ccl4_peaks}. The first three Stokes and all Anti-Stokes peaks can be 
 identified with the literature values within standard deviations. The fourth measured peak does not appear 
 in the literature and may be due to other substances. Further, another lower peak with wavenumber 217
@@ -627,7 +627,6 @@ averaged, yielding a concentration of $(75.7 \pm 1.0)$\%.
         }
     \label{fig:ccd_ethanol_intensity}
 \end{figure}
-
 
 \subsubsection{Temperature of sulfur sample}
 The final analysis uses the dependency of relative peak intensity on the temperature as stated

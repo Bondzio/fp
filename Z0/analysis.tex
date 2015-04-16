@@ -116,7 +116,7 @@ We rely on non-parametric statistics because we do not know the probability dist
 in the variables for the different particle species.
 The number of parameters used in non-parametric techniques depends on the applied training set. 
 This is unlike in parametric methods, where this number is fixed. This is often successful when the boundary is rather irregular.} 
-which can be implemented easily. For details on the implementation, please refer to the appendix~\ref{sub:cut.py}.
+which can be implemented easily. For details on the implementation, please refer to the appendix.
 \begin{SCfigure}
     \centering
     \caption{The \textbf{k-nearest neighbors algorithm} works as follows: 
@@ -270,6 +270,7 @@ a visualization of the distributions see figure \ref{fig:monte1} and \ref{fig:mo
 \end{tabular}
 \end{table}
 \subsubsection{Algorithm}
+\label{sec:algo}
 We will explain in short the steps of the algorithm, which can be found in detail in the appendix.
 \begin{enumerate}
     \item Applying supervised learning to 75\% of the Monte Carlo data to create a classifier.
@@ -278,7 +279,16 @@ We will explain in short the steps of the algorithm, which can be found in detai
     \item Calculate cross section with integrated luminosity and radiation correction. 
     \item Fit Breit Wigner curves (all at once) to cross sections.  
 \end{enumerate}
-From the information we get until here we can calculate the remaining parameters.
+From the information we get until here we can calculate the remaining parameters, see figure~\ref{fig:algorithm} for 
+a schematic flowchart of the behavior of the algorithm.
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{figures/algorithm}
+    \caption{This figure shows a schematic flowchart of the algorithm. For details, please refer to section~\ref{sec:algo} or
+    to the appendix with the source code.}
+\label{fig:algorithm}
+\end{figure}
+
 
 \clearpage
 \subsection{OPAL data}
