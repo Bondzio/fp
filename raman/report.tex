@@ -78,6 +78,10 @@ backend = biber
 \usepackage{sectsty} % Allows customizing section commands
 \usepackage{hyperref}
 
+%\usepackage[pass,showframe]{geometry} % just to show the margins
+%\usepackage{booktabs}
+\usepackage{minted} % needs '-shell-escape' to compile
+
 \hypersetup{
      colorlinks   = true,
      citecolor    = gray,
@@ -157,4 +161,7 @@ backend = biber
 \printbibliography[heading=subbibintoc]
 \clearpage
 
+\clearpage 
+\input{appendix_sourcecode}
 \end{document}
+

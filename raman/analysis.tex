@@ -72,9 +72,10 @@ variables: If $x_i, x_j$ have the units $[x_i], [x_j]$, respectively,
 then the entry of the covariance matrix has the unit $[x_i] \cdot [x_j]$. \\
 \paragraph{\textbf{Important note:}}
 \label{par:important note}
-We will neither give the correlation matrix nor the $\chi^2/\mathrm{dof}$ in the analysis and also
-not comment on them here, because it is strictly speaking not necessary and out of the scope of the data,
-since no further equations involving the correlated parameters are used. 
+We will neither give the correlation matrix nor the $\chi^2/\mathrm{dof}$ in the analysis, 
+because we don't consider this information crucial to our calculations. The correlated parameters will
+not be combined in any of the following calculations and standard deviations are stated for all
+calculated quantities. 
 
 
 
@@ -494,7 +495,8 @@ would require a closer investigation of the used equipment.
     \includegraphics[width=0.8\linewidth]{analysis/figures/ccd_chcl3_spectra}
     \caption{
         Spectrum of chloroform measured with CCD and $\lambda / 2$ plate. We fitted four Stokes and 
-        three Anti-Stokes peaks.
+        three Anti-Stokes peaks, fit results are plotted as dotted lines for illustration. The Anti-Stokes 
+        peak at 511.4 nm is not visible on this scale. 
     }
     \label{fig:ccd_chcl3_spectra}
 \end{figure}
