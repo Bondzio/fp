@@ -48,12 +48,9 @@ backend = biber
 \usepackage{wrapfig}
 \usepackage{color, colortbl}  
 
-% we need this for sourcecode
-%\usepackage{minted}
-
 %\usepackage[pass,showframe]{geometry} % just to show the margins
 %\usepackage{booktabs}
-%\usepackage{minted}
+\usepackage{minted} % needs '-shell-escape' to compile
 
 % Bibliographie auf deutsch
 %\usepackage{harvard}
@@ -175,7 +172,7 @@ backend = biber
 \newpage
 \input{conclusion}
 \clearpage
-%\input{appendix_sourcecode.tex}
+\input{appendix_sourcecode.tex}
 
 \clearpage
 \section{Bibliography}

@@ -99,7 +99,7 @@ distribution), we can at least find a upper boundary in terms of wavelength. In 
 in the experiment to emit radiation following the intensity distribution of black-body radiation. We then compare this 
 characteristic distribution with the intensity measured with the white light as the only light source. The measured counts 
 at each wavelength are displayed in figure \ref{fig:mono_bound}. One clearly observes a drop in count numbers for 
-wavelength above 690 nm. The drop is not abrupt but follows an exponential decay. 
+wavelength above 590 nm. The drop is not abrupt but follows an exponential decay. 
 However, without further quantifying the effect, one should not work with data in this regime when concerned about 
 intensity. 
 
@@ -159,7 +159,7 @@ vibrational mode.%
 \end{figure}
 
 
-For chloroform (CHCL$_3$) we applied 1000 V to the photomultiplier and sampled with 0.1~\AA/s. The result can be seen in 
+For chloroform (CHCl$_3$) we applied 1000 V to the photomultiplier and sampled with 0.1~\AA/s. The result can be seen in 
 figure \ref{fig:mono_chcl3}. Three Stokes peaks are found. Their wavelength and -numbers as well as literature values are 
 displayed in table \ref{tab:mono_chcl3}. Especially for the first two peaks, the agreement with the literature is good. 
 The last peak is off by more than one standard deviation which shows the strong limitations on our data. Since the 
@@ -177,7 +177,7 @@ direction either.
 \begin{table}[htpb]
     \centering
     \caption{
-        Stokes peaks for chloroform. 
+        Stokes peaks for chloroform (CHCl$_3$). 
         }
     \label{tab:mono_chcl3}
     \begin{tabular}{l r r r}
@@ -209,14 +209,16 @@ All four peaks cover the literature values within their error.
 \begin{table}[htpb]
     \centering
     \caption{
-        3 Stokes and one Anti-Stokes peak for carbon tetrachloride. 
+        Identified Raman peaks for carbon tetrachloride (CCl$_4$). 
         }
     \label{tab:mono_ccl4}
     \begin{tabular}{l r r r}
         \rowcolor{LightCyan} Peak N$^o$ & $\lambda \, / \, \text{nm}$ &
         $\Delta \nu \, / \, \text{ cm}^{-1}$ & 
         $\Delta \nu_\text{lit} \, / \, \text{ cm}^{-1}$ \\
+        \cellcolor{LightCyan}Anti-Stokes& && \\
         \cellcolor{LightCyan}$1$ & $525.9 \pm 0.2$ & $222 \pm 12$ & $217$   \\
+        \cellcolor{LightCyan}Stokes& && \\
         \cellcolor{LightCyan}$2$ & $538.2 \pm 0.2$ & $212 \pm 12$ & $217$   \\
         \cellcolor{LightCyan}$3$ & $541.0 \pm 0.2$ & $309 \pm 11$ & $314$   \\
         \cellcolor{LightCyan}$4$ & $545.5 \pm 0.2$ & $461 \pm 11$ & $459$ 
@@ -321,20 +323,20 @@ upcoming analysis.
     \label{fig:ccd_correction}
 \end{figure}
 
-\subsubsection{Analysis of Laser}
+\subsubsection{Analysis of laser}
 The laser was not analyzed directly since its intensity is too high for the sensitive devices used. Instead we 
 analyzed the Rayleigh peak with carbon tetrachloride as a sample. The measurement for 5$\mu$s was averaged 1000
 times, results can be observed in figure \ref{fig:ccd_laser_peak}. The data is fitted on a scaled gaussian with 
-offset yielding a central value of $\lambda_0 = 532.1 \pm 0.3$. 
-\section{WHAT IS THE LASER WAVELENGTH??? 532.1 ???}
+offset yielding a central value of $\lambda_0 = 532.1 \pm 0.3$. This is in good agreement with the declaration 
+of the manufacturer, stating a wavelength of 532 nm. 
 
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\linewidth]{analysis/figures/ccd_laser_peak}
-    \caption{Measurement of Laser peak. The data corresponds to the Rayleigh peak of the frequency doubled Nd:YAG 
+    \caption{Measurement of laser peak. The data corresponds to the Rayleigh peak of the frequency doubled Nd:YAG 
     laser with CCl$_4$ as the scattering sample. The fit is a gaussian, yielding a central wavelength of 
-    $\lambda_0 = 532.1 \pm 0.3$ in good accordance with the given value. }
+$\lambda_0 = (532.1 \pm 0.3)$ nm in good accordance with the given value. }
     \label{fig:ccd_laser_peak}
 \end{figure}
 
@@ -384,7 +386,7 @@ would require a closer investigation of the used equipment.
 \begin{table}[htpb]
     \centering
     \caption{
-        Table of measured Raman peaks with CS$_2$ sample. The values two measurements are averaged. 
+        Measured Raman peaks with CS$_2$ sample. The values two measurements are averaged. 
         Note that one peak does not have a literature counterpart. This peak might be due to another 
         substance. 
         }
@@ -393,9 +395,11 @@ would require a closer investigation of the used equipment.
         \rowcolor{LightCyan} Peak N$^o$ & $\lambda \, / \, \text{nm}$ &
         $\Delta \nu \, / \, \text{ cm}^{-1}$ & 
         $\Delta \nu_\text{lit} \, / \, \text{ cm}^{-1}$ \\
-        \cellcolor{LightCyan}$1$ & $551.3 \pm 0.3$ & $653 \pm 13$ & $658$   \\
-        \cellcolor{LightCyan}$2$ & $555.7 \pm 0.3$ & $799 \pm 13$ & $?$   \\
-        \cellcolor{LightCyan}$3$ & $514.3 \pm 0.3$ & $652 \pm 14$ & $658$   
+        \cellcolor{LightCyan}Anti-Stokes &&& \\
+        \cellcolor{LightCyan}$1$ & $514.256 \pm 0.003$ & $652 \pm 11$ & $658$   \\
+        \cellcolor{LightCyan}Stokes &&& \\
+        \cellcolor{LightCyan}$2$ & $551.232 \pm 0.002$ & $652 \pm 11$ & $658$   \\
+        \cellcolor{LightCyan}$3$ & $555.716 \pm 0.003$ & $799 \pm 11$ & $?$  
     \end{tabular}
 \end{table}
 
@@ -421,13 +425,15 @@ would require a closer investigation of the used equipment.
         \rowcolor{LightCyan} Peak N$^o$ & $\lambda \, / \, \text{nm}$ &
         $\Delta \nu \, / \, \text{ cm}^{-1}$ & 
         $\Delta \nu_\text{lit} \, / \, \text{ cm}^{-1}$ \\
-        \cellcolor{LightCyan}$1$ & $542.7 \pm 0.3$ & $365 \pm 13$ & $366$   \\
-        \cellcolor{LightCyan}$2$ & $551.7 \pm 0.3$ & $667 \pm 13$ & $680$   \\
-        \cellcolor{LightCyan}$3$ & $554.5 \pm 0.3$ & $758 \pm 13$ & $774$   \\
-        \cellcolor{LightCyan}$4$ & $568.9 \pm 0.3$ & $1215 \pm 13$ & $1220$   \\
-        \cellcolor{LightCyan}$5$ & $522.0 \pm 0.3$ & $365 \pm 13$ & $365$   \\
-        \cellcolor{LightCyan}$6$ & $513.8 \pm 0.3$ & $668 \pm 14$ & $680$   \\
-        \cellcolor{LightCyan}$7$ & $511.4 \pm 0.3$ & $760 \pm 14$ & $774$   
+        \cellcolor{LightCyan}Anti-Stokes &&& \\
+        \cellcolor{LightCyan}$1$ & $511.4 \pm 0.8$ & $760 \pm 30$ & $774$   \\
+        \cellcolor{LightCyan}$2$ & $513.8 \pm 0.3$ & $670 \pm 20$ & $680$   \\
+        \cellcolor{LightCyan}$3$ & $522.0 \pm 0.4$ & $370 \pm 20$ & $366$   \\
+        \cellcolor{LightCyan}Stokes &&& \\
+        \cellcolor{LightCyan}$4$ & $542.6 \pm 0.3$ & $365 \pm 15$ & $366$   \\
+        \cellcolor{LightCyan}$5$ & $551.7 \pm 0.3$ & $667 \pm 15$ & $680$   \\
+        \cellcolor{LightCyan}$6$ & $554.5 \pm 0.7$ & $760 \pm 20$ & $774$   \\
+        \cellcolor{LightCyan}$7$ & $568.9 \pm 0.5$ & $1210 \pm 20$ & $1220$   
     \end{tabular}
 \end{table}
 
@@ -485,13 +491,15 @@ In order to assess these possible systematic errors, a more detailed analysis wo
         \rowcolor{LightCyan} Peak N$^o$ & $\lambda \, / \, \text{nm}$ &
         $\Delta \nu \, / \, \text{ cm}^{-1}$ & 
         $\Delta \nu_\text{lit} \, / \, \text{ cm}^{-1}$ \\
-        \cellcolor{LightCyan}$1$ & $541.2 \pm 0.4$ & $320 \pm 20$ & $314$   \\
-        \cellcolor{LightCyan}$2$ & $545.4 \pm 0.4$ & $460 \pm 20$ & $459$   \\
-        \cellcolor{LightCyan}$3$ & $555.0 \pm 0.7$ & $780 \pm 20$ & $776$   \\
-        \cellcolor{LightCyan}$4$ & $579.4 \pm 0.9$ & $1530 \pm 30$ & $?$   \\
-        \cellcolor{LightCyan}$5$ & $523.4 \pm 0.4$ & $310 \pm 20$ & $314$   \\
-        \cellcolor{LightCyan}$6$ & $519.5 \pm 0.4$ & $460 \pm 20$ & $459$   \\
-        \cellcolor{LightCyan}$7$ & $511.2 \pm 0.6$ & $770 \pm 20$ & $776$   
+        \cellcolor{LightCyan}Anti-Stokes &&& \\
+        \cellcolor{LightCyan}$1$ & $511.2 \pm 0.5$ & $770 \pm 20$ & $776$   \\
+        \cellcolor{LightCyan}$2$ & $519.5 \pm 0.3$ & $460 \pm 20$ & $459$   \\
+        \cellcolor{LightCyan}$3$ & $523.4 \pm 0.3$ & $312 \pm 15$ & $314$   \\
+        \cellcolor{LightCyan}Anti-Stokes &&& \\
+        \cellcolor{LightCyan}$4$ & $541.2 \pm 0.3$ & $315 \pm 14$ & $314$   \\
+        \cellcolor{LightCyan}$5$ & $545.4 \pm 0.3$ & $459 \pm 14$ & $459$   \\
+        \cellcolor{LightCyan}$6$ & $555.0 \pm 0.6$ & $780 \pm 20$ & $776$   \\
+        \cellcolor{LightCyan}$7$ & $579.4 \pm 0.9$ & $1530 \pm 30$ & $?$   
     \end{tabular}
 \end{table}
 
@@ -520,14 +528,14 @@ In order to assess these possible systematic errors, a more detailed analysis wo
         $I_\parallel \, / \, \frac{\text{counts}}{\text{s}}$ &
         $\rho_s$  &
         $\rho_\text{lit}$\\
-        \cellcolor{LightCyan}Stokes& &&&& \\
-        \cellcolor{LightCyan}$1$ & $314$ & $896.6 \pm 1.4$ & $1040.5 \pm 1.3$ & $0.862 \pm 0.002$ & $0.71$ \\
-        \cellcolor{LightCyan}$2$ & $459$ & $790.4 \pm 1.2$ & $2760.5 \pm 1.2$ & $0.2863 \pm 0.0005$ & $0.03$ \\
-        \cellcolor{LightCyan}$3$ & $776$ & $752 \pm 2$ & $787 \pm 2$ & $0.956 \pm 0.003$ & $0.76$ \\
-        \cellcolor{LightCyan}Anti-Stokes& &&&& \\
-        \cellcolor{LightCyan}$5$ & $314$ & $290.8 \pm 1.3$ & $335.5 \pm 1.2$ & $0.867 \pm 0.005$ & $0.71$ \\
-        \cellcolor{LightCyan}$6$ & $459$ & $123.2 \pm 1.3$ & $429.9 \pm 1.2$ & $0.287 \pm 0.003$ & $0.03$ \\
-        \cellcolor{LightCyan}$7$ & $776$ & $24 \pm 2$ & $27 \pm 2$ & $0.89 \pm 0.09$ & $0.76$  
+        \cellcolor{LightCyan}Anti-Stokes &&&&& \\
+        \cellcolor{LightCyan}$1$ & $776$ & $24 \pm 2$ & $27 \pm 2$ & $0.89 \pm 0.09$ & $0.76$ \\
+        \cellcolor{LightCyan}$2$ & $459$ & $123.2 \pm 1.3$ & $429.9 \pm 1.2$ & $0.287 \pm 0.003$ & $0.03$ \\
+        \cellcolor{LightCyan}$3$ & $314$ & $290.8 \pm 1.3$ & $335.5 \pm 1.2$ & $0.867 \pm 0.005$ & $0.71$ \\
+        \cellcolor{LightCyan}Stokes &&&&& \\
+        \cellcolor{LightCyan}$4$ & $314$ & $896.6 \pm 1.4$ & $1040.5 \pm 1.3$ & $0.862 \pm 0.002$ & $0.71$ \\
+        \cellcolor{LightCyan}$5$ & $459$ & $790.4 \pm 1.2$ & $2760.5 \pm 1.2$ & $0.286 \pm 0.001$ & $0.03$ \\
+        \cellcolor{LightCyan}$6$ & $776$ & $752 \pm 2$ & $787 \pm 2$ & $0.956 \pm 0.003$ & $0.76$ 
     \end{tabular}
 \end{table}
 
@@ -535,7 +543,7 @@ In order to assess these possible systematic errors, a more detailed analysis wo
 \subsubsection{Determining ethanol concentration}
 The calculation of the ethanol requires a somewhat more sophisticated treatment of the data. 
 The measurements were done with notch filter, $\lambda / 2$ plate and 1.50 A laser current, 
-each one for 30 s averaged over ten times. The original data, cleaned from defects, is shown 
+each one for 30 s averaged over ten times. The original data, cleared of defects, is shown 
 in figure \ref{fig:ccd_ethanol_spectra}. Additionally to five Stokes peaks, one can also observe 
 a broad underlying intensity distribution due to fluorescence. In order to fit the peaks and get 
 their intensities, this distribution has to be subtracted. We used an algorithm that fitted a 
@@ -556,8 +564,19 @@ since both variables have errors. The result for all five peaks is shown in figu
 More importantly, the intersects with the corresponding peak intensities of the unknown mixture 
 are all in roughly the same range. The points where linear fits and measured intensities of the original 
 probe match are plotted and further listed in table \ref{tab:ccd_ethanol_peaks}. The are finally 
-averaged, yielding a concentration of $(75.7 \pm 1.0)$\%.  
-
+averaged, yielding a concentration of $(76 \pm 4)$\%. The error is estimated by the standard deviation of 
+the intersects. The calculated error on each intersect turns out to be smaller than the actual deviation.
+One reason is that this error ignores possible effects of systematic errors. It is further possible that 
+the errors on ethanol concentration have been estimated too optimistically.
+We note that the features of the original 
+probe vary with respect to our prepared mixtures: While the fluorescence spectrum at 550 nm is comparable 
+to the one of the 30 \% mixture, it remains much higher for larger wavelength (intersects the 60 \% mixture 
+at 620 nm). Yet more striking, the Raman peaks are much higher than those of the 30 \% mixture, being of the 
+same order as those of the 70 \% mixture. In our analysis, we will only use the Raman peaks and neglect the 
+fluorescence part. It is not clear what the origin of these features are. We suspect effects of aging or a
+contamination of the original probe. The quantitative influences are unknown and remain a mayor source of 
+uncertainty. 
+ 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\linewidth]{analysis/figures/ccd_ethanol_spectra}
@@ -565,8 +584,7 @@ averaged, yielding a concentration of $(75.7 \pm 1.0)$\%.
         Spectra of ethanol-water mix measured with the CCD spectrometer. Concentrations 
         indicate the percentage of ethanol in the mixture. The original sample has an unknown
         concentrations. Note that the fluorescence part of the original sample is much 
-        lower than the Raman peaks, indicating a difference either in the substances or
-        induced by the time.
+        lower than its Raman peaks when compared to the prepared samples. 
         }
     \label{fig:ccd_ethanol_spectra}
 \end{figure}
@@ -656,7 +674,7 @@ Our result is
 \begin{equation}
     T = (29 \pm 8) ^\circ C \, .
 \end{equation}
-Since room temperature was measured with $(20.3 \pm 0.3) ^\circ C$, this is somewhat too high. 
+Since room temperature was measured with $T_\text{room} = (20.3 \pm 0.3) ^\circ C$, this is too high. 
 One could argue that the temperature of the sample rose due to the incident laser radiation. 
 We are, however, rather skeptical towards this position and highlight the various possible 
 systematic errors which could induce the observed higher temperature. 
@@ -665,6 +683,19 @@ by hand at an arbitrary angle, as long as Bragg reflection would not enter the B
 (i.~e. not at 45$^\circ$). We chose an angle such that Bragg reflection occurred at about 
 $60^\circ$. In any case, the failure of this 
 measurement has been reported various times before (see e.~g. \cite{wiss}). 
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{analysis/figures/ccd_sulfur_spectra}
+    \caption{
+        Raman spectra of the sulfur sample measured with the CCD spectrometer for different 
+        laser currents (values shown in the legend in Ampere). The notch filter's 
+        effect is plotted for convenience. One can observe a strong dependence of peak intensity 
+        on the applied laser current. The intensity ratio, however, is expected to be independent 
+        thereof. 
+        }
+    \label{fig:ccd_sulfur_spectra}
+\end{figure}
 
 
 \begin{table}[htpb]
@@ -678,15 +709,15 @@ measurement has been reported various times before (see e.~g. \cite{wiss}).
         $I_\text{Stokes} \, / \, \frac{\text{counts}}{\text{s}}$ &
         $I_\text{Anti-Stokes} \, / \, \frac{\text{counts}}{\text{s}}$ &
         $\frac{I_\text{Anti-Stokes}}{I_\text{Stokes}}$ \\
-        \cellcolor{LightCyan}$0.70$ A & $7462 \pm 6$ & $1096 \pm 5$ & $(146.8 \pm 0.6)\mathrm{e}-3$   \\
-        \cellcolor{LightCyan}$0.80$ A & $15187 \pm 7$ & $2004 \pm 4$ & $(132.0 \pm 0.3)\mathrm{e}-3$   \\
-        \cellcolor{LightCyan}$0.90$ A & $22940 \pm 8$ & $2952 \pm 4$ & $(128.7 \pm 0.2)\mathrm{e}-3$   \\
-        \cellcolor{LightCyan}$1.00$ A & $30256 \pm 8$ & $3834 \pm 4$ & $(126.7 \pm 0.2)\mathrm{e}-3$   \\
-        \cellcolor{LightCyan}$1.10$ A & $22607 \pm 7$ & $2866 \pm 5$ & $(126.8 \pm 0.2)\mathrm{e}-3$   \\
-        \cellcolor{LightCyan}$1.20$ A & $28225 \pm 8$ & $3552 \pm 5$ & $(125.9 \pm 0.2)\mathrm{e}-3$   \\
-        \cellcolor{LightCyan}$1.30$ A & $31637 \pm 8$ & $3939 \pm 5$ & $(124.5 \pm 0.2)\mathrm{e}-3$   \\
-        \cellcolor{LightCyan}$1.40$ A & $62397 \pm 9$ & $7582 \pm 5$ & $(121.5 \pm 0.1)\mathrm{e}-3$   \\
-        \cellcolor{LightCyan}$1.50$ A & $77655 \pm 10$ & $9649 \pm 5$ & $(124.2 \pm 0.1)\mathrm{e}-3$   
+        \cellcolor{LightCyan}$0.70$ A & $7462 \pm 6$ & $1096 \pm 5$ & $0.1468 \pm 0.0006$   \\
+        \cellcolor{LightCyan}$0.80$ A & $15187 \pm 7$ & $2004 \pm 4$ & $0.1320 \pm 0.0003$   \\
+        \cellcolor{LightCyan}$0.90$ A & $22940 \pm 8$ & $2952 \pm 4$ & $0.1287 \pm 0.0002$   \\
+        \cellcolor{LightCyan}$1.00$ A & $30256 \pm 8$ & $3834 \pm 4$ & $0.1267 \pm 0.0002$   \\
+        \cellcolor{LightCyan}$1.10$ A & $22607 \pm 7$ & $2866 \pm 5$ & $0.1268 \pm 0.0002$   \\
+        \cellcolor{LightCyan}$1.20$ A & $28225 \pm 8$ & $3552 \pm 5$ & $0.1259 \pm 0.0002$   \\
+        \cellcolor{LightCyan}$1.30$ A & $31637 \pm 8$ & $3939 \pm 5$ & $0.1245 \pm 0.0002$   \\
+        \cellcolor{LightCyan}$1.40$ A & $62397 \pm 9$ & $7582 \pm 5$ & $0.12151 \pm 0.00008$   \\
+        \cellcolor{LightCyan}$1.50$ A & $77655 \pm 10$ & $9649 \pm 5$ & $0.12425 \pm 0.00007$   
     \end{tabular}
 \end{table}
 
