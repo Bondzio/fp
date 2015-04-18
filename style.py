@@ -1,4 +1,3 @@
-import numpy as np
 import matplotlib.pyplot as plt
 %matplotlib inline
 from matplotlib.colors import colorConverter
@@ -15,10 +14,13 @@ sns.despine()
 # then you can cycle through the colors:
 # color = next(colorset)
 # if you want your set to be reset, just create
-# a new palette() instance! this way the colors do not interfere.
+# a new palette() instance! This way the colors do not interfere.
 
-colors = ["windows blue", "amber", "pale red", "faded green", "dusty purple"]   
-palette = lambda: itertools.cycle(sns.xkcd_palette(colors) )
+color_names = ['windows blue', "pale red", "faded green", "amber", 
+          'dark green', 'dark fuchsia', 'browny orange', 
+          'puke green', 'dark royal blue', 'dusty purple', 'red orange']
+colors = sns.xkcd_palette(color_names)
+palette = lambda: itertools.cycle(sns.xkcd_palette(color_names) )
 
 fontsize_labels = 26    # size used in latex document
 rcParams['text.latex.preamble'] = [r'\usepackage[cmbright]{sfmath}']
@@ -37,3 +39,9 @@ rcParams['legend.fontsize'] = fontsize_labels
 rcParams['axes.titlesize'] = fontsize_labels
 xfactor = 2
 rcParams['figure.figsize'] = (xfactor*6.2, xfactor*3.83)  
+
+save_fig = True
+if not save_fig:
+        rcParams['figure.figsize'] = (13, 8) 
+fig_dir = "./figures/"  # directory of figures
+
