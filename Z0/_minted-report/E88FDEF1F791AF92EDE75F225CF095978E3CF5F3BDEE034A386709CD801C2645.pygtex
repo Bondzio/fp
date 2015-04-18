@@ -1,0 +1,170 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{c}{\PYGdefaultZsh{} coding: utf\PYGdefaultZhy{}8}
+
+\PYGdefault{k+kn}{import} \PYGdefault{n+nn}{numpy} \PYGdefault{k+kn}{as} \PYGdefault{n+nn}{np}
+\PYGdefault{k+kn}{import} \PYGdefault{n+nn}{pickle}
+\PYGdefault{k+kn}{import} \PYGdefault{n+nn}{os.path}
+\PYGdefault{k+kn}{import} \PYGdefault{n+nn}{sys}
+
+\PYGdefault{c}{\PYGdefaultZsh{} This is for inverting the matrix}
+\PYGdefault{k+kn}{from} \PYGdefault{n+nn}{numpy.linalg} \PYGdefault{k+kn}{import} \PYGdefault{n}{inv} \PYGdefault{k}{as} \PYGdefault{n}{inverse}
+
+
+
+\PYGdefault{c}{\PYGdefaultZsh{} Fitting least squares}
+\PYGdefault{k+kn}{from} \PYGdefault{n+nn}{scipy.optimize} \PYGdefault{k+kn}{import} \PYGdefault{n}{curve\PYGdefaultZus{}fit}
+\PYGdefault{k+kn}{from} \PYGdefault{n+nn}{scipy.optimize} \PYGdefault{k+kn}{import} \PYGdefault{n}{leastsq}
+
+\PYGdefault{c}{\PYGdefaultZsh{} uncertainty library}
+\PYGdefault{k+kn}{import} \PYGdefault{n+nn}{uncertainties} \PYGdefault{k+kn}{as} \PYGdefault{n+nn}{uc}
+\PYGdefault{k+kn}{import} \PYGdefault{n+nn}{uncertainties.unumpy} \PYGdefault{k+kn}{as} \PYGdefault{n+nn}{un}
+
+\PYGdefault{c}{\PYGdefaultZsh{} Our cutting package}
+\PYGdefault{k+kn}{from} \PYGdefault{n+nn}{cut} \PYGdefault{k+kn}{import} \PYGdefault{n}{get\PYGdefaultZus{}c\PYGdefaultZus{}eff}
+\PYGdefault{k+kn}{from} \PYGdefault{n+nn}{cut} \PYGdefault{k+kn}{import} \PYGdefault{n}{classify}
+
+\PYGdefault{n}{chars} \PYGdefault{o}{=} \PYGdefault{p}{[}\PYGdefault{l+s}{\PYGdefaultZdq{}Electrons\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{l+s}{\PYGdefaultZdq{}Muons\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{l+s}{\PYGdefaultZdq{}Tauons\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{l+s}{\PYGdefaultZdq{}Hadrons\PYGdefaultZdq{}}\PYGdefault{p}{]}
+
+\PYGdefault{c}{\PYGdefaultZsh{} Here we can insert the cut type in the shell}
+\PYGdefault{k}{if} \PYGdefault{n+nb}{len}\PYGdefault{p}{(}\PYGdefault{n}{sys}\PYGdefault{o}{.}\PYGdefault{n}{argv}\PYGdefault{p}{)} \PYGdefault{o}{==} \PYGdefault{l+m+mi}{2}\PYGdefault{p}{:}
+    \PYGdefault{n}{cut\PYGdefaultZus{}type} \PYGdefault{o}{=} \PYGdefault{n}{sys}\PYGdefault{o}{.}\PYGdefault{n}{argv}\PYGdefault{p}{[}\PYGdefault{l+m+mi}{1}\PYGdefault{p}{]}
+    \PYGdefault{k}{print}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}cut type is |}\PYGdefault{l+s+si}{\PYGdefaultZpc{}s}\PYGdefault{l+s}{|, press any KEY to continue ...\PYGdefaultZdq{}}\PYGdefault{o}{\PYGdefaultZpc{}}\PYGdefault{n}{cut\PYGdefaultZus{}type}\PYGdefault{p}{)}
+    \PYGdefault{n}{x} \PYGdefault{o}{=} \PYGdefault{n+nb}{input}\PYGdefault{p}{()}
+\PYGdefault{k}{else}\PYGdefault{p}{:}
+    \PYGdefault{n}{cut\PYGdefaultZus{}type} \PYGdefault{o}{=} \PYGdefault{l+s}{\PYGdefaultZdq{}simple\PYGdefaultZdq{}}
+
+\PYGdefault{c}{\PYGdefaultZsh{} nice colors in the shell }
+\PYGdefault{n}{bcolors} \PYGdefault{o}{=} \PYGdefault{p}{[}
+    \PYGdefault{l+s}{\PYGdefaultZsq{}}\PYGdefault{l+s+se}{\PYGdefaultZbs{}033}\PYGdefault{l+s}{[95m\PYGdefaultZsq{}}\PYGdefault{p}{,}
+    \PYGdefault{l+s}{\PYGdefaultZsq{}}\PYGdefault{l+s+se}{\PYGdefaultZbs{}033}\PYGdefault{l+s}{[94m\PYGdefaultZsq{}}\PYGdefault{p}{,}
+    \PYGdefault{l+s}{\PYGdefaultZsq{}}\PYGdefault{l+s+se}{\PYGdefaultZbs{}033}\PYGdefault{l+s}{[92m\PYGdefaultZsq{}}\PYGdefault{p}{,}
+    \PYGdefault{l+s}{\PYGdefaultZsq{}}\PYGdefault{l+s+se}{\PYGdefaultZbs{}033}\PYGdefault{l+s}{[93m\PYGdefaultZsq{}}\PYGdefault{p}{,}
+    \PYGdefault{l+s}{\PYGdefaultZsq{}}\PYGdefault{l+s+se}{\PYGdefaultZbs{}033}\PYGdefault{l+s}{[91m\PYGdefaultZsq{}}\PYGdefault{p}{,}
+    \PYGdefault{l+s}{\PYGdefaultZsq{}}\PYGdefault{l+s+se}{\PYGdefaultZbs{}033}\PYGdefault{l+s}{[1m\PYGdefaultZsq{}}\PYGdefault{p}{,}
+    \PYGdefault{l+s}{\PYGdefaultZsq{}}\PYGdefault{l+s+se}{\PYGdefaultZbs{}033}\PYGdefault{l+s}{[4m\PYGdefaultZsq{}}\PYGdefault{p}{,}
+    \PYGdefault{l+s}{\PYGdefaultZsq{}}\PYGdefault{l+s+se}{\PYGdefaultZbs{}033}\PYGdefault{l+s}{[0m\PYGdefaultZsq{}}\PYGdefault{p}{]}
+
+\PYGdefault{n}{pl}\PYGdefault{o}{=} \PYGdefault{k}{lambda} \PYGdefault{n}{s}\PYGdefault{p}{,}\PYGdefault{n}{i}\PYGdefault{p}{:} \PYGdefault{k}{print}\PYGdefault{p}{(}\PYGdefault{n}{bcolors}\PYGdefault{p}{[}\PYGdefault{n}{i}\PYGdefault{p}{]} \PYGdefault{o}{+} \PYGdefault{n}{s} \PYGdefault{o}{+} \PYGdefault{n}{bcolors}\PYGdefault{p}{[}\PYGdefault{o}{\PYGdefaultZhy{}}\PYGdefault{l+m+mi}{1}\PYGdefault{p}{])}
+
+\PYGdefault{n}{pl}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}Loading data ...\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{0}\PYGdefault{p}{)}
+\PYGdefault{n}{all\PYGdefaultZus{}data} \PYGdefault{o}{=} \PYGdefault{n}{np}\PYGdefault{o}{.}\PYGdefault{n}{load}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}data/data.npy\PYGdefaultZdq{}}\PYGdefault{p}{)}
+
+\PYGdefault{c}{\PYGdefaultZsh{} energies of the collider}
+\PYGdefault{n}{E\PYGdefaultZus{}lep} \PYGdefault{o}{=} \PYGdefault{n}{np}\PYGdefault{o}{.}\PYGdefault{n}{unique}\PYGdefault{p}{(}\PYGdefault{n}{all\PYGdefaultZus{}data}\PYGdefault{p}{[}\PYGdefault{l+s}{\PYGdefaultZdq{}E\PYGdefaultZus{}lep\PYGdefaultZdq{}}\PYGdefault{p}{])}\PYGdefault{o}{*}\PYGdefault{l+m+mi}{2}
+
+\PYGdefault{c}{\PYGdefaultZsh{} luminosity }
+\PYGdefault{n}{f} \PYGdefault{o}{=} \PYGdefault{n+nb}{open}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}data/original/daten\PYGdefaultZus{}4.lum\PYGdefaultZdq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{lumidata} \PYGdefault{o}{=} \PYGdefault{n}{f}\PYGdefault{o}{.}\PYGdefault{n}{read}\PYGdefault{p}{()}
+\PYGdefault{n}{f}\PYGdefault{o}{.}\PYGdefault{n}{close}\PYGdefault{p}{()}
+\PYGdefault{n}{mean\PYGdefaultZus{}E} \PYGdefault{o}{=} \PYGdefault{p}{[]}
+\PYGdefault{n}{lumi}   \PYGdefault{o}{=} \PYGdefault{p}{\PYGdefaultZob{}\PYGdefaultZcb{}}
+
+\PYGdefault{c}{\PYGdefaultZsh{} radiation corrections}
+\PYGdefault{n}{kappa}  \PYGdefault{o}{=} \PYGdefault{p}{\PYGdefaultZob{}\PYGdefaultZcb{}}
+\PYGdefault{n}{kappa\PYGdefaultZus{}h} \PYGdefault{o}{=} \PYGdefault{p}{[}\PYGdefault{l+m+mf}{2.0}\PYGdefault{p}{,}\PYGdefault{l+m+mf}{4.3}\PYGdefault{p}{,}\PYGdefault{l+m+mf}{7.7}\PYGdefault{p}{,}\PYGdefault{l+m+mf}{10.8}\PYGdefault{p}{,}\PYGdefault{l+m+mf}{4.7}\PYGdefault{p}{,}\PYGdefault{o}{\PYGdefaultZhy{}}\PYGdefault{l+m+mf}{0.2}\PYGdefault{p}{,}\PYGdefault{o}{\PYGdefaultZhy{}}\PYGdefault{l+m+mf}{1.6}\PYGdefault{p}{]}
+\PYGdefault{n}{kappa\PYGdefaultZus{}l} \PYGdefault{o}{=} \PYGdefault{p}{[}\PYGdefault{l+m+mf}{0.09}\PYGdefault{p}{,}\PYGdefault{l+m+mf}{0.2}\PYGdefault{p}{,}\PYGdefault{l+m+mf}{0.36}\PYGdefault{p}{,}\PYGdefault{l+m+mf}{0.52}\PYGdefault{p}{,}\PYGdefault{l+m+mf}{0.22}\PYGdefault{p}{,}\PYGdefault{o}{\PYGdefaultZhy{}}\PYGdefault{l+m+mf}{0.01}\PYGdefault{p}{,}\PYGdefault{o}{\PYGdefaultZhy{}}\PYGdefault{l+m+mf}{0.08}\PYGdefault{p}{]}
+
+
+\PYGdefault{k}{for} \PYGdefault{n}{q} \PYGdefault{o+ow}{in} \PYGdefault{n+nb}{range}\PYGdefault{p}{(}\PYGdefault{l+m+mi}{7}\PYGdefault{p}{):}
+    \PYGdefault{n}{E} \PYGdefault{o}{=} \PYGdefault{n+nb}{float}\PYGdefault{p}{(}\PYGdefault{n}{lumidata}\PYGdefault{o}{.}\PYGdefault{n}{split}\PYGdefault{p}{()[}\PYGdefault{l+m+mi}{9}\PYGdefault{o}{+}\PYGdefault{n}{q}\PYGdefault{o}{*}\PYGdefault{l+m+mi}{5}\PYGdefault{p}{])}
+    \PYGdefault{n}{mean\PYGdefaultZus{}E} \PYGdefault{o}{+=} \PYGdefault{p}{[}\PYGdefault{n}{E}\PYGdefault{p}{]}
+    \PYGdefault{n}{lumi}\PYGdefault{p}{[}\PYGdefault{n}{E}\PYGdefault{p}{]} \PYGdefault{o}{=} \PYGdefault{n}{uc}\PYGdefault{o}{.}\PYGdefault{n}{ufloat}\PYGdefault{p}{(}\PYGdefault{n+nb}{float}\PYGdefault{p}{(}\PYGdefault{n}{lumidata}\PYGdefault{o}{.}\PYGdefault{n}{split}\PYGdefault{p}{()[}\PYGdefault{l+m+mi}{10}\PYGdefault{o}{+}\PYGdefault{n}{q}\PYGdefault{o}{*}\PYGdefault{l+m+mi}{5}\PYGdefault{p}{]),}\PYGdefault{n+nb}{float}\PYGdefault{p}{(}\PYGdefault{n}{lumidata}\PYGdefault{o}{.}\PYGdefault{n}{split}\PYGdefault{p}{()[}\PYGdefault{l+m+mi}{13}\PYGdefault{o}{+}\PYGdefault{n}{q}\PYGdefault{o}{*}\PYGdefault{l+m+mi}{5}\PYGdefault{p}{]))} \PYGdefault{o}{/} \PYGdefault{p}{(}\PYGdefault{l+m+mf}{2.57}\PYGdefault{o}{*}\PYGdefault{l+m+mi}{10}\PYGdefault{o}{**}\PYGdefault{p}{(}\PYGdefault{o}{\PYGdefaultZhy{}}\PYGdefault{l+m+mi}{6}\PYGdefault{p}{))}
+    \PYGdefault{n}{kappa}\PYGdefault{p}{[}\PYGdefault{n}{E}\PYGdefault{p}{]} \PYGdefault{o}{=} \PYGdefault{n}{np}\PYGdefault{o}{.}\PYGdefault{n}{array}\PYGdefault{p}{([}\PYGdefault{n}{kappa\PYGdefaultZus{}l}\PYGdefault{p}{[}\PYGdefault{n}{q}\PYGdefault{p}{]]}\PYGdefault{o}{*}\PYGdefault{l+m+mi}{3} \PYGdefault{o}{+}  \PYGdefault{p}{[}\PYGdefault{n}{kappa\PYGdefaultZus{}h}\PYGdefault{p}{[}\PYGdefault{n}{q}\PYGdefault{p}{]])}\PYGdefault{o}{*} \PYGdefault{p}{(}\PYGdefault{l+m+mf}{2.57}\PYGdefault{o}{*}\PYGdefault{l+m+mi}{10}\PYGdefault{o}{**}\PYGdefault{p}{(}\PYGdefault{o}{\PYGdefaultZhy{}}\PYGdefault{l+m+mi}{6}\PYGdefault{p}{))}
+\PYGdefault{n}{pl}\PYGdefault{p}{(}\PYGdefault{n}{lumidata}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{1}\PYGdefault{p}{)}
+\PYGdefault{n}{all\PYGdefaultZus{}data\PYGdefaultZus{}sorted} \PYGdefault{o}{=} \PYGdefault{p}{\PYGdefaultZob{}\PYGdefaultZcb{}}
+
+\PYGdefault{k}{for} \PYGdefault{n}{E} \PYGdefault{o+ow}{in} \PYGdefault{n}{mean\PYGdefaultZus{}E}\PYGdefault{p}{:}
+    \PYGdefault{n}{c\PYGdefaultZus{}data} \PYGdefault{o}{=} \PYGdefault{p}{(}\PYGdefault{n}{all\PYGdefaultZus{}data}\PYGdefault{p}{[}\PYGdefault{l+s}{\PYGdefaultZdq{}E\PYGdefaultZus{}lep\PYGdefaultZdq{}}\PYGdefault{p}{]}\PYGdefault{o}{*}\PYGdefault{l+m+mi}{2} \PYGdefault{o}{\PYGdefaultZlt{}} \PYGdefault{p}{(}\PYGdefault{n}{E} \PYGdefault{o}{+} \PYGdefault{l+m+mf}{0.5}\PYGdefault{p}{))} \PYGdefault{o}{*} \PYGdefault{p}{(}\PYGdefault{n}{all\PYGdefaultZus{}data}\PYGdefault{p}{[}\PYGdefault{l+s}{\PYGdefaultZdq{}E\PYGdefaultZus{}lep\PYGdefaultZdq{}}\PYGdefault{p}{]}\PYGdefault{o}{*}\PYGdefault{l+m+mi}{2} \PYGdefault{o}{\PYGdefaultZgt{}} \PYGdefault{p}{(}\PYGdefault{n}{E} \PYGdefault{o}{\PYGdefaultZhy{}} \PYGdefault{l+m+mf}{0.5}\PYGdefault{p}{))}
+    \PYGdefault{n}{all\PYGdefaultZus{}data\PYGdefaultZus{}sorted}\PYGdefault{p}{[}\PYGdefault{n}{E}\PYGdefault{p}{]}\PYGdefault{o}{=} \PYGdefault{n}{all\PYGdefaultZus{}data}\PYGdefault{p}{[}\PYGdefault{n}{c\PYGdefaultZus{}data}\PYGdefault{p}{]}
+    
+\PYGdefault{n}{pl}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}We will now calculate everything for each energy.}\PYGdefault{l+s+se}{\PYGdefaultZbs{}n}\PYGdefault{l+s}{\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{2}\PYGdefault{p}{)} 
+\PYGdefault{n}{always\PYGdefaultZus{}recalculate} \PYGdefault{o}{=} \PYGdefault{n+nb+bp}{True}
+
+\PYGdefault{k}{if} \PYGdefault{n}{os}\PYGdefault{o}{.}\PYGdefault{n}{path}\PYGdefault{o}{.}\PYGdefault{n}{isfile}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}data/cuts/}\PYGdefault{l+s+si}{\PYGdefaultZpc{}s}\PYGdefault{l+s}{.p\PYGdefaultZdq{}}\PYGdefault{o}{\PYGdefaultZpc{}}\PYGdefault{n}{cut\PYGdefaultZus{}type}\PYGdefault{p}{)} \PYGdefault{o+ow}{and} \PYGdefault{n}{always\PYGdefaultZus{}recalculate} \PYGdefault{o}{==} \PYGdefault{n+nb+bp}{False}\PYGdefault{p}{:}
+    \PYGdefault{n}{C\PYGdefaultZus{}eff} \PYGdefault{o}{=} \PYGdefault{n}{pickle}\PYGdefault{o}{.}\PYGdefault{n}{load}\PYGdefault{p}{(}\PYGdefault{n+nb}{open}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}data/cuts/}\PYGdefault{l+s+si}{\PYGdefaultZpc{}s}\PYGdefault{l+s}{.p\PYGdefaultZdq{}}\PYGdefault{o}{\PYGdefaultZpc{}}\PYGdefault{n}{cut\PYGdefaultZus{}type}\PYGdefault{p}{,}\PYGdefault{l+s}{\PYGdefaultZdq{}rb\PYGdefaultZdq{}}\PYGdefault{p}{))}
+\PYGdefault{k}{else}\PYGdefault{p}{:}
+    \PYGdefault{n}{C\PYGdefaultZus{}eff} \PYGdefault{o}{=} \PYGdefault{n}{get\PYGdefaultZus{}c\PYGdefaultZus{}eff}\PYGdefault{p}{(}\PYGdefault{n}{cut\PYGdefaultZus{}type}\PYGdefault{p}{,}\PYGdefault{n+nb+bp}{True}\PYGdefault{p}{,}\PYGdefault{n+nb+bp}{True}\PYGdefault{p}{)} 
+
+\PYGdefault{n}{C\PYGdefaultZus{}eff\PYGdefaultZus{}inv}\PYGdefault{o}{=} \PYGdefault{n}{C\PYGdefaultZus{}eff}\PYGdefault{o}{.}\PYGdefault{n}{I}
+
+\PYGdefault{c}{\PYGdefaultZsh{} This is the main routine, which will operate}
+\PYGdefault{c}{\PYGdefaultZsh{} at the different energies}
+\PYGdefault{k}{def} \PYGdefault{n+nf}{calc\PYGdefaultZus{}all}\PYGdefault{p}{(}\PYGdefault{n}{data}\PYGdefault{p}{,} \PYGdefault{n}{E\PYGdefaultZus{}now}\PYGdefault{p}{):}
+
+    \PYGdefault{n}{pl}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}Operating at }\PYGdefault{l+s+si}{\PYGdefaultZpc{}.3f}\PYGdefault{l+s}{ GeV now.}\PYGdefault{l+s+se}{\PYGdefaultZbs{}n}\PYGdefault{l+s}{\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}}\PYGdefault{l+s+se}{\PYGdefaultZbs{}n}\PYGdefault{l+s}{\PYGdefaultZdq{}}\PYGdefault{o}{\PYGdefaultZpc{}}\PYGdefault{n}{E\PYGdefaultZus{}now}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{0}\PYGdefault{p}{)}
+
+    \PYGdefault{c}{\PYGdefaultZsh{} Calculate all the stuff we need}
+    \PYGdefault{c}{\PYGdefaultZsh{} 1. Cuts: Classification of charged particles}
+    \PYGdefault{c}{\PYGdefaultZsh{} 2. Removing t channel of electrons}
+    \PYGdefault{c}{\PYGdefaultZsh{} 3. Adjusting cut errors of inverse efficiency matrix from montecarlo data }
+    
+    \PYGdefault{c}{\PYGdefaultZsh{}\PYGdefaultZsh{} Cuts}
+
+    \PYGdefault{n}{pl}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}Cuts: Classifying the charged particles}\PYGdefault{l+s+se}{\PYGdefaultZbs{}n}\PYGdefault{l+s}{\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{2}\PYGdefault{p}{)}
+    
+    \PYGdefault{c}{\PYGdefaultZsh{} We impose for now that there are no intersections }
+
+    \PYGdefault{n}{N\PYGdefaultZus{}all} \PYGdefault{o}{=} \PYGdefault{n}{classify}\PYGdefault{p}{(}\PYGdefault{n}{data}\PYGdefault{p}{,}\PYGdefault{n}{cut\PYGdefaultZus{}type}\PYGdefault{p}{)}
+
+    \PYGdefault{n}{text} \PYGdefault{o}{=} \PYGdefault{l+s}{\PYGdefaultZdq{}\PYGdefaultZdq{}}
+
+    \PYGdefault{n}{pl}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}Correction with respect to the cuts \PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{2}\PYGdefault{p}{)}
+    \PYGdefault{n}{pl}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}with montecarlo efficiency matrix}\PYGdefault{l+s+se}{\PYGdefaultZbs{}n}\PYGdefault{l+s}{ \PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{2}\PYGdefault{p}{)}
+    \PYGdefault{n}{N\PYGdefaultZus{}all\PYGdefaultZus{}corrected} \PYGdefault{o}{=} \PYGdefault{n}{np}\PYGdefault{o}{.}\PYGdefault{n}{array}\PYGdefault{p}{(}\PYGdefault{n}{np}\PYGdefault{o}{.}\PYGdefault{n}{dot}\PYGdefault{p}{(}\PYGdefault{n}{C\PYGdefaultZus{}eff\PYGdefaultZus{}inv}\PYGdefault{p}{,}\PYGdefault{n}{N\PYGdefaultZus{}all}\PYGdefault{p}{))}\PYGdefault{o}{.}\PYGdefault{n}{reshape}\PYGdefault{p}{(}\PYGdefault{l+m+mi}{4}\PYGdefault{p}{)}
+    \PYGdefault{n}{pl}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}particle numbers:\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{3}\PYGdefault{p}{)}
+
+    \PYGdefault{k}{return} \PYGdefault{n}{N\PYGdefaultZus{}all\PYGdefaultZus{}corrected} \PYGdefault{o}{/} \PYGdefault{n}{lumi}\PYGdefault{p}{[}\PYGdefault{n}{E\PYGdefaultZus{}now}\PYGdefault{p}{]} \PYGdefault{o}{+} \PYGdefault{n}{kappa}\PYGdefault{p}{[}\PYGdefault{n}{E\PYGdefaultZus{}now}\PYGdefault{p}{]} \PYGdefault{p}{,} \PYGdefault{n}{text}
+
+
+\PYGdefault{n}{crosssections} \PYGdefault{o}{=} \PYGdefault{p}{\PYGdefaultZob{}\PYGdefaultZcb{}}
+
+\PYGdefault{n}{all\PYGdefaultZus{}text} \PYGdefault{o}{=} \PYGdefault{l+s}{\PYGdefaultZdq{}\PYGdefaultZdq{}}
+\PYGdefault{k}{for} \PYGdefault{n}{E\PYGdefaultZus{}now} \PYGdefault{o+ow}{in} \PYGdefault{n}{mean\PYGdefaultZus{}E}\PYGdefault{p}{:}
+    \PYGdefault{n}{crosssections}\PYGdefault{p}{[}\PYGdefault{n}{E\PYGdefaultZus{}now}\PYGdefault{p}{],} \PYGdefault{n}{text} \PYGdefault{o}{=} \PYGdefault{n}{calc\PYGdefaultZus{}all}\PYGdefault{p}{(}\PYGdefault{n}{all\PYGdefaultZus{}data\PYGdefaultZus{}sorted}\PYGdefault{p}{[}\PYGdefault{n}{E\PYGdefaultZus{}now}\PYGdefault{p}{],} \PYGdefault{n}{E\PYGdefaultZus{}now}\PYGdefault{p}{)}
+
+
+\PYGdefault{n}{pickle}\PYGdefault{o}{.}\PYGdefault{n}{dump}\PYGdefault{p}{(}\PYGdefault{n}{crosssections}\PYGdefault{p}{,} \PYGdefault{n+nb}{open}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}data/crosssection.p\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{l+s}{\PYGdefaultZdq{}wb\PYGdefaultZdq{}}\PYGdefault{p}{))}
+
+\PYGdefault{c}{\PYGdefaultZsh{} Separating errors}
+\PYGdefault{n}{E} \PYGdefault{o}{=} \PYGdefault{p}{(}\PYGdefault{n}{np}\PYGdefault{o}{.}\PYGdefault{n}{array}\PYGdefault{p}{(}\PYGdefault{l+m+mi}{4}\PYGdefault{o}{*}\PYGdefault{n+nb}{list}\PYGdefault{p}{(}\PYGdefault{n}{crosssections}\PYGdefault{o}{.}\PYGdefault{n}{keys}\PYGdefault{p}{()))}\PYGdefault{o}{.}\PYGdefault{n}{reshape}\PYGdefault{p}{(}\PYGdefault{l+m+mi}{4}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{7}\PYGdefault{p}{)}\PYGdefault{o}{.}\PYGdefault{n}{swapaxes}\PYGdefault{p}{(}\PYGdefault{l+m+mi}{0}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{1}\PYGdefault{p}{))}
+\PYGdefault{n}{cross\PYGdefaultZus{}total} \PYGdefault{o}{=} \PYGdefault{n}{un}\PYGdefault{o}{.}\PYGdefault{n}{nominal\PYGdefaultZus{}values}\PYGdefault{p}{(}\PYGdefault{n+nb}{list}\PYGdefault{p}{(}\PYGdefault{n}{crosssections}\PYGdefault{o}{.}\PYGdefault{n}{values}\PYGdefault{p}{()))}
+\PYGdefault{n}{cross\PYGdefaultZus{}total\PYGdefaultZus{}error} \PYGdefault{o}{=} \PYGdefault{n}{un}\PYGdefault{o}{.}\PYGdefault{n}{std\PYGdefaultZus{}devs}\PYGdefault{p}{(}\PYGdefault{n+nb}{list}\PYGdefault{p}{(}\PYGdefault{n}{crosssections}\PYGdefault{o}{.}\PYGdefault{n}{values}\PYGdefault{p}{()))}
+
+\PYGdefault{c}{\PYGdefaultZsh{} This is the fit function (all distributions together)}
+\PYGdefault{k}{def} \PYGdefault{n+nf}{Breit\PYGdefaultZus{}Wigner}\PYGdefault{p}{(}\PYGdefault{n}{s}\PYGdefault{p}{,}\PYGdefault{n}{p}\PYGdefault{p}{):}
+    \PYGdefault{n}{gamma\PYGdefaultZus{}e}\PYGdefault{p}{,} \PYGdefault{n}{gamma\PYGdefaultZus{}m}\PYGdefault{p}{,}\PYGdefault{n}{gamma\PYGdefaultZus{}t}\PYGdefault{p}{,}\PYGdefault{n}{gamma\PYGdefaultZus{}h}\PYGdefault{p}{,}\PYGdefault{n}{gamma\PYGdefaultZus{}Z}\PYGdefault{p}{,}\PYGdefault{n}{Mz} \PYGdefault{o}{=} \PYGdefault{n}{p}
+    \PYGdefault{n}{gamma\PYGdefaultZus{}f} \PYGdefault{o}{=} \PYGdefault{n}{np}\PYGdefault{o}{.}\PYGdefault{n}{array}\PYGdefault{p}{([}\PYGdefault{n}{gamma\PYGdefaultZus{}e}\PYGdefault{p}{,}\PYGdefault{n}{gamma\PYGdefaultZus{}m}\PYGdefault{p}{,}\PYGdefault{n}{gamma\PYGdefaultZus{}t}\PYGdefault{p}{,}\PYGdefault{n}{gamma\PYGdefaultZus{}h}\PYGdefault{p}{])}
+    \PYGdefault{k}{return} \PYGdefault{l+m+mi}{12}\PYGdefault{o}{*}\PYGdefault{n}{np}\PYGdefault{o}{.}\PYGdefault{n}{pi} \PYGdefault{o}{/} \PYGdefault{n}{Mz}\PYGdefault{o}{**}\PYGdefault{l+m+mi}{2} \PYGdefault{o}{*} \PYGdefault{p}{(}\PYGdefault{n}{gamma\PYGdefaultZus{}e}\PYGdefault{o}{*}\PYGdefault{n}{gamma\PYGdefaultZus{}f}\PYGdefault{o}{*}\PYGdefault{n}{s}\PYGdefault{p}{)}\PYGdefault{o}{/}\PYGdefault{p}{((}\PYGdefault{n}{s} \PYGdefault{o}{\PYGdefaultZhy{}} \PYGdefault{n}{Mz}\PYGdefault{o}{**}\PYGdefault{l+m+mi}{2}\PYGdefault{p}{)}\PYGdefault{o}{**}\PYGdefault{l+m+mi}{2} \PYGdefault{o}{+}\PYGdefault{p}{(}\PYGdefault{n}{s}\PYGdefault{o}{*}\PYGdefault{n}{gamma\PYGdefaultZus{}Z}\PYGdefault{o}{/}\PYGdefault{n}{Mz}\PYGdefault{p}{)}\PYGdefault{o}{**}\PYGdefault{l+m+mi}{2}\PYGdefault{p}{)}
+
+\PYGdefault{n}{p0} \PYGdefault{o}{=} \PYGdefault{p}{[}\PYGdefault{l+m+mi}{80}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{80}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{80}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{1600}\PYGdefault{p}{,}\PYGdefault{l+m+mf}{2.4}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{90}\PYGdefault{p}{]}
+
+\PYGdefault{c}{\PYGdefaultZsh{} residuals of the function}
+\PYGdefault{k}{def} \PYGdefault{n+nf}{residuals}\PYGdefault{p}{(}\PYGdefault{n}{p}\PYGdefault{p}{,}\PYGdefault{n}{error}\PYGdefault{p}{):}
+    \PYGdefault{n}{weights} \PYGdefault{o}{=} \PYGdefault{l+m+mi}{1} \PYGdefault{o}{/} \PYGdefault{n}{error}
+    \PYGdefault{k}{return} \PYGdefault{p}{(}\PYGdefault{n}{weights}\PYGdefault{o}{*}\PYGdefault{p}{(}\PYGdefault{n}{cross\PYGdefaultZus{}total} \PYGdefault{o}{\PYGdefaultZhy{}} \PYGdefault{n}{Breit\PYGdefaultZus{}Wigner}\PYGdefault{p}{(}\PYGdefault{n}{E}\PYGdefault{o}{**}\PYGdefault{l+m+mi}{2}\PYGdefault{p}{,}\PYGdefault{n}{p}\PYGdefault{p}{)))}\PYGdefault{o}{.}\PYGdefault{n}{flatten}\PYGdefault{p}{()}
+
+\PYGdefault{n}{pl}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}Now fitting the crosssections.}\PYGdefault{l+s+se}{\PYGdefaultZbs{}n}\PYGdefault{l+s}{\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}}\PYGdefault{l+s+se}{\PYGdefaultZbs{}n}\PYGdefault{l+s}{\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{0}\PYGdefault{p}{)}
+
+
+\PYGdefault{c}{\PYGdefaultZsh{} here the fit takes place}
+\PYGdefault{n}{p}\PYGdefault{p}{,}\PYGdefault{n}{cov}\PYGdefault{p}{,}\PYGdefault{n}{infodict}\PYGdefault{p}{,}\PYGdefault{n}{mesg}\PYGdefault{p}{,}\PYGdefault{n}{ier} \PYGdefault{o}{=} \PYGdefault{n}{leastsq}\PYGdefault{p}{(}\PYGdefault{n}{residuals}\PYGdefault{p}{,}\PYGdefault{n}{p0}\PYGdefault{p}{,}\PYGdefault{n}{args}\PYGdefault{o}{=}\PYGdefault{n}{cross\PYGdefaultZus{}total\PYGdefaultZus{}error}\PYGdefault{p}{,}\PYGdefault{n}{full\PYGdefaultZus{}output}\PYGdefault{o}{=}\PYGdefault{n+nb+bp}{True}\PYGdefault{p}{)}
+
+\PYGdefault{c}{\PYGdefaultZsh{} correlating errors}
+\PYGdefault{n}{p\PYGdefaultZus{}uc} \PYGdefault{o}{=} \PYGdefault{n}{uc}\PYGdefault{o}{.}\PYGdefault{n}{correlated\PYGdefaultZus{}values}\PYGdefault{p}{(}\PYGdefault{n}{p}\PYGdefault{p}{,} \PYGdefault{n}{cov}\PYGdefault{p}{)}
+
+\PYGdefault{n}{keys} \PYGdefault{o}{=} \PYGdefault{p}{[}\PYGdefault{l+s}{\PYGdefaultZdq{}gamma\PYGdefaultZus{}e\PYGdefaultZdq{}}\PYGdefault{p}{,} \PYGdefault{l+s}{\PYGdefaultZdq{}gamma\PYGdefaultZus{}m\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{l+s}{\PYGdefaultZdq{}gamma\PYGdefaultZus{}t\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{l+s}{\PYGdefaultZdq{}gamma\PYGdefaultZus{}h\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{l+s}{\PYGdefaultZdq{}gamma\PYGdefaultZus{}Z\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{l+s}{\PYGdefaultZdq{}Mz      \PYGdefaultZdq{}}\PYGdefault{p}{]}
+\PYGdefault{n}{params} \PYGdefault{o}{=} \PYGdefault{n+nb}{dict}\PYGdefault{p}{(}\PYGdefault{n+nb}{zip}\PYGdefault{p}{(}\PYGdefault{n}{keys}\PYGdefault{p}{,}\PYGdefault{n}{p\PYGdefaultZus{}uc}\PYGdefault{p}{))}
+\PYGdefault{n}{gamma\PYGdefaultZus{}e}\PYGdefault{p}{,} \PYGdefault{n}{gamma\PYGdefaultZus{}m}\PYGdefault{p}{,}\PYGdefault{n}{gamma\PYGdefaultZus{}t}\PYGdefault{p}{,}\PYGdefault{n}{gamma\PYGdefaultZus{}h}\PYGdefault{p}{,}\PYGdefault{n}{gamma\PYGdefaultZus{}Z}\PYGdefault{p}{,}\PYGdefault{n}{Mz} \PYGdefault{o}{=} \PYGdefault{n}{p\PYGdefaultZus{}uc}
+\PYGdefault{k}{for} \PYGdefault{n}{k} \PYGdefault{o+ow}{in} \PYGdefault{n}{params}\PYGdefault{p}{:}
+    \PYGdefault{k}{print}\PYGdefault{p}{(}\PYGdefault{n}{k}\PYGdefault{p}{,}\PYGdefault{l+s}{\PYGdefaultZdq{}}\PYGdefault{l+s+se}{\PYGdefaultZbs{}t}\PYGdefault{l+s}{\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{n}{params}\PYGdefault{p}{[}\PYGdefault{n}{k}\PYGdefault{p}{])}
+
+\PYGdefault{c}{\PYGdefaultZsh{}\PYGdefaultZsh{} Leptonuniversality}
+\PYGdefault{n}{V\PYGdefaultZus{}mu} \PYGdefault{o}{=} \PYGdefault{n}{gamma\PYGdefaultZus{}m} \PYGdefault{o}{/} \PYGdefault{n}{gamma\PYGdefaultZus{}e}
+\PYGdefault{k}{print}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}gamma\PYGdefaultZus{}m / gamma\PYGdefaultZus{}e\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{n}{V\PYGdefaultZus{}mu}\PYGdefault{p}{)}
+\PYGdefault{n}{V\PYGdefaultZus{}tau} \PYGdefault{o}{=} \PYGdefault{n}{gamma\PYGdefaultZus{}t} \PYGdefault{o}{/} \PYGdefault{n}{gamma\PYGdefaultZus{}e}
+\PYGdefault{k}{print}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}gamma\PYGdefaultZus{}t/gamma\PYGdefaultZus{}e\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{n}{V\PYGdefaultZus{}tau}\PYGdefault{p}{)}
+
+\PYGdefault{c}{\PYGdefaultZsh{}\PYGdefaultZsh{} Number of Neutrino families}
+\PYGdefault{n}{gamma\PYGdefaultZus{}nu} \PYGdefault{o}{=} \PYGdefault{l+m+mi}{1000}\PYGdefault{o}{*}\PYGdefault{n}{gamma\PYGdefaultZus{}Z} \PYGdefault{o}{\PYGdefaultZhy{}} \PYGdefault{n}{gamma\PYGdefaultZus{}e} \PYGdefault{o}{\PYGdefaultZhy{}} \PYGdefault{n}{gamma\PYGdefaultZus{}m} \PYGdefault{o}{\PYGdefaultZhy{}} \PYGdefault{n}{gamma\PYGdefaultZus{}t} \PYGdefault{o}{\PYGdefaultZhy{}} \PYGdefault{n}{gamma\PYGdefaultZus{}h}
+\PYGdefault{k}{print}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}Number of neutrino families\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{n}{gamma\PYGdefaultZus{}nu}\PYGdefault{o}{/}\PYGdefault{p}{(}\PYGdefault{l+m+mi}{3}\PYGdefault{o}{*}\PYGdefault{l+m+mi}{250}\PYGdefault{p}{))}
+\end{Verbatim}
