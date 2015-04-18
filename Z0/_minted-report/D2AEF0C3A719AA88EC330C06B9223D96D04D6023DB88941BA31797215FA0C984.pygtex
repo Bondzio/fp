@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{k+kn}{from} \PYGdefault{n+nn}{root\PYGdefaultZus{}numpy} \PYGdefault{k+kn}{import} \PYGdefault{n}{root2rec}
+\PYGdefault{k+kn}{import} \PYGdefault{n+nn}{numpy} \PYGdefault{k+kn}{as} \PYGdefault{n+nn}{np}
+\PYGdefault{n}{x} \PYGdefault{o}{=} \PYGdefault{n}{root2rec}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}data/original/daten\PYGdefaultZus{}4.root\PYGdefaultZdq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{np}\PYGdefault{o}{.}\PYGdefault{n}{save}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}data/data.npy\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{n}{x}\PYGdefault{p}{)}
+\PYGdefault{n}{x} \PYGdefault{o}{=} \PYGdefault{n}{root2rec}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}data/original/ee.root\PYGdefaultZdq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{np}\PYGdefault{o}{.}\PYGdefault{n}{save}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}data/ee.npy\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{n}{x}\PYGdefault{p}{)}
+\PYGdefault{n}{x} \PYGdefault{o}{=} \PYGdefault{n}{root2rec}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}data/original/qq.root\PYGdefaultZdq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{np}\PYGdefault{o}{.}\PYGdefault{n}{save}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}data/qq.npy\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{n}{x}\PYGdefault{p}{)}
+\PYGdefault{n}{x} \PYGdefault{o}{=} \PYGdefault{n}{root2rec}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}data/original/mm.root\PYGdefaultZdq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{np}\PYGdefault{o}{.}\PYGdefault{n}{save}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}data/mm.npy\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{n}{x}\PYGdefault{p}{)}
+\PYGdefault{n}{x} \PYGdefault{o}{=} \PYGdefault{n}{root2rec}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}data/original/tt.root\PYGdefaultZdq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{np}\PYGdefault{o}{.}\PYGdefault{n}{save}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}data/tt.npy\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{n}{x}\PYGdefault{p}{)}
+\end{Verbatim}
