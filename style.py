@@ -36,11 +36,16 @@ rcParams['axes.labelsize'] = fontsize_labels
 rcParams['xtick.labelsize'] = fontsize_labels
 rcParams['ytick.labelsize'] = fontsize_labels
 rcParams['legend.fontsize'] = fontsize_labels
+rcParams['legend.markerscale'] = 4
 rcParams['axes.titlesize'] = fontsize_labels
+rcParams['text.color'] = "0.3"
+rcParams['xtick.color'] = "0.3"
+rcParams['ytick.color'] = "0.3"
+rcParams['axes.labelcolor'] = "0.3"
 xfactor = 2
 rcParams['figure.figsize'] = (xfactor*6.2, xfactor*3.83)  
 
-save_fig = True
+save_fig = False
 if not save_fig:
         rcParams['figure.figsize'] = (13, 8) 
 fig_dir = "./figures/"  # directory of figures
