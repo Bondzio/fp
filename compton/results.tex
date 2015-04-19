@@ -128,6 +128,18 @@ fig~\ref{fig:calibration_na_linear_fit}.
 \clearpage
 \subsection{Energy conversation}
 \label{sub:energy_conversation}
+In this section we work out the dependence of the energy with respect to the scattered
+angle. Figure~\ref{fig:coin_ps_background} shows the background (with
+coincident setup but without sample and with random coincidences of the sample).
+As always, we subtract the background from our data before pursuing the analysis.
+This will include evaluating a number of different measurements; we will
+only show two example figures for each detector 
+(figures~\ref{fig:coin_ps_90} and~\ref{fig:coin_ps_15} for the PS scintillator and 
+~\ref{fig:coin_na_90} and~\ref{fig:coin_na_30} for the Na scintillator). The main
+result is summarized in figure~\ref{fig:coin_na_90}, it shows the expectation values of
+the energy, dependent on different scattering angles $\theta$.
+
+
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.9\linewidth]{./analysis/figures/coin_background_random}
@@ -135,5 +147,62 @@ fig~\ref{fig:calibration_na_linear_fit}.
         (measurement time 13.4h)  
  and with random coincidences (measurement time 1h).}
 \label{fig:coin_ps_background}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{./analysis/figures/coin_ps_90}
+    \caption{\textbf{Energy of electrons:}
+    Rate of coincident events of PS scintillator at angle of $\theta = 90^\circ$ 
+        (measurement time between 30min and 1h). The distribution 
+    was approximated with a Gaussian distribution. }
+\label{fig:coin_ps_90}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{./analysis/figures/coin_ps_15_filter_}
+    \caption{\textbf{Energy of electrons:}
+        Rate of coincident events of 
+        PS scintillator at angle of $\theta = 15^\circ$.
+        In this figure we used, unlike at higher angles, applying the Savitzky-Golay filter
+        with a width of 81 points and a fourth
+    degree polynomial (see~\cite{scipy} for reference). This was done for 
+angles $\theta = 15^\circ$ up to $\theta = 60^\circ$.}
+\label{fig:coin_ps_15}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{./analysis/figures/coin_na_30}
+    \caption{\textbf{Energy of photons:} Rate of coincident events of 
+        Na scintillator at angle of $\theta = 15^\circ$. The Photo peak was approximated
+    with a Gaussian distribution.}
+\label{fig:coin_na_30}
+\end{figure}
+
+
+
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{./analysis/figures/coin_na_90}
+\caption{\textbf{Energy of photons:} Rate of coincident events of 
+        Na scintillator at angle of $\theta = 90^\circ$. The distribution 
+    was approximated with a Gaussian distribution. }
+\label{fig:coin_na_90}
+\end{figure}
+
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{./analysis/figures/energy_conservation}
+    \caption{Summary of the analysis of the foregoing chapter. We note several aspects:
+    The errors at small angles for the photon energies are rather high. 
+    As result their weight in the fit will
+    be rather small. Furthermore we arrive at a small tendency of a negative slope, which
+    would disagree with energy conservation. However, this tendency is small, it is
+    $[-0.7 \pm 0.8]$ keV/$^\circ$ where the height is $[750 \pm 80]$keV.}
+\label{fig:energy_conservation}
 \end{figure}
 
