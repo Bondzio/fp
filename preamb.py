@@ -6,5 +6,6 @@ from scipy.signal import savgol_filter as sav
 from scipy.special import erfc
 from scipy.integrate import quad
 import sys
+import re
 
 npy_dir = "./npy/"

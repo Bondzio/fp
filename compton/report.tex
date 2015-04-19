@@ -1,4 +1,4 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Short Sectioned Assignment
 % LaTeX Template
 % Version 1.0 (5/5/12)
@@ -23,7 +23,7 @@
 % Biblatex
 
 \usepackage[
-style=nature,    % Zitierstil
+style=nature,              % Zitierstil
 isbn=false,                % ISBN nicht anzeigen, gleiches geht mit nahezu allen anderen Feldern
 pagetracker=true,          % ebd. bei wiederholten Angaben (false=ausgeschaltet, page=Seite, spread=Doppelseite, true=automatisch)
 maxbibnames=50,            % maximale Namen, die im Literaturverzeichnis angezeigt werden (ich wollte alle)
@@ -33,27 +33,37 @@ block=space,               % kleiner horizontaler Platz zwischen den Feldern
 backref=false,              % Seiten anzeigen, auf denen die Referenz vorkommt
 backrefstyle=three+,       % fasst Seiten zusammen, z.B. S. 2f, 6ff, 7-10
 date=short,                % Datumsformat
-backend = bibtex
+hyperref=true,
+backend = biber
 ]{biblatex}
 \setlength{\bibitemsep}{1em}     % Abstand zwischen den Literaturangaben
 \setlength{\bibhang}{2em}        % Einzug nach jeweils erster Zeile
 \bibliography{report}  % Bibtex-Datei wird schon in der Preambel eingebunden
-
+\usepackage{cmbright}
 \usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
-\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+%\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+
 \usepackage{amsmath,amsfonts,amsthm} % Math packages
 \usepackage{pgfplots}
 \usepackage{wrapfig}
 \usepackage{color, colortbl}  
+
 %\usepackage[pass,showframe]{geometry} % just to show the margins
 %\usepackage{booktabs}
-%\usepackage{minted}
+\usepackage{minted} % needs '-shell-escape' to compile
 
 % Bibliographie auf deutsch
 %\usepackage{harvard}
 %\renewcommand{\harvardand}{und} 
-\usepackage{caption}
-\usepackage{xcolor}
+%\usepackage{caption}
+%\usepackage[usenames,dvipsnames]{xcolor}
+\definecolor{gray1}{gray}{0.2}
+\definecolor{gray2}{gray}{0.85}
+\definecolor{LightCyan}{rgb}{0.88,0.8,1}
+\usepackage[font={color=gray1},figurename=Fig.,labelfont={color=blue}]{caption}
+
+\usepackage{titlesec}
+
 \usepackage[utf8]{inputenc} 
 %\usepackage[ngerman]{babel}
 
@@ -78,14 +88,23 @@ backend = bibtex
 \usepackage{tikz}
 \usepackage{sectsty} % Allows customizing section commands
 \usepackage{hyperref}
-\allsectionsfont{\normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\hypersetup{
+     colorlinks   = true,
+     citecolor    = gray,
+     linkcolor    = blue
+}
+
+\allsectionsfont{ \color{gray1} \normalfont\scshape} % Make all sections centered, the default font and small caps
 
 \usepackage{fancyhdr} % Custom headers and footers
 \pagestyle{fancy} % Makes all pages in the document conform to the custom headers and footers
+
 \renewcommand{\headrulewidth}{0.0pt} % Remove header underlines
 \renewcommand{\footrulewidth}{0pt} % Remove footer underlines
 
-\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+
 \numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
 \numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
 \numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
@@ -96,15 +115,13 @@ backend = bibtex
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
 %----------------------------------------------------------------------------------------
-
-\title{ 
+\title{
 \normalfont \normalsize 
 \textsc{Albert-Ludwigs-University Freiburg} \\ [25pt] % Your university, school and/or department name(s)
 \horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
-\huge \textsc{Compton effect} \\ % The assignment title
+\huge \textsc{Analysis of $Z^0$ decays} \\ % The assignment title
 \horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
 }
-
 
 \author{Friedrich Schüßler and Volker Karle} % Your name
 
@@ -114,12 +131,12 @@ backend = bibtex
 %--------------------------------------------------------------------------------------------
 % New Commands
 %--------------------------------------------------------------------------------------------
-\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+\newcommand{\horrule}[1]{\color{gray1}\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
 
 
 \begin{document}
 
-\blendcolors*{!83}\color{black}
+\color{gray1}
 \maketitle
 \begin{center}
  \includegraphics[width=0.6\linewidth]{figures/unifreiburg}
@@ -135,17 +152,16 @@ backend = bibtex
 
 
 %----------------------------------------------------------------------------------------
-%	PROBLEM 1
+%	CONTENT
 %----------------------------------------------------------------------------------------
-%\input{newcommands}
-\input{theory}
 \setcounter{page}{1}
+\input{theory}
 Nothing to see here. Pass on.
+\input{results}
+
+\clearpage
+\section{Bibliography}
+\printbibliography[heading=subbibintoc]
 \clearpage
 
-\section{Bibliography}
-\printbibliography[heading=subbibintoc,type=article,title={Articles}]
-\printbibliography[heading=subbibintoc,type=book,title={Books}]
-\printbibliography[heading=subbibintoc,type=misc,title={Other}]
-\clearpage
 \end{document}
