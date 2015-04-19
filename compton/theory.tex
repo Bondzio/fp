@@ -67,19 +67,6 @@ stated problems and had a large influence on the following change in paradigm.
 
 \subsection{Shift in wavelength}
 \label{sec:wavelength}
-Compton's picture in order to explain the observed phenomena was that of a elastic scattering between a quasi-free electron
-and an incident photon. A sketch of this situation in the rest frame of the electron is shown in 
-figure~\ref{fig:compton_scatter}. With this picture, the assumption of the conservation of energy \textit{and} momentum 
-becomes natural. In the following, we use this axiomatic approach to derive and expression for the difference in
-wavelength $\lambda' - \lambda$ at angle $\theta$. Energy conservation reads 
-\begin{equation}
-    E_ = 	
-    \label{eq:energy_conservation}
-\end{equation}
-
-
-
-
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/compton_scatter}
@@ -89,12 +76,96 @@ wavelength $\lambda' - \lambda$ at angle $\theta$. Energy conservation reads
         }
     \label{fig:compton_scatter}
 \end{figure}
+Compton's picture in order to explain the observed phenomena was that of a elastic scattering between a quasi-free electron
+and an incident photon. A sketch of this situation in the rest frame of the electron is shown in 
+figure~\ref{fig:compton_scatter}. With this picture, the assumption of the conservation of energy \textit{and} momentum 
+becomes natural. In the following, we use this axiomatic approach to derive and expression for the difference in
+wavelength $\lambda' - \lambda$ at angle $\theta$. Energy conservation reads 
+\begin{equation}
+    E_\gamma + E_e =  E_{\gamma'} + E_{e'} \, .
+    \label{eq:energy_conservation}
+\end{equation}
+When inserting expressions for the photons ($E_\gamma = h \nu$ with Planck constant $h$ and frequency $\nu$) and the 
+electron ($E_e = c\sqrt{p_e^2 + m_e^2c^2}$ with momentum $p_e$), this becomes 
+\begin{align}
+    h\nu + m_ec^2 &= h\nu' + \sqrt{p_{e'} + m_e^2c^2} \\
+    \Rightarrow \qquad p_{e'}^2c^2 &= \left(h\nu - h\nu' + m_ec^2\right)^2 - m_e^2c^4 \, .
+    \label{eq:energy2}
+\end{align}
+The momentum conservation 
+\begin{equation}
+    p_\gamma = p_{\gamma'} + p_{e'}	
+    \label{eq:momentum_conservation}
+\end{equation}
+with $p_\gamma = h\nu/c$ yields
+\begin{equation}
+    \begin{split}
+        p_{e'}^2c^2  &= \left(p_\gamma - p_{\gamma'}\right)^2c^2 \\
+                     &= (h\nu)^2 + (h\nu')^2 - 2(h\nu)(h\nu')\cos\theta \, .
+        \label{eq:mom2}
+    \end{split}
+\end{equation}
+Combining equations \eqref{eq:energy2} and \eqref{eq:mom2}, we get
+\begin{align}
+    &(h\nu - h\nu' + m_ec^2)^2 - m_e^2c^4 	&=& (h\nu)^2 + (h\nu')^2 - 2(h\nu)(h\nu')\cos\theta \\
+    \Rightarrow \qquad &-2(h\nu)(h\nu') + 2(h\nu - h\nu')m_ec^2 &=& -2(h\nu)(h\nu')\cos\theta \\
+    \Rightarrow \qquad &(h\nu - h\nu')m_ec^2 &=& -(h\nu)(h\nu')(1 - \cos\theta) \, .
+    \label{eq:en_mom}
+\end{align}
+When dividing by $h\nu\nu'$, we get a relation for the difference in wavelength 
+\begin{equation}
+    \lambda' - \lambda = \lambda_C(1 - \cos\theta)	
+    \label{eq:compton1}
+\end{equation}
+where $\lambda = \frac{c}{\nu}$ and 
+\begin{equation}
+    \lambda_C = \frac{h}{m_ec} = 2.426 \text{ fm} 
+    \label{eq:compton_wavelength}
+\end{equation}
+is called the "Compton wavelength". 
+Introducing the reduced incident energy $E_\text{red} = \frac{h\nu}{m_ec^2}$ of the incident photon, the ratio of outgoing 
+and incident photon frequency is conveniently written as 
+\begin{equation}
+    \frac{\nu'}{\nu} = \frac{1}{1 + E_\text{red}(\cos\theta)}	\, ,
+    \label{eq:freq_rati}
+\end{equation}
+representing an ellipse with an eccentricity increasing with $E_\text{red}$.\cite{siegbahn2012alpha} 
+The limit $E_\text{red} \ll 1$ corresponds to Thomson scattering: $\nu' = \nu$. 
+We can further state the kinetic energy of the Compton recoil electron in the non-relativistic approximation. A 
+straightforward calculation yields\cite{siegbahn2012alpha} 
+\begin{equation}
+    \begin{split}
+        E_\text{kin} &= h\nu - h\nu' \\
+                     &=  h\nu \frac{E_\text{red} (1 - \cos\theta)}{1 + E_\text{red}(1 - \cos\theta)} \, .
+        \label{eq:ekin}
+    \end{split}
+\end{equation}
+Both this kinetic energy and the energy of the photon are accessible experimentally with the setup we are using. 
+In order to get an intuition of what is to be expected, we plot both energies in figure~\ref{fig:theory_conservation}.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{analysis/figures/theory_conservation}
+    \caption{
+        Calculated energies of scattered photon and electron over the scattering angle of the photon for three different
+        energies $E_\gamma$ of incident photons.
+        The continuous line corresponds to the energy of the scattered photon, the dashed to the kinetic energy of the
+        electron. The total energy is equal to $E_gamma$ and (by definition) conserved in this non-relativistic 
+        approximation. 
+        }
+    \label{fig:theory_conservation}
+\end{figure}
+
 
 
 \subsection{Cross section}
 \label{sec:cross_section}
-
+The derivation of the cross section for Compton scattering was one of the first results obtained with quantum 
+electrodynamics. This was obtained in 1928 by Oskar Klein and Yoshio Nishina. This Klein-Nishina formula is the lowest 
+order contribution of linearly polarized photons scattered by a single free electron. 
 
 \subsection{BKS}
 \label{sec:BKS}
 
+
+ONLY USEFUL FOR LIGHT ELEMENTS?!?
