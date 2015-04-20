@@ -23,3 +23,7 @@ def uc_str(c, max_digit=4):
 def enum(arr1, *args):
     i_range = range(len(arr1))
     return zip(i_range, arr1 ,*args)
+
+
+def ucarray(X):
+    return un.uarray([i.n for i in X],[i.s for i in X])
