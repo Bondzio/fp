@@ -63,6 +63,11 @@ osci_csv_npy(file1, file_out1)
 osci_csv_npy(file2, file_out2)
 """
 
+txt_str = 'coin_na_background'
+file1 = data_dir + txt_str + '.TKA'
+file_out1 = npy_dir + txt_str
+osci_tka_npy(file1, file_out1)
+"""
 if len(sys.argv) == 3:
     if sys.argv[1] == 'ps':
         txt_str = sys.argv[1] + '_' + sys.argv[2]
@@ -78,5 +83,5 @@ if len(sys.argv) == 3:
         print('wrong input; type ps/na angle')
 else:
     print('wrong input; type ps/na angle')
-
+"""
 
