@@ -1,5 +1,50 @@
+\clearpage
 \section{Analysis and results}
 \label{sec:analysis}
+\subsection{Techniques used for the evaluation}
+All calculations in this section are done with scripts written in 
+the \textit{python} programming language~\cite{python}, relaying in several 
+packages:
+\begin{itemize}
+    \item
+        \textit{matplotlib}~\cite{Hunter2007} for plotting,
+    \item
+        \textit{scipy}~\cite{scipy} for fitting, and 
+    \item
+        \textit{uncertainties}~\cite{uc} for error propagation.
+\end{itemize}
+The latter applies Gaussian error propagation for correlated and uncorrelated variables. 
+We will thus not explicitly write down the formulas for the error propagation 
+for each quantity calculated but instead state the numerical result, only. 
+We will, however make a quick remark on the use of covariance matrices in 
+error propagation: Contrary to measured data, which in our case is usually 
+expected to be uncorrelated, all fitted data yields variables that in general correlate. 
+The propagation is then done as follows:
+Let's assume we have random
+variables $x_0,...,x_N$ which are correlated through the $N\times N$ Matrix $cov(x_i,x_j)$.
+For a scalar function $f(x_0,...,x_N) \rightarrow \mathbb{R}$, the variance is estimated (linearly) by:
+\begin{equation}
+Var[f] = \sigma^2 = \sum_{i,j} \frac{\partial f}{\partial x_i} \frac{\partial f}{\partial x_j} cov(x_i,x_j) \,.
+\end{equation} 
+If instead, $\mathbf{f}$ is a vector field in $m$ dimensions, namely 
+$\mathbf{f}(x_0,...,x_N) \rightarrow \mathbb{R}^m$, then the components of $\mathbf{f}$ 
+are further correlated. We can write down the relation between the covariance matrices $V$ and $U$ of 
+$\mathbf{x}$ and $\mathbf{f}$, respectively, in matrix relations:
+\begin{equation}
+    U = A V A^T
+\end{equation}
+where $A$ is the matrix defined by 
+\begin{equation}
+    A_{ij} = \left[ \frac{\partial f_i}{\partial x_j}\right]_{\mathbf{x} = \mu}
+\end{equation}
+with expectation value $E[\mathbf{x}] = \mu$.~\cite{cowan1998statistical}
+In order to facilitate notation, the covariance matrices will in general be notated without 
+specifying the units. If not specified explicitly, the units will correspond to those of the
+variables: If $x_i, x_j$ have the units $[x_i], [x_j]$, respectively, 
+then the entry of the covariance matrix has the unit $[x_i] \cdot [x_j]$. 
+
+\clearpage
+
 
 \subsection{Calibration of PVC scintillator}
 \label{sub:calibration}
@@ -170,13 +215,18 @@ the energy, dependent on different scattering angles $\theta$.
         angles $\theta = 15^\circ$ up to $\theta = 60^\circ$.}
 \label{fig:coin_ps_15}
 \end{figure}
-
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{./analysis/figures/coin_na_background}
+    \caption{Background in coincident setup for the NaI scintillator, measured for 62h. Note that we can the clear shape because of the long measurement. } \label{fig:coin_na_background}
+\end{figure}
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.9\linewidth]{./analysis/figures/coin_na_30}
     \caption{\textbf{Energy of photons:} Rate of coincident events of 
         NaI scintillator at angle of $\theta = 15^\circ$. The photo peak was approximated
-        with a Gaussian distribution.}
+    with a Gaussian distribution. The fit is a scaled Gaussian distribution plus an exponential $c \exp(-b E)$, which
+    exhibits the noisy peak from 200 up to 600 keV.}
 \label{fig:coin_na_30}
 \end{figure}
 
@@ -188,7 +238,7 @@ the energy, dependent on different scattering angles $\theta$.
     \includegraphics[width=0.9\linewidth]{./analysis/figures/coin_na_90}
 \caption{\textbf{Energy of photons:} Rate of coincident events of 
         NaI scintillator at angle of $\theta = 90^\circ$. The distribution 
-    was approximated with a Gaussian distribution. }
+    was approximated with a Gaussian distribution plus exponential, see figure~\ref{fig:coin_na_30}. }
 \label{fig:coin_na_90}
 \end{figure}
 
@@ -196,12 +246,86 @@ the energy, dependent on different scattering angles $\theta$.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.9\linewidth]{./analysis/figures/energy_conservation}
-    \caption{Summary of the analysis of the foregoing chapter. We note several aspects:
-    The errors at small angles for the photon energies are rather high. 
-    As result their weight in the fit will
-    be rather small. Furthermore we arrive at a small tendency of a negative slope, which
+    \caption{Summary of the analysis of the foregoing chapter. We arrive at a small tendency of a negative slope, which
     would disagree with energy conservation. However, this tendency is small, it is
-    $[-0.7 \pm 0.8]$ keV/$^\circ$ where the height is $[750 \pm 80]$keV.}
+    $[-1.1 \pm 0.3]$ keV/$^\circ$ where the height is $[750 \pm 20]$keV.}
 \label{fig:energy_conservation}
 \end{figure}
+\clearpage
+\subsection{Differential cross section}
+\label{sub:cross_section}
+This last section addresses the differential cross section elaborated in section~\ref{sec:cross_section}, which can
+be seen as the rate of a photon being detected under an angle of $\theta$. 
+For the calculations
+we use the fits of the last section, yielding the intensity $I(\theta)$ of coincident photons. Those are compared to the total
+intensity $I_\mathrm{total}$ of photons measured in a separate setup. Furthermore we have to take into account the density of
+electrons in the material, which is in our case $n_e= 3.4\cdot10^{23}\mathrm{cm}^{-3}$, and the width $d = [1.4 \pm 0.1]$cm. 
+The cross section (unit in barn, i.e. 1 barn = $10^{24}\mathrm{cm}^{2}$) then reads
+\begin{equation}
+    \label{eq:cross}
+    \frac{\mathrm{d}\sigma}{\mathrm{d} \Omega} = \frac{I_\mathrm{total}}{I(\theta) n_e \cdot d \cdot \delta \omega}
+\end{equation}
+where we already have implied the dependence on the solid angle $\Delta \Omega$. The solid angle can be seen as the size of the
+detector in radial units, which can be calculated via the radius of the NaI scintillator $u=[4.8\pm0.1]$cm and the Distance
+between NaI opening and PVC scintillator $U=[11.5\pm0.5]$cm
+\begin{equation}
+    \Delta \Omega = \frac{\pi u^2}{U^2}  = [0.17 \pm 0.02] \pi.
+\end{equation}
+Up to now we did not talk about microscopical constraints of the detector, but now we have to consider both the absorption
+of the material $\sim \exp(-\mu \cdot d)$ and the efficiency of detection $\epsilon$. Both of this quantities are dependent on the
+energy the detector is operating. Correcting equation \eqref{eq:cross} we arrive at
+\begin{equation}
+\label{eq:diff_cross}
+    \frac{\mathrm{d} \sigma}{\mathrm{d} \Omega} = \frac{I_\mathrm{total}}{I(\theta) n_e \cdot d \cdot \delta \omega} \
+    \frac{\epsilon(E(\theta = 0 ))}{\epsilon(E(\theta))} \left[ e^{-\mu(E_{\mathrm{total} }) d/2}
+    \left( 1 - e^{-\mu(E_{\mathrm{total} }) d/2}  \right)\right]^{-1}.
+\end{equation}
+The last equation can be understood as follows: We approximate the photon to travel half of the PVC width $d$ with its
+primary energy, therefore we need the probability of not being absorbed (hence the factor 1 - exp, if the absorption happen 
+in this regime, the scattering will not occur). The other probability accounts for being absorbed in the other half of the width,
+leading to an scattering which we can detect. However, this correction is very small and does not change the overall asymptotic
+of the curve. The result for our intensities is shown in figure~\ref{fig:na_cross_section}. It is clear that the result is only
+correct with respect to the order of magnitude; the dependency with respect to the angle $\theta$ is not fulfilled at all, 
+compared to the theoretical prediction of the Klein-Nishina formula calculated before. 
 
+\begin{SCtable}[1.5][tbd]
+
+\caption{Summary of values used for the calculation of the differential cross
+  section. Efficiency $\epsilon$ taken from \cite{fluegge} and absorption coefficients $\mu$
+  taken from \cite{ver}. The equation for the differential cross section~\eqref{eq:diff_cross} shows that only the 
+  coefficient $\epsilon(E(\theta = 0) ) / \epsilon(E(\theta))$ is important for the behavior, for $\mu$ it is slightly
+different. }
+  \begin{tabular}{lll}
+      \rowcolor{LightCyan}  $\theta$ / $^\circ$ & $\mu$ / $\mathrm{cm}^{-1}$ & $\epsilon$ \\ 
+      \cellcolor{LightCyan}  0 &    0.089 & 0.40 \\ 
+ \cellcolor{LightCyan}  15 &   0.091 & 0.41  \\
+ \cellcolor{LightCyan}  30 &   0.091 & 0.45  \\
+ \cellcolor{LightCyan}  45 &   0.098 & 0.51  \\
+ \cellcolor{LightCyan}  60 &   0.108 & 0.55  \\
+ \cellcolor{LightCyan}  75 &   0.120 & 0.63  \\
+ \cellcolor{LightCyan}  90 &   0.120 & 0.65  \\
+ \cellcolor{LightCyan}  105 &  0.120 & 0.70  \\
+ \cellcolor{LightCyan}  120 &  0.136 & 0.80  
+  \end{tabular}
+    \label{tab:cross}
+\end{SCtable}
+
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{./analysis/figures/na_cross_section}
+    \caption{Our result of the differential cross section with equation~\eqref{eq:diff_cross}. As the figure shows, the
+    experimental result does \textbf{not resemble the theoretical prediction}, for small angle not even with respect to error. 
+We think 
+that the reason for his huge disagreement is hidden in the calculated intensities (see figure~\ref{fig:coin_na_30}, the
+peak next to Gaussian peak, which we approximated by an exponential decay seems to absorb most of the intensity. This changes
+for higher angles, but this is not what we would expect. In order for the cross section to satisfy the theoretical prediction,
+one expect lower intensities for smaller angles, but due to the \emph{absorption} of the peak next to the coincident peak
+we get the opposite behavior: Lower intensities for smaller angles. Our explanation is as follows: Since the measurement
+of the random coincidences failed, we could include them in the analysis here, but they seem to recover the nonlinear behavior
+seen for low angles. Since random coincidences are a relict of the electronic mechanism of the detector, this disagreement
+is of no physical origin. These noise seems to interfere with the intensities of the coincident peaks in such a way that the
+intensity dependence with respect to the angles is lost.}
+\label{fig:na_cross_section}
+\end{figure}
+\newpage
