@@ -1,7 +1,7 @@
 \section{Analysis and results}
 \label{sec:analysis}
 
-\subsection{Calibration of PS scintillator}
+\subsection{Calibration of PVC scintillator}
 \label{sub:calibration}
 The purpose of this section is to calibrate the channels to known energies, in our case
 \begin{itemize}
@@ -9,31 +9,29 @@ The purpose of this section is to calibrate the channels to known energies, in o
 \item $^{22}$Na Compton edge 2: 1064 keV
 \item $^{137}$Cs Compton edge: 477 keV
 \end{itemize}
-First we fitted the two Compton edges of the $^{22}$Na sample, the result is
-Channel $108 \pm 2$ and $414 \pm 4$ with a correlation of about 50\%, see
+First we fit the two Compton edges of the $^{22}$Na sample. The result is
+channel $108 \pm 2$ and $414 \pm 4$ with a correlation of about 50\%, see
 figure~\ref{fig:calib_ps_na}.
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.9\linewidth]{./analysis/figures/calib_ps_na}
-    \caption{Calibration of the PS scintillator with $^{22}$Na sample (measurement time
-    16.5 h) with refined background (measurement time 15.6h). As you can notice, rate is 
-only fitted for the section in which the background is smaller than the sample. We
-subtracted the background rate at each channel for the sample in order not to fit the 
-behavior of the noise. The error of the two Compton edges is large (see text) coming
-from the fit and their high correlation coefficient.}
+    \caption{Calibration of the PVC scintillator with $^{22}$Na sample (measurement time
+    16.5 h) with refined background (measurement time 15.6h). Notice that the rate is 
+    only fitted for the section in which the background is smaller than the sample. We
+    subtracted the background rate at each channel for the sample in order not to fit the 
+    behavior of the noise. The error of the two Compton edges is large (see text) coming
+    from the fit and their high correlation coefficient.}
 \label{fig:calib_ps_na}
 \end{figure}
-For the $^{137}$ sample we found the Compton at Channel $178.9 \pm 0.3$ 
+For the $^{137}$Cs sample we found the Compton edge at channel $178.9 \pm 0.3$ 
 (notice the much smaller error compared to the $^{22}$Na sample), 
 see figure~\ref{fig:calib_ps_cs} for the data and the fit.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.9\linewidth]{./analysis/figures/calib_ps_cs}
-    \caption{Calibration of the PS scintillator, same as figure~\ref{fig:calib_ps_na}. 
-        with $^{137}$Cs sample (measurement time
-    6 h) with refined background (measurement time 15.6h, same as before). 
-Again we subtracted the background rate at each channel behavior of the noise. }
+    \caption{Calibration of the PVC scintillator with $^{137}$Cs sample. Measurement time
+    6 h. We subtracted the background rate at each channel. }
 \label{fig:calib_ps_cs}
 \end{figure}
 
@@ -41,22 +39,23 @@ Again we subtracted the background rate at each channel behavior of the noise. }
     \centering
     \includegraphics[width=0.9\linewidth]{./analysis/figures/calibration_ps_linear_fit}
     \caption{This is the result of the three Compton edges. We will use this calibration
-    for all the following calculations.}
+    for all the following calculations. Note that statements about the error and linearity of the MCA 
+    are not possible due to the low number of data points}
 \label{fig:calibration_ps_linear_fit}
 \end{figure}
 The final result of the linear calibration can be seen in
 figure~\ref{fig:calibration_ps_linear_fit}.
 
-\subsection{Calibration of Na scintillator}
+\subsection{Calibration of NaI scintillator}
 
 \label{sub:calibration_of_na_scintillator}
-As in the last section we find a calibration now, this time for the Na scintillator. The
-first figure~\ref{fig:histo_na_137cs} shows the $^{136}$Cs sample where we know the
-peaks from the literature, see table~\ref{tab:peaks_cs_ps}, whereas the data for
-$^{22}Na$ can be seen in figure~\ref{fig:histo_na_22na} and figure~\ref{fig:histo_na_22na2}
-and the results are summarized in table table~\ref{tab:peaks_na_ps}. 
-The final result of the linear calibration can be seen in
-fig~\ref{fig:calibration_na_linear_fit}.
+As in the last section we calculate a calibration, this time for the NaI scintillator. The
+first figure~\ref{fig:histo_na_137cs} shows the spectrum of the $^{136}$Cs sample 
+whereas the data for
+$^{22}Na$ can be seen in figure~\ref{fig:histo_na_22na} and figure~\ref{fig:histo_na_22na2}.
+The results of the peak fits as well as literature values are displayed in the tables~\ref{tab:peaks_cs_ps}
+and \ref{tab:peaks_na_ps} for each of the two samples. The literature values are fitted over peak positions, see 
+figure~\ref{fig:calibration_na_linear_fit}, in order to yield a calibration. 
 \begin{table}[htpb]
     \centering
     \caption{Peaks and fitting results of $^{136}$Cs.}
@@ -72,7 +71,7 @@ fig~\ref{fig:calibration_na_linear_fit}.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.9\linewidth]{./analysis/figures/histo_na_137cs}
-    \caption{Calibration of the Na scintillator using $^{137}$Cs sample (measurement
+    \caption{Calibration of the NaI scintillator using $^{137}$Cs sample (measurement
     time 2.7h) with refined background (measurement time 1h). }
 \label{fig:histo_na_137cs}
 \end{figure}
@@ -80,7 +79,7 @@ fig~\ref{fig:calibration_na_linear_fit}.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.9\linewidth]{./analysis/figures/histo_na_22na}
-    \caption{Calibration of the Na scintillator using $^{22}$Na sample (measurement
+    \caption{Calibration of the NaI scintillator using $^{22}$Na sample (measurement
         time about 1h) with refined background (same as in figure~\ref{fig:histo_na_137cs},
         measurement time 1h). }
 \label{fig:histo_na_22na}
@@ -119,9 +118,9 @@ fig~\ref{fig:calibration_na_linear_fit}.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.9\linewidth]{./analysis/figures/calibration_na_linear_fit}
-    \caption{All peaks in one figure with the respective linear fit. The errors of
-    the most of the peaks are too small to be shown, only the Compton peaks of Na show
-    an exorbitant error. The second Photo peak (Na Sample) seems to be quite apart from
+    \caption{All peaks measured by the NaI scintillator with the respective linear fit. The errors on 
+        most of the peaks are too small to be shown, only the Compton peaks of $^{22}$Na show
+        an exorbitant error. The second photo peak ($^{22}$Na sample) seems to be quite apart from
     the result of the other values; this might be due to a general systematic error.}
 \label{fig:calibration_na_linear_fit}
 \end{figure}
@@ -130,22 +129,22 @@ fig~\ref{fig:calibration_na_linear_fit}.
 \label{sub:energy_conservation}
 In this section we work out the dependence of the energy with respect to the scattered
 angle. Figure~\ref{fig:coin_ps_background} shows the background (with
-coincident setup but without sample and with random coincidences of the sample).
-As always, we subtract the background from our data before pursuing the analysis.
+coincident setup but without sample) and random coincidences.
+We subtract the background from our data before pursuing the analysis.
 This will include evaluating a number of different measurements; we will
 only show two example figures for each detector 
-(figures~\ref{fig:coin_ps_90} and~\ref{fig:coin_ps_15} for the PS scintillator and 
-~\ref{fig:coin_na_90} and~\ref{fig:coin_na_30} for the Na scintillator). The main
-result is summarized in figure~\ref{fig:coin_na_90}, it shows the expectation values of
+(figures~\ref{fig:coin_ps_90} and~\ref{fig:coin_ps_15} for the PVC scintillator and 
+~\ref{fig:coin_na_90} and~\ref{fig:coin_na_30} for the NaI scintillator). The main
+result is summarized in figure~\ref{fig:coin_na_90}. It shows the expectation values of
 the energy, dependent on different scattering angles $\theta$.
 
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.9\linewidth]{./analysis/figures/coin_background_random}
-    \caption{This is the background of the PS scintillator with coincidence
-        (measurement time 13.4h)  
- and with random coincidences (measurement time 1h).}
+    \caption{Background and random coincidences of the PVC scintillator. 
+        The background is measured in coincident setup for 13.4h, the random coincidences are 
+    measured with the $^{137}$Cs sample inserted (measurement time 1h).}
 \label{fig:coin_ps_background}
 \end{figure}
 
@@ -153,8 +152,8 @@ the energy, dependent on different scattering angles $\theta$.
     \centering
     \includegraphics[width=0.9\linewidth]{./analysis/figures/coin_ps_90}
     \caption{\textbf{Energy of electrons:}
-    Rate of coincident events of PS scintillator at angle of $\theta = 90^\circ$ 
-        (measurement time between 30min and 1h). The distribution 
+    Rate of coincident events of PVC scintillator at angle of $\theta = 90^\circ$ 
+        (measurement time 1h). The distribution 
     was approximated with a Gaussian distribution. }
 \label{fig:coin_ps_90}
 \end{figure}
@@ -164,11 +163,11 @@ the energy, dependent on different scattering angles $\theta$.
     \includegraphics[width=0.9\linewidth]{./analysis/figures/coin_ps_15_filter_}
     \caption{\textbf{Energy of electrons:}
         Rate of coincident events of 
-        PS scintillator at angle of $\theta = 15^\circ$.
+        PVC scintillator at angle of $\theta = 15^\circ$.
         In this figure we used, unlike at higher angles, applying the Savitzky-Golay filter
         with a width of 81 points and a fourth
-    degree polynomial (see~\cite{scipy} for reference). This was done for 
-angles $\theta = 15^\circ$ up to $\theta = 60^\circ$.}
+        degree polynomial (see~\cite{scipy} for reference). This was done for 
+        angles $\theta = 15^\circ$ up to $\theta = 60^\circ$.}
 \label{fig:coin_ps_15}
 \end{figure}
 
@@ -176,8 +175,8 @@ angles $\theta = 15^\circ$ up to $\theta = 60^\circ$.}
     \centering
     \includegraphics[width=0.9\linewidth]{./analysis/figures/coin_na_30}
     \caption{\textbf{Energy of photons:} Rate of coincident events of 
-        Na scintillator at angle of $\theta = 15^\circ$. The Photo peak was approximated
-    with a Gaussian distribution.}
+        NaI scintillator at angle of $\theta = 15^\circ$. The photo peak was approximated
+        with a Gaussian distribution.}
 \label{fig:coin_na_30}
 \end{figure}
 
@@ -188,7 +187,7 @@ angles $\theta = 15^\circ$ up to $\theta = 60^\circ$.}
     \centering
     \includegraphics[width=0.9\linewidth]{./analysis/figures/coin_na_90}
 \caption{\textbf{Energy of photons:} Rate of coincident events of 
-        Na scintillator at angle of $\theta = 90^\circ$. The distribution 
+        NaI scintillator at angle of $\theta = 90^\circ$. The distribution 
     was approximated with a Gaussian distribution. }
 \label{fig:coin_na_90}
 \end{figure}
