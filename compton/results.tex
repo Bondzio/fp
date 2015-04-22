@@ -1,7 +1,13 @@
 \clearpage
 \section{Analysis and results}
 \label{sec:analysis}
+This section will elaborate the numerical  analysis of the
+data obtained in the measurements. But before we can go into
+the numerical treatments, we have to make clear how the
+calculations and error propagation is done in the following 
+chapter.
 \subsection{Techniques used for the evaluation}
+\label{sub:techique}
 All calculations in this section are done with scripts written in 
 the \textit{python} programming language~\cite{python}, relaying in several 
 packages:
@@ -42,34 +48,107 @@ In order to facilitate notation, the covariance matrices will in general be nota
 specifying the units. If not specified explicitly, the units will correspond to those of the
 variables: If $x_i, x_j$ have the units $[x_i], [x_j]$, respectively, 
 then the entry of the covariance matrix has the unit $[x_i] \cdot [x_j]$. 
-
+Now that we have made clear how the analysis is done, we will
+continue with the evaluation of the experimental data. We will
+start with calibrations, in particular with the relation between
+measured channels and energy in keV.
 \clearpage
 
 
 \subsection{Calibration of PVC scintillator}
 \label{sub:calibration}
-The purpose of this section is to calibrate the channels to known energies, in our case
-\begin{itemize}
-\item $^{22}$Na Compton edge 1: 341 keV
-\item $^{22}$Na Compton edge 2: 1064 keV
-\item $^{137}$Cs Compton edge: 477 keV
-\end{itemize}
-First we fit the two Compton edges of the $^{22}$Na sample. The result is
+The purpose of this section is to calibrate the channels to
+known energies. Therefor we calculate the  rates for the
+events by dividing each count by the total time measured. 
+\begin{equation}
+    \text{rate (for each channel): } n  = 	\frac{N}{T}
+    \label{eq:rate}
+\end{equation}
+
+Then we subtract for each channel the background rate, which
+was calculated analogously 
+\begin{equation}
+    n_\mathrm{cleansed} = n -
+    n_\mathrm{background}.
+    \label{eq:rate2}
+\end{equation}
+This procedure will be used in all calculations below, we will
+not repeat the equations, though. The error propagation is done
+according to section~\ref{sub:techique}. Now we approximate
+the Compton edge in first order by an Heaviside step function,
+convoluted\footnote{ 
+    A convolution is defined by
+\begin{equation}
+    a \star b   \stackrel{\mathrm{def}}{=}\ \int_{-\infty}^\infty a(\tau)\, b(t - \tau)\, d\tau 	
+    \label{eq:conv}
+\end{equation}
+
+}with an Gaussian to take into account the smearing
+effects if the detector:
+\begin{equation}
+    n(E)  \approx A\Theta(E_0 - E) \star  	
+    \left[  \frac{1}{\sigma\sqrt{2\pi}} \exp \left( 
+        \frac{-(E-E_0)^2}{2\sigma^2}\right)
+        \right]  =\frac{A}{2^{3/2}\sigma} 
+    \mathrm{erfc}(E - E_0) 
+    \label{eq:errorfunc}
+\end{equation}
+With the amplitude A and the inverse error function
+\begin{equation}
+    \mathrm{erfc}(x) = 1 - \mathrm{erf}(x) , \quad
+    \operatorname{erf}(x) = 
+    \frac{2}{\sqrt\pi}\int_0^x e^{-t^2}\,\mathrm dt. 
+    \label{eq:erfc}
+\end{equation}
+We will use this approximation for the fit of all Compton 
+edges. In the case of more than one Compton edges, we just
+sum them up. For all fits an additional fitting parameter offset
+is used for taking into account probable noise or background
+effects, which could not be eliminated by subtracting the 
+measured background rate. For the photon and escape peaks we use 
+a simple Gaussian, as it appears in equation \eqref{eq:errorfunc}.
+The fits are done using least squares minimization (see 
+\cite{scipy} for a reference of the fitting algorithm), where 
+we include absolute the errors of the respective y-axis as 
+weights. Please note
+that we do not include the $\chi^2/\mathrm{dof}$ in all of the fits,
+as we think this is not of particular interest and would lead
+to confusing figures showing too much information. Our errors
+of the rates are mostly estimated using $\sqrt(N)/T$, and hence
+the $\chi^2/\mathrm{dof}$ are dependent 
+on the measurement time, which we already know and
+is given in the figures. The uncertainty of the fits and their
+respective convergence is reflected in the errors of the 
+results. 
+%When necessary, we included the $\chi^2/\mathrm{dof}$,
+%for instance in the linear fit of the calibration.\\
+
+First we find for $^{22}$Na two Compton edges (341 keV and
+1064 keV). The result is
 channel $108 \pm 2$ and $414 \pm 4$ with a correlation of about 50\%, see
 figure~\ref{fig:calib_ps_na}.
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.9\linewidth]{./analysis/figures/calib_ps_na}
-    \caption{Calibration of the PVC scintillator with $^{22}$Na sample (measurement time
-    16.5 h) with refined background (measurement time 15.6h). Notice that the rate is 
-    only fitted for the section in which the background is smaller than the sample. We
-    subtracted the background rate at each channel for the sample in order not to fit the 
-    behavior of the noise. The error of the two Compton edges is large (see text) coming
-    from the fit and their high correlation coefficient.}
+    \caption{Calibration of the PVC scintillator with
+        $^{22}$Na sample (measurement time
+    16.5 h) with refined background (measurement time 15.6h).
+    Notice that the rate is 
+    only fitted for the section in which the background is
+    smaller than the sample. We
+    subtracted the background rate at each channel
+    for the sample in order not to fit the 
+    behavior of the noise. The error of the two
+    Compton edges is large (see text) coming
+    from the fit and their high correlation coefficient. The 
+dotted line refers to the displacement $E_0$ in \eqref{eq:errorfunc} which should resemble the position of the Compton
+edge without convolution of a Gaussian, which was estimated
+by the least squares fit.}
 \label{fig:calib_ps_na}
 \end{figure}
-For the $^{137}$Cs sample we found the Compton edge at channel $178.9 \pm 0.3$ 
+For $^{137}$Cs a Compton edge (477 keV)
+we found channel $178.9 \pm 0.3$ 
 (notice the much smaller error compared to the $^{22}$Na sample), 
 see figure~\ref{fig:calib_ps_cs} for the data and the fit.
 \begin{figure}[htpb]
