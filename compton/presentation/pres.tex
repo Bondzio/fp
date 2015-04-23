@@ -118,8 +118,7 @@ Assistent: Kilian Rosbach
 \begin{frame}[t]{NaI Szintillator, $^{137}$Cs Probe, mit PVC}
  \begin{figure}[htpb]
     \centering
-    %\includegraphics[width=1.0\linewidth]{../analysis/figures/histo_na_137cs_nolegend}
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/histo_na_137cs}
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/histo_na_137cs_nolegend}
     \label{fig:histo_na_137cs}
 \end{figure}
 \end{frame}
@@ -129,6 +128,14 @@ Assistent: Kilian Rosbach
     \centering
     \includegraphics[width=1.0\linewidth]{../analysis/figures/histo_na_137cs}
     \label{fig:histo_na_137cs}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Linearer fit für NaI Szintillator}
+ \begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/calibration_na_linear_fit}
+    \label{fig:calibration_na_linear_fit}
 \end{figure}
 \end{frame}
 
@@ -150,81 +157,6 @@ Assistent: Kilian Rosbach
 \end{table}
 \end{frame}
 
-\begin{frame}[t]{Linearer fit für NaI Szintillator}
- \begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/calibration_na_linear_fit}
-    \label{fig:calibration_na_linear_fit}
-\end{figure}
-\end{frame}
-
-
-
-
-\section{Calibration of PS scintillator}
-\begin{frame}[t]{$^{22}$Na sample (measurement time 16.5h) }
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/calib_ps_na}
-\label{fig:calib_ps_na}
-\end{figure}
-\end{frame}
-
-\begin{frame}[t]{$^{137}$Cs sample (measurement time 6h) }
-\begin{figure}[htpb]
-\centering
-\includegraphics[width=1.0\linewidth]{../analysis/figures/calib_ps_cs}
-\label{fig:calib_ps_cs}
-\end{figure}
-\end{frame}
-
-\begin{frame}[t]{Linear fit}
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/calibration_ps_linear_fit}
-\label{fig:calibration_ps_linear_fit}
-\end{figure}
-\end{frame}
-
-\section{Calibration of Na scintillator}
-
-\begin{frame}[t]{Peaks and fitting results of $^{137}$Cs}
-    \begin{table}[htpb]
-    \centering
-\label{tab:peaks_cs_ps}
-    \begin{tabular}{lll}
-        \rowcolor{LightCyan} Name &Energy & Channel \\ 
-        Photo peak & 662 keV & $8040.59 \pm 0.03$\\ 
-        Compton edge & 477 keV & $5720 \pm 4$\\  
-        Escape peak & 183 keV & $2510 \pm 12$
-    \end{tabular}
-\end{table}
-\end{frame}
-
-\begin{frame}[t]{$^{137}$Cs sample (measurement time 2.7h)}
- \begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/histo_na_137cs}
-    \label{fig:histo_na_137cs}
-\end{figure}
-\end{frame}
-
-
-\begin{frame}[t]{$^{22}$Na sample (measurement time about 1h) }
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/histo_na_22na}
-\label{fig:histo_na_22na}
-\end{figure}
-\end{frame}
-
-\begin{frame}[t]{Linear fit}
- \begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/calibration_na_linear_fit}
-    \label{fig:calibration_na_linear_fit}
-\end{figure}
-\end{frame}
 
 \section{Energieerhaltung}
 \begin{frame}[t]{Energieerhaltung}
@@ -235,15 +167,6 @@ Assistent: Kilian Rosbach
 \end{figure}
 \end{frame}
 
-\begin{frame}[t]{Differentieller Wirkungsquerschnitt}
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/theory_diff_cs}
-\label{fig:theory_diff}
-\end{figure}
-\end{frame}
-
-\section{Energy Conservation}
 \begin{frame}[t]{Energy Conservationation}
     \begin{itemize}
         \item Comparison of peak energies for different angles
@@ -306,6 +229,20 @@ Assistent: Kilian Rosbach
 \end{frame}
 
 
+\section{Differentieller Wirkungsquerschnitt}
+\begin{frame}[t]{Differentieller Wirkungsquerschnitt}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/theory_diff_cs}
+\label{fig:theory_diff}
+\end{figure}
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+
 \section{Appendix}
 \label{sec:appendix}
 \begin{frame}[t]{NaI szintillator, $^{137}$Cs Probe, ohne PVC}
@@ -315,5 +252,38 @@ Assistent: Kilian Rosbach
     \label{fig:histo_na_137cs}
 \end{figure}
 \end{frame}
+
+\begin{frame}[t]{Kalibrierung NaI, $^{22}$Na Probe (Messzeit 1h) }
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/histo_na_22na}
+\label{fig:histo_na_22na}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Kalibrierung PVC, $^{22}$Na Probe (Messzeit 16.5h) }
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/calib_ps_na}
+\label{fig:calib_ps_na}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Kalibrierung PVC, $^{137}$Cs Probe (Messzeit 6h) }
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=1.0\linewidth]{../analysis/figures/calib_ps_cs}
+\label{fig:calib_ps_cs}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Linearer fit, PVC}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/calibration_ps_linear_fit}
+\label{fig:calibration_ps_linear_fit}
+\end{figure}
+\end{frame}
+
 
 \end{document}
