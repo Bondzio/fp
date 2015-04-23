@@ -73,10 +73,25 @@
 \tableofcontents
 \end{frame}
 
-\section{Theoretical background}
+\section{Theoretische Grundlagen}
+\begin{frame}[t]{Compton Streuung -- Energieerhaltung}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/theory_conservation}
+\label{fig:theory_cons}
+\end{figure}
+\end{frame}
 
-\section{Experimental setup}
-\begin{frame}
+\begin{frame}[t]{Compton Streuung -- Diff. Wirkungsquerschnitt}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/theory_diff_cs}
+\label{fig:theory_diff}
+\end{figure}
+\end{frame}
+
+\section{Experimenteller Aufbau}
+\begin{frame}[t]{Aufbau ohne Elektronik}
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{../figures/setup_pres_pre}
@@ -84,7 +99,7 @@
 \end{figure}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]{Aufbau mit Elektronik}
  \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{../figures/setup_pres}
@@ -92,8 +107,8 @@
 \end{figure}
 \end{frame}
 
-\subsection{$^{137}$Cs und  $^{22}$Na samples}
-\begin{frame}
+\subsection{$^{137}$Cs und  $^{22}$Na}
+\begin{frame}[t]{Zerfallsschemata von $^{137}$Cs und  $^{22}$Na}
  \begin{figure}[htpb]
     \centering
     %\includegraphics[width=1.0\linewidth]{../figures/setup_pres}
@@ -103,13 +118,9 @@
 \end{frame}
 
 \subsection{Szintillisatoren}
-
-\begin{frame}
+\begin{frame}[t]{Sichtbare Peaks und Kanten für beide Szintillisatoren}
 \begin{table}[htpb]
     \centering
-    \caption{
-        Sichtbare Peaks und Kanten (Energien in keV)
-        }
     \label{tab:mono_calibration}
     \begin{tabular}{l l r c c}
         \rowcolor{LightCyan} Probe & Peak/Kante & $E$ / keV& NaI Szinti & PCV Szinti \\
@@ -125,9 +136,6 @@
 \end{frame}
 
 
-
-
-
 \section{Calibration of PS scintillator}
 \begin{frame}[t]{$^{22}$Na sample (measurement time 16.5h) }
 \begin{figure}[htpb]
@@ -138,17 +146,14 @@
 \end{frame}
 
 \begin{frame}[t]{$^{137}$Cs sample (measurement time 6h) }
-
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=1.0\linewidth]{../analysis/figures/calib_ps_cs}
 \label{fig:calib_ps_cs}
 \end{figure}
-
 \end{frame}
 
 \begin{frame}[t]{Linear fit}
-    
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{../analysis/figures/calibration_ps_linear_fit}
