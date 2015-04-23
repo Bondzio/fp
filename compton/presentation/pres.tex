@@ -144,7 +144,6 @@ Assistent: Kilian Rosbach
     \centering
     \label{tab:mono_calibration}
     \begin{tabular}{l l r c c}
-
         \rowcolor{LightCyan} Probe & Peak/Kante & $E$ / keV& NaI / Channel & PVC / Channel \\
         \cellcolor{LightCyan}$^{137}$Cs & Photo & 662 & $8040.59 \pm 0.03$ &  \\
         \cellcolor{LightCyan} & Compton& 477& $5720 \pm 4$ &  $178.9 \pm 0.3$  \\
@@ -167,65 +166,31 @@ Assistent: Kilian Rosbach
 \end{figure}
 \end{frame}
 
-\begin{frame}[t]{Energy Conservationation}
-    \begin{itemize}
-        \item Comparison of peak energies for different angles
-    \end{itemize}
-\end{frame}
-\begin{frame}[t]{Background of the PS scintillator with coincidence
-    and random coincidences (measurem. time 13.4h and 1h)}
-    \begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/coin_background_random}
-    \label{fig:coin_ps_background}
-\end{figure}
-
-\end{frame}
-
-\begin{frame}[t]{Energy of electrons: Rate of coincident events of PS scintillator at angle of $\theta = 90^\circ$}
-
+\begin{frame}[t]{Elektronenenergie gemessen mit dem PVC Szintillator für 
+    $\theta = 90^\circ$, koinzidente Schaltung}
     \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{../analysis/figures/coin_ps_90}
 \label{fig:coin_ps_90}
 \end{figure}
-
 \end{frame}
-\begin{frame}[t]{Energy of electrons: Rate of coincident events of PS scintillator at angle of $\theta = 15^\circ$}
-    \begin{figure}[htpb]
+
+\begin{frame}[t]{Elektronenenergie gemessen mit dem PVC Szintillator für 
+    $\theta = 15^\circ$, koinzidente Schaltung}
+\begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{../analysis/figures/coin_ps_15_filter_}
 \label{fig:coin_ps_15}
 \end{figure}
 \end{frame}
 
-\begin{frame}[t]{Background of NaI scintillator with coincidences (measurem. time 62h)}
-   
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/coin_na_background}
-\end{figure}
- 
-\end{frame}
-
-\begin{frame}[t]{Energy of photons: Rate of coincident events of NaI scintillator at angle $\theta = 30^\circ$}
+\begin{frame}[t]{Energie gestreuter Photonen, gemessen mit dem NaI Szintillator für 
+    $\theta = 30^\circ$, koinzidente Schaltung}
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{../analysis/figures/coin_na_30}
     \label{fig:coin_na_30}
 \end{figure}
-\end{frame}
-
-\begin{frame}[t]{Energy of photons: Rate of coincident events of NaI scintillator at angle $\theta = 90^\circ$}
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/coin_na_90}
-    \label{fig:coin_na_30}
-\end{figure}
-\end{frame}
-
-\begin{frame}[c]{}
-    Now to the result: combining all those peaks...
 \end{frame}
 
 
@@ -282,6 +247,33 @@ Assistent: Kilian Rosbach
     \centering
     \includegraphics[width=1.0\linewidth]{../analysis/figures/calibration_ps_linear_fit}
 \label{fig:calibration_ps_linear_fit}
+\end{figure}
+\end{frame}
+
+%%% ENERGIEERHALtung
+\begin{frame}[t]{Hintergrund und zufaellige Koinzidenzen beim 
+        PVC Szintillator (Messzeit: 13.4h and 1h)}
+    \begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/coin_background_random}
+    \label{fig:coin_ps_background}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Hintergrund und zufaellige Koinzidenzen beim 
+        NaI Szintillator (Messzeit: 62h)}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/coin_na_background}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Energie gestreuter Photonen, gemessen mit dem NaI Szintillator für 
+    $\theta = 105^\circ$, koinzidente Schaltung}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/coin_na_105}
+    \label{fig:coin_na_30}
 \end{figure}
 \end{frame}
 
