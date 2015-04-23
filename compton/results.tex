@@ -79,7 +79,7 @@ convoluted\footnote{
 effects if the detector:
 \begin{equation}
     n(E)  \approx A\Theta(E_0 - E) \star  	
-    \left[  \frac{1}{\sigma\sqrt{2\pi}} \exp \left( 
+    \left[  \frac{1}{\sqrt{2\pi\sigma^2}} \exp \left( 
         \frac{-(E-E_0)^2}{2\sigma^2}\right)
         \right]  =\frac{A}{2^{3/2}\sigma} 
     \mathrm{erfc}(E - E_0) 
@@ -207,7 +207,7 @@ figure~\ref{fig:calibration_na_linear_fit}, in order to yield a calibration.
     \caption{Enlargement of the critical area of the Compton edge of
     figure~\ref{fig:histo_na_22na}.     
     The red line is a Savitzky-Golay filter 
-    with a width of 1001 points and a fourth
+    with a width of 1001 points in the channel and a fourth
     degree polynomial applied to the data (see~\cite{scipy} for reference) in order
     to see the slope of the curve. The least-squares fit uses the real data, though.
 }
@@ -290,7 +290,7 @@ the energy, dependent on different scattering angles $\theta$.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.9\linewidth]{./analysis/figures/coin_na_background}
-    \caption{Background in coincident setup for the NaI scintillator, measured for 62h. Note that we can the clear shape because of the long measurement. } \label{fig:coin_na_background}
+    \caption{Background in coincident setup for the NaI scintillator, measured for 62h. Note that we receive the clear shape because of the long measurement. } \label{fig:coin_na_background}
 \end{figure}
 
 \begin{figure}[htpb]

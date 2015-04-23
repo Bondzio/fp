@@ -1,0 +1,50 @@
+\section{Appendix}
+We will show here the figures which where omitted in the main report.
+\subsection{Energy of electrons}
+Rate of coincident events of PVC scintillator at various angles: 
+In this section we will show the \textbf{Energy of electrons} for each angles
+two times: The first approach uses a least-squares fit with a Gaussian to approximate
+the shape of the data, the second approach uses the Savitzky-Golay filter 
+with a width of 81 points in the channel and a fourth
+degree polynomial applied to the data (see~\cite{scipy} for reference). As it turns out,
+the best solution is to take a compromise between these two methods. For small angles
+15-60 degrees we take the peak of the filtered data, for the rest we use the Gaussian.
+
+
+\foreach \n in {15,30,45,60,75,90,105,120}{
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{./analysis/figures/coin_ps_\n}
+    \caption{
+    Gaussian least squares fit at angle of $\theta = \n^\circ$}
+\end{figure}
+}
+
+\foreach \n in {15,30,45,60,75,90,105,120}{
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{./analysis/figures/coin_ps_\n_filter_}
+    \caption{Savitzky-Golay filter at angle of $\theta = \n^\circ$}
+\end{figure}
+}
+\clearpage
+\subsection{Energy of photons}
+In this section we show the rate of coincident events of NaI scintillator at
+various angles. Those will be fitted against 
+\begin{equation*}
+    n(E) =  \frac{A}{\sqrt{2\pi\sigma^2}} \exp \left( 
+    \frac{-(E-E_0)^2}{2\sigma^2}\right)  + B\exp(-b E).
+\end{equation*}
+The peak which is referred by the $  B\exp(-b E)$ is due to a Compton edge of the
+scintillator, as it was explained in section~\ref{sec:scinti}. The fit range is 
+chosen in a way that this edge can be approximated by the exponential, see the 
+curves of the fits, which are plotted in the selected range.
+\foreach \n in {15,30,45,60,75,90,105,120}{
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{./analysis/figures/coin_na_\n}
+    \caption{Least-squares fit with Gaussian
+    peak plus exponential at angle of $\theta = \n^\circ$}
+\end{figure}
+}
+
