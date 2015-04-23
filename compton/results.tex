@@ -1,11 +1,15 @@
 \clearpage
 \section{Analysis and results}
 \label{sec:analysis}
-This section will elaborate the numerical  analysis of the
-data obtained in the measurements. But before we can go into
-the numerical treatments, we have to make clear how the
-calculations and error propagation is done in the following 
-chapter.
+In this section will elaborate the numerical analysis of the
+data obtained in the measurements. We start with general remarks on the 
+treatment of statistical errors applied. The next part covers the calibration 
+of the histograms obtained with the two scintillators, using the known 
+peaks of the two samples. The main part of the analysis consists of the 
+examination of energy calibration and the comparison between theoretical 
+prediction for differential and total cross sections with the experimental 
+data. 
+
 \subsection{Techniques used for the evaluation}
 \label{sub:techique}
 All calculations in this section are done with scripts written in 
@@ -21,7 +25,7 @@ packages:
 \end{itemize}
 The latter applies Gaussian error propagation for correlated and uncorrelated variables. 
 We will thus not explicitly write down the formulas for the error propagation 
-for each quantity calculated but instead state the numerical result, only. 
+for each quantity calculated but instead state the numerical result only. 
 We will, however make a quick remark on the use of covariance matrices in 
 error propagation: Contrary to measured data, which in our case is usually 
 expected to be uncorrelated, all fitted data yields variables that in general correlate. 
@@ -44,38 +48,26 @@ where $A$ is the matrix defined by
     A_{ij} = \left[ \frac{\partial f_i}{\partial x_j}\right]_{\mathbf{x} = \mu}
 \end{equation}
 with expectation value $E[\mathbf{x}] = \mu$.~\cite{cowan1998statistical}
-In order to facilitate notation, the covariance matrices will in general be notated without 
-specifying the units. If not specified explicitly, the units will correspond to those of the
-variables: If $x_i, x_j$ have the units $[x_i], [x_j]$, respectively, 
-then the entry of the covariance matrix has the unit $[x_i] \cdot [x_j]$. 
-Now that we have made clear how the analysis is done, we will
-continue with the evaluation of the experimental data. We will
-start with calibrations, in particular with the relation between
-measured channels and energy in keV.
-\clearpage
-
 
 \subsection{Calibration of PVC scintillator}
 \label{sub:calibration}
-The purpose of this section is to calibrate the channels to
-known energies. Therefor we calculate the  rates for the
-events by dividing each count by the total time measured. 
+The purpose of this section is to calibrate the channels obtained by the MCA to
+known energies. In order to compare between measurements, we transform the measured 
+histograms to rates by dividing each count by the total time measured. 
 \begin{equation}
-    \text{rate (for each channel): } n  = 	\frac{N}{T}
+    \text{rate (channel): } n  = 	\frac{N}{T}
     \label{eq:rate}
 \end{equation}
 
 Then we subtract for each channel the background rate, which
 was calculated analogously 
 \begin{equation}
-    n_\mathrm{cleansed} = n -
-    n_\mathrm{background}.
+    n_\mathrm{cleansed} = n - n_\mathrm{background}.
     \label{eq:rate2}
 \end{equation}
-This procedure will be used in all calculations below, we will
-not repeat the equations, though. The error propagation is done
-according to section~\ref{sub:techique}. Now we approximate
-the Compton edge in first order by an Heaviside step function,
+This procedure will be used in all calculations below without explicit restating. 
+The error propagation is done according to section~\ref{sub:techique}.
+The Compton edge is approximated in first order by an Heaviside step function,
 convoluted\footnote{ 
     A convolution is defined by
 \begin{equation}
@@ -395,18 +387,10 @@ different. }
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.9\linewidth]{./analysis/figures/na_cross_section}
-    \caption{Our result of the differential cross section with equation~\eqref{eq:diff_cross}. As the figure shows, the
-    experimental result does \textbf{not resemble the theoretical prediction}, for small angle not even with respect to error. 
-We think 
-that the reason for his huge disagreement is hidden in the calculated intensities (see figure~\ref{fig:coin_na_30}, the
-peak next to Gaussian peak, which we approximated by an exponential decay seems to absorb most of the intensity. This changes
-for higher angles, but this is not what we would expect. In order for the cross section to satisfy the theoretical prediction,
-one expect lower intensities for smaller angles, but due to the \emph{absorption} of the peak next to the coincident peak
-we get the opposite behavior: Lower intensities for smaller angles. Our explanation is as follows: Since the measurement
-of the random coincidences failed, we could include them in the analysis here, but they seem to recover the nonlinear behavior
-seen for low angles. Since random coincidences are a relict of the electronic mechanism of the detector, this disagreement
-is of no physical origin. These noise seems to interfere with the intensities of the coincident peaks in such a way that the
-intensity dependence with respect to the angles is lost.}
+    \caption{Experimental results of the differential cross section compared with the theoretical expectation 
+        (equation~\eqref{eq:diff_cross}). The experimental data are derived from numerical integration of the measured spectra corrected
+        by various intensity or angle dependent. Although good agreement between experiment and theory agree within statistical errors is
+        observed, the data too fraught of errors in order to test for deviations from the theory.}
 \label{fig:na_cross_section}
 \end{figure}
 \newpage
