@@ -40,6 +40,8 @@
 \newcommand{\<}[1]{\begin{column}{#1}}
 \renewcommand{\>}{\end{column}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\useoutertheme{infolines} % authors, etc.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \bibliography{presentation.bib}
 
@@ -51,28 +53,61 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\title{Compton and His Scattering}
+\title[Compton]{Compton scattering}
 %\subtitle{SUBTITLE}
 \author{
 	Friedrich Schüßler, Volker Karle\\
-    \begin{equation*}
-       \qquad 
-    \end{equation*}
-    Advicer: Kilian Rosbach
 }
-\date{
-	\today
-}
-\titlepage
-\end{frame}
+\institute% (optional)
+{ \inst{}%
+    University of Freiburg
+  \and
+  \inst{}%
+    Assistant: Kilian Rosbach}
+\date{\today}
 
+\frame{\titlepage}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Table of Contents}
+
+\begin{frame}{Inhaltsverzeichnis}
 \tableofcontents
 \end{frame}
+
+\section{Theoretical background}
+
+\section{Experimental setup}
+\begin{frame}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../figures/setup_pres_pre}
+\label{fig:setup_pre}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+ \begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../figures/setup_pres}
+\label{fig:setup_pre}
+\end{figure}
+\end{frame}
+
+\subsection{$^{137}$Cs und  $^{22}$Na samples}
+\begin{frame}
+ \begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../figures/setup_pres}
+    %\includegraphics[width=1.0\linewidth]{../figures/terms}
+\label{fig:term_schemata}
+\end{figure}
+\end{frame}
+
+\subsection{Szintillisatoren}
+
+
+
+
+
 
 \section{Calibration of PS scintillator}
 \begin{frame}[t]{$^{22}$Na sample (measurement time 16.5h) }
@@ -81,8 +116,8 @@
     \includegraphics[width=1.0\linewidth]{../analysis/figures/calib_ps_na}
 \label{fig:calib_ps_na}
 \end{figure}
-
 \end{frame}
+
 \begin{frame}[t]{$^{137}$Cs sample (measurement time 6h) }
 
 \begin{figure}[htpb]
@@ -160,7 +195,7 @@
    
 \end{frame}
 \section{Energy Conservation}
-\begin{frame}[t]{Energy Conversation}
+\begin{frame}[t]{Energy Conservationation}
     \begin{itemize}
         \item Comparison of peak energies for different angles
     \end{itemize}
