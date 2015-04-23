@@ -53,30 +53,35 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title[Compton]{Compton scattering}
-%\subtitle{SUBTITLE}
+\begin{frame}{}
+\title[Compton]{Compton Streuung}
+\subtitle{Elektronen außer Rand und Band}
 \author{
-	Friedrich Schüßler, Volker Karle\\
-}
-\institute% (optional)
-{ \inst{}%
-    University of Freiburg
-  \and
-  \inst{}%
-    Assistant: Kilian Rosbach}
+Friedrich Schüßler, Volker Karle}
 \date{\today}
+\titlepage
 
-\frame{\titlepage}
+\centering 
+Assistent: Kilian Rosbach
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Inhaltsverzeichnis}
 \tableofcontents
 \end{frame}
 
-\section{Theoretical background}
 
-\section{Experimental setup}
-\begin{frame}
+
+\section{Experimenteller Aufbau}
+\begin{frame}[t]{Foto des Aufbaus}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.7\linewidth]{../figures/photographie1}
+\label{fig:foto}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Aufbau ohne Elektronik}
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{../figures/setup_pres_pre}
@@ -84,7 +89,7 @@
 \end{figure}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]{Aufbau mit Elektronik}
  \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{../figures/setup_pres}
@@ -92,38 +97,66 @@
 \end{figure}
 \end{frame}
 
-\subsection{$^{137}$Cs und  $^{22}$Na samples}
-\begin{frame}
+\subsection{$^{137}$Cs und  $^{22}$Na}
+\begin{frame}[t]{Zerfallsschemata von $^{137}$Cs und  $^{22}$Na}
  \begin{figure}[htpb]
     \centering
-    %\includegraphics[width=1.0\linewidth]{../figures/setup_pres}
     \includegraphics[width=1.0\linewidth]{../figures/terms}
 \label{fig:term_schemata}
 \end{figure}
 \end{frame}
 
-\subsection{Szintillisatoren}
+\section{Kalibrierung}
+\begin{frame}[t]{Wie sieht ein Compton Peak aus? Klein-Nishina Formel!}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/theory_dsde}
+\label{fig:theory_kn}
+\end{figure}
+\end{frame}
 
-\begin{frame}
+\begin{frame}[t]{NaI Szintillator, $^{137}$Cs Probe, mit PVC}
+ \begin{figure}[htpb]
+    \centering
+    %\includegraphics[width=1.0\linewidth]{../analysis/figures/histo_na_137cs_nolegend}
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/histo_na_137cs}
+    \label{fig:histo_na_137cs}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{NaI Szintillator, $^{137}$Cs Probe, mit PVC}
+ \begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/histo_na_137cs}
+    \label{fig:histo_na_137cs}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Sichtbare Peaks und Kanten für beide Szintillisatoren}
 \begin{table}[htpb]
     \centering
-    \caption{
-        Sichtbare Peaks und Kanten (Energien in keV)
-        }
     \label{tab:mono_calibration}
     \begin{tabular}{l l r c c}
-        \rowcolor{LightCyan} Probe & Peak/Kante & $E$ / keV& NaI Szinti & PCV Szinti \\
-        \cellcolor{LightCyan}$^{137}$Cs & Photo & 662 & sichtbar &  \\
-        \cellcolor{LightCyan} & Compton& 477& sichtbar  &  sichtbar  \\
-        \cellcolor{LightCyan} & Rückstreu& 183&  sichtbar &  \\
-        \cellcolor{LightCyan}$^{22}$Na & Photo& 511& sichtbar  &  \\
-        \cellcolor{LightCyan} & Compton& 341& sichtbar  & sichtbar  \\
-        \cellcolor{LightCyan} & Photo& 1277& sichtbar  & \\
-        \cellcolor{LightCyan} & Compton& 1064& sichtbar  & sichtbar \\
+
+        \rowcolor{LightCyan} Probe & Peak/Kante & $E$ / keV& NaI / Channel & PVC / Channel \\
+        \cellcolor{LightCyan}$^{137}$Cs & Photo & 662 & $8040.59 \pm 0.03$ &  \\
+        \cellcolor{LightCyan} & Compton& 477& $5720 \pm 4$ &  $178.9 \pm 0.3$  \\
+        \cellcolor{LightCyan} & Rückstreu& 183&  $2510 \pm 12$ &  \\
+        \cellcolor{LightCyan}$^{22}$Na & Photo& 511& $6347 \pm 3$&  \\
+        \cellcolor{LightCyan} & Compton& 341& $4000 \pm 2000$& $108 \pm 2$  \\
+        \cellcolor{LightCyan} & Photo& 1277& $14180 \pm 20 $& \\
+        \cellcolor{LightCyan} & Compton& 1064& $12000 \pm 4000$& $414 \pm 4$ \\
     \end{tabular}
 \end{table}
 \end{frame}
 
+\begin{frame}[t]{Linearer fit für NaI Szintillator}
+ \begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/calibration_na_linear_fit}
+    \label{fig:calibration_na_linear_fit}
+\end{figure}
+\end{frame}
 
 
 
@@ -138,17 +171,14 @@
 \end{frame}
 
 \begin{frame}[t]{$^{137}$Cs sample (measurement time 6h) }
-
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=1.0\linewidth]{../analysis/figures/calib_ps_cs}
 \label{fig:calib_ps_cs}
 \end{figure}
-
 \end{frame}
 
 \begin{frame}[t]{Linear fit}
-    
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{../analysis/figures/calibration_ps_linear_fit}
@@ -159,7 +189,6 @@
 \section{Calibration of Na scintillator}
 
 \begin{frame}[t]{Peaks and fitting results of $^{137}$Cs}
-
     \begin{table}[htpb]
     \centering
 \label{tab:peaks_cs_ps}
@@ -170,7 +199,6 @@
         Escape peak & 183 keV & $2510 \pm 12$
     \end{tabular}
 \end{table}
-
 \end{frame}
 
 \begin{frame}[t]{$^{137}$Cs sample (measurement time 2.7h)}
@@ -181,28 +209,13 @@
 \end{figure}
 \end{frame}
 
-\begin{frame}[t]{Peaks and fitting results of $^{22}$Na}
-    \begin{table}[htpb]
-    \centering
-\label{tab:peaks_na_ps}
-\begin{tabular}{lll}
-    \rowcolor{LightCyan} Name &Energy & Channel \\ 
-       1. Photo peak& 511 keV & $6347 \pm 3$ \\ 
-       2. Photo peak& 1277 keV & $14180 \pm 20 $\\
-       1. Compton edge& 341 keV& $4000 \pm 2000$\\
-       2. Compton edge& 1064 keV & $12000 \pm 4000$
-    \end{tabular}
-    \end{table}
-\end{frame}
 
 \begin{frame}[t]{$^{22}$Na sample (measurement time about 1h) }
-    
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1.0\linewidth]{../analysis/figures/histo_na_22na}
 \label{fig:histo_na_22na}
 \end{figure}
-
 \end{frame}
 
 \begin{frame}[t]{Linear fit}
@@ -211,8 +224,25 @@
     \includegraphics[width=1.0\linewidth]{../analysis/figures/calibration_na_linear_fit}
     \label{fig:calibration_na_linear_fit}
 \end{figure}
-   
 \end{frame}
+
+\section{Energieerhaltung}
+\begin{frame}[t]{Energieerhaltung}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/theory_conservation}
+\label{fig:theory_cons}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Differentieller Wirkungsquerschnitt}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/theory_diff_cs}
+\label{fig:theory_diff}
+\end{figure}
+\end{frame}
+
 \section{Energy Conservation}
 \begin{frame}[t]{Energy Conservationation}
     \begin{itemize}
@@ -275,5 +305,15 @@
     Now to the result: combining all those peaks...
 \end{frame}
 
+
+\section{Appendix}
+\label{sec:appendix}
+\begin{frame}[t]{NaI szintillator, $^{137}$Cs Probe, ohne PVC}
+ \begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/na_total_incident}
+    \label{fig:histo_na_137cs}
+\end{figure}
+\end{frame}
 
 \end{document}
