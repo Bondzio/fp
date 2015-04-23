@@ -76,7 +76,7 @@ Assistent: Kilian Rosbach
 \begin{frame}[t]{Foto des Aufbaus}
 \begin{figure}[htpb]
     \centering
-    \includegraphics[width=1.0\linewidth]{../figures/photographie1}
+    \includegraphics[width=0.7\linewidth]{../figures/photographie1}
 \label{fig:foto}
 \end{figure}
 \end{frame}
@@ -115,14 +115,6 @@ Assistent: Kilian Rosbach
 \end{figure}
 \end{frame}
 
-\begin{frame}[t]{NaI szintillator, $^{137}$Cs Probe, ohne PVC}
- \begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/na_total_incident}
-    \label{fig:histo_na_137cs}
-\end{figure}
-\end{frame}
-
 \begin{frame}[t]{NaI Szintillator, $^{137}$Cs Probe, mit PVC}
  \begin{figure}[htpb]
     \centering
@@ -140,33 +132,20 @@ Assistent: Kilian Rosbach
 \end{figure}
 \end{frame}
 
-
-\begin{frame}[t]{Peaks and fitting results of $^{22}$Na}
-    \begin{table}[htpb]
-    \centering
-\label{tab:peaks_na_ps}
-\begin{tabular}{lll}
-    \rowcolor{LightCyan} Name &Energy & Channel \\ 
-       1. Photo peak& 511 keV & $6347 \pm 3$ \\ 
-       2. Photo peak& 1277 keV & $14180 \pm 20 $\\
-       1. Compton edge& 341 keV& $4000 \pm 2000$\\
-       2. Compton edge& 1064 keV & $12000 \pm 4000$
-    \end{tabular}
-    \end{table}
-\end{frame}
 \begin{frame}[t]{Sichtbare Peaks und Kanten für beide Szintillisatoren}
 \begin{table}[htpb]
     \centering
     \label{tab:mono_calibration}
     \begin{tabular}{l l r c c}
+
         \rowcolor{LightCyan} Probe & Peak/Kante & $E$ / keV& NaI / Channel & PVC / Channel \\
-        \cellcolor{LightCyan}$^{137}$Cs & Photo & 662 & sichtbar &  \\
-        \cellcolor{LightCyan} & Compton& 477& sichtbar  &  sichtbar  \\
-        \cellcolor{LightCyan} & Rückstreu& 183&  sichtbar &  \\
+        \cellcolor{LightCyan}$^{137}$Cs & Photo & 662 & $8040.59 \pm 0.03$ &  \\
+        \cellcolor{LightCyan} & Compton& 477& $5720 \pm 4$ &  sichtbar  \\
+        \cellcolor{LightCyan} & Rückstreu& 183&  $2510 \pm 12$ &  \\
         \cellcolor{LightCyan}$^{22}$Na & Photo& 511& $6347 \pm 3$&  \\
-        \cellcolor{LightCyan} & Compton& 341& sichtbar  & sichtbar  \\
+        \cellcolor{LightCyan} & Compton& 341& $4000 \pm 2000$& sichtbar  \\
         \cellcolor{LightCyan} & Photo& 1277& $14180 \pm 20 $& \\
-        \cellcolor{LightCyan} & Compton& 1064& $4000 \pm 2000$& sichtbar \\
+        \cellcolor{LightCyan} & Compton& 1064& $12000 \pm 4000$& sichtbar \\
     \end{tabular}
 \end{table}
 \end{frame}
@@ -318,5 +297,15 @@ Assistent: Kilian Rosbach
     Now to the result: combining all those peaks...
 \end{frame}
 
+
+\section{Appendix}
+\label{sec:appendix}
+\begin{frame}[t]{NaI szintillator, $^{137}$Cs Probe, ohne PVC}
+ \begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/na_total_incident}
+    \label{fig:histo_na_137cs}
+\end{figure}
+\end{frame}
 
 \end{document}
