@@ -82,6 +82,7 @@ docs/_build/
 # Pratikum
 Protokoll.pdf
 report.pdf
+pres.pdf
 
 # ipython notebook
 *.ipynb_checkpoints/
