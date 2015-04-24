@@ -52,7 +52,6 @@
 \begin{document}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 \title[Compton]{Compton Streuung}
 \subtitle{Elektronen außer Rand und Band}
@@ -64,9 +63,21 @@ Friedrich Schüßler, Volker Karle}
 \centering 
 Assistent: Kilian Rosbach
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\AtBeginSection[]
-{
+
+\begin{frame}[t]{Was ist Compton Streuung?}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.6\linewidth]{../figures/compton_scatter}
+\label{fig:intro}
+\end{figure}
+Photonen streuen elastisch an quasi-freien Elektronen
+\end{frame}
+
+\begin{frame}{Inhaltsverzeichnis}
+    \tableofcontents
+\end{frame}
+
+\AtBeginSection[]{
 \begin{frame}{Inhaltsverzeichnis}
     \tableofcontents[currentsection]
 \end{frame}
@@ -98,7 +109,6 @@ Assistent: Kilian Rosbach
 \end{figure}
 \end{frame}
 
-\subsection{$^{137}$Cs und  $^{22}$Na}
 \begin{frame}[t]{Zerfallsschemata von $^{137}$Cs und  $^{22}$Na}
  \begin{figure}[htpb]
     \centering
@@ -108,6 +118,18 @@ Assistent: Kilian Rosbach
 \end{frame}
 
 \section{Kalibrierung}
+\begin{frame}[t]{Wie sieht ein Compton Peak aus?}
+    Klein-Nishina Formel
+\begin{equation}
+    \frac{\text{d} \sigma_\text{C}}{\text{d} E_{e, \text{kin}}} 
+    = \frac{\alpha^2 \lambda_e^2}{16 \pi^3 m_e c^2}  \frac{1}{a^2}\left(
+        \frac{b^2}{a^2(a - b)^2} + \frac{(b - 1)^2 - 1}{a (a - b)} \right) 
+    \label{eq:dode}
+\end{equation}
+mit $a := E_\gamma / m_ec^2$ \\ 
+und $b := E_{e, \text{kin}} / m_ec^2$ 
+\end{frame}
+
 \begin{frame}[t]{Wie sieht ein Compton Peak aus? Klein-Nishina Formel!}
 \begin{figure}[htpb]
     \centering
@@ -119,8 +141,7 @@ Assistent: Kilian Rosbach
 \begin{frame}[t]{NaI Szintillator, $^{137}$Cs Probe, mit PVC}
  \begin{figure}[htpb]
     \centering
-    %\includegraphics[width=1.0\linewidth]{../analysis/figures/histo_na_137cs_nolegend}
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/histo_na_137cs}
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/histo_na_137cs_nolegend}
     \label{fig:histo_na_137cs}
 \end{figure}
 \end{frame}
@@ -133,12 +154,19 @@ Assistent: Kilian Rosbach
 \end{figure}
 \end{frame}
 
+\begin{frame}[t]{Linearer fit für NaI Szintillator}
+ \begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/calibration_na_linear_fit}
+    \label{fig:calibration_na_linear_fit}
+\end{figure}
+\end{frame}
+
 \begin{frame}[t]{Sichtbare Peaks und Kanten für beide Szintillisatoren}
 \begin{table}[htpb]
     \centering
     \label{tab:mono_calibration}
     \begin{tabular}{l l r c c}
-
         \rowcolor{LightCyan} Probe & Peak/Kante & $E$ / keV& NaI / Channel & PVC / Channel \\
         \cellcolor{LightCyan}$^{137}$Cs & Photo & 662 & $8040.59 \pm 0.03$ &  \\
         \cellcolor{LightCyan} & Compton& 477& $5720 \pm 4$ &  $178.9 \pm 0.3$  \\
@@ -151,81 +179,6 @@ Assistent: Kilian Rosbach
 \end{table}
 \end{frame}
 
-\begin{frame}[t]{Linearer fit für NaI Szintillator}
- \begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/calibration_na_linear_fit}
-    \label{fig:calibration_na_linear_fit}
-\end{figure}
-\end{frame}
-
-
-
-
-\section{Calibration of PS scintillator}
-\begin{frame}[t]{$^{22}$Na sample (measurement time 16.5h) }
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/calib_ps_na}
-\label{fig:calib_ps_na}
-\end{figure}
-\end{frame}
-
-\begin{frame}[t]{$^{137}$Cs sample (measurement time 6h) }
-\begin{figure}[htpb]
-\centering
-\includegraphics[width=1.0\linewidth]{../analysis/figures/calib_ps_cs}
-\label{fig:calib_ps_cs}
-\end{figure}
-\end{frame}
-
-\begin{frame}[t]{Linear fit}
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/calibration_ps_linear_fit}
-\label{fig:calibration_ps_linear_fit}
-\end{figure}
-\end{frame}
-
-\section{Calibration of Na scintillator}
-
-\begin{frame}[t]{Peaks and fitting results of $^{137}$Cs}
-    \begin{table}[htpb]
-    \centering
-\label{tab:peaks_cs_ps}
-    \begin{tabular}{lll}
-        \rowcolor{LightCyan} Name &Energy & Channel \\ 
-        Photo peak & 662 keV & $8040.59 \pm 0.03$\\ 
-        Compton edge & 477 keV & $5720 \pm 4$\\  
-        Escape peak & 183 keV & $2510 \pm 12$
-    \end{tabular}
-\end{table}
-\end{frame}
-
-\begin{frame}[t]{$^{137}$Cs sample (measurement time 2.7h)}
- \begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/histo_na_137cs}
-    \label{fig:histo_na_137cs}
-\end{figure}
-\end{frame}
-
-
-\begin{frame}[t]{$^{22}$Na sample (measurement time about 1h) }
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/histo_na_22na}
-\label{fig:histo_na_22na}
-\end{figure}
-\end{frame}
-
-\begin{frame}[t]{Linear fit}
- \begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/calibration_na_linear_fit}
-    \label{fig:calibration_na_linear_fit}
-\end{figure}
-\end{frame}
 
 \section{Energieerhaltung}
 \begin{frame}[t]{Energieerhaltung}
@@ -236,6 +189,42 @@ Assistent: Kilian Rosbach
 \end{figure}
 \end{frame}
 
+\begin{frame}[t]{Elektronenenergie gemessen mit dem PVC Szintillator für 
+    $\theta = 90^\circ$, koinzidente Schaltung}
+    \begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/coin_ps_90}
+\label{fig:coin_ps_90}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Elektronenenergie gemessen mit dem PVC Szintillator für 
+    $\theta = 15^\circ$, koinzidente Schaltung}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/coin_ps_15_filter_}
+\label{fig:coin_ps_15}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Energie gestreuter Photonen, gemessen mit dem NaI Szintillator für 
+    $\theta = 30^\circ$, koinzidente Schaltung}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/coin_na_30}
+    \label{fig:coin_na_30}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Energieerhaltung}
+   \begin{figure}[htpb]
+       \centering
+       \includegraphics[width=0.9\linewidth]{../analysis/figures/energy_conservation}
+       \caption{Name}
+       \label{fig:name}
+   \end{figure} 
+\end{frame}
+\section{Differentieller Wirkungsquerschnitt}
 \begin{frame}[t]{Differentieller Wirkungsquerschnitt}
 \begin{figure}[htpb]
     \centering
@@ -244,68 +233,25 @@ Assistent: Kilian Rosbach
 \end{figure}
 \end{frame}
 
-\section{Energy Conservation}
-\begin{frame}[t]{Energy Conservationation}
-    \begin{itemize}
-        \item Comparison of peak energies for different angles
-    \end{itemize}
-\end{frame}
-\begin{frame}[t]{Background of the PS scintillator with coincidence
-    and random coincidences (measurem. time 13.4h and 1h)}
-    \begin{figure}[htpb]
+\begin{frame}[t]{Differentieller Wirkungsquerschnitt}
+\begin{figure}[htpb]
     \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/coin_background_random}
-    \label{fig:coin_ps_background}
-\end{figure}
-
-\end{frame}
-
-\begin{frame}[t]{Energy of electrons: Rate of coincident events of PS scintillator at angle of $\theta = 90^\circ$}
-
-    \begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/coin_ps_90}
-\label{fig:coin_ps_90}
-\end{figure}
-
-\end{frame}
-\begin{frame}[t]{Energy of electrons: Rate of coincident events of PS scintillator at angle of $\theta = 15^\circ$}
-    \begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/coin_ps_15_filter_}
-\label{fig:coin_ps_15}
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/na_cross_section}
+\label{fig:theory_diff}
 \end{figure}
 \end{frame}
 
-\begin{frame}[t]{Background of NaI scintillator with coincidences (measurem. time 62h)}
+\begin{frame}[t]{Take home message}
+
+    \emph{ The benefits of science are not only material ones. The truths that science teaches are of common interest the world over. The language of science is universal, and is a powerful force in bringing the peoples of the world closer together. }
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.3\linewidth]{../figures/compton}
+\label{fig:fratze}
+\end{figure}
    
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/coin_na_background}
-\end{figure}
- 
 \end{frame}
-
-\begin{frame}[t]{Energy of photons: Rate of coincident events of NaI scintillator at angle $\theta = 30^\circ$}
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/coin_na_30}
-    \label{fig:coin_na_30}
-\end{figure}
-\end{frame}
-
-\begin{frame}[t]{Energy of photons: Rate of coincident events of NaI scintillator at angle $\theta = 90^\circ$}
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../analysis/figures/coin_na_90}
-    \label{fig:coin_na_30}
-\end{figure}
-\end{frame}
-
-\begin{frame}[c]{}
-    Now to the result: combining all those peaks...
-\end{frame}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 
 \section{Appendix}
 \label{sec:appendix}
@@ -316,5 +262,65 @@ Assistent: Kilian Rosbach
     \label{fig:histo_na_137cs}
 \end{figure}
 \end{frame}
+
+\begin{frame}[t]{Kalibrierung NaI, $^{22}$Na Probe (Messzeit 1h) }
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/histo_na_22na}
+\label{fig:histo_na_22na}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Kalibrierung PVC, $^{22}$Na Probe (Messzeit 16.5h) }
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/calib_ps_na}
+\label{fig:calib_ps_na}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Kalibrierung PVC, $^{137}$Cs Probe (Messzeit 6h) }
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=1.0\linewidth]{../analysis/figures/calib_ps_cs}
+\label{fig:calib_ps_cs}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Linearer fit, PVC}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/calibration_ps_linear_fit}
+\label{fig:calibration_ps_linear_fit}
+\end{figure}
+\end{frame}
+
+%%% ENERGIEERHALtung
+\begin{frame}[t]{Hintergrund und zufaellige Koinzidenzen beim 
+        PVC Szintillator (Messzeit: 13.4h and 1h)}
+    \begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/coin_background_random}
+    \label{fig:coin_ps_background}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Hintergrund und zufaellige Koinzidenzen beim 
+        NaI Szintillator (Messzeit: 62h)}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/coin_na_background}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Energie gestreuter Photonen, gemessen mit dem NaI Szintillator für 
+    $\theta = 105^\circ$, koinzidente Schaltung}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../analysis/figures/coin_na_105}
+    \label{fig:coin_na_30}
+\end{figure}
+\end{frame}
+
 
 \end{document}
