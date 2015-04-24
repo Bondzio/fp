@@ -65,19 +65,25 @@ Friedrich Schüßler, Volker Karle}
 Assistent: Kilian Rosbach
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[t]{Einleitung}
+\begin{frame}[t]{Was ist Compton Streuung?}
 \begin{figure}[htpb]
     \centering
-    \includegraphics[width=0.7\linewidth]{../figures/photographie1}
-\label{fig:foto}
+    \includegraphics[width=0.6\linewidth]{../figures/compton_scatter}
+\label{fig:intro}
 \end{figure}
+Photonen streuen elastisch an quasi-freien Elektronen
 \end{frame}
-
 
 \begin{frame}{Inhaltsverzeichnis}
-\tableofcontents
+    \tableofcontents
 \end{frame}
 
+
+\AtBeginSection[]{
+\begin{frame}{Inhaltsverzeichnis}
+    \tableofcontents[currentsection]
+\end{frame}
+}
 
 
 \section{Experimenteller Aufbau}
@@ -114,6 +120,18 @@ Assistent: Kilian Rosbach
 \end{frame}
 
 \section{Kalibrierung}
+\begin{frame}[t]{Wie sieht ein Compton Peak aus?}
+    Klein-Nishina Formel
+\begin{equation}
+    \frac{\text{d} \sigma_\text{C}}{\text{d} E_{e, \text{kin}}} 
+    = \frac{\alpha^2 \lambda_e^2}{16 \pi^3 m_e c^2}  \frac{1}{a^2}\left(
+        \frac{b^2}{a^2(a - b)^2} + \frac{(b - 1)^2 - 1}{a (a - b)} \right) 
+    \label{eq:dode}
+\end{equation}
+mit $a := E_\gamma / m_ec^2$ \\ 
+und $b := E_{e, \text{kin}} / m_ec^2$ 
+\end{frame}
+
 \begin{frame}[t]{Wie sieht ein Compton Peak aus? Klein-Nishina Formel!}
 \begin{figure}[htpb]
     \centering
