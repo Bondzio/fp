@@ -179,9 +179,9 @@ figure~\ref{fig:calibration_na_linear_fit}, in order to yield a calibration.
 \label{tab:peaks_cs_ps}
     \begin{tabular}{lll}
         \rowcolor{LightCyan} Name &Energy & Channel \\ 
-        Photo peak & 662 keV & $8040.59 \pm 0.03$\\ 
+        Photo peak & 662 keV & $8049.41 \pm 0.03$\\ 
         Compton edge & 477 keV & $5720 \pm 4$\\  
-        Escape peak & 183 keV & $2510 \pm 12$
+        Escape peak & 183 keV & $2518 \pm 12$
     \end{tabular}
 \end{table}
 
@@ -225,8 +225,8 @@ figure~\ref{fig:calibration_na_linear_fit}, in order to yield a calibration.
 \label{tab:peaks_na_ps}
 \begin{tabular}{lll}
     \rowcolor{LightCyan} Name &Energy & Channel \\ 
-       1. Photo peak& 511 keV & $6347 \pm 3$ \\ 
-       2. Photo peak& 1277 keV & $14180 \pm 20 $\\
+       1. Photo peak& 511 keV & $6348 \pm 3$ \\ 
+       2. Photo peak& 1277 keV & $14190 \pm 30 $\\
        1. Compton edge& 341 keV& $4000 \pm 2000$\\
        2. Compton edge& 1064 keV & $12000 \pm 4000$
     \end{tabular}
@@ -238,7 +238,12 @@ figure~\ref{fig:calibration_na_linear_fit}, in order to yield a calibration.
     \caption{All peaks measured by the NaI scintillator with the respective linear fit. The errors on 
         most of the peaks are too small to be shown, only the Compton peaks of $^{22}$Na show
         an exorbitant error. The second photo peak ($^{22}$Na sample) seems to be quite apart from
-    the result of the other values; this might be due to a general systematic error.}
+    the result of the other values; this might be due to a general systematic error. Our explanation is as following: 
+    For Channels higher than a certain value, we experience the saturation of the MCA. This leads to a confusion about the
+    real energy of the channel, since even higher energies might be placed into the same channel. Even though the error for the
+    fit is low, the shift due to this effect causes a systematic shift. Therefore we excluded this peak, but this did not 
+    change the slope of our linear fit, so we tend to neglect the effect of the systematic error in future calculations. }
+
 \label{fig:calibration_na_linear_fit}
 \end{figure}
 \clearpage
