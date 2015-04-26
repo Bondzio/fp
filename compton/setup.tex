@@ -32,9 +32,23 @@ We use two different scintillators for detecting the scattered electrons and pho
 emitting light when exposed to ionizing radiation. The light can be amplified by a photo multiplier and transformed to an 
 electric signal. 
 The \textit{organic scintillator} is used for the detection of electrons. It is a PVC scintillator and further the site of 
-scattering, i.~e. electrons of the polymers are scattered and recorded without leaving the scintillator. The 
-\textit{inorganic scintillator} on the other hand detects the scattered photons. The latter produce electron gaps that 
-emit light when falling back to the ground state. The applied scintillator is a NaI crystal. 
+scattering, i.~e. electrons of the polymers are scattered and recorded without leaving the scintillator. Because the 
+absorption coefficient due to the photo effect is very small, most scattered photons leave the scintillator. 
+The \textit{inorganic scintillator} on the other hand detects the scattered photons. The latter produce electron gaps that 
+emit light when falling back to the ground state. The applied scintillator is a NaI(Tl) crystal. It's absorption coefficient 
+for the photo effect is much larger for photons between 0.5 and 1 MeV. Absorption coefficients for all three effects --
+photo and Compton effect as well as pair production -- can be seen in figure~\ref{fig:nai_absorption}. 
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{figures/nai_absorption}
+    \caption{
+        Absorption coefficient of NaI(Tl) scintillator for $\gamma$-rays. Photons in this experiment have energies 
+        between 0.1 and 1 MeV. Taken from \cite{hamamatsu}. 
+        }
+    \label{fig:nai_absorption}
+\end{figure}
+
 
 
 

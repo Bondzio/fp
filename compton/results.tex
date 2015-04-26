@@ -49,6 +49,10 @@ where $A$ is the matrix defined by
 \end{equation}
 with expectation value $E[\mathbf{x}] = \mu$.~\cite{cowan1998statistical}
 
+The source code we used in order to analyze the data can be conveniently viewed with the 
+\textit{ipython notebook viewer} on \cite{FPII_compton}.  
+
+
 \subsection{Calibration of PVC scintillator}
 \label{sub:calibration}
 The purpose of this section is to calibrate the channels obtained by the MCA to
@@ -93,8 +97,8 @@ With the amplitude A and the inverse error function
     \label{eq:erfc}
 \end{equation}
 We will use this approximation for the fit of all Compton 
-edges. In the case of more than one Compton edges, we just
-sum them up. For all fits an additional fitting parameter 'offset'
+edges. In the case of more than one Compton edge, we just
+sum them up and fit simultaneously. For all fits an additional fitting parameter 'offset'
 is used for taking into account probable noise or background
 effects, which could not be eliminated by subtracting the 
 measured background rate. For the photon and escape peaks we use 
