@@ -103,6 +103,7 @@ is used for taking into account probable noise or background
 effects, which could not be eliminated by subtracting the 
 measured background rate. For the photon and escape peaks we use 
 a simple Gaussian, as it appears in equation \eqref{eq:errorfunc}.
+In most cases, we add an exponential decay underlying the peak.
 The fits are done using least squares minimization (see 
 \cite{scipy} for a reference of the fitting algorithm), where 
 we include absolute the errors of the respective y-axis as 
@@ -110,39 +111,37 @@ weights. Please note
 that we do not include the $\chi^2/\mathrm{dof}$ in all of the fits,
 as we think this is not of particular interest and would lead
 to confusing figures showing too much information. Our errors
-of the rates are mostly estimated using $\sqrt(N)/T$, and hence
+on the rates are estimated using $\sqrt(N)/T$, and hence
 the $\chi^2/\mathrm{dof}$ are dependent 
-on the measurement time, which we already know and
-is given in the figures. The uncertainty of the fits and their
+on the measurement time, which is given in the figures. 
+The uncertainty of the fits and their
 respective convergence is reflected in the errors of the 
 results. 
-%When necessary, we included the $\chi^2/\mathrm{dof}$,
-%for instance in the linear fit of the calibration.\\
 
-First we find for $^{22}$Na two Compton edges (341 keV and
-1064 keV~\cite{nist}). The result is
+First we search for two Compton edges (341 keV and
+1064 keV~\cite{nist}) in the $^{22}$Na spectrum. The result is
 channel $108 \pm 2$ and $414 \pm 4$ with a correlation of about 50\%, see
 figure~\ref{fig:calib_ps_na}.
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.9\linewidth]{./analysis/figures/calib_ps_na}
-    \caption{Calibration of the PVC scintillator with
-        $^{22}$Na sample (measurement time
-    16.5 h) with refined background (measurement time 15.6h).
-    Notice that the rate is 
-    only fitted for the section in which the background is
+    \caption{Spectrum of $^{22}$Na sample (measurement time
+    16.5 h) measured with the PVC scintillator.
+    The signal is reduced by the background, which is further shown for comparison. 
+    Notice that the rate is only fitted for the section in which the background is
     smaller than the sample. We
     subtracted the background rate at each channel
     for the sample in order not to fit the 
     behavior of the noise. The error of the two
     Compton edges is large (see text) coming
     from the fit and their high correlation coefficient. The 
-dotted line refers to the displacement $E_0$ in \eqref{eq:errorfunc} which should resemble the position of the Compton
-edge without convolution of a Gaussian, which was estimated
-by the least squares fit.}
-\label{fig:calib_ps_na}
+    dotted line refers to the fitted displacement $E_0$ in \eqref{eq:errorfunc} 
+    resembling the position of the Compton edge without convolution of a Gaussian. 
+    }
+    \label{fig:calib_ps_na}
 \end{figure}
+
 For $^{137}$Cs a Compton edge (477 keV~\cite{nist})
 we found channel $178.9 \pm 0.3$ 
 (notice the much smaller error compared to the $^{22}$Na sample), 
@@ -150,7 +149,7 @@ see figure~\ref{fig:calib_ps_cs} for the data and the fit.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.9\linewidth]{./analysis/figures/calib_ps_cs}
-    \caption{Calibration of the PVC scintillator with $^{137}$Cs sample. Measurement time
+    \caption{Spectrum of the $^{137}$Cs sample measured with the PVC for calibrational purposes. Measurement time
     6 h. We subtracted the background rate at each channel. }
 \label{fig:calib_ps_cs}
 \end{figure}
@@ -209,11 +208,11 @@ figure~\ref{fig:calibration_na_linear_fit}, in order to yield a calibration.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.9\linewidth]{./analysis/figures/histo_na_22na2}
-    \caption{Enlargement of the critical area of the Compton edge of
+    \caption{Enlargement of the critical area for the Compton edge of
     figure~\ref{fig:histo_na_22na}.     
-    The red line is a Savitzky-Golay filter 
+    The yellow line shows the data filtered by a Savitzky-Golay filter 
     with a width of 1001 points in the channel and a fourth
-    degree polynomial applied to the data (see~\cite{scipy} for reference) in order
+    degree polynomial(see~\cite{scipy} for reference) in order
     to see the slope of the curve. The least-squares fit uses the real data, though.
 }
 \label{fig:histo_na_22na2}
@@ -224,15 +223,15 @@ figure~\ref{fig:calibration_na_linear_fit}, in order to yield a calibration.
     \caption{Peaks and fitting results of $^{22}$Na. As it is also visible in the figure
     of the leasts-squares fit~\ref{fig:calibration_na_linear_fit} the errors on the
     Compton edges are much higher than those of the Photo peaks. This is due to the high
-    degree of uncertainty of the particular edge resulting from the fit. However, the 
-    uncertainty of the linear fit is much less in the end.}
-\label{tab:peaks_na_ps}
-\begin{tabular}{lll}
-    \rowcolor{LightCyan} Name &Energy & Channel \\ 
-       1. Photo peak& 511 keV & $6348 \pm 3$ \\ 
-       2. Photo peak& 1277 keV & $14190 \pm 30 $\\
-       1. Compton edge& 341 keV& $4000 \pm 2000$\\
-       2. Compton edge& 1064 keV & $12000 \pm 4000$
+    degree of uncertainty of the particular edge resulting from the fit. Accordingly, 
+    the linear fit is hardly effected by these data points. }
+    \label{tab:peaks_na_ps}
+    \begin{tabular}{lll}
+        \rowcolor{LightCyan} Name &Energy & Channel \\ 
+           1. Photo peak& 511 keV & $6348 \pm 3$ \\ 
+           2. Photo peak& 1277 keV & $14190 \pm 30 $\\
+           1. Compton edge& 341 keV& $4000 \pm 2000$\\
+           2. Compton edge& 1064 keV & $12000 \pm 4000$
     \end{tabular}
 \end{table}
 
@@ -243,13 +242,15 @@ figure~\ref{fig:calibration_na_linear_fit}, in order to yield a calibration.
         most of the peaks are too small to be shown, only the Compton peaks of $^{22}$Na show
         an exorbitant error. The second photo peak ($^{22}$Na sample) seems to be quite apart from
     the result of the other values; this might be due to a general systematic error. Our explanation is as following: 
-    For Channels higher than a certain value, we experience the saturation of the MCA. This leads to a confusion about the
-    real energy of the channel, since even higher energies might be placed into the same channel. Even though the error for the
-    fit is low, the shift due to this effect causes a systematic shift. Therefore we excluded this peak, but this did not 
-    change the slope of our linear fit, so we tend to neglect the effect of the systematic error in future calculations. }
-
-\label{fig:calibration_na_linear_fit}
+    For channels higher than a certain value, we experience the saturation of the MCA. This leads to difficulties 
+    interpreting the correct energy of the channel, 
+    since even higher energies might be placed into the same channel. Even though the error for the
+    fit is low, the shift due to this effect causes a systematic shift. Therefore we excluded this peak. However, 
+    this did not change the slope of our linear fit, 
+    so we neglect the effect of the systematic error in future calculations. }
+    \label{fig:calibration_na_linear_fit}
 \end{figure}
+
 \clearpage
 \subsection{Energy conservation}
 \label{sub:energy_conservation}
@@ -335,30 +336,36 @@ the energy, dependent on different scattering angles $\theta$.
 \label{fig:energy_conservation}
 \end{figure}
 \clearpage
+
 \subsection{Differential cross section}
 \label{sub:cross_section}
 This last section addresses the differential cross section elaborated in section~\ref{sec:cross_section}, which can
 be seen as the rate of a photon being detected under an angle of $\theta$. 
-For the calculations
-we use the fits of the last section, yielding the intensity $I(\theta)$ of coincident photons. Those are compared to the total
-intensity $I_\mathrm{total}$ of photons measured in a separate setup. Furthermore we have to take into account the density of
-electrons in the material, which is in our case $n_e= 3.4\cdot10^{23}\mathrm{cm}^{-3}$, and the width $d = [1.4 \pm 0.1]$cm. 
-Since the PVC scintillator is turned by $\theta / 2$ for a measurement angle $\theta$, we correct for the larger width experienced 
-by photons by multiplying with $1 / \cos(\theta / 2)$. 
-The cross section (unit in barn, i.e. 1 barn = $10^{24}\mathrm{cm}^{2}$) then reads
+For the calculations we use the fits of the last section, yielding the intensity $I(\theta)$ 
+of coincident photons. Those are compared to the total intensity $I_\mathrm{total}$ of photons
+measured in a separate setup. Furthermore we have to take into account the density of
+electrons in the material, which is in our case $n_e= 3.4\cdot10^{23}\mathrm{cm}^{-3}$, 
+and the width $d_0 = [1.4 \pm 0.1]$cm. Since the PVC scintillator is turned by $\theta / 2$ for 
+a measurement angle $\theta$, we correct for the larger width experienced 
+by photons be introducing the corrected width
+\begin{equation}
+    d = \frac{d_0}{\cos(\theta / 2)} .
+    \label{eq:width}
+\end{equation}
+The cross section (unit: 1 barn = $10^{24}\mathrm{cm}^{2}$) then reads
 \begin{equation}
     \label{eq:cross}
     \frac{\mathrm{d}\sigma}{\mathrm{d} \Omega} = \frac{I_\mathrm{total}}{I(\theta) n_e \cdot d \cdot \delta \omega}
 \end{equation}
-where we already have implied the dependence on the solid angle $\Delta \Omega$. The solid angle can be seen as the size of the
-detector in radial units, which can be calculated via the radius of the NaI scintillator $u=[4.8\pm0.1]$cm and the Distance
-between NaI opening and PVC scintillator $U=[11.5\pm0.5]$cm
+where we already implied the dependence on the solid angle $\Delta \Omega$. The solid angle can be seen as the size of the
+detector in radial units, which can be calculated via the radius of the NaI scintillator $u=[4.8\pm0.1]$ cm and the 
+distance between NaI opening and PVC scintillator $U=[11.5\pm0.5]$ cm
 \begin{equation}
     \Delta \Omega = \frac{\pi u^2}{U^2}  = [0.17 \pm 0.02] \pi.
 \end{equation}
 Up to now we did not talk about microscopical constraints of the detector, but now we have to consider both the absorption
-of the material $\sim \exp(-\mu \cdot d)$ and the efficiency of detection $\epsilon$. Both of this quantities are dependent on the
-energy the detector is operating. Correcting equation \eqref{eq:cross} we arrive at
+of the material $\sim \exp(-\mu \cdot d)$ and the efficiency of detection $\epsilon$. Both of this quantities are 
+dependent on the energy the detector is operating. Correcting equation \eqref{eq:cross} we arrive at
 \begin{equation}
 \label{eq:diff_cross}
     \frac{\mathrm{d} \sigma}{\mathrm{d} \Omega} = \frac{I_\mathrm{total}}{I(\theta) n_e \cdot d \cdot \delta \omega} \
@@ -368,10 +375,11 @@ energy the detector is operating. Correcting equation \eqref{eq:cross} we arrive
 The last equation can be understood as follows: We approximate the photon to travel half of the PVC width $d$ with its
 primary energy, therefore we need the probability of not being absorbed (hence the factor 1 - exp, if the absorption happen 
 in this regime, the scattering will not occur). The other probability accounts for being absorbed in the other half of the width,
-leading to an scattering which we can detect. However, this correction is very small and does not change the overall asymptotic
-of the curve. The result for our intensities is shown in figure~\ref{fig:na_cross_section}. It is clear that the result is only
-correct with respect to the order of magnitude; the dependency with respect to the angle $\theta$ is not fulfilled at all, 
-compared to the theoretical prediction of the Klein-Nishina formula calculated before. 
+leading to an scattering which we can detect. However, this correction is very small and hardly changes the overall asymptotic
+of the curve. The result for our intensities is shown in figure~\ref{fig:na_cross_section}. 
+The agreement between data and theory is surprisingly good, although the large errors would hardly justify any 
+more specific conclusions based on our measurements. In any case, Thomson's prediction, 
+a cross section independent on the angle, can be ruled out.
 
 \begin{SCtable}[1.5][tbd]
 
