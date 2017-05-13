@@ -3,4 +3,4 @@ fp
 
 communication platform for the fp
 
-We will have a lot of fun I guess.
+We had have a lot of fun.
